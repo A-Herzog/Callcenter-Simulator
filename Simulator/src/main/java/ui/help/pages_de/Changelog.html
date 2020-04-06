@@ -1,0 +1,1056 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Versionsgeschichte</title>
+</head>
+
+<body>
+
+<h1>Versionsgeschichte</h1>
+
+<h2>5.6.228 (x.x.2020)</h2>
+<ul>
+  <li>Der Callcenter Simulator steht nun unter der Apache 2.0 Lizenz zur freien Verwendung zur Verfügung.</li>
+  <li>[Fix] Im Verteilungseditor wurden die Kenngrößen der Beta-Verteilung nicht korrekt angezeigt.</li>
+  <li>[Fix] Der Wikipedia-Hilfe-Link im Verteilungseditor funktionierte nicht mehr korrekt.</li>
+</ul>
+
+<h2>5.6.227 (23.3.2020)</h2>
+<ul>
+  <li>In der Statistikansicht können nun jeweils die Ergebnisse zum vorherigen Simulationslauf eingeblendet werden.</li>
+  <li>Statistikergebnisse (Texte und Tabellen) könne nun auch als OpenOffice/LibreOffice-Dokumente gespeichert werden.</li>
+  <li>Texte und Tabellen können aus der Statistikansicht heraus jetzt direkt in externen Programmen angezeigt werden.</li>
+  <li>Tabellen können nun in einem R-kompatiblen csv-Format exportiert werden.</li>
+  <li>Modelle und Statistikdaten können nun auch in tar.gz-Dateien gespeichert und aus diesen geladen werden.</li>
+  <li>Alle Text-Dateiausgaben erfolgen nun utf-8-kodiert.</li>
+  <li>Etwas schnellere Simulation bei Verwendung von Exponential-, Lognormal- und Gammaverteilungen.</li>
+</ul>  
+
+<h2>5.6.226 (6.1.2020)</h2>
+<ul>
+  <li>Der Simulator kann nun unter Windows für den aktuellen Nutzer oder auch für alle Nutzer installiert werden.</li>
+  <li>Linien-, Balken- und Tortendiagramme können nun auch als Excel-Tabellen mit eingebetteten Diagrammen gespeichert werden.</li>
+  <li>Tabellen können nun auch im LaTeX-Format gespeichert werden.</li>
+  <li>Etwas geringerer Speicherbedarf bei der Simulation.</li>
+  <li>Geringe Geschwindigkeitssteigerungen bei der Simulation</li>
+  <li>Fehlerkorrektur: Beim Speichern von Tabellen im Excel-Format wurden Zellen mit negativen Zahlen nicht korrekt als Zahlenwert-Zellen formatiert.</li>
+  <li>Fehlerkorrektur: Wurde unter Windows ein Umgebungsvariable JAVA_HOME gesetzt, die auf eine nichtexistente Java-Installation verwies, so konnte der Simulator nicht gestartet werden.</li>
+  <li>Fehlerkorrektur: Beim Kopieren von Grafiken in die Zwischenablage konnten bei der Verwendung von Java 11 oder höher Fehler auftreten.</li>
+</ul>
+
+<h2>5.5.225 (25.9.2019)</h2>
+<ul>
+  <li>Neue unterstützte Wahrscheinlichkeitsverteilungen: Rayleigh-Verteilung, Log-Logistische Verteilung, Potenzverteilung, Chi-Verteilung, Gumbel-Verteilung, Fatigue-Life-Verteilung, Frechet-Verteilung und Hyperbolische Sekanten-Verteilung</li>
+  <li>Schnellerer Generator für Cauchy-verteilte Zufallszahlen</li>
+  <li>Als initiale Spracheinstellung wird nun die für den Installer gewählte Sprache übernommen.</li>
+  <li>Alle im Simulator genutzten externen Bibliotheken wurden auf die jeweils neusten Versionen aktualisiert.</li>
+  <li>Fehlerkorrektur: Bei Laden von Tabellendaten im DIF-Format wurde am Tabellenanfang eine leere Zeile eingefügt.</li>
+</ul>
+
+<h2>5.4.224 (4.3.2019)</h2>
+<ul>
+  <li>CSV-Tabellen werden nun schneller gelesen und geschrieben.</li>
+  <li>Fehlerkorrektur: Das Laden von Modellen per Drag&amp;Drop funktionierte nicht korrekt.</li> 
+  <li>Fehlerkorrektur: Wenn beim Start des Simulators das Simulator-Programmverzeichnis nicht das aktuelle Verzeichnis war, wurde die Einstellungendatei im falschen Verzeichnis gesucht.</li>
+</ul>
+
+<h2>5.4.223 (30.09.2018)</h2>
+<ul>
+  <li>Bei der Verteilungsanpassung werden nun p-Werte gemäß dem chi<sup>2</sup>-Anpassungstest und dem Anderson-Darling-Test bestimmt.</li>
+  <li>Tabellen können nun auch im Data Interchange Format (dif) und im Symbolic Link Format (sylk) gelesen und geschrieben werden und im dbf-Datenbankformat gelesen werden.</li>
+  <li>Im Formelparser stehen nun auch empirische Wahrscheinlichkeitsverteilungen zur Verfügung.</li>
+  <li>Fehlerkorrektur: Die Kategorienauswahlliste zur Reporterstellung wurde nicht korrekt angezeigt.</li>
+  <li>Fehlerkorrektur: Beim Laden von Daten aus Tabellen wurden die Zellbereichsangaben teilweise nicht korrekt interpretiert.</li>
+  <li>Fehlerkorrektur: Die Optimierereinstellungen wurde nicht in allen Fällen korrekt gespeichert.</li>
+  <li>Fehlerkorrektur: Wenn sich bei der Verteilungsanpassung ein p-Wert gemäß dem Kolmogorov-Smirnov-Anpassungstest von 100% ergeben hat, so wurde teilweise ein Wert &gt;100% angezeigt.</li>
+  <li>Fehlerkorrektur: Kompatibilitätsverbesserungen beim Laden von csv-Dateien.</li>
+  <li>Fehlerkorrektur: Die in der Statistik angezeigte Anzahl an simulierten Ereignissen konnte unter bestimmten Bedingungen etwas zu gering sein.</li>
+  <li>Fehlerkorrektur: Beim Erstellen von html-Statistik-Reports mit eingebetteten Grafiken ist das Programm bislang dauerhaft blockiert.</li> 
+</ul>
+
+<h2>5.3.222 (17.01.2018)</h2>
+<ul>
+  <li>Im Verteilungseditor stehen nun auch die Logistische Verteilung und Inverse Gauß-Verteilung zur Verfügung.</li>
+  <li>Bei der Verteilungsanpassung werden nun p-Werte gemäß dem Kolmogorov-Smirnov-Anpassungstest bestimmt.</li>
+  <li>Bei der Verteilungsanpassung werden nun auch die Dreiecksverteilung, die Paretoverteilung, die Inverse Gauß-Verteilung und die F-Verteilung berücksichtigt.</li>  
+  <li>Fehlerkorrektur: Bei der Funktion zur Verteilungsanpassung wurde die Abweichung zur Gamma-Verteilung nicht korrekt bestimmt.</li>
+  <li>Fehlerkorrektur: Wurden XML-Elemente über ihre Position innerhalb des jeweiligen Elternelements adressiert, so wurde der Inhalt des Elements nicht korrekt zurückgeliefert.</li>
+  <li>Fehlerkorrektur: Im Verteilungseditor wurde zum Teil die Dichte der Gamma-Verteilung nicht korrekt angezeigt.</li>
+  <li>Fehlerkorrektur: Bei der Verteilungsanpassung funktionierte die Schaltfläche zum Kopieren der Ergebnisse bisher nicht.</li>  
+</ul>
+
+<h2>5.3.221 (26.10.2017)</h2>
+<ul>
+  <li>Im Verteilungseditor stehen nun auch die Dreiecksverteilung, die Laplace-Verteilung und die Pareto-Verteilung zur Verfügung.</li>
+  <li>Statistik-Textausgaben werden nun beim Kopieren parallel als formatierter und unformatierter Text in der Zwischenablage zur Verfügung gestellt.</li>
+  <li>Fehlerkorrektur: Beim Laden von im json-Format gespeicherten Callcenter-Modellen konnten Fehler auftreten.</li>
+  <li>Fehlerkorrektur: In einigen Statistiktabellen wurde als Überschrift über der letzten Spalte Fälschlicherweise "Gesamt" statt "Durschnitt" angezeigt.</li>
+  <li>Fehlerkorrektur: Unter Java 9 wurde die Online-Hilfe bisher im optisch weniger ansprechenden Java 7 Kompatibilitätsmodus dargestellt.</li>
+  <li>Fehlerkorrektur: Kleine Korrekturen an der englischen Lokalisierung</li>
+</ul>
+
+<h2>5.3.220 (20.07.2017)</h2>
+<ul>
+  <li>Im Verteilungseditor steht nun auch die Johnson-SU-Verteilung zur Verfügung.</li>
+  <li>Fehlerkorrektur: Englische Lokalisierung in der "Verteilung anpassen"-Funktion korrigiert.</li> 
+</ul>
+
+<h2>5.3.219 (23.04.2017)</h2>
+<ul>
+  <li>Die Anzahl an zu simulierenden Tagen kann nun automatisch erhöht werden, um die Anzahl an verfügbaren CPU-Kernen optimal auszznutzen.</li>
+</ul>
+
+<h2>5.3.218 (11.02.2017)</h2>
+<ul>
+  <li>Fehlerkorrektur: Bei der Verwendung der Ribbon-Ansicht wurde der Modellüberblick nach Änderungenen am Modell nicht immer sofort aktualisiert.</li>
+  <li>Fehlerkorrektur: Der CV-Schnellzugriff-Befehl lieferte bisher fehlerhafte Werte.</li>
+</ul>
+
+<h2>5.3.217 (19.01.2017)</h2>
+<ul>
+  <li>Menüs und Symbolleiste werden nun in Form einer thematisch gegliederten Ribbon-Leiste angezeigt. (Die klassische Kombination aus Menü und Symbolleiste steht jedoch auch weiterhin zur Verfügung).</li> 
+  <li>Neue Funktion zur Simulation eines Einfach-Modells, um direkt die Auswirkungen von Parameter-Änderungen untersuchen zu können.</li>
+  <li>Die Empfehlungen zur Verbesserung des Modells in den Statistik-Ergebnissen wurden erweitert.</li>
+  <li>Kleine Verbesserungen bei der deutschen Lokalisierung</li>
+</ul>
+
+<h2>5.2.216 (21.10.2016)</h2>
+<ul>  
+  <li>Kleine Verbesserungen an der grafischen Oberfläche.</li>
+  <li>Fehlerkorrektur: Die Funktion zum Kopieren eines Callcenter funktionierte nicht korrekt.</li>
+  <li>Fehlerkorrektur: Bei der Verwendung von Agentengruppen mit festen Arbeitszeiten wurde, wenn Arbeiten bis open end definiert war, evtl. zu viel Leerlaufzeit erfasst.</li>
+</ul>
+  
+<h2>5.2.215 (1.8.2016)</h2>
+<ul>  
+  <li>In den Statistik-Ergebnissen werden nun auch Empfehlungen zur Verbesserung des Modells angezeigt.</li>
+  <li>Kleine Verbesserungen an der grafischen Oberfläche.</li>
+  <li>Fehlerkorrektur: Kleine Korrekturen in den dtd- und xsd-Dateien zur Beschreibung der Datenformate</li>
+</ul>
+
+<h2>5.2.214 (27.7.2016)</h2>
+<ul>
+  <li>Es können jetzt Schwellenwerte, die die Simulationsergebnisse einhalten sollen, definiert werden.</li>
+  <li>Es gibt einen neuen Dialog über den Vorlagen für ein neues Callcenter-Modell gewählt werden können.</li>
+  <li>Einige kleinere Verbesserungen an dem Assistenten zum Erstellen neuer Modelle</li>
+  <li>Kleine Verbesserungen in der Online-Hilfe</li>
+  <li>Fehlerkorrektur: Wurde bisher die "Hilfe"-Schaltfläche in einem Dialog angeklickt, so wurde dadurch der Dialog geschlossen.</li>
+  <li>Fehlerkorrektur: Bei der Speicherung der Konfidenzintervall-Daten für die Wartezeit in Statistik-xml-Dateien wurde ein Dezimalkomma stat eines Dezimalpunktes verwendet.</li>
+</ul>
+
+<h2>5.1.213 (7.7.2016)</h2>
+<ul>
+  <li>Fehlerkorrektur: Bedingt durch eine zu starke Rundung wurde bei dem Vorher/Nachher-Vergleich der Veränderung der Erreichbarkeit bei der Optimierung keine Veränderung angezeigt.</li>
+</ul>  
+
+<h2>5.1.212 (17.5.2016)</h2>
+<ul>
+  <li>Es können nun Datenfelder aus einer Tabelle über spezielle Steuerbefehle direkt in Modell-XML-Dateien eingefügt werden.</li>
+  <li>Die Funktion zum Import von Daten mit einem vorgegebenen Format kann nun vollständige Callcenter-Modelle aus einer Anrufer- und einer Agententabelle aufbauen.</li> 
+  <li>Die Funktion "Tabelle gemäß Schablone laden" unterstützt nun auch Zahlen als Bezeichner für die Tabellen in einer Arbeitsmappe.</li>
+  <li>Alle Kommandozeilen-Befehle können nun auch über einen Dialog ausgewählt, konfiguriert und ausprobiert werden.</li>
+  <li>Einige kleinere Verbesserungen an der grafischen Oberfläche.</li>
+  <li>Fehlerkorrektur: Tabellen, die mit Leerzeilen beginnen, wurden bisher nicht korrekt geladen.</li>
+</ul>
+
+<h2>5.0.211 (9.5.2016)</h2>
+<ul>
+  <li>Die jar-Datei-Version des Simulators kann nun per Kommandozeile aktualisiert werden.</li>
+</ul>
+
+<h2>5.0.210 (27.4.2016)</h2>
+<ul>
+  <li>Die maximale Anzahl an Threads, die während der Simulation verwendet werden soll, kann nun auch per Kommandozeile konfiguriert werden.</li>
+  <li>In der Modellinformations- und der Statistikansicht können nun per Rechtsklick auf die Baumstruktur die notwendigen Parameter, um die jeweiligen Daten per Kommandozeile zu abzurufen, ermittelt werden.</li> 
+</ul>
+
+<h2>5.0.209 (18.4.2016)</h2>
+<ul>
+  <li>Bessere Unterstützung von High-DPI-Bildschirmen unter Windows 10.</li>
+  <li>Rechnerlizenzen können nun direkt über den Einstellungen-Dialog generiert werden.</li>
+  <li>Kleine Verbesserungen und Ergänzungen an der Online-Hilfe.</li>
+  <li>Fehlerkorrektur: Wenn die Programmsprache über den Programminformationen-Dialog umgestellt wurde, wurde diese Einstellung nicht dauerhaft gespeichert.</li>
+</ul>
+
+<h2>5.0.208 (13.4.2016)</h2>
+<ul>
+  <li>Die maximale Anzahl an Threads, die während der Simulation verwendet werden soll, kann nun konfiguriert werden.</li>
+</ul>
+
+<h2>5.0.207 (8.2.2016)</h2>
+<ul>
+  <li>Im Agentengruppen-Editor-Dialog können nun die Kosten für eine Agentengruppe auf eine oder alle anderen Agentengruppen übertragen werden.</li>
+</ul>  
+
+<h2>5.0.206 (5.2.2016)</h2>
+<ul>
+  <li>Neue Funktion zur heuristischen Ertragsverbesserung</li>
+  <li>Im Kundentyp- und im Callcenter-Editor-Dialog können nun Einstellungen von einzelnen oder allen Seiten auf einen anderen oder allen anderen Kundentypen bzw. auf ein anderes oder alle anderen Callcenter übertragen werden.</li>
+  <li>Im Skill-Level-Editor-Dialog können nun Einstellungen zu einem einzelnen Skill auf einen anderen Skill oder alle anderen Skills desselben Skill-Levels übertragen werden.</li>
+  <li>In den Statistik-XML-Dateien werden nun noch einige weitere Werte in aufbereiteter Form als Zusammenfassung zur direkten Weiterverwendung durch andere Programme gespeichert.</li>
+  <li>Fehlerkorrektur: Die kommandozeilen-basierte Modellvereinfachung wurde bisher nicht korrekt gestartet.</li>
+  <li>Fehlerkorrektur: Beim Kopieren eines Skills innerhalb eines Skill-Levels wurden die optionalen interval-abhängigen Bedienzeiten bisher nicht korrekt mitkopiert.</li>
+</ul>
+
+<h2>4.9.205 (26.1.2016)</h2>
+<ul>
+  <li>Während der Optimierung können nun auch alternative andere Informationen als die Optimierungs- und die Stellgröße in den Diagrammen angezeigt werden.</li>
+  <li>In der Optimierer-Ergebnisansicht wird nun auch die Veränderung der Kosten sowie der Erlang-C-Vergleichswerte angezeigt.</li>
+  <li>Kleine Verbesserungen an der grafischen Oberfläche.</li>
+</ul>
+
+<h2>4.9.204 (22.1.2016)</h2>
+<ul>
+  <li>Bei der Agenten-Vorplanung kann nun statt des Ausgangsmodells optional auch ein vereinfachtes Modell verwendet werden.</li>
+  <li>Ein Multi-Skill-Modell kann nun durch das Kombinieren von Kundentypen und Skill-Leveln in ein Single-Skill-Modell transformiert werden.</li>  
+  <li>Fehlerkorrektur: Bei der Verwendung des Assistenten zur Erstellung eines neuen Modells wurde der Skill-Level falsch benannt, so dass er nicht zu der angelegten Agentengruppe passte.</li>
+</ul>
+
+<h2>4.9.203 (15.1.2016)</h2>
+<ul>
+  <li>Die Statistik-Webansicht kann nun direkt von der Simulationsergebnisseite aus über die Symbolleiste geöffnet werden.</li>
+  <li>Die Zeit, die für die Erstellung einer Statistik-HTML-WebApp benötigt wird, wurde reduziert.</li>
+  <li>Kleine Verbesserungen am Glossar zum Callcenter Simulator</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen beim Programmstart</li>
+  <li>Fehlerkorrektur: Der intervalbasierende Service-Level auf Anrufbasis wurde bisher in den Statistikdateien nicht korrekt gespeichert.</li>
+  <li>Fehlerkorrektur: Wenn der Download eines Updates fehlschlug, wurde dies nicht immer korrekt im Einstellungen-Dialog angezeigt.</li>
+</ul>
+
+<h2>4.9.202 (4.1.2016)</h2>
+<ul>
+  <li>Zu jedem Simulationsmodell kann nun ein Datum angegeben werden, welches abgibt, zu welchem realen Tag das Simulationsmodell gehören soll.</li>
+  <li>In der SaaS-Server-Konfiguration können nun mehrere Statistik-Verzeichnisse angegeben werden.</li>
+  <li>Über die SaaS-Server Ergebnisübersicht können nun Schnellzugriffsfilter auf die Statistik-Ergebnisse angewandt werden.</li>
+  <li>Die SaaS-Server Modellliste kann nun auch nach Modelldatum geordnet angezeigt werden.</li>
+  <li>Fehlerkorrektur: Im SaaS-Statistik-Viewer wurde für die Modellbeschreibung bisher ein falscher Zeichensatz verwendet.</li>
+  <li>Fehlerkorrektur: Wenn der Webserver-Dienst des SaaS-Servers nicht gestartet werden konnte, wurde bisher keine Fehlermeldung ausgegeben.</li>
+</ul> 
+
+<h2>4.8.201 (18.12.2015)</h2>
+<ul>
+  <li>Die Funktionalität des SaaS-Servers steht nun auch über die grafische Benutzeroberfläche zur Verfügung.</li>
+  <li>Die vom SaaS-Server generierte Modellübersicht enthält nun mehr Informationen zu den jeweils geplanten Agentenanzahlen.</li>
+  <li>Der SaaS-Server kann Dokumente nun auch komprimiert ausliefern.</li>
+  <li>Fehlerkorrektur: Die Einstellungen zur verwendeten Portnummer und zum Anteil, der auf dem Simulationsserver gerechnet werden soll, wurden bisher zum Teil nicht korrekt in der Konfiguration gespeichert, wenn diese Parameter auf die Vorgabewerte gestellt wurden.</li>
+  <li>Fehlerkorrektur: Der vom SaaS-Server generierte html-Code war nicht durchgängig gültiger html5-Code.</li>
+</ul>
+
+<h2>4.8.200 (15.12.2015)</h2>
+<ul>
+  <li>Wenn der Optimierungsprozess angehalten wurde, können nun die Ergebnisse, soweit sie vorliegen, angezeigt werden.</li>
+  <li>In der Ergebnisansicht der mehrtägigen Simulation werden nun auch die geplanten Agentenzahlen pro Halbstundenintervall ausgegeben.</li>
+  <li>Das Deinstallationsprogramm kann nun alternativ auch die Konfiguration des Simulators zurücksetzen.</li>
+  <li>Das Glossar zum Callcenter Simulator wurde erweitert.</li>
+  <li>Während der Update-Installation wurde der Zeitraum, in dem der Nutzer versehendlich die alte Version, die gerade ersetzt werden soll, noch starten kann, erheblich verkürzt.</li> 
+  <li>Das Deinstallationsprogramm kann nun laufende Instanzen des Callcenter Simulators beenden.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen beim Programmstart</li>
+  <li>Das Installationsprogramm startet nun schneller.</li>
+</ul>
+
+<h2>4.8.199 (4.12.2015)</h2>
+<ul>
+  <li>Die Agenten-Vorplanung kann nun als Basis statt eines Erlang-C-Modells auch eine statisch berechnete Auslastung verwenden.</li>
+  <li>Der Optimierungsprozess kann nun pausiert werden.</li>
+  <li>Das Installationsprogramm kann nun erkennen, wenn es trotz gegenteiliger Vorgabe an Windows mit Administrator-Rechten ausgeführt werden soll (die es nicht benötigt und die zu ungültigen Installationen führen) und kann in diesem Fall eine Ausführung der Installation unterbinden.</li>
+  <li>Das Installationsprogramm kann nun laufende Instanzen des Simulators vor der Installation erkennen und beenden (bei der Installation als Update).</li> 
+  <li>Fehlerkorrektur: Das Deinstallationsprogramm hat einige temporäre Updatedateien (die bei einer normalen Installation im normalen Betrieb jedoch auch nicht existieren sollten) bisher nicht entfernt.</li>
+</ul>
+
+<h2>4.8.198 (3.12.2015)</h2>
+<ul>
+  <li>Um die Optimierung zu beschleunigen, kann nun einer Erlang-C basierte Vorplanung für die Anzahl an Agenten vorgenommen werden.</li>
+  <li>Im Modellüberblick werden nun Erlang-C Daten mit und ohne Berücksichtigung von Wiederholern ausgegeben.</li>
+  <li>Kleine Verbesserungen an der grafischen Oberfläche des Modell-Editors.</li>
+  <li>In den Statistkdateien und im Statistik-Viewer werden nun zum Vergleich mit den Simulationsdaten Erlang-C basierte Daten gespeichert bzw. angezeigt.</li>
+  <li>Die SaaS-Serverfunktionalität wurde stark erweitert und ermöglicht nun auch die Anzeige von auf dem Server hinterlegten Statistikdaten im Browser.</li>
+  <li>Wenn für einen vorhandenen aber deaktivierten Kundentyp in einem Skill-Level Daten hinterlegt sind, so wird dies nun auch bei der strengen Modell-Prüfung akzeptiert.</li>
+  <li>Wenn der Simulator als Java-Applet über einen SaaS-Server ausgeführt wird, wird die Applet-Sprache nun gemäß den Sprachvorgaben des Browser und nicht mehr gemäß der Spracheinstellung des Servers gewählt.</li>
+  <li>Fehlerkorrektur: Die Modellbasierten-Agenten wurden nicht korrekt in der Statistik gespeichert.</li> 
+  <li>Fehlerkorrektur: Die Verwendung von nicht erreichbaren Zielvorgaben für die Erreichbarkeit in der Wartezeittoleranz-Kalibrierung konnte zu Modellen mit ungültigen mittleren Wartezeittoleranzen führen.</li>
+</ul>
+
+<h2>4.7.197 (18.11.2015)</h2>
+<ul>
+  <li>Reduzierung des Speicherverbrauchs</li>
+  <li>Optimierungen bei der Erzeugung log-normalverteilter Zufallszahlen (Polar-Methode anstatt des Box-Muller-Algorithmus)</li>
+</ul>
+
+<h2>4.7.196 (5.11.2015)</h2>
+<ul>
+  <li>Erweiterungen bei der Allen-Cunneen Näherungsformel im Auslastungsrechner</li>
+  <li>Kleine Optimierungen bei der Erzeugung log-normalverteilter Zufallszahlen</li>
+  <li>Kleinere Reduzierung des Speicherverbrauchs</li>
+  <li>Fehlerkorrektur: Bei empirische Verteilungen wurde bisher "NaN" statt 0 als Mittelwert und Standardabweichung angezeigt, wenn alle Datenpunkte auf 0 gesetzt wurden.</li>
+</ul>
+
+<h2>4.7.195 (20.10.2015)</h2>
+<ul>
+  <li>Reduzierung des Speicherverbrauchs</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+</ul>
+
+<h2>4.7.194 (9.10.2015)</h2>
+<ul>
+  <li>Verringerter Speicherbedarf für das Zusammenstellen der Statistikdaten am Ende der Simulation.</li>
+  <li>In den Diagrammen der Staristikanzeige werden nun auch Tooltips angezeigt.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+</ul>
+
+<h2>4.7.193 (1.10.2015)</h2>
+<ul>
+  <li>Die Anzahl an Erstanrufern kann nun global für alle Anrufergruppen geändert werden.</li>
+  <li>Die verfügbare Agentenarbeitsleistung kann nun global für alle Gruppen eines Callcenters und auch global für alle Callcenter verändert werden.</li>
+  <li>XML-Daten können nun auch in AES256-verschlüsselter Form gespeichert werden.</li>
+  <li>In den Statistik-XML-Dateien werden nun noch einige weitere Werte in aufbereiteter Form als Zusammenfassung zur direkten Weiterverwendung durch andere Programme gespeichert.</li>
+  <li>Kleinere Reduzierung des Speicherverbrauchs</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Wenn aufgrund der Installationsart des Callcenter Simulators kein automatisches Update möglich ist, so wird jetzt zusätzlich zu der Option, die Download-Webseite aufzurufen, angeboten, die Update-Installationsdatei für zur manuellen Installation direkt über den Simulator herunterzuladen.</li>
+  <li>Verbesserung des Formelparsers: Bei der Berechnung der Fakultät werden nun werde, die auf mehr Nachkommastellen korrekt sind, geliefert und es stehen nun die Gamma-Funktion sowie eine direkte Umrechnung von Grad in Bodenmaß zur Verfügung.</li>
+  <li>Fehlerkorrektur: Wurde eine Agentengruppe über eine Verteilung von Agenten pro 15-Minuten- oder pro 60-Minuten-Intervall definiert, so wurden im Dialog zur Änderung der Agentenanzahl in allen Intervallen falsche Hochrechnungen für die neue Anzahl an verfügbarer Agenten-Arbeitszeit angezeigt.</li>
+  <li>Fehlerkorrektur: Statistikdaten, die als statische HTML-Dateien exportiert wurden, konnten nicht wieder geladen werden.</li>
+</ul>
+
+<h2>4.6.192 (19.9.2015)</h2>
+<ul>
+  <li>In der Statistikansicht wird nun auch der Verlauf der Warteschlangenlänge über den Tag als Tabelle und als Grafik dargestellt.</li>
+  <li>Die Gamma-Verteilung kann nun im Verteilungseditor direkt über Mittelwert und Standardabweichung statt über die Parameter &alpha; und &beta; charakterisiert werden.</li>
+  <li>Im Verteilungseditor werden nun Mittelwert und Standardabweichung beim Wechsel des Verteilungstyps so weit möglich übertragen.</li>
+  <li>Die Simulation von Modellen, in denen die Erlang- oder die Gamma-Verteilung verwendet werden, wurde erheblich beschleunigt.</li>
+  <li>Bei der Anzeige der Verteilungsparameter und Kenngrößen werden nun mehr Nachkommastellen ausgegeben.</li>
+  <li>Als neuer Rechenbefehl im Schnellzugriff steht nun auch die Allen-Cunneen-Approximationsformel zur Verfügung.</li>
+  <li>In den Statistik-XML-Dateien werden nun mehr Werte in aufbereiteter Form als Zusammenfassung zur direkten Weiterverwendung durch andere Programme gespeichert.</li>
+  <li>In dem Dialog zur Auswahl eines XML-Elements wird das jeweils gewählte Element nun übersichtlicher dargestellt.</li>
+  <li>Bei Modellen mit sehr kurzen Warte- und Bedienzeiten erfolgt die interne Aufzeichnung dieser Werte nun mit einer höheren Präzision.</li>
+  <li>Fehlerkorrektur: Beim Speichern von empirischen Verteilungen in XML-Dateien wurden bisher teilweise landesspezifische Dezimaltrenner statt durchgängig Dezimalpunkten verwendet. (Derartig gespeicherte Verteilungen konnten jedoch problemlos wieder gelesen werden.)</li>
+</ul>
+
+<h2>4.5.191 (14.9.2015)</h2>
+<ul>
+  <li>Bei der Stapelverarbeitung werden die zuletzt gewählten Parameter nun gespeichert und beim nächsten Aufruf der Funktion wiederhergestellt.</li>
+  <li>Bei der Auswahl eines XML-Elements für den Schnellzugriff steht nun zusätzlich die Einfüge-Art "An der Cursor-Position mit Print-Anweisung zur Verfügung".</li>
+  <li>Schnellerer Aufbau des Hilfefensters aus langsamen Systemen.</li>
+  <li>Fehlerkorrektur: Bei der Parameterreihen-Stapelverarbeitung konnten bisher keine Einstellungen zu der 2., 3., ... Agentengruppe in einem Callcenter vorgenommen werden.</li>
+</ul>
+
+<h2>4.5.190 (9.9.2015)</h2>
+<ul>
+  <li>Updates werden nun zusätzlich zu der Signaturprüfung auch per https abgesichert.</li>
+  <li>Fehlerkorrektur: Das Aufrufen der Modell- und Glossar-pdf-Dateien von der Online-Hilfe aus funktionierte nicht korrekt.</li>
+  <li>Fehlerkorrektur: Beim Speichern des zuletzt verwendeten Verzeichnisses (für den späteren Aufruf eines Laden/Speichern-Dialogs) wurde das Laden von Daten per Drag&amp;Drop bisher nicht berücksichtigt.</li>
+</ul>
+
+<h2>4.5.189 (5.9.2015)</h2>
+<ul>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Kleinere Reduzierung des Speicherverbrauchs</li>
+  <li>Fehlerkorrektur: In der Desktop-Version des Callcenter Simulators funktionierten Verknüpfungen in der Online-Hilfe seit Java 8 Update 60 nicht mehr korrekt.</li>
+  <li>Fehlerkorrektur: Bei der Verwendung der kommandozeilenbasierenden Kunden- bzw. Agentenumverteilung wurden bei ungültigen Parametern nicht immer die korrekten Fehlermeldungen angezeigt.</li>
+</ul>
+
+<h2>4.5.188 (27.8.2015)</h2>
+<ul>
+  <li>Einige kleine Verbesserungen an der Programmoberfläche</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Fehlerkorrektur: Wurde in einem Modell mit nur einem Kundentyp für diesen ein individueller Service-Level-Wert eingestellt, so wurde dieser in der Statistik nicht individuell ausgewiesen.</li>
+  <li>Fehlerkorrektur: Bei der Stapelverarbeitung unter "Weitere Ausgabeeinstellungen" vorgenommene Einstellungen gingen bisher teilweise beim Programmende verloren.</li>   
+</ul>
+
+<h2>4.5.187 (18.8.2015)</h2>
+<ul>
+  <li>In den Statistik-XML-Dateien werden nun Zusammenfassungen der Kundendaten nicht nur auf Tagesbasis, sondern auch über bestimmte Zeitbereiche zur direkten Weiterverarbeitung gespeichert.</li>
+  <li>Als neuer Rechenbefehl im Schnellzugriff steht nun auch ein Erlang-C-Rechner zur Verfügung.</li>
+  <li>Fehlerkorrektur: Wenn eine Agentengruppe mit einer festen Anzahl an Agenten mit festen Arbeitszeiten definiert wurde und angegeben wurde, dass die Arbeit bis openend fortgesetzt werden soll, wurde der Arbeitszeitbeginn nicht korrekt gespeichert.</li>
+  <li>Fehlerkorrektur: Der Schnellzugriff-Befehl "Set" funktionierte bisher teilweise nicht korrekt.</li>
+  <li>Fehlerkorrektur: Während der Simulation einer Parameterreihe wurde die grafische Oberfläche nicht korrekt deaktiviert.</li>  
+</ul>
+
+<h2>4.4.186 (17.8.2015)</h2>
+<ul>
+  <li>Die Verteilung der Erstanrufer bzw. die Verteilung der Agentenarbeitezeiten kann nun jeweils so angepasst werden, dass sie möglichst gut zu der jeweils anderen Größe passt.</li>
+  <li>Es kann nun ein Modell direkt aus dem Editor heraus festgehalten werden und in Bezug auf die Simulationsergebnisse mit späteren Modellen verglichen werden.</li>
+  <li>In der Optimierer-Ergebnisansicht können nun direkt die Statistikdaten des Ausgangsmodells und des optimierten Modells verglichen werden.</li> 
+  <li>Fehlerkorrektur: Bei der Auswahl der Optimierungseigenschaft "Auslastung" wurden bisher die Vorgabewerte für die Zielwerte nicht korrekt aktualisiert.</li>
+  <li>Fehlerkorrektur: Wurde in der Statistik-Vergleichsansicht die Filterung der Textausgaben in einer Spalte geändert, so haben sich die jeweils anderen Statistik-Spalten nicht ebenfalls sofort aktualisiert.</li>
+  <li>Fehlerkorrektur: Bei der Anzeige der Modelldaten in einem Dialogfenster zu Statistikergebnissen wurde die grafische Oberfläche im Hauptfenster nicht korrekt deaktiviert.</li> 
+</ul>
+
+<h2>4.3.185 (3.8.2015)</h2>
+<ul>
+  <li>Für die Kundenscore können nun auch negative Werte vergeben werden.</li>
+  <li>Für die Berechnung der Agentenschichten kann nun eine Mindestschichtdauer angegeben werden.</li> 
+  <li>Die Plausibilitätsprüfung wurde um weitere Tests ergänzt.</li>
+  <li>Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Fehlerkorrektur: Wurden für die Kundenscore nicht-ganzzahlige Werte verwendet, so konnte es sein, dass sich das Modell später nicht mehr korrekt laden ließ.</li>
+  <li>Fehlerkorrektur: Der Kundentyp-Status "Kunden sind bereit beliebig lange zu warten" wurde bisher beim Speichern eines Modells nicht korrekt gespeichert.</li>
+</ul>
+
+<h2>4.2.184 (30.7.2015)</h2>
+<ul>
+  <li>Im Optimierer können pro Agentengruppe und pro Halbstundenintervall Minimal- und Maximalwerte vorgegeben werden.</li>
+  <li>Bei der Auswahl der zu optimierenden Intervalle können nun Bereiche gewählt werden.</li>
+  <li>Es können nun mehrere Agentengruppen mit jeweils festen Arbeitszeiten aus einer Tabelle geladen werden.</li>
+  <li>In der Statistikansicht kann die Auslastung der Agenten über den Tag nun aufgeschlüsselt nach Skill-Leveln angezeigt werden.</li> 
+  <li>Ein zu simulierendes Callcenter-Modell kann nun optional vorab einer Plausibilitätsprüfung unterzogen werden.</li>
+  <li>In der Statistikansicht zum Vergleich mehrerer Simulationsläufe kann nun auch das jeweils zugrunde liegende Modell direkt eingesehen werden.</li>
+  <li>Kleine Verbesserungen an der englischen Lokalisierung</li>
+  <li>Fehlerkorrektur: Bei Modellen mit mehr als 1.000.000 Erstanrufern konnten bisher Fehler aufgrund von ungenügendem Arbeitsspeicher auftreten.</li>
+  <li>Fehlerkorrektur: Wurde ein fehlerhaftes Simulationsmodell für die Optimierung verwendet, so blieb der Optimierer bisher teilweise beim Start des Optimierungsprozesses ohne Fehlermeldung stehen.</li>
+</ul>
+
+<h2>4.1.183 (16.7.2015)</h2>
+<ul>
+  <li>Fehlerkorrektur: Bei extrem großen Modell konnte das Abbrechen der Simulation sehr lange dauern.</li>
+</ul>
+
+<h2>4.1.182 (15.7.2015)</h2>
+<ul>
+  <li>Im Optimierer kann eingestellt werden, welche Intervalle in Bezug auf die Kenngrößen und die Agentenzahlen berücksichtigt werden sollen.</li>
+  <li>Die Programmsprache kann nun im Einstellungen-Dialog umgestellt werden, ohne das Programm danach neu starten zu müssen.</li>
+  <li>In der Statistikansicht kann die Auslastung der Agenten über den Tag nun aufgeschlüsselt nach technischer Bereitzeit, Bedienzeit und Nachbearbeitungszeit angezeigt werden.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen beim Programmstart</li>
+  <li>Reduzierung des Speicherverbrauchs während der Simulation von großen Modellen.</li>
+  <li>Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Kleine Verbesserungen in der grafischen Oberfläche</li>
+  <li>Fehlerkorrektur: Beim Laden von Agentenarbeitszeiten per Importschablone konnten bisher Fehler auftreten.</li>
+  <li>Fehlerkorrektur: In der Modellübersicht wurden deaktivierte Kundentypen, Callcenter und Agentengruppen bisher dennoch angezeigt.</li>
+  <li>Fehlerkorrektur: Bei der automatischen Erstellung einer Modellbeschreibung wurden bei der Zählung inaktive Kundentypen, Callcenter und Agentengruppen nicht entsprechend berücksichtigt.</li>  
+</ul> 
+
+<h2>4.0.181 (27.6.2015)</h2>
+<ul>
+  <li>Fehlerkorrektur: Wurden bei der Verwendung einer empirischen Verteilung weniger Werte als notwendig angegeben (welche eine Skalierung verlangten), so wurden im Verteilungseditor falsche Werte für den Mittelwert und die Standardabweichung angezeigt.</li>
+  <li>Fehlerkorrektur: Beim Vergleich von mehreren Statistik-Ergebnissen wurde lange Überschriften über dem Datenbereich teilweise nicht angezeigt, wenn das Programm nicht im Vollbildmodus verwendet wurde.</li>
+</ul>
+
+<h2>4.0.180 (21.6.2015)</h2>
+<ul>
+  <li>Die Arbeitszeitverteilung einer Agentengruppe kann nun auch auf 15-Minuten- und auf Stunden-Basis definiert werden.</li>
+  <li>Die Hintergrund-Modellvalidierung ist nun auch aktiv, wenn die Hintergrund-Simulation nicht eingeschaltet ist.</li>
+  <li>Als WebApp gespeicherte Statistikdaten können nun wieder in den Simulator geladen werden.</li>
+  <li>Der kommandozeilen-basierende Modell-Generator kann nun auch Kundenankünfte auf Stunden- und auf 15-Minuten-Basis verarbeiten.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen beim Start der Simulation</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Fehlerkorrektur: Im Optimierer und bei der Stapelverarbeitung wurde bisher teilweise die Symbolleiste nicht korrekt angezeigt.</li>
+  <li>Fehlerkorrektur: In WebApp-Statistikdateien wurden bisher in der Rubrik "Modellinformationen" Umlaute nicht korrekt angezeigt.</li>
+  <li>Fehlerkorrektur: Das Kopieren von Agentengruppen, die über eine Kundenankunftsverteilung definiert sind, funktionierte bisher nicht korrekt.</li>
+</ul>
+
+<h2>3.9.179 (12.6.2015)</h2>
+<ul>
+  <li>Fehlerkorrektur: Wurde versucht, eine ungültige Datei per Drag&amp;Drop in den Simulator zu laden, so wurde bisher keine Fehlermeldung angezeigt.</li>
+  <li>Fehlerkorrektur: Im Falle einer mittleren Warte-, Verweil- oder Abbruchzeit von 0 Sekunden wurde bisher als Variationskoeffizient NaN statt 0 bei der jeweiligen Eigenschaft in der Statistik angezeigt.</li>
+  <li>Fehlerkorrektur: Grafikfehler beim Umschalten in den Vollbildmodus (bedingt durch einen Fehler in der JavaFX-Laufzeitbibliothek)</li>
+  <li>Fehlerkorrektur: Im Callcenter-Editor wurde bisher ein Scrollbalken auf der Mindestwartezeiten-Seite angezeigt, wenn dies notwendig gewesen wäre.</li>
+</ul>
+
+<h2>3.9.178 (9.6.2015)</h2>
+<ul>
+  <li>Kleine Verbesserungen in der grafischen Oberfläche</li>
+</ul>
+
+<h2>3.9.177 (8.6.2015)</h2>
+<ul>
+  <li>Es kann nun bei jeder Bedienzeitverteilung eine zusätzliche Zeit in Abhängigkeit von der Wartezeit des Kunden angegeben werden, um die sich die Bedienzeit verlängert.</li>
+  <li>Statistikdaten können nun auch als interaktive WebApps gespeichert werden.</li>
+  <li>Neuer Rechnerdialog, der das schnelle Berechnen von mathematischen Ausdrücken erlaubt.</li>
+  <li>Kleine Verbesserungen in der Online-Hilfe</li>
+</ul>
+
+<h2>3.8.176 (21.5.2015)</h2>
+<ul>
+  <li>Kleinere Geschwindigkeitsoptimierungen beim Programmstart</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen beim Laden und Speichern von XML-Dateien</li>
+  <li>Fehlerkorrektur: Beim wiederholten Aufruf der Online-Hilfe konnte das Fenster aufgrund eines Grafikfehler leer bleiben.</li>
+</ul>
+
+<h2>3.8.175 (18.5.2015)</h2>
+<ul>
+  <li>Alle Daten, die im XML-Format geladen und gespeichert werden können, können nun auch im JSON-Format geladen und gespeichert werden.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Das Laden von Callcenter Modellen und Statistikdaten per Drag&amp;Drop geht nun schneller.</li>
+  <li>Kleine Verbesserungen an der englischen und der deutschen Lokalisierung</li>
+  <li>Fehlerkorrektur: Beim Umschalten zwischen der Anzeige des Simulationsfortschritts und den Simulationsergebnissen konnten bisher Grafikfehler auftreten.</li>
+</ul>
+
+<h2>3.8.174 (12.5.2015)</h2>
+<ul>
+  <li>Über das Hilfemenü kann nun ein Glossar zum Callcenter Simulator aufgerufen werden.</li>  
+  <li>Über den neuen Schnellzugriffsbefehl Sum können die Werte einer Messwerteverteilung aufsummiert werden.</li>
+  <li>Bei der Ausgabe von Verteilungen im Schnellzugriff kann nun das Trennzeichen, welches zwischen den Werten eingefügt wird, eingestellt werden.</li>
+  <li>In den Warte- und Verweilzeittabellen in der Statistikansicht werden nun mehr Nachkommastellen ausgewiesen.</li>
+  <li>Fehlerkorrektur: Die Schnellzugriffsbefehle Mean, SD und CV hatten bisher Probleme mit einigen Verteilungstypen.</li>
+</ul>
+
+<h2>3.8.173 (4.5.2015)</h2>
+<ul>
+  <li>Beim Einfügen von empirischen Daten im Verteilungseditor kann nun gewählt werden, ob die Daten skaliert werden sollen (bisherige Funktionsweise) oder mit Nullen aufgefüllt werden sollen.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Fehlerkorrektur: Beim Laden des ganz großen Beispielmodells wurde der Beschreibungstext im Feld für den Namen des Modells angezeigt.</li>
+</ul>
+
+<h2>3.8.172 (30.4.2015)</h2>
+<ul>
+  <li>Kleine Verbesserungen an der englischen Lokalisierung</li>
+  <li>Fehlerkorrektur: Die Verteilungsanpassung hat bisher eine falsche Anzahl an geladenen Werten angezeigt (aber korrekter Weise mit allen Werten gerechnet).</li>
+  <li>Fehlerkorrektur: Für die Lognormal-Verteilung wurde in der Verteilungsanpassung bisher ein falsches Residuum berechnet.</li>
+</ul>
+
+<h2>3.8.171 (26.4.2015)</h2>
+<ul>
+  <li>Kleine Verbesserungen in der grafischen Oberfläche</li>
+  <li>Bei der Verteilungsanpassung wird nun auch die Ein-Punkt-Verteilung verwendet.</li>
+  <li>Die Verteilungsanpassung kann nun sowohl mit direkten Messwerten als auch mit aufsummierten Messwerten arbeiten.</li>
+  <li>Bei langen Textdarstellungen in der Statistikansicht können die Ergebnisse nun gefiltert werden.</li> 
+  <li>Fehlerkorrektur: Bei der Verteilungsanpassung wurden bisher falsche Werte für den Mittelwert und die Standardabweichung der Messwerte berechnet.</li>
+  <li>Fehlerkorrektur: Auf Statistik-Textseiten wurden bisher zusätzliche Prozentangaben für Zahlenwerte nicht korrekt ausgegeben.</li>
+</ul>
+
+<h2>3.8.170 (21.4.2015)</h2>
+<ul>
+  <li>Der Callcenter Simulator steht nun auf Deutsch und auf Englisch zur Verfügung.</li>
+  <li>Kleinere Verbesserungen in der Online-Hilfe.</li>
+  <li>Die Texte in einigen Fehlermeldungsdialogen beim Laden von XML-Dateien wurden informativer gestaltet.</li>
+</ul>
+
+<h2>3.7.169 (25.3.2015)</h2>
+<ul>
+  <li>Der Formelparser unterstützt nun auch diverse mathematische Funktionen (sqrt, Winkelfunktionen, Runden, Exponentialfunktion usw.).</li>
+  <li>Die Rechenfunktionen des Schnellzugriff-Ergebnisfilters unterstützen nun auch die erweiterten mathematischen Funktionen</li>
+  <li>Bei der Anzeige der Konfidenzintervalle werden nun Erreichbarkeit und Service-Level auf allen verfügbaren Arten ausgewiesen.</li>
+  <li>Bei dem Vorher/Nachher-Vergleich in den Optimierungsergebnissen werden nun Diagramme, in denen sich der jeweilige Wert für verschiedene Intervalle in verschiedene Richtungen verändert hat, besser dargestellt.</li>
+  <li>Die Brutto- und die Nettoarbeitszeit der einzelnen Agentengruppen sind nun auch in der Statistikdatei zur leichteren Weiterverarbeitung ausgewiesen.</li>
+  <li>Kleine Verbesserungen in der Online-Hilfe.</li>
+  <li>Fehlerkorrektur: In den Statistikdateien wurde bisher die obere Grenze für das 95%-Konfidenzintervall für die Erreichbarkeit und den Service-Level falsch gespeichert. (Die Statistikanzeige im Simulator war davon nicht betroffen.)</li> 
+</ul>
+
+<h2>3.6.168 (18.2.2015)</h2>
+<ul>
+  <li>In der Ergebnisanzeige der verketteten Simulation wird der Service-Level nun ebenfalls wahlweise über die Kunden oder die Anrufe und auf Basis der jeweils erfolgreichen oder aller Anrufer ausgewiesen.</li>
+  <li>Bei der Anzeige der Auslastung wird nun auch die geplante und die tatsächliche Arbeitszeit pro Callcenter und pro Skill-Level als Absolutwert ausgewiesen.</li>
+  <li>Während der Simulation wird nun auch die Anzahl an Anrufen pro Callcenter (und darin wiederum pro Kundentyp) aufgezeichnet und in den Statistik-Ergebnissen ausgewiesen.</li>
+  <li>Die Anzahl an verfügbaren Warteplätzen kann nun in Abhängigkeit von der Anzahl an aktiven Agenten angegeben werden.</li>
+  <li>In Eingabefeldern, die Zahlen aufnehmen, werden nun auch einfache Rechenbefehle interpretiert.</li>
+  <li>Bei der Anzeige des Zeitverbrauchs pro Arbeitsschritt werden nun keine auf den einzelnen Agenten gemittelten Werte pro Agentengruppe angegeben, sondern es wird jetzt die Gesamtsumme für die jeweilige Arbeitsgruppe ausgegeben.</li>
+  <li>In den Optimierereinstellungen werden deaktivierte Kundentypen, Callcenter und Agentengruppen nun automatisch ausgeblendet.</li>
+  <li>Im Programmeinstellungen-Dialog wird nun während eines Downloads einer Update-Version der Ladefortschritt angezeigt.</li>
+  <li>Fehlerkorrektur: Die Wahl bestimmter Agentengruppen-Konstellationen als Stellgröße zur Optimierung konnte dazu führen, dass die Optimierung nicht gestartet werden konnte.</li> 
+  <li>Fehlerkorrektur: Texteditoren wie Windows-Notepad, die mit einfachen Zeilenumbrüchen nicht umgehen können, konnten Simulations-Logdateien bisher nicht korrekt anzeigen.</li>
+</ul>
+
+<h2>3.5.167 (27.1.2015)</h2>
+<ul>
+  <li>Die Konfigurationsdatei kann nun optional an einem anderen, per Kommandozeilenparameter spezifizierbaren Ort abgelegt werden.</li>
+  <li>Die Texte in einigen Fehlermeldungsdialogen im Modell-Editor wurden informativer gestaltet.</li> 
+  <li>Fehlerkorrektur: Beim Laden der Erlang-C-Beispielmodelle konnte seit Version 3.4 ein Fehler auftreten.</li>
+</ul>
+
+<h2>3.5.166 (13.1.2015)</h2>
+<ul>
+  <li>Fehlerkorrektur: Probleme in Bezug auf die Kompatibilität mit Java 7 wurden behoben.</li>
+</ul>
+
+<h2>3.5.165 (8.1.2015)</h2>
+<ul>
+  <li>Optische Überarbeitung des Hilfesystems und der Begrüßungsseite.</li>
+  <li>Kleine Verbesserungen bei der Darstellung von Wahrscheinlichkeitsverteilungen im Modell-Editor.</li>
+</ul>
+
+<h2>3.5.164 (3.1.2015)</h2>
+<ul>
+  <li>Zusammenfassungen der Modellinformationen, der Simulationsergebnisse usw. können nun auch als pdf-Dateien gespeichert werden.</li>
+  <li>Diagramme, Tabellen und Texte können nun auch im pdf-Format exportiert werden.</li>
+  <li>Die Baumansicht bei den Modellinformationen kann nun auch gefiltert werden.</li>
+  <li>Verbesserungen der Warn-, Informations-, Fehler- und Fragedialoge.</li>  
+  <li>Fehlerkorrektur: Beim Speichern von Zusammenfassungen erschien bisher keine Überschreibwarnungen, wenn die Zieldatei bereits existierte.</li>
+</ul>
+
+<h2>3.5.163 (16.12.2014)</h2>
+<ul>
+  <li>Die Schriftgrößen im gesamten Programm können nun über ein Auswahlfeld im Einstellungen-Dialog skaliert werden.</li>
+  <li>Kleine Verbesserungen an der grafischen Oberfläche.</li>
+  <li>Wenn das Laden eines verknüpften Modells aufgrund eines Fehlers in der xml-Datei fehltschlägt, wird der Fehler in der Datendatei nun genauer beschrieben.</li>
+  <li>Fehlerkorrektur: Die Aufzeichnung der absoluten Leerlaufzeit in dem letzten Halbstundenintervall des Tages war teilweise verfälscht.</li>
+  <li>Fehlerkorrektur: Beim Anzeigen der von Diagrammen in der Ergebnisansicht der verknüpften Simulation konnte es bisher zu Fehlern kommen, wenn das Modell nur einen Tag umfasste.</li>
+</ul>  
+
+<h2>3.5.162 (12.12.2014)</h2>
+<ul>
+  <li>Bei der verketteten Simulation kann nun zusätzlich ein manueller Übertrag in den ersten Simulationstag hinein definiert werden.</li>
+  <li>Bei der Optimierung kann nun zusätzlich ein manueller Übertrag von einem Vortag definiert werden.</li>
+  <li>Fehlerkorrektur: In der Statistikansicht wurde der Service-Level über den Tag in Diagrammform bisher nicht zusätzlich als Quotient über alle Anrufer/Kunden ausgewiesen.</li>
+</ul>
+
+<h2>3.4.161 (8.12.2014)</h2>
+<ul>
+  <li>Die Ergebnisse der Verteilungsanpassung können nun direkt aus dem Dialog heraus in das jeweils im Editor befindliche Modell übernommen werden.</li>
+  <li>Die Wartezeittoleranz-Kalibrierung wird nun automatisch beendet, wenn eine weitere Veränderung der Wartezeittoleranzen zu keiner weiteren Annäherung mehr an die Zielwerte für die Erreichbarkeit führt.</li> 
+  <li>Die Funktion zum Vergleich der Simulationsergebnisse kann und bis zu 5 Statistikdateien gleichzeitig anzeigen.</li>
+  <li>In der Optimierungsergebnisse-Ansicht wird der Servlice-Level nun auch jeweils relativ zu den erfolgreichen und auch zu den gesamten Kunden bzw. Anrufen ausgewiesen.</li>
+  <li>Fehlerkorrektur: Beim Import von Tabelle, die Formeln enthalten, werden nun die Zahlenwerte importiert.</li>
+  <li>Fehlerkorrektur: Im Verteilungseditor wurden auch bei dem Eingabefeld für empirische Daten die hoch/runter Schalflächen zur schnellen Parameterverstellung angezeigt.</li>
+</ul>  
+
+<h2>3.4.160 (5.12.2014)</h2>
+<ul>
+  <li>Der Service-Level wird nun jeweils relativ zu den erfolgreichen und auch zu den gesamten Kunden bzw. Anrufen ausgewiesen. Beim Optimieren kann ebenfalls bei der Zielgröße Service-Level ausgewählt werden, wie dieser zu berechnen ist.</li>
+  <li>Im Verteilungseditor können die Parameter der jeweiligen Verteilung nun auch per Schalflächen stückweise vergrößert oder verkleinert werden.</li>
+  <li>Die Bedien- und Nachbearbeitungszeiten innerhalb der einzelnen Skill-Level für die einzelnen Kundentypen können nun außerdem weiter nach Uhrzeit ausdifferenziert werden.</li>
+  <li>Fehlerkorrektur: Die Fehlerleiste, in der auf mögliche Modellfehler hinweist, die die Hintergrund-Modellvalidierung gefunden hat, wurden nicht korrekt angezeigt.</li>
+  <li>Fehlerkorrektur: Bei der Filterung der angezeigten Elemente in der Statistik-Baumansicht war es bisher nicht möglich, die Einträge der Rubrik "Modellbasierte Agentendaten" auszublenden.</li>
+</ul>
+  
+<h2>3.3.159 (1.12.2014)</h2>
+<ul>
+  <li>Es kann nun das Kunderverhalten, nach einem erfolgreichen Anruf später dennoch noch einen weiteren Anruf zu tätigen, im Simulationsmodell abgebildet werden.</li>
+  <li>Die Funktion zur Speicherung von Statistik-Daten ermöglicht nun auch direkt html- und docx-Dateien zu erstellen.</li>
+  <li>Im Verteilungseditor steht nun auch die Erlang-Verteilung zur Verfügung.</li>
+  <li>Fehlerkorrektur: Wurde der "Statistik speichern unter"-Menüpunkt verwendet, ohne vorher einen Simulationslauf durchzuführen, so erschien bisher die Fehlermeldung, die auf die Tatsache, dass es noch nichts zu speichern gibt, hinweisen sollte, teilweise nicht.</li>
+</ul>
+
+<h2>3.2.158 (20.11.2014)</h2>
+<ul>
+  <li>Fehlerkorrektur: Bei der Erstellung eines HTML-Reports mit Inline-Grafiken konnte es abhängig von der Rechnergeschwindigkeit zu einem Fehler kommen.</li>
+</ul>
+
+<h2>3.2.157 (12.11.2014)</h2>
+<ul>
+  <li>In der Statistik-Ansicht werden nun auch Tabellen zum Anteil und nicht nur zur absoluten Anzahl der weitergeleiteten Kunden, der erfolgreichen Kunden und der Warteabbrecher angeboten.</li>
+</ul>
+
+<h2>3.2.156 (10.11.2014)</h2>
+<ul>
+  <li>Wenn die verwendete Java-Version bereits zu Zeiten der Erstellung der verwendeten Version des Simulators veraltet war, kann nun (abschaltbar) eine Warning ausgegeben werden.</li>
+  <li>Im Optimierer wurden einige GUI-Elemente zur Vereinfachung der Nutzung erweitert.</li>
+  <li>Fehlerkorrektur: Bei der Anzeige der Optimierungsergebnisse wurde bisher stets, unabhängig von der tatsächlich gewählten zu optimierenden Größe, "Maximierung der Erreichbarkeit (auf Anrufbasis)" angezeigt. Außerdem wurde, wenn statt einer Zielgröße ein Zielbereich gewählt wurde, dieser nicht ausgewiesen. Bei der Optimierung wurde jedoch korrekt die jeweils gewählte Einstellung verwendet.</li>
+  <li>Fehlerkorrektur: Bei der Verwendung der Normalverteilung wurden bisher teilweise, sofern die Parameter so gewählt wurden, dass eine signifikante Wahrscheinlichkeitsmasse links der 0 lag, verfälschte Werte für die Auslastung der Agenten aufgezeichnet.</li>
+</ul>
+
+<h2>3.2.155 (5.11.2014)</h2>
+<ul>
+  <li>Tabellen können nun auch direkt aus SQLite-Datenbank-Dateien geladen werden.</li>
+  <li>Optimierung des Speicherbedarfs des Simulators.</li>
+</ul>
+
+<h2>3.2.154 (20.10.2014)</h2>
+<ul>
+  <li>Die Wartezeittoleranzen können bei einem Modell mit bekannten Erreichbarkeitswerten nun automatisch kalibriert werden.</li>
+  <li>Einige kleinere Optimierungen zu Geschwindigkeit und Speicherbedarf im Simulator.</li>
+  <li>Die Festlegung, für welche Modelle die Hintergrundsimulation, wenn aktiviert, tatsächlich angewendet wird, erfolgt nun in Abhängigkeit von der verfügbaren Systemleistung.</li>
+</ul>
+
+<h2>3.2.153 (10.10.2014)</h2>
+<ul>
+  <li>Parameterreihen können nun auch ohne Angabe eines Ausgabeverzeichnisses für die einzelnen Statistik-Ergebnisse simuliert werden, wenn eine Datei zur Ausgabe der gefilterten Statistik-Ergebnisse definiert wurde.</li>
+  <li>Bei Modellen mit mehr als 250 simulierten Tagen wird die Hintergrundsimulation automatisch ausgesetzt, um zu vermeiden, dass die Programmoberfläche verlangsamt wird.</li>
+  <li>Fehlerkorrektur: Im XML-Feld-Auswahldialog für die Parameterreihen Stapelverarbeitung wurden bisher nicht alle vorhandenen XML-Attribute zur Auswahl angeboten.</li>
+  <li>Fehlerkorrektur: Das Programm reagierte bisher teilweise nicht mehr, wenn bei der Parameterreihen Stapelverarbeitung ein Ausgabeverzeichnis gewählt wurde, welches bereits Statistikdateien enthielt.</li> 
+</ul> 
+
+<h2>3.2.152 (20.9.2014)</h2>
+<ul>
+  <li>Im Stapelverarbeitungsfenster können nun auch Parameterreihen abgearbeitet werden.</li>
+  <li>Im Verteilungseditor steht nun auch die Gleichverteilung zur Auswahl zur Verfügung.</li>
+  <li>Verbesserte Verknüpfung der Einzelintervalle in Bezug auf Wiederanrufer in der Erlang-C-Abschätzung in der Modellüberblick-Ansicht.</li>
+  <li>Neben den realistischen Beispielmodellen stehen nun über den Menüpunkt Datei|Neu auch einige Modelle, die nur mit Erlang-C abbildbare Eigenschaften enthalten, zur Verfügung.</li>
+  <li>Fehlerkorrektur: Bei der Auswahl von XML-Elementen für die Schnellzugriffs-Filter konnte bisher auch der Inhalt von XML-Elementen, die lediglich Unterelemente aber keinen eigenen Inhalt besitzen, gewählt werden.</li>
+  <li>Fehlerkorrektur: Beim Bearbeiten von Modellen, die mit einer früheren Version des Simulators erstellt wurden, wurde beim Speichern der Status "ungespeicherte Änderungen" nicht korrekt zurückgesetzt.</li>
+  <li>Fehlerkorrektur: Bei der Erlang-C-Abschätzung in der Modellüberblick-Ansicht wurde bisher zum Teil die Wartezeittoleranz der Anrufer falsch abgebildet.</li>
+</ul>
+
+<h2>3.1.151 (28.8.2014)</h2>
+<ul>
+  <li>Allgemeine Geschwindigkeitsoptimierungen im Simulator.</li>
+  <li>Geschwindigkeitsoptimierungen bei der clientseitigen Verarbeitung der Daten im Client-Server-Simulationsmodus.</li>
+  <li>Bei Agentengruppen, die über eine vorgegebene Verteilung über den Tag definiert sind, kann diese Verteilung nun den Kundenankünften nachmodelliert werden.</li>
+  <li>Es wurden Schnellzugriffs-Befehle zur Berechnung von Mittelwerten und Standardabweichungen hinzugefügt und der Syntax des Print-Befehls erweitert.</li>
+  <li>Zur einfacheren Weiterverarbeitung werden nun zu den Rohdaten zusätzlich einige aufbereitete Kenngrößen in die Statistikdateien geschrieben.</li>
+  <li>Fehlerkorrektur: Bei Modellen mit deaktivierten Kundentypen konnte bisher der Fall auftreten, dass die Modellprüfung das Modell fälschlicher Weise für fehlerhaft eingestuft hat.</li>
+  <li>Fehlerkorrektur: In dem "Kundentyp bearbeiten"-Dialog waren bei Kundengruppen, bei denen eigentlich sowohl das "Ok &amp; vorherige"- als auch das "Ok &amp; nächste"-Button sichtbar sein sollten, aus Platzgründen nur eines der beiden Buttons sichtbar.</li>
+  <li>Fehlerkorrektur: Bei der Darstellung von Balkendiagrammen wurden bisher unnötig stark gerundete Werte verwendet.</li>
+  <li>Fehlerkorrektur: Beim erneuten Speichern von aus einer Datei geladenen Statistik-Daten wurde die Versionskennung der Datei auf die Version des aktuell verwendeten Programms verändert.</li>
+  <li>Fehlerkorrektur: Bei der Abarbeitung von Schnellzugriffs-Filtern war die Einstellung, ob ein Wert als Zahl oder als Zeitangabe ausgegeben werden soll, zu Beginn undefiniert, so dass bisher stets ein "Format"-Befehl am Anfang eines Skripts eingesetzt werden musste.</li>
+</ul>
+
+<h2>3.0.150 (15.8.2014)</h2>
+<ul>
+  <li>Die jeweils pro Agentengruppe und Zeitintervall geplanten und tatsächlich eingesetzten Agenten werden nun auch in der Statistik gespeichert.</li>
+  <li>Die Daten zum jeweils finalen Simulationslauf können nun per Kommandozeile aus der Optimiererergebnisse-Datei extrahiert werden.</li>
+  <li>Allgemeine Geschwindigkeitsoptimierungen im Simulator.</li>
+  <li>Fehlerkorrektur: Bei der Applet-basierenden Client-Server-Simulation hat der http-Server keine Cache-Informationen mitgeliefert, so dass ein Client möglicherweise mit einer alten Version des Applets arbeiten konnte.</li>
+  <li>Fehlerkorrektur: Die Darstellung des Konfidenzintervalls für die Erreichbarkeit in der Statistik-xml-Datei war bisher fehlerhaft. (Die Darstellung im Programm selber und die Speicherung der Rohdaten in der xml-Datei waren jedoch auch bisher korrekt.)</li>
+  <li>Fehlerkorrektur: Die Verweilzeitverteilung auf Kundenbasis wurde bisher nicht korrekt erfasst. (Die Verweilzeitverteilung auf Anrufbasis und die Wartezeitverteilung auf Kundenbasis waren davon nicht betroffen und auch bisher schon korrekt.)</li>
+  <li>Fehlerkorrektur: Korrektur einiger fehlender Achsenbeschriftungen bei der Darstellung der agentenbezogenen Kenngrößen.</li>
+  <li>Fehlerkorrektur: Wenn für die Berechnung der Agenten pro Halbstundenintervall eine Kundengruppe, deren Ankunftsrate auf 15-Minutenbasis definiert war, herangezogen wurde, konnte bisher die Darstellung der aktiven Agenten in der Statistik fehlerhaft sein.</li> 
+</ul>
+
+<h2>2.9.149 (24.7.2014)</h2>
+<ul>
+  <li>Erkennung, ob das Programmverzeichnis durch das Update-System beschrieben werden kann und ggf. Warnmeldung im Einstellungen-Dialog.</li>
+  <li>Wenn Konfigurationsänderungen nicht gespeichert werden können, wird nun eine Warnmeldung ausgegeben.</li>
+  <li>In Tabellen zur Anzeige von Größen im Tagesverlauf (z.B. Warteabbrecher pro Halbstundenintervall) werden Zahlenwerte nun mit Nachkommastellen angezeigt.</li> 
+  <li>Fehlerkorrektur: Die Darstellung der Diagramme "Mittlere Warte- und Abbruchzeit über den Tag" und "Erreichbarkeit über den Tag" in der Variante auf Kundenbasis war bisher fehlerhaft.</li>
+</ul>
+
+<h2>2.9.148 (10.7.2014)</h2>
+<ul>
+  <li>Fehlerkorrektur: Bei der Erzeugung von html-Reports mit eingebetteten Bildern konnte es auf langsameren Systemen bisher zu einer Blockierung des Programms kommen.</li>
+</ul>
+
+<h2>2.9.147 (10.6.2014)</h2>
+<ul>
+  <li>Anpassung des Update-System für den Betrieb des Simulators als jar-Datei.</li>
+</ul>
+
+<h2>2.9.146 (12.4.2014)</h2>
+<ul>
+  <li>Wird die Simulation beendet, während das Programm minimiert ist, so wird nun eine Hinweismeldung angezeigt.</li>
+  <li>Anpassung des Update-Systems und der dtd- und xsd-Links in den Modell-xml-Dateien an die neue Heimat-URL des Callcenter Simulators.</li>
+</ul>
+  
+<h2>2.9.145 (27.2.2014)</h2>
+<ul>
+  <li>Aktualisierung der verwendeten Diagrammbibliothek JFreeChart auf Version 1.0.17</li>
+</ul>
+
+<h2>2.9.144 (20.2.2014)</h2>
+<ul>
+  <li>Reports können nun auch als Word-Dateien ausgegeben werden.</li>
+  <li>Neue Setup-Option zur Wiederherstellung der letzten Fenstergröße beim Programmstart.</li>
+  <li>Fehlerkorrektur: Beim Exportieren eines Schichtplandiagramms als Bilddatei wurde dieses bisher mit einem schwarzen Rand rechts und unten gespeichert.</li>
+</ul>
+
+<h2>2.9.143 (10.2.2014)</h2>
+<ul>
+  <li>Die Anzahl an Erstanrufern kann nun optional mit einer vorgegebenen Standardabweichung als normalverteilt angenommen werden.</li>
+  <li>In den Statistik-XML-Dateien werden nun nicht mehr nur die Basiswerte, aus denen beliebige Konfidenzintervalle für Erreichbarkeit, Wartezeit und Service-Level berechnet werden können, gespeichert, sondern es werden zur einfacheren Weiterverarbeitung der Daten nun auch das 90%- und das 95%-Konfidenzintervall direkt angegeben.</li>
+  <li>Es kann nun optional eingestellt werden, dass die technische Bereitzeit von den Kunden bereits als solcher erkannt wird, so dass in dieser Zeit keine Warteabbrüche mehr erfolgen.</li>
+  <li>Ist die automatische Hintergrundsimulation aktiviert, so wird das Modell nun ebenfalls automatisch nach jeder Änderung auf Konsistenz geprüft und eventuelle Fehler werden sofort ein Einblendung im Programmfenster angezeigt.</li>
+  <li>Die Fehlermeldungen, die auf ein nicht konsistentes Modell hinweisen, geben nun genauer an, an welcher Stelle Angaben nicht zueinander passen.</li>
+  <li>Fehlerkorrektur: Beim Speichern von Daten als xml-Dateien wurden bisher zum Teil die Verweise auf die zugehörigen dtd- und xsd-Dateien im Dateikopf nicht korrekt angegeben.</li>
+</ul>
+
+<h2>2.8.142 (28.1.2014)</h2>
+<ul>
+  <li>Ab dieser Version wird Java 7 als Laufzeitumgebung vorausgesetzt. Die Java Version 6, die vor einem Jahr ihr End-of-Life erreicht hat, wird nicht mehr unterstützt.</li>
+  <li>Es werden nun mehr und detailliertere Informationen zu den Wiederanrufern in der Statistik angezeigt.</li>
+  <li>Durch eine Optimierung der Zufallszahlen-Erzeugung konnte die Simulationsgeschwindigkeit modellgrößenabhängig um 5-50% gesteigert werden. Insbesondere bei kleineren Modellen ist diese Geschwindigkeitssteigerung signifikant.</li>
+  <li>Geschwindigkeitsoptimierungen bei der Verwendung von empirischen Verteilungen im Simulationsprozess.</li>
+  <li>Allgemeine Geschwindigkeitsoptimierungen im Simulator.</li>
+  <li>Aktualisierung der Common-Math-Bibliothek auf Version 3.2</li> 
+</ul>
+
+<h2>2.7.141 (15.1.2014)</h2>
+<ul>
+<li>Fehlerkorrektur: Wurden einzelnen Kundentypen im Modelleditor deaktiviert, so konnte dies bisher unter bestimmten Bedingungen zu einem internen Fehler in der Simulation führen.</li>
+</ul>
+
+<h2>2.7.140 (10.1.2014)</h2>
+<ul>
+  <li>Text-Seiten im Statistik-Anzeige-Bereich können nun auch als Word-Texte und HTML-Dateien gespeichert werden.</li>
+  <li>Tabellen können nun auch als in Word-Dokumente eingebettete Tabellen und als HTML-Dateien gespeichert werden.</li>
+  <li>Die Schnellzugriff-Filterfunktion kann nun Zahlenwerte auch als Zeitangeben formatiert ausgeben.</li>
+  <li>Geschwindigkeitsoptimierungen bei der Verwendung von Lognormalverteilungen im Simulationsprozess.</li>
+  <li>Fehlerkorrektur: Beim Speichern von Diagrammen als jpeg-Dateien konnte es bisher passieren, dass falsche Farben verwendet wurden.</li> 
+  <li>Fehlerkorrektur: Die Kommandozeilen-Benchmark-Funktion startete bisher die Simulationsläufe nicht korrekt.</li>
+</ul>
+
+<h2>2.7.139 (3.1.2014)</h2>
+<ul>
+  <li>Beim schablonenbasierenden Import von Callcenter Parametern kann nun auch die Erstanruferanzahl aus einer bestimmten Datenreihe per Summation geladen werden, ohne dabei die bisher vorgegebene Verteilung zu verändern.</li>   
+  <li>Bei Agentengruppen mit vorgegebener Arbeitsleistungsverteilung pro Halbstundenintervall kann nun zusätzlich eine Produktivität angegeben werden.</li>
+  <li>Beim Laden von empirischen Verteilungen können nun auch Prozentwerte angegeben werden.</li>
+  <li>XML-Daten können nun optional komprimiert gespeichert werden.</li>
+  <li>Der Update-Mechanismus verlässt sich nun nicht mehr allein auf die Dateiherkunft sondern prüft eine RSA(2048 Bit)-signierte SHA256-Prüfsumme der Updatedatei.</li>
+  <li>Der Simulator kann nun optional eine einfache Modellbeschreibung basierend auf den eigenschaften der Anrufer und der Callcenter selber erstellen.</li>  
+  <li>Fehlerkorrektur: Bei der Darstellung der Verteilung der Agenten-Arbeitsleitung auf die verschiedenen Skill-Level in den Modellinformationen wurden Agentengruppen, deren Arbeitszeit gemäß den Erstanrufern verteilt ist, nicht korrekt berücksichtigt.</li>
+  <li>Fehlerkorrektur: Bei der Verwendung von Kundenankünften auf 15-Minutenbasis und der gleichzeitigen Verwendung von Agentengruppen, deren Arbeitsleistung gemäß den Kundenankünften verteilt werden soll, konnte es zu einem Fehler kommen.</li>
+  <li>Fehlerkorrektur: Beim gleichzeitigen Laden der Verteilung und der Anzahl an Kundenankünften auf 15-Minutenbasis über den schablonenbasierten Import konnte es zu einem Fehler kommen.</li>
+  <li>Fehlerkorrektur: Beim Auswahl einiger Optimierungseigenschaften in der Optimierer-GUI wurden diese Einstellungen nicht korrekt übernommen.</li> 
+</ul>
+
+<h2>2.6.138 (9.12.2013)</h2>
+<ul>
+  <li>Aktualisierung der Bibliothek zum Lesen und Schreiben von Excel-Tabellen (Apache POI) auf Version 3.9.</li>
+  <li>Fehlerkorrektur: Beim Exportieren von empirischen Verteilungen und beim Exportieren von Statistikdaten wurden bisher teilweise keine Überschreibwarnungen angezeigt, wenn die Zieldatei bereits existierte.</li>
+</ul>
+
+<h2>2.6.137 (5.12.2013)</h2>
+<ul>
+  <li>Die Laden/Speichern-Dialoge speichern nun innerhalb einer Programmsitzung das jeweils zuletzt verwendete Verzeichnis und bieten dieses bei einem späteren Aufruf des Dialogs erneut an.</li> 
+  <li>Die Kundenankünfte-Verteilung kann nun statt nur auf Halbstundenbasis optional auch auf Stundenbasis und auf 15-Minutenbasis angegeben werden.</li>
+  <li>Bei der Optimierung können die kundenspezifischen Kenngrößen nun optional nicht nur auf Anrufbasis, sondern auch auf Kundenbasis verwendet werden.</li>
+  <li>Bei der Anzeige der Systemdaten in der Statistikausgabe wurde die Beschreibung des Feldes "Kunden pro Sekunde" verbessert.</li>
+</ul>
+
+<h2>2.5.136 (21.11.2013)</h2>
+<ul>
+  <li>Fehlerkorrektur: Bei der Verwendung von Agentengruppen, deren Arbeitszeitverteilung die Erstanruferverteilung bestimmter Kundengruppen nachbilden, wurden die Raten, mit denen die verschiedenen Kundengruppen in die Berechnung eingehen beim Laden von XML-Modellen teilweise nicht korrekt wiederhergestellt.</li>
+</ul>
+
+<h2>2.5.135 (18.11.2013)</h2>
+<ul>
+  <li>Kleine Verbesserungen in der Funktion zum Laden von XML-Callcenter-Modellen um Verteilungsangaben flexibler interpretieren zu können.</li>
+  <li>Fehlerkorrektur: Wurde der Kommandozeilen-Simulationsserver im Nicht-SaaS-Modus gestartet, so kam es beim Beenden des Servers zu einem Fehler.</li>
+</ul>
+
+<h2>2.5.134 (15.11.2013)</h2>
+<ul>
+  <li>Über den Menüpunkt "Verteilung anpassen" im Tools-Menü kann jetzt die analytische Verteilung, die eine bestimmte Menge an empirischen Messwerten am besten widerspiegelt, bestimmt werden.</li>
+  <li>Bei der Optimierung kann nun optional auch ein Maximalwert für die zu optimierende Eigenschaft angegeben werden, bei dessen Überschreitung die Agentenanzahl verringert wird.</li> 
+  <li>Im Auslastungsrechner können nun auch Berechnungen mit Hilfe der erweiterten Allen-Cunneen Näherungsformel durchgeführt werden.</li>
+  <li>Der Auslastungsrechner zeigt nun auf den Dialogseiten "Erlang C" und "Erlang C (erweitert)" mehr Kenngrößen an.</li>
+  <li>Bei der Anzeige von Verteilungen im Modell-Editor können nun nicht nur die Werte kopiert und gespeichert werden, sondern es kann auch jeweils die Grafik kopiert und gespeichert werden.</li>
+  <li>Im Verteilungseditor kann nun direkt eine Webseite mit weiteren Informationen zu der jeweils gewählten Verteilung geöffnet werden.</li>
+  <li>Fehlerkorrektur: Wurde bei einem Kundentyp angegeben, dass die Kunden nur begrenzt lange bereit sind zu warten, aber gleichzeitig die Verteilung so gewählt, dass sich praktisch eine unendliche Wartezeittoleranz ergab, so konnte dies zu Fehlern im Simulator führen.</li>
+  <li>Fehlerkorrektur: Bei der Varianzanalyse im Modus "Variable Anzahl an Simulationstagen" funktionierte die Schaltfläche zum Speichern der Ergebnisse in Tabellenform nicht korrekt.</li>
+  <li>Fehlerkorrektur: Bei der Eingabe von ungültige Werten für "c" oder "t" auf den Seiten "Erlang C" und "Erlang C (erweitert)" im Auslastungsrechner konnte es passieren, dass der Dialog blockierte bis er erneut geöffnet wurde.</li>
+  <li>Fehlerkorrektur: Auf der Seite "Modellüberblick" wurden bisher in der Rubrik "Erweitertes Erlang-C Modell" evtl. falsche Ergebnisse angezeigt, wenn als Bedien- oder Nachbearbeitungszeitverteilung die Gammaverteilung gewählt war.</li>
+  <li>Fehlerkorrektur: Beim Laden eines Optimierungs-Setups wurden die Auswahlbox-Beschriftungen teilweise nicht korrekt an den Typ der zu optimierenden Eigenschaft angepasst.</li>
+</ul>
+
+<h2>2.4.133 (24.10.2013)</h2>
+<ul>
+  <li>Bei der Client-Server-Simulation kann nun clientseitig die Applet-Version verwendet werden, so dass keine lokale Installation des Simulators notwendig ist.</li>
+  <li>Optimierung der Konfiguration der Applet-Version zur Verbesserung der Kompatibilität mit zukünftigen Java-Versionen.</li>
+  <li>Fehlerkorrektur: Wenn das Fenster, in dem das Schichtplan-Diagramm einer Agentengruppe angezeigt wird, aus dem Bildschirmbereich heraus und dann wieder hinein geschoben wurde, wurde der Fensterinhalt teilweise nicht sofort wieder korrekt neu gezeichnet.</li>
+</ul>
+
+<h2>2.4.132</h2>
+<ul>
+  <li>Im Dateimenü werden nun die jeweils zuletzt verwendeten Modelle zum direkten Laden angeboten.</li>
+  <li>Fehlerkorrektur: Der Menüpunkt "Willkommensseite anzeigen" im Hilfe-Menü funktionierte bisher nicht.</li>
+</ul>
+
+<h2>2.4.131</h2>
+<ul>
+  <li>Tabellen können nun direkt per Drag&amp;Drop in Verteilungsansichten geladen werden.</li>
+  <li>HTML-Zusammenfassungen der Simulationsergebnisse sowie der Modellinformationen können nun auch per Kommandozeile erstellt werden.</li> 
+  <li>Beim Import von empirischen Verteilungsdaten wird nun ein Auswahldialog geöffnet, wenn die Daten keine eindeutige automatische Zuordnung zulassen.</li>
+  <li>Bei der Erstellung von HTML-Reports können Grafiken nun auch direkt in die HTML-Datei eingefügt werden.</li>
+  <li>Die Funktionen zum Importieren von Kundenankünften und Agentenarbeitszeiten können nun besser mit Tabellen ohne Überschriftenfelder umgehen.</li>
+  <li>Die Erstellung von HTML-Reports wurde durch die Verwendung von mehreren Threads beschleunigt.</li>
+  <li>Der IP-Filter des Simulationsservers kann nun auch über den Einstellungen-Dialog konfiguriert werden.</li>
+  <li>Fehlerkorrektur: Beim Laden von empirischen Verteilungsdaten aus Excel-Dateien wurden Fließkommawerte bisher teilweise falsch interpretiert.</li> 
+  <li>Fehlerkorrektur: Die Funktion zum Kopieren von HTML-Reports in die Zwischenablage funktionierte bisher nicht.</li>
+  <li>Fehlerkorrektur: Beim Mehrbildschirm-Betrieb wurden Lade- und Speicherdialog bisher nicht immer über dem Hauptfenster platziert.</li>
+</ul>
+
+<h2>2.3.130 (25.1.2013)</h2>
+<ul>
+  <li>Bei der Client-Server-Simulation kann die Arbeitslast nun auf beliebig viele Netzwerkserver verteilt werden.</li>
+</ul>
+
+<h2>2.3.129</h2>
+<ul>
+  <li>Bei der Client-Server-Simulation kann nun auch ein Teil der zu simulierenden Tage lokal simuliert werden, d.h. die Arbeitslast kann auf Server und lokalen Rechner verteilt werden.</li>
+</ul>
+
+<h2>2.3.128</h2>
+<ul>
+  <li>Die Ergebnisse einer verknüpften Simulation können nun als Diagramme und Tabellen angezeigt werden.</li>
+  <li>Fehlerkorrektur: In dem Dialog zur Auswahl eines Simulationsmodells aus einer Optimierung funktionierte die Hilfe-Schaltfläche nicht.</li>
+</ul>
+
+<h2>2.3.127</h2>
+<ul>
+  <li>Es können nun mit Hilfe von Lade-Schablonen Daten aus komplexen Tabellen gleichzeitig in verschiedene Modellbereiche geladen werden.</li>
+  <li>Es können nun die Statistik-Ergebnisse von zwei verschiedenen Modellen direkt im Programmfenster verglichen werden.</li>
+  <li>Bei der Optimierung können nun auch Überträge vom Vortrag per Statistik-Datei berücksichtigt werden.</li>
+  <li>Optimierer-Einstellungen-Dateien können nun auch per Drag&amp;Drop geladen werden.</li>
+  <li>Der Kommandozeilen-Simulationsserver reagiert nun auch auf SIGTERM und kann daher jetzt auch ohne aktive Konsole laufen.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Kleinere Verbesserungen in der grafischen Oberfläche</li>
+</ul>  
+
+<h2>2.2.126 (5.12.2012)</h2>
+<ul> 
+  <li>Zur Erhöhung der Übersichtlichkeit können in der Statistikansicht uninteressante Baumeinträge ausgeblendet werden.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen beim Start von Simulationen</li>
+  <li>Beschleunigung des Programmstarts</li>
+</ul>
+
+<h2>2.2.125</h2>
+<ul>
+  <li>In der verknüpften Simulation kann den Warteabbrechern, die am nächsten Tag als zusätzliche neue Kunden behandelt werden sollen, optional auch noch ein neuer Kundentyp
+  zugewiesen werden.</li>
+  <li>Der zur Berechnung des Service-Level relevante Sekundenwert kann nun optional individuell pro Kundentyp eingestellt werden.</li>
+  <li>Es können nun mehrere Bedien- und Nachbearbeitungszeitverteilungen in einem Arbeitsschritt aus einer Tabelle geladen werden.</li>
+  <li>Zusätzliches, größeres Beispielmodell</li>
+  <li>Die Verteilungen von Warte-, Verweil- und Abbruchzeiten werden nun nicht mehr nur im Bereich 0 bis 1800 Sekunden im Sekundenraster, sondern auch im Bereich 0 bis 900 Stunden im Halbstundenraster erfasst.</li>
+  <li>Verknüpfte Simulationsmodelle können nun auch per Drag&amp;Drop in den Simulator geladen werden.</li>
+  <li>Große Modelle werden nun schneller geladen</li>
+  <li>Etwas geringerer Arbeitsspeicherbedarf während der Simulation</li>
+  <li>Bessere Berechnung der mit der verfügbaren Arbeitsspeichermenge maximal möglichen Threadanzahl</li>
+  <li>Aktualisierung der verwendeten Diagrammbibliothek JFreeChart auf Version 1.0.14</li>
+  <li>Fehlerkorrektur: Teilweise wurde die Tabellenansicht nach Änderungen in einem verbundenen Simulationsmodell nicht sofort aktualisiert.</li>
+  <li>Fehlerkorrektur: Eine Race-Condition konnte bisher dazu führen, dass die Hintergrundsimulation keine Ergebnisse lieferte.</li>
+  <li>Fehlerkorrektur: Wurde eine XML-Datei auf das Simulatorfenster gezogen, während ein Arbeitspanel (wie z.B. die Batch-Simulation) geöffnet war, so wurde das Modell zum Teil fehlerhaft geladen.</li>
+  <li>Fehlerkorrektur: Wenn bei der Optimierung eingestellt wurde, dass die Zielgröße nur für einzelne Kundentype erreicht werden soll, konnte bisher ein Fehler auftreten.</li>
+</ul>
+
+<h2>2.1.124 (15.11.2012)</h2>
+<ul>
+  <li>In der Statistik-Zusammenfassungsansicht können nun auch alle Tabellen in einer gemeinsamen Excel-Arbeitsmappe exportiert werden.</li>
+  <li>Kleinere Verbesserungen in der Statistikanzeige</li>
+  <li>Bei der Berechnung von Kenngrößen wie der Erreichbarkeit usw. wird nun als Basis nicht mehr die Anzahl an Kunden bzw. Anrufern verwendet, sondern die um die zum nächsten Tag übertragenen Kunden bereinigte Anzahl.</li>
+  <li>Fehlerkorrektur: Bei der verknüpften Simulation wurden im System wartende Kunden bisher doppelt übertragen; sowohl als im System wartende Kunden als auch als später auf einen neuen Anruf wartende Kunden</li>
+</ul>
+
+<h2>2.1.123</h2>
+<ul>
+  <li>Bei der verbundenen Simulation können nun nicht mehr nur Warteabbrechern am nächsten Simulationstag auf die Anruferzahlen aufaddiert werden, sondern es werden nun auch die Kunden im System (wartend und auf Wiederanruf wartend) zum nächsten Tag übertragen.</li>
+  <li>Komplette Simulationsläufe können nun in Logdateien aufgezeichnet werden.</li>
+  <li>Bei der Schichtplanung der Agenten kann nun eingestellt werden, ob bei Agenten, die bis Mitternacht arbeiten, die Arbeitszeit automatisch so weit verlängert werden soll, bis keine Kunden mehr in dem System sind.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li> 
+  <li>Kleine Verbesserungen bei der Ergebnisanzeige der Varianzanalyse</li>
+  <li>Die Unterstützung für Windows 8 im Installationsprogramm wurde verbessert.</li> 
+  <li>Fehlerkorrektur: Anrufer, die eine unendliche Wartezeittoleranz oder eine 100%ige Wiederholwahrscheinlichkeit besitzen und die erst nach dem Dienstende des letzten Agenten eintrafen, konnten, sofern keiner der Agenten eine Schichtzeit bis Mitternacht hatte, zu einem Blockieren des Simulators führen.</li>
+  <li>Fehlerkorrektur: Wurde die verbundene Simulation mehrfach hintereinander gestartet, ohne die Dialogseite zwischenzeitlich zu schließen, so wurden bisher teilweise Tage mehrfach simuliert.</li>
+  <li>Fehlerkorrektur: Bei der Deinstallation des Callcenter Simulators wurde die xsd-Datei bisher nicht gelöscht.</li>
+  <li>Fehlerkorrektur: Wurde eine Statistik-XML-Datei über die Statistikseite geladen, so wurde danach die Statistik-Speichern-Schaltfläche in der Symbolleiste nicht korrekt aktiviert.</li>
+</ul>
+
+<h2>2.0.122</h2>
+<ul>  
+  <li>Pro Kundentyp kann nun eingestellt werden, ob die Kunden Telefonleitungen belegen (Anrufer) oder nicht (E-Mail usw.).</li>
+  <li>Im Kundentypen-Editor kann für die Wartezeittoleranzenverteilung nun auch eine grafische Darstellung, die längere Wartezeittoleranzen besser darstellt, gewählt werden.</li>
+  <li>Noch mehr Statistikdaten werden auf Kundenbasis und auf Anrufbasis aufgeschlüsselt angezeigt</li>
+  <li>Fehlerkorrektur: XML-Modell-Dateien, in denen bei einem Kundentyp die Wartezeittoleranzschätzung aktiviert war und gleichzeitig ein Wartezeittoleranzkorrekturwert von 0 oder weniger eingestellt war, konnten bisher nicht geladen werden.</li>
+</ul>
+
+<h2>2.0.121</h2>
+<ul>
+  <li>Bei der Client-Server-Simulation kann die Datenübertragung nun optional AES-verschlüsselt stattfinden. Dadurch kann die Nutzbarkeit eines Server auch auf bestimmte Clients eingeschränkt werden.</li>
+  <li>Für den Simulationsserver kann eingestellt werden, wie viele Threads dieser maximal pro Anfrage verwenden soll.</li>
+  <li>Bei der Client-Server-Simulation können nun sowohl der Client als auch der Server besser mit Verbindungsabbrüchen umgehen.</li>
+  <li>Der Kommandozeilen-Simulationsserver kann die Logausgaben jetzt auch direkt in eine Logdatei schreiben.</li>
+  <li>Optionaler Wechsel des Kundentyps bei einem wiederholten Anrufversuch</li>
+  <li>Kleinere Verbesserungen im Modelleditor</li>
+  <li>Mehr Statistikdaten werden auf Kundenbasis und auf Anrufbasis aufgeschlüsselt angezeigt</li>
+  <li>Bedingt durch eine bessere Überprüfung, ob sich das Modell verändert hat, muss der Hintergrundsimulator nun seltener aufgerufen werden.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Fehlerkorrektur: In der Statistik wurde bei einer Weiterleitung das Gespräch des weitergeleiteten Kunden dem ursprünglichen Kundentyp des Kunden statt des neuen Kundentypen zugeordnet.</li>
+  <li>Fehlerkorrektur: In der Statistik wurden bei der Anzeige der Anruferzahlen, Kundenzahlen, usw. pro Intervall bisher Werte die Summen über alle simulierten Tagen statt der auf jeweils einen Tag umgerechneten Werte angezeigt.</li> 
+</ul>  
+
+<h2>1.9.120</h2>
+<ul>
+  <li>Beim Laden von Tabellen in Textform werden nun neben dem csv-Format auch Tabulator-getrennte Daten erkannt.</li> 
+  <li>Per grafischer Oberfläche erstellte xml-Beschreibungsdatei für verkettete Simulationen können nun auch per Kommandozeile ausgeführt werden.</li>
+  <li>Bei der verketteten Simulation werden nun nicht mehr die Mittelwerte der Warteabbrecher von einem Modell auf das nächste übertragen, sondern es werden jeweils exakte Tageswerte übertragen.</li>
+  <li>Bei der verketteten Simulation kann nun auch ein initialier Übertrag in den Tag 1 hinein per Statistik-xml-Datei angegeben werden.</li>
+  <li>Der Auslastungrechner beherrscht nun auch die erweiterte Erlang C Formel, d.h. Warteabbrechner können darin nun auch modelliert werden.</li>
+  <li>Beispieldaten von ie.technion.ac.il/serveng/callcenterdata/ können nun direkt zu Callcenter-Modellen aufbereitet werden.</li>
+  <li>Kleinere Verbesserungen bei der Verarbeitung von Kommandozeilenbefehlen</li>
+  <li>Fehlerkorrektur: Beim Laden von allgemeinen Verteilungsdaten wurden Excel 2003-xls-Dateien bisher nicht immer korrekt verarbeitet.</li>
+  <li>Fehlerkorrektur: Bei der Durchführung einer verketteten Simulation über die grafische Oberfläche wurde bisher die Simulationslaufzeit nicht korrekt in die Statistikdatei geschrieben.</li>
+  <li>Fehlerkorrektur: Beim Laden gespeicherter Statistikergebnisse wurden die Daten für die Konfidenzintervalle von Erreichbarkeit, Service-Level und Wartezeit nicht korrekt geladen.</li>
+  <li>Fehlerkorrektur: In Modellen mit vielen Kundentypen wurde in einigen Dialog bisher der verfügbare Platz nicht vollständig ausgenutzt.</li>
+</ul>
+
+<h2>1.8.119</h2>
+<ul>
+  <li>Auslastungsrechner zur schnellen Berechnung von Startwerten zur Aufstellung von Callcenter-Modellen</li>
+  <li>Die Varianzanalyse kann nun auch mit einer variablen Anzahl an Simulationsläufen arbeiten.</li>
+  <li>Verkettete Simulationen mit Übertrag der Warteabbrecher können nun auch in der grafischen Oberfläche durchgeführt werden.</li>
+  <li>Export der Ergebnisstabellen ist nun auch im Excel 2003-xls-Format möglich</li>
+  <li>Kundenankünfte und Agentenarbeitszeiten können nun auch aus Excel 2003-xls-Tabellen geladen werden</li>
+  <li>Sollen mehrere Schnellzugriffs-Filter verwendet werden, so müssen diese nicht mehr in externen Dateien gespeichert werden, sondern es kann per Dropdownbox zwischen bis zu 10 Filtern gewechselt werden.</li>
+  <li>Die Beschreibung der xml-Dateiformate liegt nun auch im xsd-Format vor.</li>
+  <li>Geringerer Speicherverbrauch bei Verwendung der Hintergrundsimulation</li>
+  <li>Auf Systemen mit wenig Arbeitsspeicher wird die maximale Anzahl an Rechenthreads automatisch reduziert, um Speicherengpässe zu vermeiden.</li>
+  <li>Kleinere Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Kleinere Erweiterungen in der "Modellüberblick"-Funktion</li> 
+  <li>Fehlerkorrektur: Auf sehr schnellen Rechnern und bei kleinen Callcentermodellen wurde der Fortschrittsbalken bei der Varianzanalyse bisher nicht korrekt aktualisiert.</li>
+  <li>Fehlerkorrektur: In der Online-Hilfe war die Schaltfläche "Inhalt dieser Seite" teilweise deaktiviert, obwohl Unterpunkte für die Navigation innerhalb der Seite vorhanden waren.</li>
+</ul>
+
+<h2>1.7.118</h2>
+<ul>
+  <li>Neue Funktion zur Untersuchung der Varianz zwischen mehreren Simulationsläufen</li>
+  <li>Export der Ergebnisstabellen ist nun auch im Excel-xlsx-Format möglich</li>
+  <li>Export der Ergebnisstexte ist nun auch im Rich-Text-Format möglich</li>
+  <li>Kundenankünfte und Agentenarbeitszeiten können nun auch aus Excel-xlsx-Tabellen geladen werden</li>
+  <li>Die gewünschte Schichtlänge kann nun optional pro Agentengruppe eingestellt werden</li>
+  <li>Möglichkeit zum Start des Simulations-Server aus der GUI heraus</li>
+  <li>Kontextmenüs in Anrufer-, Callcenter- und Agentengruppen-Listen, die insbesondere das schnelle Aktivieren und Deaktivieren einzelner Elemente ermöglichen</li>
+  <li>Im Agenten-Dialog kann die pro Tag verfügbare Arbeitsleitung direkt angepasst werden, ohne dass sich dadurch die Verteilung über den Tag ändert</li>
+  <li>In der Callcenter-Liste werden nun auch die Skill-Levels der in dem jeweiligen Callcenter aktiven Agentengruppen angezeigt</li>
+  <li>Fehlerkorrektur: In dem "Agentendaten laden"-Dialog konnte das aktive Callcenter bisher nicht gewechselt werden</li>
+</ul>
+
+<h2>1.6.117</h2>
+<ul>
+  <li>Einige kleinere Ressourcen-Speicherlecks wurden geschlossen</li>
+</ul>
+
+<h2>1.6.116</h2>
+<ul>
+  <li>Kleine Verbesserungen am Konfigurationssystem</li>
+</ul>
+
+<h2>1.6.115</h2>
+<ul>
+  <li>Kleine Verbesserungen am System zur Programmaktualisierung</li>
+  <li>Geschwindigkeitsoptimierungen im Simulator</li>
+</ul>
+
+<h2>1.6.114</h2>
+<ul>
+  <li>System zur automatischen Aktualisierung des Programms</li>
+  <li>Fehlerkorrektur: Einige ja/nein-Einstellungen wurden bisher nicht korrekt aus der Konfiguration geladen.</li>
+</ul>
+
+<h2>1.6.113</h2>
+<ul>
+  <li>Schnellerer Aufruf der Simulationsergebnisse wenn zu Beginn des Aufrufs der Simulationsfunktion die
+  Hintergrundsimulation bereits fertig ist</li>
+  <li>Kleine Verbesserungen an der Menüstruktur</li>
+</ul>
+
+<h2>1.6.112</h2>
+<ul>
+  <li>Schnellzugriffs-Filter in der Statistikansicht mit deren Hilfe bestimmte Werte in Simulationsreihen wiederholt exportiert werden können</li>
+  <li>Möglichkeit der automatischen Speicherung der Statistik-Ergebnisse nach einem Simulationslauf</li>
+  <li>Fehlerkorrektur: Beim Speichern der Statistikdaten wurden die Konfidenzintervall-Werte mit Dezimalkommata statt mit Dezimalpunkten gespeichert.</li>
+</ul>
+
+<h2>1.5.111</h2>
+<ul>
+  <li>Modellierung der Kostenstrukturen von Callcentern</li>
+  <li>Geschwindigkeitsoptimierungen im Simulator</li>
+  <li>Warnmeldungen bei Batch- und Kommandozeilen-Simulation, wenn eine neuere Modelldatei mit einer älteren Version des Simulators geladen wird</li>
+  <li>Fehlerkorrektur: Beim Laden von xml-Dateien wurden bisher teilweise Nachkommastellen von Zahlenwerten abgeschnitten.</li>
+  <li>Fehlerkorrektur: Die beiden Symbolleisten-Schaltflächen zum Laden und Speichern von Statistik-Ergebnissen waren bisher ohne Funktion.</li>
+  <li>Fehlerkorrektur: In der Formatbeschreibungs-dtd-Datei war bisher ein Datenfeld der Modelldateien falsch beschriftet.</li>
+</ul>
+
+<h2>1.4.110</h2>
+<ul>
+  <li>Speicherung der Versionsnummer des verwendeten Simulators in den Modelldateien</li>
+  <li>Abgleich der Versionsnummern zwischen Server und Client bei der Netzwerksimulation</li>
+  <li>Warnmeldungen wenn eine neuere Modelldatei mit einer älteren Version des Simulators in die grafische Oberfläche geladen wird</li>
+</ul>
+
+<h2>1.3.109</h2>
+<ul>
+  <li>Fehlerkorrektur: Fehler beim Einstellen der Farben von Tortendiagrammen</li>
+</ul>
+
+<h2>1.3.108</h2>
+<ul>
+  <li>Automatische Hintergrundsimulation</li>
+</ul>
+
+<h2>1.3.107</h2>
+<ul>
+  <li>Simulation im Client-Server-Modus über ein Netzwerk</li>
+  <li>Geschwindigkeitsoptimierungen im Simulator</li>
+</ul>
+
+</body>
+</html>
+  

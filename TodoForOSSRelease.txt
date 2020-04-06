@@ -1,0 +1,4 @@
+Homepage:
+- ui.UpdateSystem
+- net.web.res.* (dort noch "promptengineering-ug" suchen und ersetzen)
+- Simulator/docs/*.xsd

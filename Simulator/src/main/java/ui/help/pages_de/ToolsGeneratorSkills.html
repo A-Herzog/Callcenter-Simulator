@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Skilldaten laden"</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/rosette.png">&nbsp;
+Daten &gt; Bedien- und Nachbearbeitungszeiten aus Tabelle laden
+</div>
+
+<h1>Dialog "Skilldaten laden"</h1>
+
+<p>
+Über den Dialog "Skilldaten laden" können die Bedien- und Nachbearbeitungszeitverteilungen, die die Agenten
+bestimmter Skill-Level für die Bedienung bestimmter Kundentypen benötigen auf einmal aus einer Tabelle geladen werden.
+</p>
+
+<p>
+Zunächst muss in dem Feld <b>Tabellendatei</b> der Name der Tabellendatei, aus der die Daten geladen werden sollen, angegeben werden.
+Danach muss über die dann erscheinenden Auswahlfelder unterhalb der Überschrift <b>Verteilung</b> gewählt werden, welche Tabellenspalten
+welcher Bedien- oder Nachbearbeitungszeitverteilung zugeordnet werden sollen.
+</p>
+
+<h2>Aufbau der Tabellendatei</h2>
+
+<p>
+Damit die Bedien- und Nachbearbeitungsverteilungen für mehrere Kundentypen und Skill-Level aus ein Tabellendatei geladen werden können,
+muss diese einen bestimmten Aufbau besitzen. Die Bedien- und Nachbearbeitungsverteilungen für einen Kundentyp besteht aus maximal 3600 Zahlen,
+die eine sekundenbasierende Zähldichte dafür angeben, wie lange die jeweiligen Bearbeitungsschritte für einen bestimmten Kundentyp durchgeführt
+von einem Agenten eines bestimmten Skill-Levels dauern. Diese maximal 3600 Zahlenwerte müssen in der Tabelle in unmittelbar aufeinander folgenden
+Zeilen einer Spalte stehen. In jeder Spalte können die Daten für eine Verteilung stehen. Sollen mehrere Datensätze auf einmal geladen
+werden, so müssen weitere Spalten in der Tabelle verwendet werden. Die Spalten müssen nicht unmittelbar benachbart sein, die Reihe der
+Zahlenwerte muss jedoch jeweils in derselben Zeile beginnen. Alle nichtleeren Zeilen oberhalb der ersten Zahlen-Zeile werden als
+Spaltenüberschrift interpretiert. Die jeweiligen Spaltenüberschriften werden im "Skilldaten laden"-Dialog unter der Überschrift
+<b>Tabellenspalte</b> angezeigt. Steht in einer Spalte mit den Zahlenwerten keine Zeichenkette in einer der darüberliegenden Zeilen,
+so wird die Spalten-Nummer (z.B. "Spalte A", "Spalte B" usw.) angezeigt.
+</p>
+
+</body>
+</html>
+  

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Documentation of the file formats of Callcenter Simulator - gerneral information</title>
+</head>
+
+<body>
+
+<h1>Documentation of the file formats of Callcenter Simulator - gerneral information</h1>
+
+<a href="Dateiformate.html">Back to the overview of all file formats</a>
+
+<h2>Number formats</h2>
+
+<ul class="big">
+  <li>Individual <b>floating point numbers</b> are always stored with a decimal point (i.e. "123.456" or, if no fraction part is available "123"). In the simulator numbers are displayed according to locale settings, but this has no effect on the (international) storing the numbers.</li>
+  <li><b>Arrays</b> of numbers are stored with semicolons as separators between the numbers.</li>
+  <li><b>Probabilities</b> can be written as floating point numbers (i.e. "0.452") or as percent values (i.e. "45.2%").</li>
+  <li><b>Time data</b> are mostly stored in the form <tt>hh:mm:ss</tt>. Some fields can contain time data with a higher precision in the form <tt>hh:mm:ss.nnn</tt>
+  (where <tt>nnn</tt> are the milliseconds). Where which kind of time data is used is documented for each field.
+</ul>
+
+<h2>Probability distributions</h2>
+
+<p>
+Data fields containing probability distributions will have the following structure:
+</p>
+<p><tt>&lt;Name of the distribution&gt; (&lt;parameters&gt;)</tt></p>
+<ul class="big">
+  <li>Possible values for <tt>&lt;Name of the distribution&gt;</tt> are:
+  "<tt>Empirical data</tt>", "<tt>Never</tt>", "<tt>One point distribution</tt>", "<tt>Uniform distribution</tt>",
+  "<tt>Exponential distribution</tt>", "<tt>Normal distribution</tt>", "<tt>Lognormal distribution</tt>", "<tt>Gamma distribution</tt>",
+  "<tt>Erlang distribution</tt>",   "<tt>Beta distribution</tt>", "<tt>Cauchy distribution</tt>", "<tt>Weibull distribution</tt>",
+  "<tt>Chi^2 distribution</tt>" and "<tt>F distribution</tt>".</li>
+  <li><tt>&lt;parameters&gt;</tt> can be one floating point number or an array of floating point numbers. In the case of an array
+  of floating point numbers the individual numbers are separated by semicolons. The only exception is the distribution "<tt>Never</tt>"
+  which has no parameters and therefore no  bracket following the distribution name.</li>
+</ul>
+<p>Specific meaning of the parameters of the individual distributions:</p>
+<ul class="big">
+  <li>"<tt>Empirical data</tt>":
+  The parameters contain the individual data points of the density, separated by semicolons.
+  Are more or less data points passed than expected, the data will be scaled accordingly.
+  The period to which the data are calculated and how many data points are expected depends on where the distribution is to be used.</li>
+  <li>"<tt>Never</tt>":
+  The entire mass of the distribution is no infinity. If this value is, for example used for the waiting time tolerance distribution of clients
+  the clients will cancel waiting not before having waiting for an unlimited long time (so will never canel waiting).
+  After "<tt>Never</tt>" there are no bracket and not space.</li>
+  <li>"<tt>One point distribution</tt>":
+  The distribution expects one parameter that indicates on which point the entire mass of the distribution shoud lie.
+  If this distribution is specified for the holding times of an agent, serving all customers will last exactly as long as specified in the parameter.</li>
+  <li>"<tt>Uniform distribution</tt>":
+  The distribution expects two parameters: the lower and the upper bound of the range of possible values.</li>
+  <li>"<tt>Exponential distribution</tt>":
+  The distribution expects the mean of the exponential distribution as parameter.</li>
+  <li>"<tt>Normal distribution</tt>":
+  The distribution expects two parameters: mean and standard deviation.</li>
+  <li>"<tt>Lognormal distribution</tt>":  
+  The distribution expects two parameters: mean and standard deviation.</li>
+  <li>"<tt>Gamma distribution</tt>":
+  The distribution expects as parameters the two distribution parameters &alpha; and &beta;.</li>
+  <li>"<tt>Erlang-Verteilung</tt>":
+  The distribution expects as parameters the two distribution parameters n and &lambda;.</li>
+  <li>"<tt>Beta distribution</tt>":
+  The distribution expects four parameters: First the two shape parameters &alpha; and &beta; followed by
+  the range limits of the interval, at which the distribution should take positive values.</li>
+  <li>"<tt>Cauchy distribution</tt>":
+  The distribution expects two parameters: the median followed by the shape parameter.</li>
+  <li>"<tt>Weibull distribution</tt>":
+  The distribution expects two parameters: the scale parameter followed by the shape parameter.</li>
+  <li>"<tt>Chi^2 distribution</tt>":
+  The distribution expects as parameter the number of degrees of freedom.</li>
+  <li>"<tt>F distribution</tt>": 
+  The distribution expects two parameters: The number of degrees of freedom in the numerator and the number of degrees of freedom in the denominator.</li>
+</ul>
+
+<h2>Validating the XML files</h2>
+
+<p>
+The XML files used by the Callcenter Simulator can be validated by using the document definition files
+<a href="special:DTD">CallcenterSimulator_en.dtd</a> and
+<a href="special:XSD">CallcenterSimulator_en.xsd</a>.
+</p>
+
+</body>
+</html>
+  

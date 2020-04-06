@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Load agents efficiency from table"</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/cog.png">&nbsp;
+Data &gt; Load agents efficiency from table
+</div>
+
+<h1>Dialog "Load agents efficiency from table"</h1>
+
+<p>
+The "Load agents efficiency from table" dialog allows to load the efficiency for all groups of agents
+in a call center from a table.
+</p>
+
+<p>
+At first in the field <b>Table file</b> the name of a file from which the data is to be loaded
+has to be specified. After that you can select in the <b>Call center</b> box the call center
+for which the agent data will be used. The combo boxes below <b>Agent group</b>
+allows to select which table row to use for which agents group.
+The simulator already tries to do a sensible default reference to the column headings in the table file.
+</p>
+
+<h2>Structure of the table file</h2>
+
+<p>
+To load the agents efficiency distribution of all agents groups of a call center from a spreadsheet file,
+it has to have a certain structure. The agents efficiency distribution for an agent group consists of
+48 numbers that indicate how many agents are active in each half-hour interval.
+These 48 numbers has to be in the table in 48 contiguous rows of a column.
+In each column, the data of an individual group of agents can be stored.
+If multiple groups of agents should be loaded at once, the table has to contain multiple data columns.
+The columns do not need to be next to each other but all column data areas have to start in the same line.
+All non-empty rows above the first row containing a numbers are interpreted as column headers.
+The column headers are displayed below the caption <b>Table column</b>. If there is no non-number
+value cell above the 48 numerical cells, the column is names like the column letter
+(e.g. "Column A", "Column B" etc.). If there are client type names (one per line) above the agents data, the simulator
+trys to find a matching skill type and selects this in the <b> Agents group</b> field.
+</p>
+
+</body>
+</html>
+  

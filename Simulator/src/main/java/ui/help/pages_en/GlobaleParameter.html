@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Global parameters"</title>
+</head>
+
+<body>
+
+<div class="model">
+<img src="../images/wrench.png">&nbsp;
+General data &gt;
+<img src="../images/wrench.png">&nbsp;
+Global parameters
+</div>
+
+<h1>Dialog "Global parameters"</h1>
+
+<p>
+The following settings are available in the dialog "Global parameters":
+</p>
+
+<h3>Maximum queue length</h3>
+<p>
+Clients for whom not immediately a suitable free agent is available at their call, need to
+enter the waiting queue. In most real call centers enough phone lines are available, so that the maximum
+queue length is never exhausted. By artificially reducing the resource "waiting room" some key parameters
+of the system can be controlled: If there are only very few waiting places available (and therefore often
+clients are rejected, i.e. getting a busy signal) the remaining clients will have shorter waiting times.
+</p>
+<p>
+Optionally the size of the waiting room can be specified depending on the number of active agents.
+In the input box <a href="Parser.html">arithmetic instructions</a> can be entered and the number of active agents can
+be accessed by the variable "a".
+</p>
+<p>
+In the simulation only on a new incoming call (fresh calls and repeaters) a check for available waiting
+space is done. If all available places in the queue are occupied, new calls will be rejected. Forwarded
+calls may always enter the queue. When calculating the used waiting places only the actually waiting
+clients are taken into account. Customers currently served by an agent do not occupy a waiting room.
+</p>
+<p>
+As general rule it can be derived from the formula of Little that the available waiting room should be
+at least as large as the product of the maximum arrival rate (in clients per second) and the maximum
+waiting time that should occure (in seconds) when no customers are to be rejected because of lack of
+waiting room.
+</p>
+
+<h3>Number of days to be simulated</h3>
+<p>
+The quality of the simulation resulsts is essentially determined by the number of simulated days.
+The larger this value is, the closer the mean values from the simulation will be to the real
+expected values of. The <a href="Statistik.html">statistics page</a> "Confidence intervals"
+offers information about how much the results of simulation day to simulation day
+vary an in which intervals the real mean values will be with which probability.
+</p>
+<p>
+At low work loads 50 simulation days will be enough for stable results.
+At high work loads 200 repetitions should be selected.
+</p>
+
+<h3>Preferred shift length</h3>
+<p>
+In the simulation specific agents are used with fixed working hours.
+If the working time of an agent ends during a talk or a post-processing time,
+the agent will finish his current task but will not be available for subsequent
+incoming task anymore. In practice, however, often not the working times of
+individual agents are available as input parameters for the simultion. It is
+only known how many agents per half-hour interval were available.
+Based on this information the simulator has to create individual agents for the
+simulation. If agents with half-hour shifts would be used, the real available
+working time would be overestimated, because the agents will finish their last
+task at the end of the half-hour interval , while the agents of the next half-hour
+interval will already start working. To avoid this effect, the simulator tries
+to create agents with longer working hours, i.e. the simulator will create
+shift plans which should be quite close to the real shift plans.
+</p>
+<p>
+In this input field one can set up how long the working hours of an agent should
+be at maximum. The simulator then will try to generate as long as possible
+agents shifts respecting the required number of agents per interval and the
+defined maximum shift length.
+</p>
+
+<h3>Minimum shift lengths</h3>
+<p>
+In addition to the preferred (maximum) shift length can a minimal shift length,
+which has to be respected in the planning of the agents, can be defined. If a 
+minimum shift length is defined, may there will be more agents scheduled than
+specified for the agents group to respect the minimum shift length conditions.
+It is not recommended to use minimum shift lengths.
+</p>
+
+<h3>Time span for service level</h3>
+<p>
+As output parameters of a queueing system often not only the average waiting time
+and the accessibility are used but also the service level. Therefore a waiting
+time is defined which should not be exceeded by as many as possible clients.
+This  waiting time is often chosen to be 10, 20 or 30 seconds.
+It then is asked what percentage of clients has waited this long at most.
+In this box it can be set up which waiting time the simulator should
+use for calculating the service level.
+</p>
+
+<h3>Agent groups productivity</h3>
+<p>
+In this dialog one can set how much of the specified agent working time
+will actually be available. The data refer to all agents groups which
+are not defined by fixed working hours. It can be selected that the agents
+will always be available as specified, that they are only available for
+a certain fixed proportion or that the availability will vary from
+half-hour interval to half-hour interval. The global settings one can
+make here can optionally be overwritten per call centers and per agents group.
+</p>
+
+<h3>Disease-related surcharge</h3>
+<p>
+In this dialog one can set up how much agents should be added for planning
+to the number of agents defined in the model to compensate disease-related
+leave. The resulting increased number of agents is not used in the simulation,
+but is also displayed in the statistics. The data refer to all agent groups
+which are not defined by fixed working hours. It can be selected that no
+surcharge should be planned, a fixed percentage of surchare or that the 
+surcharge should vary from half-hour interval to half-hour interval.
+The global settings one can make here can optionally be overwritten per
+call centers and per agents group.
+</p>
+
+<h2><img src="../images/Ampel_klein.png">&nbsp;Dialog "Thresholds"</h2>
+
+<p>
+By clicking the "Thresholds" button you can open the <a href="ThresholdWarnings.html">Thresholds warnings</a>
+dialog which allows to define threshold values for some key performance indicators. If these threshold values
+are exceeded or undershot, you will get a warning in the <a href="Statistik.html">statistic results</a>.
+</p>
+
+</body>
+</html>

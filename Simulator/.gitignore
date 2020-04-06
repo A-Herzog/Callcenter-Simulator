@@ -1,0 +1,7 @@
+target/
+language/gettext/
+language/sed/
+build/Signer/
+src/main/java/ui/res/CCS.*
+src/main/java/net/web/res/viewer/images/CS.gif
+CallcenterSimulator.cfg

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Agentendaten laden"</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/group.png">&nbsp;
+Daten &gt; Agentenzahlen aus Tabelle laden
+</div>
+
+<h1>Dialog "Agentendaten laden"</h1>
+
+<p>
+Über den Dialog "Agentendaten laden" kann die verfügbare Agentenarbeitsleistung für alle Agentengruppen eines Callcenters
+aus einer Tabelle geladen werden.
+</p>
+
+<p>
+Zunächst muss in dem Feld <b>Tabellendatei</b> der Name der Tabellendatei, aus der die Daten geladen werden sollen, angegeben werden.
+Danach muss über das Auswahlfeld unter <b>Callcenter</b> festgelegt werden, für welches Callcenter die Agentendaten verwendet
+werden sollen und es muss über die dann erscheinenden Auswahlfelder unterhalb der Überschrift <b>Agentengruppe</b> gewählt werden, welche Tabellenspalten
+welcher Agentengruppe zugeordnet werden sollen. Der Callcenter Simulator versucht dabei an Hand der Spaltenüberschriften in der Tabellendatei
+bereits eine sinnvolle Voreinstellung vorzunehmen.
+</p>
+
+<h2>Aufbau der Tabellendatei</h2>
+
+<p>
+Damit die Agenten-Arbeitszeitverteilungen aller Agentengruppen eines Callcenters aus ein Tabellendatei geladen werden können, muss diese
+einen bestimmten Aufbau besitzen. Die Agenten-Arbeitszeitverteilung für einer Agentengruppe besteht aus 48 Zahlen, die angeben, wie viele Agenten
+in dem jeweiligen Halbstundenintervall aktiv sein sollen. Diese 48 Zahlenwerte müssen in der Tabelle in 48 unmittelbar aufeinander folgenden
+Zeilen einer Spalte stehen. In jeder Spalte können die Daten zu einer Agentengruppe stehen. Sollen mehrere Agentengruppen auf einmal geladen
+werden, so müssen weitere Spalten in der Tabelle verwendet werden. Die Spalten müssen nicht unmittelbar benachbart sein, die Reihe der
+Zahlenwerte muss jedoch jeweils in derselben Zeile beginnen. Alle nichtleeren Zeilen oberhalb der ersten Zahlen-Zeile werden als
+Spaltenüberschrift interpretiert. Die jeweiligen Spaltenüberschriften werden im "Agentendaten laden"-Dialog unter der Überschrift
+<b>Tabellenspalte</b> angezeigt. Steht in einer Spalte mit 48 Zahlenwerten keine Zeichenkette in einer der darüberliegenden Zeilen,
+so wird die Spalten-Nummer (z.B. "Spalte A", "Spalte B" usw.) angezeigt. Bestehen die Überschriften aus den Namen der Kundentypen, die die
+jeweilige Agentengruppen bedienen können (pro Zeile eine), so versucht der Callcenter Simulator automatisch vom Skill-Level her
+passende Agentengruppen in den Auswahlfeldern unter <b>Agentengruppe</b> vorzuselektieren.
+</p>
+
+</body>
+</html>
+  

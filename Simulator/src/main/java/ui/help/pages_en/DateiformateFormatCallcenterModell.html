@@ -1,0 +1,493 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Documentation of the file formats of Callcenter Simulator - Call center models</title>
+</head>
+
+<body>
+
+<h1>Documentation of the file formats of Callcenter Simulator - Call center models</h1>
+
+<a href="Dateiformate.html">Back to the overview of all file formats</a>
+
+<h2>File header</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE CallCenterModel SYSTEM "CallcenterSimulator_en.dtd"&gt;</tt>
+</p>
+
+<p>The root node for a call center model file is <tt>&lt;CallCenterModel&gt;</tt>.</p>
+
+<h2>General information</h2>
+
+<p>
+The <tt>&lt;CallCenterModel&gt;</tt> node contains the following sub nodes
+containing general information about the model.
+Each of the sub nodes has to exist exactly once (if not specified in an other way):
+</p>
+
+<ul class="big">
+  <li><tt>&lt;ModelSimulatorVersion&gt;</tt>: Stores the version of the simulator which was used to create the model.
+  If here a larger value than the current version number of the simulator is noted, the simulator will warn
+  the user when loading the model.</li>
+  <li><tt>&lt;ModelName&gt;</tt>: Stores the name of the model.
+  The name is used to allow the user to identify the model.</li>
+  <li><tt>&lt;ModelDate&gt;</tt>: This node is optional. Stores the date for which the simulation model stands for.
+  The format for the date is MM/DD/YYYY but local date formats will be recognized when loading the file.</li>
+  <li><tt>&lt;ModelDescription&gt;</tt>: Stores a description of the model.
+  The description can be used to store any information about the model for the user.</li>  
+  <li><tt>&lt;ModelMaxQueueLength&gt;</tt>: Stores the maximum length of the queue length.
+  If there are as many clients in the queue as specified here, new clients will be rejected.
+  Clients that are already in operation talking to an agent are not counted.</li>  
+  <li><tt>&lt;ModelSimulatedDays&gt;</tt>: Specifies the number of days to simulate in a simulation run.
+  The more days are simulated, the more statistically stable the results will be.</li>
+  <li><tt>&lt;ModelPreferredShiftLength&gt;</tt>:
+  If agents groups are defined by the number of agents per half-hour interval and not in the form
+  of a fixed number of agents with specific working hours, the specific agents have to be
+  generated with specific working hours before the start of the simulation. In order to replicate
+  the characteristics of the real call center system as realistic as possible, the agents are not
+  scheduled with half-hour working hours, as this would lead to overlaps due to an overestimation
+  of the real disposable working hours. Instead the simulator tries to generate agents with
+  shift lengths specified here. This global default value can be overwritten by a data field with
+  the same name per agents group.</li>
+  <li><tt>&lt;ModelMinimalShiftLength&gt;</tt>:
+  By using this optional element in addition to the <tt>&lt;ModelPreferredShiftLength&gt;</tt> element
+  an minimal shift length for the agents can be defined. If this element is missing, an minimal shift
+  length of one interval is assumed (what means no restriction on the minimal shift length are applied).
+  This global default value can be overwritten by a data field with the same name per agents group.</li>
+  <li><tt>&lt;ModelServiceLevel&gt;</tt>:
+  During the simulation it is recorded, how many callers have reached the desired service level.
+  The service level is the percentage of callers who do not had to wait longer than a certain number of seconds.
+  In this node one be specify the number of seconds which should be set as the limit for the achievement of the service levels.</li>  
+  <li><tt>&lt;ModelProductivity&gt;</tt>:
+  In this node 48 values separated by ";" are expected that specify the agents productivity during the day.
+  The available working agents per half-hour interval in agents groups that are defined via a a number of
+  agents per half-hour interval or by modeling the clients arrival distribution is multiplied by this productivity value.
+  This global productivity can optionally be overridden per call center and per agents group.</li>
+  <li><tt>&lt;ModelDiseaseRelatedSurchage&gt;</tt>:
+  In this node 48 values separated by ";" are expected that specify how much higher the number of
+  agents in planning should compared to those used in the model during the day.
+  The available working agents per half-hour interval in agents groups that are defined via a a number of
+  agents per half-hour interval or by modeling the clients arrival distribution is multiplied by this
+  surcharge value and stored in the statistics. The value itself will not be used for the simulation.
+  This global surcharge can optionally be overridden per call center and per agents group.</li>   
+</ul>
+
+<h2>Client types</h2>
+
+<p>
+The <tt>&lt;CallCenterModel&gt;</tt> node can have any number (but at least one) sub nodes of the type
+<tt>&lt;ModelClientType&gt;</tt>.
+</p>
+
+<h3>Attributes of the <tt>ModelClientType</tt> node</h3>
+
+<ul class="big">
+  <li><tt>Name</tt>: Stores the name of the client types. This name is e.g. used in the definition
+  of the skill levels. The <tt>Name</tt> attribut is required.</li>
+  <li><tt>Active</tt>: Specifies if the current client type should be used in the simulation.
+  <tt>Active</tt> can have the values 0 and 1. The attribute is optional; if it is missing,
+  "1" will be assumed.</li>
+  <li><tt>BlocksLine</tt>: Specifies if clients of the current type will need
+  a phone line while waiting (which is the case for calls but for example not for mails).
+  The attribute is optional; if it is missing, "1" will be assumed.</li>
+  <li><tt>ServiceLevel</tt>: If this optional node exists, the value specified here
+  will be used when recording the service level for this client type in the
+  statistics instead of the global value.</li>
+</ul>
+
+<h3>Sub nodes of the <tt>ModelClientType</tt> node</h3>
+
+<p>
+The <tt>&lt;ModelClientType&gt;</tt> node contains the following sub nodes.
+Each of the sub nodes has to exist exactly once:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;ClientsFreshCalls&gt;</tt>: This node contains the two sub nodes
+  <tt>FreshCallsCount</tt> and <tt>FreshCallsDistribution</tt>.
+  <ul>
+    <li><tt>&lt;FreshCallsCount&gt;</tt> specifies the number of fresh calls
+    of clients of this type per day. As an optional parameter the node can get
+    a <tt>StandardDeviation</tt> attribute defining the standard deviation
+    (at a normal distribution) for the number of fresh calls per simulation day.
+    If this attribute is missing, "0" is assumed.</li>
+	<li><tt>&lt;FreshCallsDistribution&gt;</tt> contains 24, 48 or 96 values separated by ";"
+	defining the number of fresh calls for this client type per hour, half-hour or
+	15 minutes intervall. The actual absolut value of the values is not important, but only
+	the relative ratio of the magnitudes of the values with each other. The total number of
+     fresh calls of this type of clients is determined by the node  <tt>FreshCallsCount</tt>.</li>
+  </ul></li>
+  <li><tt>&lt;ClientsScore&gt;</tt>: This node has no content itself but has three attributes:
+  <tt>Base</tt>, <tt>PerWaitingSeond</tt> and <tt>Forwarding</tt>.
+  The three attributes store the base score for the client type, the value the score
+  will be increased per waiting second and the score increasement if a client of this
+  type is forwarded.</li>
+  <li><tt>&lt;ClientsWaitingTimeToleranceDistribution&gt;</tt>:
+  <i>Either this node or the node <tt>&lt;ClientsWaitingTimeToleranceDistributionLong&gt;</tt>
+  or the node <tt>&lt;ClientsWaitingTimeToleranceEstimation&gt;</tt> has to exist. Several simultaneously are not permitted.</i><br>
+  In this element a distribution is stored, according to which the waiting time tolerances of the clients are determined.
+  If empirical data are specified, the data will be scaled to a total duration of one hour.</li>  
+  <li><tt>&lt;ClientsWaitingTimeToleranceDistributionLong&gt;</tt>:
+  <i>Either this node or the node <tt>&lt;ClientsWaitingTimeToleranceDistribution&gt;</tt>
+  or the node <tt>&lt;ClientsWaitingTimeToleranceEstimation&gt;</tt> has to exist. Several simultaneously are not permitted.</i><br>
+  In this element a distribution is stored, according to which the waiting time tolerances of the clients are determined.
+  If empirical data are specified, the data will be scaled to a total duration of 10 days.</li>
+  <li><tt>&lt;ClientsWaitingTimeToleranceEstimation&gt;</tt>:
+  <i>Either this node or the node <tt>&lt;ClientsWaitingTimeToleranceDistribution&gt;</tt>
+  or the node <tt>&lt;ClientsWaitingTimeToleranceDistributionLong&gt;</tt> has to exist. Several simultaneously are not permitted.</i><br>
+  This element has no content, but the following three attributes:
+  <tt>WaitingTime</tt>, <tt>CancelRate</tt> and <tt>Correction</tt>.
+  The <tt>WaitingTime</tt> attribute stores a time in the form <tt>hh:mm:ss.nnn</tt> and gives the average waiting time of the clients.
+  The <tt>CancelRate</tt> attribute specifies the measured cancel rate from which the waiting time tolerance is to be extrapolated.
+  The <tt>Correction</tt> attribute specifies how much the projected waiting time tolerance should be adjusted upwards or downwards
+  and takes a time value in the form <tt>hh:mm:ss.nnn</tt> or <tt>-hh:mm:ss.nnn</tt>.
+  <li><tt>&lt;ClientsRetry&gt;</tt>:
+  This node has to contain exactly the following nine sub nodes:
+  <ul> 
+    <li><tt>&lt;RetryIntervalDistribution&gt;</tt>:
+    Stores the distribution used to describe the intervals between canceling a call and starting a new call.</li>
+    <li><tt>&lt;RetryProbabilityAfterBeingBlockedFirstRetry&gt;</tt>:
+    Specifies the probability for a first retry of a client after being blocked (due to no more waiting space).</li>    
+    <li><tt>&lt;RetryProbabilityAfterBeingBlockedFurtherRetrys&gt;</tt>:
+    Specifies the probability for a second, third, etc. retry of a client after being blocked (due to no more waiting space).</li>
+    <li><tt>&lt;RetryProbabilityAfterCanceledFirstRetry&gt;</tt>:
+    Specifies the probability for a first retry of a client after canceling waiting.</li>
+    <li><tt>&lt;RetryProbabilityAfterCanceledFurtherRetrys&gt;</tt>:
+    Specifies the probability for a second, third, etc. retry of a client after canceling waiting.</li>
+    <li>The four nodes <tt>&lt;RetryClientTypeAfterBeingBlockedFirstRetry&gt;</tt>,
+    <tt>&lt;RetryClientTypeAfterBeingBlockedFurtherRetrys&gt;</tt>,
+    <tt>&lt;RetryClientTypeAfterCanceledFirstRetry&gt;</tt> und
+    <tt>&lt;RetryClientTypeAfterCanceledFurtherRetrys&gt;</tt> has to have a
+    <tt>&lt;RetryNewClientType&gt;</tt> sub node for each client type.    
+    <tt>&lt;RetryNewClientType&gt;</tt> has a <tt>Name</tt> attribute which describes
+    for which client type the change rate is to be used and in its content specifies
+    the rate at which the type of a client changes on a retry to this client type.
+    If all <tt>&lt;RetryNewClientType&gt;</tt> nodes contain "0",
+    no client type change will be performed on a retry.</li>
+  </ul></li>
+  <li><tt>&lt;ClientsForwarding&gt;</tt>: This node has to have a <tt>Probability</tt> attribute,
+  which gives the probability that clients of this type get forwarded after a conversation.
+  If this forwarding probability is larger than 0, this node has to have one or more sub nodes
+  of the type <tt>ForwardingNewClientType</tt>, that specify how the client type changes on forwarding.
+  Additionally the <tt>ClientsForwarding</tt> node can have one or more
+  <tt>ForwardingSkillLevelDepending</tt> sub nodes overwriting the default forwarding rules by
+  rules depending on the skill level of the agent who served th client.
+  <ul>
+    <li><tt>&lt;ForwardingNewClientType&gt;</tt>: This node has to have a <tt>Name</tt> paraneter,
+    specifying which new client type clients of this type can get on forwarding.
+    As content of this node the rate at which forwarding to this client type happens has to be specified.
+    (The rate has to be a non-negative number which can be larger than 1. The probability for forwarding to
+    this client type is calculated by dividing the rate by the sum of all rates.)</li>
+	<li><tt>&lt;ForwardingSkillLevelDepending&gt;</tt>: This node works nearly the same way as the node
+	<tt>ClientsForwarding</tt>. It has a <tt>Probability</tt> attribute and any number of
+	<tt>ForwardingNewClientType</tt> sub nodes. But additionly it has to be defined by a <tt>SkillLevel</tt> attribute
+	for which skill level this rule should apply. After a conversation first is checked if there is a
+	<tt>ForwardingSkillLevelDepending</tt> rule matching to the skill level of the agent who served the client.
+	If yes, this rule is used to determine if the client is forwarded and which client type he should get.
+	If not, the default rules defined in <tt>ClientsForwarding</tt> are used.</li>
+  </ul></li>
+  <li><tt>&lt;ClientsRecall&gt;</tt>: This node has to have a <tt>Probability</tt> attribute,
+  which gives the probability that clients of this type start a second call after being successfully served.
+  If this recall probability is larger than 0, this node has to have a <tt>RecallIntervalDistribution</tt>
+  sub node describing the recall interval distribution and one or more sub nodes
+  of the type <tt>RecallNewClientType</tt>, that specify how the client type changes on recalling.
+  Additionally the <tt>ClientsRecall</tt> node can have one or more
+  <tt>RecallSkillLevelDepending</tt> sub nodes overwriting the default recalling rules by
+  rules depending on the skill level of the agent who served th client.
+  <ul>
+    <li><tt>&lt;RecallIntervalDistribution&gt;</tt>: Specifies the the distribution of distances between
+    the end of a conversation and another call from the same client.</li>    
+    <li><tt>&lt;RecallNewClientType&gt;</tt>: This node has to have a <tt>Name</tt> paraneter,
+    specifying which new client type clients of this type can get on recalling.    
+    As content of this node the rate at which recalling to this client type happens has to be specified.
+    (The rate has to be a non-negative number which can be larger than 1. The probability for forwarding to
+    this client type is calculated by dividing the rate by the sum of all rates.)</li>
+    <li><tt>&lt;RecallSkillLevelDepending&gt;</tt>: This node works nearly the same way as the node
+    <tt>ClientsRecall</tt>. It has a <tt>Probability</tt> attribute and any number of
+    <tt>RecallNewClientType</tt> sub nodes. But additionly it has to be defined by a <tt>SkillLevel</tt> attribute
+    for which skill level this rule should apply. After a conversation first is checked if there is a
+    <tt>RecallSkillLevelDepending</tt> rule matching to the skill level of the agent who served the client.
+    If yes, this rule is used to determine if the client is starting a recall later and which client type he should get then.
+    If not, the default rules defined in <tt>ClientsRecall</tt> are used.</li>
+  </ul></li> 
+  <li><tt>&lt;YieldPerClient&gt;</tt>: As content of this node has to be specified how much a successfully serviced
+  client of this type is worth.</li>  
+  <li><tt>&lt;CostPerCaller&gt;</tt>: This node has to have the following two attributes:
+  <ul>
+    <li><tt>Canceling</tt>: Stores the (virtual) costs incurred by a waiting canceling.</li>
+    <li><tt>WaitingSecond</tt>: Stores the (virtual) costs incurred per second waiting.</li>
+  </ul></li>
+</ul>
+
+<h2>Call centers and agents</h2>
+
+<p>
+The <tt>&lt;CallCenterModel&gt;</tt> node can have any number (but at least one) sub nodes of the type 
+<tt>&lt;ModelCallCenter&gt;</tt>.
+</p>
+
+<h3>Attributes of the <tt>ModelCallCenter</tt> node</h3>
+
+<ul class="big">
+  <li><tt>Name</tt>: Stores the name of the call center. The <tt>Name</tt> attribut is required.</li>
+  <li><tt>Active</tt>: Specifies if the current call center should be used in the simulation.
+  <tt>Active</tt> can have the values 0 and 1. The attribute is optional; if it is missing,
+  "1" will be assumed.</li>
+</ul>
+
+<h3>Sub nodes of the <tt>ModelCallCenter</tt> node</h3>
+
+<h4>General information</h4>
+
+<p>
+Each <tt>ModelCallCenter</tt> node has to have one of each of the following nodes as sub nodes:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;CallCenterTechnicalFreeTime&gt;</tt>: This node stores the technical free time, the time needed
+  to route the client to an available agent. Optional this node can have a <tt>IsWaitingTime</tt> attribute 
+  which can have the values 0 or 1. If the attribute is missing "1" is assumed as value.
+  In this case the technical free time is perceived by the clients as waiting time, which means that they
+  still can cancel waiting during this period.</li>
+  <li><tt>&lt;CallCenterScore&gt;</tt>: This node contains the base score of the call center which is used
+  for calculating the score of an agent.</li>
+  <li><tt>&lt;CallCenterAgentsScore&gt;</tt>: This node has to contain the two sub nodes <tt>AgentsScoreFactorSinceLastCall</tt>
+  und <tt>AgentsScoreFactorFreeTimePart</tt>. Both sub nodes have to contain a number value that describes at which magnitude
+  the free time of an agent since the last call and the free time part of an agent (in percent) is to be used when calculating
+  the agents score.</li>
+</ul>
+
+<p>
+Optional each <tt>ModelCallCenter</tt> node can contain any of the following nodes in each case exactly one:
+</p>
+
+<ul>
+  <li><tt>&lt;ModelProductivity&gt;</tt>:
+  In this node 48 values separated by ";" are expected that specify the agents productivity during the day.
+  The available working agents per half-hour interval in agents groups that are defined via a a number of
+  agents per half-hour interval or by modeling the clients arrival distribution is multiplied by this productivity value.
+  If this node is missing the global value will be used.
+  This call center depending productivity can optionally be overridden per agents group.</li>
+  <li><tt>&lt;ModelDiseaseRelatedSurchage&gt;</tt>:
+  In this node 48 values separated by ";" are expected that specify how much higher the number of
+  agents in planning should compared to those used in the model during the day.
+  The available working agents per half-hour interval in agents groups that are defined via a a number of
+  agents per half-hour interval or by modeling the clients arrival distribution is multiplied by this
+  surcharge value and stored in the statistics. The value itself will not be used for the simulation.
+  If this node is missing the global value will be used.
+  This call center depending surcharge can optionally be overridden per agents group.</li>
+</ul>
+
+<h4>Minimum waiting times</h4>
+
+<p>
+Optional each <tt>&lt;ModelCallCenter&gt;</tt> node can contain one <tt>&lt;CallCenterMinimumWaitingTime&gt;</tt> sub node.
+</p>
+
+<p>
+Each <tt>&lt;CallCenterMinimumWaitingTime&gt;</tt> node can have any number of <tt>&lt;MinimumWaitingTimeClientType&gt;</tt> sub nodes.
+Each <tt>&lt;MinimumWaitingTimeClientType&gt;</tt> node defines a minimum waiting time for an individual client type for the current call center.
+(The mimimum waiting time is the mimimum time a client needs to have waited before he can routed to an agent in the call center for which this time is defined.)
+The client type for which the minimum waiting time is to apply has to be specified by the <tt>Name</tt> attribute.
+The waiting time itself is specified as a number fo seconds as the content of the <tt>&lt;MinimumWaitingTimeClientType&gt;</tt> node.
+</p>
+
+<h4>Agents groups</h4>
+
+<p>
+Each <tt>&lt;ModelCallCenter&gt;</tt> node has to have one or more <tt>&lt;CallCenterAgentsGroup&gt;</tt> sub nodes.
+Each <tt>&lt;CallCenterAgentsGroup&gt;</tt> node describes an agents group with some common properties in the current call center.
+</p>
+
+<p>
+Each <tt>&lt;CallCenterAgentsGroup&gt;</tt> node can have an <tt>Active</tt> attribute which can have the values 0 or 1.
+The attribute is optional; if it is missing, "1" will be assumed. The attribute specifies if the current agents group
+ should be used in the simulation.
+</p> 
+
+<p>
+Agents groups can either have a fixed number of agents and a duty time interval or a distribution of agents working
+per half-hour over the day or to model the fresh calls distribution of several client types with the agents distribution:
+</p> 
+
+<ul class="big"> 
+  <li><b>Agents with fixed working hours:</b><br>
+  In this case the <tt>&lt;CallCenterAgentsGroup&gt;</tt> node has to contain a <tt>&lt;AgentsGroupCount&gt;</tt> sub node defining the
+  size of the agents group and  a <tt>&lt;AgentsGroupWorkingTimeBegin&gt;</tt> sub node defining the start working time.
+  Addtionally a <tt>&lt;AgentsGroupWorkingTimeEnd&gt;</tt> sub node can be added setting up the end of the working time of the agents group.
+  If this sub node is missing, the agents are working until the end of the simulated day.</li>
+  <li><b>Agent group from predetermined agents distribution:</b><br> 
+  In this case the <tt>&lt;CallCenterAgentsGroup&gt;</tt> node has to contain a <tt>&lt;AgentsGroupDistribution&gt;</tt> sub node which
+  has to contain 24, 48 or 96 values separated by semicolons. Each value stands for the number of agents in one hour, half-hour or 15 minutes interval.
+  The simulator generates specific agents at the start of simulation from these values. On shift planning the preferred shift length
+  given in a number of half-hour intervals by the optional node <tt>&lt;ModelPreferredShiftLength&gt;</tt> is used.
+  In additional by using the <tt>&lt;ModelMinimalShiftLength&gt;</tt> element a minimal shift length can be defined.
+  If one or both of these nodes does not exist, the values from the nodes with the same names in the <tt>&lt;CallCenterModel&gt;</tt> node are used.  
+   Additionally the <tt>&lt;AgentsGroupDistribution&gt;</tt> node can have a <tt>LastShiftIsOpenEnd</tt> attribute. If this attribute
+   exists and has the value "1", the agents which are planned to work until midnight will continue working until no more clients are in the system.</li>  
+  <li><b>Distribution over the day according to the client arrivals:</b><br>
+  In this case the <tt>&lt;CallCenterAgentsGroup&gt;</tt> node has to contain a <tt>&lt;AgentsGroupByClientArrivals&gt;</tt> sub node.
+  This sub node has an <tt>AgentsHalfHours</tt> attribute defining how many agents half-hours are available for being planned.
+  Additionally it will have one or more <tt>&lt;ByClientArrivalsGroup&gt;</tt> sub nodes. The distribution of the available
+  agents working hours will be done by the client arrivals of one or more client types. For each client type to be respected
+  there has to be a <tt>&lt;ByClientArrivalsGroup&gt;</tt> sub node. The name of the client type is stored as the content of
+  the node and the rate at which this client type should be respected when calculating the distribution is stored in an attribute
+  with the name <tt>Rate</tt>.  
+  The simulator generates specific agents at the start of simulation from these values. On shift planning the preferred shift length
+  given in a number of half-hour intervals by the optional node <tt>&lt;ModelPreferredShiftLength&gt;</tt> is used. 
+  If this nodes does not exist, the value from the node with the same name in the <tt>&lt;CallCenterModel&gt;</tt> node is used.</li>
+</ul>
+
+<p>
+Regardless of how the working hours of the agents of the group are defined, each <tt>&lt;CallCenterAgentsGroup&gt;</tt> node will have
+each one of the two following sub nodes:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;AgentsGroupSkillLevel&gt;</tt>: As text content of this node the skill level of the agents of this group has to be specified.</li>
+  <li><tt>&lt;CostsPerHour&gt;</tt>: The content of this element describes how expensive an hour of work of an agent of this type is.</li>
+</ul>
+
+<p>
+Optional each <tt>CallCenterAgentsGroup</tt> node can contain any of the following nodes in each case exactly one:
+</p>
+
+<ul class="big">
+<li><tt>&lt;ModelProductivity&gt;</tt>:
+  In this node 48 values separated by ";" are expected that specify the agents productivity during the day.
+  The available working agents per half-hour interval in agents groups that are defined via a a number of
+  agents per half-hour interval or by modeling the clients arrival distribution is multiplied by this productivity value.
+  If this node is missing the global value will be used.</li>
+  <li><tt>&lt;ModelDiseaseRelatedSurchage&gt;</tt>:
+  In this node 48 values separated by ";" are expected that specify how much higher the number of
+  agents in planning should compared to those used in the model during the day.
+  The available working agents per half-hour interval in agents groups that are defined via a a number of
+  agents per half-hour interval or by modeling the clients arrival distribution is multiplied by this
+  surcharge value and stored in the statistics. The value itself will not be used for the simulation.
+  If this node is missing the global value will be used.</li>
+</ul>
+
+<p>
+Additionally each <tt>&lt;CallCenterAgentsGroup&gt;</tt> node can have any number of
+<tt>&lt;CostsPerClientType&gt;</tt> sub nodes. Each <tt>&lt;CostsPerClientType&gt;</tt> node has to have the following three attributes:
+</p>
+
+<ul class="big">
+  <li><tt>ClientType</tt>: Specifies on which type of clients this node is related to.</li>  
+  <li><tt>PerCall</tt>: Costs per call for the specified client type</li>
+  <li><tt>PerMinute</tt>: Cost per conversation and post processing minute for the specified client type</li>
+</ul>
+
+<h2>Skill level</h2>
+
+<p>
+The <tt>&lt;CallCenterModel&gt;</tt> node can have any number (but at least one) sub nodes of the type
+<tt>&lt;ModelSkillLevel&gt;</tt>.
+</p>
+
+<h3>Attributes of the <tt>ModelSkillLevel</tt> node</h3>
+
+<ul class="big">
+  <li><tt>Name</tt>: Stores the name of the skill level. The <tt>Name</tt> attribut is required.</li>
+</ul>
+
+<h3>Sub nodes of the <tt>ModelSkillLevel</tt> node</h3>
+
+<p>
+Each <tt>&lt;ModelSkillLevel&gt;</tt> node has to have a <tt>&lt;SkillLevelClientType&gt;</tt> sub node for
+each client type agents of this skill level should be able to handle.
+</p>
+
+<p> 
+Each <tt>&lt;SkillLevelClientType&gt;</tt> node has to have a <tt>Name</tt> attribute describing to which
+client type the working and post processing times specified in the sub nodes of this node are related to.
+Each <tt>&lt;SkillLevelClientType&gt;</tt> node has to have each one of the following sub nodes:
+</p>
+
+<ul>
+  <li><tt>&lt;SkillLevelClientTypeHoldingTimeDistribution&gt;</tt>:
+  Defines the holding times distribution for clients of the type specified in the
+  <tt>Name</tt> attribute or the <tt>&lt;SkillLevelClientType&gt;</tt> node
+  when served by agents of the current skill level.
+  In addition to the mandatory global <tt>&lt;SkillLevelClientTypeHoldingTimeDistribution&gt;</tt> node further
+  <tt>&lt;SkillLevelClientTypeHoldingTimeDistribution&gt;</tt> elements with <tt>Interval</tt> attributes  
+  can be specified. These elements stand for one of the 48 half-hour intervals (numbered from 1 to 48) and override the global value.</li>
+  
+  
+  <li><tt>&lt;SkillLevelClientTypeHoldingTimeAddOn&gt;</tt>:
+  Contains a mathematical expression describing a time value added to the holding time
+  in dependence to the waiting time of the clients of the type specified in the
+  <tt>Name</tt> attribute or the <tt>&lt;SkillLevelClientType&gt;</tt> node
+  when served by agents of the current skill level. In the expression the variable "w"
+  is used for the waiting time of the clients in seconds.  
+  In addition to the mandatory global <tt>&lt;SkillLevelClientTypeHoldingTimeAddOn&gt;</tt> node further
+  <tt>&lt;SkillLevelClientTypeHoldingTimeAddOn&gt;</tt> elements with <tt>Interval</tt> attributes  
+  can be specified. These elements stand for one of the 48 half-hour intervals (numbered from 1 to 48) and override the global value.</li>
+  <li><tt>&lt;SkillLevelClientTypePostProcessingTimeDistribution&gt;</tt>:
+  Defines the post processing times distribution for clients of the type specified in the
+  <tt>Name</tt> attribute or the <tt>&lt;SkillLevelClientType&gt;</tt> node
+  when served by agents of the current skill level.
+  In addition to the mandatory global <tt>&lt;SkillLevelKundentypNachbearbeitungszeitverteilung&gt;</tt> node further
+  <tt>&lt;SkillLevelKundentypNachbearbeitungszeitverteilung&gt;</tt> elements with <tt>Interval</tt> attributes  
+  can be specified. These elements stand for one of the 48 half-hour intervals (numbered from 1 to 48) and override the global value.</li>  
+  <li><tt>&lt;SkillLevelClientTypeScore&gt;</tt>:
+  Defines the score value agents of the current skill level should get for serving clients of the type specified
+  in the <tt>Name</tt> attribute of the <tt>&lt;SkillLevelClientType&gt;</tt> node.</li>
+</ul>
+
+<h2>Warning thresholds</h2>
+
+<p>
+The <tt>&lt;CallCenterModel&gt;</tt> node can optionally have one sub nodes of the type
+<tt>&lt;ModelThresholds&gt;</tt>. The <tt>&lt;ModelThresholds&gt;</tt> element again can
+have any number of <tt>&lt;ThresholdData&gt;</tt> sub nodes.
+</p>
+
+<h3>Attributes of the <tt>ThresholdData</tt> node</h3>
+
+<p>
+The following attributes are required:
+</p>
+
+<ul>
+  <li><tt>Type</tt>: Defines the type of the threshold. This attribute can have one of the following values:
+  <ul>
+    <li>Waiting time on call basis</li>
+    <li>Waiting time on client basis</li>
+    <li>Residence time on call basis</li>
+    <li>Residence time on client basis</li>
+    <li>Accessibility on call basis</li>
+    <li>Accessibility on client basis</li>
+    <li>Service level in call basis, based on all calls</li>
+    <li>Service level in call basis, based on successful calls</li>
+    <li>Service level in client basis, based on all clients</li>
+    <li>Service level in client basis, based on successful clients</li>
+    <li>Workload</li>
+  </ul></li>
+  <li><tt>Intervals</tt>: Defines which intervals should be taken into account for the warning threshold. If "Average" is specified,
+  the average value over the whole day is used. If "Each" is specified, the threshold should be kept in each interval. Alternatively
+  48 values "0" or "1" can be given, specifying the half-hour intervals in which the threshold value should be kept.
+  </li>
+  <li><tt>Groups</tt>: Defines which client groups or call centers should be taken into account for the warning threshold. If "Average" is specified,
+  the average value over all groups is used. If "Each" is specified, the threshold should be kept for each group. Alternatively
+  the name of a client group or a call center can be given.
+  </li>
+  <li><tt>WarningYellow</tt>:
+  Defines the value which will rise a yellow warning if its undershot (accessibility, service level and work load) or if its exceeded
+  (waiting time and residence time). The threshold values for the waiting and the residence times are specified as times.
+  The thresholds for all other types are specified as probabilites.
+  </li>
+  <li><tt>WarningRed</tt>:
+  Defines the value which will rise a red warning if its undershot (accessibility, service level and work load) or if its exceeded
+  (waiting time and residence time). The threshold values for the waiting and the residence times are specified as times.
+  The thresholds for all other types are specified as probabilites.
+  </li>
+</ul>
+
+</body>
+</html>

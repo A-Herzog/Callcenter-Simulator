@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Waiting time tolerance calibration</title>
+</head>
+
+<body>
+
+<div class="menu">
+Simulation &gt; Waiting time tolerance calibration
+</div>
+
+<h1>Waiting time tolerance calibration</h1>
+
+<p>
+The wait time tolerance of the clients is not directly measurable. In addition to using
+<b>estimation methods</b> (see <a href="ToolsAuslastungsrechner.html">load calculator dialog</a>
+and the tools for waiting time tolerance estimation on the "Waiting time tolerance" page of the
+<a href="DialogCaller.html">caller types</a> dialog) this dialog offers to determination of the real
+waiting time tolerance of the clients by doing a <b>parameter calibration </b>.
+</p>
+ 
+<p>
+Parameter calibration means an unknown parameter (the wait time tolerance in this case) is set in such a way
+that the simulated model coincides with a real model, i.e. the input parameters and the resulting accessibility
+of a real day has to be known to use this function. The input parameters has to be stored in form of a
+call center model. The accessibility from this real day has to be specified in this dialog. After clicking 
+"Start simulation" the simulator varies the waiting time tolerances of the clients until the target accessibility
+values arise.
+</p>
+
+</body>
+</html>
+  

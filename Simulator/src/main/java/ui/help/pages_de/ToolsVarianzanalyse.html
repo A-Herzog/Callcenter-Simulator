@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Varianzanalyse erstellen</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/chart_curve_error.png">&nbsp;
+Tools &gt; Varianzanalyse erstellen
+</div>
+
+<h1>Varianzanalyse erstellen</h1>
+
+<p>
+Damit die Ergebnisse einer Simulation statistisch stabil sind, müssen möglichst viele Tage simuliert
+werden. Da die benötigte Zeit für die gesamte Simulation jedoch linear mit der Anzahl der simulierten
+Tage wächst, sollen auf der anderen Seite jedoch auch nicht mehr Tage als nötig simuliert werden.
+Mit Hilfe der Varianzanalyse kann ermittelt werden, wie stark die Ergebnisse einzelner Simulationen
+desselben Modells von einander abweichen. Variieren die Ergebnisse stark, so ist die Anzahl an
+simulierten Tagen zu klein gewählt.
+</p>
+
+<h2>Feste Anzahl an Simulationstagen</h2>
+<p>
+In diesem Modus werden mehrere Simulationsläufe mit der für das momentane Modell eingestellten
+Anzahl an Simulationstagen durchgeführt. Die Ergebnisse jeden einzelnen Laufs sowie am Ende
+Angaben über die Varianz zwischen den Laufen werden in der Tabelle angezeigt.
+</p>
+
+<h2>Variable Anzahl an Simulationstagen</h2>
+<p>
+In diesem Modus wird die Anzahl an simulierten Tagen beginnend mit 5 Tagen in 5er-Schritten
+sukzessive erhöht. Mit jeder Anzahl an simulierten Tagen wird eine Reihe von Simulationsläufen
+durchgeführt. Der Variationskoeffizient zwischen den verschiedenen Simulationsläufen wird
+in Form einer Tabelle und in Form eines Diagramms angezeigt. Auf diese Weise kann ermittelt
+werden, bis zu welcher Anzahl an simulierten Tagen der Variationskoeffizient zwischen verschiedenen
+Simulationen absinkt und ab wann keine signifikanten Verbesserungen mehr auftreten.
+</p>
+
+</body>
+</html>
+  

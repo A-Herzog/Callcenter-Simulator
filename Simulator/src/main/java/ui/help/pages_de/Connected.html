@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Verkettete Simulation mit Übertrag der Warteabbrecher</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/calendar.png">&nbsp;
+Simulation &gt; Mehrtägige Simulation
+</div>
+
+<h1>Verkettete Simulation mit Übertrag der Warteabbrecher</h1>
+
+<p>
+Bei der verketteten Simulation werden mehrere Tage mit individuellen Charakteristiken
+nacheinander simuliert, wobei die endgültigen Warteabbrecher eines Tages zu einem
+gewissen, konfigurierbaren Anteil als zusätzliche Erstanrufer in den nächsten Tag
+übernommen werden. Auf diese Weise lässt sich das Fortschreiten einer Überlastwelle
+über mehrere Tage nachbilden.
+</p>
+
+<p>
+Diese Funktion kann auch über <a href="Parameter.html">Kommandozeilenparameter</a> verwendet werden.
+</p>
+
+<h2>Basisverzeichnis</h2>
+<p>
+Hier kann ein beliebiges Verzeichnis angegeben werden. Befinden sich die weiter unten in dem Dialog angegebenen
+Modell- und Statistikdateien in diesem Verzeichnis, so wird jeweils nur der Dateiname ohne den vollständigen
+Pfadnamen angezeigt.
+</p>
+
+<h2>Statistik für Übertrag zu Tag 1 (optional)</h2>
+<p>
+Bei der mehrtägigen Simulation werden Kundenanfragen, die über 0 Uhr hinaus warten, automatisch
+inkl. ihrer bisherigen Wartezeit in den nächsten Simulationstag hinein übernommen. Um auch
+Daten in den ersten Simulationstag der mehrtägigen Simulation hinein übernehmen zu können,
+kann in diesem Feld eine Statistikdatei angegeben werden, die die Ergebnisse eines dem ersten
+Tag vorgelagerten Tages enthält. 
+</p>
+
+<h2>Zusätzlicher manueller Übertrag in Tag 1 hinein</h2>
+<p>
+Zusätzlich oder alternativ zu dem Übertrag in Tag 1 hinein basierend auf der im vorherigen Feld
+anzugebenden Statistikdatei ist es auch möglich, manuell einen Bestand an wartenden Anfragen,
+die bereits initial zu Beginn von Tag 1 vorhanden sein sollen, anzugeben.
+</p>
+
+</body>
+</html>
+  

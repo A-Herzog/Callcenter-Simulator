@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Callcenter bearbeiten"</title>
+</head>
+
+<body>
+
+<h1>Dialog "Callcenter bearbeiten"</h1>
+
+<p>
+Der Dialog zum Bearbeiten von Callcentern wird über die Dialogseite <a href="EditorCallcenter.html">Callcenter und Agenten</a>
+des Calcenter-Modell-Editors aufgerufen. In dem Dialog "Callcener bearbeiten" können Einstellungen zu einem einzelnen
+Callcenter vorgenommen werden.
+</p>
+
+<h3>Callcenter aktiv</h3>
+<p>
+Über dieses Auswahlfeld kann eingestellt werden, ob dieses Callcenter bei der Simulation berücksichtigt werden soll.
+Durch das gezielte Aktivieren und Deaktivieren von Callcentern können schnell verschiedene Szenarien ausprobiert werden,
+ohne dass dafür verschiedene Modelle angelegt werden müssen.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/group.png">&nbsp; "Agenten"</h2>
+<p>
+Auf der Dialogseite "Agenten" des Callcenter-Editors können die einzelnen Agentengruppen,
+die in dem betrachteten Callcenter arbeiten sollen, definiert werde.
+Jede Agentengruppe kann dabei über individuelle Arbeitszeiten und Skill-Level verfügen.
+</p>
+
+<p>
+Über die Schaltflächen <b>Hinzufügen</b> können neue Agentengruppen angelegt
+werden und über die Schalltfläche <b>Bearbeiten</b> bestehene Agentengruppen im
+<a href="DialogAgenten.html">Agentengruppe bearbeiten</a>-Dialog konfiguriert
+werden.
+</p>
+
+<p>
+Die Reihenfolge der Agentengruppen, die über die <b>Nach oben</b> und <b>Nach unten</b>
+Schaltflächen eingestellt werden kann, hat keinen Einfluss auf die Simulation und dient nur dazu,
+die Liste für den Benutzer möglichst übersichtlich gestaltbar zu machen.
+</p>
+
+<p>
+Die <b>Kopieren</b>-Funktion ermöglicht es, einzelne Agentengruppen zu
+kopieren. Beim Kopieren kann eingestellt werden, ob die Agentenzahl
+beim Kopieren mit einem bestimmten Wert skaliert werden sollen.
+Alle weiteren Eigenschaften werden direkt kopiert.
+</p>
+
+<p>
+Das <b>Tools</b>-Popupmenü bietet die Möglichkeit, den
+<a href="ToolsGeneratorAgenten.html">"Agentendaten laden"-Dialog</a>
+direkt aufzurufen. Über diesen Dialog können die Agenten-Arbeitszeiten,
+die Produktivität der Agenten usw. aller Agentengruppen des Callcenters
+auf einmal aus einer Tabelle geladen werden.
+</p>
+
+<p>
+Außerdem können aus einer dreispaltigen Tabelle, in der pro Zeile jeweils
+Anzahl, Schichtbeginn und Schichtende einer Agentengruppe stehen, mehrere
+Agentengruppen auf einmal geladen werden.
+</p> 
+
+<h2>Dialogseite &nbsp;<img src="../images/wrench.png">&nbsp; "Callcenter-Parameter"</h2>
+<p>
+Auf der Dialogseite "Callcenter-Parameter" können Einstellungen, die global für
+das gesamte Callcenter bzw. alle Agentengruppen in dem Callcenter gelten sollen,
+vorgenommen werden.
+</p>
+
+<h3>Technische Bereitzeit</h3>
+<p>
+Zwischen der Herstellung einer Zuordnung zwischen freiem Agenten und wartendem
+Kunden durch den Automated Call Distributor (ACD) vergehen systembedingt häufig
+einige Sekunden. Da der Kunde nicht merkt, dass er bereits einem Agent zugeordnet
+wurde, empfindet er diese Zeit als Wartezeit und kann das Warten während der
+technischen Bereitzeit noch abbrechen.
+</p>
+
+<h3>Die technische Bereitzeit wird als Wartezeit empfunden, d.h. während dieser sind noch Warteabbrüche möglich.</h3>
+<p>
+Ist diese Option aktiviert (was der Standard ist), so kann der Kunde nicht erkennen,
+wenn er bereits einem Agenten zugeordnet wurde und sich nun in der technischen Bereitzeit
+befindet. Er empfindet diese Zeit dann als Wartezeit und kann also auch noch unmittelbar
+vor Gesprächsbeginn das Warten abbrechen. Ist die Option deaktiviert, so merkt der Kunde,
+dass er bereits einem Agenten zugeordnet wurde und das Gespräch in wenigen Sekunden
+beginnen wird. Er wird das Warten dann in dieser Zeit nicht mehr abbrechen. Unabhängig von
+der hier gewählten Einstellung wird die technische Bereitzeit in der Statistik auf
+Kundenseite stets der Wartezeitzugeordnet und bei der Agentenauslastung als separates
+Segment ausgewiesen.
+</p> 
+
+<h3>Scorewert des Callcenters</h3>
+<p>
+Für jeden freien Agenten wird ein Scorewert berechnet. Gibt es für einen
+wartenden Kunden mehrere passende freie Agenten, so wird der Kunde zu dem
+Agenten mit dem höchsten Scorewert geleitet. Die Agentenscore setzt sich
+aus der hier einzustellenden globalen Callcenter-Basis-Score, einem 
+Skill-Level-abhängigen Scorewert sowie einem additiven Faktor, in den die
+Leerlaufzeit bzw. der Leerlaufanteil des Agenten eingehen, zusammen.
+</p>
+
+<h3>Faktor für die Bewertung der freien Zeit seit dem letzten Anruf für die Agenten-Score</h3>
+<p>
+In diesem Feld kann angegeben werden, mit welchem Wert jede Leerlaufsekunde seit dem
+letzten Anruf in die Agentenscore eingehen soll.
+</p>
+
+<h3>Faktor für die Bewertung des Freizeit-Anteils für die Agenten-Score</h3>
+<p>
+In diesem Feld kann angegeben werden, mit welchem Wert der bisherige Freizeit-Anteil
+des Agenten (eine Zahl zwischen 0 und 1) in die Agentenscore eingehen soll.
+</p>
+
+<h3>Achtung</h3>
+<p>
+Um sicher zu stellen, dass die Agenten gleichmäßig ausgelastet werden, sollte in mindestens
+eines der beiden obigen Felder ein Wert größer 0 eingetragen werden.
+</p>
+
+<h3>Produktivität der Agentengruppen in diesem Callcenter</h3>
+<p>
+In diesem Dialog können Sie einstellen, wie viel der angegebenen Agentenarbeitsleitung
+tatsächlich verfügbar sein soll. Die Angaben beziehen sich auf alle Agentengruppen
+in diesem Callcenter, die nicht über feste Arbeitszeiten definiert sind.
+Es kann angegeben werden, dass die Agenten stets wie angegeben verfügbar sind,
+dass sie nur für einen bestimmten, festen Anteil der angegebenen Leistung verfügbar sind
+oder aber dass die Produktivität in Halbstundenintervallen variiert.
+Des Weiteren kann eingestellt werden, dass die globalen Werte verwendet werden sollen
+und keine besonderen Parameter für dieses Callcenter gelten sollen.
+Die hier vorgenommenen globalen Einstellungen können optional pro Agentengruppe überschrieben werden.
+</p>
+
+<h3>Krankheitsbedingter Zuschlag zur Planungsagentenanzahl in diesem Callcenter</h3>
+<p>
+In diesem Dialog können Sie einstellen, wie viel Agenten prozentual auf die vorgegebenen
+Agentenverteilungen aufgeschlagen werden sollen, um krankheitsbedingte Ausfälle zu
+kompensieren. Die daraus resultierende erhöhte Agentenverteilung wird nicht in der Simulation
+verwendet, sondern nur zusätzlich in der Statistik ausgewiesen.
+Die Angaben beziehen sich auf alle Agentengruppen in diesem Callcenter, die
+nicht über feste Arbeitszeiten definiert sind. Es kann angegeben werden, dass kein
+Aufschlag erfolgen soll, dass diese prozentual in allen Intervallen identisch sein
+soll aber dass der Zuschlag in Halbstundenintervallen variiert.
+Die hier vorgenommenen globalen Einstellungen können optional
+pro Agentengruppe überschrieben werden.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/clock.png">&nbsp; "Mindestwartezeiten"</h2>
+<p>
+Die Auslastung der Callcenter kann über die Vergabe von unterschiedlichen
+Scorewerten beeinflusst werden. Reicht dies nicht aus, so können
+Mindestwartezeiten für bestimmte Kundentypen vergeben werden. Ein Kunde wird
+erst dann zu einem freien Agenten in diesem Callcenter geleitet, wenn sich
+nach Ablauf seiner Mindestwartezeit immer noch kein passender freier Agent
+in einem anderen Callcenter für ihn gefunden hat.
+</p>
+
+<p>
+Während die Vergabe von unterschiedlichen Scorewerten lediglich den Leerlaufanteil
+zwischen den Callcentern verschiebt, und sich somit nicht auf die insgesamt
+verfügbare Arbeitsleistung bzw. auf die Erreichbarkeit auswirkt, verschlechtert
+die Einstellung einer Mindestwartezeit die Leistungsgrößen des Warteschlangensystems.
+Werden Mindestwartezeiten verwendet, so müssen insgesamt mehr Agenten eingesetzt
+werden, um auf dieselben Werte für Erreichbarkeit, mittlere Wartezeit usw. zu kommen.
+</p>
+
+</body>
+</html>
+  

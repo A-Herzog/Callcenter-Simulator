@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Schnellzugriff</title>
+</head>
+
+<body>
+
+<h1>Schnellzugriff</h1>
+
+<p>
+Der Ergebnis-Schnellzugriff ermöglicht es, Daten von ganzen Simulationsreihen immer wieder in derselben Form
+z.B. zwecks Speicherung in Tabellen zu exportieren. Über die Filtereinstellungen am unteren Rand der Seite kann
+dabei sowohl eingestellt werden, welche Daten exportiert werden sollen, als auch wie die Ausgabe formatiert werden soll.
+</p>
+
+<h2>Filterbefehle</h2>
+<p>
+In das Filter-Skript-Eingabefeld am unteren Rand der Seite können beliebig lange Skripte eingegeben werden.
+Ein Skript besteht dabei jeweils aus einer Anweisung pro Zeile. Das aktuelle Skript wird beim Beenden des
+Simulators automatisch gespeichert und beim nächsten Start wiederhergestellt.
+</p>
+
+<p>
+Eine Filter-Skript-Anweisung besteht stets aus einem Befehl gefolgt von einem Leerzeichen und dann den
+Parametern des Befehls. Bei den Befehlen selbst wird nicht zwischen Groß- und Kleinschreibung unterschieden.
+Bei den Parametern der Befehle zur Textausgabe und zur Filterung der XML-Daten wird die jeweilige Schreibweise
+jedoch berücksichtigt. Leerzeilen werden bei der Verarbeitung ignoriert. Des Weiteren wird alles, was hinter einem "//" in einer Zeile steht als <b>Kommentar</b> interpretiert und nicht weiter verarbeitet.
+</p>
+
+<p>
+Ein Filter-Skript kann aus den folgenden Arten von Befehlen bestehen:
+</p>
+
+<h3>Format</h3>
+<p>
+Über den <tt>Format</tt>-Befehl kann angegeben werden, ob die folgenden Zahlenwerte in lokaler Notation
+(im deutschsprachigen Raum mit einem Dezimalkomma) oder in System-Notation mit einem Dezimalpunkt ausgegeben werden
+sollen. Außerdem kann angegeben werden, ob Zahlenwerte als Prozentangabe ausgegeben werden sollen. In diesem Fall
+wird der Wert mit 100 multipliziert und ein "%"-Zeichen an die Zahl angefügt. Voreingestellt ist stets die Ausgabe
+in lokaler Notation und die Ausgabe als normale Fließkommazahl (also nicht als Prozentwert).
+</p>
+<ul>
+  <li>Wahl der System-Notation für Zahlen und Prozentwerte: <tt>Format System</tt></li>
+  <li>Wahl der lokalen Notation für Zahlen und Prozentwerte: <tt>Format Local</tt></li>
+  <li>Wahl der Ausgabe als normale Zahl: <tt>Format Fraction</tt> (z.B. <tt>0,357</tt> oder <tt>0.375</tt>)</li>
+  <li>Wahl der Ausgabe als Prozentwert: <tt>Format Percent</tt> (z.B. <tt>35,7%</tt> oder <tt>35.7%</tt>)</li>
+  <li>Ausgabe der Zahlenwerte als Zeitangaben: <tt>Format Time</tt> (z.B. <tt>00:03:25,87</tt>)</li>
+  <li>Ausgabe der Zahlenwerte als normale Zahlen: <tt>Format Number</tt> (Ausgabe gemäß Angabe <tt>Percent</tt> oder <tt>Fraction</tt>)</li>
+</ul>
+
+<h3>Separator</h3>
+<p>
+Über den <tt>Separator</tt>-Befehl kann angegeben werden, wie die einzelnen Werte bei der Ausgabe einer Verteilung getrennt werden sollen.
+</p>
+<ul>
+  <li>Semikolons als Trenner: <tt>Separator Semicolon</tt>
+  <li>Zeilenumbrüche als Trenner: <tt>Separator Line</tt>
+  <li>Tabulatoren als Trenner: <tt>Separator Tabs</tt>
+</ul>
+
+<h3>Text</h3>
+<p>
+Über diesen Befehl kann ein beliebiger Text (z.B. Spaltentrenner) ausgegeben werden. Der Text selber muss in
+doppelten Anführungszeichen stehen. Als besondere Anweisungen innerhalb des Textes werden \t und \n unterstützt.
+\t fügt einen Tabulator ein und \n erzeugt einen Zeilenumbruch.
+</p>
+<p>
+Beispiel: <tt>Text "Hallo Welt!\n"</tt>
+</p>
+
+<h3>Title</h3>
+<p>
+Über diesen Befehl kann ein beliebiger Titel für das Skript definiert werden. Dieser Titel wird in
+der Dropwdown-Box bei der Auswahl des Skriptes angezeigt. Der Titel selber muss in
+doppelten Anführungszeichen stehen.
+</p>
+<p>
+Beispiel: <tt>Title "Zusammenfassung Wartezeiten"</tt>
+</p>
+
+<h3>Print</h3>
+<p>
+Über den <tt>Print</tt>-Befehl können beliebige Einträge aus dem XML-Statistikbaum, Variablen und die Ergebnisse
+einfacher Berechnungen ausgegeben werden.
+</p>
+<p>
+Beispiele:
+</p>
+<ul>
+  <li>
+    <tt>Print CallcenterModell-&gt;ModellName</tt><br>
+	Liefert den Inhalt des Elements <tt>ModellName</tt>, welches ein Unterelement von <tt>CallcenterModell</tt> ist.	
+  </li>
+  <li>
+    <tt>Print x</tt><br>
+	Gibt den Wert der Variable <tt>x</tt> aus.
+  </li>
+  <li>
+    <tt>Print (x+3)*4</tt><br>
+    Berechnet den Wert (x+3)*4 unter Berücksichtigung von Punkt- vor Strichrechnung und gibt das Ergebnis aus
+    (siehe auch <a href="Parser.html">Rechenbefehle</a>). 
+  </li>
+</ul>
+<p>
+Ist keine Variable mit dem als Parameter angegebenen Namen gesetzt und kann der Parameter auch nicht aus
+Ausdruck ausgerechnet werden, so wird der Parameter als XML-Auswahlbefehl interpretiert.
+</p>
+
+<h3>Set</h3>
+<p>
+Speichert einen beliebigen Eintrag aus dem XML-Statistikbaum in einer Variable.
+</p>
+<p>
+Beispiel: <tt>Set x=CallcenterModell-&gt;ModellName</tt>
+</p>
+
+<h3>Calc</h3>
+<p>
+Führt eine Berechnung mit Variablen durch und speichert das Ergebnis wieder in einer Variable
+(siehe auch <a href="Parser.html">Rechenbefehle</a>).
+</p>
+<p>
+Beispiel: <tt>Calc y=(x+3)*4</tt>
+</p>
+
+<h3>Mean</h3>
+<p>
+Liefert den Mittelwert einer als Parameter übergebenen Verteilung.
+</p>
+<p>
+Beispiel: <tt>Mean CallcenterModell-&gt;ModellKundentyp[Name="KundenA"]-&gt;KundenWartezeittoleranzVerteilung</tt>
+</p>
+
+<h3>SD</h3>
+<p>
+Liefert die Standardabweichung (<i>Standard Derivation</i>) einer als Parameter übergebenen Verteilung.
+</p>
+<p>
+Beispiel: <tt>SD CallcenterModell-&gt;ModellKundentyp[Name="KundenA"]-&gt;KundenWartezeittoleranzVerteilung</tt>
+</p>
+
+<h3>CV</h3>
+<p>
+Liefert den Variationskoeffizient (<i>Coefficient of Variation</i>) einer als Parameter übergebenen Verteilung.
+</p>
+<p>
+Beispiel: <tt>CV CallcenterModell-&gt;ModellKundentyp[Name="KundenA"]-&gt;KundenWartezeittoleranzVerteilung</tt>
+</p>
+
+<h3>Sum</h3>
+<p>
+Liefert Summe über die als Parameter übergebenen empirischen Verteilung.
+</p>
+<p>
+Beispiel: <tt>Sum StatistikKunden[Name="KundenA"]-&gt;StatistikKundenWartezeitverteilung[Verteilung]</tt>
+</p>
+
+<h2>XML-Auswahlbefehle</h2>
+<p>
+Die Befehle <tt>Print</tt> und <tt>Set</tt> können Daten aus dem XML-Baum auslesen. 
+Während die Statistik-Angaben in der XML-Datei stets als Gesamtsummen über alle simulierten Tagen gespeichert
+werden, liefern diese Funktionen Werte pro Simulationtag (also z.B. nicht die Anzahl an erfolgreichen Kunden über
+die gesamte Simulation, sondern die mittlere Anzahl an erfolgreichen Kunden an einem Tag).
+</p>
+<p>
+Über die Parameter der Befehle kann der Inhalt eines XML-Elements oder der Wert eines
+Attributes eines XML-Elements ausgelesen werden. Die Selektion eines XML-Elements erfolgt dabei mehrstufig
+getrennt durch "-&gt;"-Zeichen. Zwischen den "-&gt;"-Zeichen stehen jeweils de Namen von XML-Elementen.
+Zusätzlich können in eckigen Klammern Namen und Werte von Attributen angegeben werden, nach denen gefiltert werden soll.
+</p>
+<p>
+Beispiele:
+</p>
+<ul>
+  <li>
+    <tt>Print CallcenterModell-&gt;ModellName</tt><br>
+	Liefert den Inhalt des Elements <tt>ModellName</tt>, welches ein Unterelement von <tt>CallcenterModell</tt> ist.	
+  </li>
+  <li>
+    <tt>Print StatistikKunden[Name=Priorisierte Kunden]-&gt;StatistikKundenAnzahl[Erfolg]</tt><br>
+	Selektiert das <tt>StatistikKunden</tt>-Element, bei dem das <tt>Name</tt>-Attribut auf den Wert
+	<tt>Priorisierte Kunden</tt> gesetzt ist. Und liefert dann den Inhalt des Attributs
+	<tt>Erfolg</tt> des Unterelements <tt>StatistikKundenAnzahl</tt>.
+  </li>
+  <li>
+    <tt>Print StatistikAgenten[Name=Single-Skill A]-&gt;[Anzahl]</tt><br>
+	Selektiert das <tt>StatistikAgenten</tt>-Element, bei dem das <tt>Name</tt>-Attribut auf den Wert
+	<tt>Single-Skill A</tt> gesetzt ist. Und liefert dann den Inhalt des Attributs
+	<tt>Anzahl</tt> dieses Elements.	
+  </li>
+</ul>
+<p>
+Zur Beschreibung der verfügbaren XML-Datenfelder siehe die Beschreibung der
+<a href="Dateiformate.html">Dateiformate</a> des Callcenter Simulators.
+</p>
+</body>
+</html>
+  

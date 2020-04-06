@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Preferences"</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/wrench.png">&nbsp;
+File &gt; Preferences
+</div>
+
+<h1>Dialog "Preferences"</h1>
+
+<p>
+The preferences dialog consists of 6 dialog pages through which the main operating parameters of the simulator can be configured:
+</p>
+
+<h2>User interface <img src="../images/application_go.png"></h2>
+<p>
+On this dialog page you can set which processing steps are to perform at startup:
+</p>
+
+<h3>Program language</h3>
+<p>
+This combo box can be used to set whether the user interface of the simulator is
+to be displayed in English or in German.
+</p>
+
+<h3>Menu mode</h3>
+<p>
+The simulator can offer the functions for loading and storing data, running simulations and optimizations etc.
+in form of classical menus and a toolbar as well as in form of a thematic ribbon bar.
+In this dropdown box you can select which representation you prefer.
+<br>(Default value is "Ribbon mode".)
+</p>
+
+<h3>Font sizes</h3>
+<p>
+From this combox box the font sizes (and hence the dialog window sizes)
+can be configured for an optimal readability.
+Changing the font sizes will take effect after a restart of the program.
+<br>(Default font size is "Normal".)
+</p>
+
+<h3>Window size on program start</h3>
+<p>
+The simulator can be displayed at startup as a normal window or as a 
+full screen window. If you want the simulator run as a full screen
+windows right after start up to you do not need to maximize the
+windowso you can switch from "Default window size" to "Full screen".
+If the option "Restore last window size" is selected, the simulator
+will save the window size when the program is closed and will
+restore it on next program start.
+<br>(Default value is "Default window size".)
+</p>
+
+<h3>Load model on program start</h3>
+<p>
+To help you getting started with the Callcenter Simulator, the simulator can directly
+load a built-in demo model with example data at startup. This allows to directly start
+with some first tests without needing to define an entrie model from the scratch. Later
+the starting model can be adjusted successively. The simulator provides eight options,
+what should be displayed in the model editor when the program starts:
+</p>
+<ul class="big">
+  <li><b>Empty model</b><br>
+  Opens only the empty model editor without any caller groups and call centers.
+  Before a simulation run can be started, clients, call centers, agents and skill levels 
+  need to be defined or a previous saved model need to be loaded.</li>
+  <li><b>Small example model</b><br>
+  Loads at startup a small call center model consisting of 1,900 fresh calls and one call center.
+  If this option is used, right after starting the program a simulation run can be
+  started by clicking the "Run simulation" button.</li>
+  <li><b>Medium example model</b><br>
+  Loads at startup a medium call center model consisting of 30,000 fresh calls and three call centers.  
+  If this option is used, right after starting the program a simulation run can be
+  started by clicking the "Run simulation" button.</li>
+  <li><b>Large example model</b><br>
+  Loads at startup a large call center model consisting of 100,000 fresh calls and four call centers.
+  If this option is used, right after starting the program a simulation run can be
+  started by clicking the "Run simulation" button.</li>
+  <li><b>Very lange example model</b><br>
+  Loads at startup a very large call center model consisting of 300,000 fresh calls and four call centers.
+  If this option is used, right after starting the program a simulation run can be
+  started by clicking the "Run simulation" button.</li>
+  <li><b>Kleines Erlang-C-Beispielmodell</b><br>
+  Loads at startup a small call center model consisting of 1,872 fresh calls and one call centers.
+  The model uses some unrealistic assumptions which allow to completely
+  describe the model by the Erlang C formula, so simulation and analytical
+  results can be compared.  
+  If this option is used, right after starting the program a simulation run can be
+  started by clicking the "Run simulation" button.</li>  
+  <li><b>Mittleres Erlang-C-Beispielmodell</b><br>
+  Loads at startup a medium call center model consisting of 27,360 fresh calls and one call centers.
+  The model uses some unrealistic assumptions which allow to completely
+  describe the model by the Erlang C formula, so simulation and analytical
+  results can be compared.
+  If this option is used, right after starting the program a simulation run can be
+  started by clicking the "Run simulation" button.</li>
+  <li><b>Großes Erlang-C-Beispielmodell</b><br>
+  Loads at startup a medium call center model consisting of 144,000 fresh calls and one call centers.
+  The model uses some unrealistic assumptions which allow to completely
+  describe the model by the Erlang C formula, so simulation and analytical
+  results can be compared.
+  If this option is used, right after starting the program a simulation run can be
+  started by clicking the "Run simulation" button.</li>
+</ul>
+<p>(Default value is "Small example model".)</p>
+
+<h3>Show welcome page on program start</h3>
+<p>
+The Callcenter Simulator can display a welcome page at startup
+that provides links to various help topics and thus allows an easy entry
+into the use of the simulator. Alternatively the simulator can
+skip the welcome page and directly display the model editor.
+<br>(As the default value the welcome page will be displayed.)
+</p>
+
+<h3>Check installed Java version and warn if outdated and insecure</h3>
+<p>
+If this option is activated, at each startup the simulator will check
+if the installed Java version is outdated (based on the latest version
+at build time of the Callcenter Simulator). The there are newer Java
+versions than the installed version an information bar will appear
+in the program window for a few seconds.
+<br>(As the default value the version check is activated.)
+</p>
+
+<h2>Simulation <img src="../images/action_go.gif"></h2>
+
+<h3>Strict model check</h3>
+<p>
+On this dialog page via the checkbox "Strict model check" can be selected if a strict or a fault-tolerant model check is to be
+performed before the start of the simulation. The following list shows the differences between the strict and fault-tolerant check:
+</p>
+<ul class="big">
+  <li>In strict mode invalid <b>retry probabilites</b> of the clients will lead a stop of the simulation. Invalid entries
+  are considered to be an oversight of the user and it is believed that it is better not to start the simulation with an incorrect model.
+  In fault-tolerant mode invalid retry probabilites are interpreted as "0".</li>
+  <li>In strict mode the simulation is canceled if clients are to be <b>forwarded</b> to client types that do not exists
+  or if the forwarding rates to some client types are negative. Both are considered to be an oversight of the user and
+  it is believed that it is better not to start the simulation with an incorrect model.
+  In fault-tolerant mode invalid forwarding rates (due to not existing target client types or due to negative values) are interpreted as "0".</li>  
+  <li>In strict mode each <b>call center</b> has to have a namen. In fault-tolerant mode call centers without a name
+  are reported as "unnamed call center" in the statistics.</li>
+  <li>In strict mode the <b>technical free time</b> has to be non-negative. Values les than 0 are considered to be an
+  oversight of the user and it is believed that it is better not to start the simulation with an incorrect model.
+  In fault-tolerant mode invalid technical free times are interpreted as "0".</li>
+  <li>In the strict mode, the simulation is not started if in a <b>skill level</b> holding and post processing times
+  are specified for a client type that does not exist. It is believed that this is a typo and it is therefore better not
+  to start the simulation with an incorrect model. In fault-tolerant mode these unnecessary service times are simply ignored.</li>
+  <li>If there are per call or per minute <b>costs</b> for a non existent client type specified at some agents group the
+  simulation is not started if the strict mode is activated.</li>
+</ul>
+<p>
+(As the default the strict model checking is activated.)
+</p>
+
+<h3>Use background simulation</h3>
+<p>
+If this option is active, the simulator will start the simulation with low priority
+in the background while the model is still edited in the model editor. If the model
+is changed in the editor, the current simulation will be discarded and a new
+background simulation with the changed model will be started. When the user starts
+the actual simulation, a part or the whole simulation then is already done and 
+the results are available much faster.
+</p>
+<p>
+If the background simulation is activated, the simulator will also usw computing time
+when no simulation was started explicitly. If the client-server simulation is active,
+neither local nor remote background simulations are performed regardless of this setting.
+</p>
+<p>
+(As the default the background simulation is activated.)
+</p>
+
+<h3>Maximum number of threads</h3>
+<p>
+In the default case the simulator will use as many calculation threads as there are logical CPU cores
+(in corresponds to entering 0 in the input box). But you can also define some additional, artificial
+limitation to the number of used calculation threads by entering a value larger than 0. If you enter
+a limitation value larger than the available number of logical CPU cores, still only as many threads
+as there are CPU cores will be used.
+</p>
+<p>
+(As the default 0 is specified, this means no artificial limitation of the number of used threads.)
+</p>
+
+<h3>Increase number of simulated days if useful</h3>
+<p>
+If this option is active, the number of simulated days may be increased to optimally use the
+number of available CPU cores. This way the accuracy of the simulation may be slightly increased
+without any increasement of the needed simulation time. The increasement will only be applied
+on local simulation. On running a network simulation or a mixed local and network simulation
+the number of simulated days will never be changed regardless of this setting.
+</p>
+<p>
+(As the default value the increasing of the number of simulated days is active.)
+</p>
+
+<h3>Client-Server-Simulation</h3>
+<p>
+The two check boxes <b>Simulation on the local</b> and <b>Simulation on a computer in the network</b>
+allow to set whether the simulation is to be performed directly within the graphic user interface of
+the Callcenter Simulator or the simulation is to be performed on a remote (faster) computer in the network
+and the results are then reported back to the local machine.
+</p>
+<p>
+If the "Simulation on a computer in the network" option is enabled, the name of hte remote computer on which 
+the simulation is to be performed and the port number of the simulation server has to be specified here. If the
+remote server requires a password, the same password has to be entered here. Also multiple network servers can
+be specified. The names, port numbers and passwords has to be entered separated by semikolons in the fields.
+</p>
+<p>
+On the remote computer the Callcenter Simulator has to be started with the
+<a href="Parameter.html">Command line parameter</a> <tt>server</tt> or in the menu
+the item <a href="ToolsServer.html">Run network server</a> has to be choosen
+so the simulator can receive simulation jobs via the network.
+Furthermore on the server the same port and the same password as on the client machine has
+to be specified.
+</p>
+<p>
+In addition by the <b>Part of days to be simulated on the server</b> input line
+the workload distribution between the local computer and the network server/s can configured.
+This way both the server and the local computer can be utilized for the simulation at the same time.
+</p>
+<p>
+(As the default value the local simulation is selected.)
+</p>
+
+<h2>Simulation server <img src="../images/server.png"></h2>
+
+<p>
+On this dialog page one can configure on which <b>Port</b> the simulation server and on which the web server
+(in the case of running a SaaS server) should listen for incoming request,
+if only requests encrypted with a specific <b>Password</b> are to be accepted and whether only requests from some
+<b>Allowed client IPs</b> are to be accepted.
+</p>
+
+<h3>Allowed client IPs</h3>
+<p>
+If there are no addresses specified in this field, all clients are accepted,
+otherwise only the clients whose IP addresses start with one of the combinations specified in this field are accepted.
+Per line one IP address or a part of an IP address can be specified per line.
+Symbols such as "*" can not be used, but anyway it is not necessary to enter a complete IP address.
+If an incomplete IP address is specified, a client is accepted if its IP address starts with the here entered
+letters combination.
+</p>
+
+<h2>Graphics <img src="../images/image.gif"></h2>
+<p>
+On this dialog page can be defined, which resolutions will be used when saving diagrams as pixel graphics.
+The value in the input field <b>Resolution when saving images</b> will be used as the width and height in pixels.
+<br>(The default value is 1000 pixels.)
+</p>
+
+<h2>Statistics <img src="../images/sum2.png"></h2>
+
+<h3>Open texts and tables</h3>
+<p>
+By the selection fields on this page you can set up which external programs should
+be offered for transferring the data from the statistics text and table pages.
+<br>(As default Word and Excel are selected.)
+</p>
+
+<h2>Updates <img src="../images/tick.png"></h2>
+<p>
+On this page you can specify whether the call center simulator should automatically
+check for new versions and to install them. When activated the automatic update is done
+completely in the background. No manual installation of updates is required.
+</p>
+
+<p>
+Alternatively you can manually download updates from the
+<a href="special:programhome">webpage of the Callcenter Simulator</a>.
+</p>
+
+</body>
+</html>

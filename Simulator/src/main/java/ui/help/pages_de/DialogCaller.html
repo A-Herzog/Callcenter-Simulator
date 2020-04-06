@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Kundentyp bearbeiten"</title>
+</head>
+
+<body>
+
+<h1>Dialog "Kundentyp bearbeiten"</h1>
+
+<p>
+Der Dialog zum Bearbeiten von Kundentypen wird über die Dialogseite <a href="EditorAnrufergruppen.html">Anrufergruppen</a>
+des Calcenter-Modell-Editors aufgerufen. In dem Dialog "Kundentyp bearbeiten" können Einstellungen zu einem einzelnen
+Kundentyp vorgenommen werden.
+</p>
+
+<h3>Kundentyp aktiv</h3>
+<p>
+Über dieses Auswahlfeld kann eingestellt werden, ob dieser Kundentyp bei der Simulation berücksichtigt werden soll.
+Durch das gezielte Aktivieren und Deaktivieren von Kundentypen können schnell verschiedene Szenarien ausprobiert werden,
+ohne dass dafür verschiedene Modelle angelegt werden müssen.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/wrench.png">&nbsp; "Anzahl und Verteilung"</h2>
+<p>
+Auf dieser Dialogseite kann eingestellt werden, wie viele Kunden pro Halbstundenintervall anrufen sollen.
+Die Information "Kunden pro Intervall" ist dabei in zwei Teile aufgeteilt: Zum einen wird über
+<b>Anzahl an Erstanrufern</b> und <b>Standardabweichung</b> die Gesamtzahl an Erstanrufern und deren
+Streuung von Tag zu Tag des betrachteten Kundentyps festgelegt
+und zum anderen wird über die darunter befindliche <b>Verteilungskurve</b> festgelegt, welcher Anteil
+der Erstanrufer in welchem Intervall anrufen soll. Auf diese Weise kann die Gesamtanzahl an Anrufern
+variiert werden, ohne dafür die 48 Halbstundenintervalle einzeln anpassen zu müssen.
+</p>
+
+<h3>Verteilungskurve</h3>
+<p>
+Die Verteilungskurve gibt an, wie sich die Erstanrufer über den Tag verteilen. Die Werte für die
+Intervalle geben also keine absoluten Zahlen über die Erstanrufer an, sondern nur, wie sich diese über den Tag verteilen.
+Es kann eingestellt werden, ob der Tag in 24, 48 oder 96 Intervalle unterteilt werden soll, also ob die Verteilung
+der Erstanrufer über den Tag auf Stunden-, Halbstunden- oder 15-Minuten-Basis erfolgen soll.
+</p>
+
+<h3>Schaltfläche "Tools"</h3>
+<p>
+Wie Werte der Verteilungskurve können so gewählt werden, dass sich die Werte zu 1 aufsummieren
+oder aber, dass die Werte in Summe die Anzahl an Erstanrufern ergeben (und somit die Werte für
+die einzelnen Halbstundenintervalle die Anzahl an Erstanrufern pro Halbstundenintervall widerspiegeln).
+Das Popup-Menü, das beim Anklicken der Tools-Schaltfläche erscheint, bietet u.a. diese Arten
+der Anpassung an.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/clock.png">&nbsp; "Wartezeittoleranz"</h2>
+
+<h3>Kunden sind nur bereit, endlich lange zu warten</h3>
+<p>
+Ist diese Option aktiviert, so geben die Kunden das Warten nach einer gewissen Zeit auf und
+tätigen evtl. später einen neuen Versuch. Wie die Wartezeittoleranz der Kunden im Einzelnen
+bestimmt wird, kann über die folgenden Felder konfiguriert werden.
+</p>
+
+<h3>Auswahl: "Wartezeittoleranz-Verteilung vorgeben", "Wartezeittoleranz-Verteilung vorgeben (lange Wartezeittoleranz)" und "Wartezeittoleranz aus Messwerten schätzen"</h3>
+<p>
+Um für jeden Kunden eine individuelle, zufällige Wartezeittoleranz zu bestimmen, muss eine Wartezeittoleranz-Verteilung
+angegeben werden. Dies kann entweder, sofern diese in der Realität (näherungsweise) bekannt ist, direkt angegeben
+werden (Optionen "Wartezeittoleranz-Verteilung vorgeben" und "Wartezeittoleranz-Verteilung vorgeben (lange Wartezeittoleranz)") oder es kann versucht werden, die Wartezeittoleranz
+gemäß eines Erlang-C-Modells aus der gemessenen mittleren Wartezeit und der gemessenen Abbruchrate zu schätzen
+(Option "Wartezeittoleranz aus Messwerten schätzen"). Weil bei der zweiten Methode einige Annahmen getroffen werden
+müssen, die auf das reale Modell nicht unbedingt zutreffen, ist die Schätzung nicht unbedingt exakt.
+Da die tatsächliche Wartezeittoleranz jedoch meist nicht bekannt ist, bleibt in vielen Fällen nur diese Methode
+übrig.
+</p>
+
+<h3>Wartezeittoleranz-Verteilung</h3>
+<p>
+Ist in obigem Auswahlfeld die Option "Wartezeittoleranz-Verteilung vorgeben" gewählt, so kann die exakte
+Wartezeittoleranz-Verteilung angegeben werden. Es ist dabei zu beachten, dass die Wartezeittoleranz-Verteilung
+<b>nicht</b> die Verteilung der Abbruchzeiten ist! Die Kunden, die das Warten vorzeitig aufgeben, besitzen
+meist eine eher kurze Wartezeittoleranz, so dass die Verwendung der Verteilung der Abbruchzeiten als Verteilung
+der Wartezeittoleranzen diese erheblich unterschätzen würde und folglich zu falschen Simulationsergebnissen führen würde.
+</p>
+
+<h3>Wartezeittoleranz aus Messwerten schätzen</h3>
+<p>
+Ist in obigem Auswahlfeld die Option "Wartezeittoleranz aus Messwerten schätzen" gewählt, so kann über die
+folgenden drei Eingabefelder eine Schätzung der Wartezeittoleranz vorgenommen werden. Bei der Schätzung wird
+angenommen, dass die Wartezeittoleranzen exponentiell verteilt sind (was üblicherweise nicht zutreffend ist),
+so dass aus <b>mittlerer Wartezeit</b> und <b>Abbruchrate</b> auf die mittlere Wartezeittoleranz geschlossen werden kann.
+Dieser so geschätzte Erwartungswert, der bei der Exponentialverteilung auch zugleich die Standardabweichung
+ist, wird als Erwartungswert einer Log-Normalverteilung (welche die Wartezeittoleranz realistischer
+widerspiegelt) verwendet. Aufgrund der üblicherweise nicht zutreffenden Exponentialverteilungsannahme ist
+mit spürbaren Abweichungen zwischen realer (nicht direkt messbarer) und geschätzter Wartezeittoleranz zu
+rechnen. Da die Wartezeittoleranz jedoch meist überhaupt nicht direkt ermittelt werden kann, stellt diese
+Schätzung häufig die einzig mögliche Methode, um überhaupt an einen Eingangswert für die Simulation
+zu gelangen, dar.
+</p>
+
+<p>
+Um den Schätzfehler zu verringern kann die Methode der <b>Kalibrierung</b> verwendet werden: Als Eingangsdaten
+werden Messwerte eines realen Tages, bei dem insbesondere auch Erreichbarkeit, mittlere Wartezeit usw.
+bekannt sind, verwendet. Aus diesen Daten wird ein Simulationsmodell erstellt, in dem die Wartezeittoleranz
+geschätzt wird. Nach der Simulation werden gemessene Erreichbarkeit und Erreichbarkeit in der Simulation
+verglichen und die Wartezeittoleranz-Schätzung ggf. über den <b>Korrekturwert</b> angepasst.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/arrow_redo.png">&nbsp; "Wiederholwahrscheinlichkeiten"</h2>
+
+<h3>Kunden dieses Typs belegen Telefonleitungen</h3>
+<p>
+Gibt an, ob Kunden dieses Kundentyps auf die Anzahl der verfügbaren
+Telefonleitungen angerechnet werden. Für Kunden, die per Telefon anrufen,
+trifft dies zu; für Kunden, die z.B. eine E-Mail schreiben die auf Bearbeitung
+wartet, nicht.
+</p>
+
+<h3>Wiederholwahrscheinlichkeiten</h3>
+<p>
+Über die vier Eingabefelder aus dieser Dialogseite kann eingestellt werden,
+unter welchen Bedingungen ein Kunde, nach dem er blockiert wurde oder aber das
+Warten aufgegeben hat, mit welcher Wahrscheinlichkeit später einen neuen
+Anlauf tätigt.
+</p>
+
+<p>
+Bei Verkaufs-Callcentern sind üblicherweise niedrige Werte realistisch. (Der Kunde geht
+zur Konkurrenz.) Bei technischen Hotlines und Störungsstellen sind üblicherweise sehr hohe
+Werte (nahe 100%) üblich, da der Kunde mit einer sehr hohen Wahrscheinlichkeit nicht
+endgültig aufgeben wird, so lange sein Problem nicht gelöst ist.
+</p>
+
+<h3>Kundentyp-Änderung bei Wiederholung</h3>
+<p>
+Normalerweise behalten Kunden ihren Typ bei einem neuen Anrufversuch. Über die Schaltflächen
+rechts neben den Eingabefeldern kann jedoch eingestellt werden, dass ein Kunden seinen
+Typ bei einem wiederholten Anrufversuch wechselt. Mit welcher Rate ein Wechsel in
+welchen Kundentyp erfolgt, kann in dem über die vier Schaltflächen erreichbaren
+Dialogen eingestellt werden.
+</p> 
+
+<h2>Dialogseite &nbsp;<img src="../images/arrow_redo.png">&nbsp; "Wiederholabstände"</h2>
+<p>
+Gemäß der auf dieser Seite einstellbaren Verteilung der Wiederholabstände wird für jeden
+Kunden, der blockiert wird oder aber das Warten vorzeitig aufgibt und sich vornimmt,
+später einen weiteren Versuch zu unternehmen, ein Abstand bestimmt, nach dem er
+einen erneuten Anruf tätigt.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/arrow_right.png">&nbsp; "Weiterleitungen"</h2>
+<p>
+Es kann vorkommen, dass das Anliegen eines Kunden von einem Agenten nicht vollständig
+abgearbeitet werden konnte (wenn der Agent z.B. nur über Informationen zu Verträgen hat,
+der Kunde jedoch mit Fragen zu Verträgen und zu technischen Realisierung anruft).
+In diesem Fall wird der Kunde nach seinem ersten Gespräch zu einem weiteren
+Agenten, der für andere Themengebiete geschult ist, weitergeleitet. Üblicherweise
+wird in der Simulation für jedes Themengebiet (welches in der Realität häufig vorab
+durch einen Sprachcomputer abgefragt wird) ein eigener Kundentyp angelegt. Bei einer
+Weiterleitung muss in diesem Fall dann einfach nur der Kundentyp (z.B. von
+"Kunden mit kaufmännischen Fragen" zu "Kunden mit technischen Fragen") geändert werden,
+so dass ab sofort Agenten mit anderen Befähigungsprofilen für ihn zuständig sind.
+</p>
+
+<h3>Wahrscheinlichkeit für eine Weiterleitung</h3>
+<p>
+Über das Eingabefeld Wahrscheinlichkeit für eine Weiterleitung kann eingestellt
+werden, mit welcher Wahrscheinlichkeit ein Kunde des jeweiligen Typs nach einem
+Gespräch weitergeleitet werden soll.
+</p>
+
+<h3>Weiterleitungsraten zu den einzelnen Kundentypen</h3>
+<p>
+In den unter dieser Überschrift angeordneten Eingabefelder kann eingestellt werden,
+wie sich der Typ eines Kunden im Falle einer Weiterleitung ändert. Bei den Werten
+handelt es sich um Raten (also um eine Art unnormierte Wahrscheinlichkeiten), d.h.
+die Werte müssen sich nicht zu 1 aufsummieren, sie müssen nur das Verhältnis der
+Werte zu einander widergeben. Erfolgt eine Weiterleitung eines Kunden des Typs A
+z.B. in einem 1/3 der Fälle zu Typ B und in 2/3 der Fälle zu Typ C, so könnten in
+die ensprechenden Felder die Werte 1 und 2, aber genauso 0,333 und 0,666 eingetragen werden.
+</p>
+
+<h3>Agententyp-abhängige Weiterleitungen</h3>
+<p>
+Häufig hängt es nicht nur vom Typ des Kunden ab, ob dieser nach einem Gespräch weitergeleitet
+wird oder nicht, sondern auch von dem Skill-Level des Agenten, der ihn bedient. Wird ein
+Kunde, der Fragen zu mehreren Themen hat, von einem Single-Skill-Agenten bedient, so wird
+er nach dem Gespräch fast sicher weitergeleitet. Wird der Kunde jedoch von einem
+Multi-Skill-Agenten bedient, so dürfte die Weiterleitungswahrscheinlichkeit deutlich
+geringer ausfallen.
+</p>
+<p>
+Über den Dialog <b>Agententyp-abhängige Weiterleitungen</b> können genau solche
+individuellen Weiterleitungswahrscheinlichkeiten in Abhängigkeit des Skill-Levels
+des bedienenden Agenten definiert werden. Ist für ein Skill-Level keine Sonderregel
+definiert, so gelten die normalen Weiterleitungsregeln. Nur wenn für einen
+Skill-Level das Auswahlfeld <b>Sonderregeln für diesen Skill-Level aktivieren</b>
+angewählt ist, gelten die spezifischen, unter diesem Auswahlfeld anzugebenden
+Sonderregeln.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/arrow_divide.png">&nbsp; "Wiederanrufwahrscheinlichkeiten"</h2>
+<p>
+Es kann vorkommen, dass ein Kunde trotzdem er erfolgreich ein Gespräch
+(oder weiterleitungsbedingt sogar mehrere Gespräche) geführt hat, nach
+einer gewissen Zeit einen weiteren Anrfuf startet. Auf dieser Dialogseite
+kann eingestellt werden, mit welcher Wahrscheinlichkeit dies bei Kunden
+des gewählten Typs passiert und mit welchen Raten sich dabei der Kundentyp
+wie verändert.
+</p>
+
+<h3>Wahrscheinlichkeit für einen Wiederanruf</h3>
+<p>
+Über das Eingabefeld Wahrscheinlichkeit für einen Wiederanruf kann eingestellt
+werden, mit welcher Wahrscheinlichkeit ein Kunde des jeweiligen Typs nach einem
+erfolgreich beendeten Gespräch (bzw. weiterleitungsbedingt einer erfolgreich
+beendenten Gesprächsserie) einen neuen Anruf startet.
+</p>
+
+<h3>Änderung des Kundentyps bei einem Wiederanruf</h3>
+<p>
+In den unter dieser Überschrift angeordeneten Eingabefelder kann eingestellt werden,
+wie sich der Typ eines Kunden im Falle eines Wiederanrufs ändert. Bei den Werten
+handelt es sich um Raten (also um eine Art unnormierte Wahrscheinlichkeiten), d.h.
+die Werte müssen sich nicht zu 1 aufsummieren, sie müssen nur das Verhältnis der
+Werte zu einander widergeben. Erfolgt eine Kundentypänderung eines Kunden des Typs A
+z.B. in einem 1/3 der Fälle zu Typ B und in 2/3 der Fälle zu Typ C, so könnten in
+die ensprechenden Felder die Werte 1 und 2, aber genauso 0,333 und 0,666 eingetragen werden.
+</p>
+
+<h3>Agententyp-abhängige Wiederanrufregeln</h3>
+<p>
+Häufig hängt es nicht nur vom Typ des Kunden ab, ob dieser nach einem Gespräch einen
+weiteren Anruf startet oder nicht, sondern auch von dem Skill-Level des Agenten, der ihn
+bedient.
+</p>
+
+<p>
+Über den Dialog <b>Agententyp-abhängige Wiederanrufe</b> können genau solche
+individuellen Wiederanrufwahrscheinlichkeiten in Abhängigkeit des Skill-Levels
+des bedienenden Agenten definiert werden. Ist für ein Skill-Level keine Sonderregel
+definiert, so gelten die normalen Wiederanrufssregeln. Nur wenn für einen
+Skill-Level das Auswahlfeld <b>Sonderregeln für diesen Skill-Level aktivieren</b>
+angewählt ist, gelten die spezifischen, unter diesem Auswahlfeld anzugebenden
+Sonderregeln.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/arrow_divide.png">&nbsp; "Wiederanrufabstände"</h2>
+<p>
+Gemäß der auf dieser Seite einstellbaren Verteilung der Wiederanrufabstände wird für jeden
+Kunden, der nach einem erfolgreichen Gespräch später dennoch einen neuen Anruf startet,
+ein Abstand bestimmt, nach dem er einen erneuten Anruf tätigt.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/calculator.png">&nbsp; "Score"</h2>
+<p>
+Zur Bestimmung, welcher wartende Kunde jeweils als nächstes einem passenden freien Agenten
+zugewiesen werden soll, wird die sogenannte Kunden-Score bestimmt. Die Kunden-Score ist die
+Summe aus zwei oder drei Werten: Der Basis-Score, die durch das Warten erworbenen Score sowie
+ggf. einem zusätzlichen Scorewert für Weiterleitungen.
+</p>
+
+<h3>Basis-Score der Kundenklasse</h3>
+<p>
+Jeder Anrufer des betrachteten Kundentyps erhält direkt zu Beginn seiner Wartezeit
+diesen Scorewert. Je höher dieser Wert, desto höher fällt die initiale Score des
+Anrufers aus und desto schneller gelangt er zu einem Agenten.
+</p>
+
+<h3>Zusätzlicher Scorewert pro Wartesekunde</h3>
+<p>
+Um ein gewisses Maß an Wartegerechtigkeit herzustellen, kann der Scorewert eines Kunden
+pro Wartesekunde erhöht werden. Über dieses Eingabefeld kann eingestellt werden, um wieviele
+Punkte der Scorewert pro Wartesekunde erhöht werden soll. D.h. über dieses Feld kann
+die Gewichtung von Basis-Score zu Wartezeit eingestellt werden.
+</p>
+
+<h3>Zusätzlicher Scorewert bei Weiterleitungen</h3>
+<p>
+Da Kunden, die weitergeleitet werden, die Warteschlange bereits einmal durchlaufen
+haben, ist es häufig erwünscht, dass diese durch einen höheren Scorewert bevorzugt
+werden und somit früher zu einem Agenten gelangen, ohne noch einmal eine vollständige
+Wartezeit zu durchlaufen. Durch einen hohen Wert in diesem Eingabefeld lässt sich
+genau dieses Verhalten erreichen.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/money_euro.png">&nbsp; "Kosten"</h2>
+
+<p>
+Auf dieser Dialogseite kann eingestellt werden, welche (möglicherweise ideellen)
+Kosten pro Warteabbruch und pro Wartesekunde eines Kunden dieses Typs zu verbuchen
+sind und welcher (wiederum möglicherweise ideelle) Gewinn pro erfolgreich bedientem
+Kunden dieses Typs zu verbuchen sein soll.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/clock.png">&nbsp; "Service-Level"</h2>
+
+<p>
+Auf dieser Dialogseite kann eingestellt werden, ob bei der Erfassung der Statistikdaten
+während der Simulation für diesen Kundentyp die globale Vorgabe, welcher Service-Level
+einzuhalten ist, verwendet werden soll oder ob für diesen Kundentyp abweichend eine
+andere Zeitschwelle, an der die Service-Level-Zählung erfolgen soll, verwendet werden soll.
+</p>
+
+</body>
+</html>
+  

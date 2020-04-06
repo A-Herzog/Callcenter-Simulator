@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Event-driven simulation</title>
+</head>
+
+<body>
+
+<h1>Event-driven simulation</h1>
+
+<p>
+In an event-driven stochastic simulator customer arrivals are generated randomly in accordance
+to a predefined distribution. These virtual customers are served by virtual agents, which are
+defined by their needed holding time distributions etc. This means a corresponding simulator
+is essentially a simplified version of the reality.
+</p>
+
+<h2>Possibilities when using event-driven stochastic simulation</h2>
+<p>
+In principle in a simulation model the impact of all changes to the system
+which can be done to the real system can be examined. Thus one can examine
+in a simple (and low-cost) way the impact of changes to the number of agents
+or other allocation strategies of customers to agents.
+</p>
+
+<h2>Limitations when using event-driven stochastic simulation</h2>
+<ul class="big">
+<li><b>Accuracy of the input data</b><br>
+In general, the results of a simulation can be at most as good as
+the input data. If the holding times, the arrival rates, the waiting
+time tolerances, etc. not precisely known, no exact results can be
+expected from the simulation. - However, this is often not necessary.
+The main task of simulation is not to predict the reality at 100%, but
+to offer qualitatively assess of the impact of changes to the system.
+Thus, the simulator may not meets the actual accessibility, which occurs
+after the change of customer prioritization, perfectly, but it provides
+a very reliable statement as to whether the new strategy is better or
+worse than the previous.
+</li>
+<li><b>Output of statistical averages</b><br>
+During the simulation a number of different days generated on basis of the
+given source data probability distributions are processed. The result,
+which is ouputed at the end of the simulation, is the average over all
+these specific days. Therefore, it is not to be expected that the simulator
+exactly returns the measured results that occurred on a particular day,
+even if the exact distributions of customer arrivals, the service times
+etc. are used! Very probably, however, the simulator provides values that
+will arise as average values over many days. Therefore it would be a
+mistake to assume that the simulation results generally would not apply,
+because the measured results for a particular day are not met exactly.
+If a dice simulator reports that the average value is 3.5, this also does
+not mean that the next roll of the dice will be a 3.5!
+</li>
+</ul>
+
+</body>
+</html>
+  

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dokumentation der Callcenter Simulator Dateiformate - Optimierer-Einstellungen</title>
+</head>
+
+<body>
+
+<h1>Dokumentation der Callcenter Simulator Dateiformate - Optimierer-Einstellungen</h1>
+
+<a href="Dateiformate.html">Zurück zur Übersicht über alle Dateiformate</a>
+
+<h2>Datei-Kopf</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE OptimiererEinstellungen SYSTEM "CallcenterSimulator_de.dtd"&gt;</tt>
+</p>
+
+<p>Das Basis-Element für Optimierer-Einstellungen-Dateien heißt <tt>&lt;OptimiererEinstellungen&gt;</tt>.</p>
+
+<h2>Angaben zur Optimierung</h2>
+
+<p>
+Jede Optimierer-Einstellungen-Datei muss von jedem der folgenden Elemente, sofern nicht anders angegeben, jeweils
+genau eins enthalten:
+<ul class="big">
+  <li><tt>&lt;Optimierung-Eigenschaft&gt;</tt>: Dieses Element kann als Inhalt in Abhängigkeit davon, welche
+  Größe optimiert werden soll, einen der folgenden Werte annehmen:
+  <tt>Erreichbarkeit</tt>, <tt>Erreichbarkeit(Kundenbasis)</tt>, <tt>Wartezeit</tt>, <tt>Wartezeit(Kundenbasis)</tt>,
+  <tt>Verweilzeit</tt>, <tt>Verweilzeit(Kundenbasis)</tt>, <tt>ServiceLevel(Anrufbasis)</tt>, <tt>ServiceLevel(Anrufbasis;Alle)</tt>, <tt>ServiceLevel(Kundenbasis)</tt>, <tt>ServiceLevel(Kundenbasis;Alle)</tt> oder <tt>Auslastung</tt>.</li>
+  <li><tt>&lt;Optimierung-Wert&gt;</tt>:
+  In Abhängigkeit von dem Wert in dem Element <tt>&lt;Optimierung-Eigenschaft&gt;</tt> muss in diesem Element eine
+  Wahrscheinlichkeit oder eine Zeit angegeben werden.</li>
+  <li><tt>&lt;Optimierung-WertMaximum&gt;</tt>:
+  Über dieses optionale Element kann eine zweite Grenze für den zu optimierende Größe festgelegt werden.
+  Bei der Optimierung wird die Agentenzahl zunächst so lange erhöhe, bis die Primärgrenze eingehalten wird.
+  Danach wird ggf. die Agentenzahl wieder reduziert, um diese sekundäre Grenze einzuhalten.
+  </li>
+  <li><tt>&lt;Optimierung-Intervalle&gt;</tt>: Dieses Element kann als Inhalt einen der folgenden Werte annehmen:
+  <ul>
+    <li><tt>Durchschnitt</tt>: Der Zielwert muss lediglich im Durchschnitt über den Tag erreicht werden. Dies bedeutet, dass allen Anrufern dasselbe
+	Gewicht beigemessen wird.</li>
+    <li><tt>Einzeln</tt>: Der Zielwert muss in jedem Halbstundenintervall erreicht werden. Dies bedeuet, dass auch in Intervallen mit wenigen Anrufern der
+	Zielwert erreicht werden muss und folglich die Anrufer in derartigen Intervallen einen verhältnismäßig großen Einfluss auf den Optimierungsprozess haben.<li>
+	<tt>Reihenfolge</tt>: Der Zielwert muss in jedem Halbstundenintervall erreicht werden. Darüberhinaus erfolgt die Optimierung intervallweise, d.h. die
+	Agentenzahlen in einem Intervall werden erst dann angepasst, wenn diese in allen vorangegangenen Intervallen bereits erreicht wurde. Durch diese
+	Methode verlängert sich die Zeit für den gesamten Optimierungsprozess erheblich, allerdings wird durch diese Methode auch ausgeschlossen, dass sich
+	die Agentenzahl in einem Intervall nachträglich als zu hoch erweist, weil später noch in einem vorherigen Intervall weitere Agenten hinzugefügt wurden
+	und somit der Übertrag an Kunden in das nächste Intervall verringert wurde.</li>
+  </ul></li>  
+  <li><tt>&lt;Optimierung-Gruppen&gt;</tt>: Dieses Element kann als Inhalt einen der folgenden Werte annehmen:
+  <ul>
+    <li><tt>Durchschnitt</tt>: Die Zielgröße muss im Durchschnitt über alle Kundengruppen bzw. Callcenter erreicht werden.</li>
+    <li><tt>Alle</tt>: Die Zielgröße muss von jeder einzelnen Kundengruppen bzw. jedem Callcenter erreicht werden.</li>
+    <li><tt>Auswahl</tt>: Die Zielgröße muss von denen per <tt>&lt;Optimierung-Gruppe&gt;</tt>-Elementen angegebenen
+	Kundengruppe bzw. Callcentern erreicht werden.</li>
+  </ul></li>
+  <li><tt>&lt;Anpassung-Wert&gt;</tt>:
+  Gibt den Prozentwert an, um wie viel die Agentenanzahl in jedem Optimierungsschritt in jedem anzupassenden Intervall
+  angehoben werden soll.</li>
+  <li><tt>&lt;Anpassung-Gruppen&gt;</tt>: Dieses Element kann als Inhalt einen der folgenden Werte annehmen:
+  <ul>
+    <li><tt>Alle</tt>: Es werden in jedem Optimierungsschritt jeweils alle Agentengruppen in den entsprechende Intervallen angepasst.</li>
+    <li><tt>Auswahl</tt>: Es werden in jedem Optimierungsschritt jeweils die in den <tt>&lt;Anpassung-Gruppe&gt;</tt>-Elementen angegebenen 
+	Agentengruppen in den entsprechende Intervallen angepasst.</li>
+  </ul></li>
+  <li><tt>&lt;Optimierung-InitialerBestand&gt;</tt>: Dieses Element ist optional.  
+  Das <tt>&lt;Optimierung-InitialerBestand&gt;</tt>-Element kann beliebig viele
+  <tt>&lt;Optimierung-InitialerBestandKundentyp&gt;</tt>-Elemente beinhalten. Jedes
+  <tt>&lt;Optimierung-InitialerBestandKundentyp&gt;</tt>-Element muss ein <tt>Name</tt>-Attribut
+  besitzen, das angibt auf welchen Kundentyp sich das Element bezieht und muss als Inhalt eine nichtnegative
+  ganze Zahl enthalten, die angibt, wie viele zusätzliche Erstanrufer als manueller Übertrag zu dem
+  Simulationstag hinzugefügt werden sollen.</li>
+  <li><tt>&lt;Einschraenkung-Gruppe&gt;</tt>: Dieses Element ist optional.
+  Es können beliebig viele <tt>&lt;Einschraenkung-Gruppe&gt;</tt> existieren. Jedes muss die drei
+  Attribute <tt>Name</tt>, <tt>Minimum</tt> und <tt>Maximum</tt> besitzen. Jedes <tt>&lt;Einschraenkung-Gruppe&gt;</tt>-Element
+  beschreibt die Einschränkungen bei der Optimierung bzgl. der Agentenanzahlen in der über das <tt>Name</tt>-Attribut
+  angegebenen Agentengruppe. <tt>Minimum</tt> und <tt>Maximum</tt> müssen jeweils 48 durch ";" getrennte Werte enthalten,
+  die die Minimal- und Maximalanzahl an Agenten pro Halbstundenintervall angeben.</li>
+</ul>
+
+<p>
+Optional kann in dem <tt>&lt;OptimiererEinstellungen&gt;</tt>-Element ein <tt>&lt;Optimierung-Optimierungsintervalle&gt;</tt>-Element
+enthalten sein. Wenn dieses Element existiert, so muss es 48 durch ";" getrennte Werte, die entweder "0" oder "1" sind,
+enthalten. Diese Werte geben an, welche Intervalle bei der Optimierung berücksichtigt werden sollen. Fehlt dieses Element,
+so werden alle Intervalle berücksichtigt.
+</p>
+
+<p>
+Ist in dem <tt>&lt;Optimierung-Gruppen&gt;</tt>-Element der Inhalt <tt>Auswahl</tt> angegeben, so müssen
+Elemente des Typs <tt>&lt;Optimierung-Gruppe&gt;</tt> angelegt werden, die angeben, welche Kundengruppen bzw. Callcenter
+den Zielwert erreichen sollen. (Für jede zu berücksichtigende Kundengruppe bzw. jedes zu berücksichtigende Callcenter muss
+jeweils ein <tt>&lt;Optimierung-Gruppe&gt;</tt>-Element angelegt werden, welches als Inhalt den Namen einer
+Kundengruppe bzw. des Calcenters enthält.)
+</p>
+
+<p>
+Ist in dem <tt>&lt;Anpassung-Gruppen&gt;</tt>-Element der Inhalt <tt>Auswahl</tt> angegeben, so müssen
+Elemente des Typs <tt>&lt;Anpassung-Gruppe&gt;</tt> angelegt werden, die angeben, welche Agentengruppen
+jeweils verändert werden sollen. (Für jede zu ändernde Agentengrtuppe muss jeweils ein <tt>&lt;Anpassung-Gruppe&gt;</tt>-Element
+angelegt werden, welches als Inhalt die Nummer der Agentengruppe innerhalb des Callcenters (1-basierend) gefolgt von einem
+Bindestrich und dem Namen des Callcenters enthält.)
+</p>
+
+<p>
+Außerdem kann optional in dem <tt>&lt;OptimiererEinstellungen&gt;</tt>-Element ein <tt>&lt;Optimierung-Uebertrag&gt;</tt>-Element
+existieren. Dieses <tt>&lt;Optimierung-Uebertrag&gt;</tt>-Element kann optional das Attribut <tt>StatistikDatei</tt> besitzen,
+welches angibt, aus welcher Datei der Kundenübertrag vom Vortrag geladen werden soll. (Existiert das <tt>&lt;Optimierung-Uebertrag&gt;</tt>-Element
+nicht oder besitzt es kein <tt>StatistikDatei</tt>-Attribut, so erfolgt kein Kundenübertrag.) Desweiteren kann das
+<tt>&lt;OptimiererEinstellungen&gt;</tt>-Element beliebig viele <tt>&lt;VerknuepftUebertrag&gt;</tt>-Unterelemente besitzen.
+Siehe dazu die <a href="DateiformateFormatVerknuepfteSimulation.html">Dokumentation</a> von <tt>&lt;VerknuepftUebertrag&gt;</tt>-Element bei verknüpften Simulationsmodellen.
+</p>
+
+</body>
+</html>
+  

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Load client data"</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/user.png">&nbsp;
+Daten &gt; Load fresh calls from table
+</div>
+
+<h1>Dialog "Load client data"</h1>
+
+<p>
+The "Load client data" dialog allows to load the fresh calls distribution all client types in a call center from a table.
+</p>
+
+<p>
+At first in the field <b>Table file</b> the name of a file from which the data is to be loaded
+has to be specified. The combo boxes below <b>Client type</b>
+allows to select which table row to use for which client type.
+The simulator already tries to do a sensible default reference to the column headings in the table file.
+</p>
+
+<h2>Structure of the table file</h2>
+
+<p>
+To load the fresh calls distribution of all client types of a call center from a spreadsheet file,
+it has to have a certain structure. The fresh calls distribution for a client type consists of
+48 numbers that indicate how many clients will arrive in each half-hour interval.
+These 48 numbers has to be in the table in 48 contiguous rows of a column.
+In each column, the data of an individual client type can be stored.
+If multiple client types should be loaded at once, the table has to contain multiple data columns.
+The columns do not need to be next to each other but all column data areas have to start in the same line.
+All non-empty rows above the first row containing a numbers are interpreted as column headers.
+The column headers are displayed below the caption <b>Table column</b>. If there is no non-number
+value cell above the 48 numerical cells, the column is names like the column letter
+(e.g. "Column A", "Column B" etc.).
+</p>
+
+</body>
+</html>
+  

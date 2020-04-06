@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Funktionsweise ereignisorientierter Simulation</title>
+</head>
+
+<body>
+
+<h1>Funktionsweise ereignisorientierter Simulation</h1>
+
+<p>
+In einem ereignisorientierten stochastischen Simulator werden Kundenankünfte gemäß der vorgegebenen
+Verteilung der Anrufer zufällig erzeugt. Diese virtuellen Kunden werden von virtuellen Agenten, von
+denen ebenfalls die Verteilung der Bedienzeiten usw. vorgegeben sind, bedient. D.h. ein entsprechender
+Simulator stellt im Wesentlichen eine vereinfachte Form der Realität dar.
+</p>
+
+<h2>Möglichkeiten ereignisorientierter stochastischer Simulation</h2>
+<p>
+In einem Simulationsmodell können prinzipiell die Auswirkungen aller Änderungen am System, die auch in
+der Realität möglich sind, untersucht werden. So kann auf einfache (und vor allem kostengünstige) Weise
+untersucht werden, welche Auswirkungen eine veränderte Anzahl an Agenten oder eine andere Zuweisungsstrategie
+der Kunden zu den Agenten hätte.
+</p>
+
+<h2>Grenzen ereignisorientierter stochastischer Simulaton</h2>
+<ul class="big">
+<li><b>Genauigkeit der Eingangsdaten</b><br>
+Generell gilt, dass die Ergebnisse einer Simulation höchstens so gut sein können, wie
+die Eingangsdaten. Sind die Bedienzeiten, die Ankunftsrate, die Wartezeittoleranz usw.
+nicht exakt bekannt, so können auch keine exakten Ergebnisse in der Simulation erwartet
+werden. - Dies ist jedoch auch vielfach nicht notwendig. Die Hauptaufgabe von Simulation ist
+es nicht, die Realität 100%ig vorherzusagen, sondern vielmehr qualitativ abzuschätzen, welche
+Auswirkungen Änderungen am System haben. So trifft der Simulator vielleicht die
+tatsächliche Erreichbarkeit, die sich nach der Änderung der Kundenpriorisierung einstellt
+nicht, aber er liefert eine sehr verlässliche Aussage darüber, ob die neue Strategie
+besser oder schlechter ist als die bisherige.
+</li>
+<li><b>Ausgabe von statistischen Mittelwerten</b><br>
+Während der Simulation werden eine Vielzahl an ganz verschiedenen Tagen, die jedoch den
+als Quelldaten gegebenen Wahrscheinlichkeitsverteilungen entsprechen, generiert und simuliert.
+Das Ergebnis, welches am Ende der Simulation ausgegeben wird, ist der Mittelwert über
+all diese konkreten Tage. Daher ist auch nicht zu erwarten, dass der Simulator die
+Messergebnisse, die sich an einem bestimmten Tag ergeben haben, exakt zurückliefert, selbst wenn
+man ihn mit beliebig genauen Verteilungen über die Kundenankünfte, die Bedienzeiten usw. füttert!
+Sehr wohl liefert der Simulator jedoch Werte, die sich auch als Messwerte im Mittel über viele
+Tage ergeben haben. Daher ist es also ein Fehler anzunehmen, dass die Simulationsergebnisse
+allgemein nicht zutreffend wären, nur weil die Messergebnisse eines bestimmten Tages nicht
+getroffen werden. Wenn ein Würfel-Simulator meldet, dass sich als Mittelwert beim Würfeln
+3,5 ergibt, so heißt dies nicht, dass beim nächsten Wurf des Würfels, von dem die Wahrscheinlichkeiten
+in der Simulation ableiten, auch eine 3,5 fällt!
+</li>
+</ul>
+
+</body>
+</html>
+  

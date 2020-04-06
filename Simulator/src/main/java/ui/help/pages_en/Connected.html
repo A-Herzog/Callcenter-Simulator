@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Connected simulation with carrying over canceled calls</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/calendar.png">&nbsp;
+Simulation &gt; Connected simulation
+</div>
+
+<h1>Connected simulation with carrying over canceled calls</h1>
+
+<p>
+In the connected simulation several days with individual characteristics
+are simulated successively and the clients canceling one day are partially
+carried over to the next day. In this way the movement of an overload wave
+from one day to the next day can be reproduced in the simulation.
+</p>
+
+<p>
+This function is also available via the <a href="Parameter.html">command line parameters</a>.
+</p>
+
+<h2>Base folder</h2>
+<p>
+Here you can specify any directory. If the model and statistic files listed below
+are stored in the directory the file names are displayed without the full path name.
+</p>
+
+<h2>Statistic for carry over into day 1 (optional)</h2>
+<p>
+On the connected simulation client request that are waiting over 0 clock
+(i.e. waiting mails) are automatically carried over to the next day
+(including their previous waiting time).
+In order to be able to take client data into the first day of the simulation,
+in this field a statistic file can be specified containing data from the
+day before the first simulation day.
+</p>
+
+<h2>Additional manual carry over into day 1</h2>
+<p>
+Additionally or alternatively to carrying over clients into day 1 by using
+a statistic file containing data from the day before the first simulation day
+here you can define some manual carry over into the first simulation day.
+</p>
+
+</body>
+</html>
+  

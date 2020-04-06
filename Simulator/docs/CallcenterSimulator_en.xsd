@@ -1,0 +1,931 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://cs.highfives.io" xmlns="https://cs.highfives.io" elementFormDefault="qualified">
+
+<!-- Description of the call center model files -->
+
+<xs:element name="CallCenterModel"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="ModelName" type="xs:string"/>
+    <xs:element name="ModelSimulatorVersion" type="xs:string"/>
+    <xs:element name="ModelDescription" type="xs:string"/>
+    <xs:element name="ModelDate" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="ModelMaxQueueLength" type="xs:integer"/>
+    <xs:element name="ModelSimulatedDays" type="xs:integer"/>
+    <xs:element ref="ModelPreferredShiftLength"/>
+	<xs:element ref="ModelMinimalShiftLength" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="ModelServiceLevel" type="xs:integer"/>
+	<xs:element name="ModelProductivity" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="ModelDiseaseRelatedSurchage" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    <xs:element ref="ModelClientType" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="ModelCallCenter" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="ModelSkillLevel" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element ref="ModelThresholds" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="ModelPreferredShiftLength" type="xs:integer"/>
+
+<xs:element name="ModelMinimalShiftLength" type="xs:integer"/>
+
+<xs:element name="ModelClientType"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ClientsFreshCalls"/>
+    <xs:element ref="ClientsScore"/>
+    <xs:choice>
+      <xs:element name="ClientsWaitingTimeToleranceDistribution" type="xs:string"/>
+	  <xs:element name="ClientsWaitingTimeToleranceDistributionLong" type="xs:string"/>
+      <xs:element ref="ClientsWaitingTimeToleranceEstimation"/>
+    </xs:choice>
+    <xs:element ref="ClientsRetry"/>
+    <xs:element ref="ClientsForwarding"/>
+	<xs:element ref="ClientsRecall"  minOccurs="0" maxOccurs="1"/>
+    <xs:element name="YieldPerClient" type="xs:string"/>
+    <xs:element ref="CostPerCaller"/>
+  </xs:sequence>
+  <xs:attribute name="Active"><xs:simpleType>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType></xs:attribute>
+  <xs:attribute name="BlocksLine"><xs:simpleType>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType></xs:attribute>
+  <xs:attribute name="ServiceLevel" type="xs:string"/>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ClientsFreshCalls"><xs:complexType>
+  <xs:sequence>
+	<xs:element ref="FreshCallsCount" minOccurs="1" maxOccurs="1"/>
+    <xs:element name="FreshCallsDistribution" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="FreshCallsCount"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="StandardDeviation" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="ClientsScore"><xs:complexType>
+  <xs:attribute name="Base" type="xs:string" use="required"/>
+  <xs:attribute name="PerWaitingSecond" type="xs:string" use="required"/>
+  <xs:attribute name="Forwarding" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ClientsWaitingTimeToleranceEstimation"><xs:complexType>
+  <xs:attribute name="WaitingTime" type="xs:string" use="required"/>
+  <xs:attribute name="CancelRate" type="xs:string" use="required"/>
+  <xs:attribute name="Correction" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ClientsRetry"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="RetryIntervalDistribution" type="xs:string"/>
+    <xs:element name="RetryProbabilityAfterBeingBlockedFirstRetry" type="xs:string"/>
+    <xs:element name="RetryProbabilityAfterBeingBlockedFurtherRetrys" type="xs:string"/>
+    <xs:element name="RetryProbabilityAfterCanceledFirstRetry" type="xs:string"/>
+    <xs:element name="RetryProbabilityAfterCanceledFurtherRetrys" type="xs:string"/>
+    <xs:element ref="RetryClientTypeAfterBeingBlockedFirstRetry"/>
+    <xs:element ref="RetryClientTypeAfterBeingBlockedFurtherRetrys"/>
+    <xs:element ref="RetryClientTypeAfterCanceledFirstRetry"/>
+    <xs:element ref="RetryClientTypeAfterCanceledFurtherRetrys"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="RetryClientTypeAfterBeingBlockedFirstRetry"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="RetryNewClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="RetryClientTypeAfterBeingBlockedFurtherRetrys"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="RetryNewClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="RetryClientTypeAfterCanceledFirstRetry"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="RetryNewClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="RetryClientTypeAfterCanceledFurtherRetrys"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="RetryNewClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="RetryNewClientType"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="ClientsForwarding"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ForwardingNewClientType" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="ForwardingSkillLevelDepending" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="Probability" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ForwardingNewClientType"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="ForwardingSkillLevelDepending"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ForwardingNewClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="SkillLevel" type="xs:string" use="required"/>
+  <xs:attribute name="Probability" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ClientsRecall"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="RecallIntervalDistribution" type="xs:string"/>
+    <xs:element ref="RecallNewClientType" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="RecallSkillLevelDepending" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="Probability" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="RecallNewClientType"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="RecallSkillLevelDepending"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="RecallNewClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="SkillLevel" type="xs:string" use="required"/>
+  <xs:attribute name="Probability" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="CostPerCaller"><xs:complexType>
+  <xs:attribute name="Canceling" type="xs:string" use="required"/>
+  <xs:attribute name="WaitingSecond" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ModelCallCenter"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="CallCenterAgentsGroup" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="CallCenterTechnicalFreeTime"/>
+    <xs:element name="CallCenterScore" type="xs:string"/>
+    <xs:element ref="CallCenterAgentsScore"/>
+    <xs:element ref="CallCenterMinimumWaitingTime" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element name="ModelProductivity" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="ModelDiseaseRelatedSurchage" type="xs:string" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+  <xs:attribute name="Active"><xs:simpleType>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType></xs:attribute>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="CallCenterTechnicalFreeTime"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:integer">
+      <xs:attribute name="IsWaitingTime" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="CallCenterAgentsScore"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="AgentsScoreFactorSinceLastCall" type="xs:string"/>
+    <xs:element name="AgentsScoreFactorFreeTimePart" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="CallCenterAgentsGroup"><xs:complexType>
+  <xs:sequence>
+    <xs:choice>
+	  <xs:sequence>
+        <xs:element name="AgentsGroupCount" type="xs:string"/>
+        <xs:element name="AgentsGroupWorkingTimeBegin" type="xs:string"/>
+        <xs:element name="AgentsGroupWorkingTimeEnd" type="xs:string"/>
+      </xs:sequence>
+	  <xs:choice>
+        <xs:element ref="AgentsGroupDistribution"/>
+      </xs:choice>
+      <xs:choice>
+        <xs:element ref="AgentsGroupByClientArrivals"/>
+      </xs:choice>
+    </xs:choice>
+    <xs:element name="AgentsGroupSkillLevel" type="xs:string"/>
+    <xs:element name="CostsPerHour" type="xs:string"/>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="CostsPerClientType"/>
+    </xs:choice>
+    <xs:element ref="ModelPreferredShiftLength" minOccurs="0" maxOccurs="1"/>
+	<xs:element ref="ModelMinimalShiftLength"  minOccurs="0" maxOccurs="1"/>
+	<xs:element name="ModelProductivity" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="ModelDiseaseRelatedSurchage" type="xs:string" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+  <xs:attribute name="Active"><xs:simpleType>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType></xs:attribute>
+</xs:complexType></xs:element>
+
+<xs:element name="AgentsGroupDistribution"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="LastShiftIsOpenEnd"><xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="0"/>
+          <xs:enumeration value="1"/>
+        </xs:restriction>
+      </xs:simpleType></xs:attribute>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="AgentsGroupByClientArrivals"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ByClientArrivalsGroup" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="AgentsHalfHours" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ByClientArrivalsGroup"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Rate" type="xs:string" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="CostsPerClientType"><xs:complexType>
+  <xs:attribute name="ClientType" type="xs:string" use="required"/>
+  <xs:attribute name="PerCall" type="xs:string" use="required"/>
+  <xs:attribute name="PerMinute" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+	
+<xs:element name="CallCenterMinimumWaitingTime"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="MinimumWaitingTimeClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="MinimumWaitingTimeClientType"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+	
+<xs:element name="ModelSkillLevel"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="SkillLevelClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="SkillLevelClientType"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="SkillLevelClientTypeHoldingTimeAddOn" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element name="SkillLevelClientTypeHoldingTimeDistribution" minOccurs="1" maxOccurs="unbounded"/>
+    <xs:element name="SkillLevelClientTypePostProcessingTimeDistribution" minOccurs="1" maxOccurs="unbounded"/>
+    <xs:element name="SkillLevelClientTypeScore" type="xs:string"/>
+  </xs:sequence>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="SkillLevelClientTypeHoldingTimeAddOn"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Interval" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="SkillLevelClientTypeHoldingTimeDistribution"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Interval" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="SkillLevelClientTypePostProcessingTimeDistribution"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Interval" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="ModelThresholds"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ThresholdData" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="ThresholdData"><xs:complexType>
+  <xs:attribute name="Type" type="xs:string" use="required"/>
+  <xs:attribute name="Intervals" type="xs:string" use="required"/>
+  <xs:attribute name="Grpups" type="xs:string" use="required"/>
+  <xs:attribute name="WarningYellow" type="xs:string" use="required"/>
+  <xs:attribute name="WarningRed" type="xs:string" use="required"/>
+  <xs:attribute name="Value" type="xs:string"/>
+  <xs:attribute name="Status" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<!-- Description of the statistic files -->
+
+<xs:element name="Statistic"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="CallCenterModel"/>
+    <xs:element name="StatisticRunDate" type="xs:string"/>
+    <xs:element name="StatisticUser" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+	<xs:element name="StatisticServer" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="StatisticServerOS" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="StatisticRunTime" type="xs:integer"/>
+    <xs:element name="StatisticThreads" type="xs:integer"/>
+    <xs:element name="StatisticDays" type="xs:integer"/>
+    <xs:element name="StatisticEvents" type="xs:integer"/>
+    <xs:element ref="StatisticClients" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="StatisticAgents" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element name="StatisticRevenueSummary" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    <xs:element ref="StatisticQueue"/>
+	<xs:element ref="StatisticQueueSummary" minOccurs="0" maxOccurs="unbounded"/>	
+	<xs:element ref="StatisticModelAgents" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="ErlangCWithoutRetry" minOccurs="0" maxOccurs="1"/>
+    <xs:element ref="ErlangCWithRetry" minOccurs="0" maxOccurs="1"/>
+    <xs:element ref="StatisticThresholds" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClients"><xs:complexType>
+  <xs:sequence>    
+    <xs:element ref="StatisticClientsCount"/>
+	<xs:element ref="StatisticClientsSummary" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element ref="StatisticClientsCarryOver"/>
+    <xs:element ref="StatisticClientsWaitingTime"/>
+    <xs:element ref="StatisticClientsHoldingTime"/>
+    <xs:element ref="StatisticClientsCancelTime"/>
+    <xs:element ref="StatisticClientsServiceLevel"/>
+    <xs:element ref="StatisticClientsForwarding"/>
+	<xs:element ref="StatisticClientsRetry"/>
+	<xs:element ref="StatisticClientsRecall"/>
+    <xs:element ref="StatisticClientsWaitingTimeDistribution"/>
+    <xs:element ref="StatisticClientsHoldingTimeDistribution"/>
+    <xs:element ref="StatisticClientsCancelTimeDistribution"/>
+	<xs:element ref="StatisticClientsWaitingTimeDistributionLong"/>
+    <xs:element ref="StatisticClientsHoldingTimeDistributionLong"/>
+    <xs:element ref="StatisticClientsCancelTimeDistributionLong"/>
+    <xs:element ref="StatisticCallsCount"/>
+    <xs:element ref="StatisticCallsWaitingTime"/>
+    <xs:element ref="StatisticCallsHoldingTime"/>
+    <xs:element ref="StatisticCallsCancelTime"/>
+    <xs:element ref="StatisticCallsServiceLevel"/>
+    <xs:element ref="StatisticCallsForwarding"/>
+	<xs:element ref="StatisticCallsRetry"/>
+    <xs:element ref="StatisticCallsWaitingTimeDistribution"/>
+    <xs:element ref="StatisticCallsHoldingTimeDistribution"/>
+    <xs:element ref="StatisticCallsCancelTimeDistribution"/>
+	<xs:element ref="StatisticCallsWaitingTimeDistributionLong"/>
+    <xs:element ref="StatisticCallsHoldingTimeDistributionLong"/>
+    <xs:element ref="StatisticCallsCancelTimeDistributionLong"/>
+    <xs:element ref="StatisticConfidence"/>
+    <xs:element ref="StatisticCallsCosts"/>
+  </xs:sequence>
+  <xs:attribute name="Name" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsSummary"><xs:complexType>
+  <xs:attribute name="Range" type="xs:string"/>
+  <xs:attribute name="ClientsAccessibility" type="xs:string" use="required"/>
+  <xs:attribute name="CallsAccessibility" type="xs:string" use="required"/>
+  <xs:attribute name="ClientsAverageWaitingTime" type="xs:string" use="required"/>
+  <xs:attribute name="CallsAverageWaitingTime" type="xs:string" use="required"/>
+  <xs:attribute name="ClientsAverageResidenceTime" type="xs:string"/>
+  <xs:attribute name="CallsAverageResidenceTime" type="xs:string"/>
+  <xs:attribute name="ClientsServiceLevel" type="xs:string" use="required"/>
+  <xs:attribute name="ClientsServiceLevelAll" type="xs:string"/>
+  <xs:attribute name="CallsServiceLevel" type="xs:string" use="required"/>
+  <xs:attribute name="CallsServiceLevelAll" type="xs:string"/>
+  <xs:attribute name="ClientsAverageCancelTime" type="xs:string"/>
+  <xs:attribute name="CallsAverageCancelTime" type="xs:string"/>
+  <xs:attribute name="CallsCombinedAverageWaitingAndCancelTimeTime" type="xs:string"/>
+  <xs:attribute name="ClientsCombinedAverageWaitingAndCancelTimeTime" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsCount"><xs:complexType>
+  <xs:attribute name="Count" type="xs:string" use="required"/>
+  <xs:attribute name="Success" type="xs:string" use="required"/>
+  <xs:attribute name="Blocked" type="xs:string" use="required"/>
+  <xs:attribute name="Canceled" type="xs:string" use="required"/>
+  <xs:attribute name="CarryOver" type="xs:string" use="required"/>
+  <xs:attribute name="CountPerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="SuccessPerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="BlockedPerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="CanceledPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsCarryOver"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="StatisticClientsCanceledPerDay" type="xs:string"/>
+    <xs:element name="StatisticClientsRetryTimesPerDay" type="xs:string"/>
+	<xs:element name="StatisticClientsWaitingTimeTolerancePerDay" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsCount"><xs:complexType>
+  <xs:attribute name="Count" type="xs:string" use="required"/>
+  <xs:attribute name="Success" type="xs:string" use="required"/>
+  <xs:attribute name="Blocked" type="xs:string" use="required"/>
+  <xs:attribute name="Canceled" type="xs:string" use="required"/>
+  <xs:attribute name="CarryOver" type="xs:string" use="required"/>
+  <xs:attribute name="CountPerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="SuccessPerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="BlockedPerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="CanceledPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsWaitingTime"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="SumPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsWaitingTime"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="SumPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsHoldingTime"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="SumPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsHoldingTime"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="SumPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsCancelTime"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="SumPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsCancelTime"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="SumPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsServiceLevel"><xs:complexType>
+  <xs:attribute name="Count" type="xs:string" use="required"/>
+  <xs:attribute name="CountPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsServiceLevel"><xs:complexType>
+  <xs:attribute name="Count" type="xs:string" use="required"/>
+  <xs:attribute name="CountPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsForwarding"><xs:complexType>
+  <xs:attribute name="Count" type="xs:string" use="required"/>
+  <xs:attribute name="CountPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsRetry"><xs:complexType>
+  <xs:attribute name="Count" type="xs:string" use="required"/>
+  <xs:attribute name="CountPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsRecall"><xs:complexType>
+  <xs:attribute name="Count" type="xs:string" use="required"/>
+  <xs:attribute name="CountPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsForwarding"><xs:complexType>
+  <xs:attribute name="Count" type="xs:string" use="required"/>
+  <xs:attribute name="CountPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsRetry"><xs:complexType>
+  <xs:attribute name="Count" type="xs:string" use="required"/>
+  <xs:attribute name="CountPerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsWaitingTimeDistribution"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsWaitingTimeDistribution"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsHoldingTimeDistribution"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsWaitingTimeDistributionLong"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsWaitingTimeDistributionLong"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsHoldingTimeDistributionLong"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsHoldingTimeDistribution"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsCancelTimeDistribution"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsCancelTimeDistribution"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsHoldingTimeDistributionLong"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticClientsCancelTimeDistributionLong"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsCancelTimeDistributionLong"><xs:complexType>
+  <xs:attribute name="Distribution" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticConfidence"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ConfidenceAccessibilityCalls"/>
+	<xs:element ref="ConfidenceAccessibilityClients"/>
+    <xs:element ref="ConfidenceWaitingTime"/>
+    <xs:element ref="ConfidenceServiceLevelCallsSuccess"/>
+	<xs:element ref="ConfidenceServiceLevelCallsAll"/>
+	<xs:element ref="ConfidenceServiceLevelClientsSuccess"/>
+	<xs:element ref="ConfidenceServiceLevelClientsAll"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="ConfidenceAccessibilityCalls"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="Confidence90Min" type="xs:string"/>
+  <xs:attribute name="Confidence90Max" type="xs:string"/>
+  <xs:attribute name="Confidence95Min" type="xs:string"/>
+  <xs:attribute name="Confidence95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ConfidenceAccessibilityClients"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="Confidence90Min" type="xs:string"/>
+  <xs:attribute name="Confidence90Max" type="xs:string"/>
+  <xs:attribute name="Confidence95Min" type="xs:string"/>
+  <xs:attribute name="Confidence95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ConfidenceWaitingTime"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="Confidence90Min" type="xs:string"/>
+  <xs:attribute name="Confidence90Max" type="xs:string"/>
+  <xs:attribute name="Confidence95Min" type="xs:string"/>
+  <xs:attribute name="Confidence95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+	
+<xs:element name="ConfidenceServiceLevelCallsSuccess"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="Confidence90Min" type="xs:string"/>
+  <xs:attribute name="Confidence90Max" type="xs:string"/>
+  <xs:attribute name="Confidence95Min" type="xs:string"/>
+  <xs:attribute name="Confidence95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ConfidenceServiceLevelCallsAll"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="Confidence90Min" type="xs:string"/>
+  <xs:attribute name="Confidence90Max" type="xs:string"/>
+  <xs:attribute name="Confidence95Min" type="xs:string"/>
+  <xs:attribute name="Confidence95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ConfidenceServiceLevelClientsSuccess"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="Confidence90Min" type="xs:string"/>
+  <xs:attribute name="Confidence90Max" type="xs:string"/>
+  <xs:attribute name="Confidence95Min" type="xs:string"/>
+  <xs:attribute name="Confidence95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ConfidenceServiceLevelClientsAll"><xs:complexType>
+  <xs:attribute name="Sum" type="xs:string" use="required"/>
+  <xs:attribute name="SquaresSum" type="xs:string" use="required"/>
+  <xs:attribute name="Confidence90Min" type="xs:string"/>
+  <xs:attribute name="Confidence90Max" type="xs:string"/>
+  <xs:attribute name="Confidence95Min" type="xs:string"/>
+  <xs:attribute name="Confidence95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticCallsCosts"><xs:complexType>
+  <xs:attribute name="Yield" type="xs:string" use="required"/>
+  <xs:attribute name="WaitingTimes" type="xs:string" use="required"/>
+  <xs:attribute name="Cancelations" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticAgents"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="StatisticAgentsSummary"/>
+    <xs:element ref="StatisticAgentsClientType" maxOccurs="unbounded"/>
+    <xs:element ref="StatisticAgentsCosts"/>
+  </xs:sequence>
+  <xs:attribute name="Count" type="xs:string" use="required"/>
+  <xs:attribute name="Name" type="xs:string"/>
+  <xs:attribute name="Type" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticAgentsSummary"><xs:complexType>
+  <xs:attribute name="FreeTime" type="xs:string" use="required"/>
+  <xs:attribute name="TechnicalFreeTime" type="xs:string" use="required"/>
+  <xs:attribute name="HoldingTime" type="xs:string" use="required"/>
+  <xs:attribute name="PostProcessingTime" type="xs:string" use="required"/>
+  <xs:attribute name="FreeTimePerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="TechnicalFreeTimePerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="HoldingTimePerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="PostProcessingTimePerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="FreeTimePart" type="xs:string"/>
+  <xs:attribute name="TechnicalFreeTimePart" type="xs:string"/>
+  <xs:attribute name="HoldingTimePart" type="xs:string"/>
+  <xs:attribute name="PostProcessingTimePart" type="xs:string"/>
+  <xs:attribute name="GrossTime" type="xs:string"/>
+  <xs:attribute name="NetTime" type="xs:string"/>
+  <xs:attribute name="Calls" type="xs:string"/>
+  <xs:attribute name="CallsPerInterval" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticAgentsClientType"><xs:complexType>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+  <xs:attribute name="TechnicalFreeTime" type="xs:string" use="required"/>
+  <xs:attribute name="HoldingTime" type="xs:string" use="required"/>
+  <xs:attribute name="PostProcessingTime" type="xs:string" use="required"/>
+  <xs:attribute name="TechnicalFreeTimePerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="HoldingTimePerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="PostProcessingTimePerInterval" type="xs:string" use="required"/>
+  <xs:attribute name="Calls" type="xs:string"/>
+  <xs:attribute name="CallsPerInterval" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticAgentsCosts"><xs:complexType>
+  <xs:attribute name="Wages" type="xs:string" use="required"/>
+  <xs:attribute name="CostsForCalls" type="xs:string" use="required"/>
+  <xs:attribute name="CostsPerCallMinute" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticQueue"><xs:complexType>
+  <xs:attribute name="Maximum" type="xs:string" use="required"/>
+  <xs:attribute name="Average" type="xs:string" use="required"/>
+  <xs:attribute name="AveragePerInterval" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticQueueSummary"><xs:complexType>
+  <xs:attribute name="Range" type="xs:string" use="required"/>
+  <xs:attribute name="Average" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticModelAgents"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="StatisticModelAgentsSimulation" type="xs:string"/>
+    <xs:element name="StatisticModelAgentsModel" type="xs:string"/>
+    <xs:element name="StatisticModelAgentsWithSurcharge" type="xs:string"/>
+  </xs:sequence>
+  <xs:attribute name="Name" type="xs:string"/>
+  <xs:attribute name="Type" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ErlangCWithoutRetry"><xs:complexType>
+  <xs:attribute name="NumberOfAgents" type="xs:string"/>
+  <xs:attribute name="FreshCalls" type="xs:string"/>
+  <xs:attribute name="ServiceLevel" type="xs:string"/>
+  <xs:attribute name="Success" type="xs:string"/>
+  <xs:attribute name="AverageWaitingTime" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ErlangCWithRetry"><xs:complexType>
+  <xs:attribute name="NumberOfAgents" type="xs:string"/>
+  <xs:attribute name="FreshCalls" type="xs:string"/>
+  <xs:attribute name="Retry" type="xs:string"/>
+  <xs:attribute name="ServiceLevel" type="xs:string"/>
+  <xs:attribute name="Success" type="xs:string"/>
+  <xs:attribute name="AverageWaitingTime" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticThresholds"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ThresholdData" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<!-- Description of the optimizer configuration files -->
+
+<xs:element name="OptimizerSetup"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="Optimizer-Property" type="xs:string"/>
+    <xs:element name="Optimizer-Value" type="xs:string"/>
+	<xs:element name="Optimizer-ValueMaximum" minOccurs="0" maxOccurs="1" type="xs:string"/>
+    <xs:element name="Optimizer-Intervals" type="xs:string"/>
+    <xs:element name="Optimizer-Groups" type="xs:string"/>
+    <xs:element name="Optimizer-Group" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+    <xs:element name="Optimizer-OptimizationIntervals" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="Modification-Value" type="xs:string"/>
+    <xs:element name="Modification-Groups" type="xs:string"/>
+    <xs:element name="Modification-Group" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+	<xs:element ref="Optimization-CarryOver" minOccurs="0" maxOccurs="1" />
+	<xs:element ref="Optimization-InitialInventory" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="Restriction-Group" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="Optimization-CarryOver"><xs:complexType>  
+  <xs:sequence>
+    <xs:element ref="ConntectedCarryOver" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="StatisticFile" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="Optimization-InitialInventory"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="Optimization-InitialInventoryClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="Optimization-InitialInventoryClientType"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="Restriction-Group"><xs:complexType>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+  <xs:attribute name="Minimum" type="xs:string" use="required"/>
+  <xs:attribute name="Maximum" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<!-- Description of the optimizer results files -->
+
+<xs:element name="OptimizerResults"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="RunTime" type="xs:string"/>
+	<xs:element name="RunCount" type="xs:string"/>
+    <xs:element ref="OptimizerSetup"/>
+    <xs:element ref="SimulationRun" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="SimulationRun"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="Statistic"/>
+  </xs:sequence>
+  <xs:attribute name="Number" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<!-- Description of the connected simulation files -->
+
+<xs:element name="ConnectedSimulation"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ConnectedDay" maxOccurs="unbounded"/>
+	<xs:element ref="ConnectedInitialInventory" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+  <xs:attribute name="BaseFolder" type="xs:string" use="required"/>
+  <xs:attribute name="InitialCarryOver" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ConnectedDay"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="ConnectedModel" type="xs:string"/>
+    <xs:element name="ConnectedStatistics" type="xs:string"/>
+    <xs:element ref="ConnectedCarryOvers"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="ConnectedCarryOvers"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ConntectedCarryOver" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="ConntectedCarryOver"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ConnectedCarryOverClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="Type" type="xs:string" use="required"/>
+  <xs:attribute name="Value" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ConnectedCarryOverClientType"><xs:complexType>
+  <xs:attribute name="Type" type="xs:string" use="required"/>
+  <xs:attribute name="Value" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ConnectedInitialInventory"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ConnectedInitialInventoryClientType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="ConnectedInitialInventoryClientType"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<!-- Description of the import template files -->
+
+<xs:element name="ImportTemplate"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="ImportTemplateRecord" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="ImportTemplateRecord"><xs:complexType>
+  <xs:attribute name="Typr" type="xs:string" use="required"/>
+  <xs:attribute name="Parameter" type="xs:string" use="required"/>
+  <xs:attribute name="CellFrom" type="xs:string" use="required"/>
+  <xs:attribute name="CellTo" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<!-- Description of the SaaS setup files -->
+
+<xs:element name="CallcenterSimulatorSasSSetup"><xs:complexType>
+  <xs:sequence>
+	<xs:element name="LogFile" minOccurs="0" maxOccurs="1" type="xs:string"/>
+	<xs:element name="Simulation" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="Web" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="Simulation"><xs:complexType>
+  <xs:sequence>
+	<xs:element name="Port" minOccurs="0" maxOccurs="1" type="xs:string"/>
+	<xs:element name="Password" minOccurs="0" maxOccurs="1" type="xs:string"/>
+	<xs:element name="MaxThreads" minOccurs="0" maxOccurs="1" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="Web"><xs:complexType>
+  <xs:sequence>
+	<xs:element name="Port" minOccurs="0" maxOccurs="1" type="xs:string"/>
+	<xs:element name="AppletJarFile" minOccurs="0" maxOccurs="1" type="xs:string"/>
+	<xs:element ref="StatisticFolder" minOccurs="0"/>
+    <xs:element name="FilterFolder" minOccurs="0" maxOccurs="1" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="StatisticFolder"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+</xs:schema>

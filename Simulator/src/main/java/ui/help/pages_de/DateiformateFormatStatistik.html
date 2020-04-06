@@ -1,0 +1,388 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dokumentation der Callcenter Simulator Dateiformate - Statistik-Daten</title>
+</head>
+
+<body>
+
+<h1>Dokumentation der Callcenter Simulator Dateiformate - Statistik-Daten</h1>
+
+<a href="Dateiformate.html">Zurück zur Übersicht über alle Dateiformate</a>
+
+<h2>Datei-Kopf</h2>
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE Statistik SYSTEM "CallcenterSimulator_de.dtd"&gt;</tt>
+</p>
+
+<p>Das Basis-Element für Statistik-Dateien heißt <tt>&lt;Statistik&gt;</tt>.</p>
+
+<h2>Eingebettetes Callcenter-Modell</h2>
+
+<p>
+Jede Statistik-Datei enthält ein <tt>&lt;CallcenterModell&gt;</tt>-Element,
+welches die vollständigen Informationen über das zur Simulation verwendete
+Callcenter-Modell enthält.
+(Siehe hier zu <a href="DateiformateFormatCallcenterModel.html">Aufbau der Callcenter-Modell-XML-Dateien</a>.)
+</p>
+
+<h2>Allgemeine Informationen</h2>
+
+<p>
+Jede Statistik-Datei enthält von jedem der folgenden Elemente jeweils genau eins:
+</p>
+<ul class="big">
+  <li><tt>&lt;StatistikLaufdatum&gt;</tt>: Enthält Datum und Uhrzeit der Beginns des Simulationsprozesses.</li>
+  <li><tt>&lt;StatistikNutzer&gt;</tt>: Enthält den im Programmeinstellungen-Dialog angegebenen Benutzernamen.</li>
+  <li><tt>&lt;StatistikLaufzeit&gt;</tt>: Enthält die für die Simulation benötigte Laufzeit in Millisekunden.</li>
+  <li><tt>&lt;StatistikThreads&gt;</tt>: Gibt an, wie viele Threads für die Simulation verwendet wurden.
+  Der Wert ist das Minimum aus der Anzahl der verfügbaren logischen CPU-Kerne und der Anzahl an zu simulierenden Tagen.</li>
+  <li><tt>&lt;StatistikTage&gt;</tt>: Gibt an, wie viele Tage simuliert wurden.</li>
+  <li><tt>&lt;StatistikEreignisse&gt;</tt>: Gibt an, wie viele Ereignisse während der Durchführung der Simulation abgearbeitet wurden.</li>
+  <li><tt>&lt;StatistikServer&gt;</tt>: Gibt den Namen des Rechners, auf dem die Simulation stattgefunden hat, an.</li>
+  <li><tt>&lt;StatistikServerOS&gt;</tt>: Liefert Informationen zu dem Betriebssystems des Rechners , auf dem die Simulation stattgefunden hat.</li>
+</ul>  
+
+<h2>Informationen über die Anrufer</h2>
+
+<p>
+Jede Statistik-Datei enthält für jeden Kundentyp ein <tt>&lt;StatistikKunden&gt;</tt>-Element; darüber hinaus gibt es ein
+globales <tt>&lt;StatistikKunden&gt;</tt>-Element, welches Angaben über alle Kunden im Mittel enthält. Die Kundentyp-spezifischen
+<tt>&lt;StatistikKunden&gt;</tt>-Elemente sind durch ein <tt>Name</tt>-Attribut gekennzeichnet, welches als Inhalt den Namen
+des Kundentyps, dessen Statistikdaten sich in dem <tt>&lt;StatistikKunden&gt;</tt>-Element befinden, hat. Das globale
+<tt>&lt;StatistikKunden&gt;</tt>-Element besitzt kein <tt>Name</tt>-Attribut.
+</p>
+
+<h3>Hinweise</h3>
+<ul class="big">
+  <li>Bei den folgenden Elementen enthalten die Elemente, deren Namen mit <tt>Statistik<b>Kunden</b></tt> beginnen, jeweils
+  Informationen auf Kundenbasis und die Elemente, deren Namen mit <tt>Statistik<b>Anrufe</b></tt> beginnen, jeweils
+  Informationen auf Anrufbasis. Auf Anrufbasis ist eine Wiederholung und eine Weiterleitung jeweils ein einzelner Anruf.
+  Auf Kundenbasis wird ein Kunde dann als erfolgreich gezählt, wenn er in seinem letzten Versuch erfolgreich ist. Mögliche
+  vorherige Warteabbrüche sind dabei bedeutungslos.</li>
+  <li>Zählungen (z.B. Anzahl der Anrufer) beziehen sich nicht auf einen einzelnen Simulationstag, sondern auf die Summe über
+  alle simulierten Tage. Treffen in einem Modell z.B. 1000 Anrufer pro Tag ein und werden 50 Tage simuliert, so steht in dem
+  Feld, welches die Anzahl der Kunden insgesamt angibt, der Wert 50.000.</li>
+  <li>Von Größen wie der Wartezeit der Kunden werden während der Simulation systembedingt nicht Mittelwert und Standardabweichung
+  aufgezeichnet, sondern die Summe der Werte und die Summe der quadrierten Werte. Daraus lassen sich jedoch Mittelwert und
+  Standardabweichung berechnen. Der Mittelwert ergibt sich durch Division der Summe durch die Anzahl der Werte und die
+  Standardabweichung ergibt sich als die Wurzel aus <tt>x2/n-x*x/(n*n)</tt>, wobei <tt>x2</tt> die quadrierte Summe der Werte ist,
+  <tt>x</tt> die Summe der Werte und <tt>n</tt> die Anzahl der Werte. In den Elementen <tt>&lt;StatistikKundenZusammenfassung&gt;</tt>
+  werden daher bereits einige aufbereitete Werte gespeichert.</li>
+</ul>
+
+<p>
+Jedes <tt>&lt;StatistikKunden&gt;</tt>-Element besitzt abgesehen von den <tt>&lt;StatistikKundenZusammenfassung&gt;</tt>-Elementen
+von jedem der im Folgenden beschriebenen Unterelementen genau eins.
+Abgesehen von dem <tt>&lt;StatistikKonfidenz&gt;</tt>-Element besitzen alle Elemente keinen Inhalt; die Infomationen werden
+jeweils in den Attributen der Elemente gespeichert.
+</p>
+
+<ul class="big">
+  <li><tt>&lt;StatistikKundenZusammenfassung&gt;</tt>:
+  Die Attribute <tt>KundenErreichbarkeit</tt>, <tt>AnrufeErreichbarkeit</tt>, <tt>KundenMittlereWartezeit</tt>, <tt>AnrufeMittlereWartezeit</tt>,
+  <tt>KundenMittlereVerweilzeit</tt>, <tt>AnrufeMittlereVerweilzeit</tt>,  <tt>KundenMittlereAbbruchzeit</tt>, <tt>AnrufeMittlereAbbruchzeit</tt>,
+  <tt>KundenKombinierteMittlereWartezeitUndAbbruchzeit</tt>, <tt>AnrufeKombinierteMittlereWartezeitUndAbbruchzeit</tt>,  
+  <tt>KundenServiceLevel</tt>, <tt>KundenServiceLevelAlle</tt>, <tt>AnrufeServiceLevel</tt> und <tt>AnrufeServiceLevelAlle</tt> geben die Werte
+  der jeweiligen Kenngrößen über das jeweils im <tt>Bereich</tt>-Attribut angegebene Intervall an.
+  Diese aufbereiteten Werte werden vom Simulator in die Attribute geschrieben,
+  beim Laden werden jedoch nur die Rohdaten verwendet. Bei den mit <tt>Alle</tt> gekennzeichneten Service-Level-Werten
+  handelt es sich um den Quotienten aus bzgl. des Service-Level erfolgreichen zu allen Kunden. Bei den anderen beiden
+  Werten handelt es sich um den Quotienten aus bzgl. des Service-Level erfolgreichen zu den generell erfolgreichen Kunden.</li>
+  <li><tt>&lt;StatistikKundenAnzahl&gt;</tt> und <tt>&lt;StatistikAnrufeAnzahl&gt;</tt>:
+  Die Attribute <tt>Anzahl</tt>, <tt>Erfolg</tt>, <tt>Blockiert</tt>, <tt>Abbruch</tt> und <tt>Uebertrag</tt> geben die
+  Anzahl der Kunden bzw. Anrufer insgesamt, die erfolgreich waren, die blockiert wurden (=Warteschlange voll),
+  die das Warten aufgegeben haben und die in den nächsten Simulationstag übertragen wurden an.
+  Die Attribute <tt>AnzahlProIntervall</tt>, <tt>ErfolgProIntervall</tt>, <tt>BlockiertProIntervall</tt> und
+  <tt>AbbruchProIntervall</tt> enthalten jeweils 48 durch Semikolons getrennte Zahlen, die die entsprechenden
+  Summen auf Intervallbasis darstellen.</li>
+  <li><tt>&lt;StatistikKundenUebertrag&gt;</tt>: Dieses Element enthält folgende Unterelemente:<ul>
+    <li><tt>&lt;StatistikKundenAbbruchProTag&gt;</tt> In diesem Element ist verzeichnet, wie viele Kunden des jeweiligen Typs
+    an dem jeweiligen Simulationstag das Warten endgültig aufgegeben haben.</li>
+	<li><tt>&lt;StatistikKundenWiederholzeitenProTag&gt;</tt> In diesem Element ist verzeichnet, wie viele Kunden des jeweiligen Typs
+    an dem jeweiligen Simulationstag das Warten aufgegeben haben und einen weiteren Anrufversuch am nächsten Tag geplant haben.
+	Die einzelnen Tage sind dabei durch "|" getrennt. Einzelne Werte, die die Wiederholzeitpunkte angeben, sind durch ";"
+	getrennt und in 1000stel Sekunden angegeben.</li>
+	<li><tt>&lt;StatistikKundenRestWartezeittoleranzenProTag&gt;</tt> In diesem Element ist verzeichnet, wie viele Kunden des jeweiligen Typs
+	über Mitternacht hinaus warten und am nächsten Tag bedient werden müssen.
+	Die einzelnen Tage sind dabei durch "|" getrennt. Einzelne Werte sind durch ";"	getrennt und enthalten jeweils zwei durch "/" getrennte
+	Zeitwerte in 1000stel Sekunden gemessen, die die bisherige Wartezeit und die verbleibende Restwartezeittoleranz angeben.</li>
+  </ul></li>
+  <li><tt>&lt;StatistikKundenWartezeit&gt;</tt> und <tt>&lt;StatistikAnrufeWartezeit&gt;</tt>:
+  Die drei Attribute <tt>Summe</tt>, <tt>QuadrateSumme</tt> und <tt>SummeProIntervall</tt> dieses Elements
+  enthalten Summe, quadrierte Summe und die Summe pro Intervall (in Form von 48 durch Semikolons getrennten Werten)
+  der Wartezeit pro erfolgreichem Kunde bzw. pro erfolgreichem Anrufer.</li>
+  <li><tt>&lt;StatistikKundenVerweilzeit&gt;</tt> und <tt>&lt;StatistikAnrufeVerweilzeit&gt;</tt>:
+  Die drei Attribute <tt>Summe</tt>, <tt>QuadrateSumme</tt> und <tt>SummeProIntervall</tt> dieses Elements
+  enthalten Summe, quadrierte Summe und die Summe pro Intervall (in Form von 48 durch Semikolons getrennten Werten)
+  der Verweilzeit pro erfolgreichem Kunde bzw. pro erfolgreichem Anrufer.</li>
+  <li><tt>&lt;StatistikKundenAbbruchzeit&gt;</tt> und <tt>&lt;StatistikAnrufeAbbruchzeit&gt;</tt>:
+  Die drei Attribute <tt>Summe</tt>, <tt>QuadrateSumme</tt> und <tt>SummeProIntervall</tt> dieses Elements
+  enthalten Summe, quadrierte Summe und die Summe pro Intervall (in Form von 48 durch Semikolons getrennten Werten)
+  der Abbruchzeit pro abbrechendem Kunde bzw. pro abbrechendem Anrufer.</li>
+  <li><tt>&lt;StatistikKundenServiceLevel&gt;</tt> und <tt>&lt;StatistikAnrufeServiceLevel&gt;</tt>:
+  Die zwei Attribute <tt>Anzahl</tt> und <tt>AnzahlProIntervall</tt> dieses Elements
+  enthalten die Anzahl und die Anzahl pro Intervall (in Form von 48 durch Semikolons getrennten Werten)
+  der erfolgreichen Kunden bzw. der erfolgreichen Anrufer, für die das Service-Level eingehalten wurde.</li>
+  <li><tt>&lt;StatistikKundenWeiterleitungen&gt;</tt> und <tt>&lt;StatistikAnrufeWeiterleitungen&gt;</tt>:
+  Die zwei Attribute <tt>Anzahl</tt> und <tt>AnzahlProIntervall</tt> dieses Elements
+  enthalten die Anzahl und die Anzahl pro Intervall (in Form von 48 durch Semikolons getrennten Werten)
+  der Kunden bzw. der Anrufer, die weitergeleitet wurden.</li>
+  <li><tt>&lt;StatistikKundenWiederholungen&gt;</tt> und <tt>&lt;StatistikAnrufeWiederholungen&gt;</tt>:
+  Die zwei Attribute <tt>Anzahl</tt> und <tt>AnzahlProIntervall</tt> dieses Elements
+  enthalten die Anzahl und die Anzahl pro Intervall (in Form von 48 durch Semikolons getrennten Werten)
+  der Kunden bzw. der Anrufer, die einen erneuten Anrufversuch starten.</li>
+  <li><tt>&lt;StatistikKundenWiederanrufe&gt;</tt>:
+  Die zwei Attribute <tt>Anzahl</tt> und <tt>AnzahlProIntervall</tt> dieses Elements
+  enthalten die Anzahl und die Anzahl pro Intervall (in Form von 48 durch Semikolons getrennten Werten)
+  der Kunden, die nach einem erfolgreichen Anruf einen erneuten Anrufversuch starten.</li>
+  <li><tt>&lt;StatistikKundenWartezeitverteilung&gt;</tt> und <tt>&lt;StatistikAnrufeWartezeitverteilung&gt;</tt>:
+  Diese beiden Elemente enthalten jeweils ein Attribut mit dem Namen <tt>Verteilung</tt>, welches in Form von 1.800
+  durch Semikolons getrennten Werten angeben, wie viele Kunde 0 Sekunden, eine Sekunde, zwei Sekunden usw. warten mussten.</li>
+  <li><tt>&lt;StatistikKundenVerweilzeitverteilung&gt;</tt> und <tt>&lt;StatistikAnrufeVerweilzeitverteilung&gt;</tt>:
+  Diese beiden Elemente enthalten jeweils ein Attribut mit dem Namen <tt>Verteilung</tt>, welches in Form von 1.800
+  durch Semikolons getrennten Werten angeben, wie viele Kunde 0 Sekunden, eine Sekunde, zwei Sekunden usw. in dem System verbracht haben.</li>
+  <li><tt>&lt;StatistikKundenAbbruchzeitverteilung&gt;</tt> und <tt>&lt;StatistikAnrufeAbbruchzeitverteilung&gt;</tt>:
+  Diese beiden Elemente enthalten jeweils ein Attribut mit dem Namen <tt>Verteilung</tt>, welches in Form von 1.800
+  durch Semikolons getrennten Werten angeben, wie viele Kunde nach 0 Sekunden, einer Sekunde, zwei Sekunden usw. das Warten aufgegeben haben.</li>
+  <li><tt>&lt;StatistikKundenWartezeitverteilungLang&gt;</tt> und <tt>&lt;StatistikAnrufeWartezeitverteilungLang&gt;</tt>:
+  Diese beiden Elemente enthalten jeweils ein Attribut mit dem Namen <tt>Verteilung</tt>, welches in Form von 1.800
+  durch Semikolons getrennten Werten angeben, wie viele Kunde 0-1799 Sekunden, 1800-3599 Sekunden usw. warten mussten.</li>
+  <li><tt>&lt;StatistikKundenVerweilzeitverteilungLang&gt;</tt> und <tt>&lt;StatistikAnrufeVerweilzeitverteilungLang&gt;</tt>:
+  Diese beiden Elemente enthalten jeweils ein Attribut mit dem Namen <tt>Verteilung</tt>, welches in Form von 1.800
+  durch Semikolons getrennten Werten angeben, wie viele Kunde 0-1799 Sekunden, 1800-3599 Sekunden usw. in dem System verbracht haben.</li>
+  <li><tt>&lt;StatistikKundenAbbruchzeitverteilungLang&gt;</tt> und <tt>&lt;StatistikAnrufeAbbruchzeitverteilungLang&gt;</tt>:
+  Diese beiden Elemente enthalten jeweils ein Attribut mit dem Namen <tt>Verteilung</tt>, welches in Form von 1.800
+  durch Semikolons getrennten Werten angeben, wie viele Kunde nach 0-1799 Sekunden, 1800-3599 Sekunden usw. das Warten aufgegeben haben.</li>
+  <li><tt>&lt;StatistikKonfidenz&gt;</tt>:
+  Dieses Element enthält jeweils eins der folgenden sieben Unterelemente: 
+  <tt>&lt;KonfidenzErreichbarkeitAnrufe&gt;</tt>, <tt>&lt;KonfidenzErreichbarkeitKunden&gt;</tt>, <tt>&lt;KonfidenzWartezeit&gt;</tt>, 
+  <tt>&lt;KonfidenzServiceLevelAnrufeErfolg&gt;</tt>, <tt>&lt;KonfidenzServiceLevelAnrufeAlle&gt;</tt>, <tt>&lt;KonfidenzServiceLevelKundenErfolg&gt;</tt> und <tt>&lt;KonfidenzServiceLevelKundenAlle&gt;</tt>.
+  Alle diese Unterelemente enthalten jeweils keinen Inhalt, verfügen aber jeweils über die Attribute <tt>Summe</tt> und
+  <tt>QuadrateSumme</tt>, in denen die Mittelwerte pro Tag der entsprechenden Größen (Erreichbarkeit, Wartezeit und Service-Level)
+  einfach bzw. quadriert aufgezeichnet werden. Mit Hilfe dieser Daten lässt sich berechnen, wie stark die Daten von Simulationstag
+  zu Simulationstag schwanken und damit wie viele Tage simuliert werden müssen, um statistisch stabile Ergebnisse zu erhalten.
+  Des Weiteren enthalten die sieben Element die 4 Attribute <tt>Konfidenz90Min</tt>, <tt>Konfidenz90Max</tt>,
+  <tt>Konfidenz95Min</tt> und <tt>Konfidenz95Max</tt>, aus denen die Größen der 90%- und 95%-Konfidenzintervalle
+  direkt abgelesen werden können.</li>
+  <li><tt>&lt;StatistikAnruferKosten&gt;</tt>:
+  Dieses Element besitzt die drei Attribute <tt>Ertrag</tt>, <tt>Wartezeiten</tt> und <tt>Abbrecher</tt>, die
+  den Ertrag durch erfolgreich bediente Kunden, die Kosten durch Wartezeiten und die Kosten, die durch Warteabbrüche
+  entstanden sind, angeben.</li>
+</ul>
+
+<h2>Informationen über die Agenten</h2>
+
+<p>
+Jede Statistik-Datei enthält eine Reihe von <tt>&lt;StatistikAgenten&gt;</tt>-Elementen.
+Es existiert ein globales <tt>&lt;StatistikAgenten&gt;</tt>-Element sowie für jedes Callcenter
+und jedes Skill-Level ein <tt>&lt;StatistikAgenten&gt;</tt>-Element.
+</p>
+
+<p>
+Das globale <tt>&lt;StatistikAgenten&gt;</tt>-Element besitzt kein <tt>Name</tt>- und kein
+<tt>Typ</tt>-Attribut. Die Callcenter- und Skill-Level-spezifischen Elemente besitzen diese
+beiden Attribute. Die Callcenter-spezifischen <tt>&lt;StatistikAgenten&gt;</tt>-Elemente
+haben im <tt>Typ</tt>-Attribut den Wert <tt>Callcenter</tt> und im <tt>Name</tt>-Attribut
+den Namen des Callcenters. die Skill-Level-spezifischen <tt>&lt;StatistikAgenten&gt;</tt>-Elemente
+haben im <tt>Typ</tt>-Attribut den Wert <tt>SkillLevel</tt> und im <tt>Name</tt>-Attribut
+den Namen des jeweiligen Skill-Levels.
+</p>
+
+<p>
+Darüberhinaus besitzen alle <tt>&lt;StatistikAgenten&gt;</tt>-Elemente ein <tt>Anzahl</tt>-Attribut,
+das angibt aus wie vielen Agenten die betrachtete Agentengruppe besteht.
+</p>
+
+<p>
+Jedes <tt>&lt;StatistikAgenten&gt;</tt>-Element besitzt genau ein
+<tt>&lt;StatistikAgentenGesamt&gt;</tt>-Unterelement und für jeden Kundentyp,
+den Agenten der betracheten Gruppe bedienen können, ein
+<tt>&lt;StatistikAgentenKundentyp&gt;</tt>-Unterelement. Außerdem besitzt es genau
+ein <tt>&lt;StatistikAgentenKosten&gt;</tt>-Unterelement.
+</p>
+
+<p>
+Die Elemente <tt>&lt;StatistikAgentenGesamt&gt;</tt> und <tt>&lt;StatistikAgentenKundentyp&gt;</tt>
+besitzen keinen Inhalt; ihre Informationen stehen in den Attributen. Beide Elemente
+besitzen weitgehend identische Attribute. Lediglich Namen (nur <tt>&lt;StatistikAgentenKundentyp&gt;</tt>)
+und Angaben zu den Leerlaufzeiten (nur <tt>&lt;StatistikAgentenGesamt&gt;</tt>) sind nicht in beiden Elementtypen zu finden:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;Name&gt;</tt>: Dieses Attribut gibt an, auf welchen Kundentyp sich das aktuelle <tt>&lt;StatistikAgentenKundentyp&gt;</tt>-Element bezieht.</li>
+  <li><tt>&lt;Leerlauf&gt;</tt>: Dieses Attribut gibt die Anzahl an Leerlauf-Sekunden während der gesamten Simulation (also Summe über alle Tage) an.</li>
+  <li><tt>&lt;TechnischeBereitzeit&gt;</tt>: Dieses Attribut gibt die Anzahl an Sekunden, die die Agenten dieser Gruppe in der technischen Bereitzeit verbracht haben während der gesamten Simulation (also Summe über alle Tage), an.</li>
+  <li><tt>&lt;Gespraechszeit&gt;</tt>: Dieses Attribut gibt die Anzahl an Sekunden, die die Agenten dieser Gruppe mit Gesprächen verbracht haben während der gesamten Simulation (also Summe über alle Tage), an.</li>
+  <li><tt>&lt;Nachbearbeitungszeit&gt;</tt>: Dieses Attribut gibt die Anzahl an Sekunden, die die Agenten dieser Gruppe mit Nachbearbeitungszeit verbracht haben während der gesamten Simulation (also Summe über alle Tage), an.</li>
+  <li><tt>&lt;LeerlaufProIntervall&gt;</tt>: Dieses Attribut gibt die Anzahl an Leerlauf-Sekunden pro Intervall (in Form von 48 durch Semikolons getrennten Werten) während der gesamten Simulation (also Summe über alle Tage), an.</li>  
+  <li><tt>&lt;TechnischeBereitzeitProIntervall&gt;</tt>: Dieses Attribut gibt die Anzahl an Sekunden pro Intervall (in Form von 48 durch Semikolons getrennten Werten), die die Agenten dieser Gruppe in der technischen Bereitzeit verbracht haben während der gesamten Simulation (also Summe über alle Tage), an.</li>
+  <li><tt>&lt;GespraechszeitProIntervall&gt;</tt>: Dieses Attribut gibt die Anzahl an Sekunden pro Intervall (in Form von 48 durch Semikolons getrennten Werten), die die Agenten dieser Gruppe mit Gesprächen verbracht haben während der gesamten Simulation (also Summe über alle Tage), an.</li>
+  <li><tt>&lt;NachbearbeitungszeitProIntervall&gt;</tt>: Dieses Attribut gibt die Anzahl an Sekunden pro Intervall (in Form von 48 durch Semikolons getrennten Werten), die die Agenten dieser Gruppe mit Nachbearbeitungszeit verbracht haben während der gesamten Simulation (also Summe über alle Tage), an.</li>
+  <li><tt>&lt;LeerlaufAnteil&gt;</tt>: Dieses Attribut gibt den Leerlaufanteil der Agentengruppe an. Der Wert dieses Attributes wird aus den oben genannten Rohdaten berechnet und zur leichteren Weiterverarbeitung gespeichert, aber beim Laden vom Simulator nicht ausgewertet.</li>
+  <li><tt>&lt;TechnischeBereitzeitAnteil&gt;</tt>: Dieses Attribut gibt den Anteil an technischer Bereitzeit der Agentengruppe an. Der Wert dieses Attributes wird aus den oben genannten Rohdaten berechnet und zur leichteren Weiterverarbeitung gespeichert, aber beim Laden vom Simulator nicht ausgewertet.</li> 
+  <li><tt>&lt;GespraechszeitAnteil&gt;</tt>: Dieses Attribut gibt den Gesprächszeitanteil der Agentengruppe an. Der Wert dieses Attributes wird aus den oben genannten Rohdaten berechnet und zur leichteren Weiterverarbeitung gespeichert, aber beim Laden vom Simulator nicht ausgewertet.</li>
+  <li><tt>&lt;NachbearbeitungszeitAnteil&gt;</tt>: Dieses Attribut gibt den Nachbearbeitungszeitanteil der Agentengruppe an. Der Wert dieses Attributes wird aus den oben genannten Rohdaten berechnet und zur leichteren Weiterverarbeitung gespeichert, aber beim Laden vom Simulator nicht ausgewertet.</li>  
+  <li><tt>&lt;BruttoZeit&gt;</tt>: Dieses Attribut gibt die verfügbare Bruttoarbeitszeit der Agenten in dieser Agentengruppe an. Der Wert dieses Attributes wird aus den Modelldaten berechnet und zur leichteren Weiterverarbeitung gespeichert, aber beim Laden vom Simulator nicht ausgewertet.</li>
+  <li><tt>&lt;NettoZeit&gt;</tt>: Dieses Attribut gibt die verfügbare Nettoarbeitszeit der Agenten in dieser Agentengruppe an. Der Wert dieses Attributes wird aus den Modelldaten berechnet und zur leichteren Weiterverarbeitung gespeichert, aber beim Laden vom Simulator nicht ausgewertet.</li>  
+  <li><tt>&lt;Anrufe&gt;</tt>: Dieses Attribut gibt an, wie viele Anrufe während gesamten Simulation (also Summe über alle Tagen) von der Agentengruppe bedient wurden.</li>
+  <li><tt>&lt;AnrufeProIntervall&gt;</tt>: Dieses Attribut gibt an, wie viele Anrufe während gesamten Simulation (also Summe über alle Tagen) pro Intervall (in Form von 48 durch Semikolons getrennten Werten) von der Agentengruppe bedient wurden.</li>   
+</ul>
+
+<p>
+Das <tt>&lt;StatistikAgentenKosten&gt;</tt>-Element besitzt ebenfalls 
+keinen Inhalt; seine Informationen stehen in den Attributen:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;Arbeitslohn&gt;</tt>: Gibt die auslastungsunabhängigen, durch den Lohn pro Arbeitsstunde entstandenen Kosten an.</li>
+  <li><tt>&lt;KostenFuerGespraeche&gt;</tt>: Gibt die Kosten, die durch die einzelnen Gespräche entstanden sind, an.</li>
+  <li><tt>&lt;KostenFuerGespraechszeit&gt;</tt>: Gibt die Kosten, die durch die Gesprächs- und Nachbearbeitungszeiten entstanden sind, an.</li>
+</ul>
+
+<h2>Informationen zum Gesamtertrag</h2>
+
+<p>
+Jede Statistik-Datei enthält genau ein <tt>&lt;StatistikErtragZusammenfassung&gt;</tt>-Element.
+In dem <tt>&lt;StatistikErtragZusammenfassung&gt;</tt>-Element steht der Gesamtertrag (bereits bezogen auf einen simulierten Tag),
+der sich in dem Modell ergeben hat.
+</p>
+
+<h2>Informationen zur Warteschlangenlänge</h2>
+
+<p>
+Jede Statistik-Datei enthält genau ein <tt>&lt;StatistikWarteschlange&gt;</tt>-Element.
+Das <tt>&lt;StatistikWarteschlange&gt;</tt>-Element hat keinen Inhalt, besitzt aber folgende
+drei Attribute:
+</p>
+<ul>
+  <li><tt>Maximal</tt>: Gibt die maximale Länge der Warteschlange, die während der Simulation auftrat, an.</li>
+  <li><tt>Mittel</tt>: Gibt die mittlere Länge der Warteschlange während der Simulation an.</li>
+  <li><tt>MittelProIntervall</tt>: Besteht aus 48 durch Semikolons getrennte Werte, die die mittlere Warteschlangenlänge
+  in jedem der 48 Halbstundenintervalle angeben.</li>
+</ul>
+
+<p>
+Jede Statistik-Datei enthält eine Reihe von <tt>&lt;StatistikWarteschlangeZusammenfassung&gt;</tt>-Elementen.
+Die <tt>&lt;StatistikWarteschlangeZusammenfassung&gt;</tt>-Elemente besitzen keinen Inhalt, aber folgende
+zwei Attribute:
+</p>
+<ul>
+  <li><tt>Bereich</tt>: Gibt den Bereich an, auf den sich das Element bezieht.</li>
+  <li><tt>Mittel</tt>: Gibt die mittlere Länge der Warteschlange während der Simulation an in dem jeweiligen Zeitbereich an.</li>
+</ul>
+
+<h2>Informationen über die Agenten aus Modell-Sicht</h2>
+
+<p>
+Um eine leichtere Weiterverarbeitung zu ermöglichen, werden einige Modell-Einstellungen in aufbereiteter Form ebenfalls
+in die Statistik-Datei geschrieben. Dazu gehört insbesondere die Anzahl an Agenten pro Callcenter und Agentengruppe sowie
+auch als Gesamtzahl über alle Callcenter.
+</p>
+
+<p>
+Erfasst wird jeweils die Verteilung an Agenten über den Tag für die real in der Simulation eingesetzten Agenten
+(d.h. nach Abzug der Produktivität von den Modell-Agenten), für die laut Modell eingeplanten Agenten sowie für
+die Agentenanzahl, die sich nach Addition des Krankheits-Aufschlags auf die laut Modell geplanten Agenten ergibt.
+</p>
+
+<p>
+Jede Statistik-Datei enthält dafür eine Reihe von <tt>&lt;StatistikModellAgenten&gt;</tt>-Elementen.
+Die <tt>&lt;StatistikModellAgenten&gt;</tt>-Elemente besitzen optional folgende zwei Attribute:
+</p>
+<ul>
+  <li><tt>Name</tt>: Gibt den Namen der Agentengruppe an, auf den sich die folgenden Informationen beziehen.</li>
+  <li><tt>Typ</tt>: Gibt das Skill-Level der Agentengruppe an.</li>
+</ul>
+<p>
+Fehlen die beiden Attribute <tt>Name</tt> und <tt>Typ</tt>, so bezieht sich das
+<tt>&lt;StatistikModellAgenten&gt;</tt>-Element nicht auf eine einzelne Agentengruppe sondern
+auf die Gesamtheit aller Agenten in dem Modell.
+</p>
+
+<p>
+Jedes <tt>&lt;StatistikModellAgenten&gt;</tt>-Element besitzt genau die folgenden drei Unterelemente:
+</p>
+<ul>
+  <li><tt>&lt;StatistikModellAgentenSimulation&gt;</tt>: Gibt als Textinhalt die Verteilung der in der Simulation eingesetzten Agenten über den Tag an.</li>
+  <li><tt>&lt;StatistikModellAgentenModell&gt;</tt>: Gibt als Textinhalt die Anzahl der laut Modell eingeplanten Agenten über den Tag an.</li> 
+  <li><tt>&lt;StatistikModellAgentenVollstaendig&gt;</tt>: Gibt als Textinhalt die Anzahl an Agenten inkl. Krankheitsaufschlag über den Tag an.</li> 
+</ul>
+
+<h2>Erlang-C-Vergleichsdaten</h2>
+
+<p>
+Um die Simulationsergebnisse mit den Erlang-C Berechnungen vergleichen zu können, werden in der Statistikdatei Erlang-C basierte
+Daten gespeichert. Dies erfolgt über die beiden Elemente <tt>&lt;ErlangCOhneWiederholer&gt;</tt> und <tt>&lt;ErlangCMitWiederholern&gt;</tt>.
+</p>
+
+<p>
+Beide Elemente enthalten jeweils die folgenden Attribute, die den Attributnamen entsprechenden Daten in Form von 48 durch ";" getrennten
+Werten enthalten: <tt>AnzahlAnAgenten</tt>, <tt>Erstanrufer</tt>, <tt>Wiederholer</tt> (nur bei <tt>&lt;ErlangCMitWiederholern&gt;</tt>),
+<tt>ServiceLevel</tt>, <tt>Erfolg</tt> und <tt>MittlereWartezeit</tt>.
+</p>
+
+<h2>Warnungsschwellenwerte</h2>
+
+<p>
+Das <tt>&lt;Statistik&gt;</tt>-Element kann optional ein Element vom
+Typ <tt>&lt;StatistikSchwellenwerte&gt;</tt> enthalten. Das <tt>&lt;StatistikSchwellenwerte&gt;</tt>-Element
+wiederum kann beliebig viele Unterelemente vom Typ <tt>&lt;SchellenwertDaten&gt;</tt> besitzen.
+</p>
+
+<h3>Attribute des <tt>SchellenwertDaten</tt>-Elements</h3>
+
+<p>
+Die folgenden Attribute müssen jeweils existieren:
+</p>
+
+<ul>
+  <li><tt>Typ</tt>: Gibt den Typ des Schwellenwerts an. Dieses Attribut kann einen der folgenden Werte annehmen:
+  <ul>
+    <li>Wartezeit auf Anrufbasis</li>
+    <li>Wartezeit auf Kundenbasis</li>
+    <li>Verweilzeit auf Anrufbasis</li>
+    <li>Verweilzeit auf Kundenbasis</li>
+    <li>Erreichbarkeit auf Anrufbasis</li>
+    <li>Erreichbarkeit auf Kundenbasis</li>
+    <li>Service-Level auf Anrufbasis, bezogen auf alle Anrufe</li>
+    <li>Service-Level auf Anrufbasis, bezogen auf erfolgreiche Anrufe</li>
+    <li>Service-Level auf Kundenbasis, bezogen auf alle Kunden</li>
+    <li>Service-Level auf Kundenbasis, bezogen auf erfolgreiche Kunden</li>
+    <li>Auslastung</li>
+  </ul></li>
+  <li><tt>Intervalle</tt>: Gibt an, welche Intervalle in welcher Form für den Warnschwellenwert berücksichtigt werden sollen.
+  Es kann "Durchschnitt" angegeben werden, um festzulegen, dass der Durchschnittswert über den gesamten Tag betrachtet werden soll,
+  "Jedes", um festzulegen, dass der Schwellenwert in jedem einzelnen Intervall eingehalten werden soll, oder aber eine Liste von 48
+  Werten "0" und "1", die angeben, welche Halbstunden-Intervalle betrachtet werden sollen.
+  </li>
+  <li><tt>Gruppen</tt>: Gibt an, welche Kundengruppen oder Callcenter in welcher Form für den Warnschwellenwert berücksichtigt werden sollen.
+  Es kann "Durchschnitt" angegeben werden, um festzulegen, dass der Durchschnittswert über alle Gruppen betrachtet werden soll,
+  "Jede", um festzulegen, dass der Schwellenwert für jede Gruppe eingehalten werden soll, oder aber der Name einer Kundengruppe oder eines Callcenters.
+  </li>
+  <li><tt>WarnungGelb</tt>:
+  Gibt den Wert an bei dessen Unterschreitung (bei Typen Erreichbarkeit, Service-Level und Auslastung) bzw. bei dessen Überschreitung
+  (Typen Wartezeit und Verweilzeit) eine gelbe Warnung ausgegeben wird. Die Schwellenwerte für Warte- und Verweilzeiten werden dabei
+  als Zeitangaben festgelegt. Die Schwellenwerte für alle anderen Typen in Form von Wahrscheinlichkeiten.
+  </li>
+  <li><tt>WarnungRot</tt>:
+  Gibt den Wert an bei dessen Unterschreitung (bei Typen Erreichbarkeit, Service-Level und Auslastung) bzw. bei dessen Überschreitung
+  (Typen Wartezeit und Verweilzeit) eine rote Warnung ausgegeben wird. Die Schwellenwerte für Warte- und Verweilzeiten werden dabei
+  als Zeitangaben festgelegt. Die Schwellenwerte für alle anderen Typen in Form von Wahrscheinlichkeiten.
+  </li>
+  <li><tt>Wert</tt>:
+  Gibt den konkreten Wert der Größe, für die der Schwellenwert betrachtet werden soll, an.
+  </li>
+  <li><tt>Status</tt>:
+  Enthält einen der Werte "Ok", "Gelb" oder "Rot" je nachdem, ob sich der Wert der Kenngröße im gültigen Zielbereich,
+  im gelben Warnungsbereich oder im roten Warnungsbereich befindet.
+  </li>
+</ul>
+
+</body>
+</html>
+  

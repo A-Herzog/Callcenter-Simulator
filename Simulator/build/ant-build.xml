@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="Release services" xmlns:if="ant:if">
+
+    <property name="Simulator.location" location=".." />
+    <property name="SimTools.location" location="../../SimTools" />
+    <property name="SimSystem.location" location="../../SimSystem" />
+    <property name="BuildTools.location" location="." />
+    <property name="Misc.location" location="../../Misc" />
+    <property name="NSIS.location" location="C:\Program Files (x86)\NSIS" />
+    <property name="sed.location" location="../language/sed/bin" />
+    <property name="Release.location" location="../../Release" />
+    
+    <target name="build" description="Build simulator">
+        <delete file="${Release.location}/CallcenterSimulator.zip" />
+        <delete file="${Release.location}/CallcenterSimulatorSetup.exe" />
+        <delete file="${Release.location}/CallcenterSimulatorSetup.sig" />
+
+        <echo message="Set version in wrapper/installer scripts" />
+        <delete file="${BuildTools.location}/Version.nsi"/>
+    	
+        <exec dir="${BuildTools.location}" executable="${sed.location}/sed.exe" output="${Simulator.location}/build/Version.nsi">
+            <arg line="-nf &quot;${BuildTools.location}/Version_sed.txt&quot; &quot;${Simulator.location}/src/main/java/ui/VersionConst.java&quot;" />
+        </exec>
+
+        <echo message="Copy program files" />
+        <copy file="${Simulator.location}/target/CallcenterSimulator.jar" todir="${Release.location}"/>
+        <copy todir="${Release.location}/libs">
+            <fileset dir="${Simulator.location}/target/libs"/>
+        </copy>
+		<echo file="${Release.location}/libs/LICENSES" append="false">The licenses of the libraries stored in this directory can be found in detail in ../docs/license_components_*.md</echo>
+        	
+        <echo message="Copy help files" />      
+        <copy todir="${Release.location}/docs" flatten="true">
+            <fileset dir="${Simulator.location}/docs" includes="**/*.pdf"/> 
+        </copy>
+        <copy todir="${Release.location}/docs">
+            <fileset dir="${Simulator.location}/docs" includes="**/*.dtd,**/*.xsd"/>
+        </copy>
+        <copy file="${Simulator.location}/LICENSE_COMPONENTS.md" tofile="${Release.location}/docs/license_components_simulator.md"/>
+        <copy file="${SimTools.location}/LICENSE_COMPONENTS.md" tofile="${Release.location}/docs/license_components_simtools.md"/>
+        <copy file="${SimSystem.location}/LICENSE_COMPONENTS.md" tofile="${Release.location}/docs/license_components_simsystem.md"/>
+        <copy file="${Simulator.location}/../LICENSE" tofile="${Release.location}/docs/license.txt"/>
+
+        <echo message="Generate exe wrapper" />
+        <exec executable="${NSIS.location}\makensis.exe" dir="${BuildTools.location}">
+            <arg value="Launcher.nsi" />
+        </exec>
+        <move file="${BuildTools.location}/CallcenterSimulator.exe" tofile="${Release.location}/CallcenterSimulator.exe" />
+
+        <echo message="Generate installer" />
+        <exec executable="${NSIS.location}\makensis.exe" dir="${BuildTools.location}">
+            <arg value="Setup.nsi" />
+        </exec>
+
+        <echo message="Sign installer (if signer is available)" />
+        <available file="${BuildTools.location}/Signer/SimulatorDeveloperTool.jar" property="signer.present"/>
+        <java jar="${BuildTools.location}/Signer/SimulatorDeveloperTool.jar" fork="true" if:set="signer.present">
+        	<arg value="sign"/>
+            <arg value="${Release.location}/CallcenterSimulatorSetup.exe"/>
+        </java>     
+    	                
+        <echo message="Generate zip package" />
+        <zip destfile="${Release.location}/CallcenterSimulator.zip">
+            <zipfileset dir="${Release.location}" includes="CallcenterSimulator.jar,CallcenterSimulator.exe,docs/**,libs/**"/>
+        </zip>
+
+        <echo message="Clean up" />
+        <delete file="${Release.location}/CallcenterSimulator.exe" />
+        <delete file="${Release.location}/CallcenterSimulator.jar" />
+        <delete dir="${Release.location}/docs" />
+        <delete dir="${Release.location}/libs" />
+    </target>
+
+</project>

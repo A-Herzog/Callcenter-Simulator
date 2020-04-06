@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Batch processing</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/money_euro.png">&nbsp;
+Simulation &gt; Heuristic revenue improvement
+</div>
+
+<h1>Heuristic revenue improvement</h1>
+
+<p>
+The heuristic revenue improvement sucessively changed the numbers of agents in all intervals up and down and
+checks if this improves the revenue. If the revenue gets higher, the changed agents number will be kept;
+otherwise the original number of agents will be maintained.
+</p>
+
+<h3>Warning / notices</h3>
+
+<ul>
+  <li><b>Heuristic optimization:</b><br>
+  The revenue improvement function is a heuristic optimization process which is not covering the whole solution space.
+  Therefore it is very likely the function will only find a better but not the global optimal solution.</li>  
+  <li><b>Search direction:</b><br>
+  While searching the intervals are inspected in order. Because the individual intervals are links by forwarded
+  clients and retryers, changed in one interval will influence other intervals, too. Therefore a solution found
+  in the optimization proces can be changed again by starting the function again.</li>  
+  <li><b>Long run time needed:</b><br>
+  The revenue improvement process is very time consuming.</li>  
+  <li><b>Many simulated days needed:</b><br>
+  Please use a signifiant higher number of simulated days than the default value of 100 days. If using only 100 simulated
+  days the deviation between two simulation runs has more impact on the results than the adding or removing of a single
+  agent interval. Therefore the optimizer cannot determine if adding or removing an agent interval is or advantage or
+  disadvantage. If using to few simulated days you will not get valid optimization results!</li>
+</ul>
+
+<p>
+This function is also available via the <a href="Parameter.html">command line parameters</a>.
+</p>
+
+</body>
+</html>
+  

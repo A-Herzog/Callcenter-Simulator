@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Edit call center"</title>
+</head>
+
+<body>
+
+<h1>Dialog "Edit call center"</h1>
+
+<p>
+The dialog for editing the call centers can be opened by the dialog page
+<a href="EditorCallcenter.html">Call center and  agents</a> from the call center
+model editor. In the dialog "Edit call center" you can set up the individual
+call centers in the model.
+</p>
+
+<h3>Call center active</h3>
+<p>
+This checkbox allows to set up whether this call center should be taken into account in the simulation.
+By the enabling or disabling call centers quickly different scenarios can be tested
+without the need to create different models.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/group.png">&nbsp; "Agents"</h2>
+<p>
+On the dialog page "Agents" of call center edit dialog you can define the individual agent groups
+who will work in the selected call center. Each agent group can have individual work schedules and skill levels.
+</p>
+
+<p>
+By clicking the <b>Add</b> button you can add new agents groups
+to the call center and by clicking the <b>Edit</b> button you
+can change the settings of existing agents groups in the
+<a href="DialogAgenten.html">Edit agents group</a> dialog.
+</p>
+
+<p>
+The order of agent groups can be changed by the <b>Up</b> and <b>Down</b> buttons.
+The ordering of the agents groups has no influence on the simulation and and is
+only offered to make the list for the user more clearly.
+</p>
+
+<p>
+The <b> Copy</b> function allows to copy the seleczed agents group.
+While copying the number of agents in the group can optionally
+be scaled. All other properties are copied directly.
+</p>
+
+<p>
+The <b>Tools</b> popup menu allows to open the
+<a href="ToolsGeneratorAgenten.html">"Load agents data" dialog</a>
+directly. In this dialog, the agent working hours, the productivity etc.
+for all agents groups of the call center can be loaded at once from a table.
+</p>
+
+<p>
+Additionally one can load multiple agents groups at once from a three
+columned table with number of agents, shift start and shift end in each
+line.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/wrench.png">&nbsp; "Call center parameters"</h2>
+<p>
+On the dialog page "Call center parameters" you can edit the global properties
+of the call center which apply to all agents groups in the call center.
+</p>
+
+<h3>Technical free time</h3>
+<p>
+Between the association of a waiting client to a free agents by the
+Automated Call Distributor (ACD) and the start of the actual conversation
+a few seconds will pass. Since the caller does not realize that he is
+already assigned to an agent, he feels this time as waiting time and
+still can cancel his while during this time.
+</p>
+
+<h3>The technical free time is perceived as waiting time, i.e. the client can still cancel waiting during this time.</h3>
+<p>
+If this option is enabled (which is the default), then the client can not realize
+if he is already assigned to an agent and is now in the technical free time.
+He feels this time then as waiting time and so can also cancel the waiting just
+before the conversation starts. If the option is disabled, the customer realizes
+that he is already assigned to an agent and the conversation will start in a few seconds.
+He will not cancel the waiting anymore at this time. Regardless of the chosen
+type of the technical free time this time is reported in the statistics on the
+clients page as waiting time and is reported as a individual time segment in
+the agents work load statistic.
+</p> 
+
+<h3>Call center scroe</h3>
+<p>
+For each free agent a score value is calculated. If there are several
+free agents appropriate for a waiting caller, the caller is redirected
+to the agent with the highest score value. The agents score consists of
+the set global call center base score, a skill level dependent score value
+and an additive factor respecting the idle time and the idle portion of the agent.
+</p>
+
+<h3>Factor to respect the free time since last call fo the agent score</h3>
+<p>
+In this field you can specifiy, at which value each second of being idle since
+the last call should be respected when calculating the agent core.
+</p>
+
+<h3>Factor to respect the idel time part of the agent score</h3>
+<p>
+In this field you can specifiy, at which value the idle portion of
+the agent should be respected when calculating the agent core.
+</p>
+
+<h3>Attention</h3>
+<p>
+To ensure to balance the work load between the agents in at least
+one of the two fields above a value greater than 0 should be entered.
+</p>
+
+<h3>Agents group productivity in this call center</h3>
+<p>
+In this dialog you can set up how much of the specified agent working time will
+actually be available. The data refer to all agents groups in this call center
+that are not defined by fixed working hours. It can be stated that the agents
+are always available as defined, that they are only available for a certain
+fixed proportion of the specified time or that the productivity varies in
+over the half-hour intervals. Additionally you can set the global values
+to be used and that there are no special parameters for this call center.
+The global settings you define here can optionally be overridden per agents group.
+</p>
+
+<h3>Disease-related surcharge in this call center</h3>
+<p>
+In this dialog one can set up how much agents should be added for planning
+to the number of agents defined in the model to compensate disease-related
+leave. The resulting increased number of agents is not used in the simulation,
+but is also displayed in the statistics. The data refer to all agent groups
+which are not defined by fixed working hours. It can be selected that no
+surcharge should be planned, a fixed percentage of surchare or that the 
+surcharge should vary from half-hour interval to half-hour interval.
+Additionally you can set the global values to be used and that
+there are no special parameters for this call center. The global settings
+you define here can optionally be overridden per agents group.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/clock.png">&nbsp; "Minimum waiting times"</h2>
+<p>
+The individual utilization of the different call centers can be influenced by assigning
+different score values. If this gives not enough spread in the values, minimum waiting times
+can be set for certain types of clients and certain call centers. A client will only be passed
+to a free agent in this call center when its minimum waiting time is over and no suitable 
+free agent has been found in another call center for him until then.
+</p>
+
+<p>
+While assigning different score values only shifts the idle portion between
+the call centers and thus does not affect the total available work power or
+the accessibility, setting a minimum wait time degrades the performance parameters
+of the queuing system. If a minimum time is used, a total of more agents has to be 
+planned in order to reach the same values for accessibility, average waiting time, etc.
+</p>
+
+</body>
+</html>
+  

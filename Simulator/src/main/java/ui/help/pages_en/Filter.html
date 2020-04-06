@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Fast access</title>
+</head>
+
+<body>
+
+<h1>Fast access</h1>
+
+<p>
+The fast access feature allows to present simulation results always in exactly the same user-defined format
+for example for saving them in table form. By using the filter settings at the bottom of this page you can
+define which data are to be exported and in which format.
+</p>
+
+<h2>Filter commands</h2>
+<p>
+In the filter script box at the bottom of the page any scripts can be entered. A script consists of statements
+each a line. The current script is automatically saved when exiting the simulator and restored on next startup.
+</p>
+
+<p>
+A filter script statement always consists of a command followed by a space and then the parameters of the command. The commands itself is not case sensitive. The parameters of the commands for text output and filtering of XML data, the corresponding upper or lower case notation is taken into account. Blank lines are ignored during processing. Furthermore everything behind "//" in a line is interpreted as a <b>comment</b> and not processed.
+</p>
+
+<p>
+A filter script can consist of the following types of commands:
+</p>
+
+<h3>Format</h3>
+<p>
+The <tt>Format</tt> command allows to select the numerical output format of the following output commands.
+You can specgify whether to use a floating point notation or percent notation or interpreting the value
+as a time. As default floating point notation is used.
+</p>
+<ul>
+  <li>Using floating point notation for numbers and percent values: <tt>Format System</tt> or <tt>Format Local</tt></li>
+  <li>Using floating point notation for numbers: <tt>Format Fraction</tt> (<tt>0.375</tt> for example)</li>
+  <li>Using percent notation for numbers: <tt>Format Percent</tt> (<tt>35.7%</tt> for example)</li>
+  <li>Interpreting numbers as times: <tt>Format Time</tt> (<tt>00:03:25.87</tt> for example)</li>
+  <li>Interpreting time values as normal numbers: <tt>Format Number</tt> (format defined by <tt>Percent</tt> or <tt>Fraction</tt>)</li>
+</ul>
+
+<h3>Separator</h3>
+<p>
+The <tt>Separator</tt> command allows to select the separator to be used when printing out distributions of measured values.
+</p>
+<ul>
+  <li>Semicolons as separators: <tt>Separator Semicolon</tt>
+  <li>Line wraps as separators: <tt>Separator Line</tt>
+  <li>Tabulators as separators: <tt>Separator Tabs</tt>
+</ul>
+
+<h3>Text</h3>
+<p>
+This command allows to ouput custom texts (like column dividers). The text itself has to be entered in double quotes. As special chars inside the text \t and \n are supported. \t inserts a tabulator and \n adds a line break.
+</p>
+<p>
+Example: <tt>Text "Hello world!\n"</tt>
+</p>
+
+<h3>Title</h3>
+<p>
+This command allows to define a title for the script. This title is used in the dropdown box
+to select the script. The title itself has to be entered in double quotes.
+</p>
+<p>
+Example: <tt>Title "Waiting times summary"</tt>
+</p>
+
+<h3>Print</h3>
+<p>
+By using the <tt>Print</tt> command any values from the XML statistic tree, variables and results of
+simple calculations can by displayed.
+</p>
+<p>
+Example:
+</p>
+<ul>
+  <li>
+    <tt>Print CallcenterModel-&gt;ModelName</tt><br>
+	Shows the content of the element <tt>ModelName</tt>, which is a child element of <tt>CallcenterModel</tt>.	
+  </li>
+  <li>
+    <tt>Print x</tt><br>
+	Shows the value of the variable <tt>x</tt>.
+  </li>
+  <li>
+    <tt>Print (x+3)*4</tt><br>
+    Calculates (x+3)*4 while taking into account point before dashes and outputs the result
+    (see also <a href="Parser.html">Calculation commands</a>). 
+  </li>
+</ul>
+<p>
+If no variable is defined with the name specified as the parameter and the parameter can not be calculated from an expression, then the parameter is interpreted as XML selection command.
+</p>
+
+<h3>Set</h3>
+<p>
+Stores any values from the XML statistic tree as a variable.
+</p>
+<p>
+Example: <tt>Set x=CallcenterModel-&gt;ModelName</tt>
+</p>
+
+<h3>Calc</h3>
+<p>
+Calculates the expression given as the parameter and stores the result as a variable
+(see also <a href="Parser.html">Calculation commands</a>).
+</p>
+<p>
+Example: <tt>Calc y=(x+3)*4</tt>
+</p>
+
+<h3>Mean</h3>
+<p>
+Returns the mean of the distribution passed as parameter.
+</p>
+<p>
+Example: <tt>Mean CallcenterModel-&gt;ModellClientType[Name="ClientsA"]-&gt;ClientsWaitingTimeToleranceDistribution</tt>
+</p>
+
+<h3>SD</h3>
+<p>
+Returns the standard derivation of the distribution passed as parameter.
+</p>
+<p>
+Example: <tt>SD CallcenterModel-&gt;ModellClientType[Name="ClientsA"]-&gt;ClientsWaitingTimeToleranceDistribution</tt>
+</p>
+
+<h3>CV</h3>
+<p>
+Returns the coefficienz of variation of the distribution passed as parameter.
+</p>
+<p>
+Example: <tt>CV CallcenterModell-&gt;ModellKundentyp[Name="KundenA"]-&gt;KundenWartezeittoleranzVerteilung</tt>
+</p>
+
+<h3>Sum</h3>
+<p>
+Returns the sum over the values of the empirical distribution passed as parameter.
+</p>
+<p>
+Example: <tt>Sum StatisticClients[Name="ClientsA"]-&gt;StatisticClientsWaitingTimeDistribution[Distribution]</tt>
+</p>
+
+<h2>XML selection commands</h2>
+<p>
+The commands <tt>Print</tt> and <tt>Set</tt> are able to read data from the XML tree. 
+While the statistic data stored in the XML file are always sums over all simulated days,
+these commands will give values for a single day (this menas for example not the number of
+successful calls over all simulated days but the average number of successful calls per day).
+</p>
+<p>
+These commands allow to use the content of an XML element of the value of an attribute of an
+XML element. The selection of an XML element is done multistaged step by step divided by
+"-&gt;" characters. Between the "-&gt;" characters the names of the individual XML nodes are
+notated. In addition in square brackets names and values of attributes can be specified to filter by whom.
+</p>
+<p>
+Examples:
+</p>
+<ul>
+  <li>
+    <tt>Print CallcenterModel-&gt;ModelName</tt><br>
+	Shows the content of the element <tt>ModelName</tt>, which is a child element of <tt>CallcenterModel</tt>.	
+  </li>
+  <li>
+    <tt>Print StatisticClients[Name=Priorized Clients]-&gt;StatisticClientsNumber[Success]</tt><br>
+	Selected the <tt>StatisticClients</tt> node with the value <tt>Priorized Clients</tt> in the <tt>Name</tt>attribute. Then is shows the content of the <tt>Success</tt> attribute of the <tt>StatisticClientsNumber</tt> subelement.
+  </li>
+  <li>
+    <tt>Print StatisticAgents[Name=Single skill A]-&gt;[Number]</tt><br>
+	Selected the <tt>StatisticAgents</tt> node with the value <tt>Single skill A</tt> in the <tt>Name</tt>attribute. Then it shows the content of the <tt>Number</tt> attribute of this node.
+  </li>
+</ul>
+<p>
+For a description of the XML file formats see the <a href="Dateiformate.html">File formats</a>
+help page.
+</p>
+</body>
+</html>
+  

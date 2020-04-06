@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Skill-Level bearbeiten"</title>
+</head>
+
+<body>
+
+<h1>Dialog "Skill-Level bearbeiten"</h1>
+
+<p>
+Der Dialog zum Bearbeiten von Skill-Levels wird über die Dialogseite <a href="EditorSkillLevel">Skill-Level der Agenten</a>
+des Calcenter-Modell-Editors aufgerufen. In dem Dialog "Skill-Level bearbeiten" können Einstellungen zu einem einzelnen
+Skill-Level vorgenommen werden.
+</p>
+
+<p>
+Jedes Skill-Level stellt einen Satz von Befähigungen zur Bedienung bestimmter Kundentypen dar.
+Jeder Agentengruppe muss ein Skill-Level zugewiesen werden.
+</p>
+
+<p>
+Über die Schaltflächen <b>Skill hinzufügen</b> und <b>Skill entfernen</b> kann angegeben werden,
+welche Kundentypen Agenten des gewählten Skill-Levels bedinen können soll.
+</p>
+
+<p>
+Pro Kundentyp können folgende Einstellungen vorgenommen werden:
+</p>
+
+<h3><img src="../images/clock.png">&nbsp; Bedienzeitverteilung</h3>
+<p>
+Wird ein Kunde des gewählten Typs von einem Agent dieses Skill-Levels bedient, so wird
+gemäß der hier angegebenen Bedienzeitverteilung bestimmt, wie lange das Gespräch dauert.
+</p>
+<p>
+Es kann eine globale Verteilung vorgegeben werden. Außerdem kann pro Intervall
+vorgegeben werden, dass die globale Verteilung nicht verwendet werden soll
+(dafür die Auswahlbox "Globale Verteilung für dieses Intervall verwenden"
+für das jeweilige Intervall deaktivieren) und stattdessen für das jeweilige
+Intervall eine eigene Verteilung verwendet werden soll.
+</p>
+
+<h3><img src="../images/clock.png">&nbsp; Nachbearbeitungszeitverteilung</h3>
+<p>
+Wird ein Kunde des gewählten Typs von einem Agent dieses Skill-Levels bedient, so wird
+gemäß der hier angegebenen Nachbearbeitungszeitverteilung bestimmt, wie lange 
+Nachbearbeitungszeit des Agenten nach dem Gespräch dauern soll, bevor er sich wieder
+als verfügbar meldet.
+</p>
+<p>
+Es kann eine globale Verteilung vorgegeben werden. Außerdem kann pro Intervall
+vorgegeben werden, dass die globale Verteilung nicht verwendet werden soll
+(dafür die Auswahlbox "Globale Verteilung für dieses Intervall verwenden"
+für das jeweilige Intervall deaktivieren) und stattdessen für das jeweilige
+Intervall eine eigene Verteilung verwendet werden soll.
+</p>
+
+<h3><img src="../images/wrench.png">&nbsp; Score</h3>
+<p>
+In jedem Skill-Level kann jedem Kundentyp, den Agenten dieses Skill-Levels bedienen können,
+eine Scorewert zugewiesen werden. Je höher der Wert ist, desto eher wird ein wartender Kunde
+des jeweiligen Typs zu einem freien Agenten diesen Skill-Levels geschickt.
+</p>
+
+<p>
+Die Skill-Level Score bildet zusammen mit der Callcenter-Score und der Score, die sich aus
+der Leerlaufzeit des Agenten berechnet, die Agenten-Score.
+</p>
+
+</body>
+</html>
+  

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Globale Parameter"</title>
+</head>
+
+<body>
+
+<div class="model">
+<img src="../images/wrench.png">&nbsp;
+Allgemeine Daten &gt;
+<img src="../images/wrench.png">&nbsp;
+Globale Parameter
+</div>
+
+<h1>Dialog "Globale Parameter"</h1>
+
+<p>
+Die folgenden Einstellungen stehen über den Dialog "Globale Parameter" zur Verfügung:
+</p>
+
+<h3>Maximale Warteschlangenlänge</h3>
+<p>
+Kunden, für die bei ihrem Anruf nicht sofort ein passender freier Agent zur Verfügung steht, müssen sich zunächst an die
+Warteschlange anstellen. In den meisten realen Callcentern stehen genug Telefonleitungen zur Verfügung, so dass die maximale
+Warteschlangenlänge nie ausgeschöpft wird. Durch eine künstliche Verknappung der Ressource "Warteraum" lassen sich bestimmte
+Kenngrößen eines Warteschlangensystems jedoch auch gezielt steuern: Stehen wenig Warteplätze zur Verfügung, so werden zwar
+häufig Kunden abgewiesen (d.h. sie erhalten in der Realität ein Besetzt-Zeichen), die Kunden, die es jedoch ins System geschafft haben,
+haben aber im Durchschnitt eine kürzere Wartezeit.
+</p>
+<p>
+Optional kann die Größe des Warteraums in Abhängigkeit von der Anzahl an aktiven Agenten angegeben werden.
+In das Eingabefeld können <a href="Parser.html">Rechenanweisungen</a> eingegeben werden und über die Variable "a" kann auf
+die aktuelle Anzahl an aktiven Agenten zugegriffen werden.
+</p>
+<p>
+Im Simulator wird nur bei neuen Anrufen (Erstanrufer und Wiederholer) geprüft, ob noch Warteraum zur Verfügung steht. Sind alle
+Warteplätze belegt, wird der Anrufer abgewiesen. Weitergeleitete Kunden können sich jedoch immer an die Warteschlange anstellen.
+Bei der Berechnung der belegten Warteplätze werden nur tatsächlich wartende Kunden berücksichtigt. Kunden, die sich momentan in
+einem Gespräch befinden, belegen keinen Warteraum.
+</p>
+<p>
+Als Faustregel ergibt sich aus der Formel von Little, dass der verfügbare Warteraum mindestens so groß wie das Produkt aus
+der maximal auftretenden Ankunftsrate (in Kunden pro Sekunde) und der maximal auftretenden Wartezeit (in Sekunden) sein sollte,
+wenn keine Kunden aufgrund mangelndem Warteraumes abgewiesen werden sollen.
+</p>
+
+<h3>Anzahl der zu simulierenden Tage</h3>
+<p>
+Die Güte der Ergebnisse der Simulation wird im Wesentlichen von der Anzahl an simulierten Tagen
+bestimmt. Je größer dieser Wert gewählt ist, desto weiter nähern sich die vom Simulator gelieferten
+Mittelwerte den tatsächlichen Erwartungswerten an. Die <a href="Statistik.html">Statistik-Seite</a>
+"Konfidenzintervalle" gibt Auskunft darüber, wie stark die Ergebnisse von Simulationstag zu Simulationstag
+schwanken und in welchem Intervall sich der tatsächliche Mittelwert mit welcher Wahrscheinlichkeit befindet.
+</p>
+<p>
+Bei geringen Auslastungen ist bereits ab 50 Wiederholungen des simulierten Tages mit stabilen Werten
+zu rechnen. Bei hohen Agenten-Auslastungen sollten 200 Wiederholungen gewählt werden. 
+</p>
+
+<h3>Gewünschte Schichtlänge</h3>
+<p>
+In der Simulation werden konkrete Agenten mit fest vorgegebenen Arbeitszeiten verwendet.
+Wird die Dienstende-Zeit eines Agenten während eines Gesprächs- oder der Nachbearbeitungszeit
+überschritten, so führt die Agenten Gespräch- und anschließende Nachbearbeitung zwar noch
+zu Ende, meldet sich danach jedoch nicht mehr als verfügbar. In der Praxis stehen jedoch
+häufig nicht die Arbeitszeiten der einzelnen Agenten als Ausgangsdaten für die Simulation
+zur Verfügung, sondern ist es meist nur bekannt, wie viele Agenten pro Halbstundenintervall
+verfügbar waren. Basierend auf diesen Daten müssen dann zu Beginn der Simulation konkrete
+Agenten angelegt werden. Würde der Simulator für jedes Halbstundenintervall gemäß der
+Agentenanzahl einen neuen Satz an Agenten anlegen, so würde dies die tatsächlich verfügbare
+Arbeitszeit überschätzen, da die Agenten am Ende des Halbstundenintervalls ihre Gespräche
+noch zu Ende führen, während die Agenten des nächsten Halbstundenintervalls bereits
+ihren Dienst aufgenommen haben. Um diesen Effekt zu vermeiden, versucht der Simulator
+Agenten mit längeren Arbeitszeiten anzulegen, d.h. der Simulator erstellt Schichtpläne,
+die den realen Schichtplänen der Agenten von der Schichtpläne her möglichst gut
+entsprechen.
+</p>
+<p>
+In diesem Eingabefeld kann eingestellt werden, wie lang die Schicht eines Agenten
+maximal ausfallen soll. Der Simulator versucht bei der Schichtplanung die Agenten
+so einzuplanen, dass unter Einhaltung der vorgegebenen Anzahl an Agenten pro
+Halbstundenintervall möglichst lange Schtichtzeiten, die den hier angegebenen Wert
+jedoch nicht übersteigen, entstehen.
+</p>
+
+<h3>Minimale Schichtlänge</h3>
+<p>
+Zusätzlich zu der gewünschten (maximalen) Schichtlänge kann noch eine minimale Schichtlänge,
+die bei der Planung der Agenten stets eingehalten werden muss, definiert werden. Ist eine
+minmale Schichtlänge für die Agenten definiert, so kann es vorkommen, dass mehr Arbeitsleitung
+als für eine jeweilige Agentengruppe vorgesehen ist, eingeplant wird, um die Schichtlängenvorgaben
+einzuhalten. Es wird davon abgeraten, minimale Schichtlängen vorzugeben.
+</p>
+
+<h3>Zeitspanne für Service-Level</h3>
+<p>
+Als Kenngrößen eines Warteschlangensystems werden häufig nicht nur die mittlere Wartezeit
+und die Erreichbarkeit betrachtet, sondern es wird häufig auch nach dem sogenannten
+Service-Level gefragt. Dafür wird eine Wartezeit vorgegeben, die von möglichst vielen
+Kunden nicht überschritten werden soll. Als Wartezeit werden häufig 10, 20 oder 30 Sekunden
+gewählt. Es wird dann gefragt, welcher Anteil der Kunden höchstens so lange hat warten müssen.
+Über dieses Feld kann eingestellt werden, welche Zeitspanne der Simulator als maßgeblich
+für den Service-Level auffassen soll und demgemäß die Anzahl der Kunden, die höchstens
+entsprechend lange warten mussten, zählen soll.
+</p>
+
+<h3>Produktivität der Agentengruppen</h3>
+<p>
+In diesem Dialog können Sie einstellen, wie viel der angegebenen Agentenarbeitsleitung
+tatsächlich verfügbar sein soll. Die Angaben beziehen sich auf alle Agentengruppen, die
+nicht über feste Arbeitszeiten definiert sind. Es kann angegeben werden, dass die Agenten
+stets wie angegeben verfügbar sind, dass sie nur für einen bestimmten, festen Anteil
+der angegebenen Leistung verfügbar sind oder aber dass die Produktivität in Halbstundenintervallen
+variiert. Die hier vorgenommenen globalen Einstellungen können optional pro Callcenter und
+pro Agentengruppe überschrieben werden.
+</p>
+
+<h3>Krankheitsbedingter der Agentengruppe</h3>
+<p>
+In diesem Dialog können Sie einstellen, wie viel Agenten prozentual auf die vorgegebenen
+Modell-Agentenverteilungen aufgeschlagen werden sollen, um krankheitsbedingte Ausfälle zu
+kompensieren. Die daraus resultierende erhöhte Agentenverteilung wird nicht in der Simulation
+verwendet, sondern nur zusätzlich in der Statistik ausgewiesen.
+Die Angaben beziehen sich auf alle Agentengruppen, die
+nicht über feste Arbeitszeiten definiert sind. Es kann angegeben werden, dass kein
+Aufschlag erfolgen soll, dass diese prozentual in allen Intervallen identisch sein
+soll aber dass der Zuschlag in Halbstundenintervallen variiert.
+Die hier vorgenommenen globalen Einstellungen können optional pro Callcenter und
+pro Agentengruppe überschrieben werden.
+</p>
+
+<h2><img src="../images/Ampel_klein.png">&nbsp;Dialog "Schwellenwerte"</h2>
+
+<p>
+Wenn Sie auf die Schaltfläche "Schwellenwerte" klicken, öffent sich der <a href="ThresholdWarnings.html">Schwellenwert-Warnungen</a>
+Dialog, in dem Sie Schwellenwerte für einzelne Kenngrößen einstellen können. Wenn diese Schwellenwerte über- oder unterschritten
+werden, erhalten Sie in den <a href="Statistik.html">Statistikergebnissen</a> eine entsprechende Warnung.
+</p>
+
+</body>
+</html>

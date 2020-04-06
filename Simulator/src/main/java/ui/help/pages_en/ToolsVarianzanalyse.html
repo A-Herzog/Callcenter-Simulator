@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Variance analysis</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/chart_curve_error.png">&nbsp;
+Tools &gt; Variance analysis
+</div>
+
+<h1>Variance analysis</h1>
+
+<p>
+To get statistically stable simulation results many days have to be simulated.
+Since the time required for the entire simulation linearly increases with the number
+of simulated days, no more than necessary days should be simulated. By means of analysis
+of variance it can be determined how much the results of individual simulations of the same model
+differ between the simulation runs. If the results vary to greatly, the number of simulated days is too small.
+</p>
+
+<h2>Fixed number of simulated days</h2>
+<p>
+In this mode several simulation runs are carried out with the current model
+with the configurated number of simulated days. The results of each run and
+information on the variance between the runs are displayed in the table.
+</p>
+
+<h2>Variable number of simulated days</h2>
+<p>
+In this mode the number of simulated days is increased at each step by 5 starting with 5.
+With any number of simulated days, a series of simulation runs is performed.
+The coefficient of variation between the different simulation runs is displayed
+in tabular form and in the form of a chart. This allows to see up to which number of
+simulated days the coefficient of variation between different simulations decreases
+significantly.
+</p>
+
+</body>
+</html>
+  

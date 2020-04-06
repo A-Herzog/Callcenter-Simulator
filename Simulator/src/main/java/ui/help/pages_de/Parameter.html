@@ -1,0 +1,515 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Kommandozeilenparameter</title>
+</head>
+
+<body>
+
+<h1>Kommandozeilenparameter</h1>
+
+<p>
+Bitte beachten Sie, dass <b>nur</b> die <a href="Versionen.html">kommerzielle Version</a>
+des Callcenter Simulators per Kommandozeilenparameter gesteuert werden kann.
+</p>
+
+<p>
+Allgemein kann der Simulator auf drei Arten mit Parametern aufgerufen werden:
+</p>
+
+<ol class="big">
+<li><b>Aufruf mit einer Modell-Datei</b><br>
+<tt>&lt;SimulatorProgrammdatei&gt; &lt;Simulationsmodell&gt;</tt><br>
+Startet die grafische Oberfläche des Simulators und lädt die angegebene Modell-Datei.</li>
+<li><b>Aufruf mit einer Statistik-Datei</b><br>
+<tt>&lt;SimulatorProgrammdatei&gt; &lt;Statistikdaten&gt;</tt><br>
+Startet die grafische Oberfläche des Simulators und lädt die angegebene Statistik-Datei.</li>
+<li><b>Aufruf mit einem Befehl</b><br>
+<tt>&lt;SimulatorProgrammdatei&gt; &lt;Befehl&gt; &lt;Parameter&gt;</tt><br>
+Startet den Simulator im Kommandozeilen-Modus und führt den angegebenen Befehl aus.</li>
+</ol>
+
+<p>
+Zusätzlich kann zwischen dem Namen der Programmdatei (<tt>&lt;SimulatorProgrammdatei&gt;</tt>)
+und den weiteren Parametern noch angegeben werden, wo der Simulator die Programmkonfiguration
+ablegen soll. Dies geschieht wie folgt:
+</p>
+<p>
+<tt>&lt;SimulatorProgrammdatei&gt; cfg="&lt;PfadUndDateiname&gt;" &lt;OptionalWeitereParameter&gt;</tt>
+</p>
+<p>
+Beim Programmstart wird zunächst die Konfigurationsdatei im Simulator-Programmverzeichnis
+geladen und dann mit der Benutzer-Konfigurationsdatei überlagert. Schreibzugriffe erfolgen
+ausschließlich auf die benutzerdefinierte Konfigurationsdatei.
+</p>
+
+<h1>Befehle für den Kommandozeilen-Modus</h1>
+
+<p>
+<b>Achtung:</b> Der Kommandozeilen-Modus steht nur zur Verfügung, wenn das Programm
+als <tt>jar</tt>-Datei ausgeführt wird. Die Windows-<tt>exe</tt>-Datei kann nicht
+über die folgenden Befehle gesteuert werden.
+</p>
+
+<p style="margin-bottom: 10px">
+Der Platzhalter <tt>&lt;Befehl&gt;</tt> in der 3. Aufrufvariante die in den folgenden
+Abschnitten beschriebenen Inhalte annehmen.
+</p>
+
+<!-- ---------------------------------------------------------------------- -->
+<h2>Import &amp; Export von Daten</h2>
+
+<table border="1" style="margin-top: 15px;">
+  <tr><th>Befehl</th><th>Bedeutung</th></tr>
+  <tr><td>GENERATORKUNDEN</td><td>Kundenankunftsverteilung aus Tabelle laden.</td></tr>
+  <tr><td>GENERATORAGENTEN</td><td>Agentenarbeitszeiten aus Tabelle laden.</td></tr>
+  <tr><td>GENERATORAGENTENPRODUKTIVITAET</td><td>Agentenproduktivitätsverteilung aus Tabelle laden.</td></tr>
+  <tr><td>GENERATORAGENTENKRANKHEITSAUFSCHLAG</td><td>Krankheitsaufschlag aus Tabelle laden.</td></tr>
+  <tr><td>GENERATORSKILLS</td><td>Bedien- und Nachbearbeitungszeiten aus Tabelle laden.</td></tr>
+  <tr><td>MODELLAUSTABELLEN</td><td>Erstellt aus einer Anrufer- und einer Agententabelle ein Callcenter-Modell.</td></tr>
+  <tr><td>XMLVORVERARBEITUNG</td><td>Fügt Zellen aus einer Tabelle in eine XML-Datei ein.</td></tr>
+  
+  <tr><td>FILTER</td><td>Datei mit Statistikergebnissen filtern.</td></tr>  
+  <tr><td>IMPORT</td><td>Importiert Daten gemäß einer Schablone aus einer Tabelle in ein Modell.</td></tr>
+  <tr><td>REPORT</td><td>Exportiert einen Teil oder die gesamten Simulationsergebnisse für ein Modell.</td></tr>
+  <tr><td>MODELLINFORMATIONEN</td><td>Exportiert einen Teil oder die gesamten Modell-Informationen.</td></tr>
+  <tr><td>EXPORT</td><td>Exportiert Statistikdaten in einem Nicht-XML-Format.</td></tr>
+</table>
+
+<p style="margin-top: 10px">
+(Die Groß- und Kleinschreibung der als <tt>&lt;Befehl&gt;</tt> angegebenen Betriebsart wird nicht berücksichtigt.)
+</p>
+
+<p><b>Parameter der einzelnen Befehle</b></p>
+
+<p>
+Die im Bereich <tt>&lt;Parameter&gt;</tt> anzugebenen zusätzlichen Parameter hängen vom <tt>&lt;Befehl&gt;</tt> ab:
+</p>
+
+<h4>GENERATORKUNDEN</h4>
+<p>
+Kundenankunftsverteilung aus Tabelle laden.<br>
+Mindestens fünf weitere Parameter:<br>
+1. Eingabe-Modell-Datei<br>
+2. Tabellen-Eingabe-Datei<br>
+3. Ausgabe-Modell-Datei<br>
+Die Eingabedateien müssen existieren, die Ausgabedatei darf nicht existieren.
+Den ersten drei Parametern können beliebig viele Zweierpärchen der folgenden
+Art folgen:
+</p>
+<ul>
+  <li>Erste Tabellenzelle (in der Form A1), ab der die zu ladenden Daten in einer Spalte stehen</li>
+  <li>Kundentyp, dessen Ankunftsverteilung geladen werden soll</li>
+</ul>
+
+<h4>GENERATORAGENTEN</h4>
+<p>
+Agentenarbeitszeiten aus Tabelle laden.<br>
+Mindestens sechs weitere Parameter:<br>
+1. Name des anzupassenden Callcenters<br>
+2. Eingabe-Modell-Datei<br>
+3. Tabellen-Eingabe-Datei<br>
+4. Ausgabe-Modell-Datei<br>
+Die Eingabedateien müssen existieren, die Ausgabedatei darf nicht existieren.
+Den ersten vier Parametern können beliebig viele Zweierpärchen der folgenden
+Art folgen:
+</p>
+<ul>
+  <li>Erste Tabellenzelle (in der Form A1), ab der die zu ladenden Daten in einer Spalte stehen</li>
+  <li>Agentengruppennummer, deren Arbeitszeitenverteilung geladen werden soll</li>
+</ul>
+
+<h4>GENERATORAGENTENPRODUKTIVITAET</h4>
+<p>
+Agentenproduktivitätsverteilung aus Tabelle laden.<br>
+Mindestens sechs weitere Parameter:<br>
+1. Name des anzupassenden Callcenters<br>
+2. Eingabe-Modell-Datei<br>
+3. Tabellen-Eingabe-Datei<br>
+4. Ausgabe-Modell-Datei<br>
+Die Eingabedateien müssen existieren, die Ausgabedatei darf nicht existieren.
+Den ersten vier Parametern können beliebig viele Zweierpärchen der folgenden
+Art folgen:
+</p>
+<ul>
+  <li>Erste Tabellenzelle (in der Form A1), ab der die zu ladenden Daten in einer Spalte stehen</li>
+  <li>Agentengruppennummer, deren Produktivitätsverteilung geladen werden soll</li>
+</ul>
+
+<h4>GENERATORAGENTENKRANKHEITSAUFSCHLAG</h4>
+<p>
+Krankheitsaufschlag aus Tabelle laden.<br>
+Mindestens sechs weitere Parameter:<br>
+1. Name des anzupassenden Callcenters<br>
+2. Eingabe-Modell-Datei<br>
+3. Tabellen-Eingabe-Datei<br>
+4. Ausgabe-Modell-Datei<br>
+Die Eingabedateien müssen existieren, die Ausgabedatei darf nicht existieren. 
+Den ersten vier Parametern können beliebig viele Zweierpärchen der folgenden 
+Art folgen:
+</p>
+<ul>
+  <li>Erste Tabellenzelle (in der Form A1), ab der die zu ladenden Daten in einer Spalte stehen</li>
+  <li>Agentengruppennummer, deren Produktivitätsverteilung geladen werden soll</li>
+</ul>
+
+<h4>GENERATORSKILLS</h4>
+<p>
+Bedien- und Nachbearbeitungszeiten aus Tabelle laden.<br>
+Mindestens sechs weitere Parameter:<br>
+1. Name des anzupassenden Skill-Levels<br>
+2. Eingabe-Modell-Datei<br>
+3. Tabellen-Eingabe-Datei<br>
+4. Ausgabe-Modell-Datei<br>
+Die Eingabedateien müssen existieren, die Ausgabedatei darf nicht existieren.
+Den ersten vier Parametern können beliebig viele Zweierpärchen der folgenden
+Art folgen:
+</p>
+<ul>
+  <li>Erste Tabellenzelle (in der Form A1), ab der die zu ladenden Daten in einer Spalte stehen</li>
+  <li>Names des Kundentyps mit einem Vorangestellten "B" für Bedienzeit oder "N" für Nachbearbeitungszeit</li>
+</ul>
+
+<h4>MODELLAUSTABELLEN</h4>
+<p>
+Erstellt aus einer Anrufer- und einer Agententabelle ein Callcenter-Modell.<br>
+Der Befehl erwartet drei Parameter:<br>
+1. Kunden-Eingabe-Tabelle<br>
+2. Agenten-Eingabe-Tabelle<br>
+3. Dateiname unter dem das Modell gespeichert werden soll.<br>
+Die beiden Tabellennamen können, jeweils durch "!" abgetrennt
+um den Namen der Tabelle innerhalb der Arbeitsmappendatei und um
+die erste zu berücksichtigende Spalte ergänzt werden.<br>
+Die Anrufertabelle kann beliebig viele Spalten enthalten.
+Pro Spalte wird ein Kundentyp definiert.
+Jede Spalte muss aus folgenden Zeilen bestehen:
+</p>
+<ul>
+  <li>Name des Kundentyps</li>
+  <li>48 Zeilen für die Anzahlen an Anrufen pro Halbstundenintervall</li>
+  <li>Basispriorität des Kundentyps</li>
+  <li>Prioritätsänderung pro Wartesekunde</li>
+  <li>Prioritätsänderung bei Weiterleitungen</li>
+  <li>Mittlere Wartezeittoleranz</li>
+  <li>Wiederholwahrscheinlichkeit</li>
+  <li>Mittlerer Wiederholabstand</li>
+  <li>Beliebig viele weitere Zeilen, die angeben mit welcher Wahrscheinlichkeit Kunden dieses Typs nach einem Gespräch weitergeleitet werden (Reihenfolge entsprechend der Spaltenreihenfolge der Tabelle; leere Zeilen bedeuten, dass Kunden nicht zu dem jeweiligen Typ weitergeleitet werden)</li>
+</ul>
+<p>
+Die Agententabelle kann beliebig viele Spalten enthalten.
+Pro Spalte wird eine Agentengruppe definiert.
+Jede Spalte muss aus folgenden Zeilen bestehen:
+</p>
+<ul>
+  <li>Name der Gruppe bzw. des Skill-Levels</li>
+  <li>48 Zeilen für die Agentenanzahlen pro Halbstundenintervall</li>
+  <li>Beliebig viele weitere Zeilen für die mittleren Bedienzeiten der Kundentypen (Reihenfolge entsprechend der Spaltenreihenfolge der Kundentabelle; leere Zeilen bedeuten, dass die Agentengruppe Kunden dieses Typs nicht bedienen kann)</li>
+</ul>
+
+<h4>XMLVORVERARBEITUNG</h4>
+<p>
+Fügt Zellen aus einer Tabelle in eine XML-Datei ein.<br>
+Der Befehl erwartet 3 Parameter:<br>
+1. Die Modell-Eingabe-Datei<br>
+2. Die Tabellendatei, aus der die Daten entnommen werden sollen<br>
+3. Die Modell-Ausgabe-Datei<br>
+In der Eingabe-Modelldatei könnten an beliebiger Stelle Ausdrücke der Form $(Tabellenname!A1) oder $(Tabellenname!A1:A48) stehen,
+die angegeben dass eine einzelne Zelle (im Beispiel A1) oder ein ganzer Bereich (im Beispiel die Zellen von A1 bis A48) an der
+angegebenen Stelle in die XML-Datei eingefügt werden sollen. Der Tabellenname ist dabei optional. Wird keine Tabelle angegeben,
+also z.B. $(A1) oder $(A1:A48) so wird die erste Tabelle der Arbeitsmappe verwendet.
+</p>
+
+<h4>FILTER</h4>
+<p>
+Datei mit Statistikergebnissen filtern.<br>
+Genau drei weitere Parameter:<br>
+1. Name der Eingabe-Statistik-Datei<br>
+2. Name der Eingabe-Filterkonfigurationsdatei<br>
+3. Name der Ausgabedatei, die die Filterergebnisse aufnehmen soll<br>
+Wenn die Ausgabedatei bereits existiert, werden die neuen Ergebnisse angehängt.<br>
+Ansonsten wird die Datei neu angelegt.
+</p>
+
+<h4>IMPORT</h4>
+<p>
+Importiert Daten gemäß einer Schablone aus einer Tabelle in ein Modell.<br>
+Dieser Befehl erwartet genau vier weitere Parameter:<br>
+1. Ausgangsmodelldatei, aus der das zu ändernde Modell geladen werden soll.<br>
+2. Import-Schablone, gemäß der die Daten importiert werden sollen.<br>
+3. Tabellendatei, aus der die Daten gelesen werden sollen.<br>
+4. Zielmodelldatei, in der das veränderte Modell gespeichert werden soll.
+</p>
+
+<h4>REPORT</h4>
+<p>
+Exportiert einen Teil oder die gesamten Simulationsergebnisse für ein Modell.<br>
+Dieser Befehl erwartet genau drei weitere Parameter:<br>
+1. "Inline", "Einzeldateien", "Text", "Liste", "PDF" oder ein Listeneintrag je nach dem, ob<br>
+&nbsp;&nbsp;a) ein HTML-Report mit eingebetteten Bildern<br>
+&nbsp;&nbsp;b) ein HTML-Report mit Bildern in separaten Dateien<br>
+&nbsp;&nbsp;c) ein DOCX-Report<br>
+&nbsp;&nbsp;d) ein PDF-Report<br>
+&nbsp;&nbsp;e) eine Liste der verfügbaren Einzeldokumente oder<br>
+&nbsp;&nbsp;f) ein bestimmtes Einzeldokument ausgegeben werden soll.<br>
+2. Dateiname der Eingabedatei<br>
+3. Dateiname der Ausgabedatei
+</p>
+
+<h4>MODELLINFORMATIONEN</h4>
+<p>
+Exportiert einen Teil oder die gesamten Modell-Informationen.<br>
+Dieser Befehl erwartet genau drei weitere Parameter:<br>
+1. "Inline", "Einzeldateien", "Text", "Liste", "PDF" oder ein Listeneintrag je nach dem, ob<br>
+&nbsp;&nbsp;a) ein HTML-Report mit eingebetteten Bildern<br>
+&nbsp;&nbsp;b) ein HTML-Report mit Bildern in separaten Dateien<br>
+&nbsp;&nbsp;c) ein DOCX-Report<br>
+&nbsp;&nbsp;d) ein PDF-Report<br>
+&nbsp;&nbsp;e) eine Liste der verfügbaren Einzeldokumente oder<br>
+&nbsp;&nbsp;f) ein bestimmtes Einzeldokument ausgegeben werden soll.<br>
+2. Dateiname der Eingabedatei<br>
+3. Dateiname der Ausgabedatei
+</p>
+
+<h4>EXPORT</h4>
+<p>
+Exportiert Statistikdaten in einem Nicht-XML-Format.<br>
+Dieser Befehl erwartet genau drei weitere Parameter:<br>
+1. Gewünschtes Export-Ausgabeformat ("json" oder "WebApp")<br>
+2. Name der Eingabe-Statistik-Datei<br>
+3. Name der Ausgabedatei<br>
+Die Eingabedatei muss existieren. Die Ausgabedatei darf nicht existieren.
+</p>
+
+<!-- ---------------------------------------------------------------------- -->
+<h2>Simulation &amp; Optimierung</h2>
+
+<table border="1" style="margin-top: 15px;">
+  <tr><th>Befehl</th><th>Bedeutung</th></tr>
+  <tr><td>SIMULATION</td><td>Führt einen einzelnen Simulationslauf durch.</td></tr>
+  <tr><td>STAPELVERARBEITUNG</td><td>Simuliert alle Modelle in einem Verzeichnis.</td></tr>
+  <tr><td>VERBUNDENESIMULATION</td><td>Simulation, in die Statistikdaten vom Vortrag einfließen.</td></tr>
+  <tr><td>OPTIMIERUNG</td><td>Optimiert ein Callcenter-Modell.</td></tr>
+  <tr><td>OPTIMIERUNGEXPORT</td><td>Extrahiert das letzte Modell aus den Optimierungsergebnissen.</td></tr>
+  <tr><td>VERLAGERN</td><td>Kunden oder Agenten verlagern um Ressourcen besser ausnutzen zu können</td></tr>
+  <tr><td>VORPLANUNG</td><td>Erlang-C-basierte Vorplanung der Anzahl an Agenten.</td></tr>
+  <tr><td>VEREINFACHEN</td><td>Vereinfacht das Modell zu einem Single-Skill-Modell</td></tr>
+  <tr><td>HEURISTISCHEERTRAGSVERBESSERUNG</td><td>Ändert die Agentenanzahlen, um den Ertrag zu verbessern</td></tr>
+</table>
+
+<p style="margin-top: 10px">
+(Die Groß- und Kleinschreibung der als <tt>&lt;Befehl&gt;</tt> angegebenen Betriebsart wird nicht berücksichtigt.)
+</p>
+
+<p><b>Parameter der einzelnen Befehle</b></p>
+
+<p>
+Die im Bereich <tt>&lt;Parameter&gt;</tt> anzugebenen zusätzlichen Parameter hängen vom <tt>&lt;Befehl&gt;</tt> ab:
+</p>
+
+<h4>SIMULATION</h4>
+<p>
+Führt einen einzelnen Simulationslauf durch.<br>
+Zwei weitere Parameter:<br>
+1. Eingabe-Modell-Datei<br>
+2. Ausgabe-Statstik-Datei<br>
+Die Eingabedatei muss existiertieren, die Ausgabedatei darf nicht existieren.
+</p>
+
+<h4>STAPELVERARBEITUNG</h4>
+<p>
+Simuliert alle Modelle in einem Verzeichnis.<br>
+Ein weiterer Parameter:
+Verzeichnis, welches die zu simulierenden Modelle enthält.
+</p>
+
+<h4>VERBUNDENESIMULATION</h4>
+<p>
+Simulation, in die Statistikdaten vom Vortrag einfließen.<br>
+Entweder einen oder mindestens drei weitere Parameter.
+Im Fall von einem weiteren Parameter muss dieser eine Verbund-Simulation-xml-Datei
+angeben, die ausgeführt werden soll. Im Fall von drei oder mehr Parametern müssen
+diese folgende Bedeutungen haben:<br>
+1. Eingabe-Modell-Datei<br>
+2. Eingabe-Statistik-Datei<br>
+3. Ausgabe-Statstik-Datei<br>
+Die Eingabedateien müssen existiertieren, die Ausgabedatei darf nicht existieren.
+Den ersten drei Parametern können beliebig viele Zweierpärchen der folgenden
+Art folgen:
+</p>
+<ul>
+  <li>Kundentyp, deren Abbrecher aus der Statistikdatei den Erstanrufern hinzufügt werden sollen</li>
+  <li>Anteil der Abbrecher in Prozent (mit %-Zeichen zu versehen), die neue Erstanrufer werden</li>
+</ul>
+
+<h4>OPTIMIERUNG</h4>
+<p>
+Extrahiert das letzte Modell aus den Optimierungsergebnissen.<br>
+Drei weitere Parameter:<br>
+1. Eingabe-Modell-Datei<br>
+2. Optimiererkonfigurations-Datei<br>
+3. Optimierer-Ausgabe-Statstik-Datei<br>
+Eingabedatei und Optimiererkonfiguration müssen existiertieren,
+die Ausgabedatei darf nicht existieren.
+</p>
+
+<h4>OPTIMIERUNGEXPORT</h4>
+<p>
+Extrahiert das letzte Modell aus den Optimierungsergebnissen.<br>
+Zwei weitere Parameter:<br>
+1. Eingabe-Optimiererergebnisse-Datei<br>
+2. Ausgabe-Statstik-Datei<br>
+Eingabe-Optimiererergebnisse-Datei muss existieren,
+die Ausgabedatei darf nicht existieren."
+</p>
+
+<h4>VERLAGERN</h4>
+<p>
+Kunden oder Agenten verlagern um Ressourcen besser ausnutzen zu können.<br>
+Dieser Befehl erwartet vier or mehr weitere Parameter:<br>
+1. Eingabe-Modell-Datei<br>
+2. Ausgabe-Statstik-Datei<br>
+3. Veränderungsmodus<br>
+4. Veränderungsstärke<br>
+Die Eingabedatei muss existieren, die Ausgabedatei darf nicht existieren. Der Veränderungsmodus muss entweder "Kunden" oder "Agenten" lauten und die Veränderungsstärke eine Zahl zwischen 0 und 1 sein.<br>
+Wenn keine weiteren Parameter angegeben werden, wirken sich die Veränderungen auf alle Kunden- bzw. Agentengruppen aus. Wenn weitere Parameter angegeben werden, werden nur die Gruppen, die im 5., 6. usw. Parameter benannt sind, verändert.
+</p>
+
+<h4>VORPLANUNG</h4>
+<p>
+Erlang-C-basierte Vorplanung der Anzahl an Agenten.<br>
+Dieser Befehl erwartet genau vier weitere Parameter:<br>
+1. Dateiname des Ausgangsmodells<br>
+2. Dateiname des Ergebnismodells<br>
+3. Name der einzuhaltenen Kenngröße<br>
+4. Wert der einzuhaltenen Kenngröße<br>
+Der Name der Kenngröße kann dabei einer der folgenden Werte sein: 
+"Erreichbarkeit", "Wartezeit" oder "ServiceLevel", wobei
+noch jeweils (ohne Leerzeichen) "Wiederholer" und/oder
+"Vereinfacht" an den Namen der Kenngröße angehängt werden können
+(in dieser Reihenfolge).
+Wird einer der "...Wiederholer"-Werte verwendet,
+so werden in dem Erlang-C-Modell Wiederholer berücksichtigt.
+Wird einer der "...Vereinfacht"-Werte verwendet, so wird das
+Modell vor der Berechnung der Agentenzahlen zu einem
+Single-Skill-Modell vereinfacht.
+</p>
+
+<h4>VEREINFACHEN</h4>
+<p>Vereinfacht das Modell zu einem Single-Skill-Modell.<br>
+Dieser Befehl erwartet genau zwei Parameter:<br>
+1. Eingabe-Modell-Datei<br>
+2. Ausgabe-Modell-Datei
+</p>
+
+<h4>HEURISTISCHEERTRAGSVERBESSERUNG</h4>
+<p>Ändert die Agentenanzahlen, um den Ertrag zu verbessern.
+Dieser Befehl erwartet genau zwei Parameter:<br>
+1. Eingabe-Modell-Datei<br>
+2. Ausgabe-Modell-Datei
+</p>
+
+<!-- ---------------------------------------------------------------------- -->
+<h2>Betrieb als Netzwerkserver</h2>
+
+<table border="1" style="margin-top: 15px;">
+  <tr><th>Befehl</th><th>Bedeutung</th></tr>
+  <tr><td>SERVER</td><td>Simulator als Rechenserver starten.</td></tr>
+  <tr><td>LOGFILESERVER</td><td>Simulator als Rechenserver starten (Statusausgaben in Datei speichern).</td></tr>
+  <tr><td>SAASSERVER</td><td>Simulator als Rechenserver inkl. Web-Server zur Auslieferung von Client-Applets starten.</td></tr>
+</table>
+
+<p style="margin-top: 10px">
+(Die Groß- und Kleinschreibung der als <tt>&lt;Befehl&gt;</tt> angegebenen Betriebsart wird nicht berücksichtigt.)
+</p>
+
+<p><b>Parameter der einzelnen Befehle</b></p>
+
+<p>
+Die im Bereich <tt>&lt;Parameter&gt;</tt> anzugebenen zusätzlichen Parameter hängen vom <tt>&lt;Befehl&gt;</tt> ab:
+</p>
+
+<h4>SERVER</h4>
+<p>
+Simulator als Rechenserver starten.<br>
+Dieser Befehl erwartet 0 bis 3 weitere Parameter.
+Werden entsprechend viele Parameter angegeben, so haben diese folgende Bedeutungen:<br>
+Parameter 1: Zu verwendender Port<br>
+Parameter 2: Maximale Anzahl an Threads pro Aufgabe (0=unbegrenzt, Vorgabe: 0)<br>
+Parameter 3: Passwort für die verschlüsselte Datenübertragung<br>
+Wird kein Parameter übergeben, so wird der Port per Kommandozeile abgefragt.
+</p>
+
+<h4>LOGFILESERVER</h4>
+<p>
+Simulator als Rechenserver starten (Statusausgaben in Datei speichern).<br>
+Dieser Befehl erwartet 1 bis 4 weitere Parameter.
+Werden entsprechend viele Parameter angegeben, so haben diese folgende Bedeutungen:<br>
+Parameter 1: Dateiname der zu verwendenden Logdatei<br>
+Parameter 2: Zu verwendender Port<br>
+Parameter 3: Maximale Anzahl an Threads pro Aufgabe (0=unbegrenzt, Vorgabe: 0)<br>
+Parameter 4: Passwort für die verschlüsselte Datenübertragung<br>
+Wird nur ein Parameter übergeben, so wird der Port per Kommandozeile abgefragt.
+</p>
+
+<h4>SAASSERVER</h4>
+<p>
+Simulator als Rechenserver inkl. Web-Server zur Auslieferung von Client-Applets starten.<br>
+Dieser Befehl erwartet genau einen weiteren Parameter,
+der entweder den Pfad zu einer SaaS-Konfigurationsdatei angibt oder aber "Test" oder "Demo" lautet, um den Demo-Modus einer mit Standard-Konfiguration zu starten, oder aber "Init" um das System für die erstmalige Verwendung zu konfigurieren.
+</p>
+
+<!-- ---------------------------------------------------------------------- -->
+<h2>Allgemeine Befehle zu Konfiguration</h2>
+
+<table border="1" style="margin-top: 15px;">
+  <tr><th>Befehl</th><th>Bedeutung</th></tr>
+  <tr><td>HILFE</td><td>Zeigt eine mit dieser Hilfe-Seite vergleichbare Übersicht an.</td></tr>  
+  <tr><td>SPRACHE</td><td>Stellt die Sprache der Programmoberfläche ein.</td></tr>
+  <tr><td>MAXTHREADS</td><td>Stellt die Maximalanzahl an Threads, die für die Simulation verwendet werden, ein.</td></tr>
+  <tr><td>UPDATE</td><td>Prüft auf neue Versionen und lädt ggf. eine neue jar-Datei herunter.</td></tr>
+</table>
+
+<p style="margin-top: 10px">
+(Die Groß- und Kleinschreibung der als <tt>&lt;Befehl&gt;</tt> angegebenen Betriebsart wird nicht berücksichtigt.)
+</p>
+
+<p><b>Parameter der einzelnen Befehle</b></p>
+
+<p>
+Die im Bereich <tt>&lt;Parameter&gt;</tt> anzugebenen zusätzlichen Parameter hängen vom <tt>&lt;Befehl&gt;</tt> ab:
+</p>
+
+<h4>HILFE</h4>
+<p>
+Zeigt eine mit dieser Hilfe-Seite vergleichbare Übersicht an.<br>
+Dieser Befehl erwartet einen oder keine weiteren Parameter.
+Wird ein Befehl als zusätzlicher Parameter angegeben, so wird die Hilfe zu diesem Befehl angezeigt.
+Ansonsten wird die Hilfe zu allen Befehlen angezeigt.
+</p>
+
+<h4>SPRACHE</h4>
+<p>
+Stellt die Sprache der Programmoberfläche ein.<br>
+Dieser Befehl erwartet als Parameter die gewünschte Programmsprache: "Deutsch" oder "Englisch".
+</p>
+
+<h4>MAXTHREADS</h4>
+<p>
+Stellt die Maximalanzahl an Threads, die für die Simulation verwendet werden, ein.<br>
+Der Befehl erwartet als Parameter eine nicht-negative ganze Zahl.<br>
+Wird "0" übergeben, so wird festgelegt, dass keine künstliche Beschränkung
+der Anzahl an Rechenthreads vorgenommen werden soll.<br>
+Wird eine positive ganze Zahl übergeben, so wird diese als Maximalanzahl an Threads verwendet.
+</p>
+
+<h4>UPDATE</h4>
+<p>
+Prüft auf neue Versionen und lädt ggf. eine neue jar-Datei herunter.<br>
+Der Befehl als zusätzlichen Parameter den Dateinamen unter dem ggf. die Update-jar-Datei gespeichert werden soll.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Edit client type"</title>
+</head>
+
+<body>
+
+<h1>Dialog "Edit client type"</h1>
+
+<p>
+The dialog for editing the client type can be opened by the dialog page
+<a href="EditorAnrufergruppen.html">Caller groups</a> from the call center
+model editor. In the dialog "Edit client type" you can set up the individual
+client types in the model.
+</p>
+
+<h3>Client type active</h3>
+<p>
+This checkbox allows to set up whether this client group should be taken into account in the simulation.
+By the enabling or disabling client groups quickly different scenarios can be tested
+without the need to create different models.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/wrench.png">&nbsp; "Count and distribution"</h2>
+<p>
+On this dialog page you can specify how many clients should start a fresh call per half-hour interval.
+The information "calls per interval" is divided into two parts: By the <b>Number of fresh calls</b> and
+the  <b>Standard deviation</b> the total number of fresh calls and their scattering from day to day
+of the considered type of clients groups is defined. On the other hand the distribution of the fresh
+calls over the day is defined by the <b>distribution diagramm</b>. This way the total number of calls
+can be varied without having to adjust all 48 half-hour intervals individually.
+</p>
+
+<h3>Distribution diagramm</h3>
+<p>
+The distribution diagramm indicates the spread of the fresh calls throughout the day.
+The values for the intervals do not give absolute values of fresh calls, but the relative
+distributed over the day. You can set whether to split the day in 24, 48 or 96 intervals,
+so the distribution of the fresh calls can be defined on an hourly, half-hour or 15-minute basis.
+</p>
+
+<h3>"Tools" button</h3>
+<p>
+As values in the distribution diagramm can be chosen so that the values add up to 1
+or that the values are the add up to the actual number of fresh calls (and thus the values for
+each half-hour interval will represent the the number of fresh calls per half-hour interval).
+The pop-up menu that appears when you click the Tools button, provides, inter alia, these options.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/clock.png">&nbsp; "Waiting time tolerance"</h2>
+
+<h3>Clients are only willing to wait for a finite time</h3> 
+<p>
+If this option is enabled, enter the waiting clients will cancel the waiting after a certain time
+and possibly will make a new attempt later. The way the waiting time tolerance of the clients is
+determined in detail, can be configured in the following fields.
+</p>
+
+<h3>Options: "Waiting time tolerance distribution specified", "Waiting time tolerance distribution specified (long waiting time tolerance)" and "Waiting time tolerance estimated from measured values"</h3>
+<p>
+To determine an individual, random waiting time tolerance for each caller, a waiting time tolerance
+distribution has to be specified. If the real world waiting time tolerance of the clients of the
+selected type is known (approximately) the waiting time tolerance can be specified directly
+(options "waiting time tolerance distribution specified" and "waiting time tolerance distribution specified (long waiting time tolerance)").
+Otherwise the simulator can try to estimate the waiting time tolerance by using an
+Erlang C model and the measured mean waiting time and the measured cancel rate
+(option "Waiting time tolerance estimated from measured values").
+Because for the second approach some assumptions has to be be made, which may not apply to the real model,
+the estimation is not necessarily exact. However since the actual waiting time tolerance is usually not known,
+in many cases this this the only useable method.
+</p>
+
+<h3>Waiting time tolerance distribution</h3>
+<p>
+If in the above combo box "Waiting time tolerance distribution specified" is selected, the exact waiting time
+tolerance distribution can be specified. It should be noted here that the waiting time tolerance distribution
+is <b>not</b> the canceling time distribution of the canceled calls! The clients woh cancel waiting in the
+real world usually will have an quite short waiting time tolerance so using the cancel time distribution
+of the clients as an estimation for the waiting time tolerance distribution of all clients this would
+significantly underestimate the real waiting time tolerances and would lead to incorrect simulation results.
+</p>
+
+<h3>Waiting time tolerance estimation</h3>
+<p>
+If in the above combo box "Waiting time tolerance estimated from measured values" is selected, the actual waiting
+time tolerance of the clients of this type can be estimated by the values of the next three input lines. The
+estimation function assumes that the waiting time tolerances is exponentially distributed (which is usually not applicable),
+so that the average waiting time of the clients can be calculated from the <b>Average waiting time</b>
+and the <b>Cancel rate</b>. The average waiting time tolerance estimated that way (which will also be the
+standard deviation of the exponential distribution) will be used was used as the expected value of a
+log-normal distribution. Due to the usually not accurate assumtion of the exponential distribution the
+estimated and the true (not directly measurable) waiting time tolerance of the clients will usually
+will differ significantly. Since the waiting time tolerance usually can not be determined directly,
+this estimation often is the only possible way to get to input data for the simulation.
+</p>
+
+<p>
+The concept of <b>calibartion</b> can be used to reduce the estimation error: As input data the measured values
+of an actual day, wherein in particular availability, mean waiting time, etc., are used. From these data
+a simulation model is created in which the waiting time tolerance is appreciated. After the simulation
+measured accessibility and accessibility in the simulation are compared and the waiting time tolerance
+estimate is adjusted if necessary using the <b>correction value</b>.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/arrow_redo.png">&nbsp; "Retry probability"</h2>
+
+<h3>Clients of this type require a telephone line (if not, blocking cannot happen for this client type)</h3>
+<p>
+Specifies whether clients this type will be counted against the number of available phone lines.
+For clients calling by phone, this is true; for clients who e.g. write an e-mail not.
+</p>
+
+<h3>Retry probability</h3>
+<p>
+By using the four input fields on this dialog page one can specify the
+retry probability of the clients in dependence of the reason of
+canceling the current call.
+</p>
+
+<p>
+With sales call centers usually low values are realistic. (The customer buys at a fellow competitor.)
+For technical hotlines and emergency services usually have very high values (near 100%) are common,
+as the clients will not give up finally with a very high probability, as long as their problems are not solved.
+</p>
+
+<h3>Client type change on retry</h3>
+<p>
+Usually clients will retain their type on a new call attempt. But by the buttons on the
+right side of the retry probability input lines can be set up that a client will change
+its type in a repeated call attempt. The rate at which a change to which client type occurs
+can be set in the dialog which can be opened via the four buttons.
+</p> 
+
+<h2>Tab &nbsp;<img src="../images/arrow_redo.png">&nbsp; "Retry intervals"</h2>
+<p>
+According to the retry intervals distribution which can be defined on this
+dialog page for each caller who chanceled waiting and will start a new
+attempt later the interval before the new call is calculated.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/arrow_right.png">&nbsp; "Forwarding"</h2>
+<p>
+In some cases the question of a caller is not fully aswered by a single agent
+(e.g. when the agent has only information on contracts, but the caller has questions
+about contracts and technical specifications of a product). In this case, the call
+will be for forwarded to another agent with other skills. 
+Usually there will be a client type in the simulation for each real client type
+calling the call center. (This real client type is frequently determined by some
+computer voice system which the calls will pass before entering the queue.)
+When forwarding in this case just the client type has to be changed
+(for example from "clients with commercial questions" to "clients with technical questions")
+so agents with other skill levels will be responsible for this client.
+</p>
+
+<h3>Probability fo forwarding a client after a conversation</h3>
+<p>
+The input field probability for forwarding allows to enter the
+probability that a client of the current type is forwarded to
+another agent after the conversation.
+</p>
+
+<h3>Forwarding rates to the different client types</h3>
+<p>
+In the input fields below this heading one can enter the rates at which the type of
+the client will change to another client type on forwarding. The values are rates
+(i.e. a kind of unnormalized probabilities); this means they do not need to sum up
+to 1, they just have to give the ratio of the values to each other. 
+If a client of type A is forwarded in 1/3 of all cases to type B and in 2/3 of all
+cases to type B, the values could be entered as 1 and 2, but just as 0.333 and 0.666.
+</p>
+
+<h3>Agent type dependent forwarding</h3>
+<p>
+Often it depends not only on the type of the client, whether he is forwarded after
+a conversation or not, but also on the skill level of the agent who served him. If
+a client who has questions about several topics, operated by a single-skill agent,
+he will almost certainly forwarded after the call. If the same client but operated
+by a multi-skill agents, the forwarding probability is likely to be much lower.
+</p>
+<p>
+In the dialog <b>Agent type dependent forwarding</b> such individual forwarding rules
+depending on the skill level of the agent who served the client can be defined. If there
+is no special rule defined for a skill level, the normal forwarding rules will be used.
+Only if for a skill level the checkbox <b>Activate rules for this skill level</b> is
+selected, the specific rules defined here will be applied.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/arrow_divide.png">&nbsp; "Recall probability"</h2>
+<p>
+It may happen that a client after being successfully served (which mey
+contain being forwarded) starts a second call later anyway. On this
+dialog page one can specify the probability at which this recalling
+happens for clients of the selected type and how (with which rates)
+the type of the client will change on a recall.
+</p>
+
+<h3>Probability for recalling after successfully being served</h3>
+<p>
+In the input field probability for a recall you can specify the probability 
+that a client of that selected type if starting a second call
+after successful completation of a first call.
+</p>
+
+<h3>Chlient type change on recalling</h3>
+<p>
+In the input fields below this heading one can enter the rates at which the type of
+the client will change to another client type on recalling. The values are rates
+(i.e. a kind of unnormalized probabilities); this means they do not need to sum up
+to 1, they just have to give the ratio of the values to each other. 
+If a client of type A is changing its type on recalling in 1/3 of all cases to type B
+and in 2/3 of all cases to type B, the values could be entered as 1 and 2,
+but just as 0.333 and 0.666.
+</p>
+
+<h3>Agent type depending recalls</h3>
+<p>
+Often it depends not only on the type of the client, whether he is starting second call
+after finishing the first call or not, but also on the skill level of the agent who served him.
+</p>
+
+<p>
+In the dialog <b>Skill level dependent recalling</b> such individual recalling rules
+depending on the skill level of the agent who served the client can be defined. If there
+is no special rule defined for a skill level, the normal recalling rules will be used.
+Only if for a skill level the checkbox <b>Activate rules for this skill level</b> is
+selected, the specific rules defined here will be applied.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/arrow_divide.png">&nbsp; "Recall intervals"</h2>
+<p>
+Based on the distribution defined on this dialog page for each client starting
+a second all after being served on the frist call an interval at which this
+second call is start is calculated.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/calculator.png">&nbsp; "Score"</h2>
+<p>
+To determine which waiting client is to be assigned to the next free
+agent a client score is calculated. The client score is the sum of two or three values:
+The base score, the score per waiting second and possibly an additional score value for redirects.
+</p>
+
+<h3>Base score for this client type</h3>
+<p>
+Each caller of the considered type of clients gets a base score
+right when he enters the queue. The higher the value, the higher the
+initial score of the caller and the faster it gets to an agent.
+</p>
+
+<h3>Additional score per waiting second</h3>
+<p>
+In order to produce a certain amount of waiting justice, the score value
+of a client can be increased per waiting second. In this input field you
+can specify how by many points the score value is to be increased per waiting second.
+That this field Gewichtun base score can be set to wait. This means this field
+allows to define the weighting of the waiting time and base score.
+</p>
+
+<h3>Additional score when forwarding the caller</h3>
+<p>
+Because clients that get forwarded already have passed through the queue once,
+it is often desirable that they are preferred by getting a higher score value and
+thus earlier come to an agent without again to go through a full waiting period.
+A high value in this box can achieve this behavior.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/money_euro.png">&nbsp; "Costs"</h2>
+
+<p>
+On this dialog page you can specify, which (possibly non-material)
+costs per waiting canceling and per waiting per second of a client of this type are to be recorded
+and which (in turn may be ideal) earnings per successful served client of this type should be recorded.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/clock.png">&nbsp; "Service level"</h2>
+
+<p>
+On this dialog page you can specify whether the global service level value or some
+client type specific value is to be used when recording the statistics during the simulation.
+</p>
+
+</body>
+</html>
+  

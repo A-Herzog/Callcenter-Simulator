@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Wartezeittoleranzkalibrierung</title>
+</head>
+
+<body>
+
+<div class="menu">
+Simulation &gt; Wartezeittoleranzkalibrierung
+</div>
+
+<h1>Wartezeittoleranzkalibrierung</h1>
+
+<p>
+Die Wartetzeittoleranz der Kunden ist systembedingt nicht messbar.
+Neben der Verwendung von <b>Schätzverfahren</b> (siehe <a href="ToolsAuslastungsrechner.html">Auslastungsrechner</a>
+und Funktion zur Wartezeittoleranz-Schätzung auf der Dialogseite "Wartezeittoleranz" des
+<a href="DialogCaller.html">Kundentypen</a>-Dialogs) ist die übliche Methode zur Ermittlung der realen
+Wartezeittoleranz der Kunden die <b>Parameterkalibrierung</b>, die über diese Programmfunktion angeboten wird.
+</p>
+ 
+<p>
+Bei der Parameterkalibrierung wird ein unbekannter Parameter (in diesem Fall die Wartezeittoleranz) so eingestellt,
+dass das simulierte Modell mit einem realen Modell übereinstimmt, d.h. es müssen von einem realen Tag sowohl die
+Eingangsgrößen als auch die sich daraus ergebenden Erreichbarkeiten bekannt sein. Die Eingangsgrößen müssen in
+Form eines Callcenter Modells im Simulator hinterlegt werden. Die Erreichbarkeiten, die sich bei diesen Eingangsgrößen
+in der Realität ergeben haben, werden in dieser Programmfunktion eingestellt. Nach einem Klick auf "Simulation starten"
+variiert der Simulator die Wartezeittoleranzen der Kunden so lange, bis sich die Ziel-Erreichbarkeitswerte
+ergeben.
+</p>
+
+</body>
+</html>
+  

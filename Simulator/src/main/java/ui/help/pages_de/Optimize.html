@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Optimierer</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/chart_bar_add.png">&nbsp;
+Simulation &gt; Optimierer
+</div>
+
+<h1>Optimierer</h1>
+
+<p>
+Mit Hilfe des Optimierers kann ermittelt werden, wie viele Agenten notwendig sind,
+um bestimmte Service-Kenngrößen zu erreichen. Dabei kann sowohl eingestellt werden,
+welche Kenngröße über welche Kundengruppe erreicht werden soll, als auch, welche
+Agentengruppe verändert werden soll, um sich der Zielgröße anzunähern.
+</p>
+
+<p>
+Als Ausgangsmodell wird das aktuelle Modell aus dem Callcenter-Model-Editor verwendet.
+Das Modell wird mit jedem Simulationslauf verändert, bis sich die gewünschten Werte
+einstellen. Dabei bleibt jedoch das Ursprungsmodell im Editor unverändert.
+</p>
+
+<p>
+Nach Ende des Optimierungsprozesses werden die Ergebnisse im
+<a href="OptimizeViewer.html">Optimierer-Ergebnisbetrachter</a> angezeigt.
+Es werden dabei sowohl die Veränderungen über die Simulationsläufe hinweg
+dokumentiert als auch die Statistik-Ergebnisse der einzelnen Läufe gespeichert.
+</p>
+
+<p>
+Bevor über die <b>Optimierung starten</b> Schaltfläche der Optimierungsvorgang
+gestartet werden kann, muss konfiguriert werden, wie die Optimierung ablaufen soll:
+</p>
+
+<h2>Optimierungsgröße <img src="../images/chart_bar_add.png"></h2>
+
+<h3>Zu optimierende Eigenschaft und deren Größe</h3>
+<p>
+Über dieses Auswahlfeld und die folgende Eingabezeile kann eingestellt werden, was optimiert werden soll und
+welcher Wert erreicht werden soll. Es stehen dabei sowohl Eigenschaften der Kunden (Erreichbarkeit,
+mittlere Wartezeit, mittlere Verweilzeit und Service-Level) als auch Eigenschaften der Agenten
+(Auslastung) zur Auswahl. Außerdem kann ein zweiter Wert eingestellt werden, bei dessen Überschreitung
+(Service-Level, Erreichbarkeit) bzw. Unterschreitung (Wartezeit, Verweilzeit, Auslastung) die
+Anzahl an Agenten reduziert wird. Wird diese Option nicht explizit aktiviert, so erfolgt nur eine
+Optimierung hin zu größeren Agentenzahlen.
+</p>
+
+<h3>Zielgröße muss erreicht werden über ... (Zeitraum)</h3>
+<p>
+In diesem Auswahlfeld lässt sich einstellen, ob die Zielgröße nur im Durchschnitt über den Tag oder aber
+in jedem einzelnen Halbstundenintervall erreicht werden muss.
+</p>
+<ul>
+  <li>Wird über den gesamten Tag optimiert, so kann es vorkommen, dass die Zielgröße in einzelnen
+  Intervalle evtl. nicht erreicht wird, dies aber durch besonders gute Werte in Intervallen mit
+  vielen Kunden bzw. vielen Agenten kompensiert wird.</li>
+  <li>Ist die Option <b>In jedem einzelnen Intervall</b> ausgewählt, so muss die Zielgröße in jedem
+  einzelnen Intervall erreicht werden. Wird die Zielgröße in einem Intervall besonders stark
+  über- bzw. unterschritten, so wird dies nicht auf Intervalle, in denen das Optimierungsziel
+  noch nicht erreicht ist, angerechnet.</li>
+  <li>Die Option <b>In jedem einzelnen Intervall (der Reihe nach optimieren)</b> stellt eine
+  Erweiterung der vorherigen Option dar. Die Zielgröße muss, wenn diese Option gewählt ist, nicht
+  nur in jedem einzelnen Intervall erreicht werden, sondern der Optimierer arbeitet während
+  des Optimierungsvorgang außerdem intervallweise. Dies bedeutet, dass, wenn die Zielgröße in zwei
+  zeitlich aufeinander folgenden Intervallen unterschritten wird, die Agentenzahlen vor dem
+  nächsten Simulationslauf nicht in beiden Intervallen angehoben werden, sondern zunächst nur in
+  dem zeitlich früheren Intervall. Erst wenn in diesem die Zielgröße erreicht wurde, wird das
+  nächste Intervall im Optimierer betrachtet. Diese Vorgehensweise führt häufig zu geringeren
+  Agentenzahlen um dieselben Zielwerte zu erreichen.<br><br>
+  Wird die Zielgröße in zwei aufeinanderfolgenden Intervallen unterschritten und wird daher die
+  Agentenzahl in beiden Intervallen erhöht, so verbessern sich die Service-Kenngrößen in beiden
+  Intervalen. Dadurch entstehen auch weniger Abbrecher in dem ersten Intervall, von denen viele
+  im zweiten Intervall als Wiederholer erneut aufgetreten wären. D.h. die Auslastung sinkt im
+  zweiten betrachteten Intervall und evtl. wäre es daher dann überhaupt nicht nötig gewesen, die
+  Agentenanzahl auch in diesem Intervall anzuheben. Genau dieser Effekt wird durch die intervallweise
+  Optimierung ausgeschlossen.
+  </li>
+</ul>
+
+<h3>Zielgröße muss erreicht werden über ... (Kunden- bzw. Agentengruppen)</h3>
+<p>
+In diesem Feld kann eingestellt werde, welche Kunden- bzw. Agentengruppen die Zielgröße
+erreichen sollen. Soll die Zielgröße über alle Gruppen erreicht werden, so kann außerdem
+eingestellt werden, ob sie von jeder Gruppe einzeln oder im Durchschnitt über alle Gruppen
+erreicht werden muss.
+</p>
+
+<h2>Stellgröße <img src="../images/wrench.png"></h2>
+
+<h3>Anzahl an Agenten in jedem Lauf erhöhen um Prozentwert</h3>
+<p>
+In diesem Eingabefeld kann eingestellt werden, um wie viel Prozent die
+Agentenanzahl in den betroffenen Intervallen erhöht werden soll, wenn die
+Zielgröße in einem Simulationslauf nicht erreicht wurde.
+</p>
+
+<p>
+Ergab die Erhöhung der Zahlen gerundet auf ganze Agenten über den gesamten Tag
+überhaupt keine Veränderung, so wird nochmals derselbe Prozentwert auf die
+Agentenzahlen aufgeschlagen, bevor der nächste Simulationslauf gestartet wird.
+</p>
+
+<p>
+Der Basiswert, der 100% entspricht ist dabei stets die Ausgangsagentenanzahl.
+D.h. 1% entsprechen stets demselben absoluten Zuwachs an Agenten.
+</p>
+
+<h3>Einschränkungen</h3>
+<p>
+Über diesen Dialog können pro Agentengruppe und pro Halbstundenintervall Minimal- und Maximalwerte
+definiert werden, die nicht unter- bzw. überschritten werden dürfen. Der Simulator versucht dann
+im Rahmen dieser äußeren Einschränkungen die gewünschten Ziele in der Optimierung zu erreichen.
+</p>
+
+<h3>Agentenzahl in folgenden Gruppen erhöhen</h3>
+<p>
+In diesem Auswahlfeld kann festgelegt werden, welche Agentengruppen vergrößert
+werden sollen, um die Zielgröße zu erreichen. Es können entweder alle oder nur
+einige Agentengruppen pro Simulationslauf verändert werden.
+</p>
+
+<h2>Intervalle <img src="../images/time.png"></h2>
+
+<p>
+Auf dieser Seite kann eingestellt werden, welche Intervalle bei der Optimierung
+(in Bezug auf die Kenngrößen und in Bezug auf die Veränderung der Agentenzahlen)
+berücksichtigt werden sollen. Als Vorgabeeinstellung werden alle Intervalle
+berücksichtigt, d.h. die Optimierung erfolgt über den gesamten Tag.
+</p>
+
+<h2>Übertrag <img src="../images/calendar.png"></h2>
+
+<p>
+Auf dieser Seite kann ein Übertrag von einem vorherigen Tag, der in das Simulationsmodell
+eingespeist werden soll, definiert werden. Über die Angabe einer Statistik-Datei von
+einem vorherigen Simulationslauf kann ein direkter Übertrag von einem Vortrag
+eingerichtet werden. Des Weiteren besteht die Option, manuell einen Anfangsbestand
+an Kunden, der zu Beginn der Simulation anwesend ist, zu definieren. Ein exakter Übertrag
+der einzelnen Kunden inkl. derer Restwartezeittoleranz usw. ist nur bei der
+Verwendung einer Statistik-Datei möglich.  
+</p>
+
+</body>
+</html>
+  

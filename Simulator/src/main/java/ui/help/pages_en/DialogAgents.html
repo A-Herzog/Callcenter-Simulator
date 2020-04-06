@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Edit agents group"</title>
+</head>
+
+<body>
+
+<h1>Dialog "Edit agents group"</h1>
+
+<p>
+The dialog for editing the agents groups can be opened via the dialog page "Agents"
+of the <a href="DialogCallcenter.html">Edit call center</a> dialog.
+In the dialog "Edit agents group" you can set up the individual agents groups
+of a call center.
+</p>
+
+<h2>Agents group active</h2>
+<p>
+This checkbox allows to set up whether this agents group should be taken into account in the simulation.
+By the enabling or disabling agents groups quickly different scenarios can be tested
+without the need to create different models.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/clock.png">&nbsp; "Working times"</h2>
+<p>
+During the simulation, the simulator always uses concrete agents with given working hours.
+Because the working hours of individual agents are often not known and therefore are not available
+as input data, the simulator can also use an agents distribuion. The Callcenter Simulator
+will generate concrete agents then at the start of the simulation process.
+(Also see the options for shift planning on the dialog page 
+<a href="EditorAllgemeineDaten.html">General data</a> of the call center model editor.)
+The option "Distribution over the day calculated from client arrivals" even more allows
+to calculate the distribution of the agents over the day directly from the fresh calls
+distribution. In this case even no explicit distribution of the agents has to be known.
+</p>
+
+<h3>Agents with fixed working times</h3>
+<p>
+If the option "Agents with fixed working times" is selected, you can specify directly of how many
+agents the agents group should consist and on which interval the agents should be available for work.
+Additionally you can select by activating the checkbox <b>Ignore end of working time and continue to work</b>
+the agents to work until the end of the simulated day instead of respecting the working time end.
+</p>
+
+<h3>Predetermined distribution over the day</h3>
+<p>
+If "Predetermined distribution over the day" is selected you can set up how many agents in the
+selected group should be available by interval. Before the actual simulation is started
+agents with fixed working hours are generated from these data. In order to get as close as possible
+to the real behavior of a call center agents are not generated with half-hour working times but
+the simulator is trying to produce shifts of the length specified on the dialog page
+<a href="EditorAllgemeineDaten.html">General data</a> of the call center simulator.
+If you click on <b>Show shift plan</b> the simulator will show you a shift schedule
+generated from the data immediately.
+</p>
+
+<p>
+In addition, you can set up whether the agents who regularly work until 24 clock will continue to work
+until no more customers are in the system. If only a single day simulated, this option should
+be activated in order to avoid that in the last interval dropouts occur, which in real the
+system (in which the next day starts) do not occur. If a connected system is simulated over several days,
+this option can be disabled, because in this case callers are transfered to the next day in this case.
+</p>
+
+<h3>Distribution over the day calculated from client arrivals</h3>
+<p>
+If the option "Distribution over the day calculated from client arrivals" is activated
+the available agents working hours, which can be specified by the input line
+<b>Available agents half-hours</b> will be distributed over the day by the fresh calls
+by the selected client types. The rate at which the different client types are taken
+into account can be specifed in the <b>Rate</b> input filed. The bigger the rate for
+a client type is, the stronger it is used when calculating the agents distribution.
+In order to get as close as possible to the real behavior of a call center agents are not
+generated with half-hour working times but the simulator is trying to produce shifts of the
+length specified on the dialog page  <a href="EditorAllgemeineDaten.html">General data</a>
+of the call center simulator. If you click on <b>Show shift plan</b> the simulator will
+show you a shift schedule generated from the data on half-hourly basis immediately.
+</p>
+
+<p>
+In the mode "Distribution over the day calculated from client arrivals" the the number of
+needed agents to serve a specified part of the fresh calls can be calculated by the
+<b>Set up number from calculated load</b> function from the <b>Tools</b> menu. Because this
+calucation is done using static information (average holding and post processing times and
+fresh calls) and does not respect fluctuation in the incoming calls and the holding times,
+this will be only an estimation of the needed number of agents.
+</p>
+
+<h3>Productivity</h3>
+<p>
+In this dialog you can set how much of the specified agent working time
+will be actually available. The data refer to the current agent group
+and will only be available if the group is not defined by fixed working hours.
+It can be stated that the agents are always available as indicated,
+that they are only available for a certain fixed proportion of the specified time
+or that the productivity varies in half-hourly intervals.
+In addition, you can set up to use the global values.
+</p>
+
+<h3>Disease-related surcharge</h3>
+<p>
+In this dialog you can set up how much agents percentage specified in the
+agents distributions should be added to compensate sick leave.
+The resulting increased agents distribution is not used in the simulation,
+but displayed in the statistics. The data refer to the current agent group
+and will only be available if the group is not defined by fixed working hours.
+It can be stated that no surcharge should be used, a percentage surcharge
+identical for all intervals or an individual surcharge for each half-hour interval.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/rosette.png">&nbsp; "Skill level"</h2>
+<p>
+For each agents group a skill level has to be chosen, that defines which
+client types can be served by the agents from this group.
+</p>
+
+<p>
+By the button <b>Edit skill level</b> you can directly open the
+<a href="DialogSkillLevel.html">dialog for editing the selected skill level</a>,
+so the chosen skill level of the agents group can be changed at once.
+</p>
+
+<h2>Tab &nbsp;<img src="../images/money_euro.png">&nbsp; "Costs"</h2>
+<p>
+Each agents group can be assigned to an hourly wage and costs
+per served call and per holding and post processing minute.
+The cost per servered call and per holding and post processing minute
+can be specifed per client type additionally.
+</p>
+
+</body>
+</html>
+  

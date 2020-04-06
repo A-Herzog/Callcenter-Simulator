@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Agentengruppe bearbeiten"</title>
+</head>
+
+<body>
+
+<h1>Dialog "Agentengruppe bearbeiten"</h1>
+
+<p>
+Der Dialog zum Bearbeiten von Agentengruppen wird über die Dialogseite "Agenten" des
+<a href="DialogCallcenter.html">Callcenter bearbeiten</a>-Dialogs aufgerufen.
+In dem Dialog "Agentengruppe bearbeiten" können Einstellungen zu einer einzelnen
+Agentengruppe vorgenommen werden.
+</p>
+
+<h2>Agentengruppe aktiv</h2>
+<p>
+Über dieses Auswahlfeld kann eingestellt werden, ob diese Agentengruppe bei der Simulation berücksichtigt werden soll.
+Durch das gezielte Aktivieren und Deaktivieren von Agentengruppen können schnell verschiedene Szenarien ausprobiert werden,
+ohne dass dafür verschiedene Modelle angelegt werden müssen.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/clock.png">&nbsp; "Arbeitszeiten"</h2>
+<p>
+Während der Simulation verwendet der Simulator stets konkrete Agenten mit vorgegebenen Arbeitszeiten.
+Da aber vielfach die Arbeitszeiten der einzelnen Agenten nicht bekannt sind und somit nicht als Ausgangsdaten
+zur Verfügung stehen, kann auch eine Verteilung der Agenten über den Tag angegeben werden, so
+der der Simulator dann vor dem Beginn des Simulationsprozesses konkrete Agenten erstellt.
+(Siehe dazu auch die Optionen zur Schichtplanung auf der Dialogseite
+<a href="EditorAllgemeineDaten.html">Allgemeine Daten</a> des Callcenter-Modell-Editors.)
+Noch einen Schritt weiter geht die Option "Verteilung über den Tag gemäß Kundenankünften", bei deren Verwendung
+noch nicht einmal eine Verteilung der Agenten über den Tag explizit angegeben werden muss, sondern
+diese vom Simulator so angelegt wird, dass sie der Ankunftsverteilung eines oder mehrerer Kundentypen entspricht.
+</p>
+
+<h3>Agenten mit festen Arbeitszeiten</h3>
+<p>
+Ist die Option "Agenten mit festen Arbeitszeiten" gewählt, so kann in dem Dialog angegeben werden,
+aus vie vielen Agenten die Agentengruppe bestehen soll und von wann bis wann die Dienstzeit der
+Agenten reichen soll. Außerdem kann über das Auswahlfeld <b>Arbeitszeitende ignorieren und beliebig weiterarbeiten</b>
+eingestellt werden, dass die Agenten ab dem angegebenen Arbeitszeitbeginn bis zum Ende des Simulationstages
+arbeiten.
+</p>
+
+<h3>Vorgegebene Verteilung über den Tag</h3>
+<p>
+Ist die Option "Vorgegebene Verteilung über den Tag" gewählt, so kann angegeben werde, wie viele Agenten
+in der jeweiligen Gruppe pro Intervall aktiv sein sollen. Vor Beginn der eigentlichen
+Simulation werden dann konkrete Agenten mit festen Arbeitszeiten aus diesen Daten generiert.
+Um dem realen Verhalten eines Callcenters möglichst nahe zu kommen, werden keine Agenten mit
+Halbstundenschichten erzeugt, sondern es wird versucht die auf der Dialogseite
+<a href="EditorAllgemeineDaten.html">Allgemeine Daten</a> des Callcenter-Modell-Editors
+bzw. die auf dieser Seite einstellbare Schichtlänge einzuhalten. Über die Schaltfläche <b>Schichtplan anzeigen</b>
+kann der aus den Daten erzeugte Schichtplan sofort eingesehen werden.
+</p>
+
+<p>
+Desweiteren kann eingestellt werden, ob die Agenten, die regulär bis 24 Uhr arbeiten weiter arbeiten sollen,
+bis keine Kunden mehr im System sind. Wird lediglich ein einzelner Tag simuliert, so sollte diese Option
+aktiviert werden, um zu vermeiden, dass im letzten Intervall auf einmal Abbrecher auftreten, die es im realen
+System (in dem sich der nächste Tag anschließt) nicht gibt. Wird ein über mehrere Tage verknüpftes System
+simuliert, so kann diese Option deaktiviert werden, da in diesem Fall die Kunden auf den nächsten Tag übertragen
+werden können.
+</p>
+
+<h3>Verteilung über den Tag gemäß Kundenankünften</h3>
+<p>
+Ist die Option "Verteilung über den Tag gemäß Kundenankünften" gewählt, so wird die
+verfügbare Agenten-Arbeitsleistung, die über das Eingabefeld
+<b>Verfügbare Agenten-Halbstunden</b> eingestellt werden kann, gemäß der Verteilung
+der Erstanrufer bestimmter Kundentypen über den Tag verteilt. Wie stark welcher
+Kundentyp in die Berechnung der Verteilung der Agenten einfließen soll, kann über
+die <b>Rate</b>-Felder eingestellt werden. Je größer die Rate für einen Kundentyp ist,
+desto stärker fließt er in die Berechnung der Agentenverteilung mit ein.
+Um dem realen Verhalten eines Callcenters möglichst nahe zu kommen, werden keine Agenten mit
+Halbstundenschichten erzeugt, sondern es wird versucht die auf der Dialogseite
+<a href="EditorAllgemeineDaten.html">Allgemeine Daten</a> des Callcenter-Modell-Editors
+bzw. die auf dieser Seite einstellbare Schichtlänge einzuhalten. Über die Schaltfläche <b>Schichtplan anzeigen</b>
+kann der aus den Daten auf Halbstundenbasis erzeugte Schichtplan sofort eingesehen werden.
+</p>
+
+<p>
+In dem Modus "Verteilung über den Tag gemäß Kundenankünften" kann über die Funktion
+<b>Anzahl gemäß rechnerischer Auslastung</b>, die über die <b>Tools</b>-Schaltfläche
+aufgerufen werden kann, automatisch berechnet werden, wie viele Agenten notwendig
+sind, um einen gewissen Anteil der Kunden bedienen zu können. Da diese Rechnung
+statisch erfolgt (mittlere Gesprächs- und Nachbearbeitungsdauer multipliziert mit
+der Anzahl der Anrufer) und weder Schwankungen beim Anrufeingang noch Schwankungen
+in den Bediendauern berücksichtigt, liefert diese Funktion lediglich eine untere
+Abschätzng für die benötigte Anzahl an Agenten.
+</p>
+
+<h3>Produktivität</h3>
+<p>
+In diesem Dialog können Sie einstellen, wie viel der angegebenen Agentenarbeitsleitung
+tatsächlich verfügbar sein soll. Die Angaben beziehen sich auf die aktuelle Agentengruppe
+und stehen nur zur Verfügung, wenn die Gruppe nicht über feste Arbeitszeiten definiert ist.
+Es kann angegeben werden, dass die Agenten stets wie angegeben verfügbar sind,
+dass sie nur für einen bestimmten, festen Anteil der angegebenen Leistung verfügbar sind
+oder aber dass die Produktivität in Halbstundenintervallen variiert.
+Des Weiteren kann eingestellt werden, dass die globalen Werte verwendet werden sollen
+und keine besonderen Parameter für dieses Agentengruppe gelten sollen.
+</p>
+
+<h3>Krankheitszuschlag</h3>
+<p>
+In diesem Dialog können Sie einstellen, wie viel Agenten prozentual auf die vorgegebenen
+Agentenverteilungen aufgeschlagen werden sollen, um krankheitsbedingte Ausfälle zu
+kompensieren. Die daraus resultierende erhöhte Agentenverteilung wird nicht in der Simulation
+verwendet, sondern nur zusätzlich in der Statistik ausgewiesen.
+Die Angaben beziehen sich auf die aktuelle Agentengruppe und stehen nur zur Verfügung,
+wenn die Gruppe nicht über feste Arbeitszeiten definiert ist. Es kann angegeben werden, dass kein
+Aufschlag erfolgen soll, dass diese prozentual in allen Intervallen identisch sein
+soll aber dass der Zuschlag in Halbstundenintervallen variiert.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/rosette.png">&nbsp; "Skill-Level"</h2>
+<p>
+Jeder Agentengruppe muss einem Skill-Level zugeordnet werden, um festzulegen, welche Kundentypen
+Agenten aus dieser Gruppe bedienen können.
+</p>
+
+<p>
+Über die Schaltfläche <b>Skill-Level bearbeiten</b> kann unmittelbar der
+<a href="DialogSkillLevel.html">Dialog zur Bearbeitung eines Skill-Levels</a>
+geöffnet werden, so dass der gewählte Skill-Level ohne Umwege bearbeitet werden kann.
+</p>
+
+<h2>Dialogseite &nbsp;<img src="../images/money_euro.png">&nbsp; "Kosten"</h2>
+<p>
+Jeder Agentengruppe kann ein Stundenlohn zugewiesen werden sowie Kosten,
+die pro Anruf und pro Gesprächs- und Nachbearbeitungsminute entfallen.
+Die Kosten für Gespräche, sowie Gesprächs- und Nachbearbeitungszeit können
+dabei pro Kundentyp angegeben werden.
+</p>
+
+</body>
+</html>
+  

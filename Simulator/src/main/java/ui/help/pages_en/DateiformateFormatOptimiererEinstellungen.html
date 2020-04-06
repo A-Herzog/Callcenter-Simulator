@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Documentation of the file formats of Callcenter Simulator - optimizer settings</title>
+</head>
+
+<body>
+
+<h1>Documentation of the file formats of Callcenter Simulator - optimizer settings</h1>
+
+<a href="Dateiformate.html">Back to the overview of all file formats</a>
+
+<h2>File header</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE OptimizerSetup SYSTEM "CallcenterSimulator_en.dtd"&gt;</tt>
+</p>
+
+<p>The root node for an optimizer setup file is <tt>&lt;OptimizerSetup&gt;</tt>.</p>
+
+<h2>Optimizer setup</h2>
+
+<p>
+Each optimizer settings file needs to contain each of the following items, unless otherwise stated:
+<ul class="big">
+  <li><tt>&lt;Optimizer-Property&gt;</tt>: The content of this node describes which property is to
+  be optimized. It can contain the following values: <tt>Accessibility(CallBasis)</tt>, <tt>Accessibility(ClientBasis)</tt>,
+  <tt>WaitingTime(CallBasis)</tt>, <tt>WaitingTime(ClientBasis)</tt>, <tt>HoldingTime(CallBasis)</tt>,
+  <tt>HoldingTime(ClientBasis)</tt>, <tt>ServiceLevel(CallBasis;Successful)</tt>, <tt>ServiceLevel(CallBasis;All)</tt>,
+  <tt>ServiceLevel(ClientBasis;Successful)</tt>, <tt>ServiceLevel(ClientBasis;All)</tt> or <tt>WorkLoad</tt>.</li>
+  <li><tt>&lt;Optimizer-Value&gt;</tt>: Deptending on the content of the <tt>&lt;Optimizer-Property&gt;</tt> node
+  this node has to store a probability or a time.</li>
+  <li><tt>&lt;Optimizer-ValueMaximum&gt;</tt>: This optional node allows to define a second limit to the size value to be optimized.
+  When optimizing the number of agents the value first is increased until the primary target is completed.
+  Then, if necessary, the number of agents is reduced again to meet these secondary border.</li>
+  <li><tt>&lt;Optimizer-Intervals&gt;</tt>: This node can have one of the following values as content:
+  <ul>
+    <li><tt>Average</tt>: The target value needs only to be achieved on average over the day. This means that all callers have the same weight.</li>
+    <li><tt>Individual</tt>: The target has to be achieved in each half-hour interval. This means that at intervals with only a few callers these
+    callers will have a bigger impact on the optimization process.<li>
+	<tt>InOrder</tt>: The target has to be achieved in each half-hour interval. Moreover, the optimization is done at interval by interval,
+	i.e. the agent numbers in an interval is only be adjusted if the target value has already been achieved in all previous intervals.
+	In this method the time for the entire optimization process significantly larger. The advantage is that it cannot happen that the
+	optimizer adds to many agents to an interval which are then not needed because the number of retryers gets reduced due to changes in
+	the previous intervals.</li>
+  </ul></li>  
+  <li><tt>&lt;Optimizer-Groups&gt;</tt>: This node can have one of the following values as content:
+  <ul>
+    <li><tt>Average</tt>: The target has to be achieved on average over all client types or call centers.</li>
+    <li><tt>All</tt>: The target has to be achieved by each individual client types and each call center.</li>
+    <li><tt>Selection</tt>: The target has to be achieved by the client types or call centers specified by
+    <tt>&lt;Optimizer-Group&gt;</tt> nodes.</li>
+  </ul></li>
+  <li><tt>&lt;Modification-Value&gt;</tt>: Specifies the percentage of how much the number of agents is to be raised in each optimization step.</li>
+  <li><tt>&lt;Modification-Groups&gt;</tt>: This node can have one of the following values as content:
+  <ul>
+    <li><tt>All</tt>: In each optimization step all agents groups will be changed in the corresponding intervals.</li>
+    <li><tt>Selection</tt>: In each optimization step the agents groups specified in the <tt>&lt;Modification-Group&gt;</tt>
+    nodes will be changed in the corresponding intervals.</li>
+  </ul></li>
+  <li><tt>&lt;Optimization-InitialInventory&gt;</tt>: This node is optional.  
+  The <tt>&lt;Optimization-InitialInventory&gt;</tt> node can have any number of
+  <tt>&lt;Optimization-InitialInventoryClientType&gt;</tt> sub nodes. Each
+  <tt>&lt;Optimization-InitialInventoryClientType&gt;</tt> node has to have a <tt>Name</tt> attribute
+  defining for which client type this node should be used and has to have a non-negative integer number
+  as content defining how many additional fresh call as manual carry over should be added to the simulation model.</li>
+  <li><tt>&lt;Restriction-Group&gt;</tt>: This node is optional.
+  There can be any number of <tt>&lt;Restriction-Group&gt;</tt> elements. Each has to have the three attributes
+  <tt>Name</tt>, <tt>Minimum</tt> and <tt>Maximum</tt>. Each <tt>&lt;Restriction-Group&gt;</tt> element
+  describes the restrictions during the optimization for the number of agents in the agents group denoted by 
+  the <tt>Name</tt> attribute. <tt>Minimum</tt> and <tt>Maximum</tt> has to contain each 48 values separated by ";",
+  describing the minimum and the maximum number of agents per half-hour interval.</li>
+</ul>
+
+<p>
+Additionally there can be an <tt>&lt;Optimizer-OptimizationIntervals&gt;</tt> sub node in the <tt>&lt;OptimizerSetup&gt;</tt> node.
+If this sub node exists, it has to contain 48 values separated by ";". The values can be "0" or "1", defining which
+intervals are to be respected during optimization. If this sub node is missing, all intervals are used in the optimization.
+</p>
+
+<p>
+If the <tt>&lt;Optimizer-Groups&gt;</tt> node has the content <tt>Selection</tt>,
+the client types or call centers for which the target value should be reached have to by
+specified by <tt>&lt;Optimizer-Group&gt;</tt> nodes. (For each client type or call center to be 
+respected there has to be an <tt>&lt;Optimizer-Group&gt;</tt> node containing the name of the
+client type or the call center.)
+</p>
+
+<p>
+If the <tt>&lt;Modification-Groups&gt;</tt> node has the content <tt>Selection</tt>,
+the agents groups to be changed have to be specified by <tt>&lt;Modification-Group&gt;</tt> nodes.
+(For each agents groups to be changes there has to ba a <tt>&lt;Modification-Group&gt;</tt> node
+containing the name of the agents group.)
+</p>
+
+<p>
+Additionally there can be an <tt>&lt;Optimization-CarryOver&gt;</tt> sub node in the <tt>&lt;OptimizerSetup&gt;</tt> node.
+This sub node specifies from which statistic file the carry over from the previous day is to be loaded. (If there is no
+<tt>&lt;Optimization-CarryOver&gt;</tt> node or if this node does not have a <tt>StatisticFile</tt> attribute, no carring over
+is done.) The <tt>&lt;OptimizerSetup&gt;</tt> node can have any number of <tt>&lt;VerknuepftUebertrag&gt;</tt> sub nodes.
+For the use of the <tt>&lt;VerknuepftUebertrag&gt;</tt> nodes see the <a href="DateiformateFormatVerknuepfteSimulation.html">documentation</a>
+of the connected simulation modells.
+</p>
+
+</body>
+</html>
+  

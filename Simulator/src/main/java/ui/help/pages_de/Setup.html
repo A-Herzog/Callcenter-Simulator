@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Einstellungen"</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/wrench.png">&nbsp;
+Datei &gt; Einstellungen
+</div>
+
+<h1>Dialog "Einstellungen"</h1>
+
+<p>
+Der Einstellungen-Dialog besteht aus 6 Dialogseiten, über die die wesentlichen Betriebsparameter
+des Simulators eingestellt werden können:
+</p>
+
+<h2>Benutzeroberfläche <img src="../images/application_go.png"></h2>
+<p>
+Auf dieser Dialogseite kann eingestellt werden, welche Verarbeitungsschritte
+der Simulator beim Programmstart durchführen soll:
+</p>
+
+<h3>Anzeigesprache</h3>
+<p>
+In diesem Auswahlfeld kann eingestellt werden, ob die Programmoberfläche des Simulators auf
+Englisch oder auf Deutsch angezeigt werden soll.
+</p>
+
+<h3>Menü-Modus</h3>
+<p>
+Der Simulator kann die Funktionen zum Laden und Speichern von Daten, zur Durchführung von Simulationen und Optimierungen usw.
+sowohl in Form von klassischen Menüs in Kombination mit einer klassischen Symbolleiste als auch in Form von nach Themen sortieren
+Ribbons anbieten. In diesem Auswahlfeld kann eingestellt werden, welche Darstellungsform verwendet werden soll.
+<br>(Vorgabewert ist "Ribbons verwenden".)
+</p>
+
+<h3>Schriftgrößen</h3>
+<p>
+In diesem Auswahlfeld kann eingestellt werden, ob die Schriftgrößen (und damit auch die Fenstergrößen)
+in der grafischen Oberfläche des Programms für eine bessere Lesbarkeit skaliert werden sollen.
+Veränderungen der Schriftgröße werden erst nach einem Neustart des Programms wirksam.
+<br>(Vorgabewert ist die Größeneinstellung "Normal".)
+</p>
+
+<h3>Fenstergröße beim Programmstart</h3>
+<p>
+Der Simulator kann beim Programmstart als normales Fenster oder als Vollbildfenster
+angezeigt werden. Wenn Sie möchten, dass der Simulator beim Starten direkt als
+Vollbildfenster angezeigt wird und Sie ihn nicht erst maximieren müssen, damit
+er den gesamten Bildschirmplatz einnimmt, so können Sie diese Option von
+"Normales Fenster" auf "Vollbild" umstellen. Außerdem steht die Option
+"Letzte Größe wiederherstellen" zur Auswahl, die dafür sorgt, dass die momentane
+Fenstergröße und -position beim Beenden gespeichert wird und beim nächsten
+Start des Simulators diese Einstellungen wiederhergestellt werden.
+<br>(Vorgabewert ist "Normales Fenster".)
+</p>
+
+<h3>Modell beim Programmstart laden</h3>
+<p>
+Um den Einstieg in die Verwendung des Callcenter Simulators zu erleichtern, kann
+der Simulator direkt beim Programmstart ein eingebautes Beispiel-Modell mit
+fiktiven Eingangsdaten laden. Auf diese Weise muss bei den ersten Tests des
+Simulators nicht bei Null begonnen werden, sondern es steht ein Ausgangsmodell
+zur Verfügung, welches lediglich angepasst werden muss. Der Simulator bietet
+acht Möglichkeiten an, was beim Programmstart im Modell-Editor angezeigt
+werden soll:
+</p>
+<ul class="big">
+  <li><b>Leeres Modell</b><br>
+  Zeigt lediglich den leeren Modell-Editor ohne jegliche Anrufergruppe und
+  Callcenter an. Bevor ein Simulationslauf gestartet werden kann, müssen zunächst
+  Kunden, Callcenter, Agenten und Skill-Levels definiert werden oder aber es
+  muss ein Modell geladen werden.</li>
+  <li><b>Kleines Beispielmodell</b><br>
+  Lädt beim Programmstart ein kleines Callcenter-Modell bestehend aus 1.900 Erstanrufern
+  und einem Callcenter. Wird diese Option verwendet, so kann direkt nach dem Programmstart
+  auf die "Simulation starten"-Schaltfläche geklickt und so ein Simulationslauf gestartet
+  werden.</li>
+  <li><b>Mittleres Beispielmodell</b><br>
+  Lädt beim Programmstart ein mittelgroßes Callcenter-Modell bestehend aus 30.000 Erstanrufern
+  und drei Callcentern. Wird diese Option verwendet, so kann direkt nach dem Programmstart
+  auf die "Simulation starten"-Schaltfläche geklickt und so ein Simulationslauf gestartet
+  werden.</li>
+  <li><b>Großes Beispielmodell</b><br>
+  Lädt beim Programmstart ein großes Callcenter-Modell bestehend aus 100.000 Erstanrufern
+  und vier Callcentern. Wird diese Option verwendet, so kann direkt nach dem Programmstart
+  auf die "Simulation starten"-Schaltfläche geklickt und so ein Simulationslauf gestartet
+  werden.</li>
+  <li><b>Ganz großes Beispielmodell</b><br>
+  Lädt beim Programmstart ein ganz großes Callcenter-Modell bestehend aus 300.000 Erstanrufern
+  und vier Callcentern. Wird diese Option verwendet, so kann direkt nach dem Programmstart
+  auf die "Simulation starten"-Schaltfläche geklickt und so ein Simulationslauf gestartet
+  werden.</li>
+  <li><b>Kleines Erlang-C-Beispielmodell</b><br>
+  Lädt beim Programmstart ein kleines Callcenter-Modell bestehend aus 1.872 Erstanrufern
+  und einem Callcenter. Das Modell verwendet wenig realistische Verwaltungsannahmen, kann
+  dafür aber vollständig analytisch beschrieben werden, so dass ein Vergleich von
+  Simulationsergebnissen mit Erlang-C-Formelergebnissen möglich ist.
+  Wird diese Option verwendet, so kann direkt nach dem Programmstart
+  auf die "Simulation starten"-Schaltfläche geklickt und so ein Simulationslauf gestartet
+  werden.</li>  
+  <li><b>Mittleres Erlang-C-Beispielmodell</b><br>
+  Lädt beim Programmstart ein mittelgroßes Callcenter-Modell bestehend aus 27.360 Erstanrufern
+  und einem Callcenter. Das Modell verwendet wenig realistische Verwaltungsannahmen, kann
+  dafür aber vollständig analytisch beschrieben werden, so dass ein Vergleich von
+  Simulationsergebnissen mit Erlang-C-Formelergebnissen möglich ist.
+  Wird diese Option verwendet, so kann direkt nach dem Programmstart
+  auf die "Simulation starten"-Schaltfläche geklickt und so ein Simulationslauf gestartet
+  werden.</li>
+  <li><b>Großes Erlang-C-Beispielmodell</b><br>
+  Lädt beim Programmstart ein großes Callcenter-Modell bestehend aus 144.000 Erstanrufern
+  und einem Callcenter. Das Modell verwendet wenig realistische Verwaltungsannahmen, kann
+  dafür aber vollständig analytisch beschrieben werden, so dass ein Vergleich von
+  Simulationsergebnissen mit Erlang-C-Formelergebnissen möglich ist.
+  Wird diese Option verwendet, so kann direkt nach dem Programmstart
+  auf die "Simulation starten"-Schaltfläche geklickt und so ein Simulationslauf gestartet
+  werden.</li>
+</ul>
+<p>(Vorgabewert ist "Kleines Beispielmodell".)</p>
+
+<h3>Willkommensseite beim Programmstart anzeigen</h3>
+<p>
+Der Callcenter Simulator kann beim Programmstart eine Willkommensseite anzeigen,
+die Links zu verschiedenen Hilfethemen anbietet und somit den Einstieg in die
+Verwendung des Simulators erleichern kann. Alternativ kann der Callcenter Simulator
+direkt nach dem Programmstart in den Modell-Editor wechseln.
+<br>(Als Vorgabewert wird die Willkommensseite angezeigt.)
+</p>
+
+<h3>Java-Version prüfen und warnen, wenn veraltet und unsicher</h3>
+<p>
+Ist diese Option aktiviert, so wird beim Programmstart geprüft, ob die
+installierte Java-Version (bezogen auf die jeweils aktuellen Versionen
+bei der Erstellung der verwendeten Version des Callcenter Simulators)
+veraltet und daher unsicher ist. In diesem Fall wird für einige Sekunden
+eine Informationsleiste im Programmfenster angezeigt.
+<br>(Als Vorgabewert ist die Versionprüfung aktiv.)
+</p>
+
+<h2>Simulation <img src="../images/action_go.gif"></h2>
+
+<h3>Strenge Prüfung des Modells</h3>
+<p>
+Auf dieser Dialogseite kann über das Auswahlfeld "Strenge Prüfung des Modells"
+angegeben werden, wie intensiv bzw. fehlertolerant das Callcenter-Modell vor Beginn
+der Simulation geprüft werden soll. Zwischen der strengen und der fehlertoleranten
+Prüfung bestehen folgende Unterschiede:
+</p>
+<ul class="big">
+  <li>Im strengen Modus führen ungültige Angaben der <b>Wiederholwahrscheinlichkeiten</b> der Kunden zu einem Abbruch
+  der Simulation. Ungültige Angaben werden als ein Versehen des Nutzers angesehen und es wird angenommen, dass es besser sei,
+  nicht die Simulation mit einem falschen Modell zu starten. Im fehlertoleranten Modus werden ungültige Wiederholwahrscheinlichkeiten
+  als "0" interpretiert.</li>
+  <li>Bei der strengen Prüfung wird die Simulation abgebrochen, wenn <b>Weiterleitungen</b> zu Kundentypen erfolgen sollen,
+  die es nicht gibt oder aber wenn Weiterleitungsraten negativ sind. Beides wird als Versehen des Nutzers angesehen und es
+  wird angenommen, dass es besser sei, nicht die Simulation mit einem falschen Modell zu starten. Im fehlertoleranten Modus
+  werden nicht existente Kundentypen in der Weiterleitungsliste ignoriert und negative Weiterleitungsraten
+  als "0" interpretiert.</li>  
+  <li>Im strengen Modus muss jedes <b>Callcenter</b> einen Namen besitzen. Im fehlertoleranten Modus werden Callcenter ohne
+  Namen für die Statistik automatisch mit "Unbenanntes Callcenter" bezeichnet.</li>
+  <li>Im strengen Modus muss die <b>technische Bereitzeit</b> größer oder gleich 0 sein. Angaben kleiner als 0 werden als
+  Versehen des Nutzers angesehen und es wird angenommen, dass es besser sei, nicht die Simulation mit einem falschen Modell
+  zu starten. Im fehlertoleranten Modus werden negative technische Bereitzeiten als "0" interpretiert.</li>
+  <li>Bei der strengen Prüfung wird die Simulation abgebrochen, wenn in einem <b>Skill-Level</b> Bedienzeiten für Kundentypen,
+  die es nicht gibt, angegeben sind. Es wird angenommen, dass dies ein Tippfehler ist und es daher besser ist, nicht die
+  Simulation mit einem falschen Modell zu starten. Im fehlertoleranten Modus werden diese überflüssigen Bedienzeiten-Angaben
+  einfach ignoriert.</li>
+  <li>Sind bei einem Agenten Anruf- oder Gesprächsdauer<b>kosten</b> für einen nicht existenten Kundentyp angegeben, so wird
+  die Simulation im strengen Modus abgebrochen.</li>
+</ul>
+<p>
+(Als Vorgabewert ist die strenge Modellprüfung aktiv.)
+</p>
+
+<h3>Simulation im Hintergrund starten</h3>
+<p>
+Ist diese Option aktiv, so beginnt der Simulator, während ein Callcenter Modell
+im Editor bearbeitet wird bereits im Hintergrund mit niedriger Priorität mit der
+Simulation. Verändert der Nutzer während dieser Hintergrund-Simulation das Modell
+im Editor, so werden die bisherigen Ergebnisse verworfen und es wird eine neue
+Hintergrund-Simulation gestartet. Beim eigentlichen Start der Simulation ist dann
+bereits ein Teil oder aber die gesamte Simulation abgearbeitet und es stehen sofort
+die Ergebnisse zur Verfügung.
+</p>
+<p>
+Ist die Hintergrund-Simulation aktiviert, so verbraucht der Simulator auch dann
+Rechenzeit, wenn keine Simulation explizit gestartet wurde. Ist die
+Client-Server-Simulation aktiv, so werden unabhängig von dieser Einstellung
+weder lokale noch entfernte Hintergrund-Simulationen durchgeführt.
+</p>
+<p>
+(Als Vorgabewert ist die Hintergrundsimulation aktiv.)
+</p>
+
+<h3>Maximale Anzahl an Threads</h3>
+<p>
+Im Standardfall verwendet der Simulator so viele Rechenthreads für die Simulation, wie logische CPU-Kerne
+vorhanden sind (dies entspricht dem Wert 0 in diesem Einstellfeld). Es kann jedoch eine zusätzliche, künstliche
+Limitierung der Anzahl an verwendeten Rechenthreads vorgenommen werden, in dem hier ein Wert größer als 0
+eingetragen wird. Ist der angegebene Wert größer als die Anzahl an vorhandenen logischen CPU-Kernen, so werden
+aber dennoch nicht mehr Threads als CPU-Kerne vorhanden sind, verwendet. 
+</p>
+<p>
+(Als Vorgabewert ist 0, d.h. keine künstliche Beschränkung der Anzahl an Threads, eingestellt.)
+</p>
+
+<h3>Anzahl an zu simulierenden Tagen erhöhen wenn sinnvoll</h3>
+<p>
+Ist diese Optiona aktiv, so erhöht der Simulator die tatsächlich simulierte Anzahl an Tagen
+evtl., um alle CPU-Kerne gleichmäßig auszulasten. Auf diese Weise kann evtl. ein kleiner
+Genauigkeitsgewinn erzielt werden, ohne dass sich dadurch die Gesamtrechenzeit erhöht.
+Die Anzahl an Tagen wird nur dann angepasst, wenn die Simulation vollständig lokal durchgeführt
+wird. Bei einer Netzwerksimulation bzw. gemischen lokalen und verteilten Simulation wird 
+unabhängig von dieser Option immer exakt die angegebene Anzahl an Tagen simuliert.
+</p>
+<p>
+(Als Vorgabewert ist die Erhöhung der Anzahl an simulierten Tagen aktiv.)
+</p>
+
+<h3>Client-Server-Simulation</h3>
+<p>
+Über die beiden Auswahlfelder <b>Simulation auf lokalem Rechner durchführen</b> und
+<b>Simulation auf Rechner im Netzwerk durchführen</b> kann eingestellt werden, ob die
+Simulation direkt innerhalb des grafischen Callcenter Editors durchgeführt werden soll,
+oder ob der Simulationkern auf einem entfernten (schnelleren) Rechner im Netzwerk
+durchgeführt werden soll und die Ergebnisse dann an den lokalen Rechner zurückgemeldet
+werden sollen.
+</p>
+<p>
+Ist die Option "Simulation auf Rechner im Netzwerk durchführen" aktiviert, so müssen der
+Netzwerkname des entfernten Rechners, auf dem der Callcenter Simulator als Serverprozess
+läuft, sowie die Portnummer, unter der der Simulationsserver erreichbar ist, angegeben
+werden. Ist auf dem entfernten Rechner ein Passwort im Server angegeben, so muss
+hier dasselbe Passwort eingestellt werden. Es können auch mehrere Netzwerkserver
+angegeben werden. Die Namen, Portnummern und Passwörter müssen dann durch Semikolons
+getrennt in die Felder eingetragen werden.
+</p>
+<p>
+Auf dem entfernten Rechner muss der Callcenter Simulator mit dem
+<a href="Parameter.html">Kommandozeilenparameter</a> <tt>server</tt> gestartet werden
+oder es muss im Menü die Funktion <a href="ToolsServer.html">Netzwerk-Server starten</a>
+gewählt sein, damit er Simulationsaufträge über das Netz entgegen nehmen kann. Desweiteren muss auf dem
+Server derselbe Port und dasselbe Passwort eingestellt sein, wie im Simulator auf dem Client-Rechner eingestellt ist.
+</p>
+<p>
+Zusätzlich kann über das Feld <b>Anteil an Tagen, der auf dem Server simuliert werden soll</b>
+eingestellt werden, wie die Arbeitslast zwischen dem lokalen Rechner und dem oder den
+Netzwerkserver/n verteilt werden soll. Auf diese Wiese können sowohl der bzw. die Server
+als auch der lokale Rechner optimal ausgenutzt werden.
+</p>
+<p>
+(Als Vorgabewert ist die Simulation auf dem lokalen Rechner gewählt.)
+</p>
+
+<h2>Simulationsserver <img src="../images/server.png"></h2>
+
+<p>
+Auf dieser Dialogseite kann eingestellt werden, auf welchem <b>Port</b> der
+Simulationsserver und auf welchem Port der Webserver (im Falle des Betriebs als SaaS-Server)
+auf eingehende Anfrage warten soll, ob nur Anfragen, die mit
+einem bestimmten <b>Passwort</b> verschlüsselt sind, akzeptiert werden sollen
+und ob nur <b>Anfrangen von bestimmten IP-Adressen</b> akzeptiert werden sollen. 
+</p>
+
+<h3>Zulässige Client-IPs</h3>
+<p>
+Werden in diesem Feld keine Adressen angegeben, so werden alle Clienten akzeptiert,
+ansonsten werden nur die Clienten akzeptiert, deren IP-Adressen mit einer der
+in diesem Feld angegebenen Kombinationen beginnen.
+Pro Zeile muss eine IP-Adresse bzw. ein Teil einer IP-Adresse angegeben werden.
+Symbole wie "*" können nicht verwendet werden, aber es müssen keine vollständigen
+IP-Adressen angegeben werden. Wurde eine unvollständige IP-Adresse angegeben,
+so wird ein Client akzeptiert, wenn seine IP-Adresse mit der hier angegebenen
+Buchstabenkombination beginnt.
+</p>
+
+<h2>Grafiken <img src="../images/image.gif"></h2>
+<p>
+Auf dieser Dialogseite kann festgelegt werden, welche Auflösungen beim Speichern von
+Diagramme als Pixel-Grafiken verwendet werden soll. Die in dem Eingabefeld
+<b>Auflösung beim Speichern</b> angegebene Zahl gibt die Höhe und Breite in Pixeln an.
+<br>(Vorgabewert sind 1000 Pixel.)
+</p>
+
+<h2>Statistik <img src="../images/sum2.png"></h2>
+
+<p>
+Über die Auswahlfelder auf dieser Seite kann festgelegt werden, welche externen Programme
+auf den Statistik-Text- und -Tabellen-Seiten zur Übernahme der Daten angeboten werden sollen.
+<br>(Als Vorgabe sind Word und Excel ausgewählt.)
+</p>
+
+<h2>Updates <img src="../images/tick.png"></h2>
+<p>
+Auf dieser Seite können Sie einstellen, ob der Callcenter Simulator automatisch nach neuen
+Versionen suchen und diese installieren soll. Die automatische Aktualisierung erfolgt, wenn
+aktiviert, vollständig im Hintergrund. Es ist keine manuelle Installation von Updates notwendig.
+</p>
+
+<p>
+Alternativ können Sie Updates auch manuell von der
+<a href="special:programhome">Internet-Seite des Callcenter Simulators</a>
+herunter laden.
+</p>
+
+</body>
+</html>

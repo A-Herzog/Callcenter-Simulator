@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dokumentation der Callcenter Simulator Dateiformate - Import-Schablonen</title>
+</head>
+
+<body>
+
+<h1>Dokumentation der Callcenter Simulator Dateiformate - Import-Schablonen</h1>
+
+<a href="Dateiformate.html">Zurück zur Übersicht über alle Dateiformate</a>
+
+<h2>Datei-Kopf</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE Schablone SYSTEM "CallcenterSimulator_de.dtd"&gt;</tt>
+</p>
+
+<p>Das Basis-Element für Import-Schablonen heißt <tt>&lt;Schablone&gt;</tt>, welches
+für jedes zu importierende Datenelement ein <tt>&lt;SchabloneEintrag&gt;</tt>-Unterelement besitzen muss.</p>
+
+<h2>Einträge für die zu importierenden Daten</h2>
+
+<p>Jedes <tt>&lt;SchabloneEintrag&gt;</tt>-Element muss genau die vier folgenden Attribute besitzen:</p>
+
+<ul>
+  <li><tt>Typ</tt> gibt an, was importiert werden soll.</li>
+  <li><tt>Parameter</tt> gibt zusätzliche Informationen zu den zu importierenden Daten an (z.B. auf welchen Kundentyp sich die Daten beziehen sollen).</li>
+  <li><tt>ZelleVon</tt> und <tt>ZelleBis</tt> geben den Datenbereich an, aus dem die Informationen importiert werden sollen.
+  Der Bereich muss entweder eine Teil einer Zeile oder einer Spalte sein und wird in Tabellenkalkulationsprogramm-Notation angegeben, also z.B. B5 für die Zelle in der zweiten Spalte und der 5. Zeile.</li>
+</ul>
+
+</body>
+</html>
+  

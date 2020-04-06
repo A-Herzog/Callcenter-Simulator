@@ -1,0 +1,693 @@
+<!-- Description of the call center model files -->
+<!-- ========================================== -->
+
+<!ELEMENT CallCenterModel (ModelName, ModelSimulatorVersion, ModelDescription, ModelDate*, ModelMaxQueueLength, ModelSimulatedDays, ModelPreferredShiftLength, ModelMinimalShiftLength*, ModelServiceLevel, ModelProductivity*, ModelDiseaseRelatedSurchage*, ModelClientType*, ModelCallCenter*, ModelSkillLevel*, ModelThresholds*)>
+
+<!ELEMENT ModelSimulatorVersion (#PCDATA)>
+<!ELEMENT ModelName (#PCDATA)>
+<!ELEMENT ModelDescription (#PCDATA)>
+<!ELEMENT ModelDate (#PCDATA)>
+<!ELEMENT ModelMaxQueueLength (#PCDATA)>
+<!ELEMENT ModelSimulatedDays (#PCDATA)>
+<!ELEMENT ModelPreferredShiftLength (#PCDATA)>
+<!ELEMENT ModelMinimalShiftLength (#PCDATA)>
+<!ELEMENT ModelServiceLevel (#PCDATA)>
+<!ELEMENT ModelProductivity (#PCDATA)>
+<!ELEMENT ModelDiseaseRelatedSurchage (#PCDATA)>
+
+
+<!ELEMENT ModelClientType (ClientsFreshCalls, ClientsScore, (ClientsWaitingTimeToleranceDistribution | ClientsWaitingTimeToleranceDistributionLong | ClientsWaitingTimeToleranceEstimation), ClientsRetry, ClientsForwarding, ClientsRecall*, YieldPerClient, CostPerCaller)>
+<!ATTLIST ModelClientType
+  Active 			(0|1)	#IMPLIED
+  BlocksLine	 	(0|1)	#IMPLIED
+  ServiceLevel	 	CDATA	#IMPLIED
+  Name				CDATA	#REQUIRED
+>
+
+<!ELEMENT ClientsFreshCalls (FreshCallsCount, FreshCallsDistribution)>
+
+<!ELEMENT FreshCallsCount (#PCDATA)>
+<!ATTLIST FreshCallsCount
+  StandardDeviation	CDATA	#IMPLIED
+>
+
+<!ELEMENT FreshCallsDistribution (#PCDATA)>
+
+<!ELEMENT ClientsScore EMPTY>
+<!ATTLIST ClientsScore
+  Base	 			CDATA #REQUIRED
+  PerWaitingSecond	CDATA #REQUIRED
+  Forwarding		CDATA #REQUIRED
+>
+
+<!ELEMENT ClientsWaitingTimeToleranceDistribution (#PCDATA)>
+
+<!ELEMENT ClientsWaitingTimeToleranceDistributionLong (#PCDATA)>
+
+<!ELEMENT ClientsWaitingTimeToleranceEstimation EMPTY>
+<!ATTLIST ClientsWaitingTimeToleranceEstimation
+WaitingTime	CDATA #REQUIRED
+CancelRate	CDATA #REQUIRED
+Correction	CDATA #REQUIRED
+>
+
+<!ELEMENT ClientsRetry (RetryIntervalDistribution, RetryProbabilityAfterBeingBlockedFirstRetry, RetryProbabilityAfterBeingBlockedFurtherRetrys, RetryProbabilityAfterCanceledFirstRetry, RetryProbabilityAfterCanceledFurtherRetrys, RetryClientTypeAfterBeingBlockedFirstRetry, RetryClientTypeAfterBeingBlockedFurtherRetrys, RetryClientTypeAfterCanceledFirstRetry, RetryClientTypeAfterCanceledFurtherRetrys)>
+<!ELEMENT RetryIntervalDistribution (#PCDATA)>
+<!ELEMENT RetryProbabilityAfterBeingBlockedFirstRetry (#PCDATA)>
+<!ELEMENT RetryProbabilityAfterBeingBlockedFurtherRetrys (#PCDATA)>
+<!ELEMENT RetryProbabilityAfterCanceledFirstRetry (#PCDATA)>
+<!ELEMENT RetryProbabilityAfterCanceledFurtherRetrys (#PCDATA)>
+
+<!ELEMENT RetryClientTypeAfterBeingBlockedFirstRetry (RetryNewClientType*)>
+<!ELEMENT RetryClientTypeAfterBeingBlockedFurtherRetrys (RetryNewClientType*)>
+<!ELEMENT RetryClientTypeAfterCanceledFirstRetry (RetryNewClientType*)>
+<!ELEMENT RetryClientTypeAfterCanceledFurtherRetrys (RetryNewClientType*)>
+
+<!ELEMENT RetryNewClientType (#PCDATA)>
+<!ATTLIST RetryNewClientType
+Name		CDATA #REQUIRED
+>
+
+<!ELEMENT ClientsForwarding (ForwardingNewClientType*, ForwardingSkillLevelDepending*)>
+<!ATTLIST ClientsForwarding
+  Probability CDATA #REQUIRED
+>
+<!ELEMENT ForwardingNewClientType (#PCDATA)>
+<!ATTLIST ForwardingNewClientType
+  Name CDATA #REQUIRED
+>
+<!ELEMENT ForwardingSkillLevelDepending (ForwardingNewClientType*)>
+<!ATTLIST ForwardingSkillLevelDepending
+  SkillLevel	CDATA #REQUIRED
+  Probability	CDATA #REQUIRED
+>
+
+<!ELEMENT ClientsRecall (RecallIntervalDistribution, RecallNewClientType*, RecallSkillLevelDepending*)>
+<!ATTLIST ClientsRecall
+  Probability CDATA #REQUIRED
+>
+<!ELEMENT RecallIntervalDistribution (#PCDATA)>
+<!ELEMENT RecallNewClientType (#PCDATA)>
+<!ATTLIST RecallNewClientType
+  Name CDATA #REQUIRED
+>
+<!ELEMENT RecallSkillLevelDepending (RecallNewClientType*)>
+<!ATTLIST RecallSkillLevelDepending
+  SkillLevel	CDATA #REQUIRED
+  Probability	CDATA #REQUIRED
+>
+
+<!ELEMENT YieldPerClient (#PCDATA)>
+<!ELEMENT CostPerCaller EMPTY>
+<!ATTLIST CostPerCaller
+  Canceling		CDATA #REQUIRED
+  WaitingSecond	CDATA #REQUIRED
+>
+
+<!ELEMENT ModelCallCenter (CallCenterAgentsGroup*, CallCenterTechnicalFreeTime, CallCenterScore, CallCenterAgentsScore, CallCenterMinimumWaitingTime*, ModelProductivity*, ModelDiseaseRelatedSurchage*)>
+<!ATTLIST ModelCallCenter
+  Active (0|1)	#IMPLIED
+  Name 	CDATA	#REQUIRED
+>
+
+<!ELEMENT CallCenterAgentsGroup (((AgentsGroupCount, AgentsGroupWorkingTimeBegin, AgentsGroupWorkingTimeEnd) | (AgentsGroupDistribution) | (AgentsGroupByClientArrivals)), AgentsGroupSkillLevel, CostsPerHour, (CostsPerClientType)*, ModelPreferredShiftLength*, ModelMinimalShiftLength*, ModelProductivity*, ModelDiseaseRelatedSurchage*)>
+<!ATTLIST CallCenterAgentsGroup
+  Active (0|1) #IMPLIED
+>
+<!ELEMENT AgentsGroupCount (#PCDATA)>
+<!ELEMENT AgentsGroupWorkingTimeBegin (#PCDATA)>
+<!ELEMENT AgentsGroupWorkingTimeEnd (#PCDATA)>
+
+<!ELEMENT AgentsGroupDistribution (#PCDATA)>
+<!ATTLIST AgentsGroupDistribution
+  LastShiftIsOpenEnd (0|1) #IMPLIED
+>
+
+<!ELEMENT AgentsGroupByClientArrivals (ByClientArrivalsGroup*)>
+<!ATTLIST AgentsGroupByClientArrivals
+  AgentsHalfHours CDATA #REQUIRED
+>
+<!ELEMENT ByClientArrivalsGroup (#PCDATA)>
+<!ATTLIST ByClientArrivalsGroup
+  Rate CDATA #REQUIRED
+>
+<!ELEMENT AgentsGroupSkillLevel (#PCDATA)>
+
+<!ELEMENT CostsPerHour (#PCDATA)>
+<!ELEMENT CostsPerClientType EMPTY>
+<!ATTLIST CostsPerClientType
+  ClientType CDATA #REQUIRED
+  PerCall CDATA #REQUIRED
+  PerMinute CDATA #REQUIRED
+>
+  
+<!ELEMENT CallCenterTechnicalFreeTime (#PCDATA)>
+<!ATTLIST CallCenterTechnicalFreeTime
+  IsWaitingTime	(0|1) #IMPLIED
+>
+
+<!ELEMENT CallCenterScore (#PCDATA)>
+<!ELEMENT CallCenterAgentsScore (AgentsScoreFactorSinceLastCall, AgentsScoreFactorFreeTimePart)>
+<!ELEMENT AgentsScoreFactorSinceLastCall (#PCDATA)>
+<!ELEMENT AgentsScoreFactorFreeTimePart (#PCDATA)>
+<!ELEMENT CallCenterMinimumWaitingTime (MinimumWaitingTimeClientType*)>
+<!ELEMENT MinimumWaitingTimeClientType (#PCDATA)>
+<!ATTLIST MinimumWaitingTimeClientType
+  Name CDATA #REQUIRED
+>
+ 
+<!ELEMENT ModelSkillLevel (SkillLevelClientType*)>
+<!ATTLIST ModelSkillLevel
+  Name CDATA #REQUIRED
+>
+
+<!ELEMENT SkillLevelClientType (SkillLevelClientTypeHoldingTimeAddOn*, SkillLevelClientTypeHoldingTimeDistribution*, SkillLevelClientTypePostProcessingTimeDistribution*, SkillLevelClientTypeScore*)>
+<!ATTLIST SkillLevelClientType
+  Name CDATA #REQUIRED
+>
+
+<!ELEMENT SkillLevelClientTypeHoldingTimeAddOn (#PCDATA)>
+<!ATTLIST SkillLevelClientTypeHoldingTimeAddOn
+  Interval CDATA #IMPLIED
+>
+<!ELEMENT SkillLevelClientTypeHoldingTimeDistribution (#PCDATA)>
+<!ATTLIST SkillLevelClientTypeHoldingTimeDistribution
+  Interval CDATA #IMPLIED
+>
+<!ELEMENT SkillLevelClientTypePostProcessingTimeDistribution (#PCDATA)>
+<!ATTLIST SkillLevelClientTypePostProcessingTimeDistribution
+  Interval CDATA #IMPLIED
+>
+<!ELEMENT SkillLevelClientTypeScore (#PCDATA)>
+
+<!ELEMENT ModelThresholds (ThresholdData*)>
+
+<!ELEMENT ThresholdData EMPTY>
+<!ATTLIST ThresholdData
+  Type CDATA #REQUIRED
+  Intervals CDATA #REQUIRED
+  Groups CDATA #REQUIRED
+  WarningYellow CDATA #REQUIRED
+  WarningRed CDATA #REQUIRED
+  Value CDATA #IMPLIED
+  Status CDATA #IMPLIED
+>
+
+<!-- Description of the statistic files -->
+<!-- ================================== -->
+
+<!ELEMENT Statistic (CallCenterModel, StatisticRunDate, StatisticUser*, StatisticServer*, StatisticServerOS*, StatisticRunTime, StatisticThreads, StatisticDays, StatisticEvents, StatisticClients*, StatisticAgents*, StatisticQueue, StatisticQueueSummary*, StatisticRevenueSummary*, StatisticModelAgents*, ErlangCWithoutRetry*, ErlangCWithRetry*, StatisticThresholds*)>
+
+<!ELEMENT StatisticRunDate (#PCDATA)>
+<!ELEMENT StatisticUser (#PCDATA)>
+<!ELEMENT StatisticServer (#PCDATA)>
+<!ELEMENT StatisticServerOS (#PCDATA)>
+<!ELEMENT StatisticRunTime (#PCDATA)>
+<!ELEMENT StatisticThreads (#PCDATA)>
+<!ELEMENT StatisticDays (#PCDATA)>
+<!ELEMENT StatisticEvents (#PCDATA)>
+
+<!ELEMENT StatisticClients (StatisticClientsCount, StatisticClientsSummary*, StatisticClientsCarryOver, StatisticClientsWaitingTime, StatisticClientsHoldingTime, StatisticClientsCancelTime, StatisticClientsServiceLevel, StatisticClientsForwarding, StatisticClientsRetry, StatisticClientsRecall*, StatisticClientsWaitingTimeDistribution, StatisticClientsHoldingTimeDistribution, StatisticClientsCancelTimeDistribution, StatisticClientsWaitingTimeDistributionLong, StatisticClientsHoldingTimeDistributionLong, StatisticClientsCancelTimeDistributionLong, StatisticCallsCount, StatisticCallsWaitingTime, StatisticCallsHoldingTime, StatisticCallsCancelTime, StatisticCallsServiceLevel, StatisticCallsForwarding, StatisticCallsRetry, StatisticCallsWaitingTimeDistribution, StatisticCallsHoldingTimeDistribution, StatisticCallsCancelTimeDistribution, StatisticCallsWaitingTimeDistributionLong, StatisticCallsHoldingTimeDistributionLong, StatisticCallsCancelTimeDistributionLong, StatisticConfidence, StatisticCallsCosts)>
+<!ATTLIST StatisticClients
+  Name CDATA #IMPLIED
+>
+
+<!ELEMENT StatisticClientsSummary EMPTY>
+<!ATTLIST StatisticClientsSummary
+  Range												CDATA #IMPLIED
+  ClientsAccessibility								CDATA #REQUIRED
+  CallsAccessibility								CDATA #REQUIRED
+  ClientsAverageWaitingTime							CDATA #REQUIRED
+  CallsAverageWaitingTime							CDATA #REQUIRED
+  ClientsAverageResidenceTime						CDATA #IMPLIED
+  CallsAverageResidenceTime							CDATA #IMPLIED
+  ClientsServiceLevel								CDATA #REQUIRED
+  ClientsServiceLevelAll							CDATA #IMPLIED
+  CallsServiceLevel									CDATA #REQUIRED
+  CallsServiceLevelAll								CDATA #IMPLIED
+  ClientsAverageCancelTime							CDATA #IMPLIED
+  CallsAverageCancelTime							CDATA #IMPLIED
+  ClientsCombinedAverageWaitingAndCancelTimeTime	CDATA #IMPLIED
+  CallsCombinedAverageWaitingAndCancelTimeTime		CDATA #IMPLIED  
+>
+
+<!ELEMENT StatisticClientsCount EMPTY>
+<!ATTLIST StatisticClientsCount
+  Count					CDATA #REQUIRED
+  Success				CDATA #REQUIRED
+  Blocked				CDATA #REQUIRED
+  Canceled				CDATA #REQUIRED
+  CarryOver				CDATA #REQUIRED
+  CountPerInterval		CDATA #REQUIRED
+  SuccessPerInterval	CDATA #REQUIRED
+  BlockedPerInterval	CDATA #REQUIRED
+  CanceledPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsCarryOver (StatisticClientsCanceledPerDay, StatisticClientsRetryTimesPerDay, StatisticClientsWaitingTimeTolerancePerDay)>
+
+<!ELEMENT StatisticClientsCanceledPerDay (#PCDATA)>
+<!ELEMENT StatisticClientsRetryTimesPerDay (#PCDATA)>
+<!ELEMENT StatisticClientsWaitingTimeTolerancePerDay (#PCDATA)>
+
+<!ELEMENT StatisticClientsWaitingTime EMPTY>
+<!ATTLIST StatisticClientsWaitingTime
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  SumPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsHoldingTime EMPTY>
+<!ATTLIST StatisticClientsHoldingTime
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  SumPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsCancelTime EMPTY>
+<!ATTLIST StatisticClientsCancelTime
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  SumPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsServiceLevel EMPTY>
+<!ATTLIST StatisticClientsServiceLevel
+  Count				CDATA #REQUIRED
+  CountPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsForwarding EMPTY>
+<!ATTLIST StatisticClientsForwarding
+  Count				CDATA #REQUIRED
+  CountPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsRetry EMPTY>
+<!ATTLIST StatisticClientsRetry
+  Count				CDATA #REQUIRED
+  CountPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsRecall EMPTY>
+<!ATTLIST StatisticClientsRecall
+  Count				CDATA #REQUIRED
+  CountPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsWaitingTimeDistribution EMPTY>
+<!ATTLIST StatisticClientsWaitingTimeDistribution
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsHoldingTimeDistribution EMPTY>
+<!ATTLIST StatisticClientsHoldingTimeDistribution
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsCancelTimeDistribution EMPTY>
+<!ATTLIST StatisticClientsCancelTimeDistribution
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsWaitingTimeDistributionLong EMPTY>
+<!ATTLIST StatisticClientsWaitingTimeDistributionLong
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsHoldingTimeDistributionLong EMPTY>
+<!ATTLIST StatisticClientsHoldingTimeDistributionLong
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticClientsCancelTimeDistributionLong EMPTY>
+<!ATTLIST StatisticClientsCancelTimeDistributionLong
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsCount EMPTY>
+<!ATTLIST StatisticCallsCount
+  Count					CDATA #REQUIRED
+  Success				CDATA #REQUIRED
+  Blocked				CDATA #REQUIRED
+  Canceled				CDATA #REQUIRED
+  CarryOver				CDATA #REQUIRED
+  CountPerInterval		CDATA #REQUIRED
+  SuccessPerInterval	CDATA #REQUIRED
+  BlockedPerInterval	CDATA #REQUIRED
+  CanceledPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsWaitingTime EMPTY>
+<!ATTLIST StatisticCallsWaitingTime
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  SumPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsHoldingTime EMPTY>
+<!ATTLIST StatisticCallsHoldingTime
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  SumPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsCancelTime EMPTY>
+<!ATTLIST StatisticCallsCancelTime
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  SumPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsServiceLevel EMPTY>
+<!ATTLIST StatisticCallsServiceLevel
+  Count				CDATA #REQUIRED
+  CountPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsForwarding EMPTY>
+<!ATTLIST StatisticCallsForwarding
+  Count				CDATA #REQUIRED
+  CountPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsRetry EMPTY>
+<!ATTLIST StatisticCallsRetry
+  Count				CDATA #REQUIRED
+  CountPerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsWaitingTimeDistribution EMPTY>
+<!ATTLIST StatisticCallsWaitingTimeDistribution
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsHoldingTimeDistribution EMPTY>
+<!ATTLIST StatisticCallsHoldingTimeDistribution
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsCancelTimeDistribution EMPTY>
+<!ATTLIST StatisticCallsCancelTimeDistribution
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsWaitingTimeDistributionLong EMPTY>
+<!ATTLIST StatisticCallsWaitingTimeDistributionLong
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsHoldingTimeDistributionLong EMPTY>
+<!ATTLIST StatisticCallsHoldingTimeDistributionLong
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticCallsCancelTimeDistributionLong EMPTY>
+<!ATTLIST StatisticCallsCancelTimeDistributionLong
+  Distribution CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticConfidence (ConfidenceAccessibilityCalls, ConfidenceAccessibilityClients, ConfidenceWaitingTime, ConfidenceServiceLevelCallsSuccess, ConfidenceServiceLevelCallsAll, ConfidenceServiceLevelClientsSuccess, ConfidenceServiceLevelClientsAll)>
+
+<!ELEMENT ConfidenceAccessibilityCalls EMPTY>
+<!ATTLIST ConfidenceAccessibilityCalls
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  Confidence90Min	CDATA #IMPLIED
+  Confidence90Max	CDATA #IMPLIED
+  Confidence95Min	CDATA #IMPLIED
+  Confidence95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT ConfidenceAccessibilityClients EMPTY>
+<!ATTLIST ConfidenceAccessibilityClients
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  Confidence90Min	CDATA #IMPLIED
+  Confidence90Max	CDATA #IMPLIED
+  Confidence95Min	CDATA #IMPLIED
+  Confidence95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT ConfidenceWaitingTime EMPTY>
+<!ATTLIST ConfidenceWaitingTime
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  Confidence90Min	CDATA #IMPLIED
+  Confidence90Max	CDATA #IMPLIED
+  Confidence95Min	CDATA #IMPLIED
+  Confidence95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT ConfidenceServiceLevelCallsSuccess EMPTY>
+<!ATTLIST ConfidenceServiceLevelCallsSuccess
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  Confidence90Min	CDATA #IMPLIED
+  Confidence90Max	CDATA #IMPLIED
+  Confidence95Min	CDATA #IMPLIED
+  Confidence95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT ConfidenceServiceLevelCallsAll EMPTY>
+<!ATTLIST ConfidenceServiceLevelCallsAll
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  Confidence90Min	CDATA #IMPLIED
+  Confidence90Max	CDATA #IMPLIED
+  Confidence95Min	CDATA #IMPLIED
+  Confidence95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT ConfidenceServiceLevelClientsSuccess EMPTY>
+<!ATTLIST ConfidenceServiceLevelClientsSuccess
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  Confidence90Min	CDATA #IMPLIED
+  Confidence90Max	CDATA #IMPLIED
+  Confidence95Min	CDATA #IMPLIED
+  Confidence95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT ConfidenceServiceLevelClientsAll EMPTY>
+<!ATTLIST ConfidenceServiceLevelClientsAll
+  Sum				CDATA #REQUIRED
+  SquaresSum		CDATA #REQUIRED
+  Confidence90Min	CDATA #IMPLIED
+  Confidence90Max	CDATA #IMPLIED
+  Confidence95Min	CDATA #IMPLIED
+  Confidence95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT StatisticCallsCosts EMPTY>
+<!ATTLIST StatisticCallsCosts
+  Yield			CDATA #REQUIRED
+  WaitingTimes	CDATA #REQUIRED
+  Cancelations	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticAgents (StatisticAgentsSummary, StatisticAgentsClientType+, StatisticAgentsCosts)>
+<!ATTLIST StatisticAgents
+  Count		CDATA #REQUIRED
+  Name		CDATA #IMPLIED
+  Type		CDATA #IMPLIED
+>
+
+<!ELEMENT StatisticAgentsSummary EMPTY>
+<!ATTLIST StatisticAgentsSummary
+  FreeTime							CDATA #REQUIRED
+  TechnicalFreeTime					CDATA #REQUIRED
+  HoldingTime						CDATA #REQUIRED
+  PostProcessingTime				CDATA #REQUIRED
+  FreeTimePerInterval				CDATA #REQUIRED
+  TechnicalFreeTimePerInterval		CDATA #REQUIRED
+  HoldingTimePerInterval			CDATA #REQUIRED
+  PostProcessingTimePerInterval		CDATA #REQUIRED
+  FreeTimePart						CDATA #IMPLIED
+  TechnicalFreeTimePart				CDATA #IMPLIED
+  HoldingTimePart					CDATA #IMPLIED
+  PostProcessingTimePart			CDATA #IMPLIED
+  GrossTime							CDATA #IMPLIED
+  NetTime							CDATA #IMPLIED
+  Calls								CDATA #IMPLIED
+  CallsPerInterval					CDATA #IMPLIED
+>
+
+<!ELEMENT StatisticAgentsClientType EMPTY>
+<!ATTLIST StatisticAgentsClientType
+  Name								CDATA #REQUIRED
+  TechnicalFreeTime					CDATA #REQUIRED
+  HoldingTime						CDATA #REQUIRED
+  PostProcessingTime				CDATA #REQUIRED
+  TechnicalFreeTimePerInterval		CDATA #REQUIRED
+  HoldingTimePerInterval			CDATA #REQUIRED
+  PostProcessingTimePerInterval		CDATA #REQUIRED
+  Calls								CDATA #IMPLIED
+  CallsPerInterval					CDATA #IMPLIED
+>
+
+<!ELEMENT StatisticAgentsCosts EMPTY>
+<!ATTLIST StatisticAgentsCosts
+  Wages					CDATA #REQUIRED
+  CostsForCalls			CDATA #REQUIRED
+  CostsPerCallMinute	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticRevenueSummary (#PCDATA)>
+
+<!ELEMENT StatisticQueue EMPTY>
+<!ATTLIST StatisticQueue
+  Maximum				CDATA #REQUIRED
+  Average				CDATA #REQUIRED
+  AveragePerInterval	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticQueueSummary EMPTY>
+<!ATTLIST StatisticQueueSummary
+  Range		CDATA #REQUIRED
+  Average	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticModelAgents (StatisticModelAgentsSimulation, StatisticModelAgentsModel, StatisticModelAgentsWithSurcharge)>
+<!ATTLIST StatisticModelAgents
+  Name	CDATA #IMPLIED
+  Type	CDATA #IMPLIED
+>
+
+<!ELEMENT StatisticModelAgentsSimulation (#PCDATA)>
+<!ELEMENT StatisticModelAgentsModel (#PCDATA)>
+<!ELEMENT StatisticModelAgentsWithSurcharge (#PCDATA)>
+
+<!ELEMENT ErlangCWithoutRetry EMPTY>
+<!ATTLIST ErlangCWithoutRetry
+  NumberOfAgents	    CDATA #REQUIRED
+  FreshCalls	        CDATA #REQUIRED
+  ServiceLevel	        CDATA #REQUIRED
+  Success	            CDATA #REQUIRED
+  AverageWaitingTime	CDATA #REQUIRED  
+>
+
+<!ELEMENT ErlangCWithRetry EMPTY>
+<!ATTLIST ErlangCWithRetry
+  NumberOfAgents	    CDATA #REQUIRED
+  FreshCalls	        CDATA #REQUIRED
+  Retry	                CDATA #REQUIRED
+  ServiceLevel	        CDATA #REQUIRED
+  Success	            CDATA #REQUIRED
+  AverageWaitingTime	CDATA #REQUIRED
+>
+
+<!ELEMENT StatisticThresholds (ThresholdData*)>
+
+<!-- Description of the optimizer configuration files -->
+<!-- ================================================ -->
+
+<!ELEMENT OptimizerSetup (Optimizer-Property, Optimizer-Value, Optimizer-ValueMaximum*, Optimizer-Intervals, Optimizer-Groups, Optimizer-Group*, Optimizer-OptimizationIntervals*, Modification-Value, Modification-Groups, Modification-Group*, Optimization-CarryOver*, Optimization-InitialInventory*, Restriction-Group*)>
+
+<!ELEMENT Optimizer-Property (#PCDATA)>
+<!ELEMENT Optimizer-Value (#PCDATA)>
+<!ELEMENT Optimizer-ValueMaximum (#PCDATA)>
+<!ELEMENT Optimizer-Intervals (#PCDATA)>
+<!ELEMENT Optimizer-Groups (#PCDATA)>
+<!ELEMENT Optimizer-Group (#PCDATA)>
+<!ELEMENT Optimizer-OptimizationIntervals (#PCDATA)>
+<!ELEMENT Modification-Value (#PCDATA)>
+<!ELEMENT Modification-Groups (#PCDATA)>
+<!ELEMENT Modification-Group (#PCDATA)>
+
+<!ELEMENT Optimization-CarryOver (ConntectedCarryOver*)>
+<!ATTLIST Optimization-CarryOver
+  StatisticFile		CDATA #IMPLIED
+>
+
+<!ELEMENT Optimization-InitialInventory (Optimization-InitialInventoryClientType*)>
+
+<!ELEMENT Optimization-InitialInventoryClientType (#PCDATA)>
+<!ATTLIST Optimization-InitialInventoryClientType
+  Name CDATA #REQUIRED
+>
+
+<!ELEMENT Restriction-Group EMPTY>
+<!ATTLIST Restriction-Group
+  Name      CDATA #REQUIRED
+  Minimum   CDATA #REQUIRED
+  Maximum   CDATA #REQUIRED
+>
+
+<!-- Description of the optimizer results files -->
+<!-- ========================================== -->
+
+<!ELEMENT OptimizerResults (RunTime, RunCount, OptimizerSetup, SimulationRun+)>
+<!ELEMENT RunTime (#PCDATA)>
+<!ELEMENT RunCount (#PCDATA)>
+<!ELEMENT SimulationRun (Statistic)>
+<!ATTLIST SimulationRun
+  Number CDATA #REQUIRED
+>
+
+<!-- Description of the connected simulation files -->
+<!-- ============================================= -->
+
+<!ELEMENT ConnectedSimulation (ConnectedDay+,ConnectedInitialInventory*)>
+<!ATTLIST ConnectedSimulation
+  BaseFolder		CDATA #REQUIRED
+  InitialCarryOver	CDATA #IMPLIED
+>
+
+<!ELEMENT ConnectedDay (ConnectedModel, ConnectedStatistics, ConnectedCarryOvers)>
+
+<!ELEMENT ConnectedModel (#PCDATA)>
+<!ELEMENT ConnectedStatistics (#PCDATA)>
+<!ELEMENT ConnectedCarryOvers (ConntectedCarryOver*)>
+
+<!ELEMENT ConntectedCarryOver (ConnectedCarryOverClientType*)>
+<!ATTLIST ConntectedCarryOver
+  Type CDATA #REQUIRED
+  Value CDATA #REQUIRED
+>
+
+<!ELEMENT ConnectedInitialInventory (ConnectedInitialInventoryClientType*)>
+<!ELEMENT ConnectedInitialInventoryClientType (#PCDATA)>
+<!ATTLIST ConnectedInitialInventoryClientType
+  Name CDATA #REQUIRED
+>
+
+<!ELEMENT ConnectedCarryOverClientType EMPTY>
+<!ATTLIST ConnectedCarryOverClientType
+  Type CDATA #REQUIRED
+  Value CDATA #REQUIRED
+>
+
+<!-- Description of the import template files -->
+<!-- ======================================= -->
+
+<!ELEMENT ImportTemplate (ImportTemplateRecord+)>
+
+<!ELEMENT ImportTemplateRecord EMPTY>
+<!ATTLIST ImportTemplateRecord
+  Type CDATA #REQUIRED
+  Parameter CDATA #REQUIRED
+  CellFrom CDATA #REQUIRED
+  CellTo CDATA #REQUIRED
+>
+
+<!-- Description of the SaaS setup files -->
+<!-- =================================== -->
+
+<!ELEMENT CallcenterSimulatorSasSSetup (LogFile | Simulation | Web)*>
+
+<!ELEMENT LogFile (#PCDATA)>
+
+<!ELEMENT Simulation (Port | Password | MaxThreads)*>
+
+<!ELEMENT Web (Port | AppletJarFile | StatisticFolder | FilterFolder)*>
+
+<!ELEMENT Port (#PCDATA)>
+<!ELEMENT Password (#PCDATA)>
+<!ELEMENT MaxThreads (#PCDATA)>
+<!ELEMENT AppletJarFile (#PCDATA)>
+<!ELEMENT StatisticFolder (#PCDATA)>
+<!ATTLIST StatisticFolder
+  Name CDATA #IMPLIED
+>
+<!ELEMENT FilterFolder (#PCDATA)>

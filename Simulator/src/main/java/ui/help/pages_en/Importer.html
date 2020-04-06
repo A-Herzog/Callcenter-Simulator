@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Load table via template</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/Table.png">&nbsp;
+Daten &gt; Load table via template
+</div>
+
+<h1>Load table via template</h1>
+
+<p>
+By using the <b>Load table via template</b> function the Callcenter Simulator can load multiple information at once
+from a workbook and write them into the current call center model. The workbook to be loaded can for example contain
+information about the client arrivals and the agents working periods in different rows or columns. On this page you
+can specify in which cell areas of which tables of the workbook the simulator should look for wgich information about
+clients, agents and skill levels. The table cells are specified in the usual spreadsheet programs form:
+<tt>Table!ColumnRow</tt>, where <tt>Column</tt> can be one or more letters (A, B, ..., Z, AA, AB, ...),
+<tt>Row</tt> is a 1-based row number and <tt>Table</tt> is the optionally quoted in single quotes name of the
+table in the workbook. As  the table name optionally also the (1-based) number of the table in the workbook can be used.
+If no table name is specified, the first table in the workbook is used.
+</p>
+
+<p>
+This function is also available via the <a href="Parameter.html">command line parameters</a>.
+</p>
+
+</body>
+</html>
+  

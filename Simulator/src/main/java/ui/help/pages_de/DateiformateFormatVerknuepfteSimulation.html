@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dokumentation der Callcenter Simulator Dateiformate - Verkettete Simulationen</title>
+</head>
+
+<body>
+
+<h1>Dokumentation der Callcenter Simulator Dateiformate - Verkettete Simulationen</h1>
+
+<a href="Dateiformate.html">Zurück zur Übersicht über alle Dateiformate</a>
+
+<h2>Datei-Kopf</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE VerknuepfteSimulation SYSTEM "CallcenterSimulator_de.dtd"&gt;</tt>
+</p>
+
+<p>Das Basis-Element für verkettete Simulationsmodelle heißt <tt>&lt;VerknuepfteSimulation&gt;</tt>
+und muss ein Attribut <tt>Basisverzeichnis</tt> besitzen, welches angibt auf welches Verzeichnis sich relative
+Angaben beziehen sollen. Des Weiteren kann es ein Attribut <tt>InitialerUebertrag</tt> besitzen, welches
+den Namen einer Statistikdatei angibt, aus der der Übertrag zum ersten Tag hin entnommen werden soll.</p>
+
+<p>
+Jedes verkettete Simulationsmodell muss ein odere mehrere Elemente vom Typ <tt>&lt;VerknuepftTag&gt;</tt> besitzen.
+Jedes dieser Elemente stellt einen bestimmten Simulationstag dar. Außerdem kann optional ein Element vom Typ
+<tt>&lt;VerknuepftInitialerBestand&gt;</tt> existieren.
+</p>
+
+<h2>Informationen zu den einzelnen Simulationstagen</h2>
+
+<p>
+Jedes <tt>&lt;VerknuepftTag&gt;</tt>-Element muss folgende drei Unterelemente in dieser Reihenfolge besitzen:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;VerknuepftModell&gt;</tt>: 
+  Gibt das zu simulierende Modell an (Dateiname der xml-Modelldatei). Ist der Eintrag leer, so wird das Modell vom
+  Vortag verwendet. Für den ersten Tag darf der Eintrag nicht leer sein. Enthält der Eintrag einen Verzeichnistrenner,
+  so wird der Pfad als absoluter Pfad interpretiert, ansonsten wird angenommen, dass es sich um eine Datei im angegebenen
+  Basisverzeichnis handelt.</li>
+  <li><tt>&lt;VerknuepftStatistik&gt;</tt>: 
+  Gibt den Dateinamen für die Statistikausgabe an. Ist der Eintrag leer, so werden die Ergebnisse des Simulationstages
+  nicht gespeichert und nur zur Verknüpfung mit dem nächsten Tag verwendet. Existiert die hier angegeben Statistikdatei
+  bereits zu Beginn der Simulation, so wird sie überschrieben. Enthält der Eintrag einen Verzeichnistrenner,
+  so wird der Pfad als absoluter Pfad interpretiert, ansonsten wird angenommen, dass es sich um eine Datei im angegebenen
+  Basisverzeichnis handelt.</li>
+  <li><tt>&lt;VerknuepftUebertraege&gt;</tt>: Dieses Element kann einen oder mehrere Kindelemente vom Typ <tt>&lt;VerknuepftUebertrag&gt;</tt>
+  besitzen. Jedes <tt>&lt;VerknuepftUebertrag&gt;</tt>-Element muss die beiden Attribute <tt>Typ</tt> und <tt>Wert</tt> besitzen.
+  Die Übertragselemente geben an, wieviele der endgültigen Warteabbrecher vom Vortag im aktuellen Tag zu den Erstanrufern
+  hinzugenommen werden sollen. Ist das <tt>&lt;VerknuepftUebertraege&gt;</tt>-Element leer, so erfolgt kein Übertrag.
+  Besitzt das <tt>&lt;VerknuepftUebertraege&gt;</tt>-Element genau ein <tt>&lt;VerknuepftUebertrag&gt;</tt>-Kindelement,
+  so muss bei diesem das <tt>Typ</tt>-Attribut leer sein. Das <tt>Wert</tt>-Attribut gibt dann den Anteil der zu übertragenden
+  Warteabbrecher für alle Kundentypen pauschal an. Besitzt das <tt>&lt;VerknuepftUebertraege&gt;</tt>-Element mehrere
+  <tt>&lt;VerknuepftUebertrag&gt;</tt>-Kindelemente, so erfolgt die Übertragung der Warteabbrecher kundentypspezifisch.
+  Jedes <tt>&lt;VerknuepftUebertrag&gt;</tt>-Element gibt dabei den Wert für einen Kundentyp an. Der jeweilige Kundentyp
+  wird im <tt>Typ</tt>-Attribut festgelegt. <tt>Wert</tt> gibt den Anteil der zu übertragenden Warteabbrecher an. Es müssen
+  nicht für alle Kundentypen <tt>&lt;VerknuepftUebertrag&gt;</tt>-Elemente geben bzw. es ist nicht notwendig, Elemente
+  mit <tt>Wert="0"</tt> anzulegen, wenn für einen bestimmten Typ kein Übertrag erfolgen soll. Alle per <tt>Typ</tt> definierten
+  Kundentypen müssen jedoch in dem verwendeten Simulationsmodell existieren. Das <tt>&lt;VerknuepftUebertrag&gt;</tt>-Element
+  kann optional noch Unterelemente vom Typ <tt>&lt;VerknuepftUebertragNeuerKundentyp&gt;</tt> enthalten. Jedes
+  <tt>&lt;VerknuepftUebertragNeuerKundentyp&gt;</tt>-Element muss die beiden Attribute <tt>Typ</tt> und <tt>Wert</tt>
+  besitzen, die angeben, mit welcher Rate sich der Typ eines Kunden zu diesem anderen Typ ändert. Besitzt ein
+  <tt>&lt;VerknuepftUebertrag&gt;</tt>-Element keine <tt>&lt;VerknuepftUebertragNeuerKundentyp&gt;</tt>-Unterelemente,
+  so findet keine Kundentypänderung statt.</li>
+</ul>
+
+<h2>Informationen zum manuellen Übertrag in Tag 1 hinein</h2>
+
+<p>
+Das optionale <tt>&lt;VerknuepftInitialerBestand&gt;</tt>-Element kann beliebig viele
+<tt>&lt;VerknuepftInitialerBestandKundentyp&gt;</tt>-Elemente beinhalten. Jedes
+<tt>&lt;VerknuepftInitialerBestandKundentyp&gt;</tt>-Element muss ein <tt>Name</tt>-Attribut
+besitzen, das angibt auf welchen Kundentyp sich das Element bezieht und muss als Inhalt eine nichtnegative
+ganze Zahl enthalten, die angibt, wie viele zusätzliche Erstanrufer als manueller Übertrag aus dem vorherigen
+Tag in das Modell für den ersten verketteten Tag hinzugefügt werden sollen.
+</p>
+
+</body>
+</html>
+  

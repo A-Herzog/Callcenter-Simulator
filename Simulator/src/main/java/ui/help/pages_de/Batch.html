@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Stapelverarbeitung</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/server_go.png">&nbsp;
+Simulation &gt; Stapelverarbeitung
+</div>
+
+<h1>Stapelverarbeitung</h1>
+
+<p>
+Der Callcenter Simulator kann über die Funktion <b>Stapelverarbeitung</b> mehrere Simulationsläufe
+in unmittelbarer Folge durchführen. Es werden zwei Arten von Stapelverarbeitungen unterstützt:
+</p>
+
+<h2>Verzeichnis abarbeiten</h2>
+
+<p>
+In diesem Modus muss lediglich ein Verzeichnis, in dem sich die zu simulierenden
+Modelle befinden, angegeben werden. Der Simulator durchsucht dann das angegeben Verzeichnis
+nach <tt>xml</tt>-Dateien, die Callcenter-Modelle enthalten und zu denen noch keine passenden
+Dateien mit dem Namen <tt>*_Statistik.xml</tt> existieren, simuliert die entsprechenden Modell
+und speichert die Ergebnisse unter den Namen <tt>*_Statistik.xml</tt> in demselben Verzeichnis.
+</p>
+
+<p>
+Diese Funktion kann auch über <a href="Parameter.html">Kommandozeilenparameter</a> verwendet werden.
+</p>
+
+<h2>Parameterreihe erstellen</h2>
+
+<p>
+In diesem Modus wird das aktuell im Editor geladene Modell simuliert. Allerdings wird ein Modellparameter
+bei jedem Lauf verändert, so dass am Ende eine Reihe von Simulationen mit einem einen Bereich durchlaufenden
+Parameter vorliegen. Die Simulationsergebnisse werden in dem angegebenen Verzeichnis in Form von
+Statistik-xml-Dateien ausgegeben. Bitte beachten Sie hier zu auch, dass die Ergebnisse auch gemeinsam
+in aufbereiteter Form in eine einzige Datei geschrieben werden können (siehe hierzu der dialog "Weitere Ausgabeeinstellungen").
+</p>
+
+<h2>Dialog "Weitere Ausgabeeinstellungen"</h2>
+
+<p>
+
+Über diesen Dialog kann eingestellt werden, dass direkt im Anschluss an eine Simulation ein <a href="Filter.html">Ausgabefilter</a>
+auf die Ergebnisse angewandt werden soll und die Ergebnisse an eine Datei angehängt werden sollen.
+Auf diese Weise kann insbesondere bei der Erstellung einer Parameterreihe eine Tabelle, die direkt die Ergebnisse
+enzhält, erstellt werden.
+</p>
+
+</body>
+</html>

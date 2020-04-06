@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Rechnenbefehle</title>
+</head>
+
+<body>
+
+<h1>Rechenbefehle</h1>
+
+<h2>Konstanten</h2>
+
+<table class="border">
+  <tr><td>e</td><td>e&asymp;2,718281828459</td></tr>
+  <tr><td>pi</td><td>&pi;&asymp;3,1415926535898</td></tr>
+</table>
+
+<h2>Grundrechenarten</h2>
+
+<p>
+Unterstützte Anweisungen für die Grundrechenarten:
+<tt>+</tt>, <tt>-</tt>, <tt>*</tt>, <tt>/</tt> und <tt>^</tt>.
+</p>
+
+<p>
+Außerdem steht die <tt>If</tt>-Funktion zur Verfügung. Diese erwartet eine
+ungerade Anzahl an Parametern:
+</p>
+<p><tt>If(bedingung1,wert1,bedingung2,wert2,...,wertSonst)</tt></p>
+<p>
+Ist <tt>bedingung1</tt>&gt;0, so liefert die Funktion <tt>wert1</tt> zurück.<br>
+Andernfalls prüft sie, ob <tt>bedingung2</tt>&gt;0 ist und liefert, wenn dies zutrifft, <tt>wert2</tt> zurück usw.<br>
+Trifft keine der Bedingungen zu, so liefert die Funktion <tt>wertSonst</tt> zurück.
+</p>
+
+<h2>Nachgestellte Anweisungen</h2>
+
+<p>
+Folgende Ausdrücke können unmittelbar hinter eine Zahl geschrieben werden:
+</p>
+
+<table class="border">
+  <tr><td>%</td><td>Als Prozentwert interpretieren, z.B. 30%=0,3.</td></tr>
+  <tr><td>²</td><td>Zahl mit 2 potenzieren</td></tr>
+  <tr><td>³</td><td>Zahl mit 3 potenzieren</td></tr>
+  <tr><td>!</td><td>Fakultät der Zahl berechnen, 4!=1*2*3*4=24</td></tr>
+  <tr><td>°</td><td>Zahl von Grad in Bogenmaß umrechnen, 180°=3,1415...</td></tr>
+  
+</table>
+
+<h2>Allgemeine Funktionen</h2>
+
+<table class="border">
+  <tr><td>abs(x)</td><td>Absolutbetrag, abs(-5)=5</td></tr>
+  <tr><td>ceil(x)</td><td>Aufrunden, ceil(2,1)=3</td></tr>
+  <tr><td>exp(x)</td><td>Exponentialfunktion e<sup>x</sup></td></tr>
+  <tr><td>factorial(x)</td><td>Fakultät, 4!=1*2*3*4=24</td></tr>
+  <tr><td>gamma(x)</td><td>Gamma-Funktion, gamma(5)=4!=24</td></tr>
+  <tr><td>floor(x)</td><td>Abrunden, floor(2,9)=2</td></tr>
+  <tr><td>frac(x)</td><td>Nachkommaanteil, frac(1,3)=0,3</td></tr>
+  <tr><td>int(x)</td><td>Ganzzahlanteil, int (2,9)=2</td></tr>
+  <tr><td>ld(x)</td><td>Logarithmus zur Basis 2</td></tr>
+  <tr><td>lg(x)</td><td>Logarithmus zur Basis 10</td></tr>
+  <tr><td>ln(x)</td><td>Logarithmus zur Basis e</td></tr>
+  <tr><td>pow(x;y)</td><td>Potenzieren x<sup>y</sup></td></tr>
+  <tr><td>round(x)</td><td>Runden, round(4,4)=4, round(4,5)=5</td></tr>
+  <tr><td>sign(x)</td><td>Vorzeichen einer Zahl, sign(3)=1, sign(-3)=-1</td></tr>
+  <tr><td>sqrt(x)</td><td>Quadratwurzel</td></tr>
+  <tr><td>sqr(x)</td><td>Zahl quadrieren</td></tr>
+  <tr><td>random()</td><td>Liefert eine Zufallszahl zwischen 0 (einschließlich) und 1 (ausschließlich).</td></tr>
+  <tr><td>random(x)</td><td>Liefert eine Zufallszahl zwischen 0 (einschließlich) und x (ausschließlich).</td></tr>
+</table>  
+
+<h2>Winkelfunktionen</h2>
+
+<table class="border">
+  <tr><td>sin(x)</td><td>Sinus</td></tr>
+  <tr><td>cos(x)</td><td>Cosinus</td></tr>
+  <tr><td>tan(x)</td><td>Tangens</td></tr>
+  <tr><td>cot(x)</td><td>Cotangens</td></tr>
+  <tr><td>sinh(x)</td><td>Sinus hyperbolicus</td></tr>
+  <tr><td>cosh(x)</td><td>Cosinus hyperbolicus</td></tr>
+  <tr><td>tanh(x)</td><td>Tangens hyperbolicus</td></tr>
+  <tr><td>coth(x)</td><td>Cotangens hyperbolicus</td></tr>
+  <tr><td>arcsin(x)</td><td>Arcus-Sinus</td></tr>
+  <tr><td>arccos(x)</td><td>Arcus-Cosinus</td></tr>
+  <tr><td>arctan(x)</td><td>Arcus-Tangens</td></tr>
+  <tr><td>arccot(x)</td><td>Arcus-Cotangens</td></tr>
+  <tr><td>arcsinh(x)</td><td>Arcus-Sinus hyperbolicus</td></tr>
+  <tr><td>arccosh(x)</td><td>Arcus-Cosinus hyperbolicus</td></tr>
+  <tr><td>arctanh(x)</td><td>Arcus-Tangens hyperbolicus</td></tr>
+  <tr><td>arccoth(x)</td><td>Arcus-Cotangens hyperbolicus</td></tr>
+</table>
+
+<h2>Funktionen mit mehreren Parametern</h2>
+
+<table class="border">
+  <tr><td>Min(a;b;c;...)</td><td>Berechnet das Minimum der übergebenen Zahlen</td></tr>
+  <tr><td>Max(a;b;c;...)</td><td>Berechnet das Minimum der übergebenen Zahlen</td></tr>
+  <tr><td>Sum(a;b;c;...)</td><td>Berechnet die Summe der übergebenen Zahlen</td></tr>
+  <tr><td>Mean(a;b;c;...)</td><td>Berechnet das arithmetische Mittel der übergebenen Zahlen</td></tr>
+  <tr><td>Var(a;b;c;...)</td><td>Berechnet die Stichprobenvarianz der übergebenen Zahlen</td></tr>
+  <tr><td>StdDev(a;b;c;...)</td><td>Berechnet die Stichprobenstandardabweichung der übergebenen Zahlen</td></tr>
+  <tr><td>SCV(a;b;c;...)</td><td>Berechnet den quadrierten Variationskoeffizient der übergebenen Zahlen</td></tr>
+  <tr><td>CV(a;b;c;...)</td><td>Berechnet den Variationskoeffizient der übergebenen Zahlen</td></tr>
+</table>
+
+<h2>Wahrscheinlichkeitsverteilungen</h2>
+
+<p>
+Mit Hilfe der folgenden Befehle können sowohl Werte der Dichte und der Verteilungsfunktion
+der folgenden Wahrscheinlichkeitsverteilungen berechnet werden als auch Zufallszahlen
+auf Basis einer dieser Wahrscheinlichkeitsverteilungen berechnet werden:
+</p>
+
+<table class="border">
+  <tr><td colspan="2"><b>Exponentialverteilung mit Mittelwert a</b></td></tr>
+  <tr><td>ExpDist(x;a;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>ExpDist(x;a;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>ExpDist(a)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Gleichverteilung über das Intervall [a;b]</b></td></tr>
+  <tr><td>UniformDist(x;a;b;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>UniformDist(x;a;b;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>UniformDist(a;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Normalverteilung mit Mittelwert a und Standardabweichung b</b></td></tr>
+  <tr><td>NormalDist(x;a;b;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>NormalDist(x;a;b;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>NormalDist(a;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Lognormalverteilung mit Mittelwert a und Standardabweichung b</b></td></tr>
+  <tr><td>LogNormalDist(x;a;b;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>LogNormalDist(x;a;b;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>LogNormalDist(a;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Gamma-Verteilung mit Parametern &alpha;=a und &beta;=b</b></td></tr>
+  <tr><td>GammaDist(x;a;b;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>GammaDist(x;a;b;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>GammaDist(a;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Erlang-Verteilung mit Parametern n und &lambda;=l</b></td></tr>
+  <tr><td>ErlangDist(x;n;l;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>ErlangDist(x;n;l;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>ErlangDist(n;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Beta-Verteilung in dem Intervall [a;b] und mit Parametern &alpha;=c und &beta;=d</b></td></tr>
+  <tr><td>BetaDist(x;a;b;c;d;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>BetaDist(x;a;b;c;d;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>BetaDist(a;b;c;d)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Weibull-Verteilung mit Parametern Scale=a und Form=d</b></td></tr>
+  <tr><td>WeibullDist(x;a;b;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>WeibullDist(x;a;b;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>WeibullDist(a;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Cauchy-Verteilung mit Mittelwert a und Scale=b</b></td></tr>
+  <tr><td>CauchyDist(x;a;b;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>CauchyDist(x;a;b;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>CauchyDist(a;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Chi<sup>2</sup>-Verteilung mit n Freiheitsgraden</b></td></tr>
+  <tr><td>ChiSquareDist(x;n;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>  
+  <tr><td>ChiSquareDist(x;n;1)</td><td>Chi<sup>2</sup>-Verteilung mit n Freiheitsgraden</td></tr>
+  <tr><td>ChiSquareDist(n)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>F-Verteilung mit a Freiheitsgraden im Zähler und b Freiheitsgraden im Nenner</b></td></tr>
+  <tr><td>FDist(x;a;b;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>FDist(x;a;b;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>FDist(a;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Johnson-SU-Verteilung mit den Parameter a=&gamma;, b=&xi;, c=&delta; und d=&lambda;</b></td></tr>
+  <tr><td>JohnsonSUDist(x;a;b;c;d;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>JohnsonSUDist(x;a;b;c;d;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>JohnsonSUDist(a;b;c;d)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Dreiecksverteilung über [a;c] mit b=Wert mit der höchsten Wahrscheinlichkeitsdichte</b></td></tr>
+  <tr><td>TriangularDist(x;a;b;c;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>TriangularDist(x;a;b;c;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>TriangularDist(a;b;c)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Laplace-Verteilung mit Mittelwert mu und Skalierungsfaktor b</b></td></tr>
+  <tr><td>LaplaceDist(x;mu;b;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>LaplaceDist(x;mu;b;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>LaplaceDist(mu;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>  
+  <tr><td colspan="2"><b>Pareto-Verteilung mit Skalierungsparameter x<sub>min</sub> und Formparameter &alpha;</b></td></tr>
+  <tr><td>ParetoDist(x;xmin;alpha;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>ParetoDist(x;xmin;alpha;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>ParetoDist(xmin;alpha)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>  
+  <tr><td colspan="2"><b>Logistische Verteilung mit Mittelwert &mu; und Skalierungsparameter s</b></td></tr>
+  <tr><td>LogisticDist(x;mu;s;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>LogisticDist(x;mu;s;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>LogisticDist(mu;s)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>  
+  <tr><td colspan="2"><b>Inverse Gauß-Verteilung mit &lambda; und Mittelwert &mu;</b></td></tr>
+  <tr><td>InverseGaussianDist(x;lambda;mu;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>InverseGaussianDist(x;lambda;mu;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>  
+  <tr><td>InverseGaussianDist(lambda;mu)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Rayleigh-Verteilung mit Mittelwert &mu;</b></td></tr>
+  <tr><td>RayleighDist(x;mu;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>RayleighDist(x;mu;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>RayleighDist(mu)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Log-Logistische Verteilung mit &alpha; und &beta;</b></td></tr>
+  <tr><td>LogLogisticDist(x;alpha;beta;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>LogLogisticDist(x;alpha;beta;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>LogLogisticDist(alpha;beta)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Potenzverteilung über [a;b] mit Exponent c</b></td></tr>
+  <tr><td>PowerDist(x;a;b;c;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>PowerDist(x;a;b;c;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>PowerDist(a;b;c)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Gumbel-Verteilung mit Mittelwert a und Standardabweichung b</b></td></tr>
+  <tr><td>GumbelDist(x;a;b;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>GumbelDist(x;a;b;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>GumbelDist(a;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Fatigue-Life-Verteilung mit Lageparameter mu, Skalierungsparameter beta und Formparameter gamma</b></td></tr>
+  <tr><td>FatigueLifeDist(x;mu;beta;gamma;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>FatigueLifeDist(x;mu;beta;gamma;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>FatigueLifeDist(mu;beta;gamma)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Frechet-Verteilung mit Lageparameter delta, Skalierungsparameter beta und Formparameter alpha</b></td></tr>
+  <tr><td>FrechetDist(x;delta;beta;alpha;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>FrechetDist(x;delta;beta;alpha;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>FrechetDist(delta;beta;alpha)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Hyperbolische Sekanten-Verteilung mit Mittelwert a und Standardabweichung b</b></td></tr>
+  <tr><td>HyperbolicSecantDist(x;a;b;0)</td><td>Berechnet die Dichte an der Stelle x</td></tr>
+  <tr><td>HyperbolicSecantDist(x;a;b;1)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x</td></tr>
+  <tr><td>HyperbolicSecantDist(a;b)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung</td></tr>
+  <tr><td colspan="2"><b>Verteilung aus empirischen Daten</b></td></tr>
+  <tr><td>EmpirischeDichte(x;wert1;wert2;wert3;...;max)</td><td>Berechnet die Dichte an der Stelle x. Die angegebenen Werte werden dabei auf den Bereich von 0 bis max verteilt.</td></tr>
+  <tr><td>EmpirischeVerteilung(x;wert1;wert2;wert3;...;max)</td><td>Berechnet den Wert der Verteilungsfunktion an der Stelle x. Die angegebenen Werte werden dabei auf den Bereich von 0 bis max verteilt.</td></tr>
+  <tr><td>EmpirischeZufallszahl(wert1;wert2;wert3;...;max)</td><td>Erzeugt eine Zufallszahl gemäß der Verteilung. Die angegebenen Werte werden dabei auf den Bereich von 0 bis max verteilt.</td></tr>
+  <tr><td>EmpirischeVerteilungMittelwert(wert1;wert2;wert3;...;max)</td><td>Liefert den Erwartungswert der Verteilung.</td></tr>
+  <tr><td>EmpirischeVerteilungSD(wert1;wert2;wert3;...;max)</td><td>Liefert die Standardabweichung der Verteilung.</td></tr>
+  <tr><td>EmpirischeVerteilungVar(wert1;wert2;wert3;...;max)</td><td>Liefert die Varianz der Verteilung.</td></tr>
+  <tr><td>EmpirischeVerteilungCV(wert1;wert2;wert3;...;max)</td><td>Liefert den Variationskoeffizient der Verteilung.</td></tr>
+</table>
+
+<h2>Erlang-C-Rechner</h2>
+
+<p>
+Mit Hilfe des folgenden Befehls können verschiedene Kenngrößen auf Basis der
+erweiterten Erlang-C-Formel berechnet werden:
+</p>
+
+<table class="border">
+  <tr><td>ErlangC(lambda;mu;nu;c;K;-1)</td><td>Berechnet die mittlere Warteschlangenlänge E[N<sub>Q</sub>]</td></tr> 
+  <tr><td>ErlangC(lambda;mu;nu;c;K;-2)</td><td>Berechnet die mittlere Anzahl an Kunden im System E[N]</td></tr>
+  <tr><td>ErlangC(lambda;mu;nu;c;K;-3)</td><td>Berechnet die mittlere Wartezeit E[W]</td></tr>
+  <tr><td>ErlangC(lambda;mu;nu;c;K;-4)</td><td>Berechnet die mittlere Verweilzeit E[V]</td></tr>
+  <tr><td>ErlangC(lambda;mu;nu;c;K;-5)</td><td>Berechnet die mittlere Erreichbarkeit 1-P(A)</td></tr>
+  <tr><td>ErlangC(lambda;mu;nu;c;K;t)</td><td>Berechnet die Wahrscheinlichkeit den Service-Level an der t Sekunden Schranke P(W&le;t)</td></tr>
+</table>
+
+<h2>Allen-Cunneen-Approximationsformel</h2>
+
+<p>
+Mit Hilfe des folgenden Befehls können verschiedene Kenngrößen auf Basis der
+Allen-Cunneen-Approximationsformel berechnet werden:
+</p>
+
+<table class="border">
+  <tr><td>AllenCunneen(lambda;mu;cvI;cvS;c;-1)</td><td>Berechnet die mittlere Warteschlangenlänge E[N<sub>Q</sub>]</td></tr> 
+  <tr><td>AllenCunneen(lambda;mu;cvI;cvS;c;-2)</td><td>Berechnet die mittlere Anzahl an Kunden im System E[N]</td></tr>
+  <tr><td>AllenCunneen(lambda;mu;cvI;cvS;c;-3)</td><td>Berechnet die mittlere Wartezeit E[W]</td></tr>
+  <tr><td>AllenCunneen(lambda;mu;cvI;cvS;c;-4)</td><td>Berechnet die mittlere Verweilzeit E[V]</td></tr>
+</table>
+
+</body>
+</html>

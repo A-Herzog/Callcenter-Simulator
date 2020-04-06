@@ -1,0 +1,520 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dokumentation der Callcenter Simulator Dateiformate - Callcenter-Modelle</title>
+</head>
+
+<body>
+
+<h1>Dokumentation der Callcenter Simulator Dateiformate - Callcenter-Modelle</h1>
+
+<a href="Dateiformate.html">Zurück zur Übersicht über alle Dateiformate</a>
+
+<h2>Datei-Kopf</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE CallcenterModell SYSTEM "CallcenterSimulator_de.dtd"&gt;</tt>
+</p>
+
+<p>Das Basis-Element für Callcenter-Modell-Dateien heißt <tt>&lt;CallcenterModell&gt;</tt>.</p>
+
+<h2>Allgemeine Angaben</h2>
+
+<p>
+Das <tt>&lt;CallcenterModell&gt;</tt> Element enthält folgende Unterelemente,
+die allgemeine Angaben zu dem Callcenter-Modell enthalten. Jedes der folgenden
+Unterelemente muss genau einmal vorhanden sein (sofern nicht anders angegeben):
+</p>
+
+<ul class="big">
+  <li><tt>&lt;ModellSimulatorVersion&gt;</tt>: Gibt die Version des Simulators, mit dem das Modell erstellt wurde.
+  Ist hier ein größerer Wert eingetragen als die Versionummer der verwendeten Version, so warnt der Simulator
+  beim Laden des Modell über die grafische Benutzeroberfläche.</li>
+  <li><tt>&lt;ModellName&gt;</tt>: Enthält den Namen des Modell.
+  Der Name dient nur Identifikation des Modells durch den Nutzer.</li>
+  <li><tt>&lt;ModellDatum&gt;</tt>: Dieses Element ist optional. Es gibt das Datum des Tages an, den das Simulationsmodell repräsentieren soll.
+  Das Format für die Datumsangaben ist MM/DD/YYYY, aber beim Laden werden auch lokale Datumsformate erkannt.</li>  
+  <li><tt>&lt;ModellBeschreibung&gt;</tt>: Enthält eine Beschreibung des Modells.
+  In der Beschreibung können beliebige Informationen für den Nutzer angegeben werden.</li>
+  <li><tt>&lt;ModellMaxWarteschlangenLaenge&gt;</tt>: Gibt die Maximallänge der Warteschlange an.
+  Befinden sich bereits so viele Kunden in der Warteschlange, wie hier angegeben, so werden weitere
+  eintreffende Kunden abgewiesen. Kunden, die sich bereits in Bedienung befinden, werden dabei nicht mitgezählt.</li>
+  <li><tt>&lt;ModellSimulierteTage&gt;</tt>: Gibt die Anzahl an zu simulierenden Tagen an.
+  Je mehr Tage simuliert werden, desto statistisch stabiler sind die Ergebnisse.</li>
+  <li><tt>&lt;ModellBevorzugteSchichtlaenge&gt;</tt>:
+  Werden Agentengruppen in Form von Agentenzahlen pro Halbstundenintervall und nicht in Form von einer
+  fixen Zahlen an Agenten mit konkreten Arbeitszeiten angegeben, so müssen vor Beginn der Simulation
+  konkrete Agenten mit konkreten Arbeitszeiten generiert werden. Um die Eigenschaften des echten
+  Callcenter-Systems möglichst realistisch nachzubilden, werden keine Agenten mit Halbstunden-Arbeitszeiten
+  generiert, da dies aufgrund von Überschneidungen zu einer Überschätzung der real verfügbaren
+  Arbeitszeiten führen würde. Stattdessen wird versucht, Agenten mit der hier angegebenen Schichtlänge
+  zu generieren. Dieser globale Vorgabewert kann über ein Datenfeld mit identischem Namen pro
+  Agentengruppe überschrieben werden.</li>
+  <li><tt>&lt;ModellMinimaleSchichtlaenge&gt;</tt>:
+  Über dieses optionale Element kann zusätzlich zu dem <tt>&lt;ModellBevorzugteSchichtlaenge&gt;</tt>-Element
+  eine minimale Schichtlänger der Arbeitszeiten der Agenten festgelegt werden. Fehlt dieses Element, so wird
+  eine minimale Schichtlänge von einem Intervall (was also keiner Einschränkung nach unten entsprecht) angenommen.  
+  Dieser globale Vorgabewert kann über ein Datenfeld mit identischem Namen pro Agentengruppe überschrieben werden.</li>
+  <li><tt>&lt;ModellServiceLevel&gt;</tt>:
+  Während der Simulation wird erfasst, für wie viele Anrufer das gewünschte Service-Level erreicht wurde.
+  Das Service-Level ist der Anteil an Anrufern, der höchstens eine gewisse Anzahl an Sekunden gewartet hat.
+  Über dieses Feld kann angegeben werden, welche Sekundenzahl als Grenze für die Erreichung des Service-Level
+  angesetzt werden soll.</li>
+  <li><tt>&lt;ModellProduktivitaet&gt;</tt>:
+  In diesem Feld werden 48 durch ";" getrennte Werte erwartet, die die Produktivität der Agenten im Tagesverlauf
+  angeben. Die verfügbare Arbeitsleitung pro Halbstundenintervall bei Agentengruppen, die über eine
+  Arbeitsleitungsverteilungskurve oder über die Nachmodellierung der Kundenankünfte definiert sind, wird
+  mit diesem Produktivitätswert multipliziert. Diese globale Produktivität kann optional pro Callcenter
+  und pro Agentengruppe überschrieben werden.</li>
+  <li><tt>&lt;ModellPlanungsaufschlag&gt;</tt>:
+  In diesem Feld werden 48 durch ";" getrennte Werte erwartet, die die angeben, um wie viel höher
+  die planerischer Agentenanzahl sein soll als im Modell im Tagesverlauf angeben.  Die verfügbare
+  Arbeitsleitung pro Halbstundenintervall bei Agentengruppen, die über eine Arbeitsleitungsverteilungskurve
+  oder über die Nachmodellierung der Kundenankünfte definiert sind, wird mit diesem Produktivitätswert
+  multipliziert und in der Statistik gespeichert. Die Agentenanzahl inkl. diesem Aufschlag wird nicht
+  für die Simulation selber verwendet.  Dieser globale Aufschlag kann optional pro Callcenter
+  und pro Agentengruppe überschrieben werden.</li>
+</ul>
+
+<h2>Kundentypen</h2>
+
+<p>
+Das <tt>&lt;CallcenterModell&gt;</tt> Element kann beliebig viele Elemente (mindestens jedoch eins) vom
+Typ <tt>&lt;ModellKundentyp&gt;</tt> enthalten.
+</p>
+
+<h3>Attribute des <tt>ModellKundentyp</tt>-Elements</h3>
+
+<ul class="big">
+  <li><tt>Name</tt>: Gibt den Namen des Kundentyps an. Dieser Name wird z.B. bei der Definition
+  von Skill-Levels verwendet. Das <tt>Name</tt>-Attribut muss existieren.</li>
+  <li><tt>Aktiv</tt>: Gibt an, ob die im Folgenden definierte Kundengruppe in der Simulation
+  verwendet werden soll. <tt>Aktiv</tt> kann die Werte 0 und 1 annehmen. Das Attribut ist
+  optional; wenn es fehlt, wird "1" angenommen.</li>
+  <li><tt>BelegtLeitung</tt>: Gibt an, ob die Kunden der im Folgenden definierten
+  Kundengruppe während des Wartens und während der Bearbeitung eine Telefonleitung
+  belegen (wie dies bei Anrufen der Fall ist) oder nicht (wie bei E-Mails usw.).
+  <tt>BelegtLeitung</tt> kann die Werte 0 und 1 annehmen. Das Attribut ist
+  optional; wenn es fehlt, wird "1" angenommen.</li>
+  <li><tt>ServiceLevel</tt>: Ist dieses optionale Attribut vorhanden, so wird in der
+  Statistik für diesen Kundentyp nicht der globale Service-Level Sekundenwert
+  verwendet, sondern der hier angegebene Wert.</li>
+</ul>
+
+<h3>Unterelemente des <tt>ModellKundentyp</tt>-Elements</h3>
+
+<p>
+Das <tt>&lt;ModellKundentyp&gt;</tt>-Element enthält folgende Unterelemente.
+Jedes der folgenden Unterelemente muss genau einmal vorhanden sein:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;KundenErstanrufer&gt;</tt>: Dieses Element enthält genau die zwei Unterelemente
+  <tt>ErstanruferAnzahl</tt> und <tt>ErstanruferVerteilung</tt>.
+  <ul>
+    <li><tt>&lt;ErstanruferAnzahl&gt;</tt> gibt die Anzahl an Erstanrufern des Kunden
+	dieses Typs pro Tag an. Als optionalen Parameter kann das Element ein <tt>Standardabweichung</tt>-Attribut
+	besitzen. Dieses gibt, wenn vorhanden, an, mit welche Standardabweichung (normalverteilt betrachtet) die Anzahl
+	an Erstanrufern pro Tag schwankt. Fehlt das Attribut, so wird hier 0 angenommen.</li>
+	<li><tt>&lt;ErstanruferVerteilung&gt;</tt> enthält 24, 48 oder 96 durch Semikolons getrennte
+	Werte, die den Anteil der Erstanrufer dieses Kundentyps pro Stunden-, Halbstunden- oder 15-Minutenintervall
+	angibt. Die konkrete Größe der Werte ist dabei nicht von Bedeutung, sondern nur
+	das relative Verhältnis der Größen der Werte untereinander. Die Gesamtzahl an
+    Erstanrufern des Kundentyps pro Tag an wird ausschließlich über das Element 
+    <tt>ErstanruferAnzahl</tt> bestimmt.</li>
+  </ul></li>
+  <li><tt>&lt;KundenScore&gt;</tt>: Dieses Element hat keinen Inhalt, muss aber die folgenden
+  drei Attribute besitzen: <tt>Basis</tt>, <tt>ProWartesekunde</tt> und <tt>Weiterleitung</tt>.
+  Die drei Attribute geben den Basis-Scorewert des Kundentyps, den Wert, um den die Score pro
+  Wartesekunde erhöht wird, und den Score-Aufschlag, den ein Kunde, der weitergeleitet wird,
+  erhält, an.</li>
+  <li><tt>&lt;KundenWartezeittoleranzVerteilung&gt;</tt>:
+  <i>Es muss entweder dieses Element oder das Element <tt>&lt;KundenWartezeittoleranzVerteilungLang&gt;</tt>
+  oder das Element <tt>&lt;KundenWartezeittoleranzSchaetzung&gt;</tt>
+  vorhanden sein. Mehrere gleichzeitig sind nicht zulässig.</i><br>
+  In diesem Element wird eine Verteilung angegeben, gemäß derer die Wartezeittoleranzen
+  der Kunden bestimmt werden. Werden empirische Daten angegeben, so werden diese auf eine Gesamtdauer
+  von einer Stunde skaliert.</li>
+  <li><tt>&lt;KundenWartezeittoleranzVerteilungLang&gt;</tt>:
+  <i>Es muss entweder dieses Element oder das Element <tt>&lt;KundenWartezeittoleranzVerteilung&gt;</tt>
+  oder das Element <tt>&lt;KundenWartezeittoleranzSchaetzung&gt;</tt>
+  vorhanden sein. Mehrere gleichzeitig sind nicht zulässig.</i><br>
+  In diesem Element wird eine Verteilung angegeben, gemäß derer die Wartezeittoleranzen
+  der Kunden bestimmt werden. Werden empirische Daten angegeben, so werden diese auf eine Gesamtdauer
+  von 10 Tagen skaliert.</li>  
+  <li><tt>&lt;KundenWartezeittoleranzSchaetzung&gt;</tt>:
+  <i>Es muss entweder dieses Element oder das Element <tt>&lt;KundenWartezeittoleranzVerteilung&gt;</tt>
+  oder das Element <tt>&lt;KundenWartezeittoleranzVerteilungLang&gt;</tt>
+  vorhanden sein. Mehrere gleichzeitig sind nicht zulässig.</i><br>
+  Dieses Element hat keinen Inhalt, muss aber die folgenden drei Attribute besitzen:
+  <tt>Wartezeit</tt>, <tt>Abbruchwahrscheinlichkeit</tt> und <tt>Korrekturwert</tt>.
+  Das <tt>Wartezeit</tt>-Attribut nimmt eine Zeitangabe in der Form <tt>hh:mm:ss.nnn</tt>
+  auf und gibt die mittlere Wartezeit der Kunden an. Das <tt>Abbruchwahrscheinlichkeit</tt>-Attribut
+  gibt die gemessene Abbruchrate an, aus der die Wartezeittoleranz hochgerechnet werden soll.
+  Das <tt>Korrekturwert</tt>-Attribut gibt an, um wie viel die hochgerechnete Wartezeittoleranz
+  nach oben oder unten korrigiert werden soll und nimmt eine Zeitangabe in der Form
+  <tt>hh:mm:ss.nnn</tt> oder <tt>-hh:mm:ss.nnn</tt> auf.</li>
+  <li><tt>&lt;KundenWiederholungen&gt;</tt>:
+  Dieses Element muss genau die folgenden neun Unterelemente enthalten:
+  <ul>  
+    <li><tt>&lt;WiederholungenAbstaendeVerteilung&gt;</tt>:
+	Gibt die Verteilung der Abstände zwischen dem Auflegen eines Kunden und einem
+	weiteren Anrufversuch an.</li>
+    <li><tt>&lt;WiederholungenWahrscheinlichkeitNachBlockierungErsterVersuch&gt;</tt>:
+    Gibt die Wahrscheinlichkeit an, mit der Kunden nach der ersten Blockierung
+	(=Warteschlange zum Anrufzeitpunkt voll) einen weiteren Anruf tätigen.</li>
+    <li><tt>&lt;WiederholungenWahrscheinlichkeitNachBlockierungWeitereVersuche&gt;</tt>:
+    Gibt die Wahrscheinlichkeit an, mit der Kunden, die bereits zu vor einmal
+    blockiert wurden oder aufgegeben haben, nach einer Blockierung
+	(=Warteschlange zum Anrufzeitpunkt voll) einen weiteren Anruf tätigen.</li>
+    <li><tt>&lt;WiederholungenWahrscheinlichkeitNachAbbruchErsterVersuch&gt;</tt>:
+    Gibt die Wahrscheinlichkeit an, mit der Kunden, die im ersten Anrufversuch
+	das Warten aufgegeben haben, später einen weiteren Anruf tätigen.</li>
+    <li><tt>&lt;WiederholungenWahrscheinlichkeitNachAbbruchWeitereVersuche&gt;</tt>:
+    Gibt die Wahrscheinlichkeit an, mit der Kunden, die bereits mindestens zum
+	zweiten Mal anrufen und das Warten aufgegeben haben,
+    später einen weiteren Anruf tätigen.</li>
+    <li>Die vier Elemente <tt>&lt;WiederholungenKundentypNachBlockierungErsterVersuch&gt;</tt>,
+    <tt>&lt;WiederholungenKundentypNachBlockierungWeitereVersuche&gt;</tt>,
+    <tt>&lt;WiederholungenKundentypNachAbbruchErsterVersuch&gt;</tt> und
+    <tt>&lt;WiederholungenKundentypNachAbbruchWeitereVersuche&gt;</tt> müssen jeweils für jeden
+    Kundentyp ein <tt>&lt;WiederholungenNeuerKundentyp&gt;</tt> besitzen.
+    <tt>&lt;WiederholungenNeuerKundentyp&gt;</tt> besitzt ein Attribut <tt>Name</tt>, welches
+    angibt, auf welchen Kundentyp es sich bezieht und gibt im Element-Inhalt an, mit
+    welche Rate ein Kunde seinen Typ nach einem Abbruch in den angegebenen Typ ändert.
+    Haben alle <tt>&lt;WiederholungenNeuerKundentyp&gt;</tt>-Elemente den Inhalt "0",
+    so erfolgt keine Kundentypänderung bei einem Abbruch der jeweiligen Form.</li>      
+  </ul></li>
+  <li><tt>&lt;KundenWeiterleitungen&gt;</tt>: Dieses Element muss das Attribut <tt>Wahrscheinlichkeit</tt>
+  besitzen, welches angibt, mit welcher Wahrscheinlichkeit Kunden dieses Typs nach ihrem Gespräch weitergeleitet
+  werden. Ist die Weiterleitungswahrscheinlichkeit größer als 0, so muss das Element ein oder mehrere
+  untergeordnete Elemente vom Typ <tt>WeiterleitungenNeuerKundentyp</tt> besitzen, die angeben, wie sich der
+  Kundentyp bei einer Weiterleitung ändert. Außerdem kann das <tt>KundenWeiterleitungen</tt>-Element eines oder
+  mehrere <tt>WeiterleitungenSkillLevelSpezifisch</tt>-Unterelemnte enthalten, die das allgemeine
+  Weiterleitungsverhalten in Abhängigkeit von dem Skill-Level des Agenten, der den Kunden bedient hat, überschreiben.
+  <ul>
+    <li><tt>&lt;WeiterleitungenNeuerKundentyp&gt;</tt>: Dieses Element muss einen Parameter <tt>Name</tt> besitzen,
+	der angibt, welchem neuen Kundentyp Kunden dieses Typs bei der Weiterleitung erhalten können. Als Inhalt des
+	Elements muss die Rate, mit der Weiterleitungen zu dem Typ erfolgen, angegeben werden. (Die Rate muss eine nichtnegative
+	Zahl sein, die auch größer als 1 sein kann. Die Wahrscheinlichkeit für eine Weiterleitung zu dem angegebenen Kundentyp
+	ergibt sich, in dem die jeweilige Rate durch die Summe aller Raten geteilt wird.)</li>
+	<li><tt>&lt;WeiterleitungenSkillLevelSpezifisch&gt;</tt>: Dieses Element verhält sich größtenteils identisch wie das
+	Element <tt>KundenWeiterleitungen</tt>. Es besitzt ein <tt>Wahrscheinlichkeit</tt>-Attribut und beliebig viele
+	<tt>WeiterleitungenNeuerKundentyp</tt>-Unterelemente. Zusätzlich muss aber über ein <tt>SkillLevel</tt>-Attribut
+	angegeben werden, für welches Skill-Level dieser Regelsatz verwendet werden soll. Ist das Gespräch eines Kunden zu
+	Ende, so wird zunächst geprüft, ob es eine passende <tt>WeiterleitungenSkillLevelSpezifisch</tt>-Regel für den Skill-Level
+	des Agenten, der den Kunden bedient hat, gibt. Wenn ja, wird gemäß dieser Regel bestimmt, ob der Kunde weitergeleitet
+	wird und wenn ja, welchen Kundentyp er erhält. Wenn nein, wird gemäß der unter <tt>KundenWeiterleitungen</tt> definierten
+	Regeln besimmt, ob der Kunde weitergeleitet	wird und wenn ja, welchen Kundentyp er erhält.</li>
+  </ul></li>
+  <li><tt>&lt;KundenWiederanrufer&gt;</tt>: Dieses Element muss das Attribut <tt>Wahrscheinlichkeit</tt>
+  besitzen, welches angibt, mit welcher Wahrscheinlichkeit Kunden dieses Typs nach einem erfolgreichen Anruf
+  einen weiteren Anruf tätigen. Ist die Wiederanrufwahrscheinlichkeit größer als 0, so muss das Element ein
+  Element des Typs <tt>WiederanrufAbstaendeVerteilung</tt>, welches die Verteilung der Wiederanruf-Abstände
+  angibt und ein oder mehrere untergeordnete Elemente vom Typ <tt>WiederanrufNeuerKundentyp</tt> besitzen,
+  die angeben, wie sich der Kundentyp bei einem Wiederanruf  ändert. Außerdem kann das <tt>KundenWiederanrufer</tt>-Element
+  eines oder mehrere <tt>WiederanrufSkillLevelSpezifisch</tt>-Unterelemnte enthalten, die das allgemeine
+  Wiederanrufverhalten in Abhängigkeit von dem Skill-Level des Agenten, der den Kunden bedient hat, überschreiben.
+  <ul>
+    <li><tt>&lt;WiederanrufAbstaendeVerteilung&gt;</tt>: Gibt die Verteilung der Abstände zwischen dem Auflegen eines Kunden
+    nach einem Gespräch und einem weiteren Anruf desselben Kunden an.</li>
+    <li><tt>&lt;WiederanrufNeuerKundentyp&gt;</tt>: Dieses Element muss einen Parameter <tt>Name</tt> besitzen,
+    der angibt, welchem neuen Kundentyp Kunden dieses Typs bei dem Wiederanruf erhalten können. Als Inhalt des
+    Elements muss die Rate, mit der Wiederanrufe in Form dieses Typs erfolgen, angegeben werden. (Die Rate muss eine nichtnegative
+    Zahl sein, die auch größer als 1 sein kann. Die Wahrscheinlichkeit für eine Kundentyp
+    ergibt sich, in dem die jeweilige Rate durch die Summe aller Raten geteilt wird.)</li>
+    <li><tt>&lt;WiederanrufSkillLevelSpezifisch&gt;</tt>: Dieses Element verhält sich größtenteils identisch wie das
+    Element <tt>KundenWiederanrufer</tt>. Es besitzt ein <tt>Wahrscheinlichkeit</tt>-Attribut und beliebig viele
+    <tt>WiederanrufNeuerKundentyp</tt>-Unterelemente. Zusätzlich muss aber über ein <tt>SkillLevel</tt>-Attribut
+    angegeben werden, für welches Skill-Level dieser Regelsatz verwendet werden soll. Ist das Gespräch eines Kunden zu
+    Ende, so wird zunächst geprüft, ob es eine passende <tt>WiederanrufSkillLevelSpezifisch</tt>-Regel für den Skill-Level
+    des Agenten, der den Kunden bedient hat, gibt. Wenn ja, wird gemäß dieser Regel bestimmt, ob der Kunde einen Wiederanruf tätigt
+    und wenn ja, welchen Kundentyp er erhält. Wenn nein, wird gemäß der unter <tt>KundenWiederanrufer</tt> definierten
+    Regeln besimmt, ob der Kunde einen Wiederanruf tätigt und wenn ja, welchen Kundentyp er erhält.</li>
+  </ul></li>
+  <li><tt>&lt;GewinnProKunde&gt;</tt>: Als Inhalt dieses Elements muss angegeben werden, wie viel ein erfolgreich bedienter Kunde
+  dieses Typs wert ist.</li>  
+  <li><tt>&lt;KostenProAnrufer&gt;</tt>: Dieses Element muss die folgenden beiden Attribute besitzen:
+  <ul>
+    <li><tt>Abbruch</tt>: Gibt die (virtuellen) Kosten, die durch einen Warteabbruch entstehen, an.</li>
+    <li><tt>Wartesekunde</tt>: Gibt die (virtuellen) Kosten, die pro Wartesekunde entstehen, an.</li>
+  </ul></li>
+</ul>
+
+<h2>Callcenter und Agenten</h2>
+
+<p>
+Das <tt>&lt;CallcenterModell&gt;</tt> Element kann beliebig viele Elemente (mindestens jedoch eins) vom
+Typ <tt>&lt;ModellCallcenter&gt;</tt> enthalten.
+</p>
+
+<h3>Attribute des <tt>ModellCallcenter</tt>-Elements</h3>
+
+<ul class="big">
+  <li><tt>Name</tt>: Gibt den Namen des Callcenter an.
+  Das <tt>Name</tt>-Attribut muss existieren.</li>
+  <li><tt>Aktiv</tt>: Gibt an, ob das im Folgenden definierte Callcneter in der Simulation
+  verwendet werden soll. <tt>Aktiv</tt> kann die Werte 0 und 1 annehmen. Das Attribut ist
+  optional; wenn es fehlt, wird "1" angenommen.</li>
+</ul>
+
+<h3>Unterelemente des <tt>ModellCallcenter</tt>-Elements</h3>
+
+<h4>Allgemeine Angaben</h4>
+
+<p>
+Jedes <tt>ModellCallcenter</tt>-Element muss von jedem der folgenden Elemente jeweils genau eins enthalten:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;CallcenterTechnischeBereitzeit&gt;</tt>: Als Inhalt dieses Elements muss die technische Bereitzeit, die in dem
+  betrachteten Callcenter bei der Vermittlung eines Kunden an einen Agenten entsteht, angegeben werden.
+  Optional kann das Element noch ein <tt>IstWartezeit</tt>-Attribut besitzen, welches die Werte 0 oder 1 annehmen kann.
+  Fehlt es, so wird der Wert "1" angenommen. In diesem Fall wird die technische Bereitzeit vom Kunden wie Wartezeit empfunden,
+  was bedeutet, dass er auch in diesem Zeitraum das Warten noch abbrechen kann.</li>
+  <li><tt>&lt;CallcenterScore&gt;</tt>: Als Inhalt dieses Elements muss die Basis-Score des Callcenters, die bei der Berechnung
+  der Agenten-Score verwendet werden soll, angegeben werden.</li>
+  <li><tt>&lt;CallcenterAgentenScore&gt;</tt>: Dieses Element muss die beiden Unterelemente <tt>AgentenScoreFaktorSeitLetztemAnruf</tt>
+  und <tt>AgentenScoreFaktorLeerlaufAnteil</tt> enthalten. Beide Unterelemente müssen jeweils einen Zahlenwert als Inhalt haben, der
+  angibt, wie stark die Bereitzeit in Sekunen seit dem letzten Anruf in die Berechnung der Agenten-Score eingehen soll, bzw.
+  der angibt, wie stark der Bereitzeitanteil des Agenten (in Prozentpunkten) in die Berechnung der Agenten-Score eingehen soll.</li>
+</ul>
+
+<p>
+Optional kann jedes <tt>ModellCallcenter</tt>-Element von jedem der folgenden Elemente jeweils genau eins enthalten:
+</p>
+
+<ul>  
+  <li><tt>&lt;ModellProduktivitaet&gt;</tt>:
+  In diesem optionalen Feld werden 48 durch ";" getrennte Werte erwartet, die die Produktivität der Agenten im Tagesverlauf
+  angeben. Die verfügbare Arbeitsleitung pro Halbstundenintervall bei Agentengruppen, die über eine
+  Arbeitsleitungsverteilungskurve oder über die Nachmodellierung der Kundenankünfte definiert sind, wird
+  mit diesem Produktivitätswert multipliziert. Fehlt diese Angabe, so wird der globale Wert verwendet.
+  Die Callcenter-abhängige Produktivität kann optional pro Agentengruppe überschrieben werden.</li>
+  <li><tt>&lt;ModellPlanungsaufschlag&gt;</tt>:
+  In diesem Feld werden 48 durch ";" getrennte Werte erwartet, die die angeben, um wie viel höher
+  die planerischer Agentenanzahl sein soll als im Modell im Tagesverlauf angeben.  Die verfügbare
+  Arbeitsleitung pro Halbstundenintervall bei Agentengruppen, die über eine Arbeitsleitungsverteilungskurve
+  oder über die Nachmodellierung der Kundenankünfte definiert sind, wird mit diesem Produktivitätswert
+  multipliziert und in der Statistik gespeichert. Die Agentenanzahl inkl. diesem Aufschlag wird nicht
+  für die Simulation selber verwendet. Fehlt diese Angabe, so wird der globale Wert verwendet.
+  Die Callcenter-abhängige Produktivität kann optional pro Agentengruppe überschrieben werden.</li>
+</ul>
+
+<h4>Mindestwartezeiten</h4>
+
+<p>
+Jedes <tt>&lt;ModellCallcenter&gt;</tt>-Element kann optional genau ein <tt>&lt;CallcenterMindestWartezeit&gt;</tt>-Unterelement enthalten.
+</p>
+
+<p>
+Jedes <tt>&lt;CallcenterMindestWartezeit&gt;</tt>-Element kann beliebig viele <tt>&lt;MindestWartezeitKundentyp&gt;</tt>-Unterelemente besitzen.
+Jedes <tt>&lt;MindestWartezeitKundentyp&gt;</tt>-Element definiert dabei eine Mindestwartezeit für einen Kundentyp in dem jeweiligen Callcenter.
+(Eine Mindestwartezeit ist die minimale Zeit, die ein Kunde bereits gewartet haben muss, bevor er in das betreffende Callcenter vermittelt werden darf.)
+Der Kundentyp, für den die Mindestwartezeit gelten soll, muss dabei in dem Attribut <tt>Name</tt> festgelegt werde. Die Wartezeit selbst wird als
+Sekundenwert als Inhalt des <tt>&lt;MindestWartezeitKundentyp&gt;</tt>-Elements angegeben.
+</p>
+
+<h4>Agentengruppen</h4>
+
+<p>
+Jedes <tt>&lt;ModellCallcenter&gt;</tt>-Element muss ein oder mehrere <tt>&lt;CallcenterAgentengruppe&gt;</tt>-Unterelemente enthalten.
+Jedes <tt>&lt;CallcenterAgentengruppe&gt;</tt>-Element beschreibt eine Agentengruppe mit jeweils bestimmten gemeinsamen Eigenchaften
+innerhalb des Callcenters.
+</p>
+
+<p>
+Jedes <tt>&lt;CallcenterAgentengruppe&gt;</tt>-Element kann ein <tt>Aktiv</tt>-Attribut besitzen, welches einen der Werte 0 oder 1
+annehmen darf. Fehlt das <tt>Aktiv</tt>-Attribut, so wird für es der Wert 1 angenommen. Über das <tt>Aktiv</tt>-Attribut kann bestimmt
+werden, ob die Agentengruppe bei der Zusammenstellung der Agenten für die Simulation berücksichtigt werden soll (=1) oder nicht (=0).
+</p>
+
+<p>
+Agentengruppen können entweder über eine feste Anzahl an Agenten und einen Arbeitzeitbereich oder über eine Verteilung von
+Agenten-Arbeits-Halbstunden über den Tag oder so, dass ihre Arbeitszeiten bestimmte Kundenankunftsverteilungen nach modellieren,
+definiert werden:
+</p>
+
+<ul class="big">
+  <li><b>Agenten mit vorgegebenen Arbeitszeiten:</b><br>
+  In diesem Fall muss das <tt>&lt;CallcenterAgentengruppe&gt;</tt>-Element jeweils ein <tt>&lt;AgentengruppeAnzahl&gt;</tt>-Unterelement besitzen,
+  welches die Anzahl der Agenten in der Gruppe angibt, und ein <tt>&lt;AgentengruppeArbeitszeitbeginn&gt;</tt>-Unterelement, welches die Dienstbeginn-Zeit
+  der Agenten dieser Gruppe angibt. Optional kann außerdem noch ein <tt>&lt;AgentengruppeArbeitszeitende&gt;</tt>-Unterelement angegeben werden,
+  welches die Dienstende-Zeit der Agenten der Gruppe angibt. Fehlt dieses Unterelement, so wird angenommen, dass die Agenten bis zum Ende des Simulationstages
+  arbeiten.</li>
+  <li><b>Agentengruppe aus vorgegebener Arbeiszeitverteilung:</b><br>
+  In diesem Fall muss das <tt>&lt;CallcenterAgentengruppe&gt;</tt>-Element ein <tt>&lt;AgentengruppeVerteilung&gt;</tt>-Unterelement besitzen,
+  welches 24, 48 oder 96 durch Semikolons getrennte Werte ebnthält. Jeder Wert steht dabei für die Agentenanzahl in einem Stunden-, Halbstunden- oder 15-Minuten-Intervall.
+  Der Simulator erzeugt bei Simulationsbeginn aus diesen Werten konkrete Agenten. Bei der Schichtplanung wird als gewünschte Schichtlänge die Anzahl an Halbstundenintervallen
+  verwendet, die in dem Elemente <tt>&lt;ModellBevorzugteSchichtlaenge&gt;</tt> angegeben ist. Außerdem kann über das Element <tt>&lt;ModellMinimaleSchichtlaenge&gt;</tt>
+  eine minmale Schichtlänge definiert werden. Existiert eines oder beide Elemente nicht, so wird der jeweilige Wert aus dem gleichnamigen Element im <tt>&lt;CallcenterModell&gt;</tt>-Element verwendet.
+  Zusätzlich kann das <tt>&lt;AgentengruppeVerteilung&gt;</tt>-Element noch das Attribut <tt>SchichtBisMitternachtIstOpenEnd</tt> besitzen. Existiert dieses Attribut und ist es auf 1 gesetzt, so endet die tatsächliche
+  Arbeitszeit der Agenten, die laut Schichtplan bis 24 Uhr arbeiten sollen, nicht um 24 Uhr sondern erst, wenn die letzten Kunden das System verlassen haben.</li>
+  <li><b>Verteilung über den Tag gemäß Kundenankünften:</b><br>
+  In diesem Fall muss das <tt>&lt;CallcenterAgentengruppe&gt;</tt>-Element ein <tt>&lt;AgentengruppeNachKundenankuenften&gt;</tt>-Unterelement besitzen,
+  welches über das Attribut <tt>Agentenhalbstunden</tt> angibt, wie viele Arbeits-Halbstundenintervalle zur Verfügung stehen und außerdem ein odere
+  mehrere <tt>&lt;KundenankuenfteGruppe&gt;</tt>-Unterelemente besitzt. Die Verteilung der verfügbaren Agentenarbeitszeit erfolgt gemäß der Ankunftsverteilung
+  eines oder mehrerer Kundentypen. Welche Kundentypen in welchem Verhältnis in die Berechnung einfließen sollen, kann über die
+  <tt>&lt;KundenankuenfteGruppe&gt;</tt>-Elemente gesteuert werden. Jedes dieser Elemente steht für einen Kundentyp. Der Name des Kundentyps muss als
+  Elementinhalt angegeben werden und über das Attribut <tt>Rate</tt> muss angegeben werden, wie stark der jeweilige Kundentyp bei der Berechnung
+  berücksichtigt werden soll. Der Simulator erzeugt bei Simulationsbeginn aus diesen Werten konkrete Agenten. Bei der Schichtplanung wird als gewünschte
+  Schichtlänge die Anzahl an Halbstundenintervallen verwendet, die in dem Elemente <tt>&lt;ModellBevorzugteSchichtlaenge&gt;</tt> angegeben ist.
+  Existiert dieses Element nicht, so wird der Wert aus dem gleichnamigen Element im <tt>&lt;CallcenterModell&gt;</tt>-Element verwendet.</li>
+</ul>
+
+<p>
+Unabhängig davon, wie die Arbeitszeiten der Agenten der Gruppe definiert sind, muss jedes <tt>&lt;CallcenterAgentengruppe&gt;</tt>-Element jeweils
+genau eines der beiden folgenden Unterelemente besitzen:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;AgentengruppeSkillLevel&gt;</tt>: Als Textinhalt dieses Elements muss angegeben werden, zu welchem Skill-Level die Agentengruppe gehört.</li>
+  <li><tt>&lt;KostenProStunde&gt;</tt>: Als Textinhalt dieses Elements muss angegeben werden, wie teuer eine Arbeitsstunde eines Agents dieses Typs ist.</li>
+</ul>
+
+<p>
+Optional kann jede Agentengruppe jeweils ein Element der folgenden Art besitzen:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;ModellProduktivitaet&gt;</tt>:
+  In diesem optionalen Feld werden 48 durch ";" getrennte Werte erwartet, die die Produktivität der Agenten im Tagesverlauf
+  angeben. Die verfügbare Arbeitsleitung pro Halbstundenintervall bei Agentengruppen, die über eine
+  Arbeitsleitungsverteilungskurve oder über die Nachmodellierung der Kundenankünfte definiert sind, wird
+  mit diesem Produktivitätswert multipliziert. Fehlt diese Angabe, so wird der globale Wert verwendet.</li>
+  <li><tt>&lt;ModellPlanungsaufschlag&gt;</tt>:
+  In diesem Feld werden 48 durch ";" getrennte Werte erwartet, die die angeben, um wie viel höher
+  die planerischer Agentenanzahl sein soll als im Modell im Tagesverlauf angeben. Die verfügbare
+  Arbeitsleitung pro Halbstundenintervall bei Agentengruppen, die über eine Arbeitsleitungsverteilungskurve
+  oder über die Nachmodellierung der Kundenankünfte definiert sind, wird mit diesem Produktivitätswert
+  multipliziert und in der Statistik gespeichert. Die Agentenanzahl inkl. diesem Aufschlag wird nicht
+  für die Simulation selber verwendet. Fehlt diese Angabe, so wird der globale Wert verwendet.</li>
+</ul>
+
+<p>
+Desweiteren kann jedes <tt>&lt;CallcenterAgentengruppe&gt;</tt>-Element beliebig viele Unterelemente des Typs
+<tt>&lt;KostenProKundengruppe&gt;</tt> besitzen. Jedes <tt>&lt;KostenProKundengruppe&gt;</tt>-Element muss die folgenden drei Attribute besitzen:
+</p>
+
+<ul class="big">
+  <li><tt>Kundentyp</tt>: Gibt an, auf welchen Kundentyp sich der Kostendatensatz beziehen soll.</li>  
+  <li><tt>ProAnruf</tt>: Kosten pro Anruf des jeweiligen Kundentyps</li>
+  <li><tt>ProMinute</tt>: Kosten pro Gesprächs- und Nachbearbeitungszeitminute beim jeweiligen Kundentyp</li>
+</ul>
+
+<h2>Skill-Level</h2>
+
+<p>
+Das <tt>&lt;CallcenterModell&gt;</tt> Element kann beliebig viele Elemente (mindestens jedoch eins) vom
+Typ <tt>&lt;ModellSkillLevel&gt;</tt> enthalten.
+</p>
+
+<h3>Attribute des <tt>ModellSkillLevel</tt>-Elements</h3>
+
+<ul class="big">
+  <li><tt>Name</tt>: Gibt den Namen des Skill-Levels an.
+  Das <tt>Name</tt>-Attribut muss existieren.</li>
+</ul>
+
+<h3>Unterelemente des <tt>ModellSkillLevel</tt>-Elements</h3>
+
+<p>
+Jedes <tt>&lt;ModellSkillLevel&gt;</tt>-Element muss für jeden Kundentyp,
+den Agenten des betrachteten Skill-Level bedienen können sollen, ein
+<tt>&lt;SkillLevelKundentyp&gt;</tt>-Unterelement enthalten.
+</p>
+
+<p>
+Jedes <tt>&lt;SkillLevelKundentyp&gt;</tt>-Element muss ein <tt>Name</tt>-Attribut besitzen, in dem
+angegeben ist, auf welchen Kundentyp es sich beziehen soll. Außerdem muss jedes <tt>&lt;SkillLevelKundentyp&gt;</tt>-Element
+von jedem der drei folgenden Unterelemente-Typen jeweils genau eins enthalten:
+</p>
+
+<ul>
+  <li><tt>&lt;SkillLevelKundentypBedienzeitverteilung&gt;</tt>:
+  Gibt die Bedienzeitverteilung, die bei der Bedienung von Kunden des im <tt>Name</tt>-Attribute des <tt>&lt;SkillLevelKundentyp&gt;</tt>-Elements
+  angegebenen Typs durch Agenten mit dem betrachteten Skill-Level verwendet werden soll, an.
+  Zusätzlich zu dem obligatorischen globalen <tt>&lt;SkillLevelKundentypBedienzeitverteilung&gt;</tt>-Element können
+  weitere <tt>&lt;SkillLevelKundentypBedienzeitverteilung&gt;</tt>-Elemente existieren, die ein <tt>Intervall</tt>-Attribut
+  besitzen. Diese Elemente beziehen sich dann auf eines der 48 Halbstundenintervalle (von 1 bis 48 durchnummeriert) und
+  überschreiben den globalen Wert.
+  </li>
+  <li><tt>&lt;SkillLevelKundentypBedienzeitAddOn&gt;</tt>:
+  Enthält einen mathematischen Ausdruck, der angibt, wie sich die Wartezeit eines Kunden des im <tt>Name</tt>-Attribute des
+   <tt>&lt;SkillLevelKundentyp&gt;</tt>-Elements angegebenen Typs durch Agenten mit dem betrachteten Skill-Level 
+  verlängernd auf die Bedienzeit auswirkt. 
+  Zusätzlich zu dem obligatorischen globalen <tt>&lt;SkillLevelKundentypBedienzeitAddOn&gt;</tt>-Element können
+  weitere <tt>&lt;SkillLevelKundentypBedienzeitAddOn&gt;</tt>-Elemente existieren, die ein <tt>Intervall</tt>-Attribut
+  besitzen. Diese Elemente beziehen sich dann auf eines der 48 Halbstundenintervalle (von 1 bis 48 durchnummeriert) und
+  überschreiben den globalen Wert.
+  </li>
+  <li><tt>&lt;SkillLevelKundentypNachbearbeitungszeitverteilung&gt;</tt>:
+  Gibt die Nachbearbeitungszeitverteilung, die bei der Bedienung von Kunden des im <tt>Name</tt>-Attribute des <tt>&lt;SkillLevelKundentyp&gt;</tt>-Elements
+  angegebenen Typs durch Agenten mit dem betrachteten Skill-Level verwendet werden soll, an.
+  Zusätzlich zu dem obligatorischen globalen <tt>&lt;SkillLevelKundentypNachbearbeitungszeitverteilung&gt;</tt>-Element können
+  weitere <tt>&lt;SkillLevelKundentypNachbearbeitungszeitverteilung&gt;</tt>-Elemente existieren, die ein <tt>Intervall</tt>-Attribut
+  besitzen. Diese Elemente beziehen sich dann auf eines der 48 Halbstundenintervalle (von 1 bis 48 durchnummeriert) und
+  überschreiben den globalen Wert.
+  </li>  
+  <li><tt>&lt;SkillLevelKundentypScore&gt;</tt>:
+  Gibt den Agenten-Score an, den Agenten des betrachteten Skill-Levels für die Bedienung von Kunden des im <tt>Name</tt>-Attribute des
+  <tt>&lt;SkillLevelKundentyp&gt;</tt>-Elements angegebenen Typs haben sollen, an.</li>
+</ul>
+
+<h2>Warnungsschwellenwerte</h2>
+
+<p>
+Das <tt>&lt;CallcenterModell&gt;</tt>-Element kann optional ein Element vom
+Typ <tt>&lt;ModellSchellenwerte&gt;</tt> enthalten. Das <tt>&lt;ModellSchellenwerte&gt;</tt>-Element
+wiederum kann beliebig viele Unterelemente vom Typ <tt>&lt;SchellenwertDaten&gt;</tt> besitzen.
+</p>
+
+<h3>Attribute des <tt>SchellenwertDaten</tt>-Elements</h3>
+
+<p>
+Die folgenden Attribute müssen jeweils existieren:
+</p>
+
+<ul>
+  <li><tt>Typ</tt>: Gibt den Typ des Schwellenwerts an. Dieses Attribut kann einen der folgenden Werte annehmen:
+  <ul>
+    <li>Wartezeit auf Anrufbasis</li>
+    <li>Wartezeit auf Kundenbasis</li>
+    <li>Verweilzeit auf Anrufbasis</li>
+    <li>Verweilzeit auf Kundenbasis</li>
+    <li>Erreichbarkeit auf Anrufbasis</li>
+    <li>Erreichbarkeit auf Kundenbasis</li>
+    <li>Service-Level auf Anrufbasis, bezogen auf alle Anrufe</li>
+    <li>Service-Level auf Anrufbasis, bezogen auf erfolgreiche Anrufe</li>
+    <li>Service-Level auf Kundenbasis, bezogen auf alle Kunden</li>
+    <li>Service-Level auf Kundenbasis, bezogen auf erfolgreiche Kunden</li>
+    <li>Auslastung</li>
+  </ul></li>
+  <li><tt>Intervalle</tt>: Gibt an, welche Intervalle in welcher Form für den Warnschwellenwert berücksichtigt werden sollen.
+  Es kann "Durchschnitt" angegeben werden, um festzulegen, dass der Durchschnittswert über den gesamten Tag betrachtet werden soll,
+  "Jedes", um festzulegen, dass der Schwellenwert in jedem einzelnen Intervall eingehalten werden soll, oder aber eine Liste von 48
+  Werten "0" und "1", die angeben, welche Halbstunden-Intervalle betrachtet werden sollen.
+  </li>
+  <li><tt>Gruppen</tt>: Gibt an, welche Kundengruppen oder Callcenter in welcher Form für den Warnschwellenwert berücksichtigt werden sollen.
+  Es kann "Durchschnitt" angegeben werden, um festzulegen, dass der Durchschnittswert über alle Gruppen betrachtet werden soll,
+  "Jede", um festzulegen, dass der Schwellenwert für jede Gruppe eingehalten werden soll, oder aber der Name einer Kundengruppe oder eines Callcenters.
+  </li>
+  <li><tt>WarnungGelb</tt>:
+  Gibt den Wert an bei dessen Unterschreitung (bei Typen Erreichbarkeit, Service-Level und Auslastung) bzw. bei dessen Überschreitung
+  (Typen Wartezeit und Verweilzeit) eine gelbe Warnung ausgegeben wird. Die Schwellenwerte für Warte- und Verweilzeiten werden dabei
+  als Zeitangaben festgelegt. Die Schwellenwerte für alle anderen Typen in Form von Wahrscheinlichkeiten.
+  </li>
+  <li><tt>WarnungRot</tt>:
+  Gibt den Wert an bei dessen Unterschreitung (bei Typen Erreichbarkeit, Service-Level und Auslastung) bzw. bei dessen Überschreitung
+  (Typen Wartezeit und Verweilzeit) eine rote Warnung ausgegeben wird. Die Schwellenwerte für Warte- und Verweilzeiten werden dabei
+  als Zeitangaben festgelegt. Die Schwellenwerte für alle anderen Typen in Form von Wahrscheinlichkeiten.
+  </li>
+</ul>
+
+</body>
+</html>
+  

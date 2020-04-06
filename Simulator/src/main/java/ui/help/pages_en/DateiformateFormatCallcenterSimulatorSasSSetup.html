@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Documentation of the file formats of Callcenter Simulator - SaaS server configuration</title>
+</head>
+
+<body>
+
+<h1>Documentation of the file formats of Callcenter Simulator - SaaS server configuration</h1>
+
+<a href="Dateiformate.html">Back to the overview of all file formats</a>
+
+<h2>File header</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE CallcenterSimulatorSasSSetup SYSTEM "http://www.stochastik.tu-clausthal.de/Media/CallcenterSimulator_de.dtd"&gt;</tt>
+</p>
+
+<h2>Configuration</h2>
+
+<p>The root node for the configuration file is <tt>&lt;CallcenterSimulatorSasSSetup&gt;</tt>.
+It can contain the following sub nodes:
+</p>
+
+<ul>
+  <li><tt>LogFile</tt> specifies that status messages will not be display on th screen but be written to the
+  specified file. If this node is missing, the status messages will be written to the console output.</li>
+  
+  <li><tt>Simulation</tt>: If this element exist, a simulation server which can be used by remote computers for simulating models is started.
+  The <tt>Simulation</tt> element can optionally contain the following sub elements:
+  <ul>
+    <li><tt>Port</tt> specifies on which port the simulation server should listen for requests. The default value is port 6783.</li>
+    <li><tt>Password</tt> defines a password for encrypting the simulation data. If no passwort is specfied, the data will be transfered unencrypted.</li>
+    <li><tt>MaxThreads</tt> specifies the maximum number of simulation threads to be used for a single request. If this element is missing or "0" is given, the server sets up the number of threads by the number of CPU cores automatically.</li>      
+  </ul>
+  </li>
+    
+  <li><tt>Web</tt>: If this element exist, a web server is started. Via this web server some statistic results stored on the server can
+  be displayed and also if the simulation server is running too, a Java applet for directly accessing the simulation server can be loaded from the web server.  
+  <ul>
+    <li><tt>Port</tt> specifies on which port the web server should listen for requests. The default value is port 80.</li>
+    <li><tt>AppletJarFile</tt> specifies the path and the filename for the jar file which will be delivered to the client as Java applet via the HTTP port. If this node is missing the server will try to download the applet jar file from the vendors homepage.</li>
+    <li><tt>StatisticFolder</tt> specifies a path to a folder containing statistic xml files. These files will be made accessable via the web server. There can be multiple <tt>StatisticFolder</tt> nodes.
+    Additionally each node can contain a <tt>Name</tt> attribute defining how the statistic folder should be named by the web server.</li>
+    <li><tt>FilterFolder</tt> specifies a path to a folder containing filter script files which can be applied on statistic results via the statistic overview page.</li>
+  </ul>
+  </li>
+</ul>
+
+<h2>Automatic creation of a configuration file</h2>
+<p>
+By using the <a href="Parameter.html">command line parameter</a> <tt>SaaSSystem Init</tt> a basic configuration file for
+SaaS system can be created automatically.
+</p>
+
+</body>
+</html>
+  

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Stapelverarbeitung</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/money_euro.png">&nbsp;
+Simulation &gt; Heuristische Ertragsverbesserung
+</div>
+
+<h1>Heuristische Ertragsverbesserung</h1>
+
+<p>
+Die heuristische Ertragsverbesserung verändert sukzessive in allen Intervallen die Agentenanzahlen nach oben und
+nach unten und prüft dabei jeweils, ob sich der Ertrag verbessert. Wird eine Verbesserung festgestellt, so wird
+die veränderte Agentenzahl beibehalten; andernfalls wird der Ausgangswert beibehalten.
+</p>
+
+<h3>Warnung / Hinweise</h3>
+
+<ul>
+  <li><b>Heuristische Optimierung:</b><br>
+  Bei der Ertragsverbesserungsfunktion handelt es sich um einen heuristischen Optimierungsprozess, der
+  nicht den gesamten möglichen Lösungsraum absucht. Folglich wird aller Wahrscheinlichkeit nach lediglich
+  eine bessere Lösung als die Ausgangslösung gefunden, nicht jedoch eine globale Optimallösung.</li>
+  <li><b>Suchrichtung:</b><br>
+  Bei der Suche werden die Intervalle der Reihe nach abgesucht. Da die einzelnen Intervalle jedoch durch
+  weitergeleitete Kunden und Wiederholer verknüpft sind, wirken sich Änderungen in einzelnen Intervallen
+  auf andere aus. Daher kann sich eine gefundene Lösung durch wiederholte Anwendung der Funktion erneut ändern.</li>
+  <li><b>Lange Laufzeit:</b><br>
+  Der Prozess der Ertragsverbesserung ist sehr zeitintensiv.</li>
+  <li><b>Viele simulierte Tage erforderlich:</b><br>
+  Bitte stellen Sie einen deutlich höheren Wert an zu simulierenden Tagen als die üblichen 100 Tage ein.
+  Im Falle von nur 100 simulierten Tagen überwiegen die Schwankungen in den Ergebnissen zwischen zwei Läufen
+  die Auswirkungen des Hinzufügens oder Entfernens eines einzelnen Agentenintervalls, so dass nicht mehr
+  valide entschieden werden kann, ob das Hinzufügen oder Entfernen eines Agents in einem Intervalls von
+  Vor- oder von Nachteil ist. <b>Bei zu kurzen Simulationslauflängen stellen sich keine validen
+  Optimierungsergebnisse ein!</b></li>
+</ul>
+
+<p>
+Diese Funktion kann auch über <a href="Parameter.html">Kommandozeilenparameter</a> verwendet werden.
+</p>
+
+</body>
+</html>

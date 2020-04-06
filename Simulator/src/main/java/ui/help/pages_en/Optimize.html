@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Optimizer</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/chart_bar_add.png">&nbsp;
+Simulation &gt; Optimizer
+</div>
+
+<h1>Optimizer</h1>
+
+<p>
+Using the optimizer allows to determine how many agents are necessary to achieve specific service parameters.
+It can be both set which parameter is to be achieved through which clients group, and which agents group is
+to be changed in order to approach the target.
+</p>
+
+<p>
+As starting model, the current call center model is used. The model is changed in each optimization simulation run,
+until the desired values are achieved. The original model in the editor will remain unchanged, the new model
+will be offered to save after the optimization.
+</p>
+
+<p>
+When the optimization is done, the results will be displayed in the 
+<a href="OptimizeViewer.html">optimization results viewer</a>.
+As results the change of the key parameters over the optimization
+process as well as the statistic results of the individual simulation runs
+are stored.
+</p>
+
+<p>
+Before you can start the optimization process by clicking the <b>Start optimization</b>
+button you have to configurate what to optimize:
+</p>
+
+<h2>Optimization property <img src="../images/chart_bar_add.png"></h2>
+
+<h3>Property to be optimized and its destination value</h3>
+<p>
+In this box and the following input line you can specify, which property is to be optimized and which value is to be achieved.
+For optimization properties of the clients (accessibility, average waiting waiting time,average residence time and service level)
+as well as properties of the agents (work load) can be selected.  In addition a second value can be selected on which the number
+of agents is reduced if it is exceeded (service level, accessibility) or underflowed (waiting time, residence time, work load).
+If this option is not explicitly activated, the number of agents is only raised during the optimization.
+</p>
+
+<h3>Target value is to be achieved over... (time span)</h3>
+<p>
+This combobox allows you to set whether the target has to be achieved in average throughout the day or in each half-hour interval.
+</p>
+<ul>
+  <li>If you do an optimization in average over the whole day, it is possible that the target is not reached in any individual interval,
+  but this is compensated by particularly good values in some intervals with many customers and many agents.</li>
+  <li>If the option <b>In each interval</b> is selected, the target must be achieved in each interval.
+  If the target is particularly over reached in an interval, this is not counted for other intervals in which the
+  optimization goal is not yes reached.</li>  
+  <li>
+  If the option <b>In each interval (optimization in order)</b> is selected, target must not only be achieved in each interval,
+  but the optimizer also works during the optimization process interval by interval. This means that if the target is not reached
+  in an interval the simulator will not change the next interval before the first one is not done. This approach often leads to
+  lower numbers of agents in the same intervals as the "in each interval" option.<br><br>
+  If the target is exceeded in two successive intervals and therefore the number of agents increases in both intervals,
+  the service parameters will improve in both intervals. This results in less canceling callers in the first interval,
+  many of which would have occurred again in the second interval as a retryer. This means the workload decreases in the second
+  interval and possibly it would not have been necessary to increase the number of agents in this interval.
+  Exactly this effect is addressed by the interval by interval optimization.
+  </li>
+</ul>
+
+<h3>Target value is to be achieved over... (Clients or agents group)</h3>
+<p>
+In this field you can select which clients or agents groups should reach the target value.
+If you are going to optimize over all groups, you can additionally set up if the target
+needs to be achieved in average over all groups or of each group individually.
+</p>
+
+<h2>Control variable <img src="../images/wrench.png"></h2>
+
+<h3>Change number of agents in each run by this percentage value</h3>
+<p>
+In this field you can specify by which amount the number of agents
+is change in the affected intervals when the target was not achieved
+in a simulation run.
+</p>
+
+<p>
+If the change in the number of agents rounded to the nearest integer number
+did not change the number, the same percentage value is added again added to
+the number of agents before the next simulation run is started.
+</p>
+
+<p>
+The base value that equal to 100% is always the initial number of agents.
+This means 1% always means the same absolute number of agents.
+</p>
+
+<h3>Restrictions</h3>
+<p>
+In this dialog you can set up minimal and maximal values per agents group and per half-hour interval
+which have to be respected. The simulator will try to reach the specified optimization targets while
+meeting these additional restrictions.
+</p>
+
+<h3>Change number of agents in these agents groups</h3>
+<p>
+In this field one can determine which agent groups should be increased in order
+to achieve the target. Either all or only some groups can be changed per simulation run.
+</p>
+
+<h2>Intervals <img src="../images/time.png"></h2>
+
+<p>
+On this page you can set up on which intervals the optimization is to be
+performed (in respect to the performance indicators and to the number of agents per interval).
+As default value all intervals are respected, this the optimization is done
+over the whole day.
+</p>
+
+<h2>Carry over <img src="../images/calendar.png"></h2>
+
+<p>
+This page allows to define some carry over from a previous day, which is to be fed
+into the simulation model. By specifying a statistics file from a previous simulation run,
+a direct transfer of waiting and cancel clients is possible. There is also the option to
+manually define an initial number of clients who is present at the beginning of the simulation.
+An exact transfer of individual customers incl. their residual waiting time tolerance etc.
+is only possible when using a statistics file.
+</p>
+
+</body>
+</html>
+  

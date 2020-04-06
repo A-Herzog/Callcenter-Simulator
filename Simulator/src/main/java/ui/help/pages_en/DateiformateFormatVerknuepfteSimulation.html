@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Documentation of the file formats of Callcenter Simulator - connected simulation</title>
+</head>
+
+<body>
+
+<h1>Documentation of the file formats of Callcenter Simulator - connected simulation</h1>
+
+<a href="Dateiformate.html">Back to the overview of all file formats</a>
+
+<h2>File header</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE ConnectedSimulation SYSTEM "CallcenterSimulator_en.dtd"&gt;</tt>
+</p>
+
+<p>The root node for connected simulations is <tt>&lt;ConnectedSimulation&gt;</tt>. It has to habe an
+<tt>BaseFolder</tt> attribute which defined the base folder for all other relative directory specifications.
+
+Des Weiteren kann es ein Attribut <tt>InitialCarryOver</tt> besitzen, welches
+den Namen einer Statistikdatei angibt, aus der der Übertrag zum ersten Tag hin entnommen werden soll.</p>
+
+<p>
+Each connected simulation node has to have one or more <tt>&lt;ConnectedDay&gt;</tt> nodes.
+Each <tt>&lt;ConnectedDay&gt;</tt> node represents one simulation day. Additional a
+<tt>&lt;VerknuepftInitialerBestand&gt;</tt> sub node can be added.
+</p>
+
+<h2>Information about the individual simulation days</h2>
+
+<p>
+Each <tt>&lt;ConnectedDay&gt;</tt> node has to have the following three sub nodes in this order:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;ConnectedModel&gt;</tt>:
+  Specifies the model to be simulated (file name of the model xml file). If the node is empty, the model of the previous
+  day is used. For the first day the node may not be empty. If the content of the node contains a directory name separator,
+  the path is interpreted as an absolute path, otherwise it is processed relative to the specified base folder.</li>
+  <li><tt>&lt;ConnectedStatistics&gt;</tt>:  
+  Specifies the filename for the statistic output. If this node is empty, the statistic results of this day will not
+  be saved and only used internal for connection with the next day. If the specificed statistics file already exists,
+  it will be overwritten. If the content of the node contains a directory name separator,
+  the path is interpreted as an absolute path, otherwise it is processed relative to the specified base folder.</li>
+  <li><tt>&lt;ConnectedCarryOvers&gt;</tt>: This node can contain one or morde <tt>&lt;ConnectedCarryOver&gt;</tt> child nodes.
+  Each <tt>&lt;ConnectedCarryOver&gt;</tt> node has to have the attributes <tt>Type</tt> and <tt>Value</tt>.
+  The nodes specify how many of the clients who canceled waiting are to be added as fresh calls on the next day.
+  If the <tt>&lt;ConnectedCarryOvers&gt;</tt> node is empty, no carrying over will be processed. If the  
+  <tt>&lt;ConnectedCarryOvers&gt;</tt> node has exactly on <tt>&lt;ConnectedCarryOver&gt;</tt> child node,
+  the <tt>Type</tt> attribute of this child node has to be empty. The <tt>Value</tt> attribute in this case
+  specifes the part of canceled clients who will be added as fresh calls the next day global for all client types.
+  If the <tt>&lt;ConnectedCarryOvers&gt;</tt> node has more than one <tt>&lt;ConnectedCarryOver&gt;</tt> child nodes,
+  the carrying over will be done individual per client type. Each <tt>&lt;ConnectedCarryOver&gt;</tt> node specifies
+  the data for one client type. The client type is defined by the <tt>Type</tt> attribute. <tt>Wert</tt> stores
+  the part of the canceled clients who will be carried over. There is no need to create <tt>&lt;ConnectedCarryOver&gt;</tt>
+  nodes for all client types. If a node is missing for a client type <tt>Value="0"</tt> will be assumed and canceled
+  clients of this type will not be carried over. All client types specified by <tt>Type</tt> attributes have to
+  exist in the simulation model. The <tt>&lt;ConnectedCarryOver&gt;</tt> node can optionally have sub nodes of
+  the type <tt>&lt;ConnectedCarryOverNeuerKundentyp&gt;</tt>. Each <tt>&lt;ConnectedCarryOverNeuerKundentyp&gt;</tt>
+  node has to have the attributes <tt>Type</tt> and <tt>Value</tt> which define at which rate the type of
+  a client will be changes to which type on carrying over. If a <tt>&lt;ConnectedCarryOver&gt;</tt> node
+  does not have any <tt>&lt;VerknuepftUebertragNeuerKundentyp&gt;</tt> sub nodes, so client type changing will
+  be done.</li>
+</ul>
+
+<h2>Information about manual carrying over into day 1</h2>
+
+<p>
+The optional <tt>&lt;ConnectedInitialInventory&gt;</tt> node can have any number of
+<tt>&lt;ConnectedInitialInventoryClientType&gt;</tt> child nodes. Each
+<tt>&lt;ConnectedInitialInventoryClientType&gt;</tt> node has to have a <tt>Name</tt> attribute
+which defines the client type for which the information are to be used. As content the
+<tt>&lt;ConnectedInitialInventoryClientType&gt;</tt> node has to contain a non-negative interger number
+specifying how many additional fresh calls should be added as manuel carry over into the first day
+of the connected simulation.
+</p>
+
+</body>
+</html>
+  

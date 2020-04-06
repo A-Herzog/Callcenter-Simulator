@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dokumentation der Callcenter Simulator Dateiformate - Optimierer-Ergebnisse</title>
+</head>
+
+<body>
+
+<h1>Dokumentation der Callcenter Simulator Dateiformate - Optimierer-Ergebnisse</h1>
+
+<a href="Dateiformate.html">Zurück zur Übersicht über alle Dateiformate</a>
+
+<h2>Datei-Kopf</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE OptimiererDaten SYSTEM "CallcenterSimulator_de.dtd"&gt;</tt>
+</p>
+
+<p>Das Basis-Element für Optimierer-Ergebnisse-Dateien heißt <tt>&lt;OptimiererDaten&gt;</tt>.</p>
+
+<h2>Allgemeine Informationen</h2>
+
+<p>
+Jede Optimierer-Ergebnisse-Datei muss von jedem der beiden folgenden Elemente jeweils genau eins enthalten: 
+</p>
+
+<ul class="big">
+  <li><tt>&lt;Laufzeit&gt;</tt>: Enthält die Gesamtlaufzeit der Optimierung in Sekunden.</li>
+  <li><tt>&lt;Anzahl&gt;</tt>: Enthält die Gesamtanzahl an Simulationsläufen, die für den Optimierungsprozess durchgeführt wurden.</li>
+  <li><tt>&lt;OptimiererEinstellungen&gt;</tt>: Enthält einen Optimierer-Einstellungen-Datensatz, wie auf der Seite <a href="DateiformateFormatOptimiererEinstellungen.html">Optimierer-Einstellungen</a> beschrieben.</li>
+</ul>
+
+<h2>Informationen zu den einzelnen Simulationsläufen</h2>
+
+<p>
+Jede Optimierer-Ergebnisse-Datei enthält ein oder mehrere Elemente vom Typ <tt>&lt;Simulationslauf&gt;</tt>.
+</p>
+
+<p>
+Jedes <tt>&lt;Simulationslauf&gt;</tt>-Element enthält ein <tt>Nummer</tt>-Attribut, welches die Nummer
+der Simulationslaufes innerhalb des Optimierungsprozesses bezeichnet, auf das sich die folgenden Daten beziehen.
+</p>
+
+<p>
+Als Inhalt enthält jedes <tt>&lt;Simulationslauf&gt;</tt>-Element genau ein <tt>&lt;Statistik&gt;</tt>-Element,
+wie auf der Seite <a href="DateiformateFormatStatistik.html">Statistik-Daten</a> beschrieben.
+</p>
+
+</body>
+</html>
+  

@@ -1,0 +1,1054 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Version history</title>
+</head>
+
+<body>
+
+<h1>Version history</h1>
+
+<h2>5.6.228 (2020-0x-xx)</h2>
+<ul>
+  <li>Callcenter Simulator is now available for free under the Apache 2.0 license.</li>
+  <li>[Fix] In the distribution editor the parameters of the beta distribution were not displayed correctly.</li>
+  <li>[Fix] The Wikipedia help link in the distribution editor did not work anymore.</li>
+</ul>
+
+<h2>5.6.227 (2020-03-23)</h2>
+<ul>
+  <li>In the statistics view the results of the previous simulation run can now be displayed.</li>
+  <li>Statistical results (texts and tables) can now also be saved as OpenOffice/LibreOffice documents.</li>
+  <li>Texts and tables can now be displayed directly in external application from the statistics view.</li>
+  <li>Tables can now be exported in an R-compatible csv format.</li>
+  <li>Models and statistical data can now also be stored in and loaded from tar.gz files.</li>
+  <li>All text file output will now use the utf-8 encoding.</li>
+  <li>Slightly faster simulation when using exponential, lognormal and gamma distributions.</li>
+</ul>
+
+<h2>5.6.226 (2020-01-06)</h2>
+<ul>
+  <li>Under Windows the simulator now can be installed for the current user or for all users.</li>
+  <li>Line, bar and pie charts now can also be saved as Excel sheets with embedded diagrams.</li>
+  <li>Now tables can also be saved as LaTeX files.</li>
+  <li>Slightly lower memory consumption for the simulation.</li>
+  <li>Slightly improved simulation speed</li>
+  <li>Fix: When saving tables as Excel files cells containing negative values were not formated correctly as numbers.</li>
+  <li>Fix: If under Windows the environment variable JAVA_HOME was set and was directing to a non-existing Java installation, the simulator could not be started.</li>
+  <li>Fix: When copying graphics to the clipboard, errors could occur when using Java 11 or higher.</li>
+</ul>
+
+<h2>5.5.225 (2019-09-25)</h2>
+<ul>
+  <li>New supported distributions: Rayleigh distribution, log-logistic distribution, power distribution, Chi distribution, Gumbel distribution, Fatigue life distribution, Frechet distribution and hyperbolic secant distribution</li>
+  <li>Faster generator for Cauchy distributed random numbers</li>
+  <li>As initial language setting now the language selected for the installer is used.</li>
+  <li>All external libraries used in the simulator have been updated to the latest versions.</li>
+  <li>Fix: When loading table data in DIF format an empty row was inserted at the beginning of the table.</li>
+</ul>
+
+<h2>5.4.224 (2019-03-04)</h2>
+<ul>
+  <li>CSV based tables are read and saved faster.</li>
+  <li>Fix: Loading models via drag&amp;drop did not work correctly.</li> 
+  <li>Fix: If the simulator program folder was not the current folder on simulator start the setup file was searched in a wrong folder.</li>
+</ul>  
+
+<h2>5.4.223 (2018-09-30)</h2>
+<ul>  
+  <li>At the fit distribution function, p-values according to the chi<sup>2</sup> test and the Anderson-Darling test are now determined.</li>
+  <li>Tables can now also be read and written using the Data Interchange Format (dif) and the Symbolic Link Format (sylk) and be read using the dbf database format.</li>
+  <li>The formular parser now also offers empirical probability distributions.</li>  
+  <li>Fix: The topic selection list for report generation was not displayed correctly.</li>
+  <li>Fix: When loading data from tables cell range descriptions were not always interpreted correctly.</li>
+  <li>Fix: The optimizer setup was not saved correctly in all cases.</li>
+  <li>Fix: If the distribution fit function has calculated a p-value of 100% for some distribution sometimes a value &gt;100% was displayed.</li>
+  <li>Fix: Compatibility improvements when reading csv tables.</li>
+  <li>Fix: The number of simulated event reported in the statistics could have been to small under some conditions.</li>
+  <li>Fix: When creating html statistics reports with inline images the program could block permanently.</li>
+</ul>
+
+<h2>5.3.222 (2018-01-17)</h2>
+<ul>
+  <li>In the distribution editor now the logistic distribution and the inverse gaussian distribution are also available.</li>
+  <li>At the fit distribution function, p-values according to the Kolmogorov-Smirnov test are now determined.</li>
+  <li>The distribution fitter now also respects the triangular distribution, the Pareto distribution, the inverse Gauß distribution and the F distribution.</li>
+  <li>Fix: At the fit distribution function the difference between the Gamma distribution and the samples was not calculated correctly.</li>
+  <li>Fix: When addressing an xml element by the position in its parent element the content of the xml element was not returned correctly.</li>
+  <li>Fix: In the distribution editor the density of the Gamma distribution was not always dislayed correctly.</li> 
+  <li>Fix: At the fit distribution function, the button for copying the results did not work.</li>
+</ul>
+
+<h2>5.3.221 (2017-10-26)</h2>
+<ul>
+  <li>In the distribution editor now the triangular distribution, the Laplace distribution and the Pareto distribution are also available.</li>
+  <li>Statistics text output now will be provided as formated and as plain text in the clipboard.</li>
+  <li>Fix: Errors could occur when trying to load a call center model from a json file.</li>
+  <li>Fix: In some statistic tables as heading for the last was displayed "Total" instead of the correct value "Average".</li>
+  <li>Fix: When using Java 9, the online help has so far been presented in the visually less appealing Java 7 compatibility mode.</li>
+  <li>Fix: Small fixes to the English localization</li>
+</ul>
+
+<h2>5.3.220 (2017-07-20)</h2>
+<ul>
+  <li>In the distribution editor the Johnson SU distribution is now also available.</li>
+  <li>Fix: Fixed englische localization in "Fit distribution" function.</li> 
+</ul>
+
+<h2>5.3.219 (2017-04-23)</h2>
+<ul>
+  <li>The number of simulated days now can be automatically increased for simulation to use the number of available CPU cores optimally.</li>
+</ul>
+
+<h2>5.3.218 (2017-02-11)</h2>
+<ul>
+  <li>Fix: When using the ribbon interface the model overview was not always updated at once when chanhing the model.</li>
+  <li>Fix: The CV fast access command has given wrong results.</li>
+</ul>
+
+<h2>5.3.217 (2017-01-19)</h2>
+<ul>
+  <li>Menus and toolbar will now be displayed as a thematic sorted ribbon bar. (The classic menu and toolbar is as an option also available.)</li>
+  <li>New function for simple model simulation to study the effects of parameter changing directly.</li>
+  <li>The recommendations for improving the model in the statistic results have been extended.</li> 
+  <li>Small improvements to the german localization</li>
+</ul>
+
+<h2>5.2.216 (2016-10-21)</h2>
+<ul>
+  <li>Small improvements on the user interface.</li>
+  <li>Fix: Copying a call center did not work.</li>
+  <li>Fix: When using agents with fixed working times and using the working til open end option may to much idle time was logged in the statistics.</li>
+</ul>
+
+<h2>5.2.215 (2016-08-01)</h2>
+<ul>
+  <li>Recommendations for improving the model will be displayed in the statistic results.</li>
+  <li>Small improvements on the user interface.</li>
+  <li>Fix: Some smaller fixes in the dtd and xsd files describing the file formats</li>
+</ul>
+
+<h2>5.2.214 (2016-07-27)</h2>
+<ul>
+  <li>Threshold values which have to be hold by the simulation results can be defined now.</li>
+  <li>There is a new dialog for selecting a template for a new call center model.</li>
+  <li>Some smaller improvements to the new model wizard</li>
+  <li>Some smaller improvements to the online help</li>
+  <li>Fix: Clicking the "Help" button in dialogs closed the dialog.</li>
+  <li>Fix: A decimal comma instead of a decimal point was used when storing the confidence interval data for the waiting time in statistic xml files.</li>
+</ul>
+
+<h2>5.1.213 (2016-07-07)</h2>
+<ul>
+  <li>Fix: Due to excessive rounding no change was displayed in the before / after comparison of the accessibility in the optimization results.</li>
+</ul>  
+
+<h2>5.1.212 (2016-05-17)</h2>
+<ul>
+  <li>Now data from table cells can be included via some special commands directly into XML model files.</li>
+  <li>The function for processing data in a predefined format now can build complate call center models by a caller and an agents table.</li>
+  <li>The function "Load table via template" now also supports numbers as identifiers for the tables in a workbook.</li>
+  <li>Now all command-line commands can be selected, configured and tryed out via a dialog.</li>
+  <li>Some smaller improvements to the graphical user interface.</li>
+  <li>Fix: Table files starting with empty lines were not loaded correctly.</li>
+</ul>
+
+<h2>5.0.211 (2016-05-09)</h2>
+<ul>
+  <li>The jar file version now can be updated via command line.</li>
+</ul>
+
+<h2>5.0.210 (2016-04-27)</h2>
+<ul>
+  <li>The maximum number of threads to be used during simulation can be configured via command line now.</li>
+  <li>In the model information and the statistic view now via a right click in the tree structure the parameters needed to get the corresponding data via command line can be retrieved.</li>
+</ul>
+
+<h2>5.0.209 (2016-04-18)</h2>
+<ul>
+  <li>Better compatibility with high DPI displays on Windows 10.</li>
+  <li>Client licenses can be generated directly via the settings dialog now.</li>
+  <li>Some smaller improvements and extensions to the online help.</li>
+  <li>Fix: When the program language was changed using the program information dialog this setting was not stored permanently.</li>
+</ul>
+
+<h2>5.0.208 (2016-04-13)</h2>
+<ul>
+  <li>The maximum number of threads to be used during simulation can be configured now.</li>
+</ul>
+
+<h2>5.0.207 (2016-02-08)</h2>
+<ul>
+  <li>In the agents group editor dialog the costs for one agents group can be transfered to one or all other agents groups.</li>
+</ul>
+
+<h2>5.0.206 (2016-02-05)</h2>
+<ul>
+  <li>New function for heuristic revenue improvement</li>
+  <li>In the client type and in the call center editor dialog the settings from one or all pages can be transfered to one or all other client types or to one or all other call centers now.</li>
+  <li>In the skill level editor dialog the settings for one skill can be trasfered to one or all other skills in this skill level now.</li>
+  <li>In the statistic xml files some more values are stored as processed summary values to be directly processed by other programs.</li>
+  <li>Fix: The command-line based model simplification did not start correctly yet.</li>
+  <li>Fix: When copying a skill inside a skill level the optional interval-based working time distributions were not copied correctly.</li> 
+</ul>
+
+<h2>4.9.205 (2016-01-26)</h2>
+<ul>
+  <li>During the optimization now optionally other information than the optimization and the change value can be displayed in the diagrams.</li>
+  <li>The optimizer results viewer now also displays the costs and some Erlang C comparision data.</li>
+  <li>Small improvements on the user interface.</li>
+</ul>
+
+<h2>4.9.204 (2016-01-22)</h2>
+<ul>
+  <li>On agents preplanning optionally a simplified call center model can be used.</li>
+  <li>A Multi skill model now can be transformed to a single skill model by joining the client types and the skill levels.</li> 
+  <li>Fix: When using the new model wizard the skill level was not named correctly matching the generated agents group.</li>
+</ul>
+
+<h2>4.9.203 (2016-01-15)</h2>
+<ul>
+  <li>The statistics web viewer can be opened directly via the toolbar of the simulation results viewer now.</li>
+  <li>The time needed for creating statistic html web app was reduced.</li> 
+  <li>Some smaller improvements to the glossary for the Callcenter Simulator</li>
+  <li>Minor speed optimizations on program start</li>
+  <li>Fix: The interval-based service level was not saved correctly in the statistic files yet.</li>
+  <li>Fix: If the download of an update failed this was not always displayed correctly in the settings dialog.</li>
+</ul>
+
+<h2>4.9.202 (2016-01-04)</h2>
+<ul>
+  <li>For each simulation model a date can be specified which defines for which real day the model should stand for.</li>
+  <li>In the SaaS server configuration now multiple statistic folders can be specified.</li>
+  <li>In the SaaS server results overview fast access filters can be applied to the statistic results.</li>
+  <li>The SaaS server model list now can be sorted by model date now.</li>
+  <li>Fix: The the SaaS statistic viewer a wrong charset was used for the model description.</li>
+  <li>Fix: If the web server service could not be started when starting the SaaS server no error message was displayed.</li>
+</ul>
+
+<h2>4.8.201 (2015-12-18)</h2>
+<ul>
+  <li>The SaaS server functions are not also available via the graphical user interface.</li>
+  <li>The model overview generated by the SaaS server now contains more information on the planned numbers of agents.</li>
+  <li>The SaaS server now supports sending data compressed.</li>
+  <li>Fix: The port number and the work load part to be calculated on the simulation server may were not stored correctly in the configuration if these paremaeters were set to the default values.</li>
+  <li>Fix: The html code generated by the SaaS server has not always been valid html5 code.</li>
+</ul>
+
+<h2>4.8.200 (2015-12-15)</h2>
+<ul>
+  <li>When the optimization process is paused, the partial results can be displayed now.</li>
+  <li>In the results viewer of the connected simulation now the planned numbers of agents per half-hour interval are displayed, too.</li>
+  <li>The uninstallation program now can alternatively reset the configuration of the simulator.</li>
+  <li>The glossary for the Callcenter Simulator has been extended.</li> 
+  <li>On installing an update the period of time while the user was still able to start the old version, which is just to be replaced, has been shortend significantly.</li>
+  <li>The uninstallation program can stop running instances of the simulator now.</li>
+  <li>Minor speed optimizations on program start</li>
+  <li>The installation program is starting up faster.</li>  
+</ul>  
+
+<h2>4.8.199 (2015-12-04)</h2>
+<ul>
+  <li>The agents preplanning can optionally use a static work load instead of an Erlang C model for calculation.</li>
+  <li>The optimization process can be paused now.</li>
+  <li>Now the setup program can detect if its agains its own preferences is run with administrator priviles (which will lead to a damaged installation) and will prevent the installation in this case.</li>
+  <li>The setup program can detect running instances of the simulator and stop them before running the installation (as an update).</li>
+  <li>Bug fix: The uninstaller did not remove some temporary update files (which should not exist on a normal installation).</li>
+</ul>
+
+<h2>4.8.198 (2015-12-03)</h2>
+<ul>
+  <li>To speed-up optimization an Erlang C based agents preplanning can be done now.</li>
+  <li>In the model overview now Erlang C data with and without retry are displayed.</li>
+  <li>Small improvements on the user interface of the model editor.</li>
+  <li>In the statistic files and the statistic viewer now Erlang C based date are stored and displayed for comparison with the simulation data.</li>
+  <li>The SaaS server function was extended and now allows to displayed statistic files stored on the server via the browser.</li>
+  <li>If there are data for an existing but disabled client type in a skill level, this is also accepted when using the strict model validation.</li>
+  <li>When using the simulator as a Java applet via a SaaS server, the applet language now is choosen from the browser language preferences and not from the selected language for the server program.</li>
+  <li>Bug fix: The model based agents numbers were not stored correctly in the statistics.</li>
+  <li>Bug fix: Using not reachable target values for the accessibility in the waiting time tolerance calibration could lead to models with invalid average waiting times.</li>
+</ul>
+
+<h2>4.7.197 (2015-11-18)</h2>
+<ul>
+  <li>Reduction of the memory consumption</li>
+  <li>Optimizations to the log-normal distributed random number generator (polar method instead of box muller)</li>
+</ul>
+
+<h2>4.7.196 (2015-11-05)</h2>
+<ul>
+  <li>Extensions to the Allen-Cunneen approximation formular in the load calculator</li>
+  <li>Small optimizations to the log-normal distributed random number generator</li>
+  <li>Minor reduction of the memory consumption</li>
+  <li>Bug fix: On empirical distributions "NaN" instead of 0 was displayed as mean and standard deviation if all data points have been set to 0.</li>
+</ul>
+
+<h2>4.7.195 (2015-10-20)</h2>
+<ul>
+  <li>Reduction of the memory consumption</li>
+  <li>Minor speed optimizations in the simulator</li>
+</ul>
+
+<h2>4.7.194 (2015-10-09)</h2>
+<ul>
+  <li>Reduced memory consumption when collecting the statistic data at the end of the simulation.</li>
+  <li>In the diagrams of the statistic viewer now tooltips are displayed, too.</li>
+  <li>Minor speed optimizations in the simulator</li>
+</ul>
+
+<h2>4.7.193 (2015-10-01)</h2>
+<ul>
+  <li>The number of fresh calls now can be changed globally for all client groups.</li>
+  <li>The available agents workforce now can be changed global for all agents groups of a call center or even for all call center.</li>
+  <li>Now XML data can be saved AES256 encrypted, too.</li>
+  <li>In the statistic xml files some more values are stored as processed summary values to be directly processed by other programs.</li>
+  <li>Minor reduction of the memory consumption</li>
+  <li>Minor speed optimizations in the simulator</li>
+  <li>If automatic update is not available due to the installation method of Callcenter Simulator, now next to opening the download web page also a direct download of the update installer for later manual installation is offered.</li>
+  <li>Improvements to the formular parser: When caluclating the factorial more significant digits are calculated and the gamma function and a converter from degree to radian are now available, too.</li>
+  <li>Bug fix: In the dialog for changing the number of agents for all intervals a wrong estimation of the new total agent workforce was displayed if the agents group was defined by a distribution of agents per 15 minutes or 60 minutes interval.</li>
+  <li>Bug fix: Statistic data exported as a static HTML file could not be reimported.</li>
+</ul>
+
+<h2>4.6.192 (2015-09-19)</h2>
+<ul>
+  <li>In the statistic viewer the cource of the queue length over the day is available as table and as graphics.</li>
+  <li>The gamma distribution can be characterized in distribution editor directly by mean and standard deviation instead of &alpha; and &beta; now.</li>
+  <li>In the distribution editor the mean and standard deviation will be transfered as far as possible when changing the distribution type.</li>
+  <li>The simulation of models using the Erlang or the Gamma distribution was significantly speed up.</li>
+  <li>When displaying the distribution parameters more decimal places are shown now.</li>
+  <li>As a new calculation command in the fast access the Allen-Cunneen approximation formula is available now.</li>
+  <li>In the statistic xml files more values are stored as processed summary values to be directly processed by other programs.</li>
+  <li>In the dialog for selecting an XML element, the currently selected element will be displayed more clearly.</li>
+  <li>On models with very short waiting and holding times for the internal recording of these times a higher precision is used.</li> 
+  <li>Bug fix: When storing empirical distributions for some values the local decimal separator was used instead of always an decimal point. (When loading these distributions this was no problem.)</li>
+</ul>
+
+<h2>4.5.191 (2015-09-14)</h2>
+<ul>
+  <li>When using the batch processing the last entered parameters will be stored and restored on next use of the function.</li>
+  <li>When selecting an XML element for the fast access now additionally the insert method "At cursor position with print command" is available.</li>
+  <li>The help window is opening fast on slow systems now.</li>
+  <li>Bug fix: In the parameter series batch processing function until now no changes could be made to the 2., 3., ... agents group in an call center.</li>
+</ul>
+
+<h2>4.5.190 (2015-09-09)</h2>
+<ul>
+  <li>Now updates are secured additional to checking the signature by https.</li>
+  <li>Bug fix: Opening the model and the glossary pdf files from the online help did not work.</li>
+  <li>Bug fix: For storing the last used folder (for further use when opening load or save dialogs) files loaded via drag &amp; drop were not respected.</li>
+</ul>
+
+<h2>4.5.189 (2015-09-05)</h2>
+<ul>
+  <li>Minor speed optimizations in the simulator</li>
+  <li>Minor reduction of the memory consumption</li>
+  <li>Bug fix: In the desktop version of Callcenter Simulators links in the online help did not work anymore since Java 8 update 60.</li>
+  <li>Bug fix: The using the command-line based client or agent rearrange function and entering invalid parameters not always correct error messages where shown.</li>
+</ul>
+
+<h2>4.5.188 (2015-08-27)</h2>
+<ul>
+  <li>Some smaller improvements to the user interface</li>
+  <li>Minor speed optimizations in the simulator</li>
+  <li>Bug fix: If in a model with only a single client type an individual service level value was specified for this client type, this information was not displayed in the statistics.</li>
+  <li>Bug fix: The settings defined in the batch processing dialog "Additional output setting" partially got lost on program termination.</li>
+</ul>
+
+<h2>4.5.187 (2015-08-18)</h2>
+<ul>
+  <li>In the statistic xml file the summaries of the client data now are not only stored on day basis but also on some intervals for direct processing with other programs.</li>
+  <li>As a new calculation command in the fast access an Erlang C calculator is available now.</li>
+  <li>Bug fix: When used an agents group with fixed working times and defining the working time to be openended, the working time begin was not stored correctly.</li>
+  <li>Bug fix: The fast access command "Set" did not work correctly under some conditions.</li>
+  <li>Bug fix: When simulating a parameter series the user interface was not disabled correctly.</li>
+</ul>
+
+<h2>4.4.186 (2015-08-17)</h2>
+<ul>
+  <li>The distribution of the fresh calls and the distribution of the working hours of the agents can be changed to match the other distribution as good as possible.</li>
+  <li>A model can be kept directly from the editor and compared in relation to the simulation results with further models.</li>
+  <li>In the optimization results viewer the statistic data of the initial model and the optimized model can be compared directly now.</li>
+  <li>Bug fix: When selecting the optimization property "Work load" the default values for the optimization target were not updated correctly.</li>
+  <li>Bug fix: When changing the text view filter stettings in the statistic results compare mode for one  column the other statistic column did not update immediately.</li>
+  <li>Bug fix: When showing model data for simulation results as a dialog window the user interface in the main window was not disabled correctly.</li>
+</ul>
+
+<h2>4.3.185 (2015-08-03)</h2>
+<ul>
+  <li>Now also negetive values can be used for the client score.</li>
+  <li>For calculating the agents shift a minimum shift length can be specified.</li>
+  <li>The plausibility check has been extended by some more tests.</li>
+  <li>Speed optimizations in the simulator</li>  
+  <li>Bug fix: If non-integer numbers were used for the client score, the corresponding model may could not be loaded later.</li>
+  <li>Bug fix: The client type mode "clients are willing to wait for any time" was not saved correctly when storing a model.</li> 
+</ul>
+
+<h2>4.2.184 (2015-07-30)</h2>
+<ul>
+  <li>In the optimizer per agents group and per half-hour interval minimal and maximal values can be defined.</li>
+  <li>On selection the intervals to be optimized now ranges can be chosen.</li>  
+  <li>Multiple agents groups with each fixed working hour can be loaded from a table file.</li>
+  <li>In the statistic viewer the work load of the agents now can be displayed broken down by skill levels.</li>
+  <li>A call center model to be simulated now can be check for plausibility.</li>
+  <li>In the statistic viewer for comparing differend simulation results the corresponding models can now be viewed directly.</li>   
+  <li>Small improvements to the English localization</li>
+  <li>Bug fix: On models with more than 1,000,000 fresh calls out of memory exceptions could occur.</li>
+  <li>Bug fix: When using an invalid model in the optimizer the optimization process could stop on initialization with out an error message.</li>
+</ul>
+
+<h2>4.1.183 (2015-07-16)</h2>
+<ul>
+  <li>Bug fix: On very large models canceling the simulation could take a long time.</li>
+</ul>
+
+<h2>4.1.182 (2015-07-15)</h2>
+<ul>
+  <li>In the optimizer the intervals to be concerned when changing the numbers of agents and calculating the performance indicators can be configured.</li>
+  <li>The program language can be changed in the setup dialog without needing to restart the program now.</li>
+  <li>In the statistic viewer the work load of the agents now can be displayed broken down by technical free time, holding time and post processing time.</li>
+  <li>Minor speed optimizations on program start</li>
+  <li>Reduced memory consumption when simulating large models.</li>
+  <li>Speed optimizations in the simulator</li>
+  <li>Small improvements to the graphical user interface</li>
+  <li>Bug fix: Errors could occur on loading agents working times via an import template.</li>
+  <li>Bug fix: In the model overview inactive client types, call centers and agents groups have been displayed anyway.</li>
+  <li>Bug fix: On creating automatic model descriptions inactive client types, call centers and agents groups were not respected correctly when counting the elements.</li>
+</ul>
+
+<h2>4.0.181 (2015-06-27)</h2>
+<ul>    
+  <li>Bug fix: When using empirical distributions with a data set which needs to be scaled up, wrong values for the mean and the standard deviation were displayed in the distribution editor.</li>
+  <li>Bug fix: When using the function to compare different statisic data, the long captions for the data areas where not always displayed when not running in full screen mode.</li>
+</ul>
+
+<h2>4.0.180 (2015-06-21)</h2>
+<ul>
+  <li>The distribution of the working hours of an agents group now can also be defined on 15 minutes and on hour basis.</li>
+  <li>The background model validation is now also active in the case the background simulation is switched off.</li>
+  <li>Statistic data stored as WebApp files can be loaded in the simulator again.</li>
+  <li>The command line based model generator now can also process client arrivals on hour and on 15 minutes bases.</li>
+  <li>Some smaller speed improvements to the start of the simulation process</li>
+  <li>Minor speed optimizations in the simulator</li>
+  <li>Bug fix: In the optimizer and in batch processing the tool bar sometimes was not displayed correctly.</li>
+  <li>Bug fix: In WebApp statistic files in the category "Model information" umlauts where not displayed correctly.</li>
+  <li>Bug fix: Copying agents groups defined by a client arrival distribution could fail.</li> 
+</ul>
+
+<h2>3.9.179 (2015-06-12)</h2>
+<ul>
+  <li>Bug fix: If trying to load an invalid file via drag&amp;drop into the simulator, no error message was displayed.</li>
+  <li>Bug fix: If the average waiting, residence or cancel time was 0 seconds NaN instead of 0 was displayed for the coefficient of variation of the respective property.</li>
+  <li>Bug fix: Graphics errors could occur when switching to full screen mode (caused by a but in the JavaFX runtime library)</li>
+  <li>Bug fix: In call center editor previously no scroll bar was displayed on the minimum waiting times page when this would have been necessary.</li>
+</ul>
+
+<h2>3.9.178 (2015-06-09)</h2>
+<ul>
+  <li>Small improvements to the graphical user interface</li>
+</ul>
+
+<h2>3.9.177 (2015-06-08)</h2>
+<ul>
+  <li>On each holding time distribution an additional time depending on the waiting time of the client can be added now.</li>
+  <li>Statistic data can be saved as interactive WebApps.</li>
+  <li>New calculation dialog, allowing quick calculations of mathematical expressions.</li>
+  <li>Some smaller improvements to the online help</li>
+</ul>
+
+<h2>3.8.176 (2015-05-21)</h2>
+<ul>
+  <li>Minor speed optimizations on program start</li>
+  <li>Minor speed optimizations on loading and saving xml files</li>
+  <li>Bug fix: On repeated opening the online help the window could stay empty due to an graphics error.</li>
+</ul>
+
+<h2>3.8.175 (2015-05-18)</h2>
+<ul>
+  <li>All data which can be loaded and saved in the xml format now can also be loaded and saved in the json format.</li>
+  <li>Minor speed optimizations in the simulator</li>
+  <li>The speed of loading call center models and statistic files via drag&amp;drop has been improved.</li> 
+  <li>Small improvements to the English and the German localization</li>
+  <li>Bug fix: Graphics errors could occur when switching between the simulation progress and the simulation results panel.</li>  
+</ul>
+
+<h2>3.8.174 (2015-05-12)</h2>
+<ul>
+  <li>Via the help menu a glossary for the Callcenter Simulator can be displayed.</li>
+  <li>The new fast access command sum allows to sum up the values of a distribution of measured values.</li>
+  <li>When printing out distributions via the fast access the separator used to separate the individual values can be chosen now.</li>
+  <li>In the waiting and residence time tables in the statistics viewer more decimal digits now be expelled.</li>
+  <li>Bug fix: The fast access commands mean, SD and CV had problems with some distribution types.</li>
+</ul>
+
+<h2>3.8.173 (2015-05-04)</h2>
+<ul>
+  <li>On pasting empirical data into the distribution editor now can be selected if the data is to be scaled (operation mode until now) or padded with zeros.</li>
+  <li>Minor speed optimizations in the simulator</li>
+  <li>Bug fix: On loading the very large example model the text for the model description was shown in the model name field.</li>
+</ul>
+
+<h2>3.8.172 (2015-04-30)</h2>
+<ul>
+  <li>Small improvements to the English localization</li>
+  <li>Bug fix: The distribution fitter reported a wrong number of values loaded (but worked correctly using all values).</li>
+  <li>Bug fix: For lognormal distribution wrong residual values were calculated in the distribution fitter.</li>
+</ul>
+
+<h2>3.8.171 (2015-04-26)</h2>
+<ul>
+  <li>Small improvements to the graphical user interface</li>
+  <li>In the distribution fitter now the one-point distribution is respected, too.</li>
+  <li>The distribution fitter now can process direct sample values and also cummulated sample values.</li>
+  <li>On long text information in the statistic viewer the results can be filtered now.</li> 
+  <li>Bug fix: In the distribution fitter the mean and the standard deviation of the samples has be calculated incorrectly.</li>
+  <li>Bug fix: On statistic text pages some additional percent values for numerical values were not displayed correctly.</li>
+</ul>
+
+<h2>3.8.170 (2015-04-21)</h2>
+<ul>
+  <li>The Callcenter Simulator is now available in German and English.</li>
+  <li>Smaller improvements to the online help.</li>
+  <li>The texts in some error message dialogs when loading xml files are more informative now.</li>
+</ul>
+
+<h2>3.7.169 (2015-03-25)</h2>
+<ul>
+  <li>The formula parser now supports various mathematical functions (sqrt, trigonometric functions, rounds, exponential, etc.).</li>
+  <li>The arithmetic functions of the fast access filter now support the advanced mathematical functions, too.</li>
+  <li>When displaying the confidence intervals accessibility and service levels now are displayed in all available types.</li>
+  <li>In the before/after comparison in the optimization results diagrams in which the respective value for different intervals has changed in different directions, are displayed in a better way now.</li>
+  <li>The gross and net working time of each agents group now are also stored in the statistics file directly for easier processing.</li>
+  <li>Smaller improvements to the online help.</li>
+  <li>Bug fix: In the statistics files previously the upper limit of the 95% confidence interval for the availability and service level has been stored incorrectly. (The statistics display in the simulator was not affected.)</li> 
+</ul>
+
+<h2>3.6.168 (2015-02-18)</h2>
+<ul>
+  <li>In the results viewer of the connected simulation the service level is now also optionally shown on the client and call basis and on basis of successful or all callers.</li>
+  <li>When displaying the planned and the actual working hours of the agents per call center and per skill level the absolute value is reported now, too.</li>
+  <li>During the simulation now the number of calls per call center (and in it per client type) are recorded and reported in the statistical results.</li>
+  <li>The number of available waiting lines can now be specified as a function of the number of active agents.</li>
+  <li>In all input fields for numbers now even simple arithmetic commands are interpreted.</li>
+  <li>When displaying the time consumption per operation now no mean values over the complete agents group are displayed anymore but the total sum over each group.</li>
+  <li>In the optimizer settings disabled client types, call centers and agents groups will now automatically be hidden.</li>
+  <li>In the preferences dialog now the loading progress when downloading an update will be displayed.</li>
+  <li>Bug fix: The choice of particular agents group constellations as a control variable for optimization could lead to that the optimization could not be started.</li> 
+  <li>Bug fix: Text editors such as Windows Notepad, that can not handle single line breaks, did not display the simulation log files correctly.</li>
+</ul>
+
+<h2>3.5.167 (2015-01-27)</h2>
+<ul>
+  <li>The configuration file can now optionally be stored in another directory, which can be specified by command line parameters.</li>
+  <li>The texts in some error message dialogs in the model editor are more informative now.</li> 
+  <li>Bug fix: When loading the Erlang C example models since version 3.4 an error may occur.</li>
+</ul>
+
+<h2>3.5.166 (2015-01-13)</h2>
+<ul>
+  <li>Bug fix: Compatibility issues related to Java 7 have been fixed.</li>
+</ul>
+
+<h2>3.5.165 (2015-01-08)</h2>
+<ul>
+  <li>Optical revision of the help system and the welcome page.</li>
+  <li>Small improvements when displaying of probability distributions in the model editor.</li>
+</ul>
+
+<h2>3.5.164 (2015-01-03)</h2>
+<ul>
+  <li>Reports of model information, simulation results, etc. now can be saved as pdf files.</li>
+  <li>Charts, tables and text can now be exported in pdf format.</li>
+  <li>The tree view for the model information viewer can be filtered now.</li>
+  <li>Improvements to the warning, information, error and question dialogs.</li>  
+  <li>Bug fix: When storing reports previously no overwrite warning appeared when the destination file already existed.</li>
+</ul>
+
+<h2>3.5.163 (2014-12-16)</h2>
+<ul>
+  <li>The font sizes throughout the program can now be user-defined scaled via a selection box in the preferences dialog.</li>
+  <li>Small improvements to the graphical user interface.</li>
+  <li>If loading a connected model fails due to an error in the xml file, the error in the data file will now be described more detailed.</li>
+  <li>Bug fix: The recorded absolute free times in the last half-hour interval of the day was partially incorrect.</li>
+  <li>Bug fix: When viewing charts in the result viewer of the connected simulation, error could occur if the model consisted only of one day.</li>
+</ul>  
+
+<h2>3.5.162 (2014-12-12)</h2>
+<ul>
+  <li>In the connected simulation a manual carry over into the first simulation day can now be defined as well.</li>
+  <li>When optimizing a manual carry over from the previous day can now also be defined.</li>
+  <li>Bug fix: In the statistic viewer the service levels throughout the day was not available in the charts as the quotient of all calls / clients.</li>
+</ul>
+
+<h2>3.4.161 (2014-12-08)</h2>
+<ul>
+  <li>The results of the distribution fitting can now be taken directly from the dialog into the respective model in the editor.</li>
+  <li>The waiting time tolerance calibration is automatically terminated now when a any further change in the waiting time tolerances does not lead to any further approximation of the target values for the accessibility.</li> 
+  <li>The compare simulation results function can display up to 5 statistic files simultaneously now.</li>
+  <li>In the optimization results view the service levels will now also be reported relative to the successful and also to the entire clients or calls.</li>
+  <li>Bug fix: When importing table that contain formulas, the numerical values are now imported.</li>
+  <li>Bug fix: In the distribution editor the up / down buttons for quick adjustment of the parameters were also displayed in the input field for empirical data.</li>
+</ul>  
+
+<h2>3.4.160 (2014-12-05)</h2>
+<ul>
+  <li>The service level is now shown in each case relative to the successful and also to the entire clients or calls. When optimizing the service level the be calculation method for it can be selected now, too.</li>
+  <li>In the distribution editor the parameters of each distribution can now be piecewise increased or decreased also by up / down buttons.</li>
+  <li>The holding and post processing times within each skill level for each client types can also be further differentiated by the working time now.</li>
+  <li>Bug fix: The error bar, which indicates possible error model that were found by the background model validation was not displayed correctly.</li>
+  <li>Bug fix: On filtering the items displayed in the statistics tree view, it was not possible, to hide the "Model-based agents" section.</li>
+</ul>
+  
+<h2>3.3.159 (2014-12-01)</h2>
+<ul>
+  <li>The clients behavior of starting another call later after being successful served can now be mapped in the simulation model.</li>
+  <li>The function for storing statistical data now also allows to create html and docx files directly.</li>
+  <li>In the distribution editor now also the Erlang distribution is available.</li>
+  <li>Bug file: If the "Save statistics as" menu item was clicked without first performing a simulation run partially no error message appeared, telling that there is nothing to be saved.</li>
+</ul>
+
+<h2>3.2.158 (2014-11-20)</h2>
+<ul>
+  <li>Bug fix: When creating an HTML report with inline graphics depending on the computer's speed an error could occur.</li>
+</ul>
+
+<h2>3.2.157 (2014-11-12)</h2>
+<ul>
+  <li>In the statistics viewer now tables showing the part of forwarded clients, successful clients and the waiting cancelations are available (and not only the absolute values).</li>
+</ul>
+
+<h2>3.2.156 (2014-11-10)</h2>
+<ul>
+  <li>If the used Java version was already outdated at the time of the creation of the version of the simulator, a warning can now (optionally) bs displayed.</li>
+  <li>The optimizer some GUI elements have been extended to simplify its use.</li>
+  <li>Bug fix: When showing the optimization results regardless of chosen value to be optimized "maximizing accessibility (on call basis)" was displayed. Additionally if a target range instead of a target value was choosen this range was not shown in the results. But during the optimization the selected range has been used correctly.</li>
+  <li>Bug fix: When using the normal distribution with parameters chosen in such a way that a significant probability mass was left of 0, partially wrong values for the utilization of the agents were recorded.</li>
+</ul>
+
+<h2>3.2.155 (2014-11-05)</h2>
+<ul>
+  <li>Tables can now be loaded directly from SQLite database files.</li>
+  <li>Optimization of the memory footprint of the simulator.</li>
+</ul>
+
+<h2>3.2.154 (2014-10-20)</h2>
+<ul>
+  <li>The waiting time tolerances can now be calibrated automatically on a model with known accessibility values.</li>
+  <li>Some minor tweaks to speed and memory requirements of the simulator.</li>
+  <li>The selection for which models the background simulation will be acutally be used (if activated), now better respects the available system performance.</li>
+</ul>
+
+<h2>3.2.153 (2014-10-10)</h2>
+<ul>
+  <li>Parameter series now can also be simulated without specifying an output directory for the statistic results, if a file to output the filtered statistical results is chosen.</li>
+  <li>On models with more than 250 simulated days background simulation is automatically suspended to prevent the application interface is slowed down.</li>
+  <li>Bug fix: In the XML field selection dialog for the parameter series batch processing not all existing XML attributes for selection were offered so far.</li>
+  <li>Bug fix: The program stopped responding partially, if at the parameter series batch processing an output directory was selected, which already contained statistics files.</li> 
+</ul> 
+
+<h2>3.2.152 (2014-09-20)</h2>
+<ul>
+  <li>In the batch processing window now parameter series can now be processed, too.</li>
+  <li>In the distribution editor now the uniform distribution is also available for selection.</li>
+  <li>Improved linkage of the individual intervals with respect to retrying callers in the Erlang C estimation in the model view view.</li>
+  <li>In addition to the realistic sample models available via the menu item File | New also some models that included only with Erlang C mappable features are available.</li>
+  <li>Bug fix: In the selection of XML elements for quick access filter so far the content of XML elements that have no content of them own but only sub-items could be selected.</li>
+  <li>Bug fix: When editing models that were created with an earlier version of the simulator when saving the status "unsaved changes" was not reset correctly.</li>
+  <li>Bug fix: In the Erlang C estimation in the model overview previously the waiting time tolerance of the callers was used correctly.</li>
+</ul>
+
+<h2>3.1.151 (2014-08-28)</h2>
+<ul>
+  <li>General speed optimizations in the simulator.</li>
+  <li>Speed optimizations in the client-side processing of the data in client-server simulation mode.</li>
+  <li>On agents groups that are defined by a distribution over the day, this distribution can now be modeled by the clients arrivals.</li>
+  <li>Fast access commands for calculation of mean values and standard deviations were added and the syntax of the print command has been extended.</li>
+  <li>For ease of processing some refined parameters are written to the statistics files now in addition to the raw data.</li>
+  <li>Bug fix: On models with a disabled client types the case that the model checking classified the model wrongly incorrect could happen.</li>
+  <li>Bug fix: In the "Edit client type" dialog on client types were the "Ok &amp; Previous" and "Ok &amp; Next" buttons should both be visible, due to available space only one of the two buttons was visible.</li>
+  <li>Bug fix: In the bar charts so far unnecessarily rounded values were used.</li>
+  <li>Bug fix: On repeated saving loaded statistic data the version ID of the simulator version used for running the simulation was updated to the current version.</li>
+  <li>Bug fix: During the execution of a fast access filter the setting whether a value is to be displayed as a number or as a time was undefined at the beginning, so that previously at the beginning of a command script always a "format" command had to be used.</li>
+</ul>
+
+<h2>3.0.150 (2014-08-15)</h2>
+<ul>
+  <li>The acual number of agents planned per interval now is stored in the statistics, too.</li>
+  <li>The data for each final simulation run can now be extracted via command line from the optimizer results file.</li>
+  <li>General speed optimizations in the simulator.</li>
+  <li>Bug fix: When using the applet-based client-server simulation the http server has not supplied cache information so that a client could possibly work with an old version of the applet.</li>
+  <li>Bug fix: The representation of the confidence intervals for the availability in the statistics xml file was previously incorrectly. (But the illustration in the program itself and the storage of the raw data in the XML file were also previously correct.)</li>
+  <li>Bug fix: The residence time distribution on client basis has not been detected correctly. (The residence time distribution on call basis and the waiting time distirbution on client basis were not affected and so far already correct.)</li>
+  <li>Bug fix: Added some missing axis labels in the representation of agent-related parameters.</li>
+  <li>Bug fix: When using a clients group whose arrival rate was defined at 15-minute basis for calculation the agents per half-hour interval, the representation of the active agents in the statistics could be erroneous.</li> 
+</ul>
+
+<h2>2.9.149 (2014-07-24)</h2>
+<ul>
+  <li>Detecting whether the update system can write to the program directory and possibly warning in the settings dialog.</li>
+  <li>If configuration changes can not be saved, a warning message will be displayed.</li>
+  <li>In tables for displaying values over the day (e.g. waiting cancelations per half-hour interval) numerical values are now displayed with decimal places.</li> 
+  <li>Bug fix: The diagrams "Mean waiting and canceling time over the day" and "Accessibility over the day" on clients base have been erroneous.</li>
+</ul>
+
+<h2>2.9.148 (2014-07-10)</h2>
+<ul>
+  <li>Bug fix: When generating HTML reports with embedded images, the program could be blocked on slower systems.</li>
+</ul>
+
+<h2>2.9.147 (2014-06-10)</h2>
+<ul>
+  <li>Changes to the update system for running the simulator as a jar file.</li>
+</ul>
+
+<h2>2.9.146 (2014-04-12)</h2>
+<ul>
+  <li>If the simulation is finished while the program is minimized, so an information message is now displayed.</li>
+  <li>Changes to the update system and the DTD and XSD links in the model xml files to respect the new home URL of the Callcenter Simulator.</li>
+</ul>
+  
+<h2>2.9.145 (2014-02-27)</h2>
+<ul>
+  <li>Updated the used chart library JFreeChart to version 1.0.17</li>
+</ul>
+
+<h2>2.9.144 (2014-02-20)</h2>
+<ul>
+  <li>Reports can now be stored as Word files.</li>
+  <li>New setup option to restore the last window size on startup.</li>
+  <li>Bug fix: When exporting a shift plan schedule diagrams as an image file the image has been saved with a black border on the right lower border.</li>
+</ul>
+
+<h2>2.9.143 (2014-02-10)</h2>
+<ul>
+  <li>The number of fresh calls can only optionally be normal distributed with a given standard deviation.</li>
+  <li>In the statistics XML files now not only the underlying assets of which any confidence intervals for accessibility, waiting time and service level can be calculated are stored, but to simplify further data processing the 90% and 95 % confidence interval now are stored directly.</li>
+  <li>Optionally it can be configured that the technical free time is already recognized by clients as such, so that at this time no more waiting cancelations will happen.</li>
+  <li>If the automatic background simulation is activated, the model is now also automatically checked for consistency after each change and any errors will immediately be displayed in the program window.</li>
+  <li>The error messages that indicate a non-consistent model, now show precisely where in details things do not match.</li>
+  <li>Bug fix: When storing data as xml files the references to the associated DTD and XSD files in the file header part have been incorrectly.</li>
+</ul>
+
+<h2>2.8.142 (2014-01-28)</h2>
+<ul>
+  <li>From this version on Java 7 or higher is required as a runtime environment. The Java version 6, which has reached its end-of-life one year ago is no longer supported.</li>
+  <li>More and detailed information are now shown for the re-callers in the statistics.</li>
+  <li>By optimizing the random number generating the simulation speed could be increased depending on size model by 5-50%. Especially for smaller models this speed improvement is significant.</li>
+  <li>Speed optimizations in the use of empirical distributions in the simulation process.</li>
+  <li>General speed optimizations in the simulator.</li>
+  <li>Update of the Common Math Library to version 3.2</li> 
+</ul>
+
+<h2>2.7.141 (2014-01-15)</h2>
+<ul>
+<li>Bug fix: If some client types were disabled in the model editor, this could previously under certain conditions lead to an internal error in the simulation.</li>
+</ul>
+
+<h2>2.7.140 (2014-01-10)</h2>
+<ul>
+  <li>Pages with statistic text information can now be saved as a Word texts and HTML files, too.</li>
+  <li>Tables can now be saved as a Word document embedded tables and HTML files.</li>
+  <li>The fast access filter function can now print values formatted as times.</li>
+  <li>Speed optimizations in the use of log-normal distributions in the simulation process.</li>
+  <li>Bug fix: When you save charts as jpeg files, it could happen so far that false colors were used.</li> 
+  <li>Bug fix: The command line benchmark function did not start the simulation runs correctly so far.</li>
+</ul>
+
+<h2>2.7.139 (2014-01-03)</h2>
+<ul>
+  <li>When importing call center parameters templates based, the fresh calls count now can be loaded by summation over a particular data series, without changing the previously specified distribution.</li>   
+  <li>For agents groups of predetermined working hours distribution per half-hour interval a productivity can now also be specified.</li>
+  <li>When loading empirical distributions also percentages can now be specified.</li>
+  <li>Now XML data can be stored optionally compressed.</li>
+  <li>The update mechanism relies now no longer only on the file origin but tests a RSA (2048 bit) signed SHA256 checksum of the update file.</li>
+  <li>The simulator can now optionally create a simple model description based on the properties of the callers and the call centers itself.</li>  
+  <li>Bug fix: In the representation of the distribution of the agents performance on the different skill levels in the model the data of groups of agents whose working hours are distributed respecting the fresh calls distribution were not correctly taken into account.</li>
+  <li>Bug fix: When using client types defined on 15-minute basis and the simultaneous using agent groups whose working hours are distributed according to the clients arrivals, an error could occur.</li>
+  <li>Bug fix: When simultaneous charging of the distribution and the number of clients on 15-minute basis by the template-based import function, anerror could occur .</li>
+  <li>Bug fix: Selecting some optimization features in the optimizer GUI these settings are not applied correctly.</li> 
+</ul>
+
+<h2>2.6.138 (2013-12-09)</h2>
+<ul>
+  <li>Updated the library for reading and writing Excel spreadsheets (Apache POI) to version 3.9.</li>
+  <li>Bug fix: When exporting empirical distributions and the exporting statistics partly no overwrite warnings was displayed if the destination file already existed.</li>
+</ul>
+
+<h2>2.6.137 (2013-12-05)</h2>
+<ul>
+  <li>The load and save dialogs now keep the most recently used directory and offer this again at the next time you open the dialog (during the same program run).</li> 
+  <li>The clients arrival distribution can now optionally be specified instead of just on half-hourly basis on an hourly basis and on  15-minute basis.</li>
+  <li>When optimizing the client specific parameters one can now optionally not only work on call basis, but also on a client basis.</li>
+  <li>In the system data view in the statistics output the description of the field "Clients per second" has been improved.</li>
+</ul>
+
+<h2>2.5.136 (2013-11-21)</h2>
+<ul>
+  <li>Bug fix: When using agents groups whose working time distribution is modeled by the fresh calls distribution of certain client groups, the rates at which the various client groups are respected in the calculation were partially not restored correctly when loading XML models.</li>
+</ul>
+
+<h2>2.5.135 (2013-11-18)</h2>
+<ul>
+  <li>Minor improvements in the function for loading call center model XML files to interpret data distribution more flexible.</li>
+  <li>Bug fix: If the command-line simulation server started was started in non SaaS mode, an error occured on stopping the server.</li>
+</ul>
+
+<h2>2.5.134 (2013-11-15)</h2>
+<ul>
+  <li>By the menu item "Fit distribution" from the Tools menu an analytical distribution can be fitted to a amount of empirical measurement values.</li>
+  <li>When optimizing a maximum value for the property to be optimized can now be optionally specified above which the agent number is reduced.</li> 
+  <li>The load calculator now also allows to calucate the work load of a queueing system using the advanced Allen-Cunneen approximate formula.</li>
+  <li>The load calculator now shows on the pages "Erlang C" and "Erlang C (extended)" on more parameters.</li>
+  <li>When displaying distributions in the model editor not only the values can be copied and saved, but they can also be copied and saved as graphics.</li>
+  <li>In the distribution editor now a site with additional information about the chosen distribution can be opened directly.</li>
+  <li>Bug fix: If for a client type the clients only had a limited waiting time tolerance, but at the same time the distribution chosen for the waiting time tolerance allowed an infinite waiting time tolerance, this could lead to errors in the simulator.</li>
+  <li>Bug fix: In the analysis of variance in the mode "Variable number of simulations days" the button to save the results in table format did not work correctly.</li>
+  <li>Bug fix: When entering invalid values for "c" or "t" on pages "Erlang C" and "Erlang C (extended)" in the load calculator it could happen that the dialog blocked until it was opened again.</li>
+  <li>Bug fix: The "Model Overview" page might returned incorrect results for the "Extended Erlang C model"  when the gamma distribution was selected as the holding or post-processing time distribution.</li>
+  <li>Bug fix: When loading an optimization setup the selection box labels were partially incorrect adjusted on the type of property to be optimized.</li>
+</ul>
+
+<h2>2.4.133 (2013-10-24)</h2>
+<ul>
+  <li>On client-server simulation the applet version can now be used on the client side, so no local installation of the simulator is needed.</li>
+  <li>Optimizing of the configuration of the applet version to improve compatibility with future versions of Java.</li>
+  <li>Bug fix: If the window in which the shift plan diagram of an agents group is displayed was pushed out off the screen area and back again, the window contents were partially not correct redrawn immediately.</li>
+</ul>
+
+<h2>2.4.132</h2>
+<ul>
+  <li>On the File menu the models most recently used are now be available for direct loading.</li>
+  <li>Bug fix: The menu item "Show Welcome page" from the Help menu did not work before.</li>
+</ul>
+
+<h2>2.4.131</h2>
+<ul>
+  <li>Now tables can be loaded directly via drag&amp;drop in distribution viewers.</li>
+  <li>HTML reports of the simulation results and of the model overview now can be generated from the command line, too.</li> 
+  <li>When importing empirical distribution data, a selection dialog now opens when the data does not allow unambiguous automatic assignment.</li>
+  <li>When creating HTML reports graphics can now be inserted directly into the HTML file.</li>
+  <li>The functions for importing client arrivals and agents working hours can now better handle tables without header fields.</li>
+  <li>The creation of HTML reports has been accelerated by the use of multiple threads.</li>
+  <li>The IP filter of the simulation server can now be configured via the settings dialog.</li>
+  <li>Bug fix: When loading empirical distribution data from Excel files floating point values have been interpreted partly wrong.</li> 
+  <li>Bug fix: The function to copy HTML reports to the clipboard was not working so far.</li>
+  <li>Bug fix: When using multiple displays loading and saving dialog have been placed not always over the main window.</li>
+</ul>
+
+<h2>2.3.130 (2013-01-25)</h2>
+<ul>
+  <li>In the client-server simulation workload can now be distributed to any number of network servers.</li>
+</ul>
+
+<h2>2.3.129</h2>
+<ul>
+  <li>In the client-server simulation also a part of the simulated days now can be simulated locally, i.e. the workload can be distributed between remote server and local machine.</li>
+</ul>
+
+<h2>2.3.128</h2>
+<ul>
+  <li>The results of a linked simulation can now be displayed as graphics and tables.</li>
+  <li>Bug fix: In the dialog box for selecting a simulation model of an optimization, the help button did not work.</li>
+</ul>
+
+<h2>2.3.127</h2>
+<ul>
+  <li>Data can be loaded from complex tables simultaneously for different areas of the model using the import templates.</li>
+  <li>Statistic results from two different models now can be compared directly.</li>
+  <li>In the optimization carrying over from a prvious day can be considered by a statistic file now.</li>
+  <li>Optimizer setup files can be loaded by drag&amp;drop now.</li>
+  <li>The command-line simulation server now responds on SIGTERM and therefore can now run without an active console.</li>
+  <li>Minor speed optimizations in the simulator</li>
+  <li>Minor improvements in the graphical interface</li>
+</ul>
+
+<h2>2.2.126 (2012-12-05)</h2>
+<ul> 
+  <li>To increase clarity not interesting entries in the statistics tree can be hidden.</li>
+  <li>Minor speed improvements when starting simulations</li>
+  <li>Acceleration of the program start</li>
+</ul>
+
+<h2>2.2.125</h2>
+<ul>
+  <li>In the connected simulation clients canceling waiting, which should be treated the next day as additional new clients, also can get a new type client type optionally.</li>
+  <li>The number of seconds relevant for calculating the service level can now be optionally adjusted individually for each client type.</li>
+  <li>Now several holding and post processing time distributions can be loaded from a single table in one step.</li>
+  <li>Additional, larger sample model</li>
+  <li>The distributions of waiting, staying and cancelation times now are not only detected only in the range 0 to 1800 seconds in one-second intervals, but also in the range 0 to 900 hours in half-hour intervals.</li>
+  <li>Connected simulation models can be loaded by drag&amp;drop now.</li>
+  <li>Large models will load faster now</li>
+  <li>Slightly lower memory requirements during the simulation</li>
+  <li>Improved calculation of the possible number of threads with the amount of available memory</li>
+  <li>Updated the chart library JFreeChart to version 1.0.14</li>
+  <li>Bug fix: Partially the table view was not updated immediately after changing the linked simulation model.</li>
+  <li>Bug fix: A race condition could previously cause the background simulation did not return results.</li>
+  <li>Bug fix: If an XML file was dropped on the simulator window while a working panel (such as the batch simulation) was opened, the model has been partially been loaded incorrectly.</li>
+  <li>Bug fix: If in the optimization configuration a single client type was specifed as optimization target, an error occured.</li>
+</ul>
+
+<h2>2.1.124 (2012-11-12)</h2>
+<ul>
+  <li>In the statistic report viewer all tables can now be exported to a common Excel workbook.</li>
+  <li>Minor improvements in the statistics viewer</li>
+  <li>In the calculation of parameters such as the accessibility etc. now no longer the plain number of clients and calls is used as basis, but the numbers reduced by the clients and calls which are carried over to the next.</li>
+  <li>Bug fix: In the connected simulation clients waiting in the queue have been transferred twice; both as in the system waiting clients as well as later recalling clients.</li>
+</ul>
+
+<h2>2.1.123</h2>
+<ul>
+  <li>In the connected simulation now not only just canceled calls can be carried over to the next day but also clients waiting in the queue or already planning a retry can be carried over.</li>
+  <li>Complete simulation runs can now be recorded in log files.</li>
+  <li>On shift planning now can be defined that agents cworking until midnight will continue working until no more clients are in the system.</li>
+  <li>Minor speed optimizations in the simulator</li> 
+  <li>Small improvements in the results viewer of the analysis of variance</li>
+  <li>Support for Windows 8 in the installer has been improved.</li> 
+  <li>Bug fix: Clients with an infinite waiting time tolerance or a 100% retry probability who arrived after the end of the last agents shift could lead to a blocking of the simulator.</li>
+  <li>Bug fix: If the connected simulation was started repeatedly without closing the dialog page in the meantime, sometimes days were simulated several times before.</li>
+  <li>Bug fix: When you uninstall the call center simulator xsd file has not been deleted.</li>
+  <li>Bug fix: If a statistic XML file was loaded via the statistics page, the save statistics button on the toolbar was not properly enabled.</li>
+</ul>
+
+<h2>2.0.122</h2>
+<ul>  
+  <li>Per client type can now be adjusted if the clients will block a phone line (callers) or not (e-mails, etc.).</li>
+  <li>In the client types editor now also a longer waiting time tolerance distribution can be displayed.</li>
+  <li>More statistic data are shown broken down on a client basis and on call basis</li>
+  <li>Bug fix: XML model files in which for a client type the waiting time tolerance estimation was enabled and the waiting time tolerance correction value was set to 0 or less, yet could not be loaded.</li>
+</ul>
+
+<h2>2.0.121</h2>
+<ul>
+  <li>In the client-server simulation data transmission can now optionally be done AES-encrypted. This allows to restrict the availability of a server for certain clients only.</li>
+  <li>For the simulation server a maximum number of threads per request can be set.</li>
+  <li>In the client-server simulation, both the client and the server now are able to better deal with disconnects.</li>
+  <li>The command-line simulation server can also write log messages directly to a log file now.</li>
+  <li>Optional change the type of client on a retry</li>
+  <li>Minor improvements in the model editor</li>
+  <li>More statistic results are stored on a client basis and on call basis</li>
+  <li>Due to a better check whether the model has changed, the background simulation has to be run less often.</li>
+  <li>Minor speed optimizations in the simulator</li>
+  <li>Bug fix: In statistic calls whos clients type has changed during forwarding were assigned to the original client type instead of the new client type.</li>
+  <li>Bug fix: In the statistics previously value for then umber of calls, of clients etcs. per interval wre displayed as sums over all simulated days instead of values per day..</li> 
+</ul>  
+
+<h2>1.9.120</h2>
+<ul>
+  <li>When loading tables in text form next to the csv format, tab-delimited data is now be recognized, too.</li> 
+  <li>XML description file for conntected simulations created via the graphical user interface can also now be ran from the command line.</li>
+  <li>In the connected simulation now not only average values of the waiting cancelations are carried over from one day to the next, but the exact values per day are carried over now.</li>
+  <li>In the connected simulation an initial carry over into day in 1 can now be specified by a statistics xml file.</li>
+  <li>The load calculator can now also use the extended Erlang C formula, i.e. client canceling waiting can now be modeled.</li>
+  <li>Example data from ie.technion.ac.il/serveng/callcenterdata/ can be used for bulding example models.</li>
+  <li>Minor improvements in the processing of command line commands</li>
+  <li>Bug fix: When loading general distribution data Excel 2003 xls files were not always processed correctly so far.</li>
+  <li>Bug fix: When performing a connected simulation using the graphical user interface the simulation run time was not written correctly in the statistics file.</li>
+  <li>Bug fix: When loading stored statistics results the confidence intervals of accessibility, service level and waiting time were not loaded correctly.</li>
+  <li>Bug fix: On models with many client types the available space in the dialogs has not been fully used so far.</li>
+</ul>
+
+<h2>1.8.119</h2>
+<ul>
+  <li>Load calculator for quick calculation of initial values for inital setup of call center models</li>
+  <li>The variance analysis can now work with a variable number of simulation runs.</li>
+  <li>The connected simulation with carring over of clients who canceled waiting can now be performed in the graphical user interface.</li>
+  <li>Exporting of results tables is now also possible in the Excel 2003 xls format</li>
+  <li>Client arrivals and agents working hours can now be loaded from Excel 2003 xls tables</li>
+  <li>If multiple fast access filters are to be used, they do not need to be stored in external files anymore, but can be changed directly by a dropdownbox.</li>
+  <li>The description of the XML file formats is now also available in XSD format.</li>
+  <li>Reduced memory consumption when using the background simulation</li>
+  <li>On systems with low memory, the maximum number of calculation threads is automatically reduced to avoid out of memory problems.</li>
+  <li>Minor speed optimizations in the simulator</li>
+  <li>Minor enhancements in the "Model overview" function</li> 
+  <li>Bug fix: On very fast machines and when using small call center models, the progress bar at the analysis of variance has not been updated properly.</li>
+  <li>Bug fix: In the online help the button "Content of this page" was partially disabled, although sub-entries for navigation were present within the page.</li>
+</ul>
+
+<h2>1.7.118</h2>
+<ul>
+  <li>New function to study the variance between multiple simulation runs</li>
+  <li>Export of results tables is now available in Excel xlsx format</li>
+  <li>Export of the summary information is now available in rich text format</li>
+  <li>Client arrivals and agents working hours can now be loaded from Excel xlsx tables</li>
+  <li>The desired shift length can now be optionally adjusted per agents group</li>
+  <li>The simulation server can no be started via the graphical user interface</li>
+  <li>Context menus in caller, call center and agents group lists that allow, in particular fast activation and deactivation of individual elements</li>
+  <li>In the agents dialog the per day available working line can be adjusted directly, without that changing the distribution over the day</li>
+  <li>In the call center list the skill levels of the active agents in the respective call center are now displayed</li>
+  <li>Bug fix: In the "Load agents data" dialog the current call center could not be changed</li>
+</ul>
+
+<h2>1.6.117</h2>
+<ul>
+  <li>Some smaller resources memory leaks have been closed</li>
+</ul>
+
+<h2>1.6.116</h2>
+<ul>
+  <li>Small improvements to the system configuration</li>
+</ul>
+
+<h2>1.6.115</h2>
+<ul>
+  <li>Small improvements to the system for program updates</li>
+  <li>Speed optimizations in the simulator</li>
+</ul>
+
+<h2>1.6.114</h2>
+<ul>
+  <li>System for automatic updating of the program</li>
+  <li>Bug fix: Some yes/no settings have been loaded correctly from the configuration.</li>
+</ul>
+
+<h2>1.6.113</h2>
+<ul>
+  <li>Faster displaying the simulation results when at the beginning of the simulation function call, the background simulation is already finished</li>
+  <li>Small improvements to the menu structure</li>
+</ul>
+
+<h2>1.6.112</h2>
+<ul>
+  <li>Fast access filter in the statistics viewer with which certain values can be exported from repeated simulation series</li>
+  <li>Option to automatically storing statistical results of a simulation run</li>
+  <li>Bug fix: When saving statistics, the confidence interval values were stored commas instead of decimal points.</li>
+</ul>
+
+<h2>1.5.111</h2>
+<ul>
+  <li>Modeling of the cost structure of call centers</li>
+  <li>Speed optimizations in the simulator</li>
+  <li>Warnings in batch and command-line simulation when a newer model file is loaded using an older version of the simulator</li>
+  <li>Bug fix: When loading xml files partially decimal numerical values are trimmed so far.</li>
+  <li>Bug fix: The two toolbar buttons for loading and saving of statistical results were without function.</li>
+  <li>Bug fix: In the format descriptor dtd file previously model files was incorrectly labeled.</li>
+</ul>
+
+<h2>1.4.110</h2>
+<ul>
+  <li>Storing the version number of the simulator used in the model files</li>
+  <li>Matching the version numbers between server and client in the network simulation</li>
+  <li>Warning messages when a newer model file is loaded using an older version of the simulator</li>
+</ul>
+
+<h2>1.3.109</h2>
+<ul>
+  <li>Bug fix: Incorrect setting colors of pie charts</li>
+</ul>
+
+<h2>1.3.108</h2>
+<ul>
+  <li>Automatic background simulation</li>
+</ul>
+
+<h2>1.3.107</h2>
+<ul>
+  <li>Simulation in client-server mode via a network</li>
+  <li>Speed optimizations in the simulator</li>
+</ul>
+
+</body>
+</html>
+  

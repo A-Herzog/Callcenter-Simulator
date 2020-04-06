@@ -1,0 +1,120 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>simzentrum</groupId>
+  <artifactId>Simulator</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+  
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>WINDOWS-1252</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+        <groupId>simzentrum</groupId>
+        <artifactId>simsystem</artifactId>
+        <version>[20.1,)</version>
+    </dependency>
+    <dependency>
+        <groupId>simzentrum</groupId>
+        <artifactId>simtools</artifactId>
+        <version>[20.1,)</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.googlecode.gettext-commons/gettext-commons -->
+    <dependency>
+      <groupId>com.googlecode.gettext-commons</groupId>
+      <artifactId>gettext-commons</artifactId>
+      <version>0.9.8</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.jdatepicker/jdatepicker -->
+    <dependency>
+        <groupId>org.jdatepicker</groupId>
+        <artifactId>jdatepicker</artifactId>
+        <version>1.3.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.nanohttpd/nanohttpd -->
+    <dependency>
+        <groupId>org.nanohttpd</groupId>
+        <artifactId>nanohttpd</artifactId>
+        <version>2.3.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.atlassian.commonmark/commonmark -->
+    <dependency>
+        <groupId>com.atlassian.commonmark</groupId>
+        <artifactId>commonmark</artifactId>
+        <version>0.14.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.atlassian.commonmark/commonmark-ext-autolink -->
+    <dependency>
+        <groupId>com.atlassian.commonmark</groupId>
+        <artifactId>commonmark-ext-autolink</artifactId>
+        <version>0.14.0</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>CallcenterSimulator</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <excludes><exclude>**/*.java</exclude></excludes>
+      </resource>
+    </resources>
+
+    <plugins>
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <archive>
+            <addMavenDescriptor>false</addMavenDescriptor>
+            <manifest>
+              <addClasspath>true</addClasspath>
+                <classpathLayoutType>custom</classpathLayoutType>
+                <customClasspathLayout>libs/$${artifact.artifactId}.$${artifact.extension}</customClasspathLayout>
+              <mainClass>start.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/libs</outputDirectory>
+              <stripClassifier>true</stripClassifier>
+              <stripVersion>true</stripVersion>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>false</overWriteSnapshots>
+              <overWriteIfNewer>true</overWriteIfNewer>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-install</id>          
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>  
+</project>

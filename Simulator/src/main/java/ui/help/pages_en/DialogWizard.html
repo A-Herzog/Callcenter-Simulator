@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Create new model with wizard"</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/emoticon_smile.png">&nbsp;
+File &gt; New model with wizard
+</div>
+
+<h1>Dialog "Create new model with wizard"</h1>
+
+<p>
+The dialog for creating new call center models is opened from the menu item "New model with wizard"
+of the "File" menu. In this dialog you can create a call center model for
+simulation in just a few steps. The model can be expanded successively later via the model editor.
+</p>
+
+<h2>Page 1 of 4: Caller</h2>
+<p>
+On this dialog page you can specify how many clients will average per half-hour interval.
+In contrast to the options on the further dialog pages there are no ready to use default values
+for this property.
+</p>
+
+<h2>Page 2 of 4: Waiting time tolerance of the clients</h2>
+<p>
+If the clients only have a limited waiting time tolerance (which is the normal case),
+you can set up here the waiting time tolerance as well as the probability for a retry
+after waiting cancelation.
+</p>
+
+<h2>Page 3 of 4: Forwarding</h2>
+<p>
+In many cases clients can not be fully served  by an single agent after and therefore need
+to be forwarded to another agent. On this dialog page you can specify which part of the
+clients will be forwarded after a conversation.
+</p>
+
+<h2>Page 4 of 4: Agents</h2>
+<p>
+Finally you can specify the average holding and post processing times.
+Moreover you can set up indirectly the number of agents that are supposed to work
+in the call center. By selecting a desired utilization of the agent the simulator 
+calculates the number of needed agents from the client arrivals and the average
+holding and post processing times. Because this estimation is not respecting the
+fluctuations in the client arrival and in the actual holding and post processing
+thimes, the workload that arises later from the simulation will not match the
+desired value exactly.
+</p>
+
+</body>
+</html>
+  

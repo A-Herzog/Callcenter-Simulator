@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Documentation of the file formats of Callcenter Simulator - import templates</title>
+</head>
+
+<body>
+
+<h1>Documentation of the file formats of Callcenter Simulator - import templates</h1>
+
+<a href="Dateiformate.html">Back to the overview of all file formats</a>
+
+<h2>File header</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE ImportTemplate SYSTEM "CallcenterSimulator_en.dtd"&gt;</tt>
+</p>
+
+<p>The root node for an import template is <tt>&lt;ImportTemplate&gt;</tt>. It contains
+a <tt>&lt;ImportTemplateRecord&gt;</tt> sub node for each information to be imported.</p>
+
+<h2>Records for the data to be imported</h2>
+
+<p>Each <tt>&lt;ImportTemplateRecord&gt;</tt> node has to have the following attributes:</p>
+
+<ul>
+  <li><tt>Type</tt> describes what to import.</li>
+  <li><tt>Parameter</tt> stores addition informationen for the data to be imported (i.e. the client type to which the data refer).</li>
+  <li><tt>CellFrom</tt> and <tt>CellTo</tt> define the range of cells where the information to be imported are stored.
+  The range has to be a part of a row or a column and is stored in the common spread sheet notation, i.e. B5 for the cell in the second column and the fifth row.</li>
+</ul>
+
+</body>
+</html>
+  

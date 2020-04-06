@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Calculation commands</title>
+</head>
+
+<body>
+
+<h1>Calculation commands</h1>
+
+<h2>Constants</h2>
+
+<table class="border">
+  <tr><td>e</td><td>e&asymp;2,718281828459</td></tr>
+  <tr><td>pi</td><td>&pi;&asymp;3,1415926535898</td></tr>
+</table>
+
+<h2>Basic arithmetic operations</h2>
+
+<p>
+Supported instructions for the basic arithmetic operations:
+<tt>+</tt>, <tt>-</tt>, <tt>*</tt>, <tt>/</tt> and <tt>^</tt>.
+</p>
+
+<p>
+Additionally an <tt>If</tt> function is available. This functions expects an odd number
+of parameters:
+</p>
+<p><tt>If(condition1,value1,condition2,value2,...,valueElse)</tt></p>
+<p>
+If <tt>condition1</tt>&gt;0 the function returns <tt>value1</tt>.<br>
+Otherwise <tt>condition2</tt>&gt;0 is tested and if its fulfilled <tt>value2</tt> is returned and so on.<br>
+If non of the conditions is fulfilled the function returns <tt>valueElse</tt>.
+</p>
+
+<h2>Trailing instructions</h2>
+
+<p>
+The following expressions can be written directly behind a number:
+</p>
+
+<table class="border">
+  <tr><td>%</td><td>Interpret as percent value, for example 30%=0.3.</td></tr>
+  <tr><td>²</td><td>Exponentiate number by 2</td></tr>
+  <tr><td>³</td><td>Exponentiate number by 3</td></tr>
+  <tr><td>!</td><td>Calculate factorial of the number, 4!=1*2*3*4=24</td></tr>
+  <tr><td>°</td><td>Convert a number from degree to radian, 180°=3.1415...</td></tr>
+</table>
+
+<h2>General functions</h2>
+
+<table class="border">
+  <tr><td>abs(x)</td><td>Absolute value, abs(-5)=5</td></tr>
+  <tr><td>ceil(x)</td><td>Round to next bigger integer number, ceil(2,1)=3</td></tr>
+  <tr><td>exp(x)</td><td>Exponential function e<sup>x</sup></td></tr>
+  <tr><td>factorial(x)</td><td>Factorial, 4!=1*2*3*4=24</td></tr>
+  <tr><td>gamme(x)</td><td>Gamma function, gamma(5)=4!=24</td></tr>
+  <tr><td>floor(x)</td><td>Round to next smaller integer number, floor(2,9)=2</td></tr>
+  <tr><td>frac(x)</td><td>Fraction part, frac(1,3)=0,3</td></tr>
+  <tr><td>int(x)</td><td>Integer part, int (2,9)=2</td></tr>
+  <tr><td>ld(x)</td><td>Logarithm to the base 2</td></tr>
+  <tr><td>lg(x)</td><td>Logarithm to the base 10</td></tr>
+  <tr><td>ln(x)</td><td>Logarithm to the base e</td></tr>
+  <tr><td>pow(x;y)</td><td>Exponentiate x<sup>y</sup></td></tr>
+  <tr><td>round(x)</td><td>Round, round(4,4)=4, round(4,5)=5</td></tr>
+  <tr><td>sign(x)</td><td>Sign of a number, sign(3)=1, sign(-3)=-1</td></tr>
+  <tr><td>sqrt(x)</td><td>Square root</td></tr>
+  <tr><td>sqr(x)</td><td>Square the number</td></tr>
+  <tr><td>random()</td><td>Random number between 0 (inclusive) and 1 (exclusive).</td></tr>
+  <tr><td>random(x)</td><td>Random number between 0 (inclusive) and x (exclusive).</td></tr>
+</table>  
+
+<h2>Trigonometric functions</h2>
+
+<table class="border">
+  <tr><td>sin(x)</td><td>Sinus</td></tr>
+  <tr><td>cos(x)</td><td>Cosinus</td></tr>
+  <tr><td>tan(x)</td><td>Tangens</td></tr>
+  <tr><td>cot(x)</td><td>Cotangens</td></tr>
+  <tr><td>sinh(x)</td><td>Sinus hyperbolicus</td></tr>
+  <tr><td>cosh(x)</td><td>Cosinus hyperbolicus</td></tr>
+  <tr><td>tanh(x)</td><td>Tangens hyperbolicus</td></tr>
+  <tr><td>coth(x)</td><td>Cotangens hyperbolicus</td></tr>
+  <tr><td>arcsin(x)</td><td>Arcus sinus</td></tr>
+  <tr><td>arccos(x)</td><td>Arcus cosinus</td></tr>
+  <tr><td>arctan(x)</td><td>Arcus tangens</td></tr>
+  <tr><td>arccot(x)</td><td>Arcus cotangens</td></tr>  
+  <tr><td>arcsinh(x)</td><td>Arcus sinus hyperbolicus</td></tr>
+  <tr><td>arccosh(x)</td><td>Arcus cosinus hyperbolicus</td></tr>
+  <tr><td>arctanh(x)</td><td>Arcus tangens hyperbolicus</td></tr>
+  <tr><td>arccoth(x)</td><td>Arcus cotangens hyperbolicus</td></tr>
+</table>
+
+<h2>Functions with multiple parameters</h2>
+
+<table class="border">
+  <tr><td>Min(a;b;c;...)</td><td>Calculates the minimum of the given numbers</td></tr>
+  <tr><td>Max(a;b;c;...)</td><td>Calculates the maximum of the given numbers</td></tr>
+  <tr><td>Sum(a;b;c;...)</td><td>Calculates the sum of the given numbers</td></tr>
+  <tr><td>Mean(a;b;c;...)</td><td>Calculates the mean value of the given numbers</td></tr>
+  <tr><td>Var(a;b;c;...)</td><td>Calculates the sample variance of the given numbers</td></tr>
+  <tr><td>StdDev(a;b;c;...)</td><td>Calculates the sample standard deviation of the given numbers</td></tr>
+  <tr><td>SCV(a;b;c;...)</td><td>Calculates the squared coefficient of variation of the given numbers</td></tr>
+  <tr><td>CV(a;b;c;...)</td><td>Calculates the coefficient of variation of the given numbers</td></tr>
+</table>
+
+<h2>Probability distributions</h2>
+
+<p>
+By using the following commands both values of the density and the cumulative distribution function
+of the following probability distributions can be calculated as well as random numbers are based on
+one of these probability distributions:
+</p>
+
+<table class="border">
+  <tr><td colspan="2"><b>Exponential distribution with mean a</b></td></tr>
+  <tr><td>ExpDist(x;a;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>ExpDist(x;a;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>ExpDist(a)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Uniform distribution in the interval [a;b]</b></td></tr>
+  <tr><td>UniformDist(x;a;b;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>UniformDist(x;a;b;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>UniformDist(a;b)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Normal distribution with mean a and standard deviation b</b></td></tr>
+  <tr><td>NormalDist(x;a;b;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>NormalDist(x;a;b;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>NormalDist(a;b)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Log-normal distribution with mean a and standard deviation b</b></td></tr>
+  <tr><td>LogNormalDist(x;a;b;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>LogNormalDist(x;a;b;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>LogNormalDist(a;b)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Gamma distribution with parameters &alpha;=a and &beta;=b</b></td></tr>
+  <tr><td>GammaDist(x;a;b;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>GammaDist(x;a;b;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>GammaDist(a;b)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Erlang distribution with parameters n and &lambda;=l</b></td></tr>
+  <tr><td>ErlangDist(x;n;l;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>ErlangDist(x;n;l;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>ErlangDist(n;b)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Beta distribution in the interval [a;b] and with parameters &alpha;=c and &beta;=d</b></td></tr>
+  <tr><td>BetaDist(x;a;b;c;d;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>BetaDist(x;a;b;c;d;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>BetaDist(a;b;c;d)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Weibull distribution with parameters Scale=a and Form=d</b></td></tr>
+  <tr><td>WeibullDist(x;a;b;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>WeibullDist(x;a;b;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>WeibullDist(a;b)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Cauchy distribution with mean a and Scale=b</b></td></tr>
+  <tr><td>CauchyDist(x;a;b;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>CauchyDist(x;a;b;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>CauchyDist(a;b)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Chi<sup>2</sup> distribution with n degrees of freedom</b></td></tr>
+  <tr><td>ChiSquareDist(x;n;0)</td><td>Calculates the probability density at x</td></tr>  
+  <tr><td>ChiSquareDist(x;n;1)</td><td>Chi<sup>2</sup>-Verteilung mit n Freiheitsgraden</td></tr>
+  <tr><td>ChiSquareDist(n)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>F distribution with a degrees of freedom for the numerator and b degrees of freedom for the denominator</b></td></tr>
+  <tr><td>FDist(x;a;b;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>FDist(x;a;b;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>FDist(a;b)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Johnson SU distribution with parameters a=&gamma;, b=&xi;, c=&delta; and d=&lambda;</b></td></tr>
+  <tr><td>JohnsonSUDist(x;a;b;c;d;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>JohnsonSUDist(x;a;b;c;d;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>JohnsonSUDist(a;b;c;d)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Triangular distribution over [a;c] with b=most likely value</b></td></tr>
+  <tr><td>TriangularDist(x;a;b;c;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>TriangularDist(x;a;b;c;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>TriangularDist(a;b;c)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Laplace distribution with mean mu and scale factor b</b></td></tr>
+  <tr><td>LaplaceDist(x;mu;b;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>LaplaceDist(x;mu;b;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>LaplaceDist(mu;b)</td><td>Generates a random number based on this distribution</td></tr>  
+  <tr><td colspan="2"><b>Pareto distribution with scale parameter x<sub>min</sub> and shape parameter &alpha;</b></td></tr>
+  <tr><td>ParetoDist(x;xmin;alpha;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>ParetoDist(x;xmin;alpha;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>ParetoDist(xmin;alpha)</td><td>Generates a random number based on this distribution</td></tr>  
+  <tr><td colspan="2"><b>Logistic distribution with mean &mu; and scale parameter s</b></td></tr>
+  <tr><td>LogisticDist(x;mu;s;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>LogisticDist(x;mu;s;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>LogisticDist(mu;s)</td><td>Generates a random number based on this distribution</td></tr>  
+  <tr><td colspan="2"><b>Inverse gaussian distribution with &lambda; and mean &mu;</b></td></tr>
+  <tr><td>InverseGaussianDist(x;lambda;mu;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>InverseGaussianDist(x;lambda;mu;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>InverseGaussianDist(lambda;mu)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Rayleigh distribution with mean &mu;</b></td></tr>
+  <tr><td>RayleighDist(x;mu;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>RayleighDist(x;mu;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>RayleighDist(mu)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Log-logistic distribution with &alpha; and &beta;</b></td></tr>
+  <tr><td>LogLogisticDist(x;alpha;beta;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>LogLogisticDist(x;alpha;beta;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>LogLogisticDist(alpha;beta)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Power distribution over [a;b] with power value c</b></td></tr>
+  <tr><td>PowerDist(x;a;b;c;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>PowerDist(x;a;b;c;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>PowerDist(a;b;c)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Gumbel distribution with mean a and standard deviation b</b></td></tr>
+  <tr><td>GumbelDist(x;a;b;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>GumbelDist(x;a;b;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>GumbelDist(a;b)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Fatigue life distribution with location parameter mu, scale parameter beta and form parameter gamma</b></td></tr>
+  <tr><td>FatigueLifeDist(x;mu;beta;gamma;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>FatigueLifeDist(x;mu;beta;gamma;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>FatigueLifeDist(mu;beta;gamma)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Frechet distribution with location parameter delta, scale parameter beta and form parameter alpha</b></td></tr>
+  <tr><td>FrechetDist(x;delta;beta;alpha;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>FrechetDist(x;delta;beta;alpha;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>FrechetDist(delta;beta;alpha)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Hyperbolic secant distribution with mean a and standard deviation b</b></td></tr>
+  <tr><td>HyperbolicSecantDist(x;a;b;0)</td><td>Calculates the probability density at x</td></tr>
+  <tr><td>HyperbolicSecantDist(x;a;b;1)</td><td>Calculates the cumulative distribution function at x</td></tr>
+  <tr><td>HyperbolicSecantDist(a;b)</td><td>Generates a random number based on this distribution</td></tr>
+  <tr><td colspan="2"><b>Distribution based on empirical values</b></td></tr>
+  <tr><td>EmpiricalDensity(x;value1;value2;value3;...;max)</td><td>Calculates the probability density at x. The specified values will be used for the density in the range from 0 to max.</td></tr>
+  <tr><td>EmpiricalDistribution(x;value1;value2;value3;...;max)</td><td>Calculates the cumulative distribution function at x. The specified values will be used for the density in the range from 0 to max.</td></tr>
+  <tr><td>EmpiricalRandom(value1;value2;value3;...;max)</td><td>Generates a random number based on this distribution. The specified values will be used for the density in the range from 0 to max.</td></tr>
+  <tr><td>EmpiricalDistributionMean(value1;value2;value3;...;max)</td><td>Calculates the expected value of the distribution.</td></tr>
+  <tr><td>EmpiricalDistributionSD(value1;value2;value3;...;max)</td><td>Calculates the standard deviation of the distribution.</td></tr>
+  <tr><td>EmpiricalDistributionVar(value1;value2;value3;...;max)</td><td>Calculates the variance of the distribution.</td></tr>
+  <tr><td>EmpiricalDistributionCV(value1;value2;value3;...;max)</td><td>Calculates the coefficient of variation of the distribution.</td></tr>
+</table>
+
+<h2>Erlang C calculator</h2>
+
+<p>
+By using the following command some performance indicators can be calculated
+using the extended Erlang C formula:
+</p>
+
+<table class="border">
+  <tr><td>ErlangC(lambda;mu;nu;c;K;-1)</td><td>Calculates the average queue length E[N<sub>Q</sub>]</td></tr> 
+  <tr><td>ErlangC(lambda;mu;nu;c;K;-2)</td><td>Calculates the average number of clients in the system E[N]</td></tr>
+  <tr><td>ErlangC(lambda;mu;nu;c;K;-3)</td><td>Calculates the average waiting time E[W]</td></tr>
+  <tr><td>ErlangC(lambda;mu;nu;c;K;-4)</td><td>Calculates the average residence time E[V]</td></tr>
+  <tr><td>ErlangC(lambda;mu;nu;c;K;-5)</td><td>Calculates the average accessibility 1-P(A)</td></tr>
+  <tr><td>ErlangC(lambda;mu;nu;c;K;t)</td><td>Calculates the the probability for the service level at the t seconds threshold P(W&le;t)</td></tr>
+</table>
+
+<h2>Allen-Cunneen approximation formula</h2>
+
+<p>
+By using the following command some performance indicators can be calculated
+using the Allen-Cunneen approximation formula:
+</p>
+
+<table class="border">
+  <tr><td>AllenCunneen(lambda;mu;cvI;cvS;c;-1)</td><td>Calculates the average queue length E[N<sub>Q</sub>]</td></tr> 
+  <tr><td>AllenCunneen(lambda;mu;cvI;cvS;c;-2)</td><td>Calculates the average number of clients in the system E[N]</td></tr>
+  <tr><td>AllenCunneen(lambda;mu;cvI;cvS;c;-3)</td><td>Calculates the average waiting time E[W]</td></tr>
+  <tr><td>AllenCunneen(lambda;mu;cvI;cvS;c;-4)</td><td>Calculates the average residence time E[V]</td></tr>
+</table>
+
+</body>
+</html>

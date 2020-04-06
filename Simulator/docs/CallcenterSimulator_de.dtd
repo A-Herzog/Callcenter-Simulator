@@ -1,0 +1,693 @@
+<!-- Beschreibung der Callcenter-Modell-Dateien -->
+<!-- ========================================== -->
+
+<!ELEMENT CallcenterModell (ModellName, ModellSimulatorVersion, ModellBeschreibung, ModellDatum*, ModellMaxWarteschlangenLaenge, ModellSimulierteTage, ModellBevorzugteSchichtlaenge, ModellMinimaleSchichtlaenge*, ModellServiceLevel, ModellProduktivitaet*, ModellPlanungsaufschlag*, ModellKundentyp*, ModellCallcenter*, ModellSkillLevel*, ModellSchellenwerte*)>
+
+<!ELEMENT ModellSimulatorVersion (#PCDATA)>
+<!ELEMENT ModellName (#PCDATA)>
+<!ELEMENT ModellBeschreibung (#PCDATA)>
+<!ELEMENT ModellDatum (#PCDATA)>
+<!ELEMENT ModellMaxWarteschlangenLaenge (#PCDATA)>
+<!ELEMENT ModellSimulierteTage (#PCDATA)>
+<!ELEMENT ModellBevorzugteSchichtlaenge (#PCDATA)>
+<!ELEMENT ModellMinimaleSchichtlaenge (#PCDATA)>
+<!ELEMENT ModellServiceLevel (#PCDATA)>
+<!ELEMENT ModellProduktivitaet (#PCDATA)>
+<!ELEMENT ModellPlanungsaufschlag (#PCDATA)>
+
+
+<!ELEMENT ModellKundentyp (KundenErstanrufer, KundenScore, (KundenWartezeittoleranzVerteilung | KundenWartezeittoleranzVerteilungLang | KundenWartezeittoleranzSchaetzung), KundenWiederholungen, KundenWeiterleitungen, KundenWiederanrufer*, GewinnProKunde, KostenProAnrufer)>
+<!ATTLIST ModellKundentyp
+  Aktiv 			(0|1)	#IMPLIED
+  BelegtLeitung 	(0|1)	#IMPLIED
+  ServiceLevel	 	CDATA	#IMPLIED
+  Name				CDATA	#REQUIRED
+>
+
+<!ELEMENT KundenErstanrufer (ErstanruferAnzahl, ErstanruferVerteilung)>
+
+<!ELEMENT ErstanruferAnzahl (#PCDATA)>
+<!ATTLIST ErstanruferAnzahl
+  Standardabweichung	CDATA	#IMPLIED
+>
+
+<!ELEMENT ErstanruferVerteilung (#PCDATA)>
+
+<!ELEMENT KundenScore EMPTY>
+<!ATTLIST KundenScore
+  Basis 			CDATA #REQUIRED
+  ProWartesekunde	CDATA #REQUIRED
+  Weiterleitung		CDATA #REQUIRED
+>
+
+<!ELEMENT KundenWartezeittoleranzVerteilung (#PCDATA)>
+
+<!ELEMENT KundenWartezeittoleranzVerteilungLang (#PCDATA)>
+
+<!ELEMENT KundenWartezeittoleranzSchaetzung EMPTY>
+<!ATTLIST KundenWartezeittoleranzSchaetzung
+Wartezeit					CDATA #REQUIRED
+Abbruchwahrscheinlichkeit	CDATA #REQUIRED
+Korrekturwert				CDATA #REQUIRED
+>
+
+<!ELEMENT KundenWiederholungen (WiederholungenAbstaendeVerteilung, WiederholungenWahrscheinlichkeitNachBlockierungErsterVersuch, WiederholungenWahrscheinlichkeitNachBlockierungWeitereVersuche, WiederholungenWahrscheinlichkeitNachAbbruchErsterVersuch, WiederholungenWahrscheinlichkeitNachAbbruchWeitereVersuche, WiederholungenKundentypNachBlockierungErsterVersuch, WiederholungenKundentypNachBlockierungWeitereVersuche, WiederholungenKundentypNachAbbruchErsterVersuch, WiederholungenKundentypNachAbbruchWeitereVersuche)>
+<!ELEMENT WiederholungenAbstaendeVerteilung (#PCDATA)>
+<!ELEMENT WiederholungenWahrscheinlichkeitNachBlockierungErsterVersuch (#PCDATA)>
+<!ELEMENT WiederholungenWahrscheinlichkeitNachBlockierungWeitereVersuche (#PCDATA)>
+<!ELEMENT WiederholungenWahrscheinlichkeitNachAbbruchErsterVersuch (#PCDATA)>
+<!ELEMENT WiederholungenWahrscheinlichkeitNachAbbruchWeitereVersuche (#PCDATA)>
+
+<!ELEMENT WiederholungenKundentypNachBlockierungErsterVersuch (WiederholungenNeuerKundentyp*)>
+<!ELEMENT WiederholungenKundentypNachBlockierungWeitereVersuche (WiederholungenNeuerKundentyp*)>
+<!ELEMENT WiederholungenKundentypNachAbbruchErsterVersuch (WiederholungenNeuerKundentyp*)>
+<!ELEMENT WiederholungenKundentypNachAbbruchWeitereVersuche (WiederholungenNeuerKundentyp*)>
+
+<!ELEMENT WiederholungenNeuerKundentyp (#PCDATA)>
+<!ATTLIST WiederholungenNeuerKundentyp
+Name		CDATA #REQUIRED
+>
+
+<!ELEMENT KundenWeiterleitungen (WeiterleitungenNeuerKundentyp*, WeiterleitungenSkillLevelSpezifisch*)>
+<!ATTLIST KundenWeiterleitungen
+  Wahrscheinlichkeit CDATA #REQUIRED
+>
+<!ELEMENT WeiterleitungenNeuerKundentyp (#PCDATA)>
+<!ATTLIST WeiterleitungenNeuerKundentyp
+  Name CDATA #REQUIRED
+>
+<!ELEMENT WeiterleitungenSkillLevelSpezifisch (WeiterleitungenNeuerKundentyp*)>
+<!ATTLIST WeiterleitungenSkillLevelSpezifisch
+  SkillLevel			CDATA #REQUIRED
+  Wahrscheinlichkeit	CDATA #REQUIRED
+>
+
+<!ELEMENT KundenWiederanrufer (WiederanrufAbstaendeVerteilung, WiederanrufNeuerKundentyp*, WiederanrufSkillLevelSpezifisch*)>
+<!ATTLIST KundenWiederanrufer
+  Wahrscheinlichkeit CDATA #REQUIRED
+>
+<!ELEMENT WiederanrufAbstaendeVerteilung (#PCDATA)>
+<!ELEMENT WiederanrufNeuerKundentyp (#PCDATA)>
+<!ATTLIST WiederanrufNeuerKundentyp
+  Name CDATA #REQUIRED
+>
+<!ELEMENT WiederanrufSkillLevelSpezifisch (WiederanrufNeuerKundentyp*)>
+<!ATTLIST WiederanrufSkillLevelSpezifisch
+  SkillLevel			CDATA #REQUIRED
+  Wahrscheinlichkeit	CDATA #REQUIRED
+>
+
+<!ELEMENT GewinnProKunde (#PCDATA)>
+<!ELEMENT KostenProAnrufer EMPTY>
+<!ATTLIST KostenProAnrufer
+  Abbruch				CDATA #REQUIRED
+  Wartesekunde			CDATA #REQUIRED
+>
+
+<!ELEMENT ModellCallcenter (CallcenterAgentengruppe*, CallcenterTechnischeBereitzeit, CallcenterScore, CallcenterAgentenScore, CallcenterMindestWartezeit*, ModellProduktivitaet*, ModellPlanungsaufschlag*)>
+<!ATTLIST ModellCallcenter
+  Aktiv (0|1)	#IMPLIED
+  Name 	CDATA	#REQUIRED
+>
+
+<!ELEMENT CallcenterAgentengruppe (((AgentengruppeAnzahl, AgentengruppeArbeitszeitbeginn, AgentengruppeArbeitszeitende) | (AgentengruppeVerteilung) | (AgentengruppeNachKundenankuenften)), AgentengruppeSkillLevel, KostenProStunde, (KostenProKundengruppe)*, ModellBevorzugteSchichtlaenge*, ModellMinimaleSchichtlaenge*, ModellProduktivitaet*, ModellPlanungsaufschlag*)>
+<!ATTLIST CallcenterAgentengruppe
+  Aktiv (0|1) #IMPLIED
+>
+<!ELEMENT AgentengruppeAnzahl (#PCDATA)>
+<!ELEMENT AgentengruppeArbeitszeitbeginn (#PCDATA)>
+<!ELEMENT AgentengruppeArbeitszeitende (#PCDATA)>
+
+<!ELEMENT AgentengruppeVerteilung (#PCDATA)>
+<!ATTLIST AgentengruppeVerteilung
+  SchichtBisMitternachtIstOpenEnd (0|1) #IMPLIED
+>
+
+<!ELEMENT AgentengruppeNachKundenankuenften (KundenankuenfteGruppe*)>
+<!ATTLIST AgentengruppeNachKundenankuenften
+  Agentenhalbstunden CDATA #REQUIRED
+>
+<!ELEMENT KundenankuenfteGruppe (#PCDATA)>
+<!ATTLIST KundenankuenfteGruppe
+  Rate CDATA #REQUIRED
+>
+<!ELEMENT AgentengruppeSkillLevel (#PCDATA)>
+
+<!ELEMENT KostenProStunde (#PCDATA)>
+<!ELEMENT KostenProKundengruppe EMPTY>
+<!ATTLIST KostenProKundengruppe
+  Kundentyp CDATA #REQUIRED
+  ProAnruf CDATA #REQUIRED
+  ProMinute CDATA #REQUIRED
+>
+  
+<!ELEMENT CallcenterTechnischeBereitzeit (#PCDATA)>
+<!ATTLIST CallcenterTechnischeBereitzeit
+  IstWartezeit	(0|1) #IMPLIED
+>
+
+<!ELEMENT CallcenterScore (#PCDATA)>
+<!ELEMENT CallcenterAgentenScore (AgentenScoreFaktorSeitLetztemAnruf, AgentenScoreFaktorLeerlaufAnteil)>
+<!ELEMENT AgentenScoreFaktorSeitLetztemAnruf (#PCDATA)>
+<!ELEMENT AgentenScoreFaktorLeerlaufAnteil (#PCDATA)>
+<!ELEMENT CallcenterMindestWartezeit (MindestWartezeitKundentyp*)>
+<!ELEMENT MindestWartezeitKundentyp (#PCDATA)>
+<!ATTLIST MindestWartezeitKundentyp
+  Name CDATA #REQUIRED
+>
+ 
+<!ELEMENT ModellSkillLevel (SkillLevelKundentyp*)>
+<!ATTLIST ModellSkillLevel
+  Name CDATA #REQUIRED
+>
+
+<!ELEMENT SkillLevelKundentyp (SkillLevelKundentypBedienzeitAddOn*, SkillLevelKundentypBedienzeitverteilung*, SkillLevelKundentypNachbearbeitungszeitverteilung*, SkillLevelKundentypScore*)>
+<!ATTLIST SkillLevelKundentyp
+  Name CDATA #REQUIRED
+>
+
+<!ELEMENT SkillLevelKundentypBedienzeitAddOn (#PCDATA)>
+<!ATTLIST SkillLevelKundentypBedienzeitAddOn
+  Intervall CDATA #IMPLIED
+>
+<!ELEMENT SkillLevelKundentypBedienzeitverteilung (#PCDATA)>
+<!ATTLIST SkillLevelKundentypBedienzeitverteilung
+  Intervall CDATA #IMPLIED
+>
+<!ELEMENT SkillLevelKundentypNachbearbeitungszeitverteilung (#PCDATA)>
+<!ATTLIST SkillLevelKundentypNachbearbeitungszeitverteilung
+  Intervall CDATA #IMPLIED
+>
+<!ELEMENT SkillLevelKundentypScore (#PCDATA)>
+
+<!ELEMENT ModellSchellenwerte (SchellenwertDaten*)>
+
+<!ELEMENT SchellenwertDaten EMPTY>
+<!ATTLIST SchellenwertDaten
+  Typ CDATA #REQUIRED
+  Intervalle CDATA #REQUIRED
+  Gruppen CDATA #REQUIRED
+  WarnungGelb CDATA #REQUIRED
+  WarnungRot CDATA #REQUIRED
+  Wert CDATA #IMPLIED
+  Status CDATA #IMPLIED
+>
+
+<!-- Beschreibung der Statistik-Dateien -->
+<!-- ================================== -->
+
+<!ELEMENT Statistik (CallcenterModell, StatistikLaufdatum, StatistikNutzer*, StatistikServer*, StatistikServerOS*, StatistikLaufzeit, StatistikThreads, StatistikTage, StatistikEreignisse, StatistikKunden*, StatistikAgenten*, StatistikWarteschlange, StatistikWarteschlangeZusammenfassung*, StatistikErtragZusammenfassung*, StatistikModellAgenten*, ErlangCOhneWiederholer*, ErlangCMitWiederholern*, StatistikSchwellenwerte*)>
+
+<!ELEMENT StatistikLaufdatum (#PCDATA)>
+<!ELEMENT StatistikNutzer (#PCDATA)>
+<!ELEMENT StatistikServer (#PCDATA)>
+<!ELEMENT StatistikServerOS (#PCDATA)>
+<!ELEMENT StatistikLaufzeit (#PCDATA)>
+<!ELEMENT StatistikThreads (#PCDATA)>
+<!ELEMENT StatistikTage (#PCDATA)>
+<!ELEMENT StatistikEreignisse (#PCDATA)>
+
+<!ELEMENT StatistikKunden (StatistikKundenAnzahl, StatistikKundenZusammenfassung*, StatistikKundenUebertrag, StatistikKundenWartezeit, StatistikKundenVerweilzeit, StatistikKundenAbbruchzeit, StatistikKundenServiceLevel, StatistikKundenWeiterleitungen, StatistikKundenWiederholungen, StatistikKundenWiederanrufe*, StatistikKundenWartezeitverteilung, StatistikKundenVerweilzeitverteilung, StatistikKundenAbbruchzeitverteilung, StatistikKundenWartezeitverteilungLang, StatistikKundenVerweilzeitverteilungLang, StatistikKundenAbbruchzeitverteilungLang, StatistikAnrufeAnzahl, StatistikAnrufeWartezeit, StatistikAnrufeVerweilzeit, StatistikAnrufeAbbruchzeit, StatistikAnrufeServiceLevel, StatistikAnrufeWeiterleitungen, StatistikAnrufeWiederholungen, StatistikAnrufeWartezeitverteilung, StatistikAnrufeVerweilzeitverteilung, StatistikAnrufeAbbruchzeitverteilung, StatistikAnrufeWartezeitverteilungLang, StatistikAnrufeVerweilzeitverteilungLang, StatistikAnrufeAbbruchzeitverteilungLang, StatistikKonfidenz, StatistikAnruferKosten)>
+<!ATTLIST StatistikKunden
+  Name CDATA #IMPLIED
+>
+
+<!ELEMENT StatistikKundenZusammenfassung EMPTY>
+<!ATTLIST StatistikKundenZusammenfassung
+  Bereich											CDATA #IMPLIED
+  KundenErreichbarkeit								CDATA #REQUIRED
+  AnrufeErreichbarkeit								CDATA #REQUIRED
+  KundenMittlereWartezeit							CDATA #REQUIRED
+  AnrufeMittlereWartezeit							CDATA #REQUIRED
+  KundenMittlereVerweilzeit							CDATA #IMPLIED
+  AnrufeMittlereVerweilzeit							CDATA #IMPLIED
+  KundenServiceLevel								CDATA #REQUIRED
+  KundenServiceLevelAlle							CDATA #IMPLIED
+  AnrufeServiceLevel								CDATA #REQUIRED
+  AnrufeServiceLevelAlle							CDATA #IMPLIED
+  KundenMittlereAbbruchzeit							CDATA #IMPLIED
+  AnrufeMittlereAbbruchzeit							CDATA #IMPLIED
+  KundenKombinierteMittlereWartezeitUndAbbruchzeit	CDATA #IMPLIED
+  AnrufeKombinierteMittlereWartezeitUndAbbruchzeit	CDATA #IMPLIED
+>
+
+<!ELEMENT StatistikKundenAnzahl EMPTY>
+<!ATTLIST StatistikKundenAnzahl
+  Anzahl				CDATA #REQUIRED
+  Erfolg				CDATA #REQUIRED
+  Blockiert				CDATA #REQUIRED
+  Abbruch				CDATA #REQUIRED
+  Uebertrag				CDATA #REQUIRED
+  AnzahlProIntervall	CDATA #REQUIRED
+  ErfolgProIntervall	CDATA #REQUIRED
+  BlockiertProIntervall	CDATA #REQUIRED
+  AbbruchProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenUebertrag (StatistikKundenAbbruchProTag, StatistikKundenWiederholzeitenProTag, StatistikKundenRestWartezeittoleranzenProTag)>
+
+<!ELEMENT StatistikKundenAbbruchProTag (#PCDATA)>
+<!ELEMENT StatistikKundenWiederholzeitenProTag (#PCDATA)>
+<!ELEMENT StatistikKundenRestWartezeittoleranzenProTag (#PCDATA)>
+
+<!ELEMENT StatistikKundenWartezeit EMPTY>
+<!ATTLIST StatistikKundenWartezeit
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  SummeProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenVerweilzeit EMPTY>
+<!ATTLIST StatistikKundenVerweilzeit
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  SummeProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenAbbruchzeit EMPTY>
+<!ATTLIST StatistikKundenAbbruchzeit
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  SummeProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenServiceLevel EMPTY>
+<!ATTLIST StatistikKundenServiceLevel
+  Anzahl				CDATA #REQUIRED
+  AnzahlProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenWeiterleitungen EMPTY>
+<!ATTLIST StatistikKundenWeiterleitungen
+  Anzahl				CDATA #REQUIRED
+  AnzahlProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenWiederholungen EMPTY>
+<!ATTLIST StatistikKundenWiederholungen
+  Anzahl				CDATA #REQUIRED
+  AnzahlProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenWiederanrufe EMPTY>
+<!ATTLIST StatistikKundenWiederanrufe
+  Anzahl				CDATA #REQUIRED
+  AnzahlProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenWartezeitverteilung EMPTY>
+<!ATTLIST StatistikKundenWartezeitverteilung
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenVerweilzeitverteilung EMPTY>
+<!ATTLIST StatistikKundenVerweilzeitverteilung
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenAbbruchzeitverteilung EMPTY>
+<!ATTLIST StatistikKundenAbbruchzeitverteilung
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenWartezeitverteilungLang EMPTY>
+<!ATTLIST StatistikKundenWartezeitverteilungLang
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenVerweilzeitverteilungLang EMPTY>
+<!ATTLIST StatistikKundenVerweilzeitverteilungLang
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKundenAbbruchzeitverteilungLang EMPTY>
+<!ATTLIST StatistikKundenAbbruchzeitverteilungLang
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeAnzahl EMPTY>
+<!ATTLIST StatistikAnrufeAnzahl
+  Anzahl				CDATA #REQUIRED
+  Erfolg				CDATA #REQUIRED
+  Blockiert				CDATA #REQUIRED
+  Abbruch				CDATA #REQUIRED
+  Uebertrag				CDATA #REQUIRED
+  AnzahlProIntervall	CDATA #REQUIRED
+  ErfolgProIntervall	CDATA #REQUIRED
+  BlockiertProIntervall	CDATA #REQUIRED
+  AbbruchProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeWartezeit EMPTY>
+<!ATTLIST StatistikAnrufeWartezeit
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  SummeProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeVerweilzeit EMPTY>
+<!ATTLIST StatistikAnrufeVerweilzeit
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  SummeProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeAbbruchzeit EMPTY>
+<!ATTLIST StatistikAnrufeAbbruchzeit
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  SummeProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeServiceLevel EMPTY>
+<!ATTLIST StatistikAnrufeServiceLevel
+  Anzahl				CDATA #REQUIRED
+  AnzahlProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeWeiterleitungen EMPTY>
+<!ATTLIST StatistikAnrufeWeiterleitungen
+  Anzahl				CDATA #REQUIRED
+  AnzahlProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeWiederholungen EMPTY>
+<!ATTLIST StatistikAnrufeWiederholungen
+  Anzahl				CDATA #REQUIRED
+  AnzahlProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeWartezeitverteilung EMPTY>
+<!ATTLIST StatistikAnrufeWartezeitverteilung
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeVerweilzeitverteilung EMPTY>
+<!ATTLIST StatistikAnrufeVerweilzeitverteilung
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeAbbruchzeitverteilung EMPTY>
+<!ATTLIST StatistikAnrufeAbbruchzeitverteilung
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeWartezeitverteilungLang EMPTY>
+<!ATTLIST StatistikAnrufeWartezeitverteilungLang
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeVerweilzeitverteilungLang EMPTY>
+<!ATTLIST StatistikAnrufeVerweilzeitverteilungLang
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAnrufeAbbruchzeitverteilungLang EMPTY>
+<!ATTLIST StatistikAnrufeAbbruchzeitverteilungLang
+  Verteilung CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikKonfidenz (KonfidenzErreichbarkeitAnrufe, KonfidenzErreichbarkeitKunden, KonfidenzWartezeit, KonfidenzServiceLevelAnrufeErfolg, KonfidenzServiceLevelAnrufeAlle, KonfidenzServiceLevelKundenErfolg, KonfidenzServiceLevelKundenAlle)>
+
+<!ELEMENT KonfidenzErreichbarkeitAnrufe EMPTY>
+<!ATTLIST KonfidenzErreichbarkeitAnrufe
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  Konfidenz90Min	CDATA #IMPLIED
+  Konfidenz90Max	CDATA #IMPLIED
+  Konfidenz95Min	CDATA #IMPLIED
+  Konfidenz95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT KonfidenzErreichbarkeitKunden EMPTY>
+<!ATTLIST KonfidenzErreichbarkeitKunden
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  Konfidenz90Min	CDATA #IMPLIED
+  Konfidenz90Max	CDATA #IMPLIED
+  Konfidenz95Min	CDATA #IMPLIED
+  Konfidenz95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT KonfidenzWartezeit EMPTY>
+<!ATTLIST KonfidenzWartezeit
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  Konfidenz90Min	CDATA #IMPLIED
+  Konfidenz90Max	CDATA #IMPLIED
+  Konfidenz95Min	CDATA #IMPLIED
+  Konfidenz95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT KonfidenzServiceLevelAnrufeErfolg EMPTY>
+<!ATTLIST KonfidenzServiceLevelAnrufeErfolg
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  Konfidenz90Min	CDATA #IMPLIED
+  Konfidenz90Max	CDATA #IMPLIED
+  Konfidenz95Min	CDATA #IMPLIED
+  Konfidenz95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT KonfidenzServiceLevelAnrufeAlle EMPTY>
+<!ATTLIST KonfidenzServiceLevelAnrufeAlle
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  Konfidenz90Min	CDATA #IMPLIED
+  Konfidenz90Max	CDATA #IMPLIED
+  Konfidenz95Min	CDATA #IMPLIED
+  Konfidenz95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT KonfidenzServiceLevelKundenErfolg EMPTY>
+<!ATTLIST KonfidenzServiceLevelKundenErfolg
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  Konfidenz90Min	CDATA #IMPLIED
+  Konfidenz90Max	CDATA #IMPLIED
+  Konfidenz95Min	CDATA #IMPLIED
+  Konfidenz95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT KonfidenzServiceLevelKundenAlle EMPTY>
+<!ATTLIST KonfidenzServiceLevelKundenAlle
+  Summe				CDATA #REQUIRED
+  QuadrateSumme		CDATA #REQUIRED
+  Konfidenz90Min	CDATA #IMPLIED
+  Konfidenz90Max	CDATA #IMPLIED
+  Konfidenz95Min	CDATA #IMPLIED
+  Konfidenz95Max	CDATA #IMPLIED
+>
+
+<!ELEMENT StatistikAnruferKosten EMPTY>
+<!ATTLIST StatistikAnruferKosten
+  Ertrag		CDATA #REQUIRED
+  Wartezeiten	CDATA #REQUIRED
+  Abbrecher		CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikAgenten (StatistikAgentenGesamt, StatistikAgentenKundentyp+, StatistikAgentenKosten)>
+<!ATTLIST StatistikAgenten
+  Anzahl	CDATA #REQUIRED
+  Name		CDATA #IMPLIED
+  Typ		CDATA #IMPLIED
+>
+
+<!ELEMENT StatistikAgentenGesamt EMPTY>
+<!ATTLIST StatistikAgentenGesamt
+  Leerlauf							CDATA #REQUIRED
+  TechnischeBereitzeit				CDATA #REQUIRED
+  Gespraechszeit					CDATA #REQUIRED
+  Nachbearbeitungszeit				CDATA #REQUIRED
+  LeerlaufProIntervall				CDATA #REQUIRED
+  TechnischeBereitzeitProIntervall	CDATA #REQUIRED
+  GespraechszeitProIntervall		CDATA #REQUIRED
+  NachbearbeitungszeitProIntervall	CDATA #REQUIRED
+  LeerlaufAnteil					CDATA #IMPLIED
+  TechnischeBereitzeitAnteil		CDATA #IMPLIED
+  GespraechszeitAnteil				CDATA #IMPLIED
+  NachbearbeitungszeitAnteil		CDATA #IMPLIED
+  BruttoZeit						CDATA #IMPLIED
+  NettoZeit							CDATA #IMPLIED
+  Anrufe							CDATA #IMPLIED
+  AnrufeProIntervall				CDATA #IMPLIED
+>
+
+<!ELEMENT StatistikAgentenKundentyp EMPTY>
+<!ATTLIST StatistikAgentenKundentyp
+  Name								CDATA #REQUIRED
+  TechnischeBereitzeit				CDATA #REQUIRED
+  Gespraechszeit					CDATA #REQUIRED
+  Nachbearbeitungszeit				CDATA #REQUIRED
+  TechnischeBereitzeitProIntervall	CDATA #REQUIRED
+  GespraechszeitProIntervall		CDATA #REQUIRED
+  NachbearbeitungszeitProIntervall	CDATA #REQUIRED
+  Anrufe							CDATA #IMPLIED
+  AnrufeProIntervall				CDATA #IMPLIED
+>
+
+<!ELEMENT StatistikAgentenKosten EMPTY>
+<!ATTLIST StatistikAgentenKosten
+  Arbeitslohn				CDATA #REQUIRED
+  KostenFuerGespraeche		CDATA #REQUIRED
+  KostenFuerGespraechszeit	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikErtragZusammenfassung (#PCDATA)>
+
+<!ELEMENT StatistikWarteschlange EMPTY>
+<!ATTLIST StatistikWarteschlange
+  Maximal				CDATA #REQUIRED
+  Mittel				CDATA #REQUIRED
+  MittelProIntervall	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikWarteschlangeZusammenfassung EMPTY>
+<!ATTLIST StatistikWarteschlangeZusammenfassung
+  Bereich	CDATA #REQUIRED
+  Mittel	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikModellAgenten (StatistikModellAgentenSimulation, StatistikModellAgentenModell, StatistikModellAgentenVollstaendig)>
+<!ATTLIST StatistikModellAgenten
+  Name	CDATA #IMPLIED
+  Typ	CDATA #IMPLIED
+>
+
+<!ELEMENT StatistikModellAgentenSimulation (#PCDATA)>
+<!ELEMENT StatistikModellAgentenModell (#PCDATA)>
+<!ELEMENT StatistikModellAgentenVollstaendig (#PCDATA)>
+
+<!ELEMENT ErlangCOhneWiederholer EMPTY>
+<!ATTLIST ErlangCOhneWiederholer
+  AnzahlAnAgenten	CDATA #REQUIRED
+  Erstanrufer	    CDATA #REQUIRED
+  ServiceLevel	    CDATA #REQUIRED
+  Erfolg	        CDATA #REQUIRED
+  MittlereWartezeit	CDATA #REQUIRED
+>
+
+<!ELEMENT ErlangCMitWiederholern EMPTY>
+<!ATTLIST ErlangCMitWiederholern
+  AnzahlAnAgenten	CDATA #REQUIRED
+  Erstanrufer	    CDATA #REQUIRED
+  Wiederholer	    CDATA #REQUIRED
+  ServiceLevel	    CDATA #REQUIRED
+  Erfolg	        CDATA #REQUIRED
+  MittlereWartezeit	CDATA #REQUIRED
+>
+
+<!ELEMENT StatistikSchwellenwerte (SchellenwertDaten*)>
+
+<!-- Beschreibung der Optimiererkonfigurations-Dateien -->
+<!-- ================================================= -->
+
+<!ELEMENT OptimiererEinstellungen (Optimierung-Eigenschaft, Optimierung-Wert, Optimierung-WertMaximum*, Optimierung-Intervalle, Optimierung-Gruppen, Optimierung-Gruppe*, Optimierung-Optimierungsintervalle*, Anpassung-Wert, Anpassung-Gruppen, Anpassung-Gruppe*, Optimierung-Uebertrag*, Optimierung-InitialerBestand*, Einschraenkung-Gruppe*)>
+
+<!ELEMENT Optimierung-Eigenschaft (#PCDATA)>
+<!ELEMENT Optimierung-Wert (#PCDATA)>
+<!ELEMENT Optimierung-WertMaximum (#PCDATA)>
+<!ELEMENT Optimierung-Intervalle (#PCDATA)>
+<!ELEMENT Optimierung-Gruppen (#PCDATA)>
+<!ELEMENT Optimierung-Gruppe (#PCDATA)>
+<!ELEMENT Optimierung-Optimierungsintervalle (#PCDATA)>
+<!ELEMENT Anpassung-Wert (#PCDATA)>
+<!ELEMENT Anpassung-Gruppen (#PCDATA)>
+<!ELEMENT Anpassung-Gruppe (#PCDATA)>
+
+<!ELEMENT Optimierung-Uebertrag (VerknuepftUebertrag*)>
+<!ATTLIST Optimierung-Uebertrag
+  StatistikDatei	CDATA #IMPLIED
+>
+
+<!ELEMENT Optimierung-InitialerBestand (Optimierung-InitialerBestandKundentyp*)>
+
+<!ELEMENT Optimierung-InitialerBestandKundentyp EMPTY>
+<!ATTLIST Optimierung-InitialerBestandKundentyp
+  Typ CDATA #REQUIRED
+>
+
+<!ELEMENT Einschraenkung-Gruppe EMPTY>
+<!ATTLIST Einschraenkung-Gruppe
+  Name      CDATA #REQUIRED
+  Minimum   CDATA #REQUIRED
+  Maximum   CDATA #REQUIRED
+>
+
+<!-- Beschreibung der Optimierungsergebnis-Dateien -->
+<!-- ============================================= -->
+
+<!ELEMENT OptimiererDaten (Laufzeit, Anzahl, OptimiererEinstellungen, Simulationslauf+)>
+<!ELEMENT Laufzeit (#PCDATA)>
+<!ELEMENT Anzahl (#PCDATA)>
+<!ELEMENT Simulationslauf (Statistik)>
+<!ATTLIST Simulationslauf
+  Nummer CDATA #REQUIRED
+>
+
+<!-- Beschreibung der Verknuepfte Simulation Dateien -->
+<!-- =============================================== -->
+
+<!ELEMENT VerknuepfteSimulation (VerknuepftTag+,VerknuepftInitialerBestand*)>
+<!ATTLIST VerknuepfteSimulation
+  Basisverzeichnis		CDATA #REQUIRED
+  InitialerUebertrag	CDATA #IMPLIED
+>
+
+<!ELEMENT VerknuepftTag (VerknuepftModell, VerknuepftStatistik, VerknuepftUebertraege)>
+
+<!ELEMENT VerknuepftModell (#PCDATA)>
+<!ELEMENT VerknuepftStatistik (#PCDATA)>
+<!ELEMENT VerknuepftUebertraege (VerknuepftUebertrag*)>
+
+<!ELEMENT VerknuepftUebertrag (VerknuepftUebertragNeuerKundentyp*)>
+<!ATTLIST VerknuepftUebertrag
+  Typ CDATA #REQUIRED
+  Wert CDATA #REQUIRED
+>
+
+<!ELEMENT VerknuepftInitialerBestand (VerknuepftInitialerBestandKundentyp*)>
+<!ELEMENT VerknuepftInitialerBestandKundentyp (#PCDATA)>
+<!ATTLIST VerknuepftInitialerBestandKundentyp
+  Name CDATA #REQUIRED
+>
+
+<!ELEMENT VerknuepftUebertragNeuerKundentyp EMPTY>
+<!ATTLIST VerknuepftUebertragNeuerKundentyp
+  Typ CDATA #REQUIRED
+  Wert CDATA #REQUIRED
+>
+
+<!-- Beschreibung der Schablonen-Dateien -->
+<!-- =================================== -->
+
+<!ELEMENT Schablone (SchabloneEintrag+)>
+
+<!ELEMENT SchabloneEintrag EMPTY>
+<!ATTLIST SchabloneEintrag
+  Typ CDATA #REQUIRED
+  Parameter CDATA #REQUIRED
+  ZelleVon CDATA #REQUIRED
+  ZelleBis CDATA #REQUIRED
+>
+
+<!-- Beschreibung der SaaS-Setup-Dateien -->
+<!-- =================================== -->
+
+<!ELEMENT CallcenterSimulatorSasSSetup (LogDatei | Simulation | Web)*>
+
+<!ELEMENT LogDatei (#PCDATA)>
+
+<!ELEMENT Simulation (Port | Passwort | MaxThreads)*>
+
+<!ELEMENT Web (Port | AppletJarDatei | StatistikVerzeichnis | FilterVerzeichnis)*>
+
+<!ELEMENT Port (#PCDATA)>
+<!ELEMENT Passwort (#PCDATA)>
+<!ELEMENT MaxThreads (#PCDATA)>
+<!ELEMENT AppletJarDatei (#PCDATA)>
+<!ELEMENT StatistikVerzeichnis (#PCDATA)>
+<!ATTLIST StatistikVerzeichnis
+  Name CDATA #IMPLIED
+>
+<!ELEMENT FilterVerzeichnis (#PCDATA)>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dokumentation der Callcenter Simulator Dateiformate - SaaS-Server-Konfiguration</title>
+</head>
+
+<body>
+
+<h1>Dokumentation der Callcenter Simulator Dateiformate - SaaS-Server-Konfiguration</h1>
+
+<a href="Dateiformate.html">Zurück zur Übersicht über alle Dateiformate</a>
+
+<h2>Datei-Kopf</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE CallcenterSimulatorSasSSetup SYSTEM "http://www.stochastik.tu-clausthal.de/Media/CallcenterSimulator.dtd"&gt;</tt>
+</p>
+
+<h2>Konfiguration</h2>
+
+<p>Das Basis-Element der Konfigurationsdatei heißt <tt>&lt;CallcenterSimulatorSasSSetup&gt;</tt>.
+Es kann folgende Untereinträge besitzen:
+</p>
+
+<ul>
+  <li><tt>Logdatei</tt> legt fest, dass die Ausgabe von Statusmeldungen nicht auf dem Bildschirm erfolgt, sondern in die angegebene
+  Datei umgeleitet wird. Fehlt diese Angabe, so werden Meldungen auf dem Bildschirm ausgegeben.</li>
+  
+  <li><tt>Simulation</tt>: Ist dieses Element vorhanden, so wird ein Simulationsserver gestartet, auf den andere Rechner Simulationsaufgaben auslagern können.
+  Das <tt>Simulation</tt>-Element kann optional folgende Unterelemente enthalten:
+  <ul>
+    <li><tt>Port</tt> gibt an auf welchem Port der Simulationsserver seinen Dienst anbeiten soll. Vorgabewert ist Port 6783.</li>
+    <li><tt>Passwort</tt> legt ein Passwort fest, mit dem die Simulationsdaten bei der Übertragung verschlüsselt werden. Wird kein Passwort angegeben, so erfolgt die Übertragung unverschlüsselt.</li>
+    <li><tt>MaxThreads</tt> gibt an, wie viele Threads der Simulationsserver maximal pro Anfrage verwenden darf. Fehlt dieses Element oder wird "0" angegeben, so legt der Server die Anzahl an Threads gemäß der verfügbaren CPU-Kerne eingenständig fest.</li>
+  </ul>
+  </li>
+  
+  <li><tt>Web</tt>: Ist dieses Element vorhanden, so wird ein Webserver gestartet über den auf dem Server gespeicherte Simulationsergebnisse abgerufen werden können und,
+  wenn parallel der Simulationsserver läuft, über den ein Java-Applet abgerufen werden kann, mit dessen Hilfe direkt auf dem Simulationsserver gerechnet werden kann.  
+  <ul>
+    <li><tt>Port</tt> gibt an auf welchem Port der Webserver seinen Dienst anbeiten soll. Vorgabewert ist Port 80.</li>
+    <li><tt>AppletJarDatei</tt> gibt den Pfad und den Dateinamen der jar-Datei an, die über den HTML-Port als GUI-Java-Applet ausgeliefert wird. Fehlt diese Angabe, versucht der Server die Applet-jar-Datei von der Hersteller-Homepage herunter zu laden.</li>
+    <li><tt>StatistikVerzeichnis</tt> gibt einen Pfad zu einem Verzeichnis an, in dem sich Statistik-xml-Dateien befinden. Diese werden dann über den Webserver zugänglich gemacht. Es können beliebig viele <tt>StatistikVerzeichnis</tt>-Elemente vorhanden sein.
+    Optional kann bei jedem Element ein <tt>Name</tt>-Attribut angegeben werden, welches angibt, wie das Verzeichnis im Webserver genannt werden soll.</li>
+    <li><tt>FilterVerzeichnis</tt> gibt einen Pfad zu einem Verzeichnis an, in dem sich Filter-Skripte befinden, die über die Übersichtsseite auf einzelne Statistik-Ergebnisse angewandt werden können.</li> 
+  </ul>  
+  </li>
+</ul>
+
+<h2>Automatische Erstellung einer Konfigurationsdatei</h2>
+<p>
+Über den <a href="Parameter.html">Kommandozeilen-Befehl</a> <tt>SaaSSystem Init</tt> kann automatisch eine
+Basis-Konfigurationsdatei für das SaaS-System erstellt werden.
+</p>
+
+</body>
+</html>
+  

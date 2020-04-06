@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Documentation of the file formats of Callcenter Simulator - optimizer results</title>
+</head>
+
+<body>
+
+<h1>Documentation of the file formats of Callcenter Simulator - optimizer results</h1>
+
+<a href="Dateiformate.html">Back to the overview of all file formats</a>
+
+<h2>File header</h2>
+
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE OptimizerData SYSTEM "CallcenterSimulator_en.dtd"&gt;</tt>
+</p>
+
+<p>The root node for an optimizer results file is <tt>&lt;OptimizerData&gt;</tt>.</p>
+
+<h2>General information</h2>
+
+<p>
+Each optimizer results file needs to contain each one of the following nodes: 
+</p>
+
+<ul class="big">
+  <li><tt>&lt;RunTime&gt;</tt>: Stores the run time of the simulation in seconds.</li>
+  <li><tt>&lt;RunCount&gt;</tt>: Stores the number of simulation rund needed in the optimization process.</li>
+  <li><tt>&lt;OptimizerSetup&gt;</tt>: Stores the optimizer setup as described on the page <a href="DateiformateFormatOptimiererEinstellungen.html">Optimizer setup</a>.</li>
+</ul>
+
+<h2>Information about the individual simulation runs</h2>
+
+<p>
+Each optimization results file contains one or more nodes of the type <tt>&lt;SimulationRun&gt;</tt>.
+</p>
+
+<p>
+Each <tt>&lt;SimulationRun&gt;</tt> node has a <tt>Number</tt> attribute storing the number of the
+simulation run in the optimization process from which the following data are from.
+</p>
+
+<p>
+Each <tt>&lt;SimulationRun&gt;</tt> node has exactly one <tt>&lt;Statistic&gt;</tt> node as
+a child node. The content of the <tt>&lt;Statistic&gt;</tt> node is described on the page
+<a href="DateiformateFormatStatistik.html">Statistic data</a>.
+</p>
+
+</body>
+</html>
+  

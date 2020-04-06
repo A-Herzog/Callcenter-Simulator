@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Documentation of the file formats of Callcenter Simulator - statistic data</title>
+</head>
+
+<body>
+
+<h1>Documentation of the file formats of Callcenter Simulator - statistic data</h1>
+
+<a href="Dateiformate.html">Back to the overview of all file formats</a>
+
+<h2>File header</h2>
+<p>
+<tt>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tt><br>
+<tt>&lt;!DOCTYPE Statistic SYSTEM "CallcenterSimulator_en.dtd"&gt;</tt>
+</p>
+
+<p>The root node for a call center model file is <tt>&lt;Statistic&gt;</tt>.</p>
+
+<h2>Embedded call center model</h2>
+
+<p>
+Each statistic file contains a <tt>&lt;CallCenterModel&gt;</tt> node
+which contails all information about the simulation model used for the simulation.
+(See also <a href="DateiformateFormatCallcenterModel.html">Structure of the call center model XML files</a>.)
+</p>
+
+<h2>General information</h2>
+
+<p>
+Each statistic file contains from each of the following elements in each case exactly one:
+</p>
+<ul class="big">
+  <li><tt>&lt;StatisticRunDate&gt;</tt>: Stores time and date of the start of the simulation process.</li>
+  <li><tt>&lt;StatisticUser&gt;</tt>: Stores the user name defined in the preferences dialog.</li>
+  <li><tt>&lt;StatisticRunTime&gt;</tt>: Contains the runtime in milliseconds required for the simulation.</li>
+  <li><tt>&lt;StatisticThreads&gt;</tt>: Indicates how many threads have been used for the simulation.
+  The value is the minimum of the number of available logical CPU cores and the number of days to be simulated.</li>
+  <li><tt>&lt;StatisticDays&gt;</tt>: Stores how many days have been simulated.</li>
+  <li><tt>&lt;StatisticEvents&gt;</tt>: Stores how many events have been processed during the execution of the simulation.</li>
+  <li><tt>&lt;StatisticServer&gt;</tt>: Specifies the name of the computer on which the simulation was ran.</li>
+  <li><tt>&lt;StatisticServerOS&gt;</tt>: Provides information about the operating system of the computer on which the simulation was ran.</li>
+</ul>  
+
+<h2>Information about the callers</h2>
+
+<p>
+Each statistic file contains for each client type a <tt>&lt;StatisticClients&gt;</tt> node; additional there is a global
+<tt>&lt;StatisticClients&gt;</tt> node containing information about all clients in average. The client type specific
+<tt>&lt;StatisticClients&gt;</tt> nodes have an <tt>Name</tt> attribute specifing the name of the client type. The
+global <tt>&lt;StatisticClients&gt;</tt> node does not have a <tt>Name</tt> attribute.
+</p>
+
+<h3>Remarks</h3>
+<ul class="big"> 
+  <li>On the following nodes the ones whos names start with <tt>StatistiC<b>Clients</b></tt> contain information
+  on client basis and the ones whos names start with <tt>Statistic<b>Calls</b></tt> contain information on
+  call basis. On call basis a retrying client or a forwarded client is counted as a second call. On client basis
+  a client is counted as being successful if he is successful in his last try. Possible waiting cancelations before
+  are not counted for this.</li>
+  <li>The numbers (on client or call basis) are not based on a single simulated day but are sums over all simulated days.
+  If there are for example 1000 fresh calls per day and if there are 50 days in the simulation run, so the fresh calls count
+  node will contain the value 50,000.</li>
+  <li>Parameters such as the waiting time of the clients are systemic not recorded as mean and standard deviation during the simulation,
+  but the sum of the values and the sum of the squared values are recorded. From these values mean and standard deviation can be calculated.
+  The mean can be calculated be dividing the sum by the number of values and the standard deviation can be received by calculating
+  the square root from <tt>x2/n-x*x/(n*n)</tt> where <tt>x2</tt> is the the sum of the squared values,
+  <tt>x</tt> is the sum of the values and <tt>n</tt> the number of values. The <tt>&lt;StatisticClientsSummary&gt;</tt> nodes
+  stores preprocessed values.</li>
+</ul>
+
+<p>
+Each <tt>&lt;StatisticClients&gt;</tt> node has expect of the <tt>&lt;StatisticClientsSummary&gt;</tt> sub nodes 
+one of each of the following sub nodes.
+Besides the <tt>&lt;StatisticConfidence&gt;</tt> node all nodes do not have any content; the information
+will be stored in the attributes of the elements.
+</p>
+
+<ul class="big">
+  <li><tt>&lt;StatisticClientsSummary&gt;</tt>:
+  The attributes <tt>ClientsAccessibility</tt>, <tt>CallsAccessibility</tt>, <tt>ClientsAverageWaitingTime</tt>, <tt>CallsAverageWaitingTime</tt>,
+  <tt>ClientsAverageResidenceTime</tt>, <tt>CallsAverageResidenceTime</tt>, <tt>ClientsAverageCancelTime</tt>, <tt>CallsAverageCancelTime</tt>,
+  <tt>ClientsCombinedAverageWaitingAndCancelTimeTime</tt>, <tt>CallsCombinedAverageWaitingAndCancelTimeTime</tt>,
+  <tt>ClientsServiceLevel</tt>, <tt>ClientsServiceLevelAll</tt>, <tt>CallsServiceLevel</tt> and <tt>CallsServiceLevelAll</tt> store the respective
+  values as parameters over the interval specified by the <tt>Range</tt> attribute.
+  These processed values are stored by the simulator but not read on loading a statistics file.
+  The service level values marked with <tt>All</tt> are quotients of service level successful clients to all clients.
+  The other two values are quotients of service level successful clients to all successful clients.</li>
+  <li><tt>&lt;StatisticClientsCount&gt;</tt> und <tt>&lt;StatisticCallsCount&gt;</tt>:
+  The attributes <tt>Count</tt>, <tt>Success</tt>, <tt>Blocked</tt>, <tt>Canceled</tt> and <tt>CarryOver</tt>
+  stores the number of clients/calls at all, the number of successful clients/calls, the number of blocked (=queue full),
+  the number of waiting cancelation and the carry over to the next day.
+  The attributes <tt>CountPerInterval</tt>, <tt>SuccessPerInterval</tt>, <tt>BlockedPerInterval</tt> and
+  <tt>CanceledPerInterval</tt> contain each 48 numbers separated by semicolons that are sums on interval basis.</li>  
+  <li><tt>&lt;StatisticClientsCarryOver&gt;</tt>: The node contains the following sub nodes:<ul>
+    <li><tt>&lt;StatisticClientsCanceledPerDay&gt;</tt> This node stores how many clients of the current type have final canceled
+    waiting on the individual simulation days.</li>
+	<li><tt>&lt;StatisticClientsRetryTimesPerDay&gt;</tt> This nodes stores how many clients of the current type have canceled
+	waiting on the individual simulation day and will start a retry the next day.    
+    The values for the individual days are separated by ";". The values for one day are separated by ";" and denote the the retry
+    times in 1/1000 seconds.</li>
+	<li><tt>&lt;StatisticClientsWaitingTimeTolerancePerDay&gt;</tt> This node stores how many clients of the current type have
+	waited over midnight and therefore have to be served the next day.
+	The values for the individual days are separated by ";". The values for one day are separated by ";" and consist of two
+	numbers measured in 1/1000 seconds separated by "/" describing the current waiting time and the remaining waiting time
+	tolerance of an client.</li>
+  </ul></li>  
+  <li><tt>&lt;StatistikKundenWartezeit&gt;</tt> und <tt>&lt;StatistikAnrufeWartezeit&gt;</tt>:
+  The three attributes <tt>Sum</tt>, <tt>SquaresSum</tt> and <tt>SumPerInterval</tt> of this node
+  contain sum, sum of squared values and sum per interval (in form of 48 values separated by semicolons)
+  of the waiting times of the successful clients or the successful calls.</li>
+  <li><tt>&lt;StatistikKundenVerweilzeit&gt;</tt> und <tt>&lt;StatistikAnrufeVerweilzeit&gt;</tt>:
+  The three attributes <tt>Sum</tt>, <tt>SquaresSum</tt> and <tt>SumPerInterval</tt> of this node
+  contain sum, sum of squared values and sum per interval (in form of 48 values separated by semicolons)
+  of the holding times of the successful clients or the successful calls.</li>
+  <li><tt>&lt;StatistikKundenAbbruchzeit&gt;</tt> und <tt>&lt;StatistikAnrufeAbbruchzeit&gt;</tt>:
+  The three attributes <tt>Sum</tt>, <tt>SquaresSum</tt> and <tt>SumPerInterval</tt> of this node
+  contain sum, sum of squared values and sum per interval (in form of 48 values separated by semicolons)
+  of the cancel times of the canceled clients or the canceled calls.</li>  
+  <li><tt>&lt;StatisticClientsServiceLevel&gt;</tt> und <tt>&lt;StatisticCallsServiceLevel&gt;</tt>:
+  The two attributes <tt>Count</tt> and <tt>CountPerInterval</tt> of this node
+  contain the number and the number per interval (in form of 48 values separated by semicolons)
+  of the successful clients or calls the were served fast enough to keep the service level.</li>
+  <li><tt>&lt;StatisticClientsForwarding&gt;</tt> und <tt>&lt;StatisticCallsForwarding&gt;</tt>:
+  The two attributes <tt>Count</tt> and <tt>CountPerInterval</tt> of this node
+  contain the number and the number per interval (in form of 48 values separated by semicolons)
+  of the clients or calls that are forwarded.</li>
+  <li><tt>&lt;StatisticClientsRetry&gt;</tt> und <tt>&lt;StatisticCallsRetry&gt;</tt>:
+  The two attributes <tt>Count</tt> and <tt>CountPerInterval</tt> of this node
+  contain the number and the number per interval (in form of 48 values separated by semicolons)
+  of the clients or callers that started a retry after canceling.</li>
+  <li><tt>&lt;StatisticClientsRecall&gt;</tt>:
+  The two attributes <tt>Count</tt> and <tt>CountPerInterval</tt> of this node
+  contain the number and the number per interval (in form of 48 values separated by semicolons)
+  of the clients who started a recall after being successfully served.</li>
+  <li><tt>&lt;StatisticClientsWaitingTimeDistribution&gt;</tt> and <tt>&lt;StatisticCallsWaitingTimeDistribution&gt;</tt>:
+  This two nodes each contain an attribute with the name <tt>Distribution</tt>, which stores in form of 1,800
+  values separated by semicolons how many clients had to wait 0 seconds, one second, zwei seconds etc.</li>
+  <li><tt>&lt;StatisticClientsHoldingTimeDistribution&gt;</tt> and <tt>&lt;StatisticCallsHoldingTimeDistribution&gt;</tt>:
+  This two nodes each contain an attribute with the name <tt>Distribution</tt>, which stores in form of 1,800
+  values separated by semicolons how many clients have been 0 seconds, one second, zwei seconds etc. in the system.</li>
+  <li><tt>&lt;StatisticClientsCancelTimeDistribution&gt;</tt> and <tt>&lt;StatisticCallsCancelTimeDistribution&gt;</tt>:
+  This two nodes each contain an attribute with the name <tt>Distribution</tt>, which stores in form of 1,800
+  values separated by semicolons how many clients have canceled waiting after 0 seconds, one second, zwei seconds etc.</li>
+  <li><tt>&lt;StatisticClientsWaitingTimeDistributionLong&gt;</tt> and <tt>&lt;StatisticCallsWaitingTimeDistributionLong&gt;</tt>: 
+  This two nodes each contain an attribute with the name <tt>Distribution</tt>, which stores in form of 1,800
+  values separated by semicolons how many clients had to wait 0-1799 seconds, 1800-3599 seconds etc.</li>
+  <li><tt>&lt;StatisticClientsHoldingTimeDistributionLong&gt;</tt> and <tt>&lt;StatisticCallsHoldingTimeDistributionLong&gt;</tt>:
+  This two nodes each contain an attribute with the name <tt>Distribution</tt>, which stores in form of 1,800
+  values separated by semicolons how many clients have been 0-1799 seconds, 1800-3599 seconds etc. in the system.</li>
+  <li><tt>&lt;StatisticClientsCancelTimeDistributionLong&gt;</tt> and <tt>&lt;StatisticCallsCancelTimeDistributionLong&gt;</tt>:
+  This two nodes each contain an attribute with the name <tt>Distribution</tt>, which stores in form of 1,800
+  values separated by semicolons how many clients have canceled waiting after 0-1799 seconds, 1800-3599 seconds etc.</li>
+  <li><tt>&lt;StatisticConfidence&gt;</tt>:
+  This nodes contain each one of the following seven sub nodes:  
+  <tt>&lt;ConfidenceAccessibilityCalls&gt;</tt>, <tt>&lt;ConfidenceAccessibilityClients&gt;</tt>, <tt>&lt;ConfidenceWaitingTime&gt;</tt>, 
+  <tt>&lt;ConfidenceServiceLevelCallsSuccess&gt;</tt>, <tt>&lt;ConfidenceServiceLevelCallsAll&gt;</tt>, <tt>&lt;ConfidenceServiceLevelClientsSuccess&gt;</tt> and <tt>&lt;ConfidenceServiceLevelClientsAll&gt;</tt>.
+  The sub nodes do not have any content but have each the two attributes <tt>Sum</tt> and <tt>SquaresSum</tt>
+  the sums and the sums of the squared values of the accessibility, the waiting times and the service levels.
+  By using this information one can calulate how much the results vary from simulation day to simulation day and
+  therefore how many days have to be simulated for stabile results.
+  The seven sub nodes contain the four attributes <tt>Confidence90Min</tt>, <tt>Confidence90Max</tt>,
+  <tt>Confidence95Min</tt> aad <tt>Confidence95Max</tt> that store the 90% and the 95% confidence intervals.</li>
+  <li><tt>&lt;StatisticCallsCosts&gt;</tt>:
+  This node contains the three attributes <tt>Yield</tt>, <tt>WaitingTimes</tt> and <tt>Cancelations</tt>
+  storing the yield per successful served client, the (virtual) costs due to waiting times and the (virtual) costs
+  due to waiting cancelation.</li>
+</ul>
+
+<h2>Information about the agents</h2>
+
+<p>
+Each statistic file contains three or more <tt>&lt;StatisticAgents&gt;</tt> nodes.
+There is one global <tt>&lt;StatisticAgents&gt;</tt> node, one for each call center and
+one for each skill level.
+</p>
+
+<p>
+The global <tt>&lt;StatisticAgents&gt;</tt> node does not have a <tt>Name</tt> or a
+<tt>Type</tt> attribute. The call center and the skill level specific nodes do have there
+attributes. The call center specific <tt>&lt;StatisticAgents&gt;</tt> nodes
+have the value <tt>CallCenter</tt> in the <tt>Type</tt> attribute and the name of the call center
+in the <tt>Name</tt> attribute. The skill level specigic <tt>&lt;StatisticAgents&gt;</tt> nodes
+have the value <tt>SkillLevel</tt> in the <tt>Type</tt> attribute and the name of the skill level
+in the <tt>Name</tt> attribute.
+</p>
+
+<p>
+Additionally all <tt>&lt;StatisticAgents&gt;</tt> nodes have a <tt>Count</tt> attribute
+which stores how many agents there are in the current agents group.
+</p>
+
+<p>
+Each <tt>&lt;StatisticAgents&gt;</tt> node has one <tt>&lt;StatisticAgentsSummary&gt;</tt>
+sub node and per client type the current agents group can serve one <tt>&lt;StatisticAgentsClientType&gt;</tt>
+sub node. Additionally there is exactly one ein <tt>&lt;StatisticAgentsCosts&gt;</tt> sub node.
+</p>
+
+<p>
+The nodes <tt>&lt;StatisticAgentsSummary&gt;</tt> and <tt>&lt;StatisticAgentsClientType&gt;</tt>
+do not have any content; the information are stored in the attributes of the nodes. Both nodes
+nearly have the same attributes. Only <tt>Name</tt> (only<tt>&lt;StatisticAgentsClientType&gt;</tt>)
+and information about the free time (only <tt>&lt;StatisticAgentsSummary&gt;</tt>) are not available in both nodes:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;Name&gt;</tt>: This attribute stores the client type to with the current <tt>&lt;StatisticAgentsClientType&gt;</tt> node refers.</li>
+  <li><tt>&lt;FreeTime&gt;</tt>: This attribute stores the number of free time seconds in the agents group during the total simulation (as sum over all days).</li>
+  <li><tt>&lt;TechnicalFreeTime&gt;</tt>: This attribute stores the number of technical free time seconds in the agents group during the total simulation (as sum over all days).</li>
+  <li><tt>&lt;HoldingTime&gt;</tt>: This attribute stores the number of holding time seconds in the agents group during the total simulation (as sum over all days).</li>
+  <li><tt>&lt;PostProcessingTime&gt;</tt>: This attribute stores the number of post processing time seconds in the agents group during the total simulation (as sum over all days).</li>
+  <li><tt>&lt;FreeTimePerInterval&gt;</tt>: This attribute stores the number of free time seconds per interval (in form of 48 values separated by semicolons) in the agents group during the total simulation (as sum over all days).</li>
+  <li><tt>&lt;TechnicalFreeTimePerInterval&gt;</tt>: This attribute stores the number of technical free time seconds per interval (in form of 48 values separated by semicolons) in the agents group during the total simulation (as sum over all days).</li>
+  <li><tt>&lt;HoldingTimePerInterval&gt;</tt>: This attribute stores the number of holding time seconds per interval (in form of 48 values separated by semicolons) in the agents group during the total simulation (as sum over all days).</li>
+  <li><tt>&lt;PostProcessingTimePerInterval&gt;</tt>: This attribute stores the number of post processing time seconds per interval (in form of 48 values separated by semicolons) in the agents group during the total simulation (as sum over all days).</li>
+  <li><tt>&lt;FreeTimePart&gt;</tt>: The attribute stores the free time part in the agents group. The value of this attribute is calculated from the raw data above and allows an easier processing of the data. This attribute is not read on loaded statistic files.</li>
+  <li><tt>&lt;TechnicalFreeTimePart&gt;</tt>: The attribute stores the technical free time part in the agents group. The value of this attribute is calculated from the raw data above and allows an easier processing of the data. This attribute is not read on loaded statistic files.</li> 
+  <li><tt>&lt;HoldingTimePart&gt;</tt>: The attribute stores the holding time part in the agents group. The value of this attribute is calculated from the raw data above and allows an easier processing of the data. This attribute is not read on loaded statistic files.</li>
+  <li><tt>&lt;PostProcessingTimePart&gt;</tt>: The attribute stores the post processing time part in the agents group. The value of this attribute is calculated from the raw data above and allows an easier processing of the data. This attribute is not read on loaded statistic files.</li>
+  <li><tt>&lt;GrossTime&gt;</tt>: This attribute stores the available gross working time of the agents in this group. This value is calculated from the model information for easier processing of the data. This attribute is not read on loaded statistic files.</li>
+  <li><tt>&lt;NetTime&gt;</tt>: This attribute stores the available net working time of the agents in this group. This value is calculated from the model information for easier processing of the data. This attribute is not read on loaded statistic files.</li>    
+  <li><tt>&lt;Calls&gt;</tt>: This attribute stores how many calls have been served in the agents group during the total simulation (as sum over all days).</li>
+  <li><tt>&lt;CallsPerInterval&gt;</tt>: This attribute stores how many calls have been served per interval (in form of 48 values separated by semicolons) in the agents group during the total simulation (as sum over all days).</li>   
+</ul>
+
+<p>
+The <tt>&lt;StatisticAgentsCosts&gt;</tt> node also has not content itself;
+here the information are stored in the attribute, too:
+</p>
+
+<ul class="big">
+  <li><tt>&lt;Wages&gt;</tt>: Stores the load independend costs by the wages of the agents.</li>
+  <li><tt>&lt;CostsForCalls&gt;</tt>: Stores the costs that occured due to the individual conversations.</li>
+  <li><tt>&lt;CostsPerCallMinute&gt;</tt>: Stores the costs that occured due to the holding and post processing times.</li>
+</ul>
+
+<h2>Information about the revenue</h2>
+
+<p>
+Each statistic file has to contain one <tt>&lt;StatisticRevenueSummary&gt;</tt> node.
+The <tt>&lt;StatisticRevenueSummary&gt;</tt> node contains the complete revenue (based on one day)
+calculated during the simulation process.
+</p>
+
+<h2>Information about the queue</h2>
+
+<p>
+Each statistic file has to contain one <tt>&lt;StatisticQueue&gt;</tt> node.
+The <tt>&lt;StatisticQueue&gt;</tt> node does not have any content but the following three attributes:
+</p>
+<ul>
+  <li><tt>Maximum</tt>: Stores the maximum queue length that occured during the simulation.</li>
+  <li><tt>Average</tt>: Stores the average queue length during the simulation.</li>
+  <li><tt>AveragePerInterval</tt>: Consists of 48 values separated by semicolons, storing the average queue lengths in each half-hour interval.</li>
+</ul>
+
+<p>
+Each statistic file contains some <tt>&lt;StatisticQueueSummary&gt;</tt> nodes.
+The <tt>&lt;StatisticQueueSummary&gt;</tt> nodes do not have any content but the following two attributes:
+</p>
+<ul>
+  <li><tt>Range</tt>: Specifies the time range for which this node stands for.</li>
+  <li><tt>Average</tt>: Stores the average queue length during the simulation in the selected time range.</li>
+</ul>
+
+<h2>Information about the agents from the model point of view</h2>
+
+<p>
+To make the processing of the statistic results easier, some model settings are stored in the statistic as
+processed values. This includes in particular the number of agents per call center and agent group as
+well as the total number of agents in all call centers.
+</p>
+
+<p>
+In each case the distribution of agents throughout the day is recorded for the real agents used in the simulation
+(i.e. after deduction of the productivity of the model agents), for the scheduled model agents as well as for the number of agent
+after addition of the disease related surcharge.
+</p>
+
+<p>
+Therefore each statistic file contains some <tt>&lt;StatisticModelAgents&gt;</tt> nodes.
+The <tt>&lt;StatisticModelAgents&gt;</tt> nodes optionally have these two attributes:
+</p>
+<ul>
+  <li><tt>Name</tt>: Specifies the name of the agents group to which this information refer.</li>
+  <li><tt>Type</tt>: Stores the skill level of the agents group.</li>
+</ul>
+<p>
+If the two attributes <tt>Name</tt> and <tt>Type</tt> are missing, the
+<tt>&lt;StatisticModelAgents&gt;</tt> nodes does not refer to an individual agents group
+but to the totality of all agents in the model.
+</p>
+
+<p>
+Each <tt>&lt;StatisticModelAgents&gt;</tt> nodes contains the following three sub nodes:
+</p>
+<ul>
+  <li><tt>&lt;StatisticModelAgentsSimulation&gt;</tt>: Stores as text content the distribution over the day of the agents used in the simulation.</li>
+  <li><tt>&lt;StatisticModelAgentsModel&gt;</tt>: Stores as text content the distribution over the day of the agents planned in the model.</li> 
+  <li><tt>&lt;StatisticModelAgentsWithSurcharge&gt;</tt>: Stores as text content the distribution over the day of the agents including the disease related surcharge.</li> 
+</ul>
+
+<h2>Erlang C comparison data</h2>
+
+<p>
+To be able to compare the simulation results to the Erlang C data, Erlang C based data are stored in the statistic file.
+The data is provied by the two nodes <tt>&lt;ErlangCWithoutRetry&gt;</tt> and <tt>&lt;ErlangCWithRetry&gt;</tt>.
+</p>
+
+<p>
+Both nodes contain the following attribues which contain the information in form of 48 values divied by ";" described in the attribute
+names: <tt>NumberOfAgents</tt>, <tt>FreshCalls</tt>, <tt>Retry</tt> (nur bei <tt>&lt;ErlangCWithRetry&gt;</tt>),
+<tt>ServiceLevel</tt>, <tt>Success</tt> and <tt>AverageWaitingTime</tt>.
+</p>
+
+<h2>Warning thresholds</h2>
+
+<p>
+The <tt>&lt;Statistic&gt;</tt> node can optionally have one sub nodes of the type
+<tt>&lt;StatisticThresholds&gt;</tt>. The <tt>&lt;StatisticThresholds&gt;</tt> element again can
+have any number of <tt>&lt;ThresholdData&gt;</tt> sub nodes.
+</p>
+
+<h3>Attributes of the <tt>ThresholdData</tt> node</h3>
+
+<p>
+The following attributes are required:
+</p>
+
+<ul>
+  <li><tt>Type</tt>: Defines the type of the threshold. This attribute can have one of the following values:
+  <ul>
+    <li>Waiting time on call basis</li>
+    <li>Waiting time on client basis</li>
+    <li>Residence time on call basis</li>
+    <li>Residence time on client basis</li>
+    <li>Accessibility on call basis</li>
+    <li>Accessibility on client basis</li>
+    <li>Service level in call basis, based on all calls</li>
+    <li>Service level in call basis, based on successful calls</li>
+    <li>Service level in client basis, based on all clients</li>
+    <li>Service level in client basis, based on successful clients</li>
+    <li>Workload</li>
+  </ul></li>
+  <li><tt>Intervals</tt>: Defines which intervals should be taken into account for the warning threshold. If "Average" is specified,
+  the average value over the whole day is used. If "Each" is specified, the threshold should be kept in each interval. Alternatively
+  48 values "0" or "1" can be given, specifying the half-hour intervals in which the threshold value should be kept.
+  </li>
+  <li><tt>Groups</tt>: Defines which client groups or call centers should be taken into account for the warning threshold. If "Average" is specified,
+  the average value over all groups is used. If "Each" is specified, the threshold should be kept for each group. Alternatively
+  the name of a client group or a call center can be given.
+  </li>
+  <li><tt>WarningYellow</tt>:
+  Defines the value which will rise a yellow warning if its undershot (accessibility, service level and work load) or if its exceeded
+  (waiting time and residence time). The threshold values for the waiting and the residence times are specified as times.
+  The thresholds for all other types are specified as probabilites.
+  </li>
+  <li><tt>WarningRed</tt>:
+  Defines the value which will rise a red warning if its undershot (accessibility, service level and work load) or if its exceeded
+  (waiting time and residence time). The threshold values for the waiting and the residence times are specified as times.
+  The thresholds for all other types are specified as probabilites.
+  </li>
+  <li><tt>Value</tt>:
+  Contains the actual value for the threshold performance indicator.
+  </li>
+  <li><tt>Status</tt>:
+  Contains one of the values "Ok", "Yellow" or "Red" specifying if the value is within the threshold range, in the yellow warning area
+  or in the red warning area.
+  </li>
+</ul>
+
+</body>
+</html>
+  

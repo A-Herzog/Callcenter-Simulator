@@ -1,0 +1,931 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://cs.highfives.io" xmlns="https://cs.highfives.io" elementFormDefault="qualified">
+
+<!-- Beschreibung der Callcenter-Modell-Dateien -->
+
+<xs:element name="CallcenterModell"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="ModellName" type="xs:string"/>
+    <xs:element name="ModellSimulatorVersion" type="xs:string"/>
+    <xs:element name="ModellBeschreibung" type="xs:string"/>
+    <xs:element name="ModellDatum" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="ModellMaxWarteschlangenLaenge" type="xs:integer"/>
+    <xs:element name="ModellSimulierteTage" type="xs:integer"/>
+    <xs:element ref="ModellBevorzugteSchichtlaenge"/>
+	<xs:element ref="ModellMinimaleSchichtlaenge" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="ModellServiceLevel" type="xs:integer"/>
+	<xs:element name="ModellProduktivitaet" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="ModellPlanungsaufschlag" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    <xs:element ref="ModellKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="ModellCallcenter" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="ModellSkillLevel" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element ref="ModellSchellenwerte" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="ModellBevorzugteSchichtlaenge" type="xs:integer"/>
+
+<xs:element name="ModellMinimaleSchichtlaenge" type="xs:integer"/>
+
+<xs:element name="ModellKundentyp"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="KundenErstanrufer"/>
+    <xs:element ref="KundenScore"/>
+    <xs:choice>
+      <xs:element name="KundenWartezeittoleranzVerteilung" type="xs:string"/>
+	  <xs:element name="KundenWartezeittoleranzVerteilungLang" type="xs:string"/>
+      <xs:element ref="KundenWartezeittoleranzSchaetzung"/>
+    </xs:choice>
+    <xs:element ref="KundenWiederholungen"/>
+    <xs:element ref="KundenWeiterleitungen"/>
+	<xs:element ref="KundenWiederanrufer"  minOccurs="0" maxOccurs="1"/>
+    <xs:element name="GewinnProKunde" type="xs:string"/>
+    <xs:element ref="KostenProAnrufer"/>
+  </xs:sequence>
+  <xs:attribute name="Aktiv"><xs:simpleType>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType></xs:attribute>
+  <xs:attribute name="BelegtLeitung"><xs:simpleType>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType></xs:attribute>
+  <xs:attribute name="ServiceLevel" type="xs:string"/>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KundenErstanrufer"><xs:complexType>
+  <xs:sequence>
+	<xs:element ref="ErstanruferAnzahl" minOccurs="1" maxOccurs="1"/>
+    <xs:element name="ErstanruferVerteilung" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="ErstanruferAnzahl"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Standardabweichung" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="KundenScore"><xs:complexType>
+  <xs:attribute name="Basis" type="xs:string" use="required"/>
+  <xs:attribute name="ProWartesekunde" type="xs:string" use="required"/>
+  <xs:attribute name="Weiterleitung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KundenWartezeittoleranzSchaetzung"><xs:complexType>
+  <xs:attribute name="Wartezeit" type="xs:string" use="required"/>
+  <xs:attribute name="Abbruchwahrscheinlichkeit" type="xs:string" use="required"/>
+  <xs:attribute name="Korrekturwert" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KundenWiederholungen"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="WiederholungenAbstaendeVerteilung" type="xs:string"/>
+    <xs:element name="WiederholungenWahrscheinlichkeitNachBlockierungErsterVersuch" type="xs:string"/>
+    <xs:element name="WiederholungenWahrscheinlichkeitNachBlockierungWeitereVersuche" type="xs:string"/>
+    <xs:element name="WiederholungenWahrscheinlichkeitNachAbbruchErsterVersuch" type="xs:string"/>
+    <xs:element name="WiederholungenWahrscheinlichkeitNachAbbruchWeitereVersuche" type="xs:string"/>
+    <xs:element ref="WiederholungenKundentypNachBlockierungErsterVersuch"/>
+    <xs:element ref="WiederholungenKundentypNachBlockierungWeitereVersuche"/>
+    <xs:element ref="WiederholungenKundentypNachAbbruchErsterVersuch"/>
+    <xs:element ref="WiederholungenKundentypNachAbbruchWeitereVersuche"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="WiederholungenKundentypNachBlockierungErsterVersuch"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="WiederholungenNeuerKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="WiederholungenKundentypNachBlockierungWeitereVersuche"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="WiederholungenNeuerKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="WiederholungenKundentypNachAbbruchErsterVersuch"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="WiederholungenNeuerKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="WiederholungenKundentypNachAbbruchWeitereVersuche"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="WiederholungenNeuerKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="WiederholungenNeuerKundentyp"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="KundenWeiterleitungen"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="WeiterleitungenNeuerKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="WeiterleitungenSkillLevelSpezifisch" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="Wahrscheinlichkeit" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="WeiterleitungenNeuerKundentyp"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="WeiterleitungenSkillLevelSpezifisch"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="WeiterleitungenNeuerKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="SkillLevel" type="xs:string" use="required"/>
+  <xs:attribute name="Wahrscheinlichkeit" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KundenWiederanrufer"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="WiederanrufAbstaendeVerteilung" type="xs:string"/>
+    <xs:element ref="WiederanrufNeuerKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="WiederanrufSkillLevelSpezifisch" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="Wahrscheinlichkeit" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="WiederanrufNeuerKundentyp"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="WiederanrufSkillLevelSpezifisch"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="WiederanrufNeuerKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="SkillLevel" type="xs:string" use="required"/>
+  <xs:attribute name="Wahrscheinlichkeit" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KostenProAnrufer"><xs:complexType>
+  <xs:attribute name="Abbruch" type="xs:string" use="required"/>
+  <xs:attribute name="Wartesekunde" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ModellCallcenter"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="CallcenterAgentengruppe" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="CallcenterTechnischeBereitzeit"/>
+    <xs:element name="CallcenterScore" type="xs:string"/>
+    <xs:element ref="CallcenterAgentenScore"/>
+    <xs:element ref="CallcenterMindestWartezeit" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element name="ModellProduktivitaet" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="ModellPlanungsaufschlag" type="xs:string" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+  <xs:attribute name="Aktiv"><xs:simpleType>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType></xs:attribute>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="CallcenterTechnischeBereitzeit"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:integer">
+      <xs:attribute name="IstWartezeit" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="CallcenterAgentenScore"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="AgentenScoreFaktorSeitLetztemAnruf" type="xs:string"/>
+    <xs:element name="AgentenScoreFaktorLeerlaufAnteil" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="CallcenterAgentengruppe"><xs:complexType>
+  <xs:sequence>
+    <xs:choice>
+	  <xs:sequence>
+        <xs:element name="AgentengruppeAnzahl" type="xs:string"/>
+        <xs:element name="AgentengruppeArbeitszeitbeginn" type="xs:string"/>
+        <xs:element name="AgentengruppeArbeitszeitende" type="xs:string"/>
+      </xs:sequence>
+	  <xs:choice>
+        <xs:element ref="AgentengruppeVerteilung"/>
+      </xs:choice>
+      <xs:choice>
+        <xs:element ref="AgentengruppeNachKundenankuenften"/>
+      </xs:choice>
+    </xs:choice>
+    <xs:element name="AgentengruppeSkillLevel" type="xs:string"/>
+    <xs:element name="KostenProStunde" type="xs:string"/>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="KostenProKundengruppe"/>
+    </xs:choice>
+    <xs:element ref="ModellBevorzugteSchichtlaenge" minOccurs="0" maxOccurs="1"/>
+	<xs:element ref="ModellMinimaleSchichtlaenge"  minOccurs="0" maxOccurs="1"/>
+	<xs:element name="ModellProduktivitaet" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="ModellPlanungsaufschlag" type="xs:string" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+  <xs:attribute name="Aktiv"><xs:simpleType>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType></xs:attribute>
+</xs:complexType></xs:element>
+
+<xs:element name="AgentengruppeVerteilung"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="SchichtBisMitternachtIstOpenEnd"><xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="0"/>
+          <xs:enumeration value="1"/>
+        </xs:restriction>
+      </xs:simpleType></xs:attribute>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="AgentengruppeNachKundenankuenften"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="KundenankuenfteGruppe" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="Agentenhalbstunden" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KundenankuenfteGruppe"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Rate" type="xs:string" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="KostenProKundengruppe"><xs:complexType>
+  <xs:attribute name="Kundentyp" type="xs:string" use="required"/>
+  <xs:attribute name="ProAnruf" type="xs:string" use="required"/>
+  <xs:attribute name="ProMinute" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+	
+<xs:element name="CallcenterMindestWartezeit"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="MindestWartezeitKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="MindestWartezeitKundentyp"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+	
+<xs:element name="ModellSkillLevel"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="SkillLevelKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="SkillLevelKundentyp"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="SkillLevelKundentypBedienzeitAddOn" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element name="SkillLevelKundentypBedienzeitverteilung" minOccurs="1" maxOccurs="unbounded"/>
+    <xs:element name="SkillLevelKundentypNachbearbeitungszeitverteilung" minOccurs="1" maxOccurs="unbounded"/>
+    <xs:element name="SkillLevelKundentypScore" type="xs:string"/>
+  </xs:sequence>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="SkillLevelKundentypBedienzeitAddOn"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Intervall" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="SkillLevelKundentypBedienzeitverteilung"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Intervall" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="SkillLevelKundentypNachbearbeitungszeitverteilung"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Intervall" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="ModellSchellenwerte"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="SchellenwertDaten" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="SchellenwertDaten"><xs:complexType>
+  <xs:attribute name="Typ" type="xs:string" use="required"/>
+  <xs:attribute name="Intervalle" type="xs:string" use="required"/>
+  <xs:attribute name="Gruppen" type="xs:string" use="required"/>
+  <xs:attribute name="WarnungGelb" type="xs:string" use="required"/>
+  <xs:attribute name="WarnungRot" type="xs:string" use="required"/>
+  <xs:attribute name="Wert" type="xs:string"/>
+  <xs:attribute name="Status" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<!-- Beschreibung der Statistik-Dateien -->
+
+<xs:element name="Statistik"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="CallcenterModell"/>
+    <xs:element name="StatistikLaufdatum" type="xs:string"/>
+    <xs:element name="StatistikNutzer" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="StatistikServer" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="StatistikServerOS" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="StatistikLaufzeit" type="xs:integer"/>
+    <xs:element name="StatistikThreads" type="xs:integer"/>
+    <xs:element name="StatistikTage" type="xs:integer"/>
+    <xs:element name="StatistikEreignisse" type="xs:integer"/>
+    <xs:element ref="StatistikKunden" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="StatistikAgenten" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element name="StatistikErtragZusammenfassung" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    <xs:element ref="StatistikWarteschlange"/>
+	<xs:element ref="StatistikWarteschlangeZusammenfassung" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element ref="StatistikModellAgenten" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="ErlangCOhneWiederholer" minOccurs="0" maxOccurs="1"/>
+    <xs:element ref="ErlangCMitWiederholern" minOccurs="0" maxOccurs="1"/>
+    <xs:element ref="StatistikSchwellenwerte" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKunden"><xs:complexType>
+  <xs:sequence>    
+    <xs:element ref="StatistikKundenAnzahl"/>
+	<xs:element ref="StatistikKundenZusammenfassung" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element ref="StatistikKundenUebertrag"/>
+    <xs:element ref="StatistikKundenWartezeit"/>
+    <xs:element ref="StatistikKundenVerweilzeit"/>
+    <xs:element ref="StatistikKundenAbbruchzeit"/>
+    <xs:element ref="StatistikKundenServiceLevel"/>
+    <xs:element ref="StatistikKundenWeiterleitungen"/>
+	<xs:element ref="StatistikKundenWiederholungen"/>
+	<xs:element ref="StatistikKundenWiederanrufe"/>
+    <xs:element ref="StatistikKundenWartezeitverteilung"/>
+    <xs:element ref="StatistikKundenVerweilzeitverteilung"/>
+    <xs:element ref="StatistikKundenAbbruchzeitverteilung"/>
+	<xs:element ref="StatistikKundenWartezeitverteilungLang"/>
+    <xs:element ref="StatistikKundenVerweilzeitverteilungLang"/>
+    <xs:element ref="StatistikKundenAbbruchzeitverteilungLang"/>
+    <xs:element ref="StatistikAnrufeAnzahl"/>
+    <xs:element ref="StatistikAnrufeWartezeit"/>
+    <xs:element ref="StatistikAnrufeVerweilzeit"/>
+    <xs:element ref="StatistikAnrufeAbbruchzeit"/>
+    <xs:element ref="StatistikAnrufeServiceLevel"/>
+    <xs:element ref="StatistikAnrufeWeiterleitungen"/>
+	<xs:element ref="StatistikAnrufeWiederholungen"/>
+    <xs:element ref="StatistikAnrufeWartezeitverteilung"/>
+    <xs:element ref="StatistikAnrufeVerweilzeitverteilung"/>
+    <xs:element ref="StatistikAnrufeAbbruchzeitverteilung"/>
+	<xs:element ref="StatistikAnrufeWartezeitverteilungLang"/>
+    <xs:element ref="StatistikAnrufeVerweilzeitverteilungLang"/>
+    <xs:element ref="StatistikAnrufeAbbruchzeitverteilungLang"/>
+    <xs:element ref="StatistikKonfidenz"/>
+    <xs:element ref="StatistikAnruferKosten"/>
+  </xs:sequence>
+  <xs:attribute name="Name" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenZusammenfassung"><xs:complexType>
+  <xs:attribute name="Bereich" type="xs:string"/>
+  <xs:attribute name="KundenErreichbarkeit" type="xs:string" use="required"/>
+  <xs:attribute name="AnrufeErreichbarkeit" type="xs:string" use="required"/>
+  <xs:attribute name="KundenMittlereWartezeit" type="xs:string" use="required"/>
+  <xs:attribute name="AnrufeMittlereWartezeit" type="xs:string" use="required"/>
+  <xs:attribute name="KundenMittlereVerweilzeit" type="xs:string"/>
+  <xs:attribute name="AnrufeMittlereVerweilzeit" type="xs:string"/>
+  <xs:attribute name="KundenServiceLevel" type="xs:string" use="required"/>
+  <xs:attribute name="KundenServiceLevelAlle" type="xs:string"/>
+  <xs:attribute name="AnrufeServiceLevel" type="xs:string" use="required"/>
+  <xs:attribute name="AnrufeServiceLevelAlle" type="xs:string"/>
+  <xs:attribute name="KundenMittlereAbbruchzeit" type="xs:string"/>
+  <xs:attribute name="AnrufeMittlereAbbruchzeit" type="xs:string"/>
+  <xs:attribute name="AnrufeKombinierteMittlereWartezeitUndAbbruchzeit" type="xs:string"/>
+  <xs:attribute name="KundenKombinierteMittlereWartezeitUndAbbruchzeit" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenAnzahl"><xs:complexType>
+  <xs:attribute name="Anzahl" type="xs:string" use="required"/>
+  <xs:attribute name="Erfolg" type="xs:string" use="required"/>
+  <xs:attribute name="Blockiert" type="xs:string" use="required"/>
+  <xs:attribute name="Abbruch" type="xs:string" use="required"/>
+  <xs:attribute name="Uebertrag" type="xs:string" use="required"/>
+  <xs:attribute name="AnzahlProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="ErfolgProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="BlockiertProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="AbbruchProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenUebertrag"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="StatistikKundenAbbruchProTag" type="xs:string"/>
+    <xs:element name="StatistikKundenWiederholzeitenProTag" type="xs:string"/>
+	<xs:element name="StatistikKundenRestWartezeittoleranzenProTag" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeAnzahl"><xs:complexType>
+  <xs:attribute name="Anzahl" type="xs:string" use="required"/>
+  <xs:attribute name="Erfolg" type="xs:string" use="required"/>
+  <xs:attribute name="Blockiert" type="xs:string" use="required"/>
+  <xs:attribute name="Abbruch" type="xs:string" use="required"/>
+  <xs:attribute name="Uebertrag" type="xs:string" use="required"/>
+  <xs:attribute name="AnzahlProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="ErfolgProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="BlockiertProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="AbbruchProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenWartezeit"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="SummeProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeWartezeit"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="SummeProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenVerweilzeit"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="SummeProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeVerweilzeit"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="SummeProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenAbbruchzeit"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="SummeProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeAbbruchzeit"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="SummeProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenServiceLevel"><xs:complexType>
+  <xs:attribute name="Anzahl" type="xs:string" use="required"/>
+  <xs:attribute name="AnzahlProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeServiceLevel"><xs:complexType>
+  <xs:attribute name="Anzahl" type="xs:string" use="required"/>
+  <xs:attribute name="AnzahlProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenWeiterleitungen"><xs:complexType>
+  <xs:attribute name="Anzahl" type="xs:string" use="required"/>
+  <xs:attribute name="AnzahlProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenWiederholungen"><xs:complexType>
+  <xs:attribute name="Anzahl" type="xs:string" use="required"/>
+  <xs:attribute name="AnzahlProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenWiederanrufe"><xs:complexType>
+  <xs:attribute name="Anzahl" type="xs:string" use="required"/>
+  <xs:attribute name="AnzahlProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeWeiterleitungen"><xs:complexType>
+  <xs:attribute name="Anzahl" type="xs:string" use="required"/>
+  <xs:attribute name="AnzahlProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeWiederholungen"><xs:complexType>
+  <xs:attribute name="Anzahl" type="xs:string" use="required"/>
+  <xs:attribute name="AnzahlProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenWartezeitverteilung"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeWartezeitverteilung"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenVerweilzeitverteilung"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenWartezeitverteilungLang"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeWartezeitverteilungLang"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenVerweilzeitverteilungLang"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeVerweilzeitverteilung"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenAbbruchzeitverteilung"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeAbbruchzeitverteilung"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeVerweilzeitverteilungLang"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKundenAbbruchzeitverteilungLang"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnrufeAbbruchzeitverteilungLang"><xs:complexType>
+  <xs:attribute name="Verteilung" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikKonfidenz"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="KonfidenzErreichbarkeitAnrufe"/>
+	<xs:element ref="KonfidenzErreichbarkeitKunden"/>
+    <xs:element ref="KonfidenzWartezeit"/>
+    <xs:element ref="KonfidenzServiceLevelAnrufeErfolg"/>
+	<xs:element ref="KonfidenzServiceLevelAnrufeAlle"/>
+	<xs:element ref="KonfidenzServiceLevelKundenErfolg"/>
+	<xs:element ref="KonfidenzServiceLevelKundenAlle"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="KonfidenzErreichbarkeitAnrufe"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="Konfidenz90Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz90Max" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KonfidenzErreichbarkeitKunden"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="Konfidenz90Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz90Max" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KonfidenzWartezeit"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="Konfidenz90Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz90Max" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+	
+<xs:element name="KonfidenzServiceLevelAnrufeErfolg"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="Konfidenz90Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz90Max" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KonfidenzServiceLevelAnrufeAlle"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="Konfidenz90Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz90Max" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KonfidenzServiceLevelKundenErfolg"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="Konfidenz90Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz90Max" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="KonfidenzServiceLevelKundenAlle"><xs:complexType>
+  <xs:attribute name="Summe" type="xs:string" use="required"/>
+  <xs:attribute name="QuadrateSumme" type="xs:string" use="required"/>
+  <xs:attribute name="Konfidenz90Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz90Max" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Min" type="xs:string"/>
+  <xs:attribute name="Konfidenz95Max" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAnruferKosten"><xs:complexType>
+  <xs:attribute name="Ertrag" type="xs:string" use="required"/>
+  <xs:attribute name="Wartezeiten" type="xs:string" use="required"/>
+  <xs:attribute name="Abbrecher" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAgenten"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="StatistikAgentenGesamt"/>
+    <xs:element ref="StatistikAgentenKundentyp" maxOccurs="unbounded"/>
+    <xs:element ref="StatistikAgentenKosten"/>
+  </xs:sequence>
+  <xs:attribute name="Anzahl" type="xs:string" use="required"/>
+  <xs:attribute name="Name" type="xs:string"/>
+  <xs:attribute name="Typ" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAgentenGesamt"><xs:complexType>
+  <xs:attribute name="Leerlauf" type="xs:string" use="required"/>
+  <xs:attribute name="TechnischeBereitzeit" type="xs:string" use="required"/>
+  <xs:attribute name="Gespraechszeit" type="xs:string" use="required"/>
+  <xs:attribute name="Nachbearbeitungszeit" type="xs:string" use="required"/>
+  <xs:attribute name="LeerlaufProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="TechnischeBereitzeitProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="GespraechszeitProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="NachbearbeitungszeitProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="LeerlaufAnteil" type="xs:string"/>
+  <xs:attribute name="TechnischeBereitzeitAnteil" type="xs:string"/>
+  <xs:attribute name="GespraechszeitAnteil" type="xs:string"/>
+  <xs:attribute name="NachbearbeitungszeitAnteil" type="xs:string"/>
+  <xs:attribute name="BruttoZeit" type="xs:string"/>
+  <xs:attribute name="NettoZeit" type="xs:string"/>
+  <xs:attribute name="Anrufe" type="xs:string"/>
+  <xs:attribute name="AnrufeProIntervall" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAgentenKundentyp"><xs:complexType>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+  <xs:attribute name="TechnischeBereitzeit" type="xs:string" use="required"/>
+  <xs:attribute name="Gespraechszeit" type="xs:string" use="required"/>
+  <xs:attribute name="Nachbearbeitungszeit" type="xs:string" use="required"/>
+  <xs:attribute name="TechnischeBereitzeitProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="GespraechszeitProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="NachbearbeitungszeitProIntervall" type="xs:string" use="required"/>
+  <xs:attribute name="Anrufe" type="xs:string"/>
+  <xs:attribute name="AnrufeProIntervall" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikAgentenKosten"><xs:complexType>
+  <xs:attribute name="Arbeitslohn" type="xs:string" use="required"/>
+  <xs:attribute name="KostenFuerGespraeche" type="xs:string" use="required"/>
+  <xs:attribute name="KostenFuerGespraechszeit" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikWarteschlange"><xs:complexType>
+  <xs:attribute name="Maximal" type="xs:string" use="required"/>
+  <xs:attribute name="Mittel" type="xs:string" use="required"/>
+  <xs:attribute name="MittelProIntervall" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikWarteschlangeZusammenfassung"><xs:complexType>
+  <xs:attribute name="Bereich" type="xs:string" use="required"/>
+  <xs:attribute name="Mittel" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikModellAgenten"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="StatistikModellAgentenSimulation" type="xs:string"/>
+    <xs:element name="StatistikModellAgentenModell" type="xs:string"/>
+    <xs:element name="StatistikModellAgentenVollstaendig" type="xs:string"/>
+  </xs:sequence>
+  <xs:attribute name="Name" type="xs:string"/>
+  <xs:attribute name="Typ" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ErlangCOhneWiederholer"><xs:complexType>
+  <xs:attribute name="AnzahlAnAgenten" type="xs:string"/>
+  <xs:attribute name="Erstanrufer" type="xs:string"/>
+  <xs:attribute name="ServiceLevel" type="xs:string"/>
+  <xs:attribute name="Erfolg" type="xs:string"/>
+  <xs:attribute name="MittlereWartezeit" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="ErlangCMitWiederholern"><xs:complexType>
+  <xs:attribute name="AnzahlAnAgenten" type="xs:string"/>
+  <xs:attribute name="Erstanrufer" type="xs:string"/>
+  <xs:attribute name="Wiederholer" type="xs:string"/>
+  <xs:attribute name="ServiceLevel" type="xs:string"/>
+  <xs:attribute name="Erfolg" type="xs:string"/>
+  <xs:attribute name="MittlereWartezeit" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikSchwellenwerte"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="SchellenwertDaten" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<!-- Beschreibung der Optimiererkonfigurations-Dateien -->
+
+<xs:element name="OptimiererEinstellungen"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="Optimierung-Eigenschaft" type="xs:string"/>
+    <xs:element name="Optimierung-Wert" type="xs:string"/>
+	<xs:element name="Optimierung-WertMaximum" minOccurs="0" maxOccurs="1" type="xs:string"/>
+    <xs:element name="Optimierung-Intervalle" type="xs:string"/>
+    <xs:element name="Optimierung-Gruppen" type="xs:string"/>
+    <xs:element name="Optimierung-Gruppe" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+    <xs:element name="Optimierung-Optimierungsintervalle" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="Anpassung-Wert" type="xs:string"/>
+    <xs:element name="Anpassung-Gruppen" type="xs:string"/>
+    <xs:element name="Anpassung-Gruppe" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+	<xs:element ref="Optimierung-Uebertrag" minOccurs="0" maxOccurs="1" />
+	<xs:element ref="Optimierung-InitialerBestand" minOccurs="0" maxOccurs="1" />
+    <xs:element name="Einschraenkung-Gruppe" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="Optimierung-Uebertrag"><xs:complexType>  
+  <xs:sequence>
+    <xs:element ref="VerknuepftUebertrag" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="StatistikDatei" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="Optimierung-InitialerBestand"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="Optimierung-InitialerBestandKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="Optimierung-InitialerBestandKundentyp"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<xs:element name="Einschraenkung-Gruppe"><xs:complexType>
+  <xs:attribute name="Name" type="xs:string" use="required"/>
+  <xs:attribute name="Minimum" type="xs:string" use="required"/>
+  <xs:attribute name="Maximum" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<!-- Beschreibung der Optimierungsergebnis-Dateien -->
+
+<xs:element name="OptimiererDaten"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="Laufzeit" type="xs:string"/>
+	<xs:element name="Anzahl" type="xs:string"/>
+    <xs:element ref="OptimiererEinstellungen"/>
+    <xs:element ref="Simulationslauf" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="Simulationslauf"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="Statistik"/>
+  </xs:sequence>
+  <xs:attribute name="Nummer" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<!-- Beschreibung der Verknüpfte Simulation Dateien -->
+
+<xs:element name="VerknuepfteSimulation"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="VerknuepftTag" maxOccurs="unbounded"/>
+	<xs:element ref="VerknuepftInitialerBestand" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+  <xs:attribute name="Basisverzeichnis" type="xs:string" use="required"/>
+  <xs:attribute name="InitialerUebertrag" type="xs:string"/>
+</xs:complexType></xs:element>
+
+<xs:element name="VerknuepftTag"><xs:complexType>
+  <xs:sequence>
+    <xs:element name="VerknuepftModell" type="xs:string"/>
+    <xs:element name="VerknuepftStatistik" type="xs:string"/>
+    <xs:element ref="VerknuepftUebertraege"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="VerknuepftUebertraege"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="VerknuepftUebertrag" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="VerknuepftUebertrag"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="VerknuepftUebertragNeuerKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="Typ" type="xs:string" use="required"/>
+  <xs:attribute name="Wert" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="VerknuepftUebertragNeuerKundentyp"><xs:complexType>
+  <xs:attribute name="Typ" type="xs:string" use="required"/>
+  <xs:attribute name="Wert" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<xs:element name="VerknuepftInitialerBestand"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="VerknuepftInitialerBestandKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="VerknuepftInitialerBestandKundentyp"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+<!-- Beschreibung der Schablonen-Dateien -->
+
+<xs:element name="Schablone"><xs:complexType>
+  <xs:sequence>
+    <xs:element ref="SchabloneEintrag" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="SchabloneEintrag"><xs:complexType>
+  <xs:attribute name="Typ" type="xs:string" use="required"/>
+  <xs:attribute name="Parameter" type="xs:string" use="required"/>
+  <xs:attribute name="ZelleVon" type="xs:string" use="required"/>
+  <xs:attribute name="ZelleBis" type="xs:string" use="required"/>
+</xs:complexType></xs:element>
+
+<!-- Beschreibung der SaaS-Setup-Dateien -->
+
+<xs:element name="CallcenterSimulatorSasSSetup"><xs:complexType>
+  <xs:sequence>
+	<xs:element name="LogDatei" minOccurs="0" maxOccurs="1" type="xs:string"/>
+	<xs:element name="Simulation" minOccurs="0" maxOccurs="1"/>
+	<xs:element name="Web" minOccurs="0" maxOccurs="1"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="Simulation"><xs:complexType>
+  <xs:sequence>
+	<xs:element name="Port" minOccurs="0" maxOccurs="1" type="xs:string"/>
+	<xs:element name="Passwort" minOccurs="0" maxOccurs="1" type="xs:string"/>
+	<xs:element name="MaxThreads" minOccurs="0" maxOccurs="1" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="Web"><xs:complexType>
+  <xs:sequence>
+	<xs:element name="Port" minOccurs="0" maxOccurs="1" type="xs:string"/>
+	<xs:element name="AppletJarDatei" minOccurs="0" maxOccurs="1" type="xs:string"/>
+	<xs:element ref="StatistikVerzeichnis" minOccurs="0"/>
+    <xs:element name="FilterVerzeichnis" minOccurs="0" maxOccurs="1" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType></xs:element>
+
+<xs:element name="StatistikVerzeichnis"><xs:complexType>
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Name" type="xs:string"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType></xs:element>
+
+</xs:schema>

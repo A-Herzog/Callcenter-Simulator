@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dialog "Edit skill level"</title>
+</head>
+
+<body>
+
+<h1>Dialog "Edit skill level"</h1>
+
+<p>
+The dialog for editing the skill levels can be opened by the dialog page
+<a href="EditorSkillLevel">Skill levels of the agents</a> from the call center
+model editor. In the dialog "Edit skill level" you can set up the individual
+skill levels in the model.
+</p>
+
+<p>
+Each skill level represents a set of skills to operate certain types of customers.
+Each agent group has to be assigned a skill level.
+</p>
+
+<p>
+By the buttons <b>Add skill</b> and <b>Remove skill</b> one can select whilch
+individual skills should belong to a skill level.
+</p>
+
+<p>
+Per client type these properties can be specified:
+</p>
+
+<h3><img src="../images/clock.png">&nbsp; Holding time distribution</h3>
+<p>
+If a client of the chosen type is served by an agent of this skill level, the actual
+holding time is determined by the holding time distribution defined here.
+</p>
+<p>
+This distribution can be set up global (for the whole day).
+In addition, for each half-hour interval an individual
+distribution can be defined. If "Use global distribution for this interval"
+is selected, the global distribution will be used, otherwise the
+individual distribution for this interval will be used.
+</p>
+
+<h3><img src="../images/clock.png">&nbsp; Post processing time distribution</h3>
+<p>
+If a client of the chosen type is served by an agent of this skill level, the actual
+post processing time the agents needs before he is ready for the next client
+will be determined by the post processing time distribution defined here.
+</p>
+<p>
+This distribution can be set up global (for the whole day).
+In addition, for each half-hour interval an individual
+distribution can be defined. If "Use global distribution for this interval"
+is selected, the global distribution will be used, otherwise the
+individual distribution for this interval will be used.
+</p>
+
+<h3><img src="../images/wrench.png">&nbsp; Score</h3>
+<p>
+In each skill level for each client type which can be served by the agents of the
+seleczed skill level a score value can be defined. The higher this value, the more
+likely a waiting client will be routed to an agent of the selected skill level
+(if there are free agents of different skill levels).
+</p>
+
+<p>
+The agent score results from the skill level score together with the call center score
+and the score, calculated from the idle time of the agent.
+</p>
+
+</body>
+</html>
+  

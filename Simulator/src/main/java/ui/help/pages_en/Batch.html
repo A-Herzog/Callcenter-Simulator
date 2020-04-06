@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Batch processing</title>
+</head>
+
+<body>
+
+<div class="menu">
+<img src="../images/server_go.png">&nbsp;
+Simulation &gt; Batch processing
+</div>
+
+<h1>Batch processing</h1>
+
+<p>
+By using the function <b>Batch processing</b> the Callcenter Simulator can
+perform multiple simulation runs in immediate succession.
+There are two types of batch processing supported:
+</p>
+
+<h2>Process folder</h2>
+
+<p>
+In this mode a directory containing the model files to process has to be
+specified. The simulator will try to simulate all <tt>xml</tt> files for which
+there is no <tt>*_statistic.xml</tt> file as call center model files and will
+store the statistic results as <tt>*_statistic.xml</tt> files in the same
+directory.
+</p>
+
+<p>
+This function is also available via the <a href="Parameter.html">command line parameters</a>.
+</p>
+
+<h2>Create parameter series</h2>
+
+<p>
+In this mode, the currently loaded call center model editor is simulated. But on each run of the
+batch simulation one model parameter is changed in a specifed way so that at the end there are
+statistic data of a series of simulations with a range of parameter values available.
+The simulation results are stored in the directory specified in the form of statistic <tt>xml</tt>
+output files. Please note that the results can also be can be written in a processed form
+in a single file for multiple simulation runs (see the dialog "Additional output settings").
+</p>
+
+<h2>Dialog "Additional output settings"</h2>
+
+<p>
+In this dialog you can set up to run some <a href="Filter.html">output filter</a>
+right after each simulation and to append the results to a single file.
+By using this function a table continaing the results of the parameter series
+can be created easily.
+</p>
+
+</body>
+</html>
+  

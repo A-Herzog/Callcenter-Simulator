@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Dokumentation der Callcenter Simulator Dateiformate - Allgemeine Informationen</title>
+</head>
+
+<body>
+
+<h1>Dokumentation der Callcenter Simulator Dateiformate - Allgemeine Informationen</h1>
+
+<a href="Dateiformate.html">Zurück zur Übersicht über alle Dateiformate</a>
+
+<h2>Zahlenformate</h2>
+
+<ul class="big">
+  <li>Einzelne <b>Fließkommazahlen</b> werden grundsätzlich mit einem Dezimalpunkt dargestellt (also "123.456" oder, wenn keine Nachkommastellen vorhanden sind "123"). Im Simulator werden Zahlen gemäß den lokalen Einstellungen (im deutschsprachigen Raum mit einem Dezimalkomma) dargestellt, dies hat jedoch keinen einfluss auf die (internationale) Speicherung der Zahlen.</li>
+  <li><b>Folgen</b> aus Zahlen werden durch Semikolons getrennt.</li>
+  <li><b>Wahrscheinlichkeiten</b> können als Dezimalwert (z.B. "0.452") oder als Prozentwert (z.B. "45.2%") geschrieben werden.</li>
+  <li><b>Zeitangaben</b> werden in vielen Fällen in der Form <tt>hh:mm:ss</tt> angegeben. Einige
+  Felder können jedoch auch Zeitangaben mit einer höheren Genauigkeit in der Form <tt>hh:mm:ss.nnn</tt>
+  aufnehmen (wobei <tt>nnn</tt> einen Wert in Millisekunden angeben). Welches Feld welches Format
+  erwartet, ist bei dem jeweiligen Feld angegeben.
+</ul>
+
+<h2>Wahrscheinlichkeitsverteilungen</h2>
+
+<p>
+Die Datenfelder, in die Wahrscheinlichkeitsverteilungen eingegeben werden sollen, müssen folgenden
+Aufbau besitzen:
+</p>
+<p><tt>&lt;Name der Verteilung&gt; (&lt;Parameter&gt;)</tt></p>
+<ul class="big">
+  <li>Mögliche Werte für <tt>&lt;Name der Verteilung&gt;</tt> sind:
+  "<tt>Empirische Daten</tt>", "<tt>Niemals</tt>", "<tt>Ein-Punkt-Verteilung</tt>", "<tt>Gleichverteilung</tt>",
+  "<tt>Exponentialverteilung</tt>", "<tt>Normalverteilung</tt>", "<tt>Lognormalverteilung</tt>", "<tt>Gamma-Verteilung</tt>",
+  "<tt>Erlang-Verteilung</tt>", "<tt>Beta-Verteilung</tt>", "<tt>Cauchy-Verteilung</tt>", "<tt>Weibull-Verteilung</tt>",
+  "<tt>chi^2-Verteilung</tt>" und "<tt>F-Verteilung</tt>".</li>
+  <li><tt>&lt;Parameter&gt;</tt> können eine oder mehrere Fließkommazahlen sein. Im Falle von mehreren Zahlen werden
+  diese durch Semikolons getrennt. Die einzige Ausnahme stellt die Verteilung "<tt>Niemals</tt>" dar, der keine
+  Klammer mit Parameter folgt.</li>
+</ul>
+<p>Konkrete Bedeutung der Parameter der einzelnen Verteilungen:</p>
+<ul class="big">
+  <li>"<tt>Empirische Daten</tt>":
+  Es folgenden die einzelnen Datenpunkte der Dichte, getrennt durch Semikolons.
+  Werden mehr oder weniger Datenpunkte als erwartet übergeben, so werden die Daten entsprechend skaliert.
+  Auf welchen Zeitraum sich die Daten beziehen und wie viele Datenpunkte standardsmäßig erwartet werden,
+  hängt davon ab, an welcher Stelle die Verteilung verwendet werden soll.</li>
+  <li>"<tt>Niemals</tt>":
+  Die komplette Masse der Verteilung liegt bei unendlich. Wird dieser Wert z.B. für die Wartezeittoleranzverteilung
+  der Kunden angegeben, so brechen alle Kunden das Warten erst nach einer unendlich langen Wartezeit (also nie) ab.
+  Der Angabe "<tt>Niemals</tt>" folgt weder eine Klammer noch ein Leerzeichen.</li>
+  <li>"<tt>Ein-Punkt-Verteilung</tt>":
+  Die Verteilung erwartet einen Parameter, der angibt, auf welchem Punkt die gesamte Masse der Verteilung liegen soll.
+  Wird diese Verteilung für die Bedienzeitenverteilung eines Agenten angegeben, so dauert die Bedienung aller
+  Kunden exakt so lange wie im Parameter angegeben.</li>
+  <li>"<tt>Gleichverteilung</tt>":
+  Die Verteilung erwartet zwei Parameter: die untere und die untere Grenze des Bereichs, in dem Werte auftreten können.</li>
+  <li>"<tt>Exponentialverteilung</tt>":
+  Die Verteilung erwartet den Erwartungswert der Exponentialverteilung als Parameter.</li>
+  <li>"<tt>Normalverteilung</tt>":
+  Die Verteilung erwartet zwei Parameter: Erwartungswert und Standardabweichung.</li>
+  <li>"<tt>Lognormalverteilung</tt>":
+  Die Verteilung erwartet zwei Parameter: Erwartungswert und Standardabweichung.</li>
+  <li>"<tt>Gamma-Verteilung</tt>":
+  Die Verteilung erwartet als Parameter die zwei Verteilungsparameter &alpha; und &beta;.</li>
+  <li>"<tt>Erlang-Verteilung</tt>":
+  Die Verteilung erwartet als Parameter die zwei Verteilungsparameter n und &lambda;.</li>
+  <li>"<tt>Beta-Verteilung</tt>":
+  Die Verteilung erwartet vier Parameter: Zunächst die beiden Form-Parameter &alpha; und &beta; gefolgt von 
+  den Grenzen des Intervalls, auf dem die Verteilung positive Werte annehmen soll.</li>
+  <li>"<tt>Cauchy-Verteilung</tt>":
+  Die Verteilung erwartet zwei Parameter: den Median gefolgt von dem Form-Parameter.</li>
+  <li>"<tt>Weibull-Verteilung</tt>":
+  Die Verteilung erwartet zwei Parameter: den Skalierungsparameter gefolgt von dem Formparameter.</li>
+  <li>"<tt>chi^2-Verteilung</tt>":
+  Die Verteilung erwartet als Parameter die Anzahl an Freiheitsgraden.</li>
+  <li>"<tt>F-Verteilung</tt>": 
+  Die Verteilung erwartet zwei Parameter: Die Anzahl der Freiheitsgrade im Zähler und die Anzahl der Freiheitsgrade im Nenner.</li>
+</ul>
+
+<h2>Validierung der XML-Dateien</h2>
+
+<p>
+Die vom Callcenter Simulator verwendeten XML-Dateien können auch mit Hilfe der
+<a href="special:DTD">CallcenterSimulator_de.dtd</a>- und der
+<a href="special:XSD">CallcenterSimulator_de.xsd</a>-Dokumentenformat-Beschreibungsdatei
+validiert werden.
+</p>
+
+</body>
+</html>
+  

@@ -1,0 +1,515 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="charset" content="iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Command line parameters</title>
+</head>
+
+<body>
+
+<h1>Command line parameters</h1>
+
+<p>
+Please note that <b>only</b> the <a href="Versionen.html">commercial version</a>
+of the Callcenter Simulators can be controlled by command line parameters.
+</p>
+
+<p>
+The general call scheme for the Callcenter Simulator is:
+</p>
+
+<ol class="big">
+<li><b>Calling the simulator with a model file as parameter</b><br>
+<tt>&lt;Simulator program file&gt; &lt;model file&gt;</tt><br>
+Starts the graphical user interface of the simulator and loads the given model file.</li>
+<li><b>Calling the simulator with a statistic file as parameter</b><br>
+<tt>&lt;Simulator program file&gt; &lt;statistics file&gt;</tt><br>
+Starts the graphical user interface of the simulator and loads the given statistic file.</li>
+<li><b>Calling the simulator with a command as parameter</b><br>
+<tt>&lt;Simulator program file&gt; &lt;command&gt; &lt;parameter&gt;</tt><br>
+Startet den Simulator im Kommandozeilen-Modus und führt den angegebenen Befehl aus.</li>
+</ol>
+
+<p>
+Additionally between the name of the program file <tt>&lt;Simulator program file&gt;</tt> and the parameters
+can be specified where the simulator configuration is located:
+</p>
+<p>
+<tt>&lt;Simulator program file&gt; cfg="&lt;PathAndFileName&gt;" &lt;OptionalAdditionalParameters&gt;</tt>
+</p>
+<p>
+On program start the configuration file from the progam directory will be loaded first.
+After this the specified user-defined configuration file will be loaded in addition.
+When saving the configuration only the user-defined file will be changed.
+</p>
+
+<h1>Commands for the command line mode</h1>
+
+<p>
+<b>Attention:</b> The command line mode is only available if the program is
+started as a <tt>jar</tt> file. The Windows <tt>exe</tt> file does not
+support the following commands.
+</p>
+
+<p style="margin-bottom: 10px">
+The place holder <tt>&lt;command&gt;</tt> in the third calling variant can be one
+commands described in the sections below.
+</p>
+
+<!-- ---------------------------------------------------------------------- -->
+<h2>Importing &amp; exporting data</h2>
+
+<table border="1" style="margin-top: 15px;">
+  <tr><th>Command</th><th>Description</th></tr>
+  <tr><td>GENERATORCALLER</td><td>Load client arrivals from table.</td></tr>
+  <tr><td>GENERATORAGENTS</td><td>Load agents working times from table.</td></tr>
+  <tr><td>GENERATORAGENTSEFFICIENCY</td><td>Load agents efficiency from table.</td></tr>
+  <tr><td>GENERATORAGENTSADDITION</td><td>Load the disease-related surcharge from table.</td></tr>
+  <tr><td>GENERATORSKILLLEVEL</td><td>Load holding and post processing time from table.</td></tr>
+  <tr><td>MODELFROMTABLE</td><td>Generates a call center model from a clients and an agents table.</td></tr>
+  <tr><td>XMLPREPROCESSING</td><td>Inserts cells from a table into a XML file.</td></tr>
+  <tr><td>FILTER</td><td>Filter statistic file.</td></tr>
+  <tr><td>IMPORT</td><td>Imports data based on a import template from a table.</td></tr>
+  <tr><td>REPORT</td><td>Exports the whole report or a part of it.</td></tr>
+  <tr><td>MODELINFORMATION</td><td>Exports the whole model information or a part of it.</td></tr>
+  <tr><td>EXPORT></td><td>Export statistic data in a non XML format.</td></tr>
+</table>
+
+<p style="margin-top: 10px">
+(If <tt>&lt;command&gt;</tt> is specified in upper or lower case is not considered.)
+</p>
+
+<p><b>Parameters of the individual commands</b></p>
+
+<p>
+The additional parameters specified in <tt>&lt;parameter&gt;</tt> depend on the <tt>&lt;command&gt;</tt>:
+</p>
+
+<h4>GENERATORCALLER</h4>
+<p>
+Load client arrivals from table.<br>
+At least five additional parameters:<br>
+1. Input model file<br>
+2. Input table file<br>
+3. Output table file<br>
+The input files have to be existent, the output has to be non existent.
+After the first three parameters there can be multiple parameter couples of the form:
+</p>
+<ul>
+  <li>First table cell (in the Form A1) where the data which are to be loaded are stored</li>
+  <li>Client type name for which the arrivals are to be loaded</li>
+</ul>
+
+<h4>GENERATORAGENTS</h4>
+<p>
+Load agents working times from table.<br>
+At least six additional parameters:<br>
+1. Name of the call center to be changed<br>
+2. Input model file<br>
+3. Input table file<br>
+4. Output table file<br>
+The input files have to be existent, the output has to be non existent.
+After the first four parameters there can be multiple parameter couples of the form:
+</p>
+<ul>
+  <li>First table cell (in the Form A1) where the data which are to be loaded are stored</li>
+  <li>Agents group number for which the working times are to be loaded</li>
+</ul>
+
+<h4>GENERATORAGENTSEFFICIENCY</h4>
+<p>
+Load agents efficiency from table.<br>
+At least six additional parameters:<br>
+1. Name of the call center to be changed<br>
+2. Input model file<br>
+3. Input table file<br>
+4. Output table file<br>
+The input files have to be existent, the output has to be non existent.
+After the first four parameters there can be multiple parameter couples of the form:
+</p>
+<ul>
+  <li>First table cell (in the Form A1) where the data which are to be loaded are stored</li>
+  <li>Agents group number for which the efficiency is to be loaded</li>
+</ul>
+
+<h4>GENERATORAGENTSADDITION</h4>
+<p>
+Load the disease-related surcharge from table.<br>
+At least six additional parameters:<br>
+1. Name of the call center to be changed<br>
+2. Input model file<br>
+3. Input table file<br>
+4. Output table file<br>
+The input files have to be existent, the output has to be non existent.
+After the first four parameters there can be multiple parameter couples of the form:
+</p>
+<ul>
+  <li>First table cell (in the Form A1) where the data which are to be loaded are stored</li>
+  <li>Agents group number for which the disease-related surcharge is to be loaded</li>
+</ul>
+
+<h4>GENERATORSKILLLEVEL</h4>
+<p>
+Load holding and post processing time from table.<br>
+At least six additional parameters:<br>
+1. Name of the skill level to be changed<br>
+2. Input model file<br>
+3. Input table file<br>
+4. Output table file<br>
+The input files have to be existent, the output has to be non existent.
+After the first four parameters there can be multiple parameter couples of the form:
+</p>
+<ul>
+  <li>First table cell (in the Form A1) where the data which are to be loaded are stored</li>
+  <li>Name of the Client type with a "H" or a "P" for holding or post processing time before the name</li>
+</ul>
+
+<h4>MODELFROMTABLE</h4>
+<p>
+Generates a call center model from a clients and an agents table.<br>
+The command expects three parameters:<br>
+1. Clients input table<br>
+2. Agents input table<br>
+3. Ouput file name for the model file<br>
+The table file names can be extended by a table name
+inside the workbook file and the name of the first row to be taken
+into accout both separated by "!".<br>
+The caller table can consist of any number of columns.
+Each column defines one client type.
+Each column has to consist of the following rows:
+</p>
+<ul>
+  <li>Name of the client type</li>
+  <li>48 rows defining the number of calls by half-hour interval</li>
+  <li>Basis priority for the client type</li>
+  <li>Priority change per waiting second</li>
+  <li>Priority change on forwarding</li>
+  <li>Mean waiting time tolerance</li>
+  <li>Retry probability</li>
+  <li>Mean retry time</li>
+  <li>Any number of additional rows defining the probability of clients of this type to be forwarded after the service (in the order of the column order of the table; empty rows mean there is no forwarding to this client type)</li>
+</ul>
+<p>
+The agents table can consist of any number of columns.
+Each column defines one agents group.
+Each column has to consist of the following rows:
+</p>
+<ul>
+  <li>Name of the agents group / the skill level</li>
+  <li>48 rows for the numbers of agents per half-hour interval</li>
+  <li>Any number of additional rows defining the mean service times for the client types (in the order of the column order of the client types in the callers table; empty rows mean the agents group will not be able to servce clients of this type)</li>
+</ul>
+
+<h4>XMLPREPROCESSING</h4>
+<p>
+Inserts cells from a table into a XML file.<br>
+The command expects 3 parameters:<br>
+1. Input model file<br>
+2. Table file from where the data is to be loaded<br>
+3. Output model file<br>
+The input model file can contain expressions like $(TableName!A1) or $(TableName!A1:A48) at any position which indicate that
+a single cell (A1 in the example) or an area (A1 to A48 in the example) is to be inclueded at this position.
+If the table name is missing, like $(A1) or $(A1:A48) the first table of the workbook is used.
+</p>
+
+<h4>FILTER</h4>
+<p>
+Filter statistic file.<br>
+The command expects exactly three additional parameters:<br>
+1. Name of the input statistic file<br>
+2. Name of the input filter configuration file<br>
+3. Name of the output file which will contain the filtered results<br>
+If the output file already exists, the new results will be added.
+Otherwise the file will be created.
+</p>
+
+<h4>IMPORT</h4>
+<p>
+Imports data based on a import template from a table.<br>
+This command expects exactly four additional parameters:<br>
+1. Input model file, from which the model to be changed is loaded<br>
+2. Import template file, which specifies which data are to be loaded<br>
+3. Imput table file containing the data<br>
+4. Output model file
+</p>
+
+<h4>REPORT</h4>
+<p>
+Exports the whole report or a part of it.<br>
+This command expects exactly three additional parameters:<br>
+1. "Inline", Files", "List", "Text", "PDF" or the name of an list entry for<br>
+&nbsp;&nbsp;a) creating a HTML report with embedded images,<br>
+&nbsp;&nbsp;b) creating a HTML report with individual image files,<br>
+&nbsp;&nbsp;c) creating a DOCX report,<br>
+&nbsp;&nbsp;d) creating a PDF report,<br>
+&nbsp;&nbsp;e) getting a list of all available individual documents or<br>
+&nbsp;&nbsp;f) getting an individual document.<br>
+2. File name of the input file<br>
+3. File name of the output file
+</p>
+
+<h4>MODELINFORMATION</h4>
+<p>
+Exports the whole model information or a part of it.<br>
+This command expects exactly three additional parameters:<br>
+1. "Inline", Files", "List", "Text", "PDF" or the name of an list entry for<br>
+&nbsp;&nbsp;a) creating a HTML report with embedded images,<br>
+&nbsp;&nbsp;b) creating a HTML report with individual image files,<br>
+&nbsp;&nbsp;c) creating a DOCX report,<br>
+&nbsp;&nbsp;d) creating a PDF report,<br>
+&nbsp;&nbsp;e) getting a list of all available individual documents or<br>
+&nbsp;&nbsp;f) getting an individual document.<br>
+2. File name of the input file<br>
+3. File name of the output file
+</p>
+
+<h4>EXPORT</h4>
+<p>
+Export statistic data in a non XML format.<br>
+The command expects exactly three additional parameters:<br>
+1. Desired output format ("json" or "WebApp")<br>
+2. Name of the input statistic file<br>
+3. Name of the output file<br>
+The input file has to exist, the output file has to be non existent.<br>
+</p>
+
+<!-- ---------------------------------------------------------------------- -->
+<h2>Simulation &amp; optimization</h2>
+
+<table border="1" style="margin-top: 15px;">
+  <tr><th>Command</th><th>Description</th></tr>
+  <tr><td>SIMULATION</td><td>Start a simulation run.</td></tr>
+  <tr><td>BATCH</td><td>Simulates all models in a directory.</td></tr>
+  <tr><td>CONNECTEDSIMULATION</td><td>Simulation with statistic data from the previous simulation day.</td></tr>
+  <tr><td>OPTIMIZER</td><td>Optimizes a call center model.</td></tr>
+  <tr><td>OPTIMIZEREXPORT</td><td>Extracts the last model of the optimization process.</td></tr>
+  <tr><td>REARRANGE</td><td>Rearrange clients or agents to better use the available work force.</td></tr>
+  <tr><td>PREPLANNING</td><td>Erlang C based preplanning for the number of agents.</td></tr>
+  <tr><td>SIMPLIFY</td><td>Simplifies the model to a single skill mode</td></tr>
+  <tr><td>HEURISTICREVENUEIMPROVEMENT</td><td>Changes the numbers of agents to improve the revenue</td></tr>  
+</table>
+
+<p style="margin-top: 10px">
+(If <tt>&lt;command&gt;</tt> is specified in upper or lower case is not considered.)
+</p>
+
+<p><b>Parameters of the individual commands</b></p>
+
+<p>
+The additional parameters specified in <tt>&lt;parameter&gt;</tt> depend on the <tt>&lt;command&gt;</tt>:
+</p>
+
+<h4>SIMULATION</h4>
+<p>
+Start a simulation run.<br>
+This command expects exactly two additional parameters:<br>
+1. Input model file<br>
+2. Output statistic file<br>
+The input file has to be existent, the output has to be non existent.
+</p>
+
+<h4>BATCH</h4>
+<p>
+Simulates all models in a directory.<br>
+The command expects exactly one additional parameter:
+The name of the directory which contains the model files to be simulated.
+</p>
+
+<h4>CONNECTEDSIMULATION</h4>
+<p>
+Simulation with statistic data from the previous simulation day.<br>
+Either one or at least three additional parameters.
+In one parameter is specified it has to be the name of the
+connected simulation xml file to be executed.
+If three or more parameters are given they will have the
+following meaning:<br>
+1. Input model file<br>
+2. Input statistic file<br>
+3. Output statistic file<br>
+The input files have to be existent, the output file is
+not allowed to be existent before the simulation.
+After these first three parameters there can be any number of
+pairs of parameters of the following type:
+</p>
+<ul>
+  <li>Client type for which the cancels calls are to be carried over from the statistic file</li>
+  <li>Part of the cancel calls (as a percent number) that should be carried over as fresh calls</li>
+</ul>
+
+<h4>OPTIMIZER</h4>
+<p>
+Optimizes a call center model.<br>
+This command expects exactly three additional parameters:<br>
+1. Input model file<br>
+2. Optimizer configuration file<br>
+3. Optimizer statistic output file<br>
+The input files have to be existent, the output has to be non existent.
+</p>
+
+<h4>OPTIMIZEREXPORT</h4>
+<p>
+Extracts the last model of the optimization process.<br>
+This command expects exactly two additional parameters:<br>
+1. Optimizer statistic file<br>
+2. Statiatic output file<br>
+The input file has to be existent, the output has to be non existent.<br>
+</p>
+
+<h4>REARRANGE</h4>
+<p>
+Rearrange clients or agents to better use the available work force.<br>
+This command expects four or more additional parameters:<br>
+1. Input model file<br>
+2. Output statistic file<br>
+3. Rearrange mode<br>
+4. Rearrange strength<br>
+The input file has to be existent, the output has to be non existent. The rearrange mode has to be "clients" or "agents" and the rearrange strength a number between 0 and 1.<br>
+If there are no more additional parameters, all client or agents groups will be rearranged. If there are more parameters, only the groups specified in the 5th, 6th, ... parameter are changed.
+</p>
+
+<h4>PREPLANNING</h4>
+<p>
+Erlang C based preplanning for the number of agents.<br>
+This command expects exactly two additional parameters:<br>
+1. Input model file<br>
+2. Results model file<br>
+3. Name of the parameter for which a value is to be reached<br>
+4. Value of the parameter to be reached<br>
+The name of the parameter can be one of the following strings:
+"Accessibility", "WaitingTime" or "ServiceLevel".
+Each string can be extended (without a space character)
+by one or both of the following strings: "Retry" and "Simplified"
+(in this order).
+If one of the "...Retry" values is selected,
+retrying clients will be respected in the Erlang C model.
+If one of the "...Simplified" values is selected,
+the model will be simplified to a single skill model before
+the preplanning is done.
+</p>
+
+<h4>SIMPLIFY</h4>
+<p>Simplifies the model to a single skill mode.<br>
+This command expects two parameters:<br>
+1. Input model file<br>
+2. Output model file
+</p>
+
+<h4>HEURISTICREVENUEIMPROVEMENT</h4>
+<p>Changes the numbers of agents to improve the revenue.<br>
+This command expects two parameters:<br>
+1. Input model file<br>
+2. Output model file
+</p>
+
+<!-- ---------------------------------------------------------------------- -->
+<h2>Operation as network server</h2>
+
+<table border="1" style="margin-top: 15px;">
+  <tr><th>Command</th><th>Description</th></tr>
+  <tr><td>SIMULATION</td><td>Start a simulation run.</td></tr>
+  <tr><td>BATCH</td><td>Simulates all models in a directory.</td></tr>
+  <tr><td>CONNECTEDSIMULATION</td><td>Simulation with statistic data from the previous simulation day.</td></tr>
+  <tr><td>OPTIMIZER</td><td>Optimizes a call center model.</td></tr>
+  <tr><td>OPTIMIZEREXPORT</td><td>Extracts the last model of the optimization process.</td></tr>
+  <tr><td>REARRANGE</td><td>Rearrange clients or agents to better use the available work force.</td></tr>
+  <tr><td>PREPLANNING</td><td>Erlang C based preplanning for the number of agents.</td></tr>
+  <tr><td>SIMPLIFY</td><td>Simplifies the model to a single skill mode</td></tr>
+  <tr><td>HEURISTICREVENUEIMPROVEMENT</td><td>Changes the numbers of agents to improve the revenue</td></tr>  
+  <tr><td>SERVER</td><td>Starts the program as simulation server.</td></tr>
+  <tr><td>LOGFILESERVER</td><td>Starts the program as simulation server (writes log results to a file).</td></tr>
+  <tr><td>SAASSERVER</td><td>Starts the program as SaaS HTML and simulator server.</td></tr>
+</table>
+
+<p style="margin-top: 10px">
+(If <tt>&lt;command&gt;</tt> is specified in upper or lower case is not considered.)
+</p>
+
+<p><b>Parameters of the individual commands</b></p>
+
+<p>
+The additional parameters specified in <tt>&lt;parameter&gt;</tt> depend on the <tt>&lt;command&gt;</tt>:
+</p>
+
+<h4>SERVER</h4>
+<p>
+Starts the program as simulation server.<br>
+This command expects 0 to 3 additional parameters.
+If these parameters exist they have the following meaning:<br>
+1. Port to be used<br>
+2. Maximum number of threads to be used per request (0=unlimited, default: 0)<br>
+3. Password for encrypted data transfer<br>
+If no parameters are specified, the simulator will ask for the port via the console.
+</p>
+
+<h4>LOGFILESERVER</h4>
+<p>
+Starts the program as simulation server (writes log results to a file).<br>
+This command expects 1 to 4 additional parameters.
+If these parameters exist they have the following meaning:<br>
+1. File name of the log file<br>
+2. Port to be used<br>
+3. Maximum number of threads to be used per request (0=unlimited, default: 0)<br>
+4. Password for encrypted data transfer<br>
+If only one parameter is specified, the simulator will ask for the port via the console.
+</p>
+
+<h4>SAASSERVER</h4>
+<p>
+Starts the program as SaaS HTML and simulator server.<br>
+The command expects exactly one additional parameter:
+Either the path to the SaaS configuration file or one of the words "Test" or "Demo" to activate the demonstration mode using a default configuration or "Init" to prepare the system for first use.
+</p>
+
+<!-- ---------------------------------------------------------------------- -->
+<h2>General commands for setup</h2>
+
+<table border="1" style="margin-top: 15px;">
+  <tr><th>Command</th><th>Description</th></tr>
+  <tr><td>HELP</td><td>Shows this help.</td></tr>
+  <tr><td>LANGUAGE</td><td>Sets up the program language.</td></tr>
+  <tr><td>MAXTHREADS</td><td>Sets the maximum number of threads used for simulation.</td></tr>
+  <tr><td>UPDATE</td><td>Checks for updates and download a new jar file if available.</td></tr>
+</table>
+
+<p style="margin-top: 10px">
+(If <tt>&lt;command&gt;</tt> is specified in upper or lower case is not considered.)
+</p>
+
+<p><b>Parameters of the individual commands</b></p>
+
+<p>
+The additional parameters specified in <tt>&lt;parameter&gt;</tt> depend on the <tt>&lt;command&gt;</tt>:
+</p>
+
+<h4>HELP</h4>
+<p>
+Shows this help.<br>
+This command expects zero or one parameter.
+If a command line command is specified as additional parameter the help for this command is shown.
+Otherwise the help for all commands is shown.
+</p>
+
+<h4>LANGUAGE</h4>
+<p>
+Sets up the program language.<br>
+This command expects as parameter the desired program language: "English" or "German".
+</p>
+
+<h4>MAXTHREADS</h4>
+<p>
+Sets the maximum number of threads used for simulation.<br>
+The command expects a non negative integer number as parameter.<br>
+If "0" is given, the number of simulation threads will not be limited.<br>
+If a positive integer number is given, this number is used as the maximum of simulation threads.
+</p>
+
+<h4>UPDATE</h4>
+<p>
+Checks for updates and download a new jar file if available.<br>
+The command expect as additional parameter the file name for the downloaded update jar file.
+</p>
+
+</body>
+</html>
