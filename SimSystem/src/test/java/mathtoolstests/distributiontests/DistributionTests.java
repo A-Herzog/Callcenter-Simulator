@@ -222,7 +222,7 @@ public class DistributionTests {
 		assertEquals(defaultBeta.cumulativeProbability(3.0/3.0),beta.cumulativeProbability(7));
 
 		testDistributionTools(beta);
-		testDistributionParameters(beta,new double[] {2,3});
+		testDistributionParameters(beta,new double[] {2,3,4,7});
 	}
 
 	/**
