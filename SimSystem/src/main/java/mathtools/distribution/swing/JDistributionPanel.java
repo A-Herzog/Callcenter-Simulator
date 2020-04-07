@@ -68,7 +68,7 @@ import mathtools.distribution.tools.FileDropperData;
  * Zeigt den grafischen Verlauf von Dichte und Verteilungsfunktion einer Verteilung
  * vom Typ <code>AbstractContinuousDistribution</code> an.
  * @author Alexander Herzog
- * @version 1.5
+ * @version 1.6
  * @see AbstractRealDistribution
  */
 public class JDistributionPanel extends JPanel implements JGetImage {
@@ -368,6 +368,14 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 		edit.setToolTipText(b?EditButtonTooltip:"");
 	}
 
+	private double getRealMaxXValue() {
+		double d=maxXValue;
+		if (distribution!=null) {
+			if (distribution.getSupportUpperBound()*1.1<d) d=distribution.getSupportUpperBound()*1.1;
+		}
+		return d;
+	}
+
 	/**
 	 * Stellt die Bildgröße beim Kopieren und Speichern sein.
 	 * @param imageSize	Vertikale und horizontale Auflösung
@@ -393,7 +401,7 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 			g.drawString(ErrorString,r.x+r.width/2-w/2,r.y+r.height/2+g.getFontMetrics().getAscent()/2);
 		}
 
-		private void paintDistributionRect(Graphics g, Rectangle r, Rectangle dataRect) {
+		private void paintDistributionRect(final Graphics g, final Rectangle r, final Rectangle dataRect, final double maxXValue) {
 			int fontDelta=g.getFontMetrics().getAscent();
 
 			g.setColor(Color.white);
@@ -419,7 +427,7 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 			}
 		}
 
-		private void paintCumulativeProbability(Graphics g, Rectangle dataRect) {
+		private void paintCumulativeProbability(final Graphics g, final Rectangle dataRect, final double maxXValue) {
 			double lastY=0,y=0;
 
 			g.setColor(Color.blue);
@@ -435,7 +443,7 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 			}
 		}
 
-		private void paintDensity(Graphics g, Rectangle dataRect) {
+		private void paintDensity(final Graphics g, final Rectangle dataRect, final double maxXValue) {
 			double lastY=0,y=0;
 
 			double maxY=0.001;
@@ -474,7 +482,7 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 			}
 		}
 
-		private void paintToRectangle(Graphics g, Rectangle r) {
+		private void paintToRectangle(final Graphics g, Rectangle r, final double maxXValue) {
 			if (distribution==null) {paintNullDistribution(g,r); return;}
 
 			g.setColor(Color.WHITE);
@@ -487,18 +495,18 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 			r=new Rectangle(r.x+padding,r.y+padding,r.width-2*padding,r.height-2*padding);
 			Rectangle dataRect=new Rectangle(r.x+space.width+1,r.y+1,r.width-space.width-2,r.height-space.height-2);
 
-			paintDistributionRect(g,r,dataRect);
-			if ((plotType==CUMULATIVEPROBABILITY) || (plotType==BOTH))  paintCumulativeProbability(g,dataRect);
-			if ((plotType==DENSITY) || (plotType==BOTH)) paintDensity(g,dataRect);
+			paintDistributionRect(g,r,dataRect,maxXValue);
+			if ((plotType==CUMULATIVEPROBABILITY) || (plotType==BOTH))  paintCumulativeProbability(g,dataRect,maxXValue);
+			if ((plotType==DENSITY) || (plotType==BOTH)) paintDensity(g,dataRect,maxXValue);
 		}
 
 		@Override
 		public void paint(Graphics g) {
-			paintToRectangle(g,getClientRect());
+			paintToRectangle(g,getClientRect(),getRealMaxXValue());
 		}
 
 		public void paintToGraphics(Graphics g) {
-			paintToRectangle(g,g.getClipBounds());
+			paintToRectangle(g,g.getClipBounds(),getRealMaxXValue());
 		}
 	}
 
