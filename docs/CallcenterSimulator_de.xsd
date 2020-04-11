@@ -16,10 +16,10 @@
     <xs:element name="ModellServiceLevel" type="xs:integer"/>
 	<xs:element name="ModellProduktivitaet" type="xs:string" minOccurs="0" maxOccurs="1"/>
 	<xs:element name="ModellPlanungsaufschlag" type="xs:string" minOccurs="0" maxOccurs="1"/>
-    <xs:element ref="ModellKundentyp" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="ModellSchellenwerte" minOccurs="0" maxOccurs="1"/>
+	<xs:element ref="ModellKundentyp" minOccurs="0" maxOccurs="unbounded"/>
     <xs:element ref="ModellCallcenter" minOccurs="0" maxOccurs="unbounded"/>
     <xs:element ref="ModellSkillLevel" minOccurs="0" maxOccurs="unbounded"/>
-	<xs:element ref="ModellSchellenwerte" minOccurs="0" maxOccurs="1"/>
   </xs:sequence>
 </xs:complexType></xs:element>
 

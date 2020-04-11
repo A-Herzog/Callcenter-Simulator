@@ -1,7 +1,7 @@
 <!-- Beschreibung der Callcenter-Modell-Dateien -->
 <!-- ========================================== -->
 
-<!ELEMENT CallcenterModell (ModellName, ModellSimulatorVersion, ModellBeschreibung, ModellDatum*, ModellMaxWarteschlangenLaenge, ModellSimulierteTage, ModellBevorzugteSchichtlaenge, ModellMinimaleSchichtlaenge*, ModellServiceLevel, ModellProduktivitaet*, ModellPlanungsaufschlag*, ModellKundentyp*, ModellCallcenter*, ModellSkillLevel*, ModellSchellenwerte*)>
+<!ELEMENT CallcenterModell (ModellName, ModellSimulatorVersion, ModellBeschreibung, ModellDatum*, ModellMaxWarteschlangenLaenge, ModellSimulierteTage, ModellBevorzugteSchichtlaenge, ModellMinimaleSchichtlaenge*, ModellServiceLevel, ModellProduktivitaet*, ModellPlanungsaufschlag*, ModellSchellenwerte*, ModellKundentyp*, ModellCallcenter*, ModellSkillLevel*)>
 
 <!ELEMENT ModellSimulatorVersion (#PCDATA)>
 <!ELEMENT ModellName (#PCDATA)>

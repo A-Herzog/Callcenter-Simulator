@@ -1,7 +1,7 @@
 <!-- Description of the call center model files -->
 <!-- ========================================== -->
 
-<!ELEMENT CallCenterModel (ModelName, ModelSimulatorVersion, ModelDescription, ModelDate*, ModelMaxQueueLength, ModelSimulatedDays, ModelPreferredShiftLength, ModelMinimalShiftLength*, ModelServiceLevel, ModelProductivity*, ModelDiseaseRelatedSurchage*, ModelClientType*, ModelCallCenter*, ModelSkillLevel*, ModelThresholds*)>
+<!ELEMENT CallCenterModel (ModelName, ModelSimulatorVersion, ModelDescription, ModelDate*, ModelMaxQueueLength, ModelSimulatedDays, ModelPreferredShiftLength, ModelMinimalShiftLength*, ModelServiceLevel, ModelProductivity*, ModelDiseaseRelatedSurchage*, ModelThresholds*, ModelClientType*, ModelCallCenter*, ModelSkillLevel*)>
 
 <!ELEMENT ModelSimulatorVersion (#PCDATA)>
 <!ELEMENT ModelName (#PCDATA)>

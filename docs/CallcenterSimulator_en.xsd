@@ -16,10 +16,10 @@
     <xs:element name="ModelServiceLevel" type="xs:integer"/>
 	<xs:element name="ModelProductivity" type="xs:string" minOccurs="0" maxOccurs="1"/>
 	<xs:element name="ModelDiseaseRelatedSurchage" type="xs:string" minOccurs="0" maxOccurs="1"/>
-    <xs:element ref="ModelClientType" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element ref="ModelThresholds" minOccurs="0" maxOccurs="1"/>
+	<xs:element ref="ModelClientType" minOccurs="0" maxOccurs="unbounded"/>
     <xs:element ref="ModelCallCenter" minOccurs="0" maxOccurs="unbounded"/>
     <xs:element ref="ModelSkillLevel" minOccurs="0" maxOccurs="unbounded"/>
-	<xs:element ref="ModelThresholds" minOccurs="0" maxOccurs="1"/>
   </xs:sequence>
 </xs:complexType></xs:element>
 
