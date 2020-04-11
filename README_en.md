@@ -1,5 +1,9 @@
 # Call Center Simulator
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/a-herzog/callcenter-simulator)
+![GitHub](https://img.shields.io/github/license/a-herzog/callcenter-simulator)
+![GitHub All Releases](https://img.shields.io/github/downloads/a-herzog/callcenter-simulator/total)
+
 ([Deutsche Version dieser Readme.](README_de.md))
 
 Callcenter Simulator is a free, platform-independent program for the analysis of staffing requirements in a call center. The simulator uses [event-oriented, stochastic simulation](https://en.wikipedia.org/wiki/Discrete-event_simulation "Wikipedia") for the computation of the parameters.
