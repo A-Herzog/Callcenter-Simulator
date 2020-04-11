@@ -50,16 +50,14 @@ import tools.SetupData;
  * @version 1.0
  */
 public class UpdateSystem {
-	/** Kruze Server-URL; ohne Subdomain */
-	public static final String shortHomeURL="highfives.io";
+	/** Kurze Server-URL; ohne Subdomain */
+	public static final String shortHomeURL="a-herzog.github.io/Callcenter-Simulator";
 	/** WWW-Basisdomain */
-	public static final String wwwHomeURL="www.highfives.io";
+	public static final String wwwHomeURL="a-herzog.github.io/Callcenter-Simulator/";
 	/** URL für Update- und Lizenzserver */
-	public static final String homeURL="cs.highfives.io";
+	public static final String homeURL="a-herzog.github.io";
 	/** E-Mail-Adresse */
 	public static final String mailURL="alexander.herzog@tu-clausthal.de";
-	/** Basis-Adresse für xsd- und dtd-Dateien */
-	public static final String mediaURL="http://"+homeURL+"/Media/";
 	/** Protokoll für Homepage-Aufrufe */
 	public static final String defaultProtocollHomepage="https";
 	/** Protokoll für Verbindungen zu Update- und Lizenz-Server */
@@ -189,6 +187,7 @@ public class UpdateSystem {
 	public static String checkUpdateAvailable() {
 		try {
 			String user=URLEncoder.encode(System.getProperty("user.name"),"UTF-8");
+			// FIXME Anpassen
 			URL home=new URL(defaultProtocollConnect+"://"+homeURL+"/Callcenter.php?Data="+user+"&Data2=Update");
 			URLConnection connect=home.openConnection();
 			if (!(connect instanceof HttpURLConnection)) return null;
@@ -211,6 +210,7 @@ public class UpdateSystem {
 		newVersionDownload=0;
 		try {
 			String user=URLEncoder.encode(System.getProperty("user.name"),"UTF-8");
+			// FIXME Anpassen
 			URL home1=new URL(defaultProtocollConnect+"://"+homeURL+"/Callcenter.php?Data="+user+"&Data2=UpdateData");
 			URL home2=new URL(defaultProtocollConnect+"://"+homeURL+"/Callcenter.php?Data="+user+"&Data2=UpdateData2");
 			byte[] data=new byte[32768];

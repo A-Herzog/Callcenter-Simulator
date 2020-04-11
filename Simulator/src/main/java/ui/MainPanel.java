@@ -1631,9 +1631,9 @@ public final class MainPanel extends MainPanelBase {
 
 		if (!modelFile.isFile()) {
 			try {
-				Desktop.getDesktop().browse(new URI(UpdateSystem.mediaURL+Language.tr("Window.Info.ModelOverview.FileName")));
+				Desktop.getDesktop().browse(new URI(XMLTools.mediaURL+Language.tr("Window.Info.ModelOverview.FileName")));
 			} catch (IOException | URISyntaxException e) {
-				MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ModelOverview"),UpdateSystem.mediaURL+Language.tr("Window.Info.ModelOverview.FileName")));
+				MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ModelOverview"),XMLTools.mediaURL+Language.tr("Window.Info.ModelOverview.FileName")));
 			}
 			MsgBox.error(this,Language.tr("Window.Info.ModelOverviewError.NotExist.Title"),String.format(Language.tr("Window.Info.ModelOverviewError.NotExist.Info"),modelFile.toString()));
 			return;
@@ -1651,9 +1651,9 @@ public final class MainPanel extends MainPanelBase {
 
 		if (!modelFile.isFile()) {
 			try {
-				Desktop.getDesktop().browse(new URI(UpdateSystem.mediaURL+Language.tr("Window.Info.ShowGlossary.FileName")));
+				Desktop.getDesktop().browse(new URI(XMLTools.mediaURL+Language.tr("Window.Info.ShowGlossary.FileName")));
 			} catch (IOException | URISyntaxException e) {
-				MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ShowGlossary"),UpdateSystem.mediaURL+Language.tr("Window.Info.ShowGlossary.FileName")));
+				MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ShowGlossary"),XMLTools.mediaURL+Language.tr("Window.Info.ShowGlossary.FileName")));
 			}
 			MsgBox.error(this,Language.tr("Window.Info.ShowGlossaryError.NotExist.Title"),String.format(Language.tr("Window.Info.ShowGlossaryError.NotExist.Info"),modelFile.toString()));
 			return;
@@ -2143,9 +2143,9 @@ public final class MainPanel extends MainPanelBase {
 		if (href.equalsIgnoreCase("xsd")) {showXSD(); return;}
 		if (href.equalsIgnoreCase("programhome")) {
 			try {
-				Desktop.getDesktop().browse(new URI(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL+"/"));
+				Desktop.getDesktop().browse(new URI(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL));
 			} catch (IOException | URISyntaxException e) {
-				MsgBox.error(MainPanel.this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.Address"),UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.homeURL+"/"));
+				MsgBox.error(MainPanel.this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.Address"),UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL));
 			}
 			return;
 		}

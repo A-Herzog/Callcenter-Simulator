@@ -90,6 +90,7 @@ public class CommandUpdate extends AbstractCommand {
 	private boolean downloadJarFiles(PrintStream out) {
 		try {
 			String user=URLEncoder.encode(System.getProperty("user.name"),"UTF-8");
+			// FIXME Anpassen
 			URL home1=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.homeURL+"/Callcenter.php?Data="+user+"&Data2=UpdateJarData");
 			URL home2=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.homeURL+"/Callcenter.php?Data="+user+"&Data2=UpdateJarData2");
 			byte[] data=new byte[32768];

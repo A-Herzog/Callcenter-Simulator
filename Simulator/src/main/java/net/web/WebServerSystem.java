@@ -109,7 +109,7 @@ public abstract class WebServerSystem {
 
 	private byte[] downloadApplet() {
 		URL home;
-		try {home=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.homeURL+"/Java/CallcenterSimulatorApplet.jar");} catch (MalformedURLException e) {return null;}
+		try {home=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.wwwHomeURL+"Java/CallcenterSimulatorApplet.jar");} catch (MalformedURLException e) {return null;}
 
 		URLConnection connection;
 		try {connection=home.openConnection();} catch (IOException e) {return null;}
@@ -118,7 +118,7 @@ public abstract class WebServerSystem {
 			((HttpsURLConnection )connection).setHostnameVerifier(new HostnameVerifier() {
 				@Override
 				public boolean verify(String hostname, SSLSession session) {
-					return hostname.equalsIgnoreCase(UpdateSystem.homeURL);
+					return hostname.equalsIgnoreCase(UpdateSystem.wwwHomeURL);
 				}
 			});
 		}

@@ -10,7 +10,7 @@ function initWebApp() {
   if (typeof statistik==='string') {$('#status').html(languageGlobal.tr("HTMLViewer.Main.Loading.Error")+"<br><pre>"+statistik+"</pre>"); return;}
   
   $('#status').html(languageGlobal.tr("HTMLViewer.Main.InitTree"));
-  var viewer=new CallcenterSimulatorViewer(languageGlobal,null,statistik,$('#title'),$('#content'),"viewerGlobal",printCSS,printJS,"http://cs.promptengineering-ug.de/viewer/images/");
+  var viewer=new CallcenterSimulatorViewer(languageGlobal,null,statistik,$('#title'),$('#content'),"viewerGlobal",printCSS,printJS,"https://a-herzog.github.io/Callcenter-Simulator/viewer/images/");
   viewer.tree=setupViewers(languageGlobal,statistik);
   viewer.init();
   

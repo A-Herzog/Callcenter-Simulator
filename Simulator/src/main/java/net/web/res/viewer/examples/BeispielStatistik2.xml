@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE Statistik SYSTEM "http://cs.promptengineering-ug.de/Media/CallcenterSimulator_de.dtd">
-<Statistik xmlns="http://cs.promptengineering-ug.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cs.promptengineering-ug.de http://cs.promptengineering-ug.de/Media/CallcenterSimulator_de.xsd">
+<!DOCTYPE CallcenterModell SYSTEM "https://a-herzog.github.io/Callcenter-Simulator/CallcenterSimulator_de.dtd">
+<Statistik xmlns="https://a-herzog.github.io" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://a-herzog.github.io https://a-herzog.github.io/Callcenter-Simulator/CallcenterSimulator_de.xsd">
   <CallcenterModell>
     <ModellName>Mittelgroßes Beispielmodell</ModellName>
     <ModellSimulatorVersion>4.8.198</ModellSimulatorVersion>

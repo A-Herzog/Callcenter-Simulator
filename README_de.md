@@ -62,5 +62,5 @@ Viele Werkzeuge zur zur Personalbedarfsplanung setzen auf „historische Daten�
 
 ## Material und Literatur
 
-* [Schematische Darstellung des abgebildeten Callcenter-Modells](.../CallcenterSimulatorModell_de.pdf) (pdf)
+* [Schematische Darstellung des abgebildeten Callcenter-Modells](https://a-herzog.github.io/Callcenter-Simulator/CallcenterSimulatorModell_de.pdf) (pdf)
 * [A. Herzog: "Callcenter – Analyse und Management"](https://www.springer.com/de/book/9783658183080)

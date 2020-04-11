@@ -5,9 +5,9 @@
     <property name="SimTools.location" location="../../SimTools" />
     <property name="SimSystem.location" location="../../SimSystem" />
     <property name="BuildTools.location" location="." />
-    <property name="Misc.location" location="../../Misc" />
     <property name="NSIS.location" location="C:\Program Files (x86)\NSIS" />
     <property name="sed.location" location="../language/sed/bin" />
+	<property name="Homepage.location" location="../../docs" />
     <property name="Release.location" location="../../Release" />
     
     <target name="build" description="Build simulator">
@@ -34,7 +34,7 @@
             <fileset dir="${Simulator.location}/docs" includes="**/*.pdf"/> 
         </copy>
         <copy todir="${Release.location}/docs">
-            <fileset dir="${Simulator.location}/docs" includes="**/*.dtd,**/*.xsd"/>
+            <fileset dir="${Homepage.location}" includes="*.dtd,*.xsd"/>
         </copy>
         <copy file="${Simulator.location}/LICENSE_COMPONENTS.md" tofile="${Release.location}/docs/license_components_simulator.md"/>
         <copy file="${SimTools.location}/LICENSE_COMPONENTS.md" tofile="${Release.location}/docs/license_components_simtools.md"/>

@@ -82,7 +82,7 @@ public final class Main {
 
 		/* Basiseinstellungen zu den xml-Dateiformaten */
 		XMLTools.homeURL=UpdateSystem.homeURL;
-		XMLTools.mediaURL="https://"+XMLTools.homeURL+"/Media/";
+		XMLTools.mediaURL="https://"+XMLTools.homeURL+"/Callcenter-Simulator/";
 		XMLTools.dtd=Language.tr("XML.DTD");
 		XMLTools.xsd=Language.tr("XML.XSD");
 

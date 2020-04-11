@@ -38,7 +38,7 @@ import xml.XMLTools;
  */
 public class StatisticWebAppWriter {
 	private static final int MIN_LINE_LENGTH=80;
-	private static final String DEFAULT_VIEWER_URL=UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.homeURL+"/viewer/";
+	private static final String DEFAULT_VIEWER_URL=UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL+"viewer/";
 
 	private final Statistics statistics;
 	private Document resultDoc=null;
