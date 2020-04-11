@@ -28,7 +28,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -56,6 +55,12 @@ public class UpdateSystem {
 	public static final String wwwHomeURL="a-herzog.github.io/Callcenter-Simulator/";
 	/** URL für Update- und Lizenzserver */
 	public static final String homeURL="a-herzog.github.io";
+	/** Update server */
+	public static final String updateServer="github.com";
+	/** Update URL 1 */
+	public static final String updateFullURL1="github.com/A-Herzog/Callcenter-Simulator/releases/latest/download/CallcenterSimulatorSetup.exe";
+	/** Update URL 2 */
+	public static final String updateFullURL2="github.com/A-Herzog/Callcenter-Simulator/releases/latest/download/CallcenterSimulatorSetup.sig";
 	/** E-Mail-Adresse */
 	public static final String mailURL="alexander.herzog@tu-clausthal.de";
 	/** Protokoll für Homepage-Aufrufe */
@@ -186,16 +191,14 @@ public class UpdateSystem {
 	 */
 	public static String checkUpdateAvailable() {
 		try {
-			String user=URLEncoder.encode(System.getProperty("user.name"),"UTF-8");
-			// FIXME Anpassen
-			URL home=new URL(defaultProtocollConnect+"://"+homeURL+"/Callcenter.php?Data="+user+"&Data2=Update");
+			URL home=new URL(defaultProtocollConnect+"://"+wwwHomeURL+"version.txt");
 			URLConnection connect=home.openConnection();
 			if (!(connect instanceof HttpURLConnection)) return null;
 			if (connect instanceof HttpsURLConnection) {
 				((HttpsURLConnection )connect).setHostnameVerifier(new HostnameVerifier() {
 					@Override
 					public boolean verify(String hostname, SSLSession session) {
-						return hostname.equalsIgnoreCase(homeURL);
+						return hostname.equalsIgnoreCase(wwwHomeURL);
 					}
 				});
 			}
@@ -209,10 +212,8 @@ public class UpdateSystem {
 
 		newVersionDownload=0;
 		try {
-			String user=URLEncoder.encode(System.getProperty("user.name"),"UTF-8");
-			// FIXME Anpassen
-			URL home1=new URL(defaultProtocollConnect+"://"+homeURL+"/Callcenter.php?Data="+user+"&Data2=UpdateData");
-			URL home2=new URL(defaultProtocollConnect+"://"+homeURL+"/Callcenter.php?Data="+user+"&Data2=UpdateData2");
+			URL home1=new URL(defaultProtocollConnect+"://"+updateFullURL1);
+			URL home2=new URL(defaultProtocollConnect+"://"+updateFullURL2);
 			byte[] data=new byte[32768];
 
 			/* Datei herunterladen */
@@ -222,7 +223,7 @@ public class UpdateSystem {
 				((HttpsURLConnection )connection).setHostnameVerifier(new HostnameVerifier() {
 					@Override
 					public boolean verify(String hostname, SSLSession session) {
-						return hostname.equalsIgnoreCase(homeURL);
+						return hostname.equalsIgnoreCase(updateServer);
 					}
 				});
 			}

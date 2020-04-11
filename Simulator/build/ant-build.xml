@@ -30,11 +30,8 @@
 		<echo file="${Release.location}/libs/LICENSES" append="false">The licenses of the libraries stored in this directory can be found in detail in ../docs/license_components_*.md</echo>
         	
         <echo message="Copy help files" />      
-        <copy todir="${Release.location}/docs" flatten="true">
-            <fileset dir="${Simulator.location}/docs" includes="**/*.pdf"/> 
-        </copy>
         <copy todir="${Release.location}/docs">
-            <fileset dir="${Homepage.location}" includes="*.dtd,*.xsd"/>
+            <fileset dir="${Homepage.location}" includes="*.dtd,*.xsd,*.pdf"/>
         </copy>
         <copy file="${Simulator.location}/LICENSE_COMPONENTS.md" tofile="${Release.location}/docs/license_components_simulator.md"/>
         <copy file="${SimTools.location}/LICENSE_COMPONENTS.md" tofile="${Release.location}/docs/license_components_simtools.md"/>

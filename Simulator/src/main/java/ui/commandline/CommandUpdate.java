@@ -27,7 +27,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -89,10 +88,8 @@ public class CommandUpdate extends AbstractCommand {
 
 	private boolean downloadJarFiles(PrintStream out) {
 		try {
-			String user=URLEncoder.encode(System.getProperty("user.name"),"UTF-8");
-			// FIXME Anpassen
-			URL home1=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.homeURL+"/Callcenter.php?Data="+user+"&Data2=UpdateJarData");
-			URL home2=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.homeURL+"/Callcenter.php?Data="+user+"&Data2=UpdateJarData2");
+			URL home1=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.updateFullURL1);
+			URL home2=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.updateFullURL2);
 			byte[] data=new byte[32768];
 
 			/* Datei herunterladen */
@@ -102,7 +99,7 @@ public class CommandUpdate extends AbstractCommand {
 				((HttpsURLConnection )connection).setHostnameVerifier(new HostnameVerifier() {
 					@Override
 					public boolean verify(String hostname, SSLSession session) {
-						return hostname.equalsIgnoreCase(UpdateSystem.homeURL);
+						return hostname.equalsIgnoreCase(UpdateSystem.updateServer);
 					}
 				});
 			}
