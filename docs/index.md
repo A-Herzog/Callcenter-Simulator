@@ -32,29 +32,29 @@ The Windows version can be installed with or without admin rights. The zip file 
 
 ## Features
 
-![Screenshot](https://raw.githubusercontent.com/A-Herzog/Mini-Callcenter-Simulator/master/Images/Screenshot_en.png)
+![Screenshot](https://raw.githubusercontent.com/A-Herzog/Callcenter-Simulator/master/Images/Screenshot_en.png)
 
 #### Realistic planning and optimization
 
-[<img src="https://raw.githubusercontent.com/A-Herzog/Mini-Callcenter-Simulator/master/Images/Screenshot_en_editor.png" style="float: right; max-width: 30%; padding-left: 5px;">](https://raw.githubusercontent.com/A-Herzog/Mini-Callcenter-Simulator/master/Images/Screenshot_en_editor.png "Click for large view")  
+[<img src="https://raw.githubusercontent.com/A-Herzog/Callcenter-Simulator/master/Images/Screenshot_en_editor.png" style="float: right; max-width: 30%; padding-left: 5px;">](https://raw.githubusercontent.com/A-Herzog/Callcenter-Simulator/master/Images/Screenshot_en_editor.png "Click for large view")  
 The often used Erlang-C formula does not take into account many parameters such as customer impatience, call repetitions, forwarding, etc., and therefore does not reflect the actual state very well and therefore does not allow any predictions about the effects of changes to the system.
 <br clear="both">
 
 #### Optimization of processes and workload
 
-[<img src="https://raw.githubusercontent.com/A-Herzog/Mini-Callcenter-Simulator/master/Images/Screenshot_en_optimizer.png" style="float: right; max-width: 30%; padding-left: 5px;">](https://raw.githubusercontent.com/A-Herzog/Mini-Callcenter-Simulator/master/Images/Screenshot_en_optimizer.png "Click for large view")  
+[<img src="https://raw.githubusercontent.com/A-Herzog/Callcenter-Simulator/master/Images/Screenshot_en_optimizer.png" style="float: right; max-width: 30%; padding-left: 5px;">](https://raw.githubusercontent.com/A-Herzog/Callcenter-Simulator/master/Images/Screenshot_en_optimizer.png "Click for large view")  
 The simulation model maps the entire call center system including all special properties. This allows you to optimise staffing requirements in combination with other economic factors.
 <br clear="both">
 
 #### Modelling of multi-skill systems
 
-[<img src="https://raw.githubusercontent.com/A-Herzog/Mini-Callcenter-Simulator/master/Images/Screenshot_en_skills.png" style="float: right; max-width: 30%; padding-left: 5px;">](https://raw.githubusercontent.com/A-Herzog/Mini-Callcenter-Simulator/master/Images/Screenshot_en_skills.png "Click for large view")  
+[<img src="https://raw.githubusercontent.com/A-Herzog/Callcenter-Simulator/master/Images/Screenshot_en_skills.png" style="float: right; max-width: 30%; padding-left: 5px;">](https://raw.githubusercontent.com/A-Herzog/Callcenter-Simulator/master/Images/Screenshot_en_skills.png "Click for large view")  
 Callcenter Simulator supports any number of agent groups with any skills. Multi-skill agents, forwarding of customers depending on the skill level of the serving agent, etc. can thus be easily mapped.
 <br clear="both">
 
 #### What-if studies
 
-[<img src="https://raw.githubusercontent.com/A-Herzog/Mini-Callcenter-Simulator/master/Images/Screenshot_en_statistics.png" style="float: right; max-width: 30%; padding-left: 5px;">](https://raw.githubusercontent.com/A-Herzog/Mini-Callcenter-Simulator/master/Images/Screenshot_en_statistics.png "Click for large view")  
+[<img src="https://raw.githubusercontent.com/A-Herzog/Callcenter-Simulator/master/Images/Screenshot_en_statistics.png" style="float: right; max-width: 30%; padding-left: 5px;">](https://raw.githubusercontent.com/A-Herzog/Callcenter-Simulator/master/Images/Screenshot_en_statistics.png "Click for large view")  
 Many tools for personnel requirements planning rely on "historical data" or work "linearly". However, if you do not only want to simulate the past, and since the world is not linear, these do not provide any information about the influence that changes in the control strategy would have.
 <br clear="both">
 

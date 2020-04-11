@@ -62,5 +62,5 @@ Many tools for personnel requirements planning rely on "historical data" or work
 
 ## Further information and literature
 
-* [Schematic diagram of the mapped call center model](.../CallcenterSimulatorModell_en.pdf) (pdf)
+* [Schematic diagram of the mapped call center model](https://a-herzog.github.io/Callcenter-Simulator/CallcenterSimulatorModell_en.pdf) (pdf)
 * [A. Herzog: "Callcenter – Analyse und Management"](https://www.springer.com/de/book/9783658183080)  (in German)
