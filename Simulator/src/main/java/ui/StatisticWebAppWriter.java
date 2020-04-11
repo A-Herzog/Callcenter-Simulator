@@ -97,7 +97,7 @@ public class StatisticWebAppWriter {
 		sb.append("  <meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black-translucent\">\n");
 		sb.append("  <title>"+Language.tr("ViewerWebApp.Title")+"</title>\n");
 		if (staticMode) {
-			sb.append("  <link href=\""+path+"viewer-css.js\" rel=\"stylesheet\" type=\"text/css\">\n");
+			sb.append("  <link href=\""+path+"viewer-css.css\" rel=\"stylesheet\" type=\"text/css\">\n");
 		} else {
 			sb.append("  <link href=\""+path+"viewer-css.php\" rel=\"stylesheet\" type=\"text/css\">\n");
 		}
