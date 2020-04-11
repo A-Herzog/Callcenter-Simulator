@@ -80,7 +80,7 @@ public class StatisticWebAppWriter {
 		return true;
 	}
 
-	private String[] getTemplate(final String path) {
+	private String[] getTemplate(final String path, final boolean staticMode) {
 		String part1,part2,part3;
 		StringBuilder sb;
 
@@ -96,15 +96,25 @@ public class StatisticWebAppWriter {
 		sb.append("  <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n");
 		sb.append("  <meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black-translucent\">\n");
 		sb.append("  <title>"+Language.tr("ViewerWebApp.Title")+"</title>\n");
-		sb.append("  <link href=\""+path+"viewer-css.php\" rel=\"stylesheet\" type=\"text/css\">\n");
+		if (staticMode) {
+			sb.append("  <link href=\""+path+"viewer-css.js\" rel=\"stylesheet\" type=\"text/css\">\n");
+		} else {
+			sb.append("  <link href=\""+path+"viewer-css.php\" rel=\"stylesheet\" type=\"text/css\">\n");
+		}
 		sb.append("</head>\n");
 		sb.append("<body>\n");
 		sb.append("<div class=\"title noprint\" id=\"title\">"+Language.tr("ViewerWebApp.Title")+"</div>\n");
 		sb.append("<div id=\"status\">"+String.format(Language.tr("ViewerWebApp.Loading"),UpdateSystem.shortHomeURL)+"</div>\n");
 		sb.append("<div id=\"content\"></div>\n");
-		sb.append("<script src=\""+path+"viewer-lang.php\" type=\"application/javascript\" charset=\"UTF-8\"></script>\n");
-		sb.append("<script src=\""+path+"viewer-js.php\" type=\"application/javascript\" charset=\"UTF-8\"></script>\n");
-		sb.append("<script src=\""+path+"viewer-webapp.js\" type=\"application/javascript\" charset=\"UTF-8\"></script>\n");
+		if (staticMode) {
+			sb.append("<script src=\""+path+"viewer-lang.js\" type=\"application/javascript\" charset=\"UTF-8\"></script>\n");
+			sb.append("<script src=\""+path+"viewer-js.js\" type=\"application/javascript\" charset=\"UTF-8\"></script>\n");
+			sb.append("<script src=\""+path+"viewer-webapp.js\" type=\"application/javascript\" charset=\"UTF-8\"></script>\n");
+		} else {
+			sb.append("<script src=\""+path+"viewer-lang.php\" type=\"application/javascript\" charset=\"UTF-8\"></script>\n");
+			sb.append("<script src=\""+path+"viewer-js.php\" type=\"application/javascript\" charset=\"UTF-8\"></script>\n");
+			sb.append("<script src=\""+path+"viewer-webapp.js\" type=\"application/javascript\" charset=\"UTF-8\"></script>\n");
+		}
 		sb.append("<script type=\"text/javascript\">\n");
 		sb.append("'use strict';\n");
 		sb.append("var jsonData=");
@@ -138,7 +148,7 @@ public class StatisticWebAppWriter {
 	 */
 	public String saveToString(final String path) {
 		if (!process()) return null;
-		String[] template=getTemplate(path);
+		String[] template=getTemplate(path,true);
 
 		StringBuilder sb=new StringBuilder();
 
