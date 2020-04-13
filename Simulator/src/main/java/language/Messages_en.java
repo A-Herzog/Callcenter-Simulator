@@ -2692,8 +2692,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[6553] = "Automatic result saving is activated.";
     t[6554] = "Dialog.Button.Add";
     t[6555] = "Add";
-    t[6562] = "Optimizer.Tabs.UseIntervals.TooltipRange";
-    t[6563] = "Select time span";
+    t[6562] = "MainMenu.Help.Homepage.Tooltip";
+    t[6563] = "Open Callcenter Simulator homepage";
     t[6564] = "Statistic.NoDataSelected";
     t[6565] = "no data";
     t[6568] = "Statistic.Viewer.Report.Hint";
@@ -3120,6 +3120,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7625] = "Values";
     t[7628] = "Example.CallcenterType";
     t[7629] = "Call center for topic %s";
+    t[7630] = "MainMenu.Help.Homepage";
+    t[7631] = "Homepage";
     t[7632] = "SimStatistic.Costs.ByAgents";
     t[7633] = "Agent-related costs";
     t[7636] = "XML.Model.AgentsGroup.CostsPerClientType.ClientType";
@@ -3408,6 +3410,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[8347] = "Used simulator version";
     t[8348] = "Connected.Day1Statistic.Select.Info";
     t[8349] = "Selects a statistic file for carrying over clients into day 1";
+    t[8350] = "Optimizer.Tabs.UseIntervals.TooltipRange";
+    t[8351] = "Select time span";
     t[8354] = "Optimizer.OptimizeProperty.TargetForLabel.AverageWaitingTime";
     t[8355] = "Target value for the average waiting time (in hh:mm:ss)";
     t[8366] = "XML.OptimizerSetup.Property.ServiceLevelCallsAll";
@@ -4002,12 +4006,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9833] = "Load model on program start";
     t[9834] = "Statistic.Viewer.Toolbar.OpenText.Hint";
     t[9835] = "Open text in external application.";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9840] = "Simulation.Log.StopTest";
     t[9841] = "Check if the day can be completed";
     t[9844] = "Editor.AgentsGroup.CountFromCalculatedLoad.Info";
     t[9845] = "In this dialog you can specify how many percent of the incoming fresh calls of the different types of clients should theoretically be servable by the agents group.\n\"Theoretically\" means without considerations of fluctuations in the arrival stream and the service times as well as a perfect coverage of the arrival distribution by the distribution of the working hours.";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9846] = "MainMenu.Help.Book.Tooltip";
     t[9847] = "Web page for the text book \"Callcenter \u2013 Analyse und Management\" (German)";
     t[9854] = "Compare.SelectStatisticFile";
@@ -4478,6 +4482,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11077] = "Only the following agents groups will be changed:";
     t[11080] = "OptimizeResults.Button.RunResults.Info";
     t[11081] = "Shows the simulation results of a single run from the optimization process.";
+    t[11088] = "MainMenu.Help.Homepage.Mnemonic";
+    t[11089] = "H";
     t[11090] = "CommandLine.Filter.Done.CouldNotSave";
     t[11091] = "The filter results could not be saved to the file %s.";
     t[11098] = "SimStatistic.HoldingTimeAddOnAddOn.Custom";
@@ -6002,14 +6008,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15027] = "Performance indicator";
     t[15028] = "Batch.Tabs.Parameter";
     t[15029] = "Create parameter series";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[15032] = "Editor.Overview.Category.ShiftSchedulePerCallcenter";
     t[15033] = "Shift schedule per call center";
     t[15040] = "SimStatistic.ScoreValues.CallcenterAgentFreeTimePart";
     t[15041] = "Factor to respect the idle time part for the agent score";
     t[15048] = "Dialog.Overwrite.Info";
     t[15049] = "The file\n%s\nalready exists.\nDo you want to overwrite this file?";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[15054] = "Editor.AgentsGroup.Error.AgentsPerHalfHour.Info";
     t[15055] = "The specified number of available agents half-hour intervals %s is invalid.\nThe value has to be a non-negative integer number.";
     t[15056] = "ViewerWebApp.Dialog.Label";

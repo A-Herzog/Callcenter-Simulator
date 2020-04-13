@@ -131,6 +131,11 @@ public final class MainPanel extends MainPanelBase {
 	private static final long serialVersionUID=4554929295486959960L;
 
 	/**
+	 * Homepage-Adresse für Webbrowseraufrufe
+	 */
+	public static final String WEB_URL="github.com/A-Herzog/Callcenter-Simulator";
+
+	/**
 	 * Autor des Programms
 	 */
 	public static final String AUTHOR="Alexander Herzog";
@@ -430,6 +435,13 @@ public final class MainPanel extends MainPanelBase {
 				MsgBox.error(MainPanel.this,Language.tr("Window.Info.NoEMailProgram.Title"),String.format(Language.tr("Window.Info.NoEMailProgram.Info"),"mailto:"+UpdateSystem.mailURL));
 			}
 		});
+		addAction("HelpHomepage",e->{
+			try {
+				Desktop.getDesktop().browse(new URI(UpdateSystem.defaultProtocollHomepage+"://"+WEB_URL));
+			} catch (IOException | URISyntaxException e1) {
+				MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ModelOverview"),UpdateSystem.defaultProtocollHomepage+"://"+WEB_URL));
+			}
+		});
 		addAction("HelpWelcome",e->setGUIMode((short)2));
 		addAction("HelpLicense",e->commandHelpLicenseInfo());
 		addAction("HelpInfo",e->commandHelpInfo());
@@ -609,6 +621,7 @@ public final class MainPanel extends MainPanelBase {
 		createMenuItem(menu,Language.tr("MainMenu.Help.ShowGlossary"),Images.HELP_PDF.getIcon(),Language.tr("MainMenu.Help.ShowGlossary.Mnemonic"),"HelpGlossary");
 		createMenuItem(menu,Language.tr("MainMenu.Help.Book"),Images.HELP_BOOK.getIcon(),Language.tr("MainMenu.Help.Book.Mnemonic"),"HelpBook");
 		createMenuItem(menu,Language.tr("MainMenu.Help.SupportRequest"),Images.HELP_EMAIL.getIcon(),Language.tr("MainMenu.Help.SupportRequest.Mnemonic"),"HelpMail");
+		createMenuItem(menu,Language.tr("MainMenu.Help.Homepage"),Images.HELP_HOMEPAGE.getIcon(),Language.tr("MainMenu.Help.Homepage.Mnemonic"),"HelpHomepage");
 		createMenuItem(menu,Language.tr("MainMenu.Help.ShowWelcomePage"),Images.GENERAL_INFO.getIcon(),Language.tr("MainMenu.Help.ShowWelcomePage.Mnemonic"),"HelpWelcome");
 
 		menu.addSeparator();
@@ -936,6 +949,9 @@ public final class MainPanel extends MainPanelBase {
 
 		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.Book.Short"),Language.tr("MainMenu.Help.Book.Tooltip"),Images.HELP_BOOK.getURL());
 		registerAction(button,"HelpBook");
+
+		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.Homepage"),Language.tr("MainMenu.Help.Homepage.Tooltip"),Images.HELP_HOMEPAGE.getURL());
+		registerAction(button,"HelpHomepage");
 	}
 
 	private JRibbonBar createRibbonBar() {

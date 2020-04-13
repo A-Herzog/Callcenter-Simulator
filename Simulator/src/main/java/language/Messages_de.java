@@ -2692,8 +2692,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6553] = "Automatische Ergebnisspeicherung ist aktiv.";
     t[6554] = "Dialog.Button.Add";
     t[6555] = "Hinzuf\u00fcgen";
-    t[6562] = "Optimizer.Tabs.UseIntervals.TooltipRange";
-    t[6563] = "Zeitbereich ausw\u00e4hlen";
+    t[6562] = "MainMenu.Help.Homepage.Tooltip";
+    t[6563] = "Homepage zum Callcenter Simulator aufrufen";
     t[6564] = "Statistic.NoDataSelected";
     t[6565] = "bisher keine Daten";
     t[6568] = "Statistic.Viewer.Report.Hint";
@@ -3120,6 +3120,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7625] = "Messwerte";
     t[7628] = "Example.CallcenterType";
     t[7629] = "Callcenter f\u00fcr Thema %s";
+    t[7630] = "MainMenu.Help.Homepage";
+    t[7631] = "Homepage";
     t[7632] = "SimStatistic.Costs.ByAgents";
     t[7633] = "Agentenbedingte Kosten";
     t[7636] = "XML.Model.AgentsGroup.CostsPerClientType.ClientType";
@@ -3408,6 +3410,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[8347] = "Verwendete Version des Simulators";
     t[8348] = "Connected.Day1Statistic.Select.Info";
     t[8349] = "W\u00e4hlt eine Statistikdatei Tag vor Tag 1 aus";
+    t[8350] = "Optimizer.Tabs.UseIntervals.TooltipRange";
+    t[8351] = "Zeitbereich ausw\u00e4hlen";
     t[8354] = "Optimizer.OptimizeProperty.TargetForLabel.AverageWaitingTime";
     t[8355] = "Zielwert f\u00fcr die mittlere Wartezeit (in hh:mm:ss)";
     t[8366] = "XML.OptimizerSetup.Property.ServiceLevelCallsAll";
@@ -4002,12 +4006,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9833] = "Modell beim Programmstart laden";
     t[9834] = "Statistic.Viewer.Toolbar.OpenText.Hint";
     t[9835] = "Text in externer Anwendung anzeigen.";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9840] = "Simulation.Log.StopTest";
     t[9841] = "Pr\u00fcfung, ob der Tag abgeschlossen werden kann";
     t[9844] = "Editor.AgentsGroup.CountFromCalculatedLoad.Info";
     t[9845] = "In diesem Dialog k\u00f6nnen Sie vorgeben, wie viel Prozent der eintreffenden Erstanrufer der einzelnen Kundentypen diese Agentengruppe rechnisch bedienen k\u00f6nnen soll.\n\"Rechnerisch\" bedeutet dabei ohne Ber\u00fccksichtigungen von Schwankungen im Ankunftsstrom und bei den Bedienzeiten sowie bei einer perfekten \u00dcberdeckung der Ankunftsverteilung durch die Verteilung der Arbeitszeiten.";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9846] = "MainMenu.Help.Book.Tooltip";
     t[9847] = "Webseite zum Lehrbuch \"Callcenter \u2013 Analyse und Management\"";
     t[9854] = "Compare.SelectStatisticFile";
@@ -4478,6 +4482,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11077] = "Es werden nur \u00c4nderungen an den folgenden Agentengruppen vorgenommen:";
     t[11080] = "OptimizeResults.Button.RunResults.Info";
     t[11081] = "Zeigt die Ergebnisse eines einzelnen Simulationslaufes innerhalb des Optimierungsprozesses an.";
+    t[11088] = "MainMenu.Help.Homepage.Mnemonic";
+    t[11089] = "H";
     t[11090] = "CommandLine.Filter.Done.CouldNotSave";
     t[11091] = "Die Filterergebnisse konnten nicht in die Datei %s geschrieben werden.";
     t[11098] = "SimStatistic.HoldingTimeAddOnAddOn.Custom";
@@ -6002,14 +6008,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15027] = "Kenngr\u00f6\u00dfe";
     t[15028] = "Batch.Tabs.Parameter";
     t[15029] = "Parameterreihe erstellen";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[15032] = "Editor.Overview.Category.ShiftSchedulePerCallcenter";
     t[15033] = "Schichtplan pro Callcenter";
     t[15040] = "SimStatistic.ScoreValues.CallcenterAgentFreeTimePart";
     t[15041] = "Faktor f\u00fcr die Agentenscore zur Ber\u00fccksichtigung des Leerlaufanteils";
     t[15048] = "Dialog.Overwrite.Info";
     t[15049] = "Die Datei\n%s\nexistiert bereits.\nSoll die Datei jetzt \u00fcberschrieben werden?";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[15054] = "Editor.AgentsGroup.Error.AgentsPerHalfHour.Info";
     t[15055] = "Die Anzahl an verf\u00fcgbaren Halbstundenintervallen %s ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Ganzzahl sein.";
     t[15056] = "ViewerWebApp.Dialog.Label";

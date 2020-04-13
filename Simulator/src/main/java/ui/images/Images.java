@@ -525,6 +525,9 @@ public enum Images {
 	/** Symbol "E-Mail" */
 	HELP_EMAIL("icon_mail.gif"),
 
+	/** Symbol "Homepage" */
+	HELP_HOMEPAGE("world.png"),
+
 	/** Symbol "Startseite" */
 	HELP_NAVIGATE_START("house.png"),
 
