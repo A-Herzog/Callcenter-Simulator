@@ -3724,6 +3724,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9153] = "Calculator...";
     t[9156] = "Importer.RetryProbability.Canceled";
     t[9157] = "Retry probability after canceling due to too long waiting time (from second retry on)";
+    t[9158] = "MainMenu.Data.LoadExampleData.Short";
+    t[9159] = "Process data";
     t[9162] = "Numbers.Language";
     t[9163] = "en";
     t[9170] = "LoadCalculator.ProbabilityOfBlocking";
@@ -4004,10 +4006,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9821] = "The kept model will be discarded and replaced by the current model.";
     t[9832] = "SettingsDialog.LoadModelOnProgramStart";
     t[9833] = "Load model on program start";
-    t[9834] = "Statistic.Viewer.Toolbar.OpenText.Hint";
-    t[9835] = "Open text in external application.";
   }
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9834] = "Statistic.Viewer.Toolbar.OpenText.Hint";
+    t[9835] = "Open text in external application.";
     t[9840] = "Simulation.Log.StopTest";
     t[9841] = "Check if the day can be completed";
     t[9844] = "Editor.AgentsGroup.CountFromCalculatedLoad.Info";
@@ -6006,10 +6008,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15025] = "The model audit has found the following error:";
     t[15026] = "Editor.GeneralData.ThresholdValues.Type";
     t[15027] = "Performance indicator";
-    t[15028] = "Batch.Tabs.Parameter";
-    t[15029] = "Create parameter series";
   }
   static void clinit_part_3 (java.lang.String[] t) {
+    t[15028] = "Batch.Tabs.Parameter";
+    t[15029] = "Create parameter series";
     t[15032] = "Editor.Overview.Category.ShiftSchedulePerCallcenter";
     t[15033] = "Shift schedule per call center";
     t[15040] = "SimStatistic.ScoreValues.CallcenterAgentFreeTimePart";
@@ -6784,8 +6786,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17051] = "Move clients";
     t[17054] = "Server.StatisticFolder";
     t[17055] = "Statistic folder";
-    t[17060] = "MainMenu.Data.LoadExampleData.Short";
-    t[17061] = "Process data";
+    t[17060] = "FileType.SciLabScript";
+    t[17061] = "SciLab script";
     t[17064] = "MainMenu.Simulation.Calibration";
     t[17065] = "Waiting time tolerance calibration";
     t[17066] = "SimStatistic.SkillLevel";
