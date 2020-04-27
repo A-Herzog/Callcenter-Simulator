@@ -973,7 +973,7 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2520] = "XML.OptimizerSetup.InitialInventory.ClientType.Error";
     t[2521] = "Der anf\u00e4ngliche Bestandswert f\u00fcr Kundengruppe %s ist ung\u00fcltig.";
     t[2524] = "Window.JavaSecurityWarnung";
-    t[2525] = "Achtung: Die von Ihnen verwendete Java-Version ist veraltet und enth\u00e4lt m\u00f6glicherweise Sicherheitsl\u00fccken.";
+    t[2525] = "Achtung: Die von Ihnen verwendete Java-Version ist veraltet und enth\u00e4lt m\u00f6glicherweise Sicherheitsl\u00fccken. Update:";
     t[2528] = "XML.Model.AgentsGroup.WorkingTimeEnd.Error";
     t[2529] = "Das angegebene Arbeitszeitende %s ist ung\u00fcltig.";
     t[2530] = "Window.Info.ModelOverviewError.NotExist.Info";
@@ -7266,6 +7266,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[18241] = "Java-Archivdateien";
     t[18242] = "Simulation.Log.Call.CarriedOver.LastDayWaitingTime";
     t[18243] = "Bereits am Vortrag verbrachte Wartezeit";
+    t[18250] = "Window.JavaSecurityWarnung.Link";
+    t[18251] = "https://adoptopenjdk.net/";
     t[18252] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMax.Title";
     t[18253] = "Maximalwert f\u00fcr alle Intervalle vorgeben";
   }

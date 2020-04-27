@@ -48,6 +48,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
@@ -140,13 +141,13 @@ public final class MainPanel extends MainPanelBase {
 	 */
 	public static final String AUTHOR="Alexander Herzog";
 
-	private static final int JAVA8_SECURE_MIN_VERSION=242;
+	private static final int JAVA8_SECURE_MIN_VERSION=252;
 	private static final int JAVA9_SECURE_MIN_VERSION=4;
 	private static final int JAVA10_SECURE_MIN_VERSION=2;
-	private static final int JAVA11_SECURE_MIN_VERSION=6;
+	private static final int JAVA11_SECURE_MIN_VERSION=7;
 	private static final int JAVA12_SECURE_MIN_VERSION=2;
 	private static final int JAVA13_SECURE_MIN_VERSION=2;
-	private static final int JAVA14_SECURE_MIN_VERSION=0;
+	private static final int JAVA14_SECURE_MIN_VERSION=1;
 
 	/**
 	 * Bezeichnung für "ungespeichertes Modell" in der Titelzeile für ein neues Modell, welches noch keinen Namen besitzt
@@ -159,6 +160,7 @@ public final class MainPanel extends MainPanelBase {
 
 	private JToolBar toolBar;
 	private JRibbonBar ribbonBar;
+	private JPanel infoPanel;
 
 	private JButton loadModelButton;
 	private JButton saveModelButton;
@@ -260,7 +262,9 @@ public final class MainPanel extends MainPanelBase {
 		if (setup.openODS) StatisticsBasePanel.viewerPrograms.add(StatisticsBasePanel.ViewerPrograms.ODS);
 
 		/* Hintergrundprüfung und -Simulation initialisieren */
-		backgroundSimulator=new BackgroundSimulator(new BackgroundModelGetter(),s->setMessagePanel(null,s,MessagePanelIcon.WARNING));
+		backgroundSimulator=new BackgroundSimulator(new BackgroundModelGetter(),s->{
+			if (infoPanel==null || s!=null) setMessagePanel(null,s,MessagePanelIcon.WARNING);
+		});
 
 		/* Java-Prüfung */
 		SwingUtilities.invokeLater(()->javaVersionCheck());
@@ -323,8 +327,13 @@ public final class MainPanel extends MainPanelBase {
 		final SetupData setup=SetupData.getSetup();
 
 		if (setup.languageWasAutomaticallySet()) {
-			setMessagePanel(null,Language.tr("Window.LanguageAutomatic"),MessagePanelIcon.INFO).setBackground(new Color(255,255,240));
-			new Timer().schedule(new TimerTask() {@Override public void run() {setMessagePanel(null,null,null);}},7500);
+			infoPanel=setMessagePanel(null,Language.tr("Window.LanguageAutomatic"),MessagePanelIcon.INFO);
+			infoPanel.setBackground(new Color(255,255,240));
+			new Timer().schedule(new TimerTask() {@Override public void run() {
+				setMessagePanel(null,null,null);
+				if (infoPanel!=null) infoPanel.setBackground(new Color(255,240,0));
+				infoPanel=null;
+			}},7500);
 		} else {
 			if (!setup.testJavaVersion) return;
 			final int[] ver=getJavaVersion();
@@ -338,8 +347,11 @@ public final class MainPanel extends MainPanelBase {
 			if (ver[0]==14 && ver[1]<JAVA14_SECURE_MIN_VERSION) ok=false;
 			if (ok) return;
 
-			setMessagePanel(Language.tr("Dialog.Title.Warning"),Language.tr("Window.JavaSecurityWarnung"),MessagePanelIcon.WARNING);
-			new Timer().schedule(new TimerTask() {@Override public void run() {setMessagePanel(null,null,null);}},7500);
+			infoPanel=setMessagePanel(Language.tr("Dialog.Title.Warning"),Language.tr("Window.JavaSecurityWarnung"),Language.tr("Window.JavaSecurityWarnung.Link"),MessagePanelIcon.WARNING);
+			new Timer().schedule(new TimerTask() {@Override public void run() {
+				setMessagePanel(null,null,null);
+				infoPanel=null;
+			}},7500);
 		}
 	}
 

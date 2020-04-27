@@ -973,7 +973,7 @@ public class Messages_en extends java.util.ResourceBundle {
     t[2520] = "XML.OptimizerSetup.InitialInventory.ClientType.Error";
     t[2521] = "The initial inventory of client type %s is invalid.";
     t[2524] = "Window.JavaSecurityWarnung";
-    t[2525] = "Warning: The Java version you ware using is outdated and may be contains security vulnerabilities.";
+    t[2525] = "Warning: The Java version you ware using is outdated and may be contains security vulnerabilities. Update:";
     t[2528] = "XML.Model.AgentsGroup.WorkingTimeEnd.Error";
     t[2529] = "The specified working time end %s is invalid.";
     t[2530] = "Window.Info.ModelOverviewError.NotExist.Info";
@@ -7266,6 +7266,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[18241] = "Java archive files";
     t[18242] = "Simulation.Log.Call.CarriedOver.LastDayWaitingTime";
     t[18243] = "Waiting time already on the last day";
+    t[18250] = "Window.JavaSecurityWarnung.Link";
+    t[18251] = "https://adoptopenjdk.net/";
     t[18252] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMax.Title";
     t[18253] = "Set up maximal value for all intervals";
   }
