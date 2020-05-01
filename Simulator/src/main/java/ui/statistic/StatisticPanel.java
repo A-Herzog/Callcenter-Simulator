@@ -70,7 +70,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 * @param numberOfViewers	Anzahl der nebeneinander anzuzeigenden Ergebnisse
 	 */
 	public StatisticPanel(boolean nebeneinander, HelpLink helpLink, Runnable helpModal, Runnable startSilmulation, Runnable loadStatistics, int numberOfViewers) {
-		super(Language.tr("MainMenu.View.Statistics"),Images.STATISTICS_DARK.getURL(),Language.tr("CommandLine.Report.Name"),null,nebeneinander,true,helpModal,helpLink,startSilmulation,loadStatistics,numberOfViewers);
+		super(Language.tr("MainMenu.View.Statistics"),Images.STATISTICS_DARK.getURL(),Language.tr("CommandLine.Report.Name"),null,nebeneinander,true,helpModal,helpLink,startSilmulation,loadStatistics,numberOfViewers,true);
 		statisticData=new Statistics[numberOfViewers];
 		Arrays.fill(statisticData,null);
 		setStatistic(statisticData);

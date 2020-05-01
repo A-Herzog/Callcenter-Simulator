@@ -398,7 +398,7 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		private static final long serialVersionUID = 5350416436702759598L;
 
 		public OptimizerStatisticPanel(String title, URL icon, boolean filterTree, Runnable helpModal, HelpLink helpLink, Runnable startSilmulation, Runnable loadStatistics) {
-			super(title, icon, null, null, true, true, helpModal, helpLink, startSilmulation, loadStatistics);
+			super(title, icon, null, null, true, true, helpModal, helpLink, startSilmulation, loadStatistics, false);
 		}
 
 		@Override

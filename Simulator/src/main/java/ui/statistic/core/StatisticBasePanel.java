@@ -59,6 +59,7 @@ import ui.commandline.AbstractReportCommandConnect;
 public class StatisticBasePanel extends JPanel implements AbstractReportCommandConnect {
 	private static final long serialVersionUID = -7826682745490191755L;
 
+	private final boolean storeLastRoot;
 	private StatisticNode lastRoot;
 	private StatisticNode currentRoot;
 
@@ -87,9 +88,12 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 	 * @param startSimulation	Callback zum Starten einer Simulation
 	 * @param loadStatistics	Callback zum Laden von Statistikdaten
 	 * @param numberOfViewers	Anzahl der nebeneinander anzuzeigenden Ergebnisse
+	 * @param storeLastRoot	Soll ein Vergleich zu den jeweils vorherigen Ergebnissen angeboten werden?
 	 */
-	public StatisticBasePanel(String title, URL icon, String commandLineCommand, String commandLineDataFileName, boolean nebeneinander, boolean filterTree, Runnable helpModal, HelpLink helpLink, Runnable startSimulation, Runnable loadStatistics, int numberOfViewers) {
+	public StatisticBasePanel(String title, URL icon, String commandLineCommand, String commandLineDataFileName, boolean nebeneinander, boolean filterTree, Runnable helpModal, HelpLink helpLink, Runnable startSimulation, Runnable loadStatistics, int numberOfViewers, final boolean storeLastRoot) {
 		super(new BorderLayout());
+
+		this.storeLastRoot=storeLastRoot;
 
 		fileDropListeners=new ArrayList<>();
 
@@ -143,9 +147,10 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 	 * @param helpLink	Hilfe-Objekt, welches alle Hilfe-Links enthält
 	 * @param startSimulation	Callback zum Starten einer Simulation
 	 * @param loadStatistics	Callback zum Laden von Statistikdaten
+	 * @param storeLastRoot	Soll ein Vergleich zu den jeweils vorherigen Ergebnissen angeboten werden?
 	 */
-	public StatisticBasePanel(String title, URL icon, String commandLineCommand, String commandLineDataFileName, boolean nebeneinander, boolean filterTree, Runnable helpModal, HelpLink helpLink, Runnable startSimulation, Runnable loadStatistics) {
-		this(title,icon,commandLineCommand,commandLineDataFileName,nebeneinander,filterTree,helpModal,helpLink,startSimulation,loadStatistics,1);
+	public StatisticBasePanel(String title, URL icon, String commandLineCommand, String commandLineDataFileName, boolean nebeneinander, boolean filterTree, Runnable helpModal, HelpLink helpLink, Runnable startSimulation, Runnable loadStatistics, final boolean storeLastRoot) {
+		this(title,icon,commandLineCommand,commandLineDataFileName,nebeneinander,filterTree,helpModal,helpLink,startSimulation,loadStatistics,1,storeLastRoot);
 	}
 
 	/**
@@ -310,8 +315,10 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 	 * @see StatisticNode
 	 */
 	public final void setStatisticData(StatisticNode statisticData, Statistics statistic) {
-		lastRoot=currentRoot;
-		currentRoot=statisticData;
+		if (storeLastRoot) {
+			lastRoot=currentRoot;
+			currentRoot=statisticData;
+		}
 
 		tree.setStatisticData(statisticData,statistic,data.length);
 

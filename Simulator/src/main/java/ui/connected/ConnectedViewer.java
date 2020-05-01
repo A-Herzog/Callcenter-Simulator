@@ -211,7 +211,7 @@ public class ConnectedViewer extends ViewerWithLoadModelCallback {
 		private static final long serialVersionUID = 5350416436702759598L;
 
 		public ConnectedStatisticPanel(String title, URL icon, boolean filterTree, HelpLink helpLink, Runnable startSilmulation, Runnable loadStatistics) {
-			super(title, icon, null, null, true, filterTree, helpLink.pageConnectedViewerModal, helpLink, startSilmulation, loadStatistics);
+			super(title, icon, null, null, true, filterTree, helpLink.pageConnectedViewerModal, helpLink, startSilmulation, loadStatistics, false);
 		}
 
 		@Override
