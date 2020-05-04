@@ -88,6 +88,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[213] = "Load and view static file from server";
     t[216] = "SimStatistic.SuccessfulCalls";
     t[217] = "Successful calls";
+    t[218] = "FileType.LaTeX";
+    t[219] = "LaTeX files";
     t[234] = "MainMenu.Simulation.Optimizer.Tooltip";
     t[235] = "Starts the optimizer";
     t[242] = "MainMenu.Simulation.OptimizerResults";
@@ -2002,10 +2004,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4965] = "Complete model description";
     t[4968] = "Loader.Info.XMLPreprocessing.Title";
     t[4969] = "Combine call center model with data from table";
-    t[4972] = "Statistic.GeneralPage.SelectSubCategoryHTML";
-    t[4973] = "<p>Please select a <b>sub category</b> from the tree structure to get the corresponding information displayed.</p>";
   }
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4972] = "Statistic.GeneralPage.SelectSubCategoryHTML";
+    t[4973] = "<p>Please select a <b>sub category</b> from the tree structure to get the corresponding information displayed.</p>";
     t[4982] = "Distribution.Uniform.Start";
     t[4983] = "Start";
     t[4986] = "CommandLine.Benchmark.SimulaionFailed";
@@ -4004,10 +4006,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9813] = "While executing \"%s\"";
     t[9820] = "Compare.ReplaceKeptModel.YesInfo";
     t[9821] = "The kept model will be discarded and replaced by the current model.";
-    t[9832] = "SettingsDialog.LoadModelOnProgramStart";
-    t[9833] = "Load model on program start";
   }
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9832] = "SettingsDialog.LoadModelOnProgramStart";
+    t[9833] = "Load model on program start";
     t[9834] = "Statistic.Viewer.Toolbar.OpenText.Hint";
     t[9835] = "Open text in external application.";
     t[9840] = "Simulation.Log.StopTest";
@@ -6006,10 +6008,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15015] = "Count";
     t[15024] = "Model.Plausibility.Error";
     t[15025] = "The model audit has found the following error:";
-    t[15026] = "Editor.GeneralData.ThresholdValues.Type";
-    t[15027] = "Performance indicator";
   }
   static void clinit_part_3 (java.lang.String[] t) {
+    t[15026] = "Editor.GeneralData.ThresholdValues.Type";
+    t[15027] = "Performance indicator";
     t[15028] = "Batch.Tabs.Parameter";
     t[15029] = "Create parameter series";
     t[15032] = "Editor.Overview.Category.ShiftSchedulePerCallcenter";
