@@ -17,6 +17,7 @@ package simulator.events;
 
 import language.Language;
 import mathtools.distribution.tools.DistributionRandomNumber;
+import parser.MathCalcError;
 import parser.MathParser;
 import simcore.Event;
 import simcore.SimData;
@@ -126,8 +127,10 @@ public final class Service1StartEvent extends Event {
 		long workingTime=Math.round(DistributionRandomNumber.randomNonNegative(skillLevel.callerTypeWorkingTime[skillLevelNr][interval])*1000);
 		MathParser calc=skillLevel.callerTypeWorkingTimeAddOn[skillLevelNr][interval];
 		if (calc!=null) {
-			Double D=calc.calc(new double[]{wartezeit});
-			if (D!=null) workingTime+=Math.max(D*1000,0);
+			try {
+				final double d=calc.calc(new double[]{wartezeit});
+				workingTime+=Math.max(d*1000,0);
+			} catch (MathCalcError e) {}
 		}
 
 		/* Loggen des Wartezeit Endes */

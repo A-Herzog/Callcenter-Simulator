@@ -23,6 +23,7 @@ import mathtools.NumberTools;
 import mathtools.distribution.DataDistributionImpl;
 import mathtools.distribution.tools.DistributionTools;
 import parser.CalcSystem;
+import parser.MathCalcError;
 import parser.MathParser;
 import simulator.SimulationData;
 import tools.SetupData;
@@ -185,8 +186,7 @@ public final class CallcenterRunModel {
 		/* Maximale Warteschlangenlänge */
 		MathParser parser=new CalcSystem(editModel.maxQueueLength,new String[]{"a"});
 		boolean ok=(parser.parse()==-1);
-		Double D=0.0;
-		if (ok) {D=parser.calc(new double[]{1.0}); ok=(D!=null && D>=0);}
+		if (ok) try {ok=(parser.calc(new double[]{1.0})>=0);} catch (MathCalcError e) {ok=false;}
 		if (!ok) return String.format(Language.tr("Model.Check.InvalidMaximumQueueLength"),editModel.maxQueueLength);
 		maxQueueLength=parser;
 

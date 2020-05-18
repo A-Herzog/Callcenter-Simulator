@@ -978,8 +978,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[2525] = "Warning: The Java version you ware using is outdated and may be contains security vulnerabilities. Update:";
     t[2528] = "XML.Model.AgentsGroup.WorkingTimeEnd.Error";
     t[2529] = "The specified working time end %s is invalid.";
-    t[2530] = "Window.Info.ModelOverviewError.NotExist.Info";
-    t[2531] = "The model overview file\n%s\ndoes not exist.";
     t[2542] = "Connected.SaveStatistic";
     t[2543] = "Save statistic";
     t[2544] = "LoadCalculator.TUCOnlineCalculator";
@@ -1748,6 +1746,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4379] = "Selects the table to be loaded";
     t[4388] = "Editor.Caller.Error.RecallCallerType.Title";
     t[4389] = "Client type change rate on recall is invalid";
+    t[4390] = "SettingsDialog.JDK.Link";
+    t[4391] = "https://adoptopenjdk.net/";
     t[4394] = "Editor.Caller.Error.InvalidFreshCalls.Title";
     t[4395] = "Number of fresh calls is invalid";
     t[4396] = "XML.Connected.CarryOver.Value";
@@ -2984,8 +2984,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7273] = "W";
     t[7276] = "SimStatistic.Costs.WaitingTime";
     t[7277] = "Loss due to waiting times";
-    t[7286] = "Window.Info.ShowGlossaryError.NotExist.Title";
-    t[7287] = "Glossary file does not exist";
     t[7288] = "Simulation.Log.Ready.Quit";
     t[7289] = "End of shift, agents stops to work";
     t[7290] = "XML.Model.AgentsGroup.CostsPerHour.Error";
@@ -4006,10 +4004,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9813] = "While executing \"%s\"";
     t[9820] = "Compare.ReplaceKeptModel.YesInfo";
     t[9821] = "The kept model will be discarded and replaced by the current model.";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9832] = "SettingsDialog.LoadModelOnProgramStart";
     t[9833] = "Load model on program start";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9834] = "Statistic.Viewer.Toolbar.OpenText.Hint";
     t[9835] = "Open text in external application.";
     t[9840] = "Simulation.Log.StopTest";
@@ -4436,8 +4434,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[10969] = "Number of days to be simulated";
     t[10970] = "MainMenu.Help.ProgramInformation.Tooltip";
     t[10971] = "Show the program information dialog.";
-    t[10972] = "Window.Info.ShowGlossaryError.NotExist.Info";
-    t[10973] = "The glossary file\n%s\ndoes not exist.";
     t[10974] = "MainMenu.File.LoadModel.Mnemonic";
     t[10975] = "L";
     t[10976] = "Model.Plausibility.LongServiceTimes";
@@ -6008,12 +6004,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15015] = "Count";
     t[15024] = "Model.Plausibility.Error";
     t[15025] = "The model audit has found the following error:";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[15026] = "Editor.GeneralData.ThresholdValues.Type";
     t[15027] = "Performance indicator";
     t[15028] = "Batch.Tabs.Parameter";
     t[15029] = "Create parameter series";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[15032] = "Editor.Overview.Category.ShiftSchedulePerCallcenter";
     t[15033] = "Shift schedule per call center";
     t[15040] = "SimStatistic.ScoreValues.CallcenterAgentFreeTimePart";
@@ -6336,8 +6332,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15909] = "Load agent scheduls for multiple agents groups on 15 minutes basis for a call center";
     t[15910] = "FitDialog.PasteValues.Tooltip";
     t[15911] = "Pastes values from the clipboard";
-    t[15912] = "Window.Info.ModelOverviewError.NotExist.Title";
-    t[15913] = "Model overview file does not exist";
     t[15918] = "Connected.Rate";
     t[15919] = "Rate";
     t[15920] = "XML.Model.ClientType.Recall.NewClientType.Error";
@@ -6543,7 +6537,7 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16500] = "Editor.Caller.Forwarding.AgentTypeDependendForwarding";
     t[16501] = "Agent type dependet forwarding";
     t[16508] = "CommandLine.ReportBase.Help";
-    t[16509] = "This command expects exactly three additionall parameters:\n1. \"Inline\", \"SingleFiles\", \"List\", \"Text\", \"PDF\" or a list entry, depending if\na) a html report with inline images,\nb) a html teport with separate images,\nc) an overview of all available individual documents,\nd) a docx report\ne) a pdf report or\nf) an individual document is to be reported.\n2. File name of the input file\n3. File name of the output file";
+    t[16509] = "This command expects exactly three additionall parameters:\n1. \"Inline\", \"SingleFiles\", \"List\", \"Text\", \"PDF\", \"LaTeX\" or a list entry, depending if\na) a html report with inline images,\nb) a html teport with separate images,\nc) an overview of all available individual documents,\nd) a docx report,\ne) a pdf report,\nf) a LaTeX report or\ng) an individual document is to be reported.\n2. File name of the input file\n3. File name of the output file";
     t[16518] = "Server.TerminationRequest";
     t[16519] = "User abort, running threads will be completed before shut down.";
     t[16524] = "XML.Statistic.Agents.Model.WithSurcharge";
@@ -6900,6 +6894,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17301] = "LaTeX tables";
     t[17302] = "Editor.Caller.Special.TitleRecalling";
     t[17303] = "Skill level dependent recalling";
+    t[17306] = "SettingsDialog.JDK.Info";
+    t[17307] = "Recommended download address for Java runtime environments";
     t[17312] = "XML.Model.PreferredShiftLength";
     t[17313] = "ModelPreferredShiftLength";
     t[17314] = "SimStatistic.ServiceLevelPerCallerType";

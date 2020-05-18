@@ -38,6 +38,7 @@ import language.Language;
 import mathtools.NumberTools;
 import mathtools.TimeTools;
 import parser.CalcSystem;
+import parser.MathCalcError;
 import parser.MathParser;
 import systemtools.MsgBox;
 import ui.HelpLink;
@@ -184,7 +185,7 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 		boolean ok=true;
 		MathParser parser=new CalcSystem(maxQueueLength.getText(),new String[]{"a"});
 		ok=(parser.parse()==-1);
-		if (ok) ok=(parser.calc(new double[]{1.0})!=null);
+		if (ok) try {parser.calc(new double[]{1.0});} catch (MathCalcError e) {ok=false;}
 		if (!ok) {
 			caption=Language.tr("Editor.GeneralData.GlobalParameters.MaximumQueueLength.InvalidIitle");
 			s=String.format(Language.tr("Editor.GeneralData.GlobalParameters.MaximumQueueLength.InvalidInfo"),maxQueueLength.getText());
@@ -248,7 +249,9 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 	private class DialogElementListener implements KeyListener {
 		private void keyEvent(KeyEvent e) {
 			MathParser parser=new CalcSystem(maxQueueLength.getText(),new String[]{"a"});
-			if (parser.parse()==-1 && (parser.calc(new double[]{1.0})!=null)) maxQueueLength.setBackground(SystemColor.text); else maxQueueLength.setBackground(Color.red);
+			boolean ok=(parser.parse()==-1);
+			if (ok) try {parser.calc(new double[]{1.0});} catch (MathCalcError ex) {ok=false;}
+			if (ok) maxQueueLength.setBackground(SystemColor.text); else maxQueueLength.setBackground(Color.red);
 			NumberTools.getNotNegativeInteger(days,true);
 			NumberTools.getNotNegativeInteger(serviceLevel,true);
 		}

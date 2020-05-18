@@ -25,6 +25,7 @@ import mathtools.ErlangC;
 import mathtools.distribution.DataDistributionImpl;
 import mathtools.distribution.tools.DistributionTools;
 import parser.CalcSystem;
+import parser.MathCalcError;
 import parser.MathParser;
 import ui.model.CallcenterModel;
 import ui.model.CallcenterModelAgent;
@@ -98,7 +99,10 @@ public class StatisticViewerErlangCTools {
 		double lambda=(caller[interval]+((interval==0)?0.0:retryCallerFromLastInterval1[interval-1]))/1800;
 		int c=(int)Math.round(agents[interval]);
 		int w=1000000;
-		if (parser!=null) {Double D=parser.calc(new double[]{agents[interval]}); if (D!=null) w=(int)Math.round(Math.max(0,D));}
+		if (parser!=null) try {
+			final double d=parser.calc(new double[]{agents[interval]});
+			w=(int)Math.round(Math.max(0,d));
+		} catch (MathCalcError e) {}
 		int K=c+w;
 
 		double[] Cn=ErlangC.extErlangCCn(lambda,mu[interval],nu[interval],c,K);
@@ -261,8 +265,9 @@ public class StatisticViewerErlangCTools {
 			if (dist0!=null && !dist0.isEmpty() && !dist0.equals("0")) {
 				MathParser calc=new CalcSystem(dist0,new String[]{"w"});
 				if (calc.parse()==-1) {
-					Double D=calc.calc(new double[]{0});
-					if (D!=null) d+=D;
+					try {
+						d+=calc.calc(new double[]{0});
+					} catch (MathCalcError e) {}
 				}
 			}
 			d+=DistributionTools.getMean(dist1)+DistributionTools.getMean(dist2);

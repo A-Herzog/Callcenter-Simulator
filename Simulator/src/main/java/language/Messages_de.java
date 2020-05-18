@@ -978,8 +978,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2525] = "Achtung: Die von Ihnen verwendete Java-Version ist veraltet und enth\u00e4lt m\u00f6glicherweise Sicherheitsl\u00fccken. Update:";
     t[2528] = "XML.Model.AgentsGroup.WorkingTimeEnd.Error";
     t[2529] = "Das angegebene Arbeitszeitende %s ist ung\u00fcltig.";
-    t[2530] = "Window.Info.ModelOverviewError.NotExist.Info";
-    t[2531] = "Die Modell-\u00dcbersichtsdatei\n%s\nexistiert nicht.";
     t[2542] = "Connected.SaveStatistic";
     t[2543] = "Statistik speichern";
     t[2544] = "LoadCalculator.TUCOnlineCalculator";
@@ -1748,6 +1746,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4379] = "W\u00e4hlt die zu ladende Tabelle";
     t[4388] = "Editor.Caller.Error.RecallCallerType.Title";
     t[4389] = "Weiterleitungsrate zu Kundentyp bei Wiederanruf ist ung\u00fcltig";
+    t[4390] = "SettingsDialog.JDK.Link";
+    t[4391] = "https://adoptopenjdk.net/";
     t[4394] = "Editor.Caller.Error.InvalidFreshCalls.Title";
     t[4395] = "Erstanruferanzahl ist ung\u00fcltig";
     t[4396] = "XML.Connected.CarryOver.Value";
@@ -2984,8 +2984,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7273] = "W";
     t[7276] = "SimStatistic.Costs.WaitingTime";
     t[7277] = "Verlust durch Wartezeiten";
-    t[7286] = "Window.Info.ShowGlossaryError.NotExist.Title";
-    t[7287] = "Glossar-Datei existiert nicht";
     t[7288] = "Simulation.Log.Ready.Quit";
     t[7289] = "Dienstende erreicht, Agent beendet die Arbeit";
     t[7290] = "XML.Model.AgentsGroup.CostsPerHour.Error";
@@ -4006,10 +4004,10 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9813] = "Ausf\u00fchrung des Befehls \"%s\"";
     t[9820] = "Compare.ReplaceKeptModel.YesInfo";
     t[9821] = "Das bisher festgehaltene Modell wird verworfen und das aktuelle Modell wird f\u00fcr sp\u00e4tere Vergleiche festgehalten.";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9832] = "SettingsDialog.LoadModelOnProgramStart";
     t[9833] = "Modell beim Programmstart laden";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9834] = "Statistic.Viewer.Toolbar.OpenText.Hint";
     t[9835] = "Text in externer Anwendung anzeigen.";
     t[9840] = "Simulation.Log.StopTest";
@@ -4436,8 +4434,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[10969] = "Anzahl der zu simulierenden Tage";
     t[10970] = "MainMenu.Help.ProgramInformation.Tooltip";
     t[10971] = "Zeigt den Programminformationen-Dialog an.";
-    t[10972] = "Window.Info.ShowGlossaryError.NotExist.Info";
-    t[10973] = "Die Glossar-Datei\n%s\nexistiert nicht.";
     t[10974] = "MainMenu.File.LoadModel.Mnemonic";
     t[10975] = "L";
     t[10976] = "Model.Plausibility.LongServiceTimes";
@@ -6008,12 +6004,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15015] = "Anzahl";
     t[15024] = "Model.Plausibility.Error";
     t[15025] = "Die Modellpr\u00fcfung hat den folgenden Fehler festgestellt:";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[15026] = "Editor.GeneralData.ThresholdValues.Type";
     t[15027] = "Kenngr\u00f6\u00dfe";
     t[15028] = "Batch.Tabs.Parameter";
     t[15029] = "Parameterreihe erstellen";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[15032] = "Editor.Overview.Category.ShiftSchedulePerCallcenter";
     t[15033] = "Schichtplan pro Callcenter";
     t[15040] = "SimStatistic.ScoreValues.CallcenterAgentFreeTimePart";
@@ -6336,8 +6332,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15909] = "Arbeitszeiten mehrerer Agentengruppen auf 15-Minuten-Basis f\u00fcr ein Callcenter global laden";
     t[15910] = "FitDialog.PasteValues.Tooltip";
     t[15911] = "L\u00e4dt eine Reihe von Messwerten aus der Zwischenablage";
-    t[15912] = "Window.Info.ModelOverviewError.NotExist.Title";
-    t[15913] = "Modell-\u00dcbersichtsdatei existiert nicht";
     t[15918] = "Connected.Rate";
     t[15919] = "Rate";
     t[15920] = "XML.Model.ClientType.Recall.NewClientType.Error";
@@ -6543,7 +6537,7 @@ public class Messages_de extends java.util.ResourceBundle {
     t[16500] = "Editor.Caller.Forwarding.AgentTypeDependendForwarding";
     t[16501] = "Agententyp-abh\u00e4ngige Weiterleitungen";
     t[16508] = "CommandLine.ReportBase.Help";
-    t[16509] = "Dieser Befehl erwartet genau drei weitere Parameter:\n1. \"Inline\", \"Einzeldateien\", \"Liste\", \"Text\", \"PDF\" oder ein Listeneintrag je nach dem, ob\na) ein HTML-Report mit eingebetteten Bildern,\nb) ein HTML-Report mit Bildern in separaten Dateien,\nc) eine \u00dcbersicht \u00fcber alle verf\u00fcgbaren Einzeldokumente\nd) ein DOCX-Report,\ne) ein PDF-Report oder\nf) ein bestimmtes Einzeldokument ausgegeben werden soll.\n2. Dateiname der Eingabedatei\n3. Dateiname der Ausgabedatei";
+    t[16509] = "Dieser Befehl erwartet genau drei weitere Parameter:\n1. \"Inline\", \"Einzeldateien\", \"Liste\", \"Text\", \"PDF\" , \"LaTeX\" oder ein Listeneintrag je nach dem, ob\na) ein HTML-Report mit eingebetteten Bildern,\nb) ein HTML-Report mit Bildern in separaten Dateien,\nc) eine \u00dcbersicht \u00fcber alle verf\u00fcgbaren Einzeldokumente,\nd) ein DOCX-Report,\ne) ein PDF-Report,\nf) ein LaTeX-Report oder\ng) ein bestimmtes Einzeldokument ausgegeben werden soll.\n2. Dateiname der Eingabedatei\n3. Dateiname der Ausgabedatei";
     t[16518] = "Server.TerminationRequest";
     t[16519] = "Abbruch durch Benutzer, laufende Threads werden zu Ende gef\u00fchrt.";
     t[16524] = "XML.Statistic.Agents.Model.WithSurcharge";
@@ -6900,6 +6894,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17301] = "LaTeX-Tabellen";
     t[17302] = "Editor.Caller.Special.TitleRecalling";
     t[17303] = "Skill-Level-abh\u00e4ngige Wiederanrufe";
+    t[17306] = "SettingsDialog.JDK.Info";
+    t[17307] = "Empfohlene Download-Adresse f\u00fcr Java-Laufzeitumgebungen";
     t[17312] = "XML.Model.PreferredShiftLength";
     t[17313] = "ModellBevorzugteSchichtlaenge;BevorzugteSchichtlaenge";
     t[17314] = "SimStatistic.ServiceLevelPerCallerType";

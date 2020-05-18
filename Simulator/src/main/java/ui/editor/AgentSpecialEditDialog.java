@@ -40,6 +40,7 @@ import language.Language;
 import mathtools.NumberTools;
 import mathtools.distribution.tools.DistributionTools;
 import parser.CalcSystem;
+import parser.MathCalcError;
 import parser.MathParser;
 import systemtools.MsgBox;
 import ui.model.CallcenterModelCaller;
@@ -79,7 +80,9 @@ public class AgentSpecialEditDialog extends BaseEditDialog {
 			String s=skillLevel.callerTypeWorkingTimeAddOn.get(i);
 			if (s!=null && !s.isEmpty() && !s.equals("0")) {
 				MathParser calc=new CalcSystem(s,new String[]{"w"});
-				if (calc.parse()==-1) {Double D=calc.calc(new double[]{0.0}); if (D!=null) d+=Math.max(0,D);}
+				if (calc.parse()==-1) try {
+					d+=Math.max(0,calc.calc(new double[]{0.0}));
+				} catch (MathCalcError e) {}
 			}
 			callerTempTime.add(d+DistributionTools.getMean(skillLevel.callerTypeWorkingTime.get(i))+DistributionTools.getMean(skillLevel.callerTypePostProcessingTime.get(i)));
 			break;

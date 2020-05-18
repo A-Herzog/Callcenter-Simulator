@@ -19,6 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import language.Language;
 import mathtools.distribution.tools.DistributionRandomNumber;
+import parser.MathCalcError;
 import simcore.Event;
 import simcore.SimData;
 import simulator.LogTools;
@@ -185,16 +186,18 @@ public final class CallEvent extends Event {
 		if (callerRecord.callerType.blocksLine) {
 			final double[] param=data.dynamicSimData.workingAgentsCountArray;
 			param[0]=data.dynamicSimData.workingAgentsCount;
-			Double D=data.model.maxQueueLength.calc(param);
-			if (D!=null && D<=data.dynamicSimData.getPhoneCallQueueLength()) {
-				/* Warteschlange ist voll */
-				if (data.loggingActive) LogTools.log(data,Language.tr("Simulation.Log.Call.Blocked"),callerRecord,null,info);
-				final double retryProbability=(callerRecord.retryCount==0)?callerRecord.callerType.retryProbabiltyAfterBlockedFirstRetry:callerRecord.callerType.retryProbabiltyAfterBlocked;
-				final boolean retry=(retryProbability>=ThreadLocalRandom.current().nextDouble());
-				logBlocked(data,callerRecord,time,retry);
-				if (retry) CallCancelEvent.retryCall(callerRecord,time,data,callerRecord.retryCount==0,true);
-				return;
-			}
+			try {
+				final double d=data.model.maxQueueLength.calc(param);
+				if (d<=data.dynamicSimData.getPhoneCallQueueLength()) {
+					/* Warteschlange ist voll */
+					if (data.loggingActive) LogTools.log(data,Language.tr("Simulation.Log.Call.Blocked"),callerRecord,null,info);
+					final double retryProbability=(callerRecord.retryCount==0)?callerRecord.callerType.retryProbabiltyAfterBlockedFirstRetry:callerRecord.callerType.retryProbabiltyAfterBlocked;
+					final boolean retry=(retryProbability>=ThreadLocalRandom.current().nextDouble());
+					logBlocked(data,callerRecord,time,retry);
+					if (retry) CallCancelEvent.retryCall(callerRecord,time,data,callerRecord.retryCount==0,true);
+					return;
+				}
+			} catch (MathCalcError e) {}
 		}
 
 		/* Agent finden, zuordnen und technische Bereitzeit beginnen*/

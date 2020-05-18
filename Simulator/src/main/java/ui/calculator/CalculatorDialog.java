@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import language.Language;
 import mathtools.NumberTools;
 import parser.CalcSystem;
+import parser.MathCalcError;
 import ui.HelpLink;
 import ui.editor.BaseEditDialog;
 
@@ -73,11 +74,10 @@ public class CalculatorDialog extends BaseEditDialog {
 			if (pos>=0) {
 				result=String.format(Language.tr("Statistic.Filter.InvalidExpressionPosition"),pos+1);
 			} else {
-				Double D=calc.calc();
-				if (D==null) {
+				try {
+					result=NumberTools.formatNumberMax(calc.calc());
+				} catch (MathCalcError e) {
 					result=Language.tr("Statistic.Filter.InvalidExpression");
-				} else {
-					result=NumberTools.formatNumberMax(D);
 				}
 			}
 			output.setText(result);

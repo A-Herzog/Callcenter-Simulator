@@ -37,6 +37,7 @@ import mathtools.NumberTools;
 import mathtools.TimeTools;
 import mathtools.distribution.DataDistributionImpl;
 import parser.CalcSystem;
+import parser.MathCalcError;
 import parser.MathParser;
 import simulator.Statistics;
 
@@ -374,12 +375,13 @@ public class DataFilterBase {
 			varValuesNumber.add(d);
 		}
 		MathParser calc=new CalcSystem(varNames,varValuesNumber);
-		Double d=null;
 		int pos=calc.parse(command);
 		if (pos>=0) return new String[]{String.format(Language.tr("Statistic.Filter.InvalidExpressionPosition"),pos+1),null};
-		d=calc.calc();
-		if (d==null) return new String[]{Language.tr("Statistic.Filter.InvalidExpression"),null};
-		return new String[]{null,NumberTools.formatSystemNumber(d)};
+		try {
+			return new String[]{null,NumberTools.formatSystemNumber(calc.calc())};
+		} catch (MathCalcError e) {
+			return new String[]{Language.tr("Statistic.Filter.InvalidExpression"),null};
+		}
 	}
 
 	/**

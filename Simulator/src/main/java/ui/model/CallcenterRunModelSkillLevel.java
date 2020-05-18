@@ -24,6 +24,7 @@ import org.apache.commons.math3.distribution.AbstractRealDistribution;
 import language.Language;
 import mathtools.distribution.tools.DistributionTools;
 import parser.CalcSystem;
+import parser.MathCalcError;
 import parser.MathParser;
 
 /**
@@ -151,7 +152,13 @@ public final class CallcenterRunModelSkillLevel {
 					if (pos!=-1) {
 						return String.format(Language.tr("Model.Check.SkillLevel.InvalidHoldingTimeAddOnExpression"),orig[k],pos+1);
 					}
-					if (!calc.isConstValue() || calc.calc()!=0) data[k]=calc;
+					if (!calc.isConstValue()) {
+						data[k]=calc;
+					} else {
+						try {
+							if (calc.calc()!=0) data[k]=calc;
+						} catch (MathCalcError e) {}
+					}
 				}
 			}
 		}
