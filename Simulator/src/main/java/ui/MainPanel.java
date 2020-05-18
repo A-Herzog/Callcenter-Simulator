@@ -1663,7 +1663,6 @@ public final class MainPanel extends MainPanelBase {
 			} catch (IOException | URISyntaxException e) {
 				MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ModelOverview"),XMLTools.mediaURL+Language.tr("Window.Info.ModelOverview.FileName")));
 			}
-			MsgBox.error(this,Language.tr("Window.Info.ModelOverviewError.NotExist.Title"),String.format(Language.tr("Window.Info.ModelOverviewError.NotExist.Info"),modelFile.toString()));
 			return;
 		}
 		try {
@@ -1683,7 +1682,6 @@ public final class MainPanel extends MainPanelBase {
 			} catch (IOException | URISyntaxException e) {
 				MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ShowGlossary"),XMLTools.mediaURL+Language.tr("Window.Info.ShowGlossary.FileName")));
 			}
-			MsgBox.error(this,Language.tr("Window.Info.ShowGlossaryError.NotExist.Title"),String.format(Language.tr("Window.Info.ShowGlossaryError.NotExist.Info"),modelFile.toString()));
 			return;
 		}
 		try {
