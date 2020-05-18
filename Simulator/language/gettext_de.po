@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-04 22:02+0200\n"
+"POT-Creation-Date: 2020-05-18 12:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7418,6 +7418,12 @@ msgstr "Ungültige Bildgröße angegeben"
 msgid "SettingsDialog.IncreaseNumberOfDays"
 msgstr "Anzahl an zu simulierenden Tagen erhöhen wenn sinnvoll"
 
+msgid "SettingsDialog.JDK.Info"
+msgstr "Empfohlene Download-Adresse für Java-Laufzeitumgebungen"
+
+msgid "SettingsDialog.JDK.Link"
+msgstr "https://adoptopenjdk.net/"
+
 msgid "SettingsDialog.Languages"
 msgstr "Anzeigesprache"
 
@@ -9624,15 +9630,6 @@ msgstr "Dateiformat-Beschreibungsdatei konnte nicht geöffnet werden"
 msgid "Window.Info.ModelOverview.FileName"
 msgstr "CallcenterSimulatorModell_de.pdf"
 
-msgid "Window.Info.ModelOverviewError.NotExist.Info"
-msgstr ""
-"Die Modell-Übersichtsdatei\n"
-"%s\n"
-"existiert nicht."
-
-msgid "Window.Info.ModelOverviewError.NotExist.Title"
-msgstr "Modell-Übersichtsdatei existiert nicht"
-
 msgid "Window.Info.ModelOverviewError.Opening.Info"
 msgstr ""
 "Die Modell-Übersichtsdatei\n"
@@ -9678,15 +9675,6 @@ msgstr ""
 
 msgid "Window.Info.ShowGlossary.FileName"
 msgstr "CallcenterSimulatorGlossar_de.pdf"
-
-msgid "Window.Info.ShowGlossaryError.NotExist.Info"
-msgstr ""
-"Die Glossar-Datei\n"
-"%s\n"
-"existiert nicht."
-
-msgid "Window.Info.ShowGlossaryError.NotExist.Title"
-msgstr "Glossar-Datei existiert nicht"
 
 msgid "Window.Info.ShowGlossaryError.Opening.Info"
 msgstr ""
@@ -11580,3 +11568,21 @@ msgstr "StatistikSchwellenwerte"
 
 msgid "XML.XSD"
 msgstr "CallcenterSimulator_de.xsd"
+
+#~ msgid "Window.Info.ModelOverviewError.NotExist.Info"
+#~ msgstr ""
+#~ "Die Modell-Übersichtsdatei\n"
+#~ "%s\n"
+#~ "existiert nicht."
+
+#~ msgid "Window.Info.ModelOverviewError.NotExist.Title"
+#~ msgstr "Modell-Übersichtsdatei existiert nicht"
+
+#~ msgid "Window.Info.ShowGlossaryError.NotExist.Info"
+#~ msgstr ""
+#~ "Die Glossar-Datei\n"
+#~ "%s\n"
+#~ "existiert nicht."
+
+#~ msgid "Window.Info.ShowGlossaryError.NotExist.Title"
+#~ msgstr "Glossar-Datei existiert nicht"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-04 22:02+0200\n"
+"POT-Creation-Date: 2020-05-18 12:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7396,6 +7396,12 @@ msgstr "Invalid image size entered"
 msgid "SettingsDialog.IncreaseNumberOfDays"
 msgstr "Increase number of simulated days if useful"
 
+msgid "SettingsDialog.JDK.Info"
+msgstr "Recommended download address for Java runtime environments"
+
+msgid "SettingsDialog.JDK.Link"
+msgstr "https://adoptopenjdk.net/"
+
 msgid "SettingsDialog.Languages"
 msgstr "Program language"
 
@@ -9599,15 +9605,6 @@ msgstr "File format description file cannot be opened"
 msgid "Window.Info.ModelOverview.FileName"
 msgstr "CallcenterSimulatorModell_en.pdf"
 
-msgid "Window.Info.ModelOverviewError.NotExist.Info"
-msgstr ""
-"The model overview file\n"
-"%s\n"
-"does not exist."
-
-msgid "Window.Info.ModelOverviewError.NotExist.Title"
-msgstr "Model overview file does not exist"
-
 msgid "Window.Info.ModelOverviewError.Opening.Info"
 msgstr ""
 "The model overview file\n"
@@ -9651,15 +9648,6 @@ msgstr ""
 
 msgid "Window.Info.ShowGlossary.FileName"
 msgstr "CallcenterSimulatorGlossar_en.pdf"
-
-msgid "Window.Info.ShowGlossaryError.NotExist.Info"
-msgstr ""
-"The glossary file\n"
-"%s\n"
-"does not exist."
-
-msgid "Window.Info.ShowGlossaryError.NotExist.Title"
-msgstr "Glossary file does not exist"
 
 msgid "Window.Info.ShowGlossaryError.Opening.Info"
 msgstr ""
@@ -11534,3 +11522,21 @@ msgstr "StatisticThresholds"
 
 msgid "XML.XSD"
 msgstr "CallcenterSimulator_en.xsd"
+
+#~ msgid "Window.Info.ModelOverviewError.NotExist.Info"
+#~ msgstr ""
+#~ "The model overview file\n"
+#~ "%s\n"
+#~ "does not exist."
+
+#~ msgid "Window.Info.ModelOverviewError.NotExist.Title"
+#~ msgstr "Model overview file does not exist"
+
+#~ msgid "Window.Info.ShowGlossaryError.NotExist.Info"
+#~ msgstr ""
+#~ "The glossary file\n"
+#~ "%s\n"
+#~ "does not exist."
+
+#~ msgid "Window.Info.ShowGlossaryError.NotExist.Title"
+#~ msgstr "Glossary file does not exist"

@@ -20,8 +20,11 @@ import java.awt.FlowLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,6 +47,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import language.Language;
@@ -118,6 +122,7 @@ public class SetupDialog extends BaseEditDialog {
 	@Override
 	protected void createTabs(JTabbedPane tabs) {
 		JPanel tab, mainarea, p, p2;
+		JLabel label;
 
 		/* Dialogseite "Benutzeroberfläche" */
 		tabs.addTab(Language.tr("SettingsDialog.Tabs.ProgramStart"),tab=new JPanel(new FlowLayout(FlowLayout.LEFT))); tab.add(mainarea=new JPanel());
@@ -205,6 +210,21 @@ public class SetupDialog extends BaseEditDialog {
 
 		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(programStartJavaCheck=new JCheckBox(Language.tr("SettingsDialog.TestJavaVersionOnProgramStart")));
+
+		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
+		p.add(new JLabel(Language.tr("SettingsDialog.JDK.Info")+": "));
+		p.add(label=new JLabel("<html><body><a href=\""+Language.tr("SettingsDialog.JDK.Link")+"\">"+Language.tr("SettingsDialog.JDK.Link")+"</a></body></html>")); // "https://adoptopenjdk.net/"
+		label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(final MouseEvent e) {
+				if (SwingUtilities.isLeftMouseButton(e)) {
+					try {
+						Desktop.getDesktop().browse(new URI(Language.tr("SettingsDialog.JDK.Link")));
+					} catch (IOException | URISyntaxException e1) {}
+				}
+			}
+		});
 
 		/* Dialogseite Simulation */
 		tabs.addTab(Language.tr("SettingsDialog.Tabs.Simulation"),tab=new JPanel(new FlowLayout(FlowLayout.LEFT))); tab.add(mainarea=new JPanel()); // "Simulation"
