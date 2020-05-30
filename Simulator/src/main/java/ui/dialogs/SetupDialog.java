@@ -447,25 +447,7 @@ public class SetupDialog extends BaseEditDialog {
 				if (UpdateSystem.getUpdateSystem().active && UpdateSystem.getUpdateSystem().isUserDirWriteable()) {
 					if (downloadInfoTimer==null) {
 						autoUpdateButton.setEnabled(false);
-						final String statusRestart=Language.tr("SettingsDialog.Update.UpdateOnRestart");
-						final String statusFailed=Language.tr("SettingsDialog.Update.Failed");
-						final String statusProgress=Language.tr("SettingsDialog.Update.Progress");
-						downloadInfoTimer=new Timer(250,new ActionListener() {
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								double progress=UpdateSystem.getUpdateSystem().getDownloadState();
-								String ver=UpdateSystem.getUpdateSystem().getNewVersion();
-								String s="";
-								if (progress>=1) {
-									s=String.format(statusRestart,ver);
-								} else {
-									if (progress<0) s=String.format(statusFailed,ver); else s=String.format(statusProgress,NumberTools.formatPercent(progress),ver);
-								}
-								autoUpdateInfo.setText(s);
-								if (progress>=1 || progress<0) downloadInfoTimer.stop();
-							}
-						});
-						downloadInfoTimer.start();
+						startDownloadInfo(true);
 					}
 				} else {
 					autoUpdateInfo.setText("<html><body>"+String.format(Language.tr("SettingsDialog.Update.ManualUpdateAvailable"),s)+"</body></html>");
@@ -474,6 +456,28 @@ public class SetupDialog extends BaseEditDialog {
 			}
 			return;
 		}
+	}
+
+	private void startDownloadInfo(final boolean isAutoUpdate) {
+		final String statusDone=isAutoUpdate?Language.tr("SettingsDialog.Update.UpdateOnRestart"):Language.tr("SettingsDialog.Update.ReadyForManualInstall");
+		final String statusFailed=Language.tr("SettingsDialog.Update.Failed");
+		final String statusProgress=Language.tr("SettingsDialog.Update.Progress");
+		downloadInfoTimer=new Timer(250,new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int progress=UpdateSystem.getUpdateSystem().getDownloadState();
+				String ver=UpdateSystem.getUpdateSystem().getNewVersion();
+				String s="";
+				if (progress>=100) {
+					s=String.format(statusDone,ver);
+				} else {
+					if (progress<0) s=String.format(statusFailed,ver); else s=String.format(statusProgress,NumberTools.formatPercent(progress/100.0),ver);
+				}
+				autoUpdateInfo.setText(s);
+				if (progress>=100 || progress<0) downloadInfoTimer.stop();
+			}
+		});
+		downloadInfoTimer.start();
 	}
 
 	@Override
@@ -564,6 +568,7 @@ public class SetupDialog extends BaseEditDialog {
 		CommonVariables.initialDirectoryFromJFileChooser(fc);
 		File file=fc.getSelectedFile();
 
+		startDownloadInfo(false);
 		UpdateSystem.getUpdateSystem().checkUpdate(file);
 
 		MsgBox.info(this,Language.tr("SettingsDialog.Update.ManualUpdateAvailable.DownloadTitle"),Language.tr("SettingsDialog.Update.ManualUpdateAvailable.DownloadInfo"));

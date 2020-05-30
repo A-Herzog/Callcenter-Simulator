@@ -16,15 +16,12 @@
 package ui;
 
 import java.awt.GraphicsEnvironment;
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -34,15 +31,15 @@ import java.util.Calendar;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
+import org.w3c.dom.Element;
 
 import language.Language;
 import systemtools.GUITools;
 import systemtools.MsgBox;
 import systemtools.MsgBoxBackendTaskDialog;
+import tools.NetHelper;
 import tools.SetupData;
+import xml.XMLTools;
 
 /**
  * @author Alexander Herzog
@@ -57,6 +54,8 @@ public class UpdateSystem {
 	public static final String homeURL="a-herzog.github.io";
 	/** Update server */
 	public static final String updateServer="github.com";
+	/** Versions-JSON-URL */
+	public static final String updateFullJSONURL="api.github.com/repos/A-Herzog/Callcenter-Simulator/releases/latest";
 	/** Update URL 1 */
 	public static final String updateFullURL1="github.com/A-Herzog/Callcenter-Simulator/releases/latest/download/CallcenterSimulatorSetup.exe";
 	/** Update URL 2 */
@@ -72,11 +71,12 @@ public class UpdateSystem {
 	private static final File updateInstaller=new File(System.getProperty("java.io.tmpdir"),"CallcenterSimulatorSetup.exe");
 	private static final File updateInstallerRun=new File(System.getProperty("java.io.tmpdir"),"CallcenterSimulatorSetupWork.exe");
 
-	private final Lock getDataLock=new ReentrantLock(true);
-
 	private static UpdateSystem updateSystem;
 
 	private static final Lock mutex=new ReentrantLock(true);
+
+	private volatile int updateDownloadStatusFullSize=0;
+	private volatile int updateDownloadStatusPercent=0;
 
 	/**
 	 * Liefert das Update-System-Singleton
@@ -97,8 +97,7 @@ public class UpdateSystem {
 	 */
 	public final boolean active;
 
-	private String newVersion;
-	private double newVersionDownload=0;
+	private volatile String newVersion;
 
 	private UpdateSystem() {
 		boolean b=(System.getProperty("os.name").toUpperCase().contains("WIN") && SetupData.getProgramFolder().toString().equals(SetupData.getSetupFolder().toString()));
@@ -185,78 +184,101 @@ public class UpdateSystem {
 		return true;
 	}
 
+
+	private static String downloadTextFile(final String urlString) {
+		URL url;
+		try {
+			url=new URL("https://"+urlString);
+		} catch (MalformedURLException e1) {return null;}
+
+		return NetHelper.loadText(url,false,true);
+	}
+
 	/**
 	 * Liefert die Versionskennung der neusten auf dem Server verfügbaren Version.
 	 * @return	Versionskennung der neusten auf dem Server verfügbaren Version oder <code>null</code>, wenn kein Kennung abgerufen werden konnte
 	 */
 	public static String checkUpdateAvailable() {
+		final String json=downloadTextFile(updateFullJSONURL);
+		if (json!=null) {
+			final Element root=XMLTools.jsonToXml("{root: "+json+"}",true);
+			if (root!=null) return root.getAttribute("tag_name");
+		}
+		/* alt: final String line=downloadTextFile(wwwHomeURL+"version.txt"); */
+		return null;
+	}
+
+	/**
+	 * Öffnet die Verbindung zum Server, um eine Datei herunterzuladen
+	 * @param request	Update-Request
+	 * @return	Serververbindung oder <code>null</code>, wenn die Verbindung fehlgeschlagen ist.
+	 */
+	private InputStream openServerFile(final String urlString) {
+		/* URL zusammenbauen */
+		URL url;
 		try {
-			URL home=new URL(defaultProtocollConnect+"://"+wwwHomeURL+"version.txt");
-			URLConnection connect=home.openConnection();
-			if (!(connect instanceof HttpURLConnection)) return null;
-			if (connect instanceof HttpsURLConnection) {
-				((HttpsURLConnection )connect).setHostnameVerifier(new HostnameVerifier() {
-					@Override
-					public boolean verify(String hostname, SSLSession session) {
-						return hostname.equalsIgnoreCase(wwwHomeURL);
-					}
-				});
+			url=new URL("https://"+urlString);
+		} catch (MalformedURLException e1) {return null;}
+
+		try {
+			/* Verbindung öffnen */
+			final URLConnection connect=NetHelper.openConnection(url,false,true);
+			if (connect==null) return null;
+
+			/* InputStream zurückliefern */
+			updateDownloadStatusFullSize=connect.getContentLength();
+			return connect.getInputStream();
+
+		} catch (IOException e) {return null;}
+	}
+
+	private boolean downloadFile(final InputStream inputStream, final File outputFile) {
+		if (inputStream==null) return false;
+
+		FileOutputStream out;
+		try {out=new FileOutputStream(outputFile);} catch (FileNotFoundException e) {return false;}
+		try (BufferedOutputStream buf=new BufferedOutputStream(out,32768)) {
+			byte[] data=new byte[65536];
+			int downloaded=0;
+			int size;
+			while((size=inputStream.read(data,0,data.length))>=0) {
+				downloaded+=size;
+				if (updateDownloadStatusFullSize>0) updateDownloadStatusPercent=(int)Math.round(downloaded*100.0/updateDownloadStatusFullSize);
+				buf.write(data,0,size);
 			}
-			BufferedReader in=new BufferedReader(new InputStreamReader(connect.getInputStream()));
-			return in.readLine();
-		} catch (UnsupportedEncodingException e) {return null;} catch (MalformedURLException e) {return null;} catch (IOException e) {return null;}
+		} catch (IOException e) {
+			try {out.close();} catch (IOException e2) {}
+			return false;
+		}
+		try {out.close();} catch (IOException e) {}
+		updateDownloadStatusPercent=100;
+		return true;
+	}
+
+	private boolean downloadFile(final String urlString, final File outputFile) {
+		try (InputStream inputStream=openServerFile(urlString)) {
+			return downloadFile(inputStream,outputFile);
+		} catch (IOException e1) {
+			return false;
+		}
 	}
 
 	private boolean downloadUpdate(final File folderForManualInstallation) {
 		if (updateInstaller.isFile()) return true;
 
-		newVersionDownload=0;
+		updateDownloadStatusPercent=0;
 		try {
-			URL home1=new URL(defaultProtocollConnect+"://"+updateFullURL1);
-			URL home2=new URL(defaultProtocollConnect+"://"+updateFullURL2);
-			byte[] data=new byte[32768];
-
 			/* Datei herunterladen */
-			URLConnection connection=home1.openConnection();
-			if (!(connection instanceof HttpURLConnection)) return false;
-			if (connection instanceof HttpsURLConnection) {
-				((HttpsURLConnection )connection).setHostnameVerifier(new HostnameVerifier() {
-					@Override
-					public boolean verify(String hostname, SSLSession session) {
-						return hostname.equalsIgnoreCase(updateServer);
-					}
-				});
-			}
-			int downloadSize=connection.getContentLength();
-			try (BufferedInputStream in=new BufferedInputStream(connection.getInputStream())) {
-				FileOutputStream out=new FileOutputStream(updateInstallerPart);
-				try (BufferedOutputStream buf=new BufferedOutputStream(out,32768)) {
-					int x=0, downloaded=0;
-					while((x=in.read(data,0,data.length))>=0) {
-						buf.write(data,0,x);
-						downloaded+=x;
-						getDataLock.lock(); try {newVersionDownload=(double)downloaded/downloadSize;} finally {getDataLock.unlock();}
-					}
-				}
-			}
+			if (!downloadFile(updateFullURL1,updateInstallerPart)) return false;
 
 			/* Prüfsumme laden */
-			connection=home2.openConnection();
-			if (!(connection instanceof HttpURLConnection)) {newVersionDownload=-1; return false;}
-			if (connection instanceof HttpsURLConnection) {
-				((HttpsURLConnection )connection).setHostnameVerifier(new HostnameVerifier() {
-					@Override
-					public boolean verify(String hostname, SSLSession session) {
-						return hostname.equalsIgnoreCase(homeURL);
-					}
-				});
-			}
-			try (BufferedInputStream in=new BufferedInputStream(connection.getInputStream())) {
+			try (InputStream in=openServerFile(updateFullURL2)) {
+				byte[] data=new byte[32768];
 				int size=in.read(data,0,data.length);
 				if (size<=0) {
 					/* Prüfung fehlgeschlagen (keine Signatur verfügbar) */
 					updateInstallerPart.delete();
-					getDataLock.lock(); try {newVersionDownload=-1;} finally {getDataLock.unlock();}
+					updateDownloadStatusPercent=-1;
 					return true;
 				}
 				byte[] sign=Arrays.copyOf(data,size);
@@ -264,11 +286,14 @@ public class UpdateSystem {
 				if (!tester.verify(new String(sign))) {
 					/* Prüfung fehlgeschlagen */
 					updateInstallerPart.delete();
-					getDataLock.lock(); try {newVersionDownload=-1;} finally {getDataLock.unlock();}
+					updateDownloadStatusPercent=-1;
 					return true;
 				}
 			}
-		} catch (UnsupportedEncodingException | MalformedURLException e) {newVersionDownload=-1; return false;} catch (IOException e) {newVersionDownload=-1; return false;}
+		} catch (IOException e) {
+			updateDownloadStatusPercent=-1;
+			return false;
+		}
 
 		if (folderForManualInstallation==null) {
 			/* Update on next start */
@@ -279,6 +304,7 @@ public class UpdateSystem {
 				updateInstallerPart.delete();
 		}
 
+		updateDownloadStatusPercent=101;
 		return true;
 	}
 
@@ -287,25 +313,15 @@ public class UpdateSystem {
 	 * @return	Im Setup-Dialog anzuzeigende neue Version
 	 */
 	public String getNewVersion() {
-		getDataLock.lock();
-		try {
-			return newVersion;
-		} finally {
-			getDataLock.unlock();
-		}
+		return newVersion;
 	}
 
 	/**
 	 * Liefert den Download-Fortschritt für den Setup-Dialog.
-	 * @return	Download-Fortschritt für den Setup-Dialog (Werte zwischen 0 und 1 einschließlich stellen den Fortschritt dar; Werte größer als 1 bedeuten "Abgeschlossen, bitte neu starten" und Werte kleiner als 0 bedeuten "Fehlgeschlagen")
+	 * @return	Download-Fortschritt für den Setup-Dialog (Werte zwischen 0 und 100 einschließlich stellen den Fortschritt dar; Werte größer als 100 bedeuten "Abgeschlossen, bitte neu starten" und Werte kleiner als 0 bedeuten "Fehlgeschlagen")
 	 */
-	public double getDownloadState() {
-		getDataLock.lock();
-		try {
-			return newVersionDownload;
-		} finally {
-			getDataLock.unlock();
-		}
+	public int getDownloadState() {
+		return updateDownloadStatusPercent;
 	}
 
 	private void checkUpdate(final boolean force, final File folderForManualInstallation) {
@@ -332,12 +348,7 @@ public class UpdateSystem {
 				String s=checkUpdateAvailable();
 				if (!VersionConst.isNewerVersionFull(s)) {newVersion=""; return;}
 				if (!checkJavaVersion8() && VersionConst.isNewerVersionFull("5.9.9999",s)) {newVersion=""; return;} /* kein Update über 5.9 hinaus, wenn nicht Java 8 installiert ist */
-				getDataLock.lock();
-				try {
-					newVersion=s;
-				} finally {
-					getDataLock.unlock();
-				}
+				newVersion=s;
 				if (!active && folderForManualInstallation==null) return;
 				downloadUpdate(folderForManualInstallation);
 			}

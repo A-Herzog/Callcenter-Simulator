@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-18 12:06+0200\n"
+"POT-Creation-Date: 2020-05-30 16:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7599,6 +7599,9 @@ msgstr "Sie verwenden bereits die neuste Version des Callcenter Simulators."
 
 msgid "SettingsDialog.Update.Progress"
 msgstr "%s von Version %s heruntergeladen."
+
+msgid "SettingsDialog.Update.ReadyForManualInstall"
+msgstr "Version %s für die manuelle Installation heruntergeladen."
 
 msgid "SettingsDialog.Update.UpdateOnRestart"
 msgstr "Beim nächsten Programmstart wird Version %s installiert."

@@ -279,8 +279,31 @@ public class SetupData extends SetupBase {
 	 */
 	public String lastError=null;
 
-	/** Netzwerkprotokoll für die Kommunikation mit dem Lizenz- und Update-Server */
-	public boolean httpsNetAccess=true;
+	/**
+	 * Proxy-Server verwenden ja/nein (unabhängig von den anderen Proxy-Einstellungen kann die Server-Verwendung deaktiviert werden)
+	 */
+	public boolean useProxy;
+
+	/**
+	 * Name des Proxy-Server (Server wird nur verwendet, wenn {@link SetupData#useProxy} wahr ist)
+	 */
+	public String proxyHost;
+
+	/**
+	 * Port des Proxy-Server (Server wird nur verwendet, wenn {@link SetupData#useProxy} wahr ist)
+	 */
+	public int proxyPort;
+
+	/**
+	 * Nutzername für Anmeldung am Proxy-Server (Server wird nur verwendet, wenn {@link SetupData#useProxy} wahr ist)
+	 */
+	public String proxyUser;
+
+	/**
+	 * Passwort für Anmeldung am Proxy-Server (Server wird nur verwendet, wenn {@link SetupData#useProxy} wahr ist)
+	 */
+	public String proxyPassword;
+
 
 	/* ----- ----- ----- ----- ----- */
 
@@ -379,7 +402,11 @@ public class SetupData extends SetupBase {
 
 		lastError=null;
 
-		httpsNetAccess=true;
+		useProxy=false;
+		proxyHost="";
+		proxyPort=8080;
+		proxyUser="";
+		proxyPassword="";
 	}
 
 	private boolean autoSetLanguageActive=false;
@@ -1062,11 +1089,6 @@ public class SetupData extends SetupBase {
 		if (lastError!=null && !lastError.isEmpty()) {
 			root.appendChild(node=doc.createElement("LastError"));
 			node.setTextContent(lastError);
-		}
-
-		if (!httpsNetAccess) {
-			root.appendChild(node=doc.createElement("NoHTTPS"));
-			node.setTextContent("1");
 		}
 
 		if (!openWord || openODT || !openExcel || openODS) {
