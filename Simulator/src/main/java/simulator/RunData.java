@@ -253,9 +253,9 @@ public final class RunData {
 		final CallcenterRunModelCaller callerType=callerRecord.callerType;
 		final int callerTypeIndex=callerType.index;
 
-		int i=-1;
-		for (AgentRecord agent: freeAgents) {
-			i++;
+		final int freeAgentsSize=freeAgents.size();
+		for (int i=0;i<freeAgentsSize;i++) {
+			final AgentRecord agent=freeAgents.get(i);
 
 			/* Kann der Agent den Kunden bedienen ?*/
 			final int skillLevelNr=agent.skillLevel.callerTypeByIndex[callerTypeIndex];
@@ -353,12 +353,14 @@ public final class RunData {
 		return bestCaller;
 	}
 
+	private final double factor=1.0/1800.0/1000.0;
+
 	private void addIntervalParts(final DataDistributionImpl dist, final int timeFrom, final int timeTo, final int multiply) {
 		if (timeFrom==timeTo) return;
 		final double[] data=dist.densityData;
 		final int x=Math.min(47,Math.max(0,(timeFrom/1800/1000-1)));
 		final int y=Math.min(47,Math.max(0,(timeTo/1800/1000+1)));
-		final double mul=(double)multiply/1800/1000;
+		final double mul=multiply*factor;
 		int j,start,end;
 		for (int i=x;i<=y;i++) {
 			j=i*1800*1000;

@@ -18,6 +18,8 @@ package simulator;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.math3.util.FastMath;
+
 import mathtools.distribution.DataDistributionImpl;
 import mathtools.distribution.tools.DistributionRandomNumber;
 import simcore.SimData;
@@ -137,7 +139,7 @@ public final class SimulationData extends SimData {
 				} else {
 					call=(CallEvent)getEvent(CallEvent.class);
 				}
-				long time=Math.round(1000*freshCallsDist.random(DistributionRandomNumber.generator));
+				long time=FastMath.round(1000*freshCallsDist.random(DistributionRandomNumber.generator));
 				call.init(time);
 				/* call.callerRecord=record; */
 				call.callerRecord=null;
