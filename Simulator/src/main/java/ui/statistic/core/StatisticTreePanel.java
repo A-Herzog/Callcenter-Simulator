@@ -264,7 +264,7 @@ public class StatisticTreePanel extends JPanel {
 		reportNode=null;
 		if (statisticData!=null && statisticData.getChildCount()>0) {
 			List<StatisticViewer> list=new ArrayList<StatisticViewer>();
-			for (int i=0;i<numberOfViewers;i++) list.add(new StatisticViewerReport(statisticData,"",i,()->Help.topic(StatisticTreePanel.this,"Statististik")){
+			for (int i=0;i<numberOfViewers;i++) list.add(new StatisticViewerReport(statisticData,null,"",i,()->Help.topic(StatisticTreePanel.this,"Statististik")){
 				@Override
 				protected String getSelectSettings() {return getReportSelectSettings();}
 				@Override
