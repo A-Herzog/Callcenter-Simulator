@@ -242,6 +242,7 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		FileFilter txt=new FileNameExtensionFilter(Language.tr("FileType.Text")+" (*.txt)","txt");
 		fc.addChoosableFileFilter(txt);
 		fc.setFileFilter(txt);
+		fc.setAcceptAllFileFilterUsed(false);
 
 		if (fc.showSaveDialog(parentFrame)!=JFileChooser.APPROVE_OPTION) return false;
 		CommonVariables.initialDirectoryFromJFileChooser(fc);

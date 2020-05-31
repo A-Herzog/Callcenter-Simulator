@@ -349,6 +349,7 @@ public class VarianzAnalysePanel extends JWorkPanel {
 						fc.addChoosableFileFilter(gif);
 						fc.addChoosableFileFilter(png);
 						fc.setFileFilter(png);
+						fc.setAcceptAllFileFilterUsed(false);
 
 						if (fc.showSaveDialog(chartPanel)!=JFileChooser.APPROVE_OPTION) return;
 						CommonVariables.initialDirectoryFromJFileChooser(fc);

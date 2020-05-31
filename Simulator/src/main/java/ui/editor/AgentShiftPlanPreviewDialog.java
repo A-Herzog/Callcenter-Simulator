@@ -269,6 +269,7 @@ public class AgentShiftPlanPreviewDialog extends JDialog {
 			fc.addChoosableFileFilter(gif);
 			fc.addChoosableFileFilter(png);
 			fc.setFileFilter(png);
+			fc.setAcceptAllFileFilterUsed(false);
 
 			if (fc.showSaveDialog(AgentShiftPlanPreviewDialog.this)!=JFileChooser.APPROVE_OPTION) return null;
 			CommonVariables.initialDirectoryFromJFileChooser(fc);

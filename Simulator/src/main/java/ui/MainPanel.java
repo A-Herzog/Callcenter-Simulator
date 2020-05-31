@@ -1540,6 +1540,7 @@ public final class MainPanel extends MainPanelBase {
 		FileFilter txt=new FileNameExtensionFilter(Language.tr("FileType.Text")+" (*.txt)","txt");
 		fc.addChoosableFileFilter(txt);
 		fc.setFileFilter(txt);
+		fc.setAcceptAllFileFilterUsed(false);
 
 		if (fc.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) return;
 		CommonVariables.initialDirectoryFromJFileChooser(fc);

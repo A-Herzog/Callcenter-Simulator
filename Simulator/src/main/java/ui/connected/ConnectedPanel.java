@@ -359,6 +359,7 @@ public final class ConnectedPanel extends JWorkPanel {
 		FileFilter txt=new FileNameExtensionFilter(Language.tr("FileType.Text")+" (*.txt)","txt");
 		fc.addChoosableFileFilter(txt);
 		fc.setFileFilter(txt);
+		fc.setAcceptAllFileFilterUsed(false);
 
 		if (fc.showSaveDialog(owner)!=JFileChooser.APPROVE_OPTION) return;
 		CommonVariables.initialDirectoryFromJFileChooser(fc);

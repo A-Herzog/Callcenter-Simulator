@@ -147,6 +147,7 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 		FileFilter html=new FileNameExtensionFilter(Language.tr("FileType.HTML")+" (*.html, *.htm)","html","htm");
 		fc.addChoosableFileFilter(html);
 		fc.setFileFilter(html);
+		fc.setAcceptAllFileFilterUsed(false);
 
 		if (fc.showSaveDialog(parentFrame)!=JFileChooser.APPROVE_OPTION) return;
 		CommonVariables.initialDirectoryFromJFileChooser(fc);

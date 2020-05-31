@@ -208,6 +208,7 @@ public abstract class TableLoader {
 		FileFilter txt=new FileNameExtensionFilter(Language.tr("FileType.xml")+" (*.xml)","xml");
 		fc.addChoosableFileFilter(txt);
 		fc.setFileFilter(txt);
+		fc.setAcceptAllFileFilterUsed(false);
 		if (fc.showSaveDialog(parent)!=JFileChooser.APPROVE_OPTION) return null;
 		CommonVariables.initialDirectoryFromJFileChooser(fc);
 		File file=fc.getSelectedFile();
@@ -231,6 +232,7 @@ public abstract class TableLoader {
 		FileFilter txt=new FileNameExtensionFilter(Language.tr("FileType.xml")+" (*.xml)","xml");
 		fc.addChoosableFileFilter(txt);
 		fc.setFileFilter(txt);
+		fc.setAcceptAllFileFilterUsed(false);
 		if (fc.showSaveDialog(parent)!=JFileChooser.APPROVE_OPTION) return null;
 		CommonVariables.initialDirectoryFromJFileChooser(fc);
 		File file=fc.getSelectedFile();
