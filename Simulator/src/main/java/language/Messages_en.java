@@ -190,6 +190,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[461] = "Retry rate after canceling";
     t[462] = "Editor.Caller.List.WaitingTimeTolerance.EmpiricalDistribution";
     t[463] = "Empirical distribution";
+    t[468] = "Simulation.Running";
+    t[469] = "The simulation is running.";
     t[472] = "Optimizer.CarryOver.ButtonCanceledCaller";
     t[473] = "Carrying over canceled calls";
     t[480] = "SimStatistic.RetryChangeRate.Canceled";
@@ -2002,10 +2004,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4961] = "The maximum queue length cannot be a negative number. (At the moment %s is specified.)";
     t[4964] = "Editor.Overview.General.Description";
     t[4965] = "Complete model description";
-    t[4968] = "Loader.Info.XMLPreprocessing.Title";
-    t[4969] = "Combine call center model with data from table";
   }
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4968] = "Loader.Info.XMLPreprocessing.Title";
+    t[4969] = "Combine call center model with data from table";
     t[4972] = "Statistic.GeneralPage.SelectSubCategoryHTML";
     t[4973] = "<p>Please select a <b>sub category</b> from the tree structure to get the corresponding information displayed.</p>";
     t[4982] = "Distribution.Uniform.Start";
@@ -4004,10 +4006,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9813] = "While executing \"%s\"";
     t[9820] = "Compare.ReplaceKeptModel.YesInfo";
     t[9821] = "The kept model will be discarded and replaced by the current model.";
-    t[9832] = "SettingsDialog.LoadModelOnProgramStart";
-    t[9833] = "Load model on program start";
   }
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9832] = "SettingsDialog.LoadModelOnProgramStart";
+    t[9833] = "Load model on program start";
     t[9834] = "Statistic.Viewer.Toolbar.OpenText.Hint";
     t[9835] = "Open text in external application.";
     t[9840] = "Simulation.Log.StopTest";
@@ -4024,6 +4026,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9887] = "Load productivity for all agents groups";
     t[9888] = "Calibrate.ChangeOfAverageWaitingTimeTolerance";
     t[9889] = "Change of average waiting time tolerance";
+    t[9896] = "SettingsDialog.Update.ReadyForManualInstall";
+    t[9897] = "Downloaded version %s for manual installation.";
     t[9902] = "Editor.Caller.Error.WaitingTimeCalcAdd.Title";
     t[9903] = "Correction value is invalid";
     t[9904] = "CommandLine.Update.Description.Long";
@@ -5826,8 +5830,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14527] = "But no other parameters were passed.";
     t[14528] = "CommandLine.Count.But1";
     t[14529] = "But one additional parameter was passed.";
-    t[14538] = "Simulation.Running";
-    t[14539] = "The simulation is running.";
+    t[14538] = "Distribution.Pert";
+    t[14539] = "Pert distribution";
     t[14548] = "Server.ErrorSavingConfiguration";
     t[14549] = "The server configuration could not be saved in %s.";
     t[14554] = "Editor.GeneralData.ThresholdValues.IntervalsEdit";
@@ -6004,12 +6008,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15015] = "Count";
     t[15024] = "Model.Plausibility.Error";
     t[15025] = "The model audit has found the following error:";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[15026] = "Editor.GeneralData.ThresholdValues.Type";
     t[15027] = "Performance indicator";
     t[15028] = "Batch.Tabs.Parameter";
     t[15029] = "Create parameter series";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[15032] = "Editor.Overview.Category.ShiftSchedulePerCallcenter";
     t[15033] = "Shift schedule per call center";
     t[15040] = "SimStatistic.ScoreValues.CallcenterAgentFreeTimePart";

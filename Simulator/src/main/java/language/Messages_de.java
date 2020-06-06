@@ -190,6 +190,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[461] = "Wiederholrate nach Warteabbruch";
     t[462] = "Editor.Caller.List.WaitingTimeTolerance.EmpiricalDistribution";
     t[463] = "Empirische Verteilung";
+    t[468] = "Simulation.Running";
+    t[469] = "Die Simulation l\u00e4uft.";
     t[472] = "Optimizer.CarryOver.ButtonCanceledCaller";
     t[473] = "\u00dcbertrag der Warteabbrecher";
     t[480] = "SimStatistic.RetryChangeRate.Canceled";
@@ -2002,10 +2004,10 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4961] = "Die maximale Warteschlangenl\u00e4nge darf nicht negativ sein. (Momentan ist %s eingestellt.)";
     t[4964] = "Editor.Overview.General.Description";
     t[4965] = "Vollst\u00e4ndige Modellbeschreibung";
-    t[4968] = "Loader.Info.XMLPreprocessing.Title";
-    t[4969] = "Callcenter-Modell mit Daten aus Tabelle kombinieren";
   }
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4968] = "Loader.Info.XMLPreprocessing.Title";
+    t[4969] = "Callcenter-Modell mit Daten aus Tabelle kombinieren";
     t[4972] = "Statistic.GeneralPage.SelectSubCategoryHTML";
     t[4973] = "<p>Bitte w\u00e4hlen Sie in der Baumstruktur eine <b>Unterkategorie</b> aus, um die entsprechenden Informationen angezeigt zu bekommen.</p>";
     t[4982] = "Distribution.Uniform.Start";
@@ -4004,10 +4006,10 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9813] = "Ausf\u00fchrung des Befehls \"%s\"";
     t[9820] = "Compare.ReplaceKeptModel.YesInfo";
     t[9821] = "Das bisher festgehaltene Modell wird verworfen und das aktuelle Modell wird f\u00fcr sp\u00e4tere Vergleiche festgehalten.";
-    t[9832] = "SettingsDialog.LoadModelOnProgramStart";
-    t[9833] = "Modell beim Programmstart laden";
   }
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9832] = "SettingsDialog.LoadModelOnProgramStart";
+    t[9833] = "Modell beim Programmstart laden";
     t[9834] = "Statistic.Viewer.Toolbar.OpenText.Hint";
     t[9835] = "Text in externer Anwendung anzeigen.";
     t[9840] = "Simulation.Log.StopTest";
@@ -4024,6 +4026,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9887] = "Produktivit\u00e4t aller Agentengruppen global laden";
     t[9888] = "Calibrate.ChangeOfAverageWaitingTimeTolerance";
     t[9889] = "Ver\u00e4nderung der mittleren Wartezeittoleranzen";
+    t[9896] = "SettingsDialog.Update.ReadyForManualInstall";
+    t[9897] = "Version %s f\u00fcr die manuelle Installation heruntergeladen.";
     t[9902] = "Editor.Caller.Error.WaitingTimeCalcAdd.Title";
     t[9903] = "Korrekturwert ist ung\u00fcltig";
     t[9904] = "CommandLine.Update.Description.Long";
@@ -5826,8 +5830,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14527] = "Es wurden jedoch keine weiteren Parameter \u00fcbergeben.";
     t[14528] = "CommandLine.Count.But1";
     t[14529] = "Es wurde jedoch ein weiterer Parameter \u00fcbergeben.";
-    t[14538] = "Simulation.Running";
-    t[14539] = "Die Simulation l\u00e4uft.";
+    t[14538] = "Distribution.Pert";
+    t[14539] = "Pert-Verteilung";
     t[14548] = "Server.ErrorSavingConfiguration";
     t[14549] = "Die Serverkonfiguration konnte nicht in %s gespeichert werden.";
     t[14554] = "Editor.GeneralData.ThresholdValues.IntervalsEdit";
@@ -6004,12 +6008,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15015] = "Anzahl";
     t[15024] = "Model.Plausibility.Error";
     t[15025] = "Die Modellpr\u00fcfung hat den folgenden Fehler festgestellt:";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[15026] = "Editor.GeneralData.ThresholdValues.Type";
     t[15027] = "Kenngr\u00f6\u00dfe";
     t[15028] = "Batch.Tabs.Parameter";
     t[15029] = "Parameterreihe erstellen";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[15032] = "Editor.Overview.Category.ShiftSchedulePerCallcenter";
     t[15033] = "Schichtplan pro Callcenter";
     t[15040] = "SimStatistic.ScoreValues.CallcenterAgentFreeTimePart";
