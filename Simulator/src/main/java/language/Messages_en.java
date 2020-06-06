@@ -1904,6 +1904,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4741] = "Post processing time distribution";
     t[4748] = "JDistributionEditor.Density.Label";
     t[4749] = "Density";
+    t[4750] = "Main.Menu.Help.Updates.Mnemonic";
+    t[4751] = "u";
     t[4752] = "MainMenu.View.Statistics.Tooltip";
     t[4753] = "Simulation and statistic results";
     t[4754] = "Statistic.Units.Year";
@@ -2002,10 +2004,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4947] = "Save the results from this page as a file.";
     t[4960] = "Model.Check.InvalidMaximumQueueLength";
     t[4961] = "The maximum queue length cannot be a negative number. (At the moment %s is specified.)";
-    t[4964] = "Editor.Overview.General.Description";
-    t[4965] = "Complete model description";
   }
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4964] = "Editor.Overview.General.Description";
+    t[4965] = "Complete model description";
     t[4968] = "Loader.Info.XMLPreprocessing.Title";
     t[4969] = "Combine call center model with data from table";
     t[4972] = "Statistic.GeneralPage.SelectSubCategoryHTML";
@@ -3218,6 +3220,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7857] = "Average holding and post processing time or service rate";
     t[7858] = "Optimizer.Error.MaxTargetServiceLevel.Title";
     t[7859] = "Invalid maximum target residence time";
+    t[7862] = "MainMenu.Help.Updates";
+    t[7863] = "Updates";
     t[7864] = "Example.Erlang.Callcenter";
     t[7865] = "Call center";
     t[7876] = "Statistic.Type.Graphics";
@@ -4002,12 +4006,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9809] = "The table does not contain any data which could be interpreted as agents working times.";
     t[9810] = "Dialog.SaveNow.Yes.Info";
     t[9811] = "Saves the current data before they are discarded.";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9812] = "Statistic.Filter.WhileExecutingCommand";
     t[9813] = "While executing \"%s\"";
     t[9820] = "Compare.ReplaceKeptModel.YesInfo";
     t[9821] = "The kept model will be discarded and replaced by the current model.";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9832] = "SettingsDialog.LoadModelOnProgramStart";
     t[9833] = "Load model on program start";
     t[9834] = "Statistic.Viewer.Toolbar.OpenText.Hint";
@@ -4130,6 +4134,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[10167] = "Work load";
     t[10172] = "Server.Error.NoModelReceived";
     t[10173] = "No model was received.";
+    t[10176] = "SettingsDialog.Tabs.ProgramStart.Security";
+    t[10177] = "Security";
     t[10178] = "CommandLine.Connected.Description.Short";
     t[10179] = "Simulation with statistic data from the previous simulation day.";
     t[10184] = "XML.Statistic.Clients.Summary.ClientsServiceLevel";
@@ -5152,8 +5158,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12845] = "This value specifies the maximum desired service level, not how many agents should be used.";
     t[12848] = "CommandLine.Simulation.Status.Short";
     t[12849] = "Status: Simulating day %d of %d.";
-    t[12850] = "SettingsDialog.Tabs.Simulation";
-    t[12851] = "Simulation";
+    t[12850] = "Main.Menu.Help.Updates";
+    t[12851] = "Search for updates...";
     t[12852] = "Model.GenerateDescription.Callcenter.Multiple";
     t[12853] = "call centers";
     t[12854] = "XML.Statistic.Agents";
@@ -5796,6 +5802,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14441] = "Recommendations";
     t[14444] = "Connected.LogRun.Title";
     t[14445] = "Save log";
+    t[14446] = "SettingsDialog.Tabs.Simulation";
+    t[14447] = "Simulation";
     t[14454] = "CommandLine.Preplanning.Mode.Success.Simple.PreSimplify";
     t[14455] = "AccessibilitySimplified";
     t[14458] = "Batch.Simulation.BatchStatus1";
@@ -6000,6 +6008,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14989] = "Used calculation time per simulated day";
     t[14994] = "Statistic.GeneralPage.NoDataHTML.LoadStatistic";
     t[14995] = "Load statistic data from a previous simulation run";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[15006] = "CommandLine.Language.Description.Long";
     t[15007] = "This command expects as parameter the desired program language: \"English\" or \"German\".";
     t[15012] = "LoadCalculator.Units.Time";
@@ -6008,8 +6018,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15015] = "Count";
     t[15024] = "Model.Plausibility.Error";
     t[15025] = "The model audit has found the following error:";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[15026] = "Editor.GeneralData.ThresholdValues.Type";
     t[15027] = "Performance indicator";
     t[15028] = "Batch.Tabs.Parameter";
@@ -6602,8 +6610,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16623] = "Model name";
     t[16634] = "OptimizeResults.SingleGraphics";
     t[16635] = "Single graphics";
-    t[16636] = "SettingsDialog.Tabs.ProgramStart.Security";
-    t[16637] = "Security";
+    t[16636] = "MainMenu.Help.Updates.Tooltip";
+    t[16637] = "Search for updates";
     t[16640] = "XML.Statistic.Agents.Summary.PostProcessingTimePerInterval.ErrorPerClientType";
     t[16641] = "The client type specific post processing time per interval is invalid.";
     t[16644] = "FileType.DIF";

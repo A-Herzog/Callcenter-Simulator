@@ -378,7 +378,7 @@ public final class MainPanel extends MainPanelBase {
 		addAction("FileSaveAs",e->commandFileModelSaveAs());
 		addAction("FileStatisticsLoad",e->commandFileStatisticsLoad(null));
 		addAction("FileStatisticsSave",e->commandFileStatisticsSave());
-		addAction("FileSetup",e->commandFileSetup());
+		addAction("FileSetup",e->commandFileSetup(false));
 		addAction("FileQuit",e->close());
 
 		/* Ansicht */
@@ -456,6 +456,7 @@ public final class MainPanel extends MainPanelBase {
 		});
 		addAction("HelpWelcome",e->setGUIMode((short)2));
 		addAction("HelpLicense",e->commandHelpLicenseInfo());
+		addAction("HelpUpdates",e->commandFileSetup(true));
 		addAction("HelpInfo",e->commandHelpInfo());
 	}
 
@@ -634,6 +635,7 @@ public final class MainPanel extends MainPanelBase {
 		createMenuItem(menu,Language.tr("MainMenu.Help.Book"),Images.HELP_BOOK.getIcon(),Language.tr("MainMenu.Help.Book.Mnemonic"),"HelpBook");
 		createMenuItem(menu,Language.tr("MainMenu.Help.SupportRequest"),Images.HELP_EMAIL.getIcon(),Language.tr("MainMenu.Help.SupportRequest.Mnemonic"),"HelpMail");
 		createMenuItem(menu,Language.tr("MainMenu.Help.Homepage"),Images.HELP_HOMEPAGE.getIcon(),Language.tr("MainMenu.Help.Homepage.Mnemonic"),"HelpHomepage");
+		createMenuItem(menu,Language.tr("Main.Menu.Help.Updates"),Images.SETUP_UPDATE_SEARCH.getIcon(),Language.tr("Main.Menu.Help.Updates.Mnemonic"),"HelpUpdates");
 		createMenuItem(menu,Language.tr("MainMenu.Help.ShowWelcomePage"),Images.GENERAL_INFO.getIcon(),Language.tr("MainMenu.Help.ShowWelcomePage.Mnemonic"),"HelpWelcome");
 
 		menu.addSeparator();
@@ -964,6 +966,9 @@ public final class MainPanel extends MainPanelBase {
 
 		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.Homepage"),Language.tr("MainMenu.Help.Homepage.Tooltip"),Images.HELP_HOMEPAGE.getURL());
 		registerAction(button,"HelpHomepage");
+
+		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.Updates"),Language.tr("MainMenu.Help.Updates.Tooltip"),Images.SETUP_UPDATE_SEARCH.getURL());
+		registerAction(button,"HelpUpdates");
 	}
 
 	private JRibbonBar createRibbonBar() {
@@ -1257,14 +1262,14 @@ public final class MainPanel extends MainPanelBase {
 		if (s!=null) MsgBox.error(this,Language.tr("Window.SaveStatisticsError.Title"),s);
 	}
 
-	private void commandFileSetup() {
+	private void commandFileSetup(final boolean showUpdatesPage) {
 		SetupData setup=SetupData.getSetup();
 
 		String currentLanguage=setup.language;
 		boolean currentRibbonMode=setup.ribbonMode;
 		equalsExampleModel=CallcenterModelExamples.equalsExampleModel(modelPanel.getModel(false));
 
-		SetupDialog dialog=new SetupDialog(ownerWindow,helpLink);
+		SetupDialog dialog=new SetupDialog(ownerWindow,helpLink,showUpdatesPage);
 		dialog.setVisible(true);
 
 		backgroundSimulator.loadSetup();

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 19:29+0200\n"
+"POT-Creation-Date: 2020-06-06 19:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5148,6 +5148,12 @@ msgstr "License information..."
 msgid "Main.Menu.Help.LicenseInformation.Mnemonic"
 msgstr "L"
 
+msgid "Main.Menu.Help.Updates"
+msgstr "Search for updates..."
+
+msgid "Main.Menu.Help.Updates.Mnemonic"
+msgstr "u"
+
 msgid "MainMenu.Compare"
 msgstr "Compare models"
 
@@ -5480,6 +5486,12 @@ msgstr "Support request"
 
 msgid "MainMenu.Help.SupportRequest.Mnemonic"
 msgstr "S"
+
+msgid "MainMenu.Help.Updates"
+msgstr "Updates"
+
+msgid "MainMenu.Help.Updates.Tooltip"
+msgstr "Search for updates"
 
 msgid "MainMenu.Optimization"
 msgstr "Optimization"

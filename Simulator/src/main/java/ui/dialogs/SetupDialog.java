@@ -113,10 +113,13 @@ public class SetupDialog extends BaseEditDialog {
 	 * @param owner	Übergeordnetes Fenster
 	 * @param helpLink Verknüpfung mit der Online-Hilfe
 	 */
-	public SetupDialog(Window owner, HelpLink helpLink) {
+	public SetupDialog(final Window owner, final HelpLink helpLink, final boolean showUpdatesPage) {
 		super(owner,Language.tr("SettingsDialog.Title"),null,false,helpLink.dialogSetup);
 		createTabsGUI(null,null,null,false,650,625,null,null);
 		loadData();
+		if (showUpdatesPage) {
+			tabs.setSelectedIndex(5);
+		}
 	}
 
 	@Override
