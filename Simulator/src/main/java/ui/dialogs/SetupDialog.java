@@ -112,6 +112,7 @@ public class SetupDialog extends BaseEditDialog {
 	 * Konstruktor der Klasse <code>SetupDialog</code>
 	 * @param owner	Übergeordnetes Fenster
 	 * @param helpLink Verknüpfung mit der Online-Hilfe
+	 * @param showUpdatesPage	Beim Aufruf des Dialogs direkt zur Update-Seite wechseln (<code>true</code>) oder nicht (<code>false</code>)
 	 */
 	public SetupDialog(final Window owner, final HelpLink helpLink, final boolean showUpdatesPage) {
 		super(owner,Language.tr("SettingsDialog.Title"),null,false,helpLink.dialogSetup);
