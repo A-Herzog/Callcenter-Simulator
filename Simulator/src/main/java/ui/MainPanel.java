@@ -1065,8 +1065,20 @@ public final class MainPanel extends MainPanelBase {
 		if (!menuRecentlyUsed.isEnabled()) return;
 
 		for (int i=0; i<setup.lastFiles.length;i++) {
-			JMenuItem sub=new JMenuItem(setup.lastFiles[i]);
+			final JMenuItem sub=new JMenuItem(setup.lastFiles[i]);
 			sub.addActionListener(actionListener);
+			menuRecentlyUsed.add(sub);
+		}
+
+		if (setup.lastFiles.length>0) {
+			menuRecentlyUsed.addSeparator();
+			final JMenuItem sub=new JMenuItem(Language.tr("Main.Menu.File.RecentlyUsed.Delete"));
+			sub.setIcon(Images.GENERAL_OFF.getIcon());
+			sub.addActionListener(e->{
+				setup.lastFiles=new String[0];
+				setup.saveSetup();
+				updateLastFilesList();
+			});
 			menuRecentlyUsed.add(sub);
 		}
 	}

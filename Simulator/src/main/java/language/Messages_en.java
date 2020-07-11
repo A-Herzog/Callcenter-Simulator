@@ -914,6 +914,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[2349] = "For agents group %d costs are defined for talks with calls of client type %s, but there is no such client type.";
     t[2354] = "Statistic.Viewer.Chart.InHours";
     t[2355] = "in hours";
+    t[2356] = "MainMenu.File.LoadModel.Tooltip";
+    t[2357] = "Loads an existing Model from a file";
     t[2358] = "Statistic.FastAccess.SelectXMLTag.InsertMethod";
     t[2359] = "Insert method";
     t[2364] = "Editor.Caller.Apply.Info";
@@ -1182,8 +1184,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[2993] = "Licenses";
     t[3002] = "Statistic.QueueLength";
     t[3003] = "Queue length";
-    t[3006] = "MainMenu.File.LoadModel.Tooltip";
-    t[3007] = "Loads an existing Model from a file";
+    t[3006] = "Main.Menu.File.RecentlyUsed.Delete";
+    t[3007] = "Clear list";
     t[3016] = "XML.Statistic.Agents.Summary.PostProcessingTime.Error";
     t[3017] = "The total post processing time %s is invalid. The value has to be a non-negative integer value.";
     t[3028] = "Distribution.StdDev";
@@ -2002,10 +2004,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4945] = "Use background simulation";
     t[4946] = "Statistic.Viewer.Toolbar.Save.Hint";
     t[4947] = "Save the results from this page as a file.";
-    t[4960] = "Model.Check.InvalidMaximumQueueLength";
-    t[4961] = "The maximum queue length cannot be a negative number. (At the moment %s is specified.)";
   }
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4960] = "Model.Check.InvalidMaximumQueueLength";
+    t[4961] = "The maximum queue length cannot be a negative number. (At the moment %s is specified.)";
     t[4964] = "Editor.Overview.General.Description";
     t[4965] = "Complete model description";
     t[4968] = "Loader.Info.XMLPreprocessing.Title";
@@ -4004,10 +4006,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9807] = "Target value is to be achieved";
     t[9808] = "Editor.Callcenter.Tools.LoadFixedGroupsFromFile.NoDataFound";
     t[9809] = "The table does not contain any data which could be interpreted as agents working times.";
-    t[9810] = "Dialog.SaveNow.Yes.Info";
-    t[9811] = "Saves the current data before they are discarded.";
   }
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9810] = "Dialog.SaveNow.Yes.Info";
+    t[9811] = "Saves the current data before they are discarded.";
     t[9812] = "Statistic.Filter.WhileExecutingCommand";
     t[9813] = "While executing \"%s\"";
     t[9820] = "Compare.ReplaceKeptModel.YesInfo";
@@ -6006,10 +6008,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14979] = "Delete call center";
     t[14988] = "SimStatistic.SystemData.SimulationTimePerSimulatedDay";
     t[14989] = "Used calculation time per simulated day";
-    t[14994] = "Statistic.GeneralPage.NoDataHTML.LoadStatistic";
-    t[14995] = "Load statistic data from a previous simulation run";
   }
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14994] = "Statistic.GeneralPage.NoDataHTML.LoadStatistic";
+    t[14995] = "Load statistic data from a previous simulation run";
     t[15006] = "CommandLine.Language.Description.Long";
     t[15007] = "This command expects as parameter the desired program language: \"English\" or \"German\".";
     t[15012] = "LoadCalculator.Units.Time";

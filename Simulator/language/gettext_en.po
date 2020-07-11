@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 19:44+0200\n"
+"POT-Creation-Date: 2020-07-11 17:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5141,6 +5141,9 @@ msgstr "Average waiting time for \"%s\" according to data: %s seconds"
 
 msgid "Loader.Technion.Model.ModelName"
 msgstr "Technion example data model"
+
+msgid "Main.Menu.File.RecentlyUsed.Delete"
+msgstr "Clear list"
 
 msgid "Main.Menu.Help.LicenseInformation"
 msgstr "License information..."

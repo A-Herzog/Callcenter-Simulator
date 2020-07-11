@@ -75,6 +75,9 @@ public enum Images {
 	/** Symbol "Lizenzen" */
 	GENERAL_LICENSE("key.png"),
 
+	/** Symbol "Aus" */
+	GENERAL_OFF("cross.png"),
+
 	/** Symbol "Dialog-Button 'Ok'" */
 	MSGBOX_OK("accept.png"),
 
