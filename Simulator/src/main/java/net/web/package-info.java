@@ -1,5 +1,5 @@
 /**
- * Das simulator Package enthält die Klassen, die es ermöglichen die Dienste
+ * Dieses Package enthält die Klassen, die es ermöglichen die Dienste
  * des Simulators über ein Webinterface (also über einen Webserver) anzubieten.
  * @author Alexander Herzog
  */
