@@ -284,6 +284,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[731] = "\u00d6ffnen";
     t[746] = "MainMenu.Simulation.ConnectedSimulationResults.Mnemonic";
     t[747] = " ";
+    t[752] = "Statistic.Viewer.Context.Width.Default";
+    t[753] = "Standardbreite";
     t[754] = "SimStatistic.NumberOfAgents";
     t[755] = "Anzahl an Agenten";
     t[764] = "Statistic.FastAccess.Help.Tooltip";
@@ -850,6 +852,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2147] = "Der angegeben Maximum-Ziel-Wert f\u00fcr die zu optimierende Eigenschaft ist ung\u00fcltig.";
     t[2164] = "Importer.LoadTemplate.ErrorLoading.Title";
     t[2165] = "Laden der Daten ist fehlgeschlagen";
+    t[2166] = "Statistic.Viewer.Context.Width.ByContentAndHeader";
+    t[2167] = "Anpassen gem\u00e4\u00df Inhalt und \u00dcberschrift";
     t[2168] = "MainMenu.Data.LoadCaller48.Mnemonic";
     t[2169] = "K";
     t[2172] = "Example.Exlang.TitleAddon";
@@ -1252,6 +1256,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3231] = "Die Ziel-Verweilzeit ist ung\u00fcltig";
     t[3250] = "Simulation.Started";
     t[3251] = "Die Simulation wurde gestartet.";
+    t[3252] = "Statistic.Viewer.Context.Width.This";
+    t[3253] = "Spaltenbreite - diese Spalte";
     t[3268] = "Window.Info.ModelOverviewError.Opening.Info";
     t[3269] = "Die Modell-\u00dcbersichtsdatei\n%s\nkonnte nicht ge\u00f6ffnet werden:\n%s";
     t[3280] = "Editor.SkillLevel.Copy";
@@ -1722,6 +1728,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4337] = "Ok";
     t[4338] = "Editor.Caller.Error.ScoreSecond.Title";
     t[4339] = "Score pro Wartesekunde ist ung\u00fcltig";
+    t[4340] = "Statistic.Viewer.Context.Width.All";
+    t[4341] = "Spaltenbreite - alle Spalten";
     t[4342] = "Model.Check.ClientType.RecallCheck.InvalidProbability.SkillLevelSpecific";
     t[4343] = "Die Wiederanrufwahrscheinlichkeit f\u00fcr Kunden des Typs \"%s\", die von Agenten des Skill-Level \"%s\" bedient werden, ist kleiner als 0.";
     t[4346] = "SimStatistic.Call.Total";
@@ -1996,6 +2004,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4927] = " ";
     t[4928] = "Dialog.Button.Tools";
     t[4929] = "Tools";
+  }
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4936] = "Editor.AgentsGroup.Shift.PreferredShiftLength";
     t[4937] = "Gew\u00fcnschte Schichtl\u00e4nge";
     t[4940] = "SimStatistic.AgentsWorkingHours.Worked";
@@ -2004,8 +2014,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4945] = "Simulation im Hintergrund starten";
     t[4946] = "Statistic.Viewer.Toolbar.Save.Hint";
     t[4947] = "Speichert die auf dieser Seite angezeigten Ergebnisse in einer Datei.";
-  }
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4960] = "Model.Check.InvalidMaximumQueueLength";
     t[4961] = "Die maximale Warteschlangenl\u00e4nge darf nicht negativ sein. (Momentan ist %s eingestellt.)";
     t[4964] = "Editor.Overview.General.Description";
@@ -3580,6 +3588,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[8731] = "Der Befehl %s ist ung\u00fcltig.";
     t[8740] = "MainMenu.View.ModelEditor.Mnemonic";
     t[8741] = "M";
+    t[8742] = "Statistic.Viewer.Context.Width.ByContent";
+    t[8743] = "Anpassen gem\u00e4\u00df Inhalt";
     t[8746] = "Statistic.Units.IntervalQuarterHour";
     t[8747] = "Viertelstundenintervall";
     t[8756] = "SimStatistic.Yield.Clients";
@@ -3996,6 +4006,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9787] = "insgesamt %d Erstanrufer pro Tag";
     t[9790] = "MainMenu.Help.ShowModel.Short";
     t[9791] = "Modell";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9792] = "Connected.ClientTypes";
     t[9793] = "Kundentypen";
     t[9796] = "XML.Statistic.Clients.HoldingTimeDistributionLong.Clients";
@@ -4006,8 +4018,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9807] = "Zielgr\u00f6\u00dfe muss erreicht werden";
     t[9808] = "Editor.Callcenter.Tools.LoadFixedGroupsFromFile.NoDataFound";
     t[9809] = "Die Tabelle enthielt keine Daten, die als Agentenarbeitszeiten interpretiert werden konnten.";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9810] = "Dialog.SaveNow.Yes.Info";
     t[9811] = "Speichert die aktuellen Daten bevor sie verworfen werden.";
     t[9812] = "Statistic.Filter.WhileExecutingCommand";
@@ -4992,6 +5002,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12399] = "Der Service-Level Wert f\u00fcr den Kundentyp \"%s\" ist ung\u00fcltig. (Momentan sind %d Sekunden eingestellt. Der Wert muss jedoch eine positive Zahl sein.)";
     t[12400] = "CommandLine.Error.NoCallCenterWithName";
     t[12401] = "Es gibt kein Callcenter mit dem Namen \"%s\".";
+    t[12406] = "Statistic.Viewer.Context.Width.ByWindowWidth";
+    t[12407] = "Auf Fensterbreite anpassen";
     t[12412] = "RevenueOptimizer.Working.Remove.Single";
     t[12413] = "Entferne 1 Agenten in Gruppe %d => Ertrag=%s (+%s)";
     t[12420] = "Optimizer.SetupDiagrams.ListValue.ChangeValue";
@@ -5996,6 +6008,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14945] = "V";
     t[14950] = "Rearranger.MoveAgents";
     t[14951] = "Agenten verlagern";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14954] = "XML.Model.ClientType.ClientsScore.PerWaitingSecond.Error";
     t[14955] = "Der Kunden-Score pro Wartesekunde \"%s\" muss eine nichtnegative Ganzzahl sein.";
     t[14962] = "Statistic.Viewer.Toolbar.Zoom.Hint";
@@ -6008,8 +6022,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14979] = "Callcenter l\u00f6schen";
     t[14988] = "SimStatistic.SystemData.SimulationTimePerSimulatedDay";
     t[14989] = "Ben\u00f6tigte Rechenzeit pro Simulationstag";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14994] = "Statistic.GeneralPage.NoDataHTML.LoadStatistic";
     t[14995] = "Statistikdaten von fr\u00fcherem Simulationslauf laden";
     t[15006] = "CommandLine.Language.Description.Long";

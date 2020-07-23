@@ -23,7 +23,7 @@ public final class VersionConst {
 	/**
 	 * Programmversion
 	 */
-	public static final String version="5.6.229";
+	public static final String version="5.7.230";
 
 	/**
 	 * Vergleich zwei Versionsnummern der Form x.y.z in Bezug auf die Komponenten x und y miteinander
