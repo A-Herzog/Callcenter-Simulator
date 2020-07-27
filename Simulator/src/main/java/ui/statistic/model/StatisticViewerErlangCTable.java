@@ -45,6 +45,9 @@ public class StatisticViewerErlangCTable extends StatisticViewerTable {
 
 	@Override
 	protected void buildTable() {
+		final List<String> columnNames=new ArrayList<>();
+		final List<List<String>> data=new ArrayList<>();
+
 		columnNames.add(Language.tr("Statistic.Interval"));
 		columnNames.add(Language.tr("SimStatistic.Agents"));
 		columnNames.add(Language.tr("SimStatistic.FreshAndForwardedCalls"));
@@ -80,5 +83,7 @@ public class StatisticViewerErlangCTable extends StatisticViewerTable {
 		col.add("");
 		col.add("");
 		col.add("");
+
+		setData(data,columnNames);
 	}
 }

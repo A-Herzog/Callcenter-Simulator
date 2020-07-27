@@ -90,6 +90,9 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 	}
 
 	private void buildTimeTable(List<ArrayList<CallcenterModelAgent>> translatedAgents, boolean sumColumn) {
+		final List<List<String>> data=new ArrayList<>();
+
+
 		for (int i=0;i<48;i++) {
 			int activeSum=0;
 			ArrayList<String> col=new ArrayList<String>();
@@ -102,6 +105,8 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 			}
 			if (sumColumn) col.add(""+activeSum);
 		}
+
+		setData(data,columnNames);
 	}
 
 	private void callcenterTable() {

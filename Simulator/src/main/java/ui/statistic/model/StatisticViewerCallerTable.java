@@ -42,6 +42,9 @@ public class StatisticViewerCallerTable extends StatisticViewerTable {
 
 	@Override
 	protected void buildTable() {
+		final List<String> columnNames=new ArrayList<>();
+		final List<List<String>> data=new ArrayList<>();
+		
 		columnNames.add(Language.tr("Statistic.Interval"));
 		int count=0;
 		for (int i=0;i<model.caller.size();i++) if (model.caller.get(i).active) {count++; columnNames.add(model.caller.get(i).name);}
@@ -69,5 +72,7 @@ public class StatisticViewerCallerTable extends StatisticViewerTable {
 		int s=0;
 		for (int i=0;i<model.caller.size();i++) if (model.caller.get(i).active) {col.add(""+model.caller.get(i).freshCallsCountMean); s+=model.caller.get(i).freshCallsCountMean;}
 		col.add(""+s);
+		
+		setData(data,columnNames);
 	}
 }
