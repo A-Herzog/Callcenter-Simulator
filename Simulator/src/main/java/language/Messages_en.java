@@ -2796,6 +2796,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[6755] = "Changed fresh calls distribution";
     t[6756] = "XML.Model.ClientType.CostPerCaller";
     t[6757] = "CostPerCaller";
+    t[6758] = "SetupFailure.Discard";
+    t[6759] = "Discard changed settings, quit program.";
     t[6780] = "Importer.HoldingTimeAddOn";
     t[6781] = "Waiting time depending holding time addition";
     t[6784] = "Editor.Preplanning.Title";
@@ -2868,6 +2870,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[6951] = "Costs (von holding time basis)";
     t[6952] = "XML.InterpreterCouldNotProcessData";
     t[6953] = "The XML interpreter was not able to process the data.";
+    t[6964] = "SetupFailure.Retry";
+    t[6965] = "Retry saving.";
     t[6966] = "Editor.Productivity.Productivity";
     t[6967] = "Productivity";
     t[6968] = "XML.OptimizerSetup.Groups.Average";
@@ -4002,12 +4006,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9775] = "Agents (default)";
     t[9780] = "Editor.Caller.Error.ContinueCallerType.Info";
     t[9781] = "The specified forwarding rate to client type \"%s\" (%s) is invalid.\nThe value has to be a non-negative number (a percentage value optional).";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9786] = "Model.GenerateDescription.FreshCalls.All";
     t[9787] = "%d fresh calls per day";
     t[9790] = "MainMenu.Help.ShowModel.Short";
     t[9791] = "Model";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9792] = "Connected.ClientTypes";
     t[9793] = "Client types";
     t[9796] = "XML.Statistic.Clients.HoldingTimeDistributionLong.Clients";
@@ -4508,6 +4512,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11089] = "H";
     t[11090] = "CommandLine.Filter.Done.CouldNotSave";
     t[11091] = "The filter results could not be saved to the file %s.";
+    t[11092] = "SetupFailure.Title";
+    t[11093] = "Saving settings failed";
     t[11098] = "SimStatistic.HoldingTimeAddOnAddOn.Custom";
     t[11099] = "Custom holding time addon value in interval";
     t[11102] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMax.ErrorTitle";
@@ -6002,14 +6008,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14933] = "T";
     t[14934] = "XML.Statistic.Clients.ClientsCallsCount.Success";
     t[14935] = "Success";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14942] = "SimStatistic.Canceled.Client";
     t[14943] = "Canceled calls (finally canceled clients)";
     t[14944] = "MainMenu.Tools.VarianceAnalysis.Mnemonic";
     t[14945] = "V";
     t[14950] = "Rearranger.MoveAgents";
     t[14951] = "Move agents";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14954] = "XML.Model.ClientType.ClientsScore.PerWaitingSecond.Error";
     t[14955] = "The client score per waiting second \"%s\" has to be a non-negative integer number.";
     t[14962] = "Statistic.Viewer.Toolbar.Zoom.Hint";
@@ -7078,6 +7084,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17723] = "No area to be imported has been selected.";
     t[17724] = "CommandLine.Error.SavingModel";
     t[17725] = "The changed model could not be saved.";
+    t[17726] = "SetupFailure.Info";
+    t[17727] = "Saving the changed program settings in\n%s\nfailed. Do you want to retry saving?";
     t[17736] = "Editor.SkillLevelOfTheAgents.Tooltips";
     t[17737] = "Settings about the skill levels of the agents";
     t[17740] = "Editor.AgentsGroup.Shift.PreferredShiftLength.Global";
