@@ -527,7 +527,6 @@ public class SetupData extends SetupBase {
 	 */
 	public static final String SETUP_FILE_NAME="CallcenterSimulator.cfg";
 
-
 	@Override
 	protected File getSetupFile() {
 		return new File(getSetupFolder(),SETUP_FILE_NAME);
