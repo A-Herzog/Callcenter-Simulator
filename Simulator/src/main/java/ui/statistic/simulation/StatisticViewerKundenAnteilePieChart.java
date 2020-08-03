@@ -125,7 +125,7 @@ public class StatisticViewerKundenAnteilePieChart extends StatisticViewerPieChar
 			case DATA_TYPE_CONTINUED_CALLS: value=k.anrufeWeiterleitungen; break;
 			case DATA_TYPE_RETRIED_CALLS: value=k.anrufeWiederholungen; break;
 			}
-			data.setValue(String.format("%s (%s, %s)",k.name,NumberTools.formatLong(value/statistic.simDays),NumberTools.formatPercent((double)value/sum)),value);
+			data.setValue(String.format("%s (%s, %s)",k.name,NumberTools.formatLong(value/statistic.simulationData.runRepeatCount),NumberTools.formatPercent((double)value/sum)),value);
 		}
 	}
 

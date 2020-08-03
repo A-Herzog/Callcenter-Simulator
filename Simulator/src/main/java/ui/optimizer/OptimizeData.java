@@ -187,7 +187,7 @@ public final class OptimizeData {
 		for(int i=0;i<data.size();i++) {
 			node.appendChild(e=doc.createElement(Language.trPrimary("XML.OptimizerResults.SimulationRun")));
 			e.setAttribute(Language.trPrimary("XML.OptimizerResults.SimulationRun.Number"),""+(i+1));
-			data.get(i).saveToXML(e);
+			data.get(i).saveToXML(e,true);
 		}
 	}
 }

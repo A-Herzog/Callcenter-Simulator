@@ -141,7 +141,7 @@ public final class SimServerPanel extends JWorkPanel {
 		folderSaaSStatisticButton.setIcon(Images.GENERAL_SELECT_FOLDER.getIcon());
 
 		config.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
-		p.add(serverSaaSApplet=new JCheckBox(Language.tr("Server.OfferApplet"),true));
+		p.add(serverSaaSApplet=new JCheckBox(Language.tr("Server.OfferApplet"),false));
 		p.add(fileSaaSApplet=new JTextField(50));
 		fileSaaSApplet.setText("");
 		drop2=new FileDropper(fileSaaSApplet,new ButtonListener());

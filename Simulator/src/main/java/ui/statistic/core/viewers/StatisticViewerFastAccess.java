@@ -123,7 +123,7 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 
 	@Override
 	public Container getViewer(boolean needReInit) {
-		if (dataFilter==null || needReInit) dataFilter=new DataFilter(statistic.saveToDocument());
+		if (dataFilter==null || needReInit) dataFilter=new DataFilter(statistic.saveToXMLDocument());
 		SetupData setup=SetupData.getSetup();
 
 		JSplitPane split=new JSplitPane(JSplitPane.VERTICAL_SPLIT);
@@ -289,7 +289,7 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 	private boolean filterIsUpdating=false;
 
 	private void filterUpdated() {
-		if (dataFilter==null) dataFilter=new DataFilter(statistic.saveToDocument());
+		if (dataFilter==null) dataFilter=new DataFilter(statistic.saveToXMLDocument());
 		filterIsUpdating=true;
 		try {
 			dataFilter.run(filter.getText(),false);
@@ -376,7 +376,7 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 				toolbarToolsMenu.show(toolbarTools,0,toolbarTools.getBounds().height);
 			}
 			if (e.getSource()==toolbarSelect) {
-				if (dataFilter==null) dataFilter=new DataFilter(statistic.saveToDocument());
+				if (dataFilter==null) dataFilter=new DataFilter(statistic.saveToXMLDocument());
 				StatisticViewerFastAccessDialog dialog=new StatisticViewerFastAccessDialog(null,dataFilter.getXMLDocument(),helpFastAccessModal,false);
 				dialog.setVisible(true);
 				if (dialog.getClosedBy()==BaseEditDialog.CLOSED_BY_OK) {

@@ -274,7 +274,7 @@ public final class SimulationData extends SimData {
 	public void finalTerminateCleanUp(final long eventCount) {
 		super.finalTerminateCleanUp(eventCount);
 
-		statisticSimData.simEvents=eventCount;
+		statisticSimData.simulationData.runEvents=eventCount;
 
 		/* anrufeWartezeitSum wird bereits während der Simulation benötigt, kann also nicht erst am Ende zusammengezählt werden */
 		statisticSimData.kundenGlobal.anrufeVerweilzeitSum=Math.round(statisticSimData.kundenGlobal.anrufeVerweilzeitSumProIntervall.sum());

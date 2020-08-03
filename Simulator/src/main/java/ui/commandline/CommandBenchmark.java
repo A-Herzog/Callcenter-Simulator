@@ -114,11 +114,11 @@ public final class CommandBenchmark extends AbstractSimulationCommand {
 			if (i>0) out.println(Language.tr("CommandLine.Benchmark.SimulaionRun")+" "+(i+1));
 			Statistics statistics=singleSimulation(editModel,true,maxThreads,out);
 			if (statistics==null) {out.println(Language.tr("Dialog.Title.Error").toUpperCase()+": "+Language.tr("CommandLine.Benchmark.SimulaionFailed")); return;}
-			if (i==0) out.println(Language.tr("CommandLine.Benchmark.Threads")+": "+NumberTools.formatLong(statistics.runThreads));
+			if (i==0) out.println(Language.tr("CommandLine.Benchmark.Threads")+": "+NumberTools.formatLong(statistics.simulationData.runThreads));
 			if (i==0) out.println(Language.tr("CommandLine.Benchmark.SimulaionRun")+" "+(i+1));
-			out.println("  "+Language.tr("CommandLine.Benchmark.NeededCalculationTime")+": "+NumberTools.formatLong(statistics.runTime)+" "+Language.tr("Statistic.Units.MilliSeconds"));
-			out.println("  "+Language.tr("CommandLine.Benchmark.ClientsPerSecond")+": "+NumberTools.formatLong(1000*(long)(statistics.kundenGlobal.kunden+statistics.kundenGlobal.kundenWiederanruf)/statistics.simDays/statistics.runTime));
-			out.println("  "+Language.tr("CommandLine.Benchmark.EventsPerSecond")+": "+NumberTools.formatLong(1000*statistics.simEvents/statistics.runTime));
+			out.println("  "+Language.tr("CommandLine.Benchmark.NeededCalculationTime")+": "+NumberTools.formatLong(statistics.simulationData.runTime)+" "+Language.tr("Statistic.Units.MilliSeconds"));
+			out.println("  "+Language.tr("CommandLine.Benchmark.ClientsPerSecond")+": "+NumberTools.formatLong(1000*(long)(statistics.kundenGlobal.kunden+statistics.kundenGlobal.kundenWiederanruf)/statistics.simulationData.runRepeatCount/statistics.simulationData.runTime));
+			out.println("  "+Language.tr("CommandLine.Benchmark.EventsPerSecond")+": "+NumberTools.formatLong(1000*statistics.simulationData.runEvents/statistics.simulationData.runTime));
 		}
 	}
 

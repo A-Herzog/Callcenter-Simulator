@@ -108,10 +108,10 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 		boolean needDetailedData=(statistic.kundenProTyp.length>1);
 		if (!needDetailedData && dataType==Mode.DATA_TYPE_SERVICE_LEVEL && statistic.editModel.caller.get(0).serviceLevelSeconds>0) needDetailedData=true;
 
-		buildClientData(statistic.kundenGlobal,(int)statistic.simDays,serviceLevel);
+		buildClientData(statistic.kundenGlobal,(int)statistic.simulationData.runRepeatCount,serviceLevel);
 		if (needDetailedData) for (int i=0;i<statistic.kundenProTyp.length;i++) {
 			int sl=(statistic.editModel.caller.get(i).serviceLevelSeconds>0)?(statistic.editModel.caller.get(i).serviceLevelSeconds):(statistic.editModel.serviceLevelSeconds);
-			buildClientData(statistic.kundenProTyp[i],(int)statistic.simDays,sl);
+			buildClientData(statistic.kundenProTyp[i],(int)statistic.simulationData.runRepeatCount,sl);
 		}
 
 		/* Infotext  */

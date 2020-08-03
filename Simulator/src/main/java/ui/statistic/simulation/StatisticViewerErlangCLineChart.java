@@ -105,7 +105,7 @@ public class StatisticViewerErlangCLineChart extends StatisticViewerLineChart {
 		addSeries(title+" ("+Language.tr("SimStatistic.Type.ErlangCSimple")+")",Color.RED,erlang1);
 		addSeries(title+" ("+Language.tr("SimStatistic.Type.ErlangCComplex")+")",Color.ORANGE,erlang2);
 
-		addSeriesToSecondSet(Language.tr("SimStatistic.Caller"),Color.BLACK,statistic.kundenGlobal.kundenProIntervall.divide(statistic.simDays));
+		addSeriesToSecondSet(Language.tr("SimStatistic.Caller"),Color.BLACK,statistic.kundenGlobal.kundenProIntervall.divide(statistic.simulationData.runRepeatCount));
 		plot.getRangeAxis(1).setLabel(Language.tr("SimStatistic.ArrivalsPerHalfHourInterval"));
 
 		initTooltips();

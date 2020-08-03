@@ -1594,6 +1594,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4047] = "Standard deviation of the holding time";
     t[4050] = "Model.GenerateDescription.ClientPriority.Different";
     t[4051] = "The client types have different priorities.";
+    t[4058] = "Statistics.XML.EmergencyShutDown";
+    t[4059] = "StatisticsInternalTermination";
     t[4062] = "Editor.Caller.Error.RevenuePerSuccessfulClient.Title";
     t[4063] = "Yield per successful served customer is invalid";
     t[4066] = "Dialog.Select.All";
@@ -1702,6 +1704,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4281] = "Sum";
     t[4282] = "Dialog.Button.No";
     t[4283] = "No";
+    t[4288] = "Statistics.XML.RunThreads";
+    t[4289] = "StatisticsThreads";
     t[4298] = "Model.GenerateDescription.Agents.DistributionOverTheDay";
     t[4299] = "The agents are distributed via a working time distribution over the day.";
     t[4300] = "Generator.Column";
@@ -2000,12 +2004,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4923] = "Deletes the selected client type";
     t[4924] = "SimStatistic.Thresholds.Status.Yellow";
     t[4925] = "Yellow warning level";
+  }
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4926] = "MainMenu.Simulation.Calibration.Mnemonic";
     t[4927] = " ";
     t[4928] = "Dialog.Button.Tools";
     t[4929] = "Tools";
-  }
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4936] = "Editor.AgentsGroup.Shift.PreferredShiftLength";
     t[4937] = "Preferred shift length";
     t[4940] = "SimStatistic.AgentsWorkingHours.Worked";
@@ -2360,6 +2364,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[5663] = "Call center for all topics";
     t[5664] = "VarianceAnalysis.Stop";
     t[5665] = "Stop variance analysis";
+    t[5666] = "Statistics.XML.BaseData";
+    t[5667] = "StatisticsSimulation";
     t[5668] = "XML.Model.Productivity.ErrorAgents";
     t[5669] = "The agents groups productivity per interval is invalid.";
     t[5676] = "Simulation.RunInfo.Window";
@@ -2472,8 +2478,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[5969] = "Statistic";
     t[5972] = "Statistic.Viewer.Chart.InSeconds";
     t[5973] = "in seconds";
-    t[5974] = "XML.OptimizerResults.SimulationRun.Number";
-    t[5975] = "Number";
+    t[5974] = "Statistics.XML.RunDate";
+    t[5975] = "StatisticsRunDate";
     t[5976] = "XML.Model.Warnings.Record.WarningYellow.Error.NoValue";
     t[5977] = "No value was specified for the yellow threshold.";
     t[5984] = "SimStatistic.OptimizeSetup.RunTime";
@@ -2798,6 +2804,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[6757] = "CostPerCaller";
     t[6758] = "SetupFailure.Discard";
     t[6759] = "Discard changed settings, quit program.";
+    t[6766] = "Statistics.XML.RunTime";
+    t[6767] = "StatisticsRunTime";
+    t[6770] = "Statistics.XML.RunEvents.Error";
+    t[6771] = "The value in the \"%s\" element has to be a non-negative integer value but is \"%s\".";
     t[6780] = "Importer.HoldingTimeAddOn";
     t[6781] = "Waiting time depending holding time addition";
     t[6784] = "Editor.Preplanning.Title";
@@ -2870,6 +2880,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[6951] = "Costs (von holding time basis)";
     t[6952] = "XML.InterpreterCouldNotProcessData";
     t[6953] = "The XML interpreter was not able to process the data.";
+    t[6958] = "Statistics.XML.RunRepeatCount";
+    t[6959] = "StatisticsRepeats";
     t[6964] = "SetupFailure.Retry";
     t[6965] = "Retry saving.";
     t[6966] = "Editor.Productivity.Productivity";
@@ -2896,6 +2908,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7007] = "Waiting time coefficient of variation";
     t[7010] = "CommandLine.Update.SignatureCheckFailed";
     t[7011] = "The signature check failed.";
+    t[7012] = "Statistics.XML.RunEvents";
+    t[7013] = "StatisticsEvents";
     t[7016] = "LoadCalculator.Tab.ErlangCext";
     t[7017] = "Erlang C (extended)";
     t[7020] = "Loader.Error.OutputFileIsDirectory.Info";
@@ -3202,6 +3216,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7771] = "Copies the selected agents group and adds the copy to the call center";
     t[7772] = "XML.Statistic.Clients.Summary.CallsAverageWaitingTime";
     t[7773] = "CallsAverageWaitingTime";
+    t[7776] = "Statistics.XML.RunOS";
+    t[7777] = "StatisticsSystem";
     t[7778] = "Distribution.Weibull";
     t[7779] = "Weibull distribution";
     t[7792] = "ConnectedResults.PerClientType";
@@ -3570,8 +3586,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[8685] = "Rate";
     t[8686] = "Editor.SkillLevel.Copy.NameLabel";
     t[8687] = "Name of the new skill level";
-    t[8690] = "Statistic.Units.Days";
-    t[8691] = "days";
     t[8698] = "Optimizer.OptimizeProperty.TargetForLabel.Accessibility.Info";
     t[8699] = "The number of agents will be <b>increased</b> until this accessibility is reached.";
     t[8702] = "CommandLine.Simulation.Description.Short";
@@ -3916,6 +3930,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9557] = "Error on loading the model file for day 1";
     t[9566] = "Editor.AgentsGroup.Shift.MinimumShiftLength.Global";
     t[9567] = "Use global default";
+    t[9568] = "Statistics.XML.Warning";
+    t[9569] = "StatisticsModelWarning";
     t[9572] = "CommandLine.Count.ThenMaximum1";
     t[9573] = "a maximum of one additional parameter can be entered";
     t[9574] = "XML.Statistic.ErlangC.Success";
@@ -3990,6 +4006,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9727] = "There are multiple call centers with the name \"%s\".";
     t[9728] = "XML.Statistic.Info.Threads";
     t[9729] = "StatisticThreads";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9730] = "Editor.Callcenter.Tools.LoadFixedGroupsFromFile";
     t[9731] = "Load agents groups with fixed working hours from table";
     t[9734] = "Loader.LoadData";
@@ -4006,8 +4024,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9775] = "Agents (default)";
     t[9780] = "Editor.Caller.Error.ContinueCallerType.Info";
     t[9781] = "The specified forwarding rate to client type \"%s\" (%s) is invalid.\nThe value has to be a non-negative number (a percentage value optional).";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9786] = "Model.GenerateDescription.FreshCalls.All";
     t[9787] = "%d fresh calls per day";
     t[9790] = "MainMenu.Help.ShowModel.Short";
@@ -4800,8 +4816,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11833] = "CallCenterAgentsScore";
     t[11838] = "SimStatistic.Thresholds";
     t[11839] = "Threshold values";
-    t[11844] = "XML.OptimizerSetup.Intervals.InOrder";
-    t[11845] = "InOrder";
+    t[11844] = "Statistics.XML.RunTime.Error";
+    t[11845] = "The value in the \"%s\" element has to be a non-negative integer value but is \"%s\".";
     t[11850] = "XML.Statistic.Clients.CancelTime.Clients";
     t[11851] = "StatisticClientsCancelTime";
     t[11854] = "XML.ErrorCreatingZipStream";
@@ -4886,6 +4902,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12067] = "The range selected by %s and %s has to be either a row or a column.";
     t[12070] = "SettingsDialog.ImageResolution.Invalid.Info";
     t[12071] = "The size for saving images has to be an interger number between 50 and 5000.";
+    t[12082] = "Statistics.XML.RunUser";
+    t[12083] = "StatisticsUser";
     t[12084] = "Calibrate.TargetNotReachable1";
     t[12085] = "The targat accessibility values can not be reached";
     t[12086] = "Calibrate.TargetNotReachable2";
@@ -5088,6 +5106,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12609] = "Error saving the filtered statistics file";
     t[12614] = "XML.Statistic.GeneralAttributes.SumPerInterval";
     t[12615] = "SumPerInterval";
+    t[12630] = "Statistics.XML.RunThreads.NUMA";
+    t[12631] = "NUMAMode";
     t[12636] = "Editor.Preplanning.Mode.ErlangCComplex";
     t[12637] = "Erlang C model with retrying clients";
     t[12642] = "Editor.SkillLevel.Error.NoName.Info";
@@ -5208,6 +5228,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12909] = "F distribution";
     t[12916] = "SettingsDialog.NetworkSimulation.ModeNetwork";
     t[12917] = "Simulation on a computer in the network";
+    t[12922] = "Statistics.XML.RunThreads.Error";
+    t[12923] = "The value in the \"%s\" element has to be a positive integer value but is \"%s\".";
     t[12924] = "Statistic.GeneralPage.NoDataHTML";
     t[12925] = "<p>There are no statistic data available yet.</p>\n<p>Please press the <b>F5 key</b> or select <b>\"Run simulation\"</b> from the \"Model editor\" page.</p>";
     t[12926] = "SimStatistic.ServiceLevel.Description";
@@ -5670,8 +5692,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14089] = "Abort simulation";
     t[14094] = "MainMenu.Tools.RunServer.Tooltip";
     t[14095] = "Starts a network server which allows other instances to run simulations on this computer";
-    t[14096] = "SimStatistic.SystemData.ServerVersion";
-    t[14097] = "Simulation server";
     t[14102] = "Statistic.Interval";
     t[14103] = "Interval";
     t[14104] = "XML.Model.Warnings.Record.Type.Workload";
@@ -5988,14 +6008,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14875] = "Red warning level";
     t[14876] = "XML.SaaS.StatisticFolder";
     t[14877] = "StatisticFolder";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14884] = "XML.Statistic.Agents.Summary.NetTime";
     t[14885] = "NetTime";
     t[14906] = "Batch.LoadError";
     t[14907] = "The following error occured while loading the model";
     t[14908] = "CommandLine.GeneratorXMLPreprocessing.Name";
     t[14909] = "XMLPreprocessing";
-    t[14914] = "XML.Statistic.BaseElement.Error";
-    t[14915] = "The root element is not \"%s\", this means the current file is not Callcenter Simulator statistic file.";
     t[14920] = "CommandLine.MaxThreads.Result.NewLimit";
     t[14921] = "The number of threads in the simulation will be limited to %d.";
     t[14924] = "XML.Model.ClientType.FreshCalls.Count";
@@ -6008,8 +6028,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14933] = "T";
     t[14934] = "XML.Statistic.Clients.ClientsCallsCount.Success";
     t[14935] = "Success";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14942] = "SimStatistic.Canceled.Client";
     t[14943] = "Canceled calls (finally canceled clients)";
     t[14944] = "MainMenu.Tools.VarianceAnalysis.Mnemonic";
@@ -6602,6 +6620,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16561] = "Call center \"%s\" agents work load";
     t[16570] = "Simulation.Log.Ready.ReadyAfterService";
     t[16571] = "Agents finishes work for a client and is ready now";
+    t[16572] = "XML.OptimizerSetup.Intervals.InOrder";
+    t[16573] = "InOrder";
     t[16574] = "Model.Check.MinimalShiftLengthLongerThanPreferredShiftLength";
     t[16575] = "The minimal shift length selected in the model is longer than the selected maximum shift length.";
     t[16578] = "SimStatistic.NumberOfCallers.FilterTitle";
@@ -6776,6 +6796,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16967] = "skill level";
     t[16968] = "ConnectedResults.Title";
     t[16969] = "Results of the connected simulation";
+    t[16976] = "Statistics.XML.RunRepeatCount.Error";
+    t[16977] = "The value in the \"%s\" element has to be a positive integer value but is \"%s\".";
     t[16984] = "Editor.AgentsGroup.Shift.Start";
     t[16985] = "Shift start";
     t[16988] = "Editor.Caller.RetryProbability.ClientTypeChange.NotActive";
@@ -6862,6 +6884,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17165] = "Skill level";
     t[17174] = "CommandLine.Update.Description.Short";
     t[17175] = "Checks for updates and download a new jar file if available.";
+    t[17180] = "XML.OptimizerResults.SimulationRun.Number";
+    t[17181] = "Number";
     t[17188] = "Statistic.LineChart.CountPerHalfHour";
     t[17189] = "Part per half-hour";
     t[17190] = "Statistic.FastAccess.Load.Tooltip";
@@ -7240,6 +7264,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[18129] = "Help contents";
     t[18130] = "Editor.Callcenter.Error.AgentsFreeTimePart.Info";
     t[18131] = "The factor to respect the idle time part for the agent score %s is invalid.\nThe factor has to be a non-negative number.";
+    t[18136] = "Statistics.XML.ThreadRunTimes";
+    t[18137] = "StatisticsThreadRunTimes";
     t[18138] = "MainMenu.Help.ShowGlossary.Mnemonic";
     t[18139] = "G";
     t[18140] = "Dialog.SaveNow.Yes";

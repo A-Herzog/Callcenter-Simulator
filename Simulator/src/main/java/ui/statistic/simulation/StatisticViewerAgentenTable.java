@@ -146,13 +146,13 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 		table.addLine(rowNames);
 		switch (sortType) {
 		case SORT_BY_CALLCENTER:
-			for (int i=0;i<statistic.agentenProCallcenter.length;i++) table.addLine(getLine(statistic.agentenProCallcenter[i],statistic.simDays));
+			for (int i=0;i<statistic.agentenProCallcenter.length;i++) table.addLine(getLine(statistic.agentenProCallcenter[i],statistic.simulationData.runRepeatCount));
 			break;
 		case SORT_BY_SKILL_LEVEL:
-			for (int i=0;i<statistic.agentenProSkilllevel.length;i++) table.addLine(getLine(statistic.agentenProSkilllevel[i],statistic.simDays));
+			for (int i=0;i<statistic.agentenProSkilllevel.length;i++) table.addLine(getLine(statistic.agentenProSkilllevel[i],statistic.simulationData.runRepeatCount));
 			break;
 		}
-		table.addLine(getLine(statistic.agentenGlobal,statistic.simDays));
+		table.addLine(getLine(statistic.agentenGlobal,statistic.simulationData.runRepeatCount));
 
 		return table.transpose();
 	}

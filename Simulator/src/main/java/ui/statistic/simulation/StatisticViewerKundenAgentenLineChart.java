@@ -262,120 +262,120 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		switch (dataType) {
 		case DATA_TYPE_CALLER:
 			setupChartDayValue(Language.tr("SimStatistic.Caller"),Language.tr("Statistic.LineChart.CountPerHalfHour"));
-			addSeries(Language.tr("SimStatistic.FreshCalls")+" ("+type+")",Color.BLUE,kunden.kundenProIntervall.divide(statistic.simDays));
-			if (kunden.kundenWiederanruf>0) addSeries(Language.tr("SimStatistic.RecallingClients")+" ("+type+")",Color.GREEN,kunden.kundenWiederanrufProIntervall.divide(statistic.simDays));
-			addSeries(Language.tr("SimStatistic.Calls.Info")+" ("+type+")",Color.RED,kunden.anrufeProIntervall.divide(statistic.simDays));
+			addSeries(Language.tr("SimStatistic.FreshCalls")+" ("+type+")",Color.BLUE,kunden.kundenProIntervall.divide(statistic.simulationData.runRepeatCount));
+			if (kunden.kundenWiederanruf>0) addSeries(Language.tr("SimStatistic.RecallingClients")+" ("+type+")",Color.GREEN,kunden.kundenWiederanrufProIntervall.divide(statistic.simulationData.runRepeatCount));
+			addSeries(Language.tr("SimStatistic.Calls.Info")+" ("+type+")",Color.RED,kunden.anrufeProIntervall.divide(statistic.simulationData.runRepeatCount));
 			addFillColor((kunden.kundenWiederanruf>0)?2:1);
 			break;
 
 		case DATA_TYPE_CLIENT_WAITINGTIME_DIST:
 			setupChartTimeValue(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+Language.tr("SimStatistic.OnClientBasis")+")",Language.tr("SimStatistic.WaitingTime"),Language.tr("Statistic.Frequency"));
-			addSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenWartezeitVerteilung.divide(statistic.simDays),1200,5);
+			addSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenWartezeitVerteilung.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CALLER_WAITINGTIME_DIST:
 			setupChartTimeValue(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",Language.tr("SimStatistic.WaitingTime"),Language.tr("Statistic.Frequency"));
-			addSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeWartezeitVerteilung.divide(statistic.simDays),1200,5);
+			addSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeWartezeitVerteilung.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CLIENT_STAYINGTIME_DIST:
 			setupChartTimeValue(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+Language.tr("SimStatistic.OnClientBasis")+")",Language.tr("SimStatistic.ResidenceTime"),Language.tr("Statistic.Frequency"));
-			addSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenVerweilzeitVerteilung.divide(statistic.simDays),1200,5);
+			addSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenVerweilzeitVerteilung.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CALLER_STAYINGTIME_DIST:
 			setupChartTimeValue(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",Language.tr("SimStatistic.ResidenceTime"),Language.tr("Statistic.Frequency"));
-			addSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeVerweilzeitVerteilung.divide(statistic.simDays),1200,5);
+			addSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeVerweilzeitVerteilung.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CLIENT_WAITINGTIME_DIST_LONG:
 			setupLongTime(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+Language.tr("SimStatistic.OnClientBasis")+")",Language.tr("SimStatistic.WaitingTime"),Language.tr("Statistic.Frequency"));
-			addLongSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenWartezeitVerteilungLang.divide(statistic.simDays),1200,5);
+			addLongSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenWartezeitVerteilungLang.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CALLER_WAITINGTIME_DIST_LONG:
 			setupLongTime(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",Language.tr("SimStatistic.WaitingTime"),Language.tr("Statistic.Frequency"));
-			addLongSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeWartezeitVerteilungLang.divide(statistic.simDays),1200,5);
+			addLongSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeWartezeitVerteilungLang.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CLIENT_STAYINGTIME_DIST_LONG:
 			setupLongTime(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+Language.tr("SimStatistic.OnClientBasis")+")",Language.tr("SimStatistic.ResidenceTime"),Language.tr("Statistic.Frequency"));
-			addLongSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenVerweilzeitVerteilungLang.divide(statistic.simDays),1200,5);
+			addLongSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenVerweilzeitVerteilungLang.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CALLER_STAYINGTIME_DIST_LONG:
 			setupLongTime(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",Language.tr("SimStatistic.ResidenceTime"),Language.tr("Statistic.Frequency"));
-			addLongSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeVerweilzeitVerteilungLang.divide(statistic.simDays),1200,5);
+			addLongSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeVerweilzeitVerteilungLang.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CLIENT_WAITINGANDSTAYINGTIME_DIST:
 			setupChartTimeValue(Language.tr("SimStatistic.WaitingResidenceTimeDistribution")+" ("+Language.tr("SimStatistic.OnClientBasis")+")",Language.tr("Statistic.Period"),Language.tr("Statistic.Frequency"));
-			addSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.RED,kunden.kundenWartezeitVerteilung.divide(statistic.simDays),1200,5);
-			addSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenVerweilzeitVerteilung.divide(statistic.simDays),1200,5);
+			addSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.RED,kunden.kundenWartezeitVerteilung.divide(statistic.simulationData.runRepeatCount),1200,5);
+			addSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenVerweilzeitVerteilung.divide(statistic.simulationData.runRepeatCount),1200,5);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CALLER_WAITINGANDSTAYINGTIME_DIST:
 			setupChartTimeValue(Language.tr("SimStatistic.WaitingResidenceTimeDistribution")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",Language.tr("Statistic.Period"),Language.tr("Statistic.Frequency"));
-			addSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.RED,kunden.anrufeWartezeitVerteilung.divide(statistic.simDays),1200,5);
-			addSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeVerweilzeitVerteilung.divide(statistic.simDays),1200,5);
+			addSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.RED,kunden.anrufeWartezeitVerteilung.divide(statistic.simulationData.runRepeatCount),1200,5);
+			addSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeVerweilzeitVerteilung.divide(statistic.simulationData.runRepeatCount),1200,5);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CLIENT_WAITINGANDSTAYINGTIME_DIST_LONG:
 			setupLongTime(Language.tr("SimStatistic.WaitingResidenceTimeDistribution")+" ("+Language.tr("SimStatistic.OnClientBasis")+")",Language.tr("Statistic.Period"),Language.tr("Statistic.Frequency"));
-			addLongSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.RED,kunden.kundenWartezeitVerteilungLang.divide(statistic.simDays),1200,5);
-			addLongSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenVerweilzeitVerteilungLang.divide(statistic.simDays),1200,5);
+			addLongSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.RED,kunden.kundenWartezeitVerteilungLang.divide(statistic.simulationData.runRepeatCount),1200,5);
+			addLongSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.kundenVerweilzeitVerteilungLang.divide(statistic.simulationData.runRepeatCount),1200,5);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CALLER_WAITINGANDSTAYINGTIME_DIST_LONG:
 			setupLongTime(Language.tr("SimStatistic.WaitingResidenceTimeDistribution")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",Language.tr("Statistic.Period"),Language.tr("Statistic.Frequency"));
-			addLongSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.RED,kunden.anrufeWartezeitVerteilungLang.divide(statistic.simDays),1200,5);
-			addLongSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeVerweilzeitVerteilungLang.divide(statistic.simDays),1200,5);
+			addLongSeriesPart(Language.tr("SimStatistic.WaitingTimeDistribution")+" ("+type+")",Color.RED,kunden.anrufeWartezeitVerteilungLang.divide(statistic.simulationData.runRepeatCount),1200,5);
+			addLongSeriesPart(Language.tr("SimStatistic.ResidenceTimeDistribution")+" ("+type+")",Color.BLUE,kunden.anrufeVerweilzeitVerteilungLang.divide(statistic.simulationData.runRepeatCount),1200,5);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CLIENT_CANCELTIME_DIST:
 			setupChartTimeValue(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+Language.tr("SimStatistic.OnClientBasis")+")",Language.tr("SimStatistic.CancelTime"),Language.tr("Statistic.Frequency"));
-			addSeriesPart(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+type+")",Color.RED,kunden.kundenAbbruchzeitVerteilung.divide(statistic.simDays),1200,5);
+			addSeriesPart(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+type+")",Color.RED,kunden.kundenAbbruchzeitVerteilung.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CALLER_CANCELTIME_DIST:
 			setupChartTimeValue(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",Language.tr("SimStatistic.CancelTime"),Language.tr("Statistic.Frequency"));
-			addSeriesPart(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+type+")",Color.RED,kunden.anrufeAbbruchzeitVerteilung.divide(statistic.simDays),1200,5);
+			addSeriesPart(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+type+")",Color.RED,kunden.anrufeAbbruchzeitVerteilung.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CLIENT_CANCELTIME_DIST_LONG:
 			setupLongTime(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+Language.tr("SimStatistic.OnClientBasis")+")",Language.tr("SimStatistic.CancelTime"),Language.tr("Statistic.Frequency"));
-			addLongSeriesPart(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+type+")",Color.RED,kunden.kundenAbbruchzeitVerteilungLang.divide(statistic.simDays),1200,5);
+			addLongSeriesPart(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+type+")",Color.RED,kunden.kundenAbbruchzeitVerteilungLang.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
 
 		case DATA_TYPE_CALLER_CANCELTIME_DIST_LONG:
 			setupLongTime(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",Language.tr("SimStatistic.CancelTime"),Language.tr("Statistic.Frequency"));
-			addLongSeriesPart(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+type+")",Color.RED,kunden.anrufeAbbruchzeitVerteilungLang.divide(statistic.simDays),1200,5);
+			addLongSeriesPart(Language.tr("SimStatistic.CancelTimeDistribution")+" ("+type+")",Color.RED,kunden.anrufeAbbruchzeitVerteilungLang.divide(statistic.simulationData.runRepeatCount),1200,5);
 			addFillColor(0);
 			smartZoom(10);
 			break;
@@ -384,7 +384,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 			setupChartDayValue(Language.tr("SimStatistic.AverageWaitingAndCancelTimes")+" ("+Language.tr("SimStatistic.OnClientBasis")+")",Language.tr("SimStatistic.AveragePerHalfHourInterval")+" ("+Language.tr("Statistic.Units.InSeconds")+")");
 			addSeries(Language.tr("SimStatistic.AverageWaitingTime")+" ("+type+")",Color.BLUE,kunden.kundenWartezeitSumProIntervall.divide(kunden.kundenProIntervall));
 			addSeries(Language.tr("SimStatistic.AverageCancelTime")+" ("+type+")",Color.RED,kunden.kundenAbbruchzeitSumProIntervall.divide(kunden.kundenAbbruchProIntervall));
-			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.kundenProIntervall.divide(statistic.simDays));
+			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.kundenProIntervall.divide(statistic.simulationData.runRepeatCount));
 			plot.getRangeAxis(1).setLabel(Language.tr("SimStatistic.ArrivalsPerHalfHourInterval"));
 			addFillColor(0);
 			break;
@@ -393,7 +393,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 			setupChartDayValue(Language.tr("SimStatistic.AverageWaitingAndCancelTimes")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",Language.tr("SimStatistic.AveragePerHalfHourInterval")+" ("+Language.tr("Statistic.Units.InSeconds")+")");
 			addSeries(Language.tr("SimStatistic.AverageWaitingTime")+" ("+type+")",Color.BLUE,kunden.anrufeWartezeitSumProIntervall.divide(kunden.anrufeProIntervall));
 			addSeries(Language.tr("SimStatistic.AverageCancelTime")+" ("+type+")",Color.RED,kunden.anrufeAbbruchzeitSumProIntervall.divide(kunden.anrufeAbbruchProIntervall));
-			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.anrufeProIntervall.divide(statistic.simDays));
+			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.anrufeProIntervall.divide(statistic.simulationData.runRepeatCount));
 			plot.getRangeAxis(1).setLabel(Language.tr("SimStatistic.ArrivalsPerHalfHourInterval"));
 			addFillColor(0);
 			break;
@@ -401,7 +401,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		case DATA_TYPE_CLIENT_SUCCESS:
 			setupChartDayPercent(Language.tr("SimStatistic.Accessibility")+" ("+Language.tr("SimStatistic.OnClientBasis")+")",Language.tr("SimStatistic.AveragePerHalfHourInterval"));
 			addSeries(Language.tr("SimStatistic.Accessibility")+" ("+type+")",Color.BLUE,kunden.kundenErfolgProIntervall.divide(kunden.kundenProIntervall));
-			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.kundenProIntervall.divide(statistic.simDays));
+			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.kundenProIntervall.divide(statistic.simulationData.runRepeatCount));
 			plot.getRangeAxis(1).setLabel(Language.tr("SimStatistic.ArrivalsPerHalfHourInterval"));
 			addFillColor(0);
 			break;
@@ -409,7 +409,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		case DATA_TYPE_CALLER_SUCCESS:
 			setupChartDayPercent(Language.tr("SimStatistic.Accessibility")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",Language.tr("SimStatistic.AveragePerHalfHourInterval"));
 			addSeries(Language.tr("SimStatistic.Accessibility")+" ("+type+")",Color.BLUE,kunden.anrufeErfolgProIntervall.divide(kunden.anrufeProIntervall));
-			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.anrufeProIntervall.divide(statistic.simDays));
+			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.anrufeProIntervall.divide(statistic.simulationData.runRepeatCount));
 			plot.getRangeAxis(1).setLabel(Language.tr("SimStatistic.ArrivalsPerHalfHourInterval"));
 			addFillColor(0);
 			break;
@@ -417,7 +417,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		case DATA_TYPE_CLIENT_SERVICE_LEVEL:
 			setupChartDayPercent(Language.tr("SimStatistic.ServiceLevel")+" ("+Language.tr("SimStatistic.OnClientBasis")+", "+Language.tr("SimStatistic.CalculatedOn.SuccessfulClients")+")",Language.tr("SimStatistic.AveragePerHalfHourInterval"));
 			addSeries(Language.tr("SimStatistic.ServiceLevel")+" ("+type+")",Color.BLUE,kunden.kundenServicelevelProIntervall.divide(kunden.kundenErfolgProIntervall));
-			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.kundenProIntervall.divide(statistic.simDays));
+			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.kundenProIntervall.divide(statistic.simulationData.runRepeatCount));
 			plot.getRangeAxis(1).setLabel(Language.tr("SimStatistic.ArrivalsPerHalfHourInterval"));
 			addFillColor(0);
 			break;
@@ -425,7 +425,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		case DATA_TYPE_CALLER_SERVICE_LEVEL:
 			setupChartDayPercent(Language.tr("SimStatistic.ServiceLevel")+" ("+Language.tr("SimStatistic.OnCallBasis")+", "+Language.tr("SimStatistic.CalculatedOn.SuccessfulCalls")+")",Language.tr("SimStatistic.AveragePerHalfHourInterval"));
 			addSeries(Language.tr("SimStatistic.ServiceLevel")+" ("+type+")",Color.BLUE,kunden.anrufeServicelevelProIntervall.divide(kunden.anrufeErfolgProIntervall));
-			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.anrufeProIntervall.divide(statistic.simDays));
+			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.anrufeProIntervall.divide(statistic.simulationData.runRepeatCount));
 			plot.getRangeAxis(1).setLabel(Language.tr("SimStatistic.ArrivalsPerHalfHourInterval"));
 			addFillColor(0);
 			break;
@@ -433,7 +433,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		case DATA_TYPE_CLIENT_SERVICE_LEVEL_ALL:
 			setupChartDayPercent(Language.tr("SimStatistic.ServiceLevel")+" ("+Language.tr("SimStatistic.OnClientBasis")+", "+Language.tr("SimStatistic.CalculatedOn.AllClients")+")",Language.tr("SimStatistic.AveragePerHalfHourInterval"));
 			addSeries(Language.tr("SimStatistic.ServiceLevel")+" ("+type+")",Color.BLUE,kunden.kundenServicelevelProIntervall.divide(kunden.kundenProIntervall));
-			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.kundenProIntervall.divide(statistic.simDays));
+			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.kundenProIntervall.divide(statistic.simulationData.runRepeatCount));
 			plot.getRangeAxis(1).setLabel(Language.tr("SimStatistic.ArrivalsPerHalfHourInterval"));
 			addFillColor(0);
 			break;
@@ -441,7 +441,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		case DATA_TYPE_CALLER_SERVICE_LEVEL_ALL:
 			setupChartDayPercent(Language.tr("SimStatistic.ServiceLevel")+" ("+Language.tr("SimStatistic.OnCallBasis")+", "+Language.tr("SimStatistic.CalculatedOn.AllCalls")+")",Language.tr("SimStatistic.AveragePerHalfHourInterval"));
 			addSeries(Language.tr("SimStatistic.ServiceLevel")+" ("+type+")",Color.BLUE,kunden.anrufeServicelevelProIntervall.divide(kunden.anrufeProIntervall));
-			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.anrufeProIntervall.divide(statistic.simDays));
+			addSeriesToSecondSet(Language.tr("SimStatistic.Caller")+" ("+type+")",Color.BLACK,kunden.anrufeProIntervall.divide(statistic.simulationData.runRepeatCount));
 			plot.getRangeAxis(1).setLabel(Language.tr("SimStatistic.ArrivalsPerHalfHourInterval"));
 			addFillColor(0);
 			break;
@@ -535,7 +535,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 
 		case DATA_TYPE_FREETIME:
 			setupChartDayValue(Language.tr("SimStatistic.IdleTime"),Language.tr("SimStatistic.AveragePerHalfHourInterval")+" ("+Language.tr("Statistic.Units.InMinutes")+")");
-			addSeries(Language.tr("SimStatistic.IdleTime")+" ("+type+")",Color.RED,agenten.leerlaufProIntervall.divide(statistic.simDays*60));
+			addSeries(Language.tr("SimStatistic.IdleTime")+" ("+type+")",Color.RED,agenten.leerlaufProIntervall.divide(statistic.simulationData.runRepeatCount*60));
 			addSeriesToSecondSet(Language.tr("SimStatistic.ActiveAgents")+" ("+type+")",Color.BLACK,agentenProInterval(dataNr));
 			plot.getRangeAxis(1).setLabel(Language.tr("SimStatistic.ActiveAgentsPerHalfHourInterval"));
 			addFillColor(0);

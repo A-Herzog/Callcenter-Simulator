@@ -273,11 +273,11 @@ public class StatisticViewerAgentenIntervalTable extends StatisticViewerInterval
 		case DATA_TYPE_AUSLASTUNG:
 		case DATA_TYPE_BEREITZEIT:
 		case DATA_TYPE_CALLS:
-			return (colNr<statistic.agentenProCallcenter.length)?getAgentenCol(statistic.agentenProCallcenter[colNr],statistic.simDays):getAgentenCol(statistic.agentenGlobal,statistic.simDays);
+			return (colNr<statistic.agentenProCallcenter.length)?getAgentenCol(statistic.agentenProCallcenter[colNr],statistic.simulationData.runRepeatCount):getAgentenCol(statistic.agentenGlobal,statistic.simulationData.runRepeatCount);
 		case DATA_TYPE_AUSLASTUNG_DETAILS:
-			return (colNr/4<statistic.agentenProCallcenter.length)?getAgentenDetailsCol(statistic.agentenProCallcenter[colNr/4],statistic.simDays,colNr%4):getAgentenDetailsCol(statistic.agentenGlobal,statistic.simDays,colNr%4);
+			return (colNr/4<statistic.agentenProCallcenter.length)?getAgentenDetailsCol(statistic.agentenProCallcenter[colNr/4],statistic.simulationData.runRepeatCount,colNr%4):getAgentenDetailsCol(statistic.agentenGlobal,statistic.simulationData.runRepeatCount,colNr%4);
 		case DATA_TYPE_SKILL_LEVEL_DETAILS:
-			return (colNr/4<statistic.agentenProSkilllevel.length)?getAgentenDetailsCol(statistic.agentenProSkilllevel[colNr/4],statistic.simDays,colNr%4):getAgentenDetailsCol(statistic.agentenGlobal,statistic.simDays,colNr%4);
+			return (colNr/4<statistic.agentenProSkilllevel.length)?getAgentenDetailsCol(statistic.agentenProSkilllevel[colNr/4],statistic.simulationData.runRepeatCount,colNr%4):getAgentenDetailsCol(statistic.agentenGlobal,statistic.simulationData.runRepeatCount,colNr%4);
 		case DATA_MODEL_SIM_AGENTS:
 		case DATA_MODEL_MODEL_AGENTS:
 		case DATA_MODEL_FULL_AGENTS:

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-31 11:31+0200\n"
+"POT-Creation-Date: 2020-08-03 13:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -8562,9 +8562,6 @@ msgstr ""
 msgid "SimStatistic.SystemData.ServerOS"
 msgstr "Simulation server operating system"
 
-msgid "SimStatistic.SystemData.ServerVersion"
-msgstr "Simulation server"
-
 msgid "SimStatistic.SystemData.SimDays"
 msgstr "Simulated days"
 
@@ -9162,9 +9159,6 @@ msgstr "Table"
 msgid "Statistic.Type.Text"
 msgstr "Text"
 
-msgid "Statistic.Units.Days"
-msgstr "days"
-
 msgid "Statistic.Units.Hours.lower"
 msgstr "hours"
 
@@ -9455,6 +9449,54 @@ msgstr ""
 
 msgid "Statistic.WriteError.Title"
 msgstr "Error saving file"
+
+msgid "Statistics.XML.BaseData"
+msgstr "StatisticsSimulation"
+
+msgid "Statistics.XML.EmergencyShutDown"
+msgstr "StatisticsInternalTermination"
+
+msgid "Statistics.XML.RunDate"
+msgstr "StatisticsRunDate"
+
+msgid "Statistics.XML.RunEvents"
+msgstr "StatisticsEvents"
+
+msgid "Statistics.XML.RunEvents.Error"
+msgstr "The value in the \"%s\" element has to be a non-negative integer value but is \"%s\"."
+
+msgid "Statistics.XML.RunOS"
+msgstr "StatisticsSystem"
+
+msgid "Statistics.XML.RunRepeatCount"
+msgstr "StatisticsRepeats"
+
+msgid "Statistics.XML.RunRepeatCount.Error"
+msgstr "The value in the \"%s\" element has to be a positive integer value but is \"%s\"."
+
+msgid "Statistics.XML.RunThreads"
+msgstr "StatisticsThreads"
+
+msgid "Statistics.XML.RunThreads.Error"
+msgstr "The value in the \"%s\" element has to be a positive integer value but is \"%s\"."
+
+msgid "Statistics.XML.RunThreads.NUMA"
+msgstr "NUMAMode"
+
+msgid "Statistics.XML.RunTime"
+msgstr "StatisticsRunTime"
+
+msgid "Statistics.XML.RunTime.Error"
+msgstr "The value in the \"%s\" element has to be a non-negative integer value but is \"%s\"."
+
+msgid "Statistics.XML.RunUser"
+msgstr "StatisticsUser"
+
+msgid "Statistics.XML.ThreadRunTimes"
+msgstr "StatisticsThreadRunTimes"
+
+msgid "Statistics.XML.Warning"
+msgstr "StatisticsModelWarning"
 
 msgid "Table.BoolFalse"
 msgstr "FALSE"
@@ -10977,9 +11019,6 @@ msgstr "The client type specific technical free time per interval is invalid."
 msgid "XML.Statistic.BaseElement"
 msgstr "Statistic"
 
-msgid "XML.Statistic.BaseElement.Error"
-msgstr "The root element is not \"%s\", this means the current file is not Callcenter Simulator statistic file."
-
 msgid "XML.Statistic.CallCenter"
 msgstr "CallCenter"
 
@@ -11577,6 +11616,12 @@ msgstr "StatisticThresholds"
 msgid "XML.XSD"
 msgstr "CallcenterSimulator_en.xsd"
 
+#~ msgid "SimStatistic.SystemData.ServerVersion"
+#~ msgstr "Simulation server"
+
+#~ msgid "Statistic.Units.Days"
+#~ msgstr "days"
+
 #~ msgid "Window.Info.ModelOverviewError.NotExist.Info"
 #~ msgstr ""
 #~ "The model overview file\n"
@@ -11594,3 +11639,6 @@ msgstr "CallcenterSimulator_en.xsd"
 
 #~ msgid "Window.Info.ShowGlossaryError.NotExist.Title"
 #~ msgstr "Glossary file does not exist"
+
+#~ msgid "XML.Statistic.BaseElement.Error"
+#~ msgstr "The root element is not \"%s\", this means the current file is not Callcenter Simulator statistic file."

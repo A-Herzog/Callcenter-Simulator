@@ -74,7 +74,7 @@ public final class CommandFilter extends AbstractSimulationCommand {
 	}
 
 	private void runFilter(Statistics statistic, String commands, File results, PrintStream out) {
-		DataFilter dataFilter=new DataFilter(statistic.saveToDocument());
+		DataFilter dataFilter=new DataFilter(statistic.saveToXMLDocument());
 		if (!dataFilter.run(commands,false)) {
 			out.println(Language.tr("CommandLine.Filter.Done.Error")+":");
 			out.println(dataFilter.getResults());

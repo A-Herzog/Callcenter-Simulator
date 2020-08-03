@@ -17,7 +17,6 @@ package net.calc;
 
 import java.io.File;
 
-import language.Language;
 import simulator.CallcenterSimulatorInterface;
 import simulator.Statistics;
 
@@ -87,18 +86,16 @@ public class MultiComplexCallcenterSimulator implements CallcenterSimulatorInter
 		if (statistics==null) {
 			statistics=simulators[0].collectStatistic();
 			if (statistics==null) return null;
-			int threadCount=statistics.runThreads;
-			if (simulators.length>1) statistics.runServer+=" ("+statistics.simDays+" "+Language.tr("Statistic.Units.Days")+")";
+			int threadCount=statistics.simulationData.runThreads;
 			for (int i=1;i<simulators.length;i++) {
 				Statistics stat=simulators[i].collectStatistic();
 				if (stat==null) return null;
 				statistics.addData(stat);
-				statistics.runServer+=" / "+stat.runServer+" ("+stat.simDays+" "+Language.tr("Statistic.Units.Days")+")";
-				statistics.runServerOS+=" / "+stat.runServerOS;
-				statistics.runUser+=" / "+stat.runUser;
-				threadCount+=stat.runThreads;
+				statistics.simulationData.runOS+=" / "+stat.simulationData.runOS;
+				statistics.simulationData.runUser+=" / "+stat.simulationData.runUser;
+				threadCount+=stat.simulationData.runThreads;
 			}
-			statistics.runThreads=threadCount;
+			statistics.simulationData.runThreads=threadCount;
 			statistics.calcWarnings();
 			if (simulators.length>1) {
 				statistics.finalQueueLengthCalc();

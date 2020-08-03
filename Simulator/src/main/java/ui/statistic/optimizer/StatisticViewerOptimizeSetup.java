@@ -173,12 +173,11 @@ public class StatisticViewerOptimizeSetup extends StatisticViewerText {
 		beginParagraph();
 		Statistics statistic=results.data.get(0);
 		addLine(Language.tr("SimStatistic.SystemData.Version")+": "+statistic.editModel.version);
-		if (!statistic.runUser.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.User")+": "+statistic.runUser);
-		if (!statistic.runDate.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.Date")+": "+statistic.runDate);
-		addLine(Language.tr("SimStatistic.SystemData.Threads")+": "+NumberTools.formatLong(statistic.runThreads));
-		if (!statistic.runServer.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.ServerVersion")+": "+statistic.runServer);
-		if (!statistic.runServerOS.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.ServerOS")+": "+statistic.runServerOS);
-		addLine(Language.tr("SimStatistic.SystemData.SimDays")+": "+NumberTools.formatLong(statistic.simDays));
+		if (!statistic.simulationData.runUser.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.User")+": "+statistic.simulationData.runUser);
+		if (!statistic.simulationData.runDate.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.Date")+": "+statistic.simulationData.runDate);
+		addLine(Language.tr("SimStatistic.SystemData.Threads")+": "+NumberTools.formatLong(statistic.simulationData.runThreads));
+		if (!statistic.simulationData.runOS.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.ServerOS")+": "+statistic.simulationData.runOS);
+		addLine(Language.tr("SimStatistic.SystemData.SimDays")+": "+NumberTools.formatLong(statistic.simulationData.runRepeatCount));
 		endParagraph();
 
 		if (results.runTime>0) {

@@ -73,19 +73,19 @@ public class StatisticViewerKostenText extends StatisticViewerText {
 	@Override
 	protected void buildText() {
 		addHeading(1,Language.tr("SimStatistic.Costs.ByClients"));
-		if (statistic.kundenProTyp.length>1) for (int i=0;i<statistic.kundenProTyp.length;i++) buildClientCosts(statistic.kundenProTyp[i],statistic.simDays);
-		buildClientCosts(statistic.kundenGlobal,statistic.simDays);
+		if (statistic.kundenProTyp.length>1) for (int i=0;i<statistic.kundenProTyp.length;i++) buildClientCosts(statistic.kundenProTyp[i],statistic.simulationData.runRepeatCount);
+		buildClientCosts(statistic.kundenGlobal,statistic.simulationData.runRepeatCount);
 
 		addHeading(1,Language.tr("SimStatistic.Costs.ByAgents"));
-		if (statistic.agentenProCallcenter.length>1) for (int i=0;i<statistic.agentenProCallcenter.length;i++) buildAgentCosts(statistic.agentenProCallcenter[i],statistic.simDays);
-		if (statistic.agentenProSkilllevel.length>1) for (int i=0;i<statistic.agentenProSkilllevel.length;i++) buildAgentCosts(statistic.agentenProSkilllevel[i],statistic.simDays);
-		buildAgentCosts(statistic.agentenGlobal,statistic.simDays);
+		if (statistic.agentenProCallcenter.length>1) for (int i=0;i<statistic.agentenProCallcenter.length;i++) buildAgentCosts(statistic.agentenProCallcenter[i],statistic.simulationData.runRepeatCount);
+		if (statistic.agentenProSkilllevel.length>1) for (int i=0;i<statistic.agentenProSkilllevel.length;i++) buildAgentCosts(statistic.agentenProSkilllevel[i],statistic.simulationData.runRepeatCount);
+		buildAgentCosts(statistic.agentenGlobal,statistic.simulationData.runRepeatCount);
 
 		addHeading(1,Language.tr("SimStatistic.Costs.Total"));
 		beginParagraph();
-		addLineDiv2(1,Language.tr("SimStatistic.Yield"),statistic.kundenGlobal.revenue,statistic.simDays);
-		addLineDiv2(1,Language.tr("SimStatistic.Costs"),statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime,statistic.simDays);
-		addLineDiv2(1,Language.tr("Statistic.Total"),statistic.kundenGlobal.revenue-(statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime),statistic.simDays);
+		addLineDiv2(1,Language.tr("SimStatistic.Yield"),statistic.kundenGlobal.revenue,statistic.simulationData.runRepeatCount);
+		addLineDiv2(1,Language.tr("SimStatistic.Costs"),statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime,statistic.simulationData.runRepeatCount);
+		addLineDiv2(1,Language.tr("Statistic.Total"),statistic.kundenGlobal.revenue-(statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime),statistic.simulationData.runRepeatCount);
 		endParagraph();
 
 		/* Infotext  */

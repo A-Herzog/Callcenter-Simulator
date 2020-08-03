@@ -302,7 +302,7 @@ public class StatisticViewerKundenAgentenBarChart extends StatisticViewerBarChar
 
 		case DATA_TYPE_WORKING_TIME:
 			setupBarChart(Language.tr("SimStatistic.AgentWorkingTimes"),Language.tr("SimStatistic.AgentGroups"),Language.tr("SimStatistic.Time")+" ("+Language.tr("Statistic.Units.InMinutes")+")",false);
-			div=statistic.simDays*60;
+			div=statistic.simulationData.runRepeatCount*60;
 			for (int i=0;i<statistic.agentenProCallcenter.length;i++) {
 				AgentenDaten a=statistic.agentenProCallcenter[i];
 				data.addValue((double)a.postProcessingGesamt/div,Language.tr("SimStatistic.PostProcessingTime"),a.name);
@@ -320,7 +320,7 @@ public class StatisticViewerKundenAgentenBarChart extends StatisticViewerBarChar
 
 		case DATA_TYPE_WORKING_TIME_BY_SKILL:
 			setupBarChart(Language.tr("SimStatistic.AgentWorkingTimes"),Language.tr("SimStatistic.AgentGroups"),Language.tr("SimStatistic.Time")+" ("+Language.tr("Statistic.Units.InMinutes")+")",false);
-			div=statistic.simDays*60;
+			div=statistic.simulationData.runRepeatCount*60;
 			for (int i=0;i<statistic.agentenProSkilllevel.length;i++) {
 				AgentenDaten a=statistic.agentenProSkilllevel[i];
 				data.addValue((double)a.postProcessingGesamt/div,Language.tr("SimStatistic.PostProcessingTime"),a.name);

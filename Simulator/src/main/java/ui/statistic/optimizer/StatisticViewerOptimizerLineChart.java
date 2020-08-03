@@ -259,8 +259,8 @@ public class StatisticViewerOptimizerLineChart extends StatisticViewerLineChart 
 			switch (dataType) {
 			case DATA_TYPE_CALLERS:
 				if (kunden!=null)  {
-					dist1.add((double)(kunden.kunden+kunden.kundenWiederanruf)/statistic.simDays);
-					dist2.add((double)kunden.anrufe/statistic.simDays);
+					dist1.add((double)(kunden.kunden+kunden.kundenWiederanruf)/statistic.simulationData.runRepeatCount);
+					dist2.add((double)kunden.anrufe/statistic.simulationData.runRepeatCount);
 				}
 				break;
 			case DATA_TYPE_SUCCESS:
@@ -271,8 +271,8 @@ public class StatisticViewerOptimizerLineChart extends StatisticViewerLineChart 
 				break;
 			case DATA_TYPE_CANCEL:
 				if (kunden!=null) {
-					dist1.add((double)kunden.kundenAbbruch/statistic.simDays);
-					dist2.add((double)kunden.anrufeAbbruch/statistic.simDays);
+					dist1.add((double)kunden.kundenAbbruch/statistic.simulationData.runRepeatCount);
+					dist2.add((double)kunden.anrufeAbbruch/statistic.simulationData.runRepeatCount);
 				}
 				break;
 			case DATA_TYPE_WAITING_TIME:
@@ -296,11 +296,11 @@ public class StatisticViewerOptimizerLineChart extends StatisticViewerLineChart 
 			case DATA_TYPE_AGENTS_CALLCENTER:
 			case DATA_TYPE_AGENTS_SKILL_LEVEL:
 				if (agenten!=null) {
-					dist1.add((double)(agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt)/statistic.simDays/3600);
-					dist2.add((double)agenten.leerlaufGesamt/statistic.simDays/3600);
-					dist3.add((double)agenten.technischerLeerlaufGesamt/statistic.simDays/3600);
-					dist4.add((double)agenten.arbeitGesamt/statistic.simDays/3600);
-					dist5.add((double)agenten.postProcessingGesamt/statistic.simDays/3600);
+					dist1.add((double)(agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt)/statistic.simulationData.runRepeatCount/3600);
+					dist2.add((double)agenten.leerlaufGesamt/statistic.simulationData.runRepeatCount/3600);
+					dist3.add((double)agenten.technischerLeerlaufGesamt/statistic.simulationData.runRepeatCount/3600);
+					dist4.add((double)agenten.arbeitGesamt/statistic.simulationData.runRepeatCount/3600);
+					dist5.add((double)agenten.postProcessingGesamt/statistic.simulationData.runRepeatCount/3600);
 				}
 				break;
 			case DATA_TYPE_WORKLOAD_CALLCENTER:
@@ -309,24 +309,24 @@ public class StatisticViewerOptimizerLineChart extends StatisticViewerLineChart 
 				break;
 			case DATA_TYPE_CALLER_COSTS:
 				if (kunden!=null) {
-					dist1.add(kunden.revenue/statistic.simDays);
-					dist2.add(kunden.costCancel/statistic.simDays);
-					dist3.add(kunden.costWaiting/statistic.simDays);
-					dist4.add((kunden.revenue-kunden.costCancel-kunden.costWaiting)/statistic.simDays);
+					dist1.add(kunden.revenue/statistic.simulationData.runRepeatCount);
+					dist2.add(kunden.costCancel/statistic.simulationData.runRepeatCount);
+					dist3.add(kunden.costWaiting/statistic.simulationData.runRepeatCount);
+					dist4.add((kunden.revenue-kunden.costCancel-kunden.costWaiting)/statistic.simulationData.runRepeatCount);
 				}
 				break;
 			case DATA_TYPE_SKILL_LEVEL_COSTS:
 				if (agenten!=null) {
-					dist1.add(agenten.costOfficeTime/statistic.simDays);
-					dist2.add(agenten.costCalls/statistic.simDays);
-					dist3.add(agenten.costProcessTime/statistic.simDays);
-					dist4.add((agenten.costOfficeTime+agenten.costCalls+agenten.costProcessTime)/statistic.simDays);
+					dist1.add(agenten.costOfficeTime/statistic.simulationData.runRepeatCount);
+					dist2.add(agenten.costCalls/statistic.simulationData.runRepeatCount);
+					dist3.add(agenten.costProcessTime/statistic.simulationData.runRepeatCount);
+					dist4.add((agenten.costOfficeTime+agenten.costCalls+agenten.costProcessTime)/statistic.simulationData.runRepeatCount);
 				}
 				break;
 			case DATA_TYPE_COSTS:
-				dist1.add(statistic.kundenGlobal.revenue/statistic.simDays);
-				dist2.add((statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime)/statistic.simDays);
-				dist3.add((statistic.kundenGlobal.revenue-(statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime))/statistic.simDays);
+				dist1.add(statistic.kundenGlobal.revenue/statistic.simulationData.runRepeatCount);
+				dist2.add((statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime)/statistic.simulationData.runRepeatCount);
+				dist3.add((statistic.kundenGlobal.revenue-(statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime))/statistic.simulationData.runRepeatCount);
 				break;
 			case DATA_TYPE_ERLANGC_SUCCESS:
 				erlangC1=new StatisticViewerErlangCTools(statistic.editModel,false);

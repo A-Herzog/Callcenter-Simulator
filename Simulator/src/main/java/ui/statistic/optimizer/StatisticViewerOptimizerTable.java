@@ -388,16 +388,16 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 
 			switch (dataType) {
 			case DATA_TYPE_CALLERS:
-				row1[i]=NumberTools.formatNumber((double)(kunden.kunden+kunden.kundenWiederanruf)/statistic.simDays);
-				row2[i]=NumberTools.formatNumber((double)kunden.anrufe/statistic.simDays);
+				row1[i]=NumberTools.formatNumber((double)(kunden.kunden+kunden.kundenWiederanruf)/statistic.simulationData.runRepeatCount);
+				row2[i]=NumberTools.formatNumber((double)kunden.anrufe/statistic.simulationData.runRepeatCount);
 				break;
 			case DATA_TYPE_SUCCESS:
 				row1[i]=NumberTools.formatPercent((double)kunden.kundenErfolg/(kunden.kunden+kunden.kundenWiederanruf));
 				row2[i]=NumberTools.formatPercent((double)kunden.anrufeErfolg/kunden.anrufe);
 				break;
 			case DATA_TYPE_CANCEL:
-				row1[i]=NumberTools.formatNumber((double)kunden.kundenAbbruch/statistic.simDays);
-				row2[i]=NumberTools.formatNumber((double)kunden.anrufeAbbruch/statistic.simDays);
+				row1[i]=NumberTools.formatNumber((double)kunden.kundenAbbruch/statistic.simulationData.runRepeatCount);
+				row2[i]=NumberTools.formatNumber((double)kunden.anrufeAbbruch/statistic.simulationData.runRepeatCount);
 				break;
 			case DATA_TYPE_WAITING_TIME:
 				row1[i]=TimeTools.formatTime((int)(kunden.anrufeWartezeitSum/Math.max(1,kunden.anrufeErfolg)));
@@ -418,15 +418,15 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 				row1[i]=NumberTools.formatPercent((double)kunden.kundenServicelevel/Math.max(1,kunden.kunden));
 				break;
 			case DATA_TYPE_CALLER_COSTS:
-				row1[i]=NumberTools.formatNumber(kunden.revenue/statistic.simDays);
-				row2[i]=NumberTools.formatNumber(kunden.costCancel/statistic.simDays);
-				row3[i]=NumberTools.formatNumber(kunden.costWaiting/statistic.simDays);
-				row4[i]=NumberTools.formatNumber((kunden.revenue-kunden.costCancel-kunden.costWaiting)/statistic.simDays);
+				row1[i]=NumberTools.formatNumber(kunden.revenue/statistic.simulationData.runRepeatCount);
+				row2[i]=NumberTools.formatNumber(kunden.costCancel/statistic.simulationData.runRepeatCount);
+				row3[i]=NumberTools.formatNumber(kunden.costWaiting/statistic.simulationData.runRepeatCount);
+				row4[i]=NumberTools.formatNumber((kunden.revenue-kunden.costCancel-kunden.costWaiting)/statistic.simulationData.runRepeatCount);
 				break;
 			case DATA_TYPE_COSTS:
-				row1[i]=NumberTools.formatNumber(statistic.kundenGlobal.revenue/statistic.simDays);
-				row2[i]=NumberTools.formatNumber((statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime)/statistic.simDays);
-				row3[i]=NumberTools.formatNumber((statistic.kundenGlobal.revenue-(statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime))/statistic.simDays);
+				row1[i]=NumberTools.formatNumber(statistic.kundenGlobal.revenue/statistic.simulationData.runRepeatCount);
+				row2[i]=NumberTools.formatNumber((statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime)/statistic.simulationData.runRepeatCount);
+				row3[i]=NumberTools.formatNumber((statistic.kundenGlobal.revenue-(statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime))/statistic.simulationData.runRepeatCount);
 				break;
 			case DATA_TYPE_ERLANGC_SUCCESS:
 				erlangC1=new StatisticViewerErlangCTools(statistic.editModel,false);
@@ -496,21 +496,21 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 			switch (dataType) {
 			case DATA_TYPE_AGENTS_CALLCENTER:
 			case DATA_TYPE_AGENTS_SKILL_LEVEL:
-				row1[i]=NumberTools.formatNumber((double)agenten.leerlaufGesamt/statistic.simDays/3600);
-				row2[i]=NumberTools.formatNumber((double)agenten.technischerLeerlaufGesamt/statistic.simDays/3600);
-				row3[i]=NumberTools.formatNumber((double)agenten.arbeitGesamt/statistic.simDays/3600);
-				row4[i]=NumberTools.formatNumber((double)agenten.postProcessingGesamt/statistic.simDays/3600);
-				row5[i]=NumberTools.formatNumber((double)(agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt)/statistic.simDays/3600);
+				row1[i]=NumberTools.formatNumber((double)agenten.leerlaufGesamt/statistic.simulationData.runRepeatCount/3600);
+				row2[i]=NumberTools.formatNumber((double)agenten.technischerLeerlaufGesamt/statistic.simulationData.runRepeatCount/3600);
+				row3[i]=NumberTools.formatNumber((double)agenten.arbeitGesamt/statistic.simulationData.runRepeatCount/3600);
+				row4[i]=NumberTools.formatNumber((double)agenten.postProcessingGesamt/statistic.simulationData.runRepeatCount/3600);
+				row5[i]=NumberTools.formatNumber((double)(agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt)/statistic.simulationData.runRepeatCount/3600);
 				break;
 			case DATA_TYPE_WORKLOAD_CALLCENTER:
 			case DATA_TYPE_WORKLOAD_SKILL_LEVEL:
 				row1[i]=NumberTools.formatPercent((1-(double)agenten.leerlaufGesamt/(agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt)));
 				break;
 			case DATA_TYPE_SKILL_LEVEL_COSTS:
-				row1[i]=NumberTools.formatNumber(agenten.costOfficeTime/statistic.simDays);
-				row2[i]=NumberTools.formatNumber(agenten.costCalls/statistic.simDays);
-				row3[i]=NumberTools.formatNumber(agenten.costProcessTime/statistic.simDays);
-				row4[i]=NumberTools.formatNumber((agenten.costOfficeTime+agenten.costCalls+agenten.costProcessTime)/statistic.simDays);
+				row1[i]=NumberTools.formatNumber(agenten.costOfficeTime/statistic.simulationData.runRepeatCount);
+				row2[i]=NumberTools.formatNumber(agenten.costCalls/statistic.simulationData.runRepeatCount);
+				row3[i]=NumberTools.formatNumber(agenten.costProcessTime/statistic.simulationData.runRepeatCount);
+				row4[i]=NumberTools.formatNumber((agenten.costOfficeTime+agenten.costCalls+agenten.costProcessTime)/statistic.simulationData.runRepeatCount);
 				break;
 			default:
 				/* Keine Kunden-Daten */

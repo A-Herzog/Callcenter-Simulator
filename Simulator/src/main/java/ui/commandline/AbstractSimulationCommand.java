@@ -133,7 +133,7 @@ public abstract class AbstractSimulationCommand extends AbstractCommand {
 			return null;
 		}
 		Statistics statistics=simulator.collectStatistic();
-		if (!minimalOutput) out.println(String.format(Language.tr("CommandLine.Simulation.Done"),NumberTools.formatLong(statistics.runTime)));
+		if (!minimalOutput) out.println(String.format(Language.tr("CommandLine.Simulation.Done"),NumberTools.formatLong(statistics.simulationData.runTime)));
 
 		simulator=null;
 

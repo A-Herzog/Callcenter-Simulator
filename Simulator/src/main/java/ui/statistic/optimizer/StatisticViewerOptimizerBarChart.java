@@ -346,8 +346,8 @@ public class StatisticViewerOptimizerBarChart extends StatisticViewerBarChart {
 		boolean round=false;
 		switch (dataType) {
 		case DATA_TYPE_CALLERS:
-			if (kunden1!=null) dist1=kunden1.anrufeProIntervall.divide(statistic1.simDays);
-			if (kunden2!=null) dist2=kunden2.anrufeProIntervall.divide(statistic1.simDays);
+			if (kunden1!=null) dist1=kunden1.anrufeProIntervall.divide(statistic1.simulationData.runRepeatCount);
+			if (kunden2!=null) dist2=kunden2.anrufeProIntervall.divide(statistic1.simulationData.runRepeatCount);
 			up=false;
 			break;
 		case DATA_TYPE_SUCCESS:
@@ -356,8 +356,8 @@ public class StatisticViewerOptimizerBarChart extends StatisticViewerBarChart {
 			up=true;
 			break;
 		case DATA_TYPE_CANCEL:
-			if (kunden1!=null) dist1=kunden1.anrufeAbbruchProIntervall.divide(statistic1.simDays);
-			if (kunden2!=null) dist2=kunden2.anrufeAbbruchProIntervall.divide(statistic1.simDays);
+			if (kunden1!=null) dist1=kunden1.anrufeAbbruchProIntervall.divide(statistic1.simulationData.runRepeatCount);
+			if (kunden2!=null) dist2=kunden2.anrufeAbbruchProIntervall.divide(statistic1.simulationData.runRepeatCount);
 			up=false;
 			break;
 		case DATA_TYPE_WAITING_TIME:
@@ -392,8 +392,8 @@ public class StatisticViewerOptimizerBarChart extends StatisticViewerBarChart {
 			break;
 		case DATA_TYPE_AGENTS_CALLCENTER:
 		case DATA_TYPE_AGENTS_SKILL_LEVEL:
-			if (agenten1!=null) dist1=agenten1.leerlaufProIntervall.add(agenten1.technischerLeerlaufProIntervall).add(agenten1.arbeitProIntervall).add(agenten1.postProcessingProIntervall).divide(statistic1.simDays).divide(3600);
-			if (agenten2!=null) dist2=agenten2.leerlaufProIntervall.add(agenten2.technischerLeerlaufProIntervall).add(agenten2.arbeitProIntervall).add(agenten2.postProcessingProIntervall).divide(statistic2.simDays).divide(3600);
+			if (agenten1!=null) dist1=agenten1.leerlaufProIntervall.add(agenten1.technischerLeerlaufProIntervall).add(agenten1.arbeitProIntervall).add(agenten1.postProcessingProIntervall).divide(statistic1.simulationData.runRepeatCount).divide(3600);
+			if (agenten2!=null) dist2=agenten2.leerlaufProIntervall.add(agenten2.technischerLeerlaufProIntervall).add(agenten2.arbeitProIntervall).add(agenten2.postProcessingProIntervall).divide(statistic2.simulationData.runRepeatCount).divide(3600);
 			up=true;
 			round=true;
 			break;

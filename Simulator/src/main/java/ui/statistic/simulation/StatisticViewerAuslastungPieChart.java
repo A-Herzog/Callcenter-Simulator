@@ -92,27 +92,27 @@ public class StatisticViewerAuslastungPieChart extends StatisticViewerPieChart {
 		switch (dataType) {
 		case DATA_TYPE_ALL:
 			chart.setTitle(Language.tr("SimStatistic.AgentsWorkLoad"));
-			buildPie(statistic.agentenGlobal,statistic.simDays);
+			buildPie(statistic.agentenGlobal,statistic.simulationData.runRepeatCount);
 			break;
 		case DATA_TYPE_ALL_FULL:
 			chart.setTitle(Language.tr("SimStatistic.AgentsWorkLoad"));
-			buildFullPie(statistic.agentenGlobal,statistic.simDays);
+			buildFullPie(statistic.agentenGlobal,statistic.simulationData.runRepeatCount);
 			break;
 		case DATA_TYPE_CALLCENTER:
 			chart.setTitle(String.format(Language.tr("SimStatistic.AgentsWorkLoad.Callcenter"),statistic.agentenProCallcenter[dataNr].name));
-			buildPie(statistic.agentenProCallcenter[dataNr],statistic.simDays);
+			buildPie(statistic.agentenProCallcenter[dataNr],statistic.simulationData.runRepeatCount);
 			break;
 		case DATA_TYPE_CALLCENTER_FULL:
 			chart.setTitle(String.format(Language.tr("SimStatistic.AgentsWorkLoad.Callcenter"),statistic.agentenProCallcenter[dataNr].name));
-			buildFullPie(statistic.agentenProCallcenter[dataNr],statistic.simDays);
+			buildFullPie(statistic.agentenProCallcenter[dataNr],statistic.simulationData.runRepeatCount);
 			break;
 		case DATA_TYPE_SKILL_LEVEL:
 			chart.setTitle(String.format(Language.tr("SimStatistic.AgentsWorkLoad.SkillLevel"),statistic.agentenProSkilllevel[dataNr].name));
-			buildPie(statistic.agentenProSkilllevel[dataNr],statistic.simDays);
+			buildPie(statistic.agentenProSkilllevel[dataNr],statistic.simulationData.runRepeatCount);
 			break;
 		case DATA_TYPE_SKILL_LEVEL_FULL:
 			chart.setTitle(String.format(Language.tr("SimStatistic.AgentsWorkLoad.SkillLevel"),statistic.agentenProSkilllevel[dataNr].name));
-			buildFullPie(statistic.agentenProSkilllevel[dataNr],statistic.simDays);
+			buildFullPie(statistic.agentenProSkilllevel[dataNr],statistic.simulationData.runRepeatCount);
 			break;
 		}
 	}

@@ -397,8 +397,8 @@ public class StatisticViewerKundenTable extends StatisticViewerTable {
 		Table table=new Table();
 
 		table.addLine(rowNames);
-		for (int i=0;i<statistic.kundenProTyp.length;i++) table.addLine(getLine(statistic.kundenProTyp[i],statistic.simDays));
-		table.addLine(getLine(statistic.kundenGlobal,statistic.simDays));
+		for (int i=0;i<statistic.kundenProTyp.length;i++) table.addLine(getLine(statistic.kundenProTyp[i],statistic.simulationData.runRepeatCount));
+		table.addLine(getLine(statistic.kundenGlobal,statistic.simulationData.runRepeatCount));
 
 		return table.transpose();
 	}

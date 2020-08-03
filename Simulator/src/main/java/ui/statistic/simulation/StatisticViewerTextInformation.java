@@ -205,7 +205,7 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 				addLine(1,Language.tr("SimStatistic.AgentsWorkingHours.ScheduledNetto")+": "+NumberTools.formatNumberLong(netto/3600)+" "+Language.tr("Statistic.Units.Hours.lower"));
 			}
 		}
-		if (isIDVisible(hiddenSetup,FILTER_OVERVIEW_AGENTS_WORK_WORKED)) addLine(1,Language.tr("SimStatistic.AgentsWorkingHours.Worked")+": "+NumberTools.formatNumberLong((double)sum/statistic.simDays/3600)+" "+Language.tr("Statistic.Units.Hours.lower"));
+		if (isIDVisible(hiddenSetup,FILTER_OVERVIEW_AGENTS_WORK_WORKED)) addLine(1,Language.tr("SimStatistic.AgentsWorkingHours.Worked")+": "+NumberTools.formatNumberLong((double)sum/statistic.simulationData.runRepeatCount/3600)+" "+Language.tr("Statistic.Units.Hours.lower"));
 		endParagraph();
 	}
 
@@ -223,11 +223,11 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 			if (sl!=serviceLevel) {serviceLevel=-1; break;}
 		}
 
-		buildBaseClientData(statistic.kundenGlobal,statistic.simDays,serviceLevel);
+		buildBaseClientData(statistic.kundenGlobal,statistic.simulationData.runRepeatCount,serviceLevel);
 		if (needDetailedData) for (int i=0;i<statistic.kundenProTyp.length;i++) {
 			int sl=statistic.editModel.caller.get(i).serviceLevelSeconds;
 			if (sl<=0) sl=statistic.editModel.serviceLevelSeconds;
-			buildBaseClientData(statistic.kundenProTyp[i],statistic.simDays,sl);
+			buildBaseClientData(statistic.kundenProTyp[i],statistic.simulationData.runRepeatCount,sl);
 		}
 
 		if (isIDVisible(SetupData.getSetup().simOverviewFilter,FILTER_OVERVIEW_QUEUE)) buildBaseQueueLengthData(statistic);
@@ -250,32 +250,31 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 
 		beginParagraph();
 		addLine(Language.tr("SimStatistic.SystemData.Version")+": "+statistic.editModel.version);
-		if (!statistic.runUser.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.User")+": "+statistic.runUser);
-		if (!statistic.runDate.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.Date")+": "+statistic.runDate);
-		addLine(Language.tr("SimStatistic.SystemData.Threads")+": "+NumberTools.formatLong(statistic.runThreads));
-		if (!statistic.runServer.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.ServerVersion")+": "+statistic.runServer);
-		if (!statistic.runServerOS.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.ServerOS")+": "+statistic.runServerOS);
-		addLine(Language.tr("SimStatistic.SystemData.SimDays")+": "+NumberTools.formatLong(statistic.simDays));
+		if (!statistic.simulationData.runUser.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.User")+": "+statistic.simulationData.runUser);
+		if (!statistic.simulationData.runDate.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.Date")+": "+statistic.simulationData.runDate);
+		addLine(Language.tr("SimStatistic.SystemData.Threads")+": "+NumberTools.formatLong(statistic.simulationData.runThreads));
+		if (!statistic.simulationData.runOS.isEmpty()) addLine(Language.tr("SimStatistic.SystemData.ServerOS")+": "+statistic.simulationData.runOS);
+		addLine(Language.tr("SimStatistic.SystemData.SimDays")+": "+NumberTools.formatLong(statistic.simulationData.runRepeatCount));
 		endParagraph();
 
 		beginParagraph();
-		String t=(statistic.runThreads>1)?" (*)":"";
-		addLine(Language.tr("SimStatistic.SystemData.SimulationTime")+": "+NumberTools.formatLong(statistic.runTime)+" "+Language.tr("Statistic.Units.MilliSeconds"));
-		addLine(Language.tr("SimStatistic.SystemData.SimulationTimePerSimulatedDay")+t+": "+NumberTools.formatLong(statistic.runTime*statistic.runThreads/statistic.simDays)+" "+Language.tr("Statistic.Units.MilliSeconds"));
-		addLine(Language.tr("SimStatistic.SystemData.SimulatedEvents")+": "+NumberTools.formatLong(statistic.simEvents));
+		String t=(statistic.simulationData.runThreads>1)?" (*)":"";
+		addLine(Language.tr("SimStatistic.SystemData.SimulationTime")+": "+NumberTools.formatLong(statistic.simulationData.runTime)+" "+Language.tr("Statistic.Units.MilliSeconds"));
+		addLine(Language.tr("SimStatistic.SystemData.SimulationTimePerSimulatedDay")+t+": "+NumberTools.formatLong(statistic.simulationData.runTime*statistic.simulationData.runThreads/statistic.simulationData.runRepeatCount)+" "+Language.tr("Statistic.Units.MilliSeconds"));
+		addLine(Language.tr("SimStatistic.SystemData.SimulatedEvents")+": "+NumberTools.formatLong(statistic.simulationData.runEvents));
 		endParagraph();
 
-		if (statistic.runTime>0) {
+		if (statistic.simulationData.runTime>0) {
 			beginParagraph();
-			addLine(Language.tr("SimStatistic.SystemData.EventsPerSecond")+": "+NumberTools.formatLong(1000*statistic.simEvents/statistic.runTime));
-			addLine(Language.tr("SimStatistic.SystemData.SimulationModelClientsPerSecond")+": "+NumberTools.formatLong(1000*(long)(statistic.kundenGlobal.kunden+statistic.kundenGlobal.kundenWiederanruf)/statistic.simDays/statistic.runTime));
-			addLine(Language.tr("SimStatistic.SystemData.ClientsPerSecond")+": "+NumberTools.formatLong(1000*(long)(statistic.kundenGlobal.kunden+statistic.kundenGlobal.kundenWiederanruf)/statistic.runTime));
-			if (statistic.kundenGlobal.anrufe>0) addLine(Language.tr("SimStatistic.SystemData.TimePerCall")+t+": "+NumberTools.formatNumber(1000*(double)statistic.runTime*statistic.runThreads/statistic.kundenGlobal.anrufe,1)+" 탎");
-			if (statistic.simEvents>0) addLine(Language.tr("SimStatistic.SystemData.TimePerEvent")+t+": "+NumberTools.formatNumber(1000*(double)statistic.runTime*statistic.runThreads/statistic.simEvents,2)+" 탎");
+			addLine(Language.tr("SimStatistic.SystemData.EventsPerSecond")+": "+NumberTools.formatLong(1000*statistic.simulationData.runEvents/statistic.simulationData.runTime));
+			addLine(Language.tr("SimStatistic.SystemData.SimulationModelClientsPerSecond")+": "+NumberTools.formatLong(1000*(long)(statistic.kundenGlobal.kunden+statistic.kundenGlobal.kundenWiederanruf)/statistic.simulationData.runRepeatCount/statistic.simulationData.runTime));
+			addLine(Language.tr("SimStatistic.SystemData.ClientsPerSecond")+": "+NumberTools.formatLong(1000*(long)(statistic.kundenGlobal.kunden+statistic.kundenGlobal.kundenWiederanruf)/statistic.simulationData.runTime));
+			if (statistic.kundenGlobal.anrufe>0) addLine(Language.tr("SimStatistic.SystemData.TimePerCall")+t+": "+NumberTools.formatNumber(1000*(double)statistic.simulationData.runTime*statistic.simulationData.runThreads/statistic.kundenGlobal.anrufe,1)+" 탎");
+			if (statistic.simulationData.runEvents>0) addLine(Language.tr("SimStatistic.SystemData.TimePerEvent")+t+": "+NumberTools.formatNumber(1000*(double)statistic.simulationData.runTime*statistic.simulationData.runThreads/statistic.simulationData.runEvents,2)+" 탎");
 			endParagraph();
 		}
 
-		if (statistic.runThreads>1) {
+		if (statistic.simulationData.runThreads>1) {
 			beginParagraph();
 			addLines(Language.tr("SimStatistic.SystemData.MultiThreadInfo"));
 			endParagraph();
@@ -395,10 +394,10 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 
 		addLines(Language.tr("SimStatistic.ConfidenceIntervals.Info"));
 
-		buildKonfidenceClientData(statistic.kundenGlobal,statistic.simDays,statistic.editModel.serviceLevelSeconds);
+		buildKonfidenceClientData(statistic.kundenGlobal,statistic.simulationData.runRepeatCount,statistic.editModel.serviceLevelSeconds);
 		if (statistic.kundenProTyp.length>1) for (int i=0;i<statistic.kundenProTyp.length;i++) {
 			int sl=(statistic.editModel.caller.get(i).serviceLevelSeconds>0)?(statistic.editModel.caller.get(i).serviceLevelSeconds):(statistic.editModel.serviceLevelSeconds);
-			buildKonfidenceClientData(statistic.kundenProTyp[i],statistic.simDays,sl);
+			buildKonfidenceClientData(statistic.kundenProTyp[i],statistic.simulationData.runRepeatCount,sl);
 		}
 
 		/* Infotext  */

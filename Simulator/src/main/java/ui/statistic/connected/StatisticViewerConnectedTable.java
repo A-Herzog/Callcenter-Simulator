@@ -311,16 +311,16 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 
 			switch (dataType) {
 			case DATA_TYPE_CALLERS:
-				row1[i]=NumberTools.formatNumber((double)(kunden.kunden+kunden.kundenWiederanruf)/statistic.simDays);
-				row2[i]=NumberTools.formatNumber((double)kunden.anrufe/statistic.simDays);
+				row1[i]=NumberTools.formatNumber((double)(kunden.kunden+kunden.kundenWiederanruf)/statistic.simulationData.runRepeatCount);
+				row2[i]=NumberTools.formatNumber((double)kunden.anrufe/statistic.simulationData.runRepeatCount);
 				break;
 			case DATA_TYPE_SUCCESS:
 				row1[i]=NumberTools.formatPercent((double)kunden.kundenErfolg/(kunden.kunden+kunden.kundenWiederanruf));
 				row2[i]=NumberTools.formatPercent((double)kunden.anrufeErfolg/kunden.anrufe);
 				break;
 			case DATA_TYPE_CANCEL:
-				row1[i]=NumberTools.formatNumber((double)kunden.kundenAbbruch/statistic.simDays);
-				row2[i]=NumberTools.formatNumber((double)kunden.anrufeAbbruch/statistic.simDays);
+				row1[i]=NumberTools.formatNumber((double)kunden.kundenAbbruch/statistic.simulationData.runRepeatCount);
+				row2[i]=NumberTools.formatNumber((double)kunden.anrufeAbbruch/statistic.simulationData.runRepeatCount);
 				break;
 			case DATA_TYPE_WAITING_TIME:
 				row1[i]=TimeTools.formatTime((int)(kunden.anrufeWartezeitSum/Math.max(1,kunden.anrufeErfolg)));
@@ -369,11 +369,11 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 			switch (dataType) {
 			case DATA_TYPE_AGENTS_CALLCENTER:
 			case DATA_TYPE_AGENTS_SKILL_LEVEL:
-				row1[i]=NumberTools.formatNumber((double)agenten.leerlaufGesamt/statistic.simDays/3600);
-				row2[i]=NumberTools.formatNumber((double)agenten.technischerLeerlaufGesamt/statistic.simDays/3600);
-				row3[i]=NumberTools.formatNumber((double)agenten.arbeitGesamt/statistic.simDays/3600);
-				row4[i]=NumberTools.formatNumber((double)agenten.postProcessingGesamt/statistic.simDays/3600);
-				row5[i]=NumberTools.formatNumber((double)(agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt)/statistic.simDays/3600);
+				row1[i]=NumberTools.formatNumber((double)agenten.leerlaufGesamt/statistic.simulationData.runRepeatCount/3600);
+				row2[i]=NumberTools.formatNumber((double)agenten.technischerLeerlaufGesamt/statistic.simulationData.runRepeatCount/3600);
+				row3[i]=NumberTools.formatNumber((double)agenten.arbeitGesamt/statistic.simulationData.runRepeatCount/3600);
+				row4[i]=NumberTools.formatNumber((double)agenten.postProcessingGesamt/statistic.simulationData.runRepeatCount/3600);
+				row5[i]=NumberTools.formatNumber((double)(agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt)/statistic.simulationData.runRepeatCount/3600);
 				break;
 			case DATA_TYPE_WORKLOAD_CALLCENTER:
 			case DATA_TYPE_WORKLOAD_SKILL_LEVEL:

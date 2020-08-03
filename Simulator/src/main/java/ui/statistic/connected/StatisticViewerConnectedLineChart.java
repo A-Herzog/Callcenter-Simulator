@@ -229,8 +229,8 @@ public class StatisticViewerConnectedLineChart extends StatisticViewerLineChart 
 			switch (dataType) {
 			case DATA_TYPE_CALLERS:
 				if (kunden!=null) {
-					dist1.add((double)(kunden.kunden+kunden.kundenWiederanruf)/statistic.simDays);
-					dist2.add((double)kunden.anrufe/statistic.simDays);
+					dist1.add((double)(kunden.kunden+kunden.kundenWiederanruf)/statistic.simulationData.runRepeatCount);
+					dist2.add((double)kunden.anrufe/statistic.simulationData.runRepeatCount);
 				}
 				break;
 			case DATA_TYPE_SUCCESS:
@@ -241,8 +241,8 @@ public class StatisticViewerConnectedLineChart extends StatisticViewerLineChart 
 				break;
 			case DATA_TYPE_CANCEL:
 				if (kunden!=null) {
-					dist1.add((double)kunden.kundenAbbruch/statistic.simDays);
-					dist2.add((double)kunden.anrufeAbbruch/statistic.simDays);
+					dist1.add((double)kunden.kundenAbbruch/statistic.simulationData.runRepeatCount);
+					dist2.add((double)kunden.anrufeAbbruch/statistic.simulationData.runRepeatCount);
 				}
 				break;
 			case DATA_TYPE_WAITING_TIME:
@@ -266,11 +266,11 @@ public class StatisticViewerConnectedLineChart extends StatisticViewerLineChart 
 			case DATA_TYPE_AGENTS_CALLCENTER:
 			case DATA_TYPE_AGENTS_SKILL_LEVEL:
 				if (agenten!=null) {
-					dist1.add((double)(agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt)/statistic.simDays/3600);
-					dist2.add((double)agenten.leerlaufGesamt/statistic.simDays/3600);
-					dist3.add((double)agenten.technischerLeerlaufGesamt/statistic.simDays/3600);
-					dist4.add((double)agenten.arbeitGesamt/statistic.simDays/3600);
-					dist5.add((double)agenten.postProcessingGesamt/statistic.simDays/3600);
+					dist1.add((double)(agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt)/statistic.simulationData.runRepeatCount/3600);
+					dist2.add((double)agenten.leerlaufGesamt/statistic.simulationData.runRepeatCount/3600);
+					dist3.add((double)agenten.technischerLeerlaufGesamt/statistic.simulationData.runRepeatCount/3600);
+					dist4.add((double)agenten.arbeitGesamt/statistic.simulationData.runRepeatCount/3600);
+					dist5.add((double)agenten.postProcessingGesamt/statistic.simulationData.runRepeatCount/3600);
 				}
 				break;
 			case DATA_TYPE_WORKLOAD_CALLCENTER:

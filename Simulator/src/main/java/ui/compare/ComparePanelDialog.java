@@ -29,7 +29,7 @@ import ui.HelpLink;
 import ui.model.CallcenterModel;
 
 /**
- * Dialog, der den Vergleich mehrerer Statistik-Daten in einem eigenen Fesnter ermöglicht.
+ * Dialog, der den Vergleich mehrerer Statistik-Daten in einem eigenen Fenster ermöglicht.
  * @author Alexander Herzog
  * @version 1.0
  */

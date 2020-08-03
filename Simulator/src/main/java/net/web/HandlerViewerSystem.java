@@ -134,7 +134,7 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 		if (statistic==null) return null;
 
 		FastAccessFolder fastAccessFolder=new FastAccessFolder(filterFolder);
-		String result=fastAccessFolder.runScript(statistic.saveToDocument(),parts[1]);
+		String result=fastAccessFolder.runScript(statistic.saveToXMLDocument(),parts[1]);
 		if (result==null) return null;
 
 		return WebServerTools.buildTXTResponse(result,true,"Filter.txt");

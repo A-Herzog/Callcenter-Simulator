@@ -28,6 +28,7 @@ import mathtools.distribution.swing.JDistributionEditorPanel;
 import mathtools.distribution.swing.JDistributionPanel;
 import mathtools.distribution.tools.DistributionFitter;
 import mathtools.distribution.tools.DistributionTools;
+import statistics.StatisticsSimulationBaseData;
 import systemtools.GUITools;
 import systemtools.MsgBox;
 import systemtools.SetupBase;
@@ -447,6 +448,22 @@ public class LanguageStaticLoader {
 		CommandLineDialog.tabParametersAndResults=Language.tr("CommandLine.Dialog.Tab.ParametersAndResults");
 		CommandLineDialog.labelParameters=Language.tr("CommandLine.Dialog.ParametersForThisCommand");
 		CommandLineDialog.labelResults=Language.tr("CommandLine.Dialog.Results");
-	}
 
+		/* Statistik */
+		StatisticsSimulationBaseData.xmlNameRunDate=Language.trAll("Statistics.XML.RunDate");
+		StatisticsSimulationBaseData.xmlNameRunTime=Language.trAll("Statistics.XML.RunTime");
+		StatisticsSimulationBaseData.xmlNameRunTimeError=Language.tr("Statistics.XML.RunTime.Error");
+		StatisticsSimulationBaseData.xmlNameRunOS=Language.trAll("Statistics.XML.RunOS");
+		StatisticsSimulationBaseData.xmlNameRunUser=Language.trAll("Statistics.XML.RunUser");
+		StatisticsSimulationBaseData.xmlNameRunThreads=Language.trAll("Statistics.XML.RunThreads");
+		StatisticsSimulationBaseData.xmlNameNUMA=Language.trAll("Statistics.XML.RunThreads.NUMA");
+		StatisticsSimulationBaseData.xmlNameRunThreadTimes=Language.trAll("Statistics.XML.ThreadRunTimes");
+		StatisticsSimulationBaseData.xmlNameRunThreadsError=Language.tr("Statistics.XML.RunThreads.Error");
+		StatisticsSimulationBaseData.xmlNameRunEvents=Language.trAll("Statistics.XML.RunEvents");
+		StatisticsSimulationBaseData.xmlNameRunEventsError=Language.tr("Statistics.XML.RunEvents.Error");
+		StatisticsSimulationBaseData.xmlNameRunRepeatCount=Language.trAll("Statistics.XML.RunRepeatCount");
+		StatisticsSimulationBaseData.xmlNameRunRepeatCountError=Language.tr("Statistics.XML.RunRepeatCount.Error");
+		StatisticsSimulationBaseData.xmlNameEmergencyShutDown=Language.trAll("Statistics.XML.EmergencyShutDown");
+		StatisticsSimulationBaseData.xmlNameWarning=Language.trAll("Statistics.XML.Warning");
+	}
 }

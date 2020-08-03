@@ -146,7 +146,7 @@ public class RevenueOptimizer {
 		Statistics statistic=simulator.collectStatistic();
 
 		double sum=statistic.kundenGlobal.revenue-(statistic.kundenGlobal.costCancel+statistic.kundenGlobal.costWaiting+statistic.agentenGlobal.costOfficeTime+statistic.agentenGlobal.costCalls+statistic.agentenGlobal.costProcessTime);
-		return sum/statistic.simDays;
+		return sum/statistic.simulationData.runRepeatCount;
 	}
 
 	/**

@@ -184,7 +184,7 @@ public class StatisticViewerKundenIntervalTable extends StatisticViewerIntervalT
 		super();
 		this.dataType=dataType;
 		this.statistic=statistic;
-		days=statistic.simDays;
+		days=statistic.simulationData.runRepeatCount;
 	}
 
 	@Override

@@ -180,11 +180,11 @@ public class SetupDialogNetworkBalance extends JDialog {
 			statistics=getStatistics(200,0.1,0.9);
 			if (statistics==null) {setVisible(false); return;}
 
-			for (int i=0;i<statistics.length;i++) if (statistics[i].runTime<=0) {setVisible(false); return;}
+			for (int i=0;i<statistics.length;i++) if (statistics[i].simulationData.runTime<=0) {setVisible(false); return;}
 
 			double[] parts=new double[statistics.length];
 			double sum=0;
-			for (int i=0;i<parts.length;i++) {double d=1/(double)(statistics[i].runTime); parts[i]=d; sum+=d;}
+			for (int i=0;i<parts.length;i++) {double d=1/(double)(statistics[i].simulationData.runTime); parts[i]=d; sum+=d;}
 			for (int i=0;i<parts.length;i++) {parts[i]/=sum;}
 
 			serverParts=new double[server.length];

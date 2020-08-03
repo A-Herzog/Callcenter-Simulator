@@ -56,7 +56,7 @@ public class StatisticWebAppWriter {
 		if (statistics==null) return false;
 		if (result!=null) return true;
 
-		resultDoc=statistics.saveToDocument();
+		resultDoc=statistics.saveToXMLDocument();
 		String[] lines=XMLTools.xmlToJson(resultDoc.getDocumentElement(),true,false).split("\n");
 		StringBuilder sb=new StringBuilder();
 		StringBuilder temp=new StringBuilder();

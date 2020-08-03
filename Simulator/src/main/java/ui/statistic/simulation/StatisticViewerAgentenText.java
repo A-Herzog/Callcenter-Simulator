@@ -68,15 +68,15 @@ public class StatisticViewerAgentenText extends StatisticViewerText {
 	@Override
 	protected void buildText() {
 		addHeading(1,Language.tr("SimStatistic.AgentsWorkLoad"));
-		buildAgentData(statistic.agentenGlobal,statistic.simDays,false);
+		buildAgentData(statistic.agentenGlobal,statistic.simulationData.runRepeatCount,false);
 		switch (sortType) {
 		case SORT_BY_CALLCENTER:
 			if (statistic.agentenProCallcenter.length>1) for (int i=0;i<statistic.agentenProCallcenter.length;i++)
-				buildAgentData(statistic.agentenProCallcenter[i],statistic.simDays,false);
+				buildAgentData(statistic.agentenProCallcenter[i],statistic.simulationData.runRepeatCount,false);
 			break;
 		case SORT_BY_SKILL_LEVEL:
 			if (statistic.agentenProSkilllevel.length>1) for (int i=0;i<statistic.agentenProSkilllevel.length;i++)
-				buildAgentData(statistic.agentenProSkilllevel[i],statistic.simDays,true);
+				buildAgentData(statistic.agentenProSkilllevel[i],statistic.simulationData.runRepeatCount,true);
 			break;
 		}
 

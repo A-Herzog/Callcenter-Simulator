@@ -170,7 +170,7 @@ public final class Simulator extends SimulatorBase implements CallcenterSimulato
 		statistics.calcModelAgents();
 		statistics.editModel.version=VersionConst.version;
 
-		for (int i=1;i<threads.length;i++)
+		for (int i=1;i<threadCount;i++)
 			statistics.addData(((SimulationData)threads[i].simData).statisticSimData);
 
 		Calendar cal=Calendar.getInstance();
@@ -184,11 +184,11 @@ public final class Simulator extends SimulatorBase implements CallcenterSimulato
 			serverOS=System.getProperty("os.name")+" ("+System.getProperty("os.arch")+"), "+System.getProperty("java.vm.name")+" ("+System.getProperty("java.version")+")";
 		}
 
-		statistics.runUser=System.getProperty("user.name");
-		statistics.runServer=serverAddress;
-		statistics.runServerOS=serverOS;
-		statistics.runDate=runDate;
-		statistics.runTime=runTime;
+		statistics.simulationData.runUser=System.getProperty("user.name");
+		statistics.simulationData.runOS=serverAddress+" - "+serverOS;
+		statistics.simulationData.runDate=runDate;
+		statistics.simulationData.runTime=runTime;
+		statistics.simulationData.runThreads=threadCount;
 		statistics.finalQueueLengthCalc();
 		statistics.finalAgentTimesCalc();
 		statistics.calcCallerCosts();

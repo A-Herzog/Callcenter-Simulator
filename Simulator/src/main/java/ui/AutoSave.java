@@ -91,7 +91,7 @@ public class AutoSave {
 		}
 
 		/* Script ausführen */
-		DataFilter filter=new DataFilter(statistic.saveToDocument());
+		DataFilter filter=new DataFilter(statistic.saveToXMLDocument());
 		if (!filter.run(filterScript,false)) return String.format(Language.tr("AutoSave.Error.FilterExecute"),filter.getResults());
 
 		/* Ergebnis speichern */

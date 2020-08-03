@@ -25,8 +25,8 @@ import simulator.LogTools;
 import simulator.RunData;
 import simulator.RunData.AgentRecord;
 import simulator.RunData.CallerRecord;
-import simulator.SimulationData;
 import simulator.Statistics.KundenDaten;
+import simulator.SimulationData;
 import ui.model.CallcenterRunModelCaller;
 
 /**

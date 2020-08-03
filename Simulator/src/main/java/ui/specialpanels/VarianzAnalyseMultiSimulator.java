@@ -23,8 +23,8 @@
  import mathtools.NumberTools;
  import net.calc.StartAnySimulator;
  import simulator.CallcenterSimulatorInterface;
- import simulator.Statistics;
- import systemtools.MsgBox;
+import simulator.Statistics;
+import systemtools.MsgBox;
  import ui.model.CallcenterModel;
 
  /**

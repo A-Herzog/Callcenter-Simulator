@@ -16,8 +16,6 @@
 package simulator;
 
 import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +29,8 @@ import language.Language;
 import mathtools.NumberTools;
 import mathtools.TimeTools;
 import mathtools.distribution.DataDistributionImpl;
+import statistics.StatisticsBase;
+import statistics.StatisticsSimulationBaseData;
 import ui.VersionConst;
 import ui.model.CallcenterModel;
 import ui.model.CallcenterModelAgent;
@@ -40,40 +40,22 @@ import ui.model.CallcenterModelWarnings;
 import ui.model.CallcenterRunModel;
 import ui.model.CallcenterRunModelCaller;
 import ui.statistic.model.StatisticViewerErlangCTools;
-import xml.XMLTools;
 
 /**
  * Speichert die Statistikdaten, die während der Simulation aufgezeichnet werden.
  * @author Alexander Herzog
  * @version 1.0
  */
-public final class Statistics {
-	/** Ausgangmodell hier als Kopie speichern */
+public final class Statistics extends StatisticsBase {
+	/**
+	 * Das Editor-Modell wird mit in der Statistik gespeichert. So ist immer nachvollziehbar, auf welches Modell sich die Statistik bezieht.
+	 */
 	public CallcenterModel editModel;
 
-	/** Datum und Uhrzeit des Simulationslaufes */
-	public String runDate=""; /* wird durch <code>ComplexCallcenterSimulator.collectStatisticIntern</code> gesetzt */
-
-	/** Benutzername des Nutzers der Simulation */
-	public String runUser=""; /* wird durch <code>ComplexCallcenterSimulator.collectStatisticIntern</code> gesetzt */
-
-	/** Name des Simulationsservers */
-	public String runServer="";
-
-	/** Betriebssystem des Servers */
-	public String runServerOS="";
-
-	/** Laufzeit in ms */
-	public long runTime; /* wird durch <code>ComplexCallcenterSimulator.collectStatisticIntern</code> gesetzt */
-
-	/** Anzahl der verwendeten Threads */
-	public int runThreads;
-
-	/** Anzahl der simulierten Tage */
-	public long simDays;
-
-	/** Anzahl der Ereignisse */
-	public long simEvents;
+	/**
+	 * Technische Basisdaten zur Simulation
+	 */
+	public StatisticsSimulationBaseData simulationData;
 
 	/** Globale Kunden-Statistik */
 	public KundenDaten kundenGlobal;
@@ -108,7 +90,6 @@ public final class Statistics {
 	/** Schwellenwert-Warnungen */
 	public CallcenterModelWarnings warnings=null;
 
-
 	/**
 	 * Mögliche Namen des Basiselement von Statistik-XML-Dateien (zur Erkennung von Dateien dieses Typs.)
 	 */
@@ -129,8 +110,7 @@ public final class Statistics {
 			this.editModel=null;
 		}
 
-		this.runThreads=runThreads;
-		this.simDays=simDays;
+		addPerformanceIndicator(simulationData=new StatisticsSimulationBaseData(Language.trAll("Statistics.XML.BaseData")));
 
 		if (runModel==null) {
 			kundenGlobal=new KundenDaten();
@@ -155,6 +135,18 @@ public final class Statistics {
 		}
 
 		calcModelAgents();
+
+		resetData();
+		simulationData.runThreads=runThreads;
+		simulationData.runRepeatCount=simDays;
+	}
+
+	/**
+	 * Wurzel-Element für Statistik-xml-Dateien
+	 */
+	@Override
+	public String[] getRootNodeNames() {
+		return XMLBaseElement;
 	}
 
 	/**
@@ -172,25 +164,23 @@ public final class Statistics {
 		}
 	}
 
-	/**
-	 * Fügt weitere Teil-Statistikdaten zu diesem Objekt hinzu
-	 * @param data	Weiteres Statistikobjekt dessen Daten zu diesem Objekt hinzugefügt werden sollen
-	 */
-	public void addData(final Statistics data) {
-		if (data==null) return;
-		runTime=Math.max(runTime,data.runTime);
-		runThreads=Math.max(runThreads,data.runThreads);
-		simDays+=data.simDays;
-		simEvents+=data.simEvents;
-		kundenGlobal.addData(data.kundenGlobal);
-		for (int i=0;i<kundenProTyp.length;i++) kundenProTyp[i].addData(data.kundenProTyp[i]);
-		agentenGlobal.addData(data.agentenGlobal);
-		for (int i=0;i<agentenProCallcenter.length;i++) agentenProCallcenter[i].addData(data.agentenProCallcenter[i]);
-		for (int i=0;i<agentenProSkilllevel.length;i++) agentenProSkilllevel[i].addData(data.agentenProSkilllevel[i]);
-		meanQueueLength+=data.meanQueueLength;
-		maxQueueLength=Math.max(maxQueueLength,data.maxQueueLength);
-		addDensity(meanQueueLengthProIntervall,data.meanQueueLengthProIntervall);
-		warnings=null;
+	@Override
+	public void addData(final StatisticsBase moreStatistics) {
+		if (moreStatistics==null) return;
+		super.addData(moreStatistics);
+		if (moreStatistics instanceof Statistics) {
+			final Statistics data=(Statistics)moreStatistics;
+			simulationData.runRepeatCount+=data.simulationData.runRepeatCount;
+			kundenGlobal.addData(data.kundenGlobal);
+			for (int i=0;i<kundenProTyp.length;i++) kundenProTyp[i].addData(data.kundenProTyp[i]);
+			agentenGlobal.addData(data.agentenGlobal);
+			for (int i=0;i<agentenProCallcenter.length;i++) agentenProCallcenter[i].addData(data.agentenProCallcenter[i]);
+			for (int i=0;i<agentenProSkilllevel.length;i++) agentenProSkilllevel[i].addData(data.agentenProSkilllevel[i]);
+			meanQueueLength+=data.meanQueueLength;
+			maxQueueLength=Math.max(maxQueueLength,data.maxQueueLength);
+			addDensity(meanQueueLengthProIntervall,data.meanQueueLengthProIntervall);
+			warnings=null;
+		}
 	}
 
 	/**
@@ -199,9 +189,9 @@ public final class Statistics {
 	 * entstehen. Daher erfolgt die Division durch simDays erst nach dem zusammenfügen der Teilstatistiken.
 	 */
 	public void finalQueueLengthCalc() {
-		meanQueueLength/=simDays;
+		meanQueueLength/=simulationData.runRepeatCount;
 		final double[] density=meanQueueLengthProIntervall.densityData;
-		for (int i=0;i<48;i++) density[i]/=simDays;
+		for (int i=0;i<48;i++) density[i]/=simulationData.runRepeatCount;
 	}
 
 	private void finalAgentTimesCalcSingleDistribution(final DataDistributionImpl dist) {
@@ -461,224 +451,127 @@ public final class Statistics {
 		}
 	}
 
-	/**
-	 * Versucht einen kompletten Statistik-Datensatz aus der angegebenen XML-Datei zu laden
-	 * @param file	Dateiname der XML-Datei, aus der die Statistik geladen werden soll
-	 * @return	Tritt ein Fehler auf, so wird die Fehlermeldung als String zurückgegeben. Im Erfolgsfall wird <code>null</code> zurückgegeben.
-	 */
-	public String loadFromFile(File file) {
-		if (file==null) return Language.tr("XML.NoFileSelected");
-		if (!file.exists()) return String.format(Language.tr("XML.FileNotFound"),file.toString());
+	@Override
+	protected String loadProperty(final String name, final String text, final Element node) {
+		if (Language.trAll("XML.Model.BaseElement",name)) {
+			editModel=new CallcenterModel();
+			return editModel.loadFromXML(node);
+		}
 
-		XMLTools xml=new XMLTools(file);
-		Element root=xml.load();
-		if (root==null) return xml.getError();
-		return loadFromXML(root);
-	}
+		if (Language.trAll("XML.Statistic.Info.RunDate",name)) {
+			String t=text;
+			if (t!=null && !t.isEmpty()) simulationData.runDate=t;
+			return null;
+		}
+		if (Language.trAll("XML.Statistic.Info.User",name)) {
+			String t=text;
+			if (t!=null && !t.isEmpty()) simulationData.runUser=t;
+			return null;
+		}
+		if (Language.trAll("XML.Statistic.Info.ServerOS",name)) {
+			String t=text;
+			if (t!=null && !t.isEmpty()) simulationData.runOS=t;
+			return null;
+		}
+		if (Language.trAll("XML.Statistic.Info.RunTime",name)) {
+			Integer J=NumberTools.getNotNegativeInteger(text);
+			if (J==null) return String.format(Language.tr("XML.Statistic.Info.RunTime.Error"),text);
+			simulationData.runTime=J;
+			return null;
+		}
+		if (Language.trAll("XML.Statistic.Info.Threads",name)) {
+			Integer J=NumberTools.getNotNegativeInteger(text);
+			if (J==null) return String.format(Language.tr("XML.Statistic.Info.Threads.Error"),text);
+			simulationData.runThreads=J;
+			return null;
+		}
+		if (Language.trAll("XML.Statistic.Info.SimulatedDays",name)) {
+			Integer J=NumberTools.getNotNegativeInteger(text);
+			if (J==null) return String.format(Language.tr("XML.Statistic.Info.SimulatedDays.Error"),text);
+			simulationData.runRepeatCount=J;
+			return null;
+		}
+		if (Language.trAll("XML.Statistic.Info.SimulatedEvents",name)) {
+			Long J=NumberTools.getNotNegativeLong(text);
+			if (J==null) return String.format(Language.tr("XML.Statistic.Info.SimulatedEvents.Error"),text);
+			simulationData.runEvents=J;
+			return null;
+		}
 
-	/**
-	 * Versucht einen kompletten Statistik-Datensatz aus dem angegebenen InputStream zu laden
-	 * @param stream	InputStream, aus dem die Statistik geladen werden soll
-	 * @return	Tritt ein Fehler auf, so wird die Fehlermeldung als String zurückgegeben. Im Erfolgsfall wird <code>null</code> zurückgegeben.
-	 */
-	public String loadFromStream(InputStream stream) {
-		XMLTools xml=new XMLTools(stream);
-		Element root=xml.load();
-		if (root==null) return xml.getError();
-		return loadFromXML(root);
-	}
+		if (Language.trAll("XML.Statistic.Clients",name)) {
+			String t=Language.trAllAttribute("XML.Statistic.GeneralAttributes.Name",node);
+			String u;
+			if (t.isEmpty()) u=kundenGlobal.loadFromXML(node); else {
+				KundenDaten k=new KundenDaten(); u=k.loadFromXML(node);
+				if (u==null) {
+					KundenDaten[] old=kundenProTyp;
+					kundenProTyp=new KundenDaten[kundenProTyp.length+1];
+					System.arraycopy(old,0,kundenProTyp,0,old.length);
+					kundenProTyp[old.length]=k;
+				}
+			}
+			if (u!=null) return u;
+			return null;
+		}
 
-	/**
-	 * Versucht einen kompletten Statistik-Datensatz aus dem übergebenen XML-Node zu laden
-	 * @param node	XML-Knoten, aus der die Statistik geladen werden soll
-	 * @return	Tritt ein Fehler auf, so wird die Fehlermeldung als String zurückgegeben. Im Erfolgsfall wird <code>null</code> zurückgegeben.
-	 */
-	public String loadFromXML(Element node) {
-		if (!Language.trAll("XML.Statistic.BaseElement",node.getNodeName())) return String.format(Language.tr("XML.Statistic.BaseElement.Error"),Language.trPrimary("XML.Statistic.BaseElement"));
-
-		kundenProTyp=new KundenDaten[0];
-		agentenProCallcenter=new AgentenDaten[0];
-		agentenProSkilllevel=new AgentenDaten[0];
-		List<AgentModelData> agentenModellProGruppeList=new ArrayList<Statistics.AgentModelData>();
-
-		NodeList l=node.getChildNodes();
-		for (int i=0; i<l.getLength();i++) {
-			if (!(l.item(i) instanceof Element)) continue;
-			Element e=(Element)l.item(i);
-			String s=e.getNodeName();
-
-			if (Language.trAll("XML.Model.BaseElement",s)) {
-				if (editModel==null) editModel=new CallcenterModel();
-				String result=editModel.loadFromXML(e); if (result!=null) return result;
-				continue;
-			}
-			if (Language.trAll("XML.Statistic.Info.RunDate",s)) {
-				String t=e.getTextContent();
-				if (t!=null && !t.isEmpty()) runDate=t; continue;
-			}
-			if (Language.trAll("XML.Statistic.Info.User",s)) {
-				String t=e.getTextContent();
-				if (t!=null && !t.isEmpty()) runUser=t; continue;
-			}
-			if (Language.trAll("XML.Statistic.Info.Server",s)) {
-				String t=e.getTextContent();
-				if (t!=null && !t.isEmpty()) runServer=t; continue;
-			}
-			if (Language.trAll("XML.Statistic.Info.ServerOS",s)) {
-				String t=e.getTextContent();
-				if (t!=null && !t.isEmpty()) runServerOS=t; continue;
-			}
-			if (Language.trAll("XML.Statistic.Info.RunTime",s)) {
-				Integer J=NumberTools.getNotNegativeInteger(e.getTextContent());
-				if (J==null) return String.format(Language.tr("XML.Statistic.Info.RunTime.Error"),e.getTextContent());
-				runTime=J; continue;
-			}
-			if (Language.trAll("XML.Statistic.Info.Threads",s)) {
-				Integer J=NumberTools.getNotNegativeInteger(e.getTextContent());
-				if (J==null) return String.format(Language.tr("XML.Statistic.Info.Threads.Error"),e.getTextContent());
-				runThreads=J; continue;
-			}
-			if (Language.trAll("XML.Statistic.Info.SimulatedDays",s)) {
-				Integer J=NumberTools.getNotNegativeInteger(e.getTextContent());
-				if (J==null) return String.format(Language.tr("XML.Statistic.Info.SimulatedDays.Error"),e.getTextContent());
-				simDays=J; continue;
-			}
-			if (Language.trAll("XML.Statistic.Info.SimulatedEvents",s)) {
-				Long J=NumberTools.getNotNegativeLong(e.getTextContent());
-				if (J==null) return String.format(Language.tr("XML.Statistic.Info.SimulatedEvents.Error"),e.getTextContent());
-				simEvents=J; continue;
-			}
-
-			if (Language.trAll("XML.Statistic.Clients",s)) {
-				String t=Language.trAllAttribute("XML.Statistic.GeneralAttributes.Name",e);
-				String u;
-				if (t.isEmpty()) u=kundenGlobal.loadFromXML(e); else {
-					KundenDaten k=new KundenDaten(); u=k.loadFromXML(e);
-					if (u==null) {
-						KundenDaten[] old=kundenProTyp;
-						kundenProTyp=new KundenDaten[kundenProTyp.length+1];
-						System.arraycopy(old,0,kundenProTyp,0,old.length);
-						kundenProTyp[old.length]=k;
+		if (Language.trAll("XML.Statistic.Agents",name)) {
+			String t=Language.trAllAttribute("XML.Statistic.GeneralAttributes.Name",node);
+			String u=null;
+			if (t.isEmpty()) u=agentenGlobal.loadFromXML(node); else {
+				AgentenDaten a=new AgentenDaten("",null); u=a.loadFromXML(node);
+				if (u==null) {
+					if (Language.trAll("XML.Statistic.CallCenter",a.type)) {
+						AgentenDaten[] old=agentenProCallcenter;
+						agentenProCallcenter=new AgentenDaten[agentenProCallcenter.length+1];
+						System.arraycopy(old,0,agentenProCallcenter,0,old.length);
+						agentenProCallcenter[old.length]=a;
+					} else {
+						AgentenDaten[] old=agentenProSkilllevel;
+						agentenProSkilllevel=new AgentenDaten[agentenProSkilllevel.length+1];
+						System.arraycopy(old,0,agentenProSkilllevel,0,old.length);
+						agentenProSkilllevel[old.length]=a;
 					}
 				}
-				if (u!=null) return u;
-				continue;
 			}
+			if (u!=null) return u;
+			return null;
+		}
 
-			if (Language.trAll("XML.Statistic.Agents",s)) {
-				String t=Language.trAllAttribute("XML.Statistic.GeneralAttributes.Name",e);
-				String u=null;
-				if (t.isEmpty()) u=agentenGlobal.loadFromXML(e); else {
-					AgentenDaten a=new AgentenDaten("",null); u=a.loadFromXML(e);
-					if (u==null) {
-						if (Language.trAll("XML.Statistic.CallCenter",a.type)) {
-							AgentenDaten[] old=agentenProCallcenter;
-							agentenProCallcenter=new AgentenDaten[agentenProCallcenter.length+1];
-							System.arraycopy(old,0,agentenProCallcenter,0,old.length);
-							agentenProCallcenter[old.length]=a;
-						} else {
-							AgentenDaten[] old=agentenProSkilllevel;
-							agentenProSkilllevel=new AgentenDaten[agentenProSkilllevel.length+1];
-							System.arraycopy(old,0,agentenProSkilllevel,0,old.length);
-							agentenProSkilllevel[old.length]=a;
-						}
-					}
-				}
-				if (u!=null) return u;
-				continue;
-			}
+		if (Language.trAll("XML.Statistic.Queue",name)) {
+			String t=Language.trAllAttribute("XML.Statistic.Queue.Average",node);
+			double J=Double.parseDouble(t);
+			if (J<0) return String.format(Language.tr("XML.Statistic.Queue.Average.Error"),t);
+			meanQueueLength=J;
+			t=Language.trAllAttribute("XML.Statistic.Queue.AveragePerInterval",node);
+			meanQueueLengthProIntervall=DataDistributionImpl.createFromString(t,meanQueueLengthProIntervall.upperBound);
+			if (meanQueueLengthProIntervall==null) return Language.tr("XML.Statistic.Queue.AveragePerInterval.Error");
+			t=Language.trAllAttribute("XML.Statistic.Queue.Maximum",node);
+			Integer K=NumberTools.getNotNegativeInteger(t);
+			if (K==null) return String.format(Language.tr("XML.Statistic.Queue.Maximum.Error"),t);
+			maxQueueLength=K;
+			return null;
+		}
 
-			if (Language.trAll("XML.Statistic.Queue",s)) {
-				String t=Language.trAllAttribute("XML.Statistic.Queue.Average",e);
-				double J=Double.parseDouble(t);
-				if (J<0) return String.format(Language.tr("XML.Statistic.Queue.Average.Error"),t);
-				meanQueueLength=J;
-				t=Language.trAllAttribute("XML.Statistic.Queue.AveragePerInterval",e);
-				meanQueueLengthProIntervall=DataDistributionImpl.createFromString(t,meanQueueLengthProIntervall.upperBound);
-				if (meanQueueLengthProIntervall==null) return Language.tr("XML.Statistic.Queue.AveragePerInterval.Error");
-				t=Language.trAllAttribute("XML.Statistic.Queue.Maximum",e);
-				Integer K=NumberTools.getNotNegativeInteger(t);
-				if (K==null) return String.format(Language.tr("XML.Statistic.Queue.Maximum.Error"),t);
-				maxQueueLength=K;
-				continue;
-			}
-
-			if (Language.trAll("XML.Statistic.ModelAgents",s)) {
-				AgentModelData agenten=new AgentModelData();
-				String t=agenten.loadFromXML(e);
-				if (t!=null) return t;
-				if (agenten.name.isEmpty()) agentenModellGlobal=agenten; else agentenModellProGruppeList.add(agenten);
-			}
-
-			if (Language.trAll("XML.Statistic.Warnings",s)) {
-				warnings=new CallcenterModelWarnings(true);
-				String t=warnings.loadFromXML(e);
-				if (t!=null) return t;
+		if (Language.trAll("XML.Statistic.ModelAgents",name)) {
+			AgentModelData agenten=new AgentModelData();
+			String t=agenten.loadFromXML(node);
+			if (t!=null) return t;
+			if (agenten.name.isEmpty()) agentenModellGlobal=agenten; else {
+				final List<AgentModelData> agentenModellProGruppeList=(agentenModellProGruppe==null)?new ArrayList<>():new ArrayList<>(Arrays.asList(agentenModellProGruppe));
+				if (agentenModellProGruppeList.size()==1 && agentenModellProGruppeList.get(0).name.isEmpty()) agentenModellProGruppeList.remove(0);
+				agentenModellProGruppeList.add(agenten);
+				agentenModellProGruppe=agentenModellProGruppeList.toArray(new AgentModelData[0]);
 			}
 		}
 
-		agentenModellProGruppe=agentenModellProGruppeList.toArray(new AgentModelData[0]);
+		if (Language.trAll("XML.Statistic.Warnings",name)) {
+			warnings=new CallcenterModelWarnings(true);
+			String t=warnings.loadFromXML(node);
+			if (t!=null) return t;
+			return null;
+		}
 
 		return null;
-	}
-
-	/**
-	 * Speichert einen kompletten Statistik-Datensatz in einem Objekt vom Typ <code>Document</code>.
-	 * @return	Liefert im Erfolgsfall ein Objekt vom Typ <code>Document</code>, sonst <code>null</code>.
-	 */
-	public Document saveToDocument() {
-		XMLTools xml=new XMLTools();
-		Element root=xml.generateRoot(Language.trPrimary("XML.Statistic.BaseElement"));
-		if (root==null) return null;
-		addDataToXML(root);
-
-		return root.getOwnerDocument();
-	}
-
-	/**
-	 * Speichert einen kompletten Statistik-Datensatz in der angegebenen XML-Datei.
-	 * @param file	Dateiname der Datei, in der die Statistikdaten gespeichert werden sollen
-	 * @return	Gibt an, ob die Daten erfolgreich gespeichert werden konnten.
-	 */
-	public boolean saveToFile(File file) {
-		XMLTools xml=new XMLTools(file);
-		Element root=xml.generateRoot(Language.trPrimary("XML.Statistic.BaseElement"));
-		if (root==null) return false;
-		addDataToXML(root);
-		return xml.save(root);
-	}
-
-	/**
-	 * Speichert einen kompletten Statistik-Datensatz in dem angegebenen OutputStream.
-	 * @param stream	OutputStream, in dem die Statistikdaten gespeichert werden sollen
-	 * @return	Gibt an, ob die Daten erfolgreich gespeichert werden konnten.
-	 */
-	public boolean saveToStream(OutputStream stream) {
-		XMLTools xml=new XMLTools(stream);
-		Element root=xml.generateRoot(Language.trPrimary("XML.Statistic.BaseElement"));
-		if (root==null) return false;
-		addDataToXML(root);
-		return xml.save(root);
-	}
-
-	/*
-	public String saveToBase64String() {
-		final XMLTools xml=new XMLTools();
-		Element root=xml.generateRoot(Language.trPrimary("XML.Statistic.BaseElement"));
-		if (root==null) return null;
-		addDataToXML(root);
-		return xml.getBase64xml(root);
-	}
-	 */
-
-	/**
-	 * Erstellt unterhalb des übergebenen XML-Knotens einen neuen Knoten, der die Statistik-Daten enthält.
-	 * @param parent	Eltern-XML-Knoten
-	 */
-	public void saveToXML(Element parent) {
-		Document doc=parent.getOwnerDocument();
-		Element node=doc.createElement(Language.trPrimary("XML.Statistic.BaseElement")); parent.appendChild(node);
-		addDataToXML(node);
 	}
 
 	private final void saveQueueSummary(Element parent, int intFrom, int intTo) {
@@ -723,20 +616,19 @@ public final class Statistics {
 		node.setAttribute(Language.trPrimary("XML.Statistic.ErlangC.ServiceLevel"),dist.storeToString());
 	}
 
-	private void addDataToXML(Element node) {
+	@Override
+	protected void addDataToXML(final Document doc, final Element node, final boolean isPartOfOtherFile, final File file) {
 		editModel.saveToXML(node,true);
 
-		Document doc=node.getOwnerDocument();
 		Element e;
 
-		if (!runDate.isEmpty()) {node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.RunDate"))); e.setTextContent(runDate);}
-		if (!runUser.isEmpty()) {node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.User"))); e.setTextContent(runUser);}
-		if (!runServer.isEmpty()) {node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.Server"))); e.setTextContent(runServer);}
-		if (!runServerOS.isEmpty()) {node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.ServerOS"))); e.setTextContent(runServerOS);}
-		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.RunTime"))); e.setTextContent(""+runTime);
-		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.Threads"))); e.setTextContent(""+runThreads);
-		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.SimulatedDays"))); e.setTextContent(""+simDays);
-		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.SimulatedEvents"))); e.setTextContent(""+simEvents);
+		if (!simulationData.runDate.isEmpty()) {node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.RunDate"))); e.setTextContent(simulationData.runDate);}
+		if (!simulationData.runUser.isEmpty()) {node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.User"))); e.setTextContent(simulationData.runUser);}
+		if (!simulationData.runOS.isEmpty()) {node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.ServerOS"))); e.setTextContent(simulationData.runOS);}
+		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.RunTime"))); e.setTextContent(""+simulationData.runTime);
+		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.Threads"))); e.setTextContent(""+simulationData.runThreads);
+		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.SimulatedDays"))); e.setTextContent(""+simulationData.runRepeatCount);
+		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Info.SimulatedEvents"))); e.setTextContent(""+simulationData.runEvents);
 
 		kundenGlobal.saveToXML(node);
 		for (int i=0;i<kundenProTyp.length;i++) kundenProTyp[i].saveToXML(node);
@@ -746,7 +638,7 @@ public final class Statistics {
 		for (int i=0;i<agentenProSkilllevel.length;i++) agentenProSkilllevel[i].saveToXML(node);
 
 		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.RevenueSummary")));
-		e.setTextContent(NumberTools.formatSystemNumber((kundenGlobal.revenue-(kundenGlobal.costCancel+kundenGlobal.costWaiting+agentenGlobal.costOfficeTime+agentenGlobal.costCalls+agentenGlobal.costProcessTime))/simDays));
+		e.setTextContent(NumberTools.formatSystemNumber((kundenGlobal.revenue-(kundenGlobal.costCancel+kundenGlobal.costWaiting+agentenGlobal.costOfficeTime+agentenGlobal.costCalls+agentenGlobal.costProcessTime))/simulationData.runRepeatCount));
 
 		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Statistic.Queue")));
 		e.setAttribute(Language.trPrimary("XML.Statistic.Queue.Average"),NumberTools.formatSystemNumber(meanQueueLength));
@@ -1263,7 +1155,7 @@ public final class Statistics {
 								}
 								kundenNextDayRetryProSimDay.add(list);
 							}
-							while (kundenNextDayRetryProSimDay.size()<simDays) kundenNextDayRetryProSimDay.add(new ArrayList<Long>());
+							while (kundenNextDayRetryProSimDay.size()<simulationData.runRepeatCount) kundenNextDayRetryProSimDay.add(new ArrayList<Long>());
 							continue;
 						}
 
@@ -1287,7 +1179,7 @@ public final class Statistics {
 								kundenNextDayUebertragWaitingTimeProSimDay.add(list1);
 								kundenNextDayUebertragRestWaitingToleranceProSimDay.add(list2);
 							}
-							while (kundenNextDayUebertragWaitingTimeProSimDay.size()<simDays) {
+							while (kundenNextDayUebertragWaitingTimeProSimDay.size()<simulationData.runRepeatCount) {
 								kundenNextDayUebertragWaitingTimeProSimDay.add(new ArrayList<Long>());
 								kundenNextDayUebertragRestWaitingToleranceProSimDay.add(new ArrayList<Long>());
 							}
@@ -1761,10 +1653,10 @@ public final class Statistics {
 			double[] c;
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Sum"),NumberTools.formatSystemNumber(sum));
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.SquaresSum"),NumberTools.formatSystemNumber(sum2));
-			c=calcConfidence(sum2,sum,simDays,0.9);
+			c=calcConfidence(sum2,sum,simulationData.runRepeatCount,0.9);
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Confidence90Min"),NumberTools.formatSystemNumber(c[0]*100,5)+"%");
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Confidence90Max"),NumberTools.formatSystemNumber(c[1]*100,5)+"%");
-			c=calcConfidence(sum2,sum,simDays,0.95);
+			c=calcConfidence(sum2,sum,simulationData.runRepeatCount,0.95);
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Confidence95Min"),NumberTools.formatSystemNumber(c[0]*100,5)+"%");
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Confidence95Max"),NumberTools.formatSystemNumber(c[1]*100,5)+"%");
 		}
@@ -2108,10 +2000,10 @@ public final class Statistics {
 			node.appendChild(node2=doc.createElement(Language.trPrimary("XML.Statistic.Confidence.WaitingTime")));
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Sum"),NumberTools.formatSystemNumber(interDayWartezeitSum));
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.SquaresSum"),NumberTools.formatSystemNumber(interDayWartezeitSum2));
-			c=calcConfidence(interDayWartezeitSum2,interDayWartezeitSum,simDays,0.9);
+			c=calcConfidence(interDayWartezeitSum2,interDayWartezeitSum,simulationData.runRepeatCount,0.9);
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Confidence90Min"),TimeTools.formatExactSystemTime(c[0]));
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Confidence90Max"),TimeTools.formatExactSystemTime(c[1]));
-			c=calcConfidence(interDayWartezeitSum2,interDayWartezeitSum,simDays,0.95);
+			c=calcConfidence(interDayWartezeitSum2,interDayWartezeitSum,simulationData.runRepeatCount,0.95);
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Confidence95Min"),TimeTools.formatExactSystemTime(c[0]));
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Confidence95Max"),TimeTools.formatExactSystemTime(c[1]));
 
@@ -2475,8 +2367,8 @@ public final class Statistics {
 			if (sum<=0) d=0; else d=((double)postProcessingGesamt)/((double)sum);
 			node.setAttribute(Language.trPrimary("XML.Statistic.Agents.Summary.PostProcessingTimePart"),NumberTools.formatSystemNumber(d*100)+"%");
 
-			node.setAttribute(Language.trPrimary("XML.Statistic.Agents.Summary.GrossTime"),NumberTools.formatSystemNumber(getAgentsTimes(editModel,false)*simDays));
-			node.setAttribute(Language.trPrimary("XML.Statistic.Agents.Summary.NetTime"),NumberTools.formatSystemNumber(getAgentsTimes(editModel,true)*simDays));
+			node.setAttribute(Language.trPrimary("XML.Statistic.Agents.Summary.GrossTime"),NumberTools.formatSystemNumber(getAgentsTimes(editModel,false)*simulationData.runRepeatCount));
+			node.setAttribute(Language.trPrimary("XML.Statistic.Agents.Summary.NetTime"),NumberTools.formatSystemNumber(getAgentsTimes(editModel,true)*simulationData.runRepeatCount));
 
 			node.setAttribute(Language.trPrimary("XML.Statistic.Agents.Summary.FreeTimePerInterval"),leerlaufProIntervall.storeToString());
 			node.setAttribute(Language.trPrimary("XML.Statistic.Agents.Summary.TechnicalFreeTimePerInterval"),technischerLeerlaufProIntervall.storeToString());

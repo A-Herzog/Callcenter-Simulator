@@ -145,7 +145,7 @@ public class SimpleSimulation extends Thread {
 	}
 
 	private void calcStatistic(final Statistics statistic) {
-		runTime=statistic.runTime;
+		runTime=statistic.simulationData.runTime;
 
 		anrufeErfolg=((double)statistic.kundenGlobal.anrufeErfolg)/Math.max(1,statistic.kundenGlobal.anrufe);
 		kundenErfolg=((double)statistic.kundenGlobal.kundenErfolg)/Math.max(1,statistic.kundenGlobal.kunden);
