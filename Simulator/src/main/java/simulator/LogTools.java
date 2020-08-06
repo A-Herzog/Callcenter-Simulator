@@ -71,6 +71,6 @@ public class LogTools {
 		if (caller!=null) lines+=callerData(caller);
 		if (agent!=null) lines+=agentData(agent);
 		if (info!=null && !info.isEmpty()) lines+=info;
-		data.logEventExecution(name,lines);
+		data.logEventExecution(name,-1,lines);
 	}
 }
