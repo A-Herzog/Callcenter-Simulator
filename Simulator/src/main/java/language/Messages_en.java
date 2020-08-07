@@ -6587,7 +6587,7 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16500] = "Editor.Caller.Forwarding.AgentTypeDependendForwarding";
     t[16501] = "Agent type dependet forwarding";
     t[16508] = "CommandLine.ReportBase.Help";
-    t[16509] = "This command expects exactly three additionall parameters:\n1. \"Inline\", \"SingleFiles\", \"List\", \"Text\", \"PDF\", \"LaTeX\" or a list entry, depending if\na) a html report with inline images,\nb) a html teport with separate images,\nc) an overview of all available individual documents,\nd) a docx report,\ne) a pdf report,\nf) a LaTeX report or\ng) an individual document is to be reported.\n2. File name of the input file\n3. File name of the output file";
+    t[16509] = "This command expects exactly three additionall parameters:\n1. \"Inline\", \"SingleFiles\", \"List\", \"Text\", \"PDF\", \"LaTeX\", \"HTMLApp\" or a list entry, depending if\na) a html report with inline images,\nb) a html teport with separate images,\nc) an overview of all available individual documents,\nd) a docx report,\ne) a pdf report,\nf) ein LaTeX-Report,\ng) ein HTML-Web-App-Report oder\nh) ein bestimmtes Einzeldokument ausgegeben werden soll.\n2. File name of the input file\n3. File name of the output file";
     t[16518] = "Server.TerminationRequest";
     t[16519] = "User abort, running threads will be completed before shut down.";
     t[16524] = "XML.Statistic.Agents.Model.WithSurcharge";

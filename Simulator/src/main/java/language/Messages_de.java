@@ -6587,7 +6587,7 @@ public class Messages_de extends java.util.ResourceBundle {
     t[16500] = "Editor.Caller.Forwarding.AgentTypeDependendForwarding";
     t[16501] = "Agententyp-abh\u00e4ngige Weiterleitungen";
     t[16508] = "CommandLine.ReportBase.Help";
-    t[16509] = "Dieser Befehl erwartet genau drei weitere Parameter:\n1. \"Inline\", \"Einzeldateien\", \"Liste\", \"Text\", \"PDF\" , \"LaTeX\" oder ein Listeneintrag je nach dem, ob\na) ein HTML-Report mit eingebetteten Bildern,\nb) ein HTML-Report mit Bildern in separaten Dateien,\nc) eine \u00dcbersicht \u00fcber alle verf\u00fcgbaren Einzeldokumente,\nd) ein DOCX-Report,\ne) ein PDF-Report,\nf) ein LaTeX-Report oder\ng) ein bestimmtes Einzeldokument ausgegeben werden soll.\n2. Dateiname der Eingabedatei\n3. Dateiname der Ausgabedatei";
+    t[16509] = "Dieser Befehl erwartet genau drei weitere Parameter:\n1. \"Inline\", \"Einzeldateien\", \"Liste\", \"Text\", \"PDF\" , \"LaTeX\", \"HTMLApp\" oder ein Listeneintrag je nach dem, ob\na) ein HTML-Report mit eingebetteten Bildern,\nb) ein HTML-Report mit Bildern in separaten Dateien,\nc) eine \u00dcbersicht \u00fcber alle verf\u00fcgbaren Einzeldokumente,\nd) ein DOCX-Report,\ne) ein PDF-Report,\nf) a LaTeX report\ng) a html web app report or\nh) an individual document is to be reported.\n2. Dateiname der Eingabedatei\n3. Dateiname der Ausgabedatei";
     t[16518] = "Server.TerminationRequest";
     t[16519] = "Abbruch durch Benutzer, laufende Threads werden zu Ende gef\u00fchrt.";
     t[16524] = "XML.Statistic.Agents.Model.WithSurcharge";
