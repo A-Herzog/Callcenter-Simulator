@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-07 17:42+0200\n"
+"POT-Creation-Date: 2020-08-17 11:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1815,6 +1815,18 @@ msgstr "View"
 
 msgid "Dialog.Button.Yes"
 msgstr "Yes"
+
+msgid "Dialog.OpenURL.Info"
+msgstr ""
+"Do you want to open the external web page\n"
+"%s\n"
+"now?"
+
+msgid "Dialog.OpenURL.InfoNo"
+msgstr "Do not open web page."
+
+msgid "Dialog.OpenURL.InfoYes"
+msgstr "Open web page in default browser."
 
 msgid "Dialog.Overwrite.Info"
 msgstr ""

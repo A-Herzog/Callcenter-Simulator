@@ -1270,6 +1270,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[3291] = "Cancel times distribution";
     t[3292] = "Connected.Error.Day1ModelFileDoesNotExist.Info";
     t[3293] = "The specified model file for day 1\n%s\ndoes not exist.";
+    t[3296] = "XML.Statistic.CallCenter";
+    t[3297] = "CallCenter";
     t[3300] = "Optimization.Error.MaximumSmallerThanMinimum";
     t[3301] = "The maximum value for the property to be optimized is smaller than the minimum value. The property will get larger during optimization so the maximum value has to be the bigger one.";
     t[3304] = "Editor.GeneralData.ThresholdValues.Intervals.RangeDialog.Max";
@@ -2002,10 +2004,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4921] = "All client type have the same priority.";
     t[4922] = "Editor.CallerGroups.Delete.Info";
     t[4923] = "Deletes the selected client type";
-    t[4924] = "SimStatistic.Thresholds.Status.Yellow";
-    t[4925] = "Yellow warning level";
   }
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4924] = "SimStatistic.Thresholds.Status.Yellow";
+    t[4925] = "Yellow warning level";
     t[4926] = "MainMenu.Simulation.Calibration.Mnemonic";
     t[4927] = " ";
     t[4928] = "Dialog.Button.Tools";
@@ -3210,6 +3212,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7755] = "The unknown skill level <b>%s</b> was reseted.";
     t[7758] = "Optimizer.LoadError.Runtime";
     t[7759] = "The specified run time %s is invalid. The value has to be a non-negative integer number.";
+    t[7760] = "Dialog.OpenURL.Info";
+    t[7761] = "Do you want to open the external web page\n%s\nnow?";
     t[7768] = "XML.OptimizerSetup.GroupRestriction.Name";
     t[7769] = "Name";
     t[7770] = "Editor.Callcenter.Agents.Copy.Info";
@@ -4002,12 +4006,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9717] = "The settings will be applied when closing this dialog by Ok.";
     t[9718] = "XML.Model.SkillLevel.ClientType";
     t[9719] = "SkillLevelClientType";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9726] = "Model.Check.Callcenter.DoubleName";
     t[9727] = "There are multiple call centers with the name \"%s\".";
     t[9728] = "XML.Statistic.Info.Threads";
     t[9729] = "StatisticThreads";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9730] = "Editor.Callcenter.Tools.LoadFixedGroupsFromFile";
     t[9731] = "Load agents groups with fixed working hours from table";
     t[9734] = "Loader.LoadData";
@@ -5352,6 +5356,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13241] = "Sets up the part of canceled clients that should be carried over into the next day";
     t[13244] = "Editor.AgentsGroup.Error.NoClientTypeForAgentsDistribution.Info";
     t[13245] = "When distribution the agents by the client arrivals at least one client type has to be setup with a positive rate.";
+    t[13246] = "Dialog.OpenURL.InfoYes";
+    t[13247] = "Open web page in default browser.";
     t[13250] = "Statistic.Viewer.Chart.InMinutes";
     t[13251] = "in minutes";
     t[13258] = "XML.Statistic.Agents.Summary.FreeTime.Error";
@@ -6002,14 +6008,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14853] = "But because the strict model checking is disabled for simulation, this model can be simulated.";
     t[14858] = "DistributionFitter.BestFitFor";
     t[14859] = "Best fit for";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14862] = "Editor.GeneralData.ThresholdValues.ModeTime.Intervals.Button";
     t[14863] = "Select intervals";
     t[14874] = "SimStatistic.Thresholds.Status.Red";
     t[14875] = "Red warning level";
     t[14876] = "XML.SaaS.StatisticFolder";
     t[14877] = "StatisticFolder";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14884] = "XML.Statistic.Agents.Summary.NetTime";
     t[14885] = "NetTime";
     t[14906] = "Batch.LoadError";
@@ -6896,8 +6902,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17195] = "An error occured during the simulation";
     t[17196] = "XML.OptimizerSetup.Group";
     t[17197] = "Optimizer-Group";
-    t[17200] = "XML.Statistic.CallCenter";
-    t[17201] = "CallCenter";
+    t[17200] = "Dialog.OpenURL.InfoNo";
+    t[17201] = "Do not open web page.";
     t[17204] = "LoadCalculator.Units.Part";
     t[17205] = "Part";
     t[17212] = "XML.Statistic.Clients.ClientsCallsCount.BlockedPerInterval.ErrorCalls";

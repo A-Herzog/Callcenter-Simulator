@@ -449,7 +449,9 @@ public final class MainPanel extends MainPanelBase {
 		});
 		addAction("HelpHomepage",e->{
 			try {
-				Desktop.getDesktop().browse(new URI(UpdateSystem.defaultProtocollHomepage+"://"+WEB_URL));
+				final URI uri=new URI(UpdateSystem.defaultProtocollHomepage+"://"+WEB_URL);
+				if (!MsgBox.confirmOpenURL(this,uri)) return;
+				Desktop.getDesktop().browse(uri);
 			} catch (IOException | URISyntaxException e1) {
 				MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ModelOverview"),UpdateSystem.defaultProtocollHomepage+"://"+WEB_URL));
 			}
@@ -1677,7 +1679,9 @@ public final class MainPanel extends MainPanelBase {
 
 		if (!modelFile.isFile()) {
 			try {
-				Desktop.getDesktop().browse(new URI(XMLTools.mediaURL+Language.tr("Window.Info.ModelOverview.FileName")));
+				final URI uri=new URI(XMLTools.mediaURL+Language.tr("Window.Info.ModelOverview.FileName"));
+				if (!MsgBox.confirmOpenURL(this,uri)) return;
+				Desktop.getDesktop().browse(uri);
 			} catch (IOException | URISyntaxException e) {
 				MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ModelOverview"),XMLTools.mediaURL+Language.tr("Window.Info.ModelOverview.FileName")));
 			}
@@ -1696,7 +1700,9 @@ public final class MainPanel extends MainPanelBase {
 
 		if (!modelFile.isFile()) {
 			try {
-				Desktop.getDesktop().browse(new URI(XMLTools.mediaURL+Language.tr("Window.Info.ShowGlossary.FileName")));
+				final URI uri=new URI(XMLTools.mediaURL+Language.tr("Window.Info.ShowGlossary.FileName"));
+				if (!MsgBox.confirmOpenURL(this,uri)) return;
+				Desktop.getDesktop().browse(uri);
 			} catch (IOException | URISyntaxException e) {
 				MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ShowGlossary"),XMLTools.mediaURL+Language.tr("Window.Info.ShowGlossary.FileName")));
 			}
@@ -1711,7 +1717,9 @@ public final class MainPanel extends MainPanelBase {
 
 	private void commandHelpBook() {
 		try {
-			Desktop.getDesktop().browse(new URI("https://www.springer.com/de/book/9783658183080"));
+			final URI uri=new URI("https://www.springer.com/de/book/9783658183080");
+			if (!MsgBox.confirmOpenURL(this,uri)) return;
+			Desktop.getDesktop().browse(uri);
 		} catch (IOException | URISyntaxException e) {
 			MsgBox.error(this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.Address"),"https://www.springer.com/de/book/9783658183080"));
 		}
@@ -2187,7 +2195,9 @@ public final class MainPanel extends MainPanelBase {
 		if (href.equalsIgnoreCase("xsd")) {showXSD(); return;}
 		if (href.equalsIgnoreCase("programhome")) {
 			try {
-				Desktop.getDesktop().browse(new URI(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL));
+				final URI uri=new URI(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL);
+				if (!MsgBox.confirmOpenURL(this,uri)) return;
+				Desktop.getDesktop().browse(uri);
 			} catch (IOException | URISyntaxException e) {
 				MsgBox.error(MainPanel.this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.Address"),UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL));
 			}

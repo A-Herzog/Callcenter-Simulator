@@ -224,7 +224,9 @@ public class SetupDialog extends BaseEditDialog {
 			public void mouseClicked(final MouseEvent e) {
 				if (SwingUtilities.isLeftMouseButton(e)) {
 					try {
-						Desktop.getDesktop().browse(new URI(Language.tr("SettingsDialog.JDK.Link")));
+						final URI uri=new URI(Language.tr("SettingsDialog.JDK.Link"));
+						if (!MsgBox.confirmOpenURL(SetupDialog.this,uri)) return;
+						Desktop.getDesktop().browse(uri);
 					} catch (IOException | URISyntaxException e1) {}
 				}
 			}
@@ -579,7 +581,11 @@ public class SetupDialog extends BaseEditDialog {
 	}
 
 	private void openDownloadWebPage() {
-		try {Desktop.getDesktop().browse(new URL(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL).toURI());} catch (IOException | URISyntaxException e1) {
+		try {
+			final URL url=new URL(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL);
+			if (!MsgBox.confirmOpenURL(SetupDialog.this,url)) return;
+			Desktop.getDesktop().browse(url.toURI());
+		} catch (IOException | URISyntaxException e1) {
 			MsgBox.error(SetupDialog.this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.Address"),UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL));
 		}
 	}

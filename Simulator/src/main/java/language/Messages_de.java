@@ -1270,6 +1270,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3291] = "Abbruchzeitenverteilung";
     t[3292] = "Connected.Error.Day1ModelFileDoesNotExist.Info";
     t[3293] = "Die angegebene Modeldatei f\u00fcr Tag 1\n%s\nexistiert nicht.";
+    t[3296] = "XML.Statistic.CallCenter";
+    t[3297] = "Callcenter";
     t[3300] = "Optimization.Error.MaximumSmallerThanMinimum";
     t[3301] = "Der Maximalwert f\u00fcr die zu optimierende Eigenschaft ist kleiner als der Minimalwert. Die Eigenschaft wird im Rahmen der Optimierung jedoch gr\u00f6\u00dfer, so dass der Maximalwert der gr\u00f6\u00dfere sein muss.";
     t[3304] = "Editor.GeneralData.ThresholdValues.Intervals.RangeDialog.Max";
@@ -2002,10 +2004,10 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4921] = "Alle Kundentypen besitzen dieselbe Priorit\u00e4t.";
     t[4922] = "Editor.CallerGroups.Delete.Info";
     t[4923] = "L\u00f6scht den gew\u00e4hlten Kundentyp";
-    t[4924] = "SimStatistic.Thresholds.Status.Yellow";
-    t[4925] = "Warnung Stufe \"Gelb\"";
   }
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4924] = "SimStatistic.Thresholds.Status.Yellow";
+    t[4925] = "Warnung Stufe \"Gelb\"";
     t[4926] = "MainMenu.Simulation.Calibration.Mnemonic";
     t[4927] = " ";
     t[4928] = "Dialog.Button.Tools";
@@ -3210,6 +3212,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7755] = "Der unbekannte Skill-Level <b>%s</b> wurde zur\u00fcckgesetzt.";
     t[7758] = "Optimizer.LoadError.Runtime";
     t[7759] = "Die angegebene Laufzeit %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
+    t[7760] = "Dialog.OpenURL.Info";
+    t[7761] = "M\u00f6chten Sie jetzt die externe Webseite\n%s\naufrufen?";
     t[7768] = "XML.OptimizerSetup.GroupRestriction.Name";
     t[7769] = "Name";
     t[7770] = "Editor.Callcenter.Agents.Copy.Info";
@@ -4002,12 +4006,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9717] = "Die Einstellungen werden angewendet, wenn dieser Dialog mit Ok geschlossen wird.";
     t[9718] = "XML.Model.SkillLevel.ClientType";
     t[9719] = "SkillLevelKundentyp;SkillKundentyp";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9726] = "Model.Check.Callcenter.DoubleName";
     t[9727] = "Es gibt mehrere Skill-Level mit dem Namen \"%s\".";
     t[9728] = "XML.Statistic.Info.Threads";
     t[9729] = "StatistikThreads;Threads";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9730] = "Editor.Callcenter.Tools.LoadFixedGroupsFromFile";
     t[9731] = "Agentengruppen mit festen Arbeitszeiten aus Tabelle laden";
     t[9734] = "Loader.LoadData";
@@ -5352,6 +5356,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13241] = "Stellt ein, welcher Anteil der endg\u00fcltigen Abbrecher gem\u00e4\u00df der Statistik-Datei \u00fcbertragen werden soll";
     t[13244] = "Editor.AgentsGroup.Error.NoClientTypeForAgentsDistribution.Info";
     t[13245] = "Bei der Verteilung der Agenten nach Kundenank\u00fcnften muss mindestens f\u00fcr eine Kundengruppe eine positive Rate angegeben werden.";
+    t[13246] = "Dialog.OpenURL.InfoYes";
+    t[13247] = "Webseite im Standard-Browser \u00f6ffnen.";
     t[13250] = "Statistic.Viewer.Chart.InMinutes";
     t[13251] = "in Minuten";
     t[13258] = "XML.Statistic.Agents.Summary.FreeTime.Error";
@@ -6002,14 +6008,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14853] = "Da jedoch die strenge Modellpr\u00fcfung f\u00fcr die Simulation ausgeschaltet ist, kann dieses Modell simuliert werden.";
     t[14858] = "DistributionFitter.BestFitFor";
     t[14859] = "Beste \u00dcbereinstimmung f\u00fcr";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14862] = "Editor.GeneralData.ThresholdValues.ModeTime.Intervals.Button";
     t[14863] = "Intervalle ausw\u00e4hlen";
     t[14874] = "SimStatistic.Thresholds.Status.Red";
     t[14875] = "Warnung Stufe \"Rot\"";
     t[14876] = "XML.SaaS.StatisticFolder";
     t[14877] = "StatistikVerzeichnis";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14884] = "XML.Statistic.Agents.Summary.NetTime";
     t[14885] = "NettoZeit";
     t[14906] = "Batch.LoadError";
@@ -6896,8 +6902,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17195] = "Es ist ein Fehler w\u00e4hrend der Simulation aufgetreten";
     t[17196] = "XML.OptimizerSetup.Group";
     t[17197] = "Optimierung-Gruppe";
-    t[17200] = "XML.Statistic.CallCenter";
-    t[17201] = "Callcenter";
+    t[17200] = "Dialog.OpenURL.InfoNo";
+    t[17201] = "Webseite nicht aufrufen.";
     t[17204] = "LoadCalculator.Units.Part";
     t[17205] = "Anteil";
     t[17212] = "XML.Statistic.Clients.ClientsCallsCount.BlockedPerInterval.ErrorCalls";

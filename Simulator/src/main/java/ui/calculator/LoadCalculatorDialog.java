@@ -475,6 +475,7 @@ public class LoadCalculatorDialog extends BaseEditDialog {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			if (!MsgBox.confirmOpenURL(LoadCalculatorDialog.this,url)) return;
 			try {Desktop.getDesktop().browse(new URI(url));} catch (IOException | URISyntaxException e1) {
 				MsgBox.error(LoadCalculatorDialog.this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ModelOverview"),url.toString()));
 			}

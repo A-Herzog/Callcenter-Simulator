@@ -257,6 +257,7 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 								MsgBox.error(textPane,Language.tr("Window.Info.NoEMailProgram.Title"),String.format(Language.tr("Window.Info.NoEMailProgram.Info"),e.getURL().toString()));
 							}
 						} else {
+							if (!MsgBox.confirmOpenURL(textPane,e.getURL())) return;
 							try {Desktop.getDesktop().browse(e.getURL().toURI());} catch (IOException | URISyntaxException e1) {
 								MsgBox.error(textPane,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.Address"),e.getURL().toString()));
 							}

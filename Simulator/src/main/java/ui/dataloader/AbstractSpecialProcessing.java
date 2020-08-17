@@ -48,6 +48,7 @@ import javax.swing.text.html.HTMLFrameHyperlinkEvent;
 
 import mathtools.distribution.tools.FileDropper;
 import mathtools.distribution.tools.FileDropperData;
+import systemtools.MsgBox;
 import ui.model.CallcenterModel;
 
 /**
@@ -236,6 +237,7 @@ public abstract class AbstractSpecialProcessing {
 
 				URL url=e.getURL();
 				if (url!=null) try {
+					if (!MsgBox.confirmOpenURL(panel,url)) return;
 					Desktop.getDesktop().browse(url.toURI());
 				} catch (IOException e1) {} catch (URISyntaxException e1) {}
 
