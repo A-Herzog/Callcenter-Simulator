@@ -5490,8 +5490,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13587] = "There are no embedded xml data.";
     t[13588] = "Optimizer.Error.Restrictions.NoCallcenterName";
     t[13589] = "There are interval-based minimum and maximum values for the number of agents in a group in call center %s defined. But there is no call center with this name in the model.";
-    t[13590] = "XML.Statistic.Clients.CarryOver.RetryTimes.Error";
-    t[13591] = "The retry times per simulation day could not be loaded.";
+    t[13590] = "Statistics.XML.RunThreads.DynamicBalance";
+    t[13591] = "DynamicThreadBalance";
     t[13594] = "MainMenu.Data.LoadExampleData";
     t[13595] = "Process data according to specified format...";
     t[13596] = "VarianceAnalysis.Canceled.Info";
@@ -7018,6 +7018,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17471] = "Accessibility over the day";
     t[17478] = "XML.Statistic.Clients.ClientsCallsCount.Blocked";
     t[17479] = "Blocked";
+    t[17482] = "XML.Statistic.Clients.CarryOver.RetryTimes.Error";
+    t[17483] = "The retry times per simulation day could not be loaded.";
     t[17488] = "LoadCalculator.AveragePostProcessingTime";
     t[17489] = "Average post processing time";
     t[17490] = "Importer.Parameter";

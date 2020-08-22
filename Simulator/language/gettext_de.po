@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-17 11:26+0200\n"
+"POT-Creation-Date: 2020-08-22 15:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9514,6 +9514,9 @@ msgstr "Der Wert in dem Element \"%s\" muss eine positive Ganzzahl sein, ist abe
 
 msgid "Statistics.XML.RunThreads"
 msgstr "StatistikThreads"
+
+msgid "Statistics.XML.RunThreads.DynamicBalance"
+msgstr "DynamischeThreadBalance"
 
 msgid "Statistics.XML.RunThreads.Error"
 msgstr "Der Wert in dem Element \"%s\" muss eine positive Ganzzahl sein, ist aber \"%s\"."

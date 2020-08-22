@@ -5490,8 +5490,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13587] = "Es sind keine eingebetteten xml-Daten vorhanden.";
     t[13588] = "Optimizer.Error.Restrictions.NoCallcenterName";
     t[13589] = "Es wurden intervallbasierende Minimal- und Maximalwerte f\u00fcr die Anzahl an Agenten in einer Gruppe in Callcenter %s definiert. Es existiert in dem Modell jedoch kein Callcenter mit diesem Namen.";
-    t[13590] = "XML.Statistic.Clients.CarryOver.RetryTimes.Error";
-    t[13591] = "Die Wiederholzeiten pro Simulationstag konnten nicht geladen werden.";
+    t[13590] = "Statistics.XML.RunThreads.DynamicBalance";
+    t[13591] = "DynamischeThreadBalance";
     t[13594] = "MainMenu.Data.LoadExampleData";
     t[13595] = "Daten gem\u00e4\u00df vorgegebenem Format verarbeiten...";
     t[13596] = "VarianceAnalysis.Canceled.Info";
@@ -7018,6 +7018,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17471] = "Erreichbarkeit \u00fcber den Tag";
     t[17478] = "XML.Statistic.Clients.ClientsCallsCount.Blocked";
     t[17479] = "Blockiert";
+    t[17482] = "XML.Statistic.Clients.CarryOver.RetryTimes.Error";
+    t[17483] = "Die Wiederholzeiten pro Simulationstag konnten nicht geladen werden.";
     t[17488] = "LoadCalculator.AveragePostProcessingTime";
     t[17489] = "Durchschnittliche Nachberarbeitungszeit";
     t[17490] = "Importer.Parameter";
