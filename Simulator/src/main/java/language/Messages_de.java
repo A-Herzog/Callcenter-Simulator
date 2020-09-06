@@ -5886,6 +5886,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14529] = "Es wurde jedoch ein weiterer Parameter \u00fcbergeben.";
     t[14538] = "Distribution.Pert";
     t[14539] = "Pert-Verteilung";
+    t[14542] = "Statistic.Viewer.Report.HTMLApp.JSError";
+    t[14543] = "Zur Anzeige der interaktiven Statistik wird Javascript ben\u00f6tigt.";
     t[14548] = "Server.ErrorSavingConfiguration";
     t[14549] = "Die Serverkonfiguration konnte nicht in %s gespeichert werden.";
     t[14554] = "Editor.GeneralData.ThresholdValues.IntervalsEdit";
@@ -6006,10 +6008,10 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14845] = "HTTP-Server auf Port %d gestartet.";
     t[14852] = "Model.Plausibility.ExtErrorIgnoreable";
     t[14853] = "Da jedoch die strenge Modellpr\u00fcfung f\u00fcr die Simulation ausgeschaltet ist, kann dieses Modell simuliert werden.";
-    t[14858] = "DistributionFitter.BestFitFor";
-    t[14859] = "Beste \u00dcbereinstimmung f\u00fcr";
   }
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14858] = "DistributionFitter.BestFitFor";
+    t[14859] = "Beste \u00dcbereinstimmung f\u00fcr";
     t[14862] = "Editor.GeneralData.ThresholdValues.ModeTime.Intervals.Button";
     t[14863] = "Intervalle ausw\u00e4hlen";
     t[14874] = "SimStatistic.Thresholds.Status.Red";
