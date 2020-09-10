@@ -28,6 +28,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -53,6 +54,7 @@ import javax.swing.Timer;
 import language.Language;
 import mathtools.NumberTools;
 import mathtools.distribution.swing.CommonVariables;
+import systemtools.GUITools;
 import systemtools.MsgBox;
 import tools.IconListCellRenderer;
 import tools.SetupData;
@@ -76,6 +78,7 @@ public class SetupDialog extends BaseEditDialog {
 	private JCheckBox programStartWelcomePage;
 	private JCheckBox programStartJavaCheck;
 	private JComboBox<String> fontSizes;
+	private JComboBox<String> lookAndFeel;
 	private JComboBox<String> languages;
 	private JCheckBox strictCheck;
 	private JCheckBox backgroundSim;
@@ -162,6 +165,15 @@ public class SetupDialog extends BaseEditDialog {
 				Images.SETUP_FONT_SIZE4,
 				Images.SETUP_FONT_SIZE5
 		}));
+
+		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
+		p.add(label=new JLabel(Language.tr("SettingsDialog.Theme")+":"));
+		final List<String> lookAndFeels=new ArrayList<>();
+		lookAndFeels.add(Language.tr("SettingsDialog.Theme.System"));
+		lookAndFeels.addAll(Arrays.asList(GUITools.listLookAndFeels()));
+		p.add(lookAndFeel=new JComboBox<String>(lookAndFeels.toArray(new String[0])));
+		label.setLabelFor(programStartWindow);
+
 		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(new JLabel("<html>("+Language.tr("SettingsDialog.FontSizes.Info")+")</html>"));
 
@@ -404,6 +416,13 @@ public class SetupDialog extends BaseEditDialog {
 		if (setup.scaleGUI>1.1) fontSizes.setSelectedIndex(3);
 		if (setup.scaleGUI>1.3) fontSizes.setSelectedIndex(4);
 
+		final String[] lookAndFeels2=GUITools.listLookAndFeels();
+		lookAndFeel.setSelectedIndex(0);
+		for (int i=0;i<lookAndFeels2.length;i++) if (lookAndFeels2[i].equalsIgnoreCase(setup.lookAndFeel)) {
+			lookAndFeel.setSelectedIndex(i+1);
+			break;
+		}
+
 		if (setup.language==null || setup.language.isEmpty() || setup.language.equalsIgnoreCase("de")) languages.setSelectedIndex(1); else languages.setSelectedIndex(0);
 
 		strictCheck.setSelected(setup.strictCheck);
@@ -508,6 +527,7 @@ public class SetupDialog extends BaseEditDialog {
 		case 3: setup.scaleGUI=1.25; break;
 		case 4: setup.scaleGUI=1.5; break;
 		}
+		if (lookAndFeel.getSelectedIndex()==0) setup.lookAndFeel=""; else setup.lookAndFeel=(String)lookAndFeel.getSelectedItem();
 		setup.language=(languages.getSelectedIndex()==1)?"de":"en";
 
 		setup.strictCheck=strictCheck.isSelected();

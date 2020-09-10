@@ -115,7 +115,7 @@ public final class Main {
 		@Override
 		public void run() {
 			SetupData setup=SetupData.getSetup();
-			GUITools.setupUI();
+			GUITools.setupUI(setup.lookAndFeel);
 			GUITools.setupFontSize(setup.scaleGUI);
 			MsgBox.setBackend(new MsgBoxBackendTaskDialog());
 			new MainFrame(VersionConst.version,loadFile);

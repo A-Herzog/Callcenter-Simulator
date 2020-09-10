@@ -2760,6 +2760,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[6647] = "Save text";
     t[6650] = "FitDialog.Tab.EmpiricalDistribution";
     t[6651] = "Empirical distribution";
+    t[6652] = "SettingsDialog.Theme";
+    t[6653] = "Theme";
     t[6658] = "XML.Model.ClientType.Retry.ClientType.Blocked";
     t[6659] = "RetryClientTypeAfterBeingBlockedFurtherRetrys";
     t[6666] = "SettingsDialog.AutoUpdate";
@@ -3690,6 +3692,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[8979] = "Error";
     t[8994] = "CommandLine.Import.Description.Long";
     t[8995] = "This command expects exactly four additional parameters:\n1. Input model file, from which the model to be changed is loaded\n2. Import template file, which specifies which data are to be loaded\n3. Imput table file containing the data\n4. Output model file";
+    t[8996] = "SettingsDialog.Theme.System";
+    t[8997] = "System default";
     t[8998] = "Optimizer.Results.NoData.Info";
     t[8999] = "No simulation run was completed yet. Therefore not results are available by now.";
     t[9000] = "SettingsDialog.Tabs.ProgramStart";
@@ -3795,7 +3799,7 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9258] = "SimStatistic.CancelTimes";
     t[9259] = "Cancel times";
     t[9278] = "SettingsDialog.FontSizes.Info";
-    t[9279] = "Changing the font size will take affect after restarting the program.";
+    t[9279] = "Changing the font size or the theme will take affect after restarting the program.";
     t[9280] = "Distribution.DegreesOfFreedom";
     t[9281] = "degrees of freedom";
     t[9286] = "FileType.AllTables";
@@ -4002,12 +4006,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9709] = "calculated on successful clients";
     t[9712] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMin.Title";
     t[9713] = "Set up minmal value for all intervals";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9716] = "SettingsDialog.Languages.Info";
     t[9717] = "The settings will be applied when closing this dialog by Ok.";
     t[9718] = "XML.Model.SkillLevel.ClientType";
     t[9719] = "SkillLevelClientType";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9726] = "Model.Check.Callcenter.DoubleName";
     t[9727] = "There are multiple call centers with the name \"%s\".";
     t[9728] = "XML.Statistic.Info.Threads";
@@ -6004,12 +6008,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14825] = "The values of the distribution are supposed to be non-negative, but value %d is negative.";
     t[14836] = "Server.OfferApplet";
     t[14837] = "Offer applet via web server";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14844] = "Server.HTTPStarted";
     t[14845] = "HTTP server started on port %s.";
     t[14852] = "Model.Plausibility.ExtErrorIgnoreable";
     t[14853] = "But because the strict model checking is disabled for simulation, this model can be simulated.";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14858] = "DistributionFitter.BestFitFor";
     t[14859] = "Best fit for";
     t[14862] = "Editor.GeneralData.ThresholdValues.ModeTime.Intervals.Button";

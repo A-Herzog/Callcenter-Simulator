@@ -2760,6 +2760,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6647] = "Text speichern";
     t[6650] = "FitDialog.Tab.EmpiricalDistribution";
     t[6651] = "Empirische Verteilung";
+    t[6652] = "SettingsDialog.Theme";
+    t[6653] = "Thema";
     t[6658] = "XML.Model.ClientType.Retry.ClientType.Blocked";
     t[6659] = "WiederholungenKundentypNachBlockierungWeitereVersuche";
     t[6666] = "SettingsDialog.AutoUpdate";
@@ -3690,6 +3692,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[8979] = "Abweichung";
     t[8994] = "CommandLine.Import.Description.Long";
     t[8995] = "Dieser Befehl erwartet genau vier weitere Parameter:\n1. Ausgangsmodelldatei, aus der das zu \u00e4ndernde Modell geladen werden soll.\n2. Import-Schablone, gem\u00e4\u00df der die Daten importiert werden sollen.\n3. Tabellendatei, aus der die Daten gelesen werden sollen.\n4. Zielmodelldatei, in der das ver\u00e4nderte Modell gespeichert werden soll.";
+    t[8996] = "SettingsDialog.Theme.System";
+    t[8997] = "Systemvorgabe";
     t[8998] = "Optimizer.Results.NoData.Info";
     t[8999] = "Es wurde noch kein Simulationslauf abgeschlossen. Daher stehen noch keine Ergebnisse zur Verf\u00fcgung.";
     t[9000] = "SettingsDialog.Tabs.ProgramStart";
@@ -3795,7 +3799,7 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9258] = "SimStatistic.CancelTimes";
     t[9259] = "Abbruchzeiten";
     t[9278] = "SettingsDialog.FontSizes.Info";
-    t[9279] = "Ver\u00e4nderungen der Schriftgr\u00f6\u00dfe werden erst nach dem n\u00e4chsten Programmstart wirksam.";
+    t[9279] = "Ver\u00e4nderungen der Schriftgr\u00f6\u00dfe oder des Themas werden erst nach dem n\u00e4chsten Programmstart wirksam.";
     t[9280] = "Distribution.DegreesOfFreedom";
     t[9281] = "Freiheitsgrade";
     t[9286] = "FileType.AllTables";
@@ -4002,12 +4006,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9709] = "bezogen auf erfolgreiche Kunden";
     t[9712] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMin.Title";
     t[9713] = "Minimalwert f\u00fcr alle Intervalle vorgeben";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9716] = "SettingsDialog.Languages.Info";
     t[9717] = "Die Einstellungen werden angewendet, wenn dieser Dialog mit Ok geschlossen wird.";
     t[9718] = "XML.Model.SkillLevel.ClientType";
     t[9719] = "SkillLevelKundentyp;SkillKundentyp";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9726] = "Model.Check.Callcenter.DoubleName";
     t[9727] = "Es gibt mehrere Skill-Level mit dem Namen \"%s\".";
     t[9728] = "XML.Statistic.Info.Threads";
@@ -6004,12 +6008,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14825] = "Die Werte der Verteilung d\u00fcrfen nicht negativ sein. Wert %d ist aber kleiner als 0.";
     t[14836] = "Server.OfferApplet";
     t[14837] = "Applet \u00fcber den Webserver anbieten";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14844] = "Server.HTTPStarted";
     t[14845] = "HTTP-Server auf Port %d gestartet.";
     t[14852] = "Model.Plausibility.ExtErrorIgnoreable";
     t[14853] = "Da jedoch die strenge Modellpr\u00fcfung f\u00fcr die Simulation ausgeschaltet ist, kann dieses Modell simuliert werden.";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14858] = "DistributionFitter.BestFitFor";
     t[14859] = "Beste \u00dcbereinstimmung f\u00fcr";
     t[14862] = "Editor.GeneralData.ThresholdValues.ModeTime.Intervals.Button";

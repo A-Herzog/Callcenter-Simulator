@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-06 20:49+0200\n"
+"POT-Creation-Date: 2020-09-10 16:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7420,7 +7420,7 @@ msgid "SettingsDialog.FontSizes"
 msgstr "Schriftgrößen"
 
 msgid "SettingsDialog.FontSizes.Info"
-msgstr "Veränderungen der Schriftgröße werden erst nach dem nächsten Programmstart wirksam."
+msgstr "Veränderungen der Schriftgröße oder des Themas werden erst nach dem nächsten Programmstart wirksam."
 
 msgid "SettingsDialog.FontSizes.Larger"
 msgstr "Größer"
@@ -7603,6 +7603,12 @@ msgstr "Updates"
 
 msgid "SettingsDialog.TestJavaVersionOnProgramStart"
 msgstr "Java-Version prüfen und warnen, wenn veraltet und unsicher"
+
+msgid "SettingsDialog.Theme"
+msgstr "Thema"
+
+msgid "SettingsDialog.Theme.System"
+msgstr "Systemvorgabe"
 
 msgid "SettingsDialog.Title"
 msgstr "Einstellungen"

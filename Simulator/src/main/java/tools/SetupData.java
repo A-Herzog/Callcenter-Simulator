@@ -33,6 +33,7 @@ import language.Language;
 import language.LanguageStaticLoader;
 import language.Messages_Java11;
 import mathtools.NumberTools;
+import systemtools.GUITools;
 import systemtools.SetupBase;
 
 /**
@@ -117,6 +118,12 @@ public class SetupData extends SetupBase {
 	 * Ist startSizeMode=START_MODE_LASTSIZE gewählt, so wird hier die letzte Größe des Fensters gespeichert
 	 */
 	public Dimension lastSize=new Dimension(0,0);
+
+	/**
+	 * Zu verwendendes Theme
+	 * @see GUITools#listLookAndFeels()
+	 */
+	public String lookAndFeel;
 
 	/**
 	 * Ist startSizeMode=START_MODE_LASTSIZE gewählt, so wird hier die letzte Position des Fensters gespeichert
@@ -332,6 +339,7 @@ public class SetupData extends SetupBase {
 		lastSizeMode=Frame.NORMAL;
 		lastPosition=new Point(0,0);
 		lastSize=new Dimension(0,0);
+		lookAndFeel="";
 
 		imageSize=1000;
 		imagesInline=true;
@@ -576,6 +584,11 @@ public class SetupData extends SetupBase {
 				j=NumberTools.getNotNegativeInteger(e.getAttribute("Height"));
 				if (j==null) j=NumberTools.getNotNegativeInteger(e.getAttribute("Hoehe"));
 				if (j!=null) lastSize.height=j;
+			}
+
+			if (s.equalsIgnoreCase("LookAndFeel")) {
+				lookAndFeel=e.getTextContent();
+				continue;
 			}
 
 			if (s.equalsIgnoreCase("Willkommensseite") || s.equalsIgnoreCase("WelcomePage")) {
@@ -899,6 +912,11 @@ public class SetupData extends SetupBase {
 			node.setAttribute("Y",""+lastPosition.y);
 			node.setAttribute(WRITE_ENGLISH_KEYS?"Width":"Breite",""+lastSize.width);
 			node.setAttribute(WRITE_ENGLISH_KEYS?"Height":"Hoehe",""+lastSize.height);
+		}
+
+		if (lookAndFeel!=null && !lookAndFeel.trim().isEmpty()) {
+			root.appendChild(node=doc.createElement("LookAndFeel"));
+			node.setTextContent(lookAndFeel);
 		}
 
 		if (imageSize!=1000 || !imagesInline) {
