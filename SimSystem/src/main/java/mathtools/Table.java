@@ -210,6 +210,12 @@ public final class Table implements Cloneable {
 		 */
 		private final String[] extensionsUpper;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param loadable	Können Tabellen in diesem Form geladen werden?
+		 * @param saveable	Können Tabellen in diesem Form gespeichert werden?
+		 * @param extensionsUpper	Namen der zugehörigen Dateinamenserweiterungen (jeweils inkl. ".") in Großbuchstaben
+		 */
 		SaveMode(final boolean loadable, final boolean saveable, final String[] extensionsUpper) {
 			this.loadable=loadable;
 			this.saveable=saveable;
@@ -231,8 +237,16 @@ public final class Table implements Cloneable {
 		}
 	}
 
+	/**
+	 * Gibt an, ob der erste Index die Spalten oder die Zeilen bezeichnen soll.
+	 * @see Table.IndexMode
+	 */
 	private final IndexMode mode;
 
+	/**
+	 * Inhalt der Tabelle
+	 * @see #mode
+	 */
 	private final List<List<String>> data;
 
 	/**
@@ -882,6 +896,10 @@ public final class Table implements Cloneable {
 	}
 	 */
 
+	/**
+	 * Caches eines {@link StringBuilder}, um diesen nicht wieder neu anlegen zu müssen.
+	 * @see #fromCSVDirect(String, int, int, char)
+	 */
 	private StringBuilder csvLoadBuilder;
 
 	/*
@@ -972,12 +990,22 @@ public final class Table implements Cloneable {
 		return csvCells;
 	}
 
+	/**
+	 * Wandelt eine CSV-Zeile in eine Tabellenzeile um
+	 * @param line	CSV-Zeile
+	 * @return	Tabellenzeile
+	 */
 	private List<String> fromCSV(final String line) {
 		char divider=';';
 		if (line.indexOf('\t')>=0) divider='\t';
 		return fromCSVDirect(line,0,line.length(),divider);
 	}
 
+	/**
+	 * Wandelt eine CSV-Zeile (aus R) in eine Tabellenzeile um
+	 * @param line	CSV-Zeile (aus R)
+	 * @return	Tabellenzeile
+	 */
 	private List<String> fromCSVR(final String line) {
 		char divider=',';
 		if (line.indexOf('\t')>=0) divider='\t';
@@ -1041,6 +1069,11 @@ public final class Table implements Cloneable {
 		} catch (SQLException e) {return false;}
 	}
 
+	/**
+	 * Entfernt Escape-Kommandos aus einer DIF-Text-Zelle
+	 * @param text	DIF-Text-Zelle
+	 * @return	Enthaltener Text
+	 */
 	private String unescapeDIFText(String text) {
 		if (text==null) return "";
 		if (text.isEmpty()) return "";
@@ -1130,6 +1163,10 @@ public final class Table implements Cloneable {
 		return true;
 	}
 
+	/**
+	 * Verarbeitet eine SYLK-Tabellenzelle
+	 * @param parts	Elemente einer C-Zelle nach "C;"
+	 */
 	private void processSYLKCell(final String[] parts) {
 		if (parts==null || parts.length<3) return;
 
@@ -1379,6 +1416,9 @@ public final class Table implements Cloneable {
 		return load(file,SaveMode.SAVEMODE_BYFILENAME);
 	}
 
+	/**
+	 * Verlängt einzelne Zeilen der Tabelle, so dass alle dieselbe Länge haben.
+	 */
 	private void makeSquare() {
 		if (data==null || data.isEmpty()) return;
 
@@ -1405,6 +1445,12 @@ public final class Table implements Cloneable {
 		}
 	}
 
+	/**
+	 * Wandelt eine Tabellenzeile in einen CSV-String um
+	 * @param line	Tabellenzeile
+	 * @param maxCols	Anzahl an Spalten (enthält die Tabellenzeile weniger Spalten, so werden leere Spalten angefügt)
+	 * @return Tabellenzeile als CSV-String
+	 */
 	private static String toCSV(final List<String> line, final int maxCols) {
 		final StringBuilder sb=new StringBuilder();
 
@@ -1422,6 +1468,12 @@ public final class Table implements Cloneable {
 		return sb.toString();
 	}
 
+	/**
+	 * Wandelt eine Tabellenzeile in einen R-tauglichen CSV-String um
+	 * @param line	Tabellenzeile
+	 * @param maxCols	Anzahl an Spalten (enthält die Tabellenzeile weniger Spalten, so werden leere Spalten angefügt)
+	 * @return Tabellenzeile als R-tauglicher CSV-String
+	 */
 	private static String toCSVR(final List<String> line, final int maxCols) {
 		final StringBuilder sb=new StringBuilder();
 
@@ -2009,6 +2061,10 @@ public final class Table implements Cloneable {
 		return save((file==null)?null:new File(file),SaveMode.SAVEMODE_BYFILENAME);
 	}
 
+	/**
+	 * Wird von {@link #getNumberArea(String, String)} und {@link #getDataArea(String, String)} ggf. mit einem
+	 * Wert belegt, wenn ein Fehler aufgetreten ist. Kann dann über {@link #getAreaError()} ausgelesen werden.
+	 */
 	private String areaError=null;
 
 	/**

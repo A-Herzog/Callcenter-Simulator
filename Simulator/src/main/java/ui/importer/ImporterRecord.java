@@ -69,7 +69,7 @@ public final class ImporterRecord implements Cloneable {
 	 * (Hier müssen die <code>ImporterProcessor</code>-Klassen registriert werden.
 	 * <code>getImporterProcessors</code> liefert dann eine gecachede Version davon.)
 	 * @return	Liste mit <code>ImporterProcessor</code>-Objekten.
-	 * @see getImporterProcessors
+	 * @see #getImporterProcessors()
 	 */
 	private static List<ImporterProcessor> getImporterProcessorsInt() {
 		List<ImporterProcessor> list=new ArrayList<ImporterProcessor>();

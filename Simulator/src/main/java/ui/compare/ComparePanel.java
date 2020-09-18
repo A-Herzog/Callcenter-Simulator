@@ -42,12 +42,18 @@ import ui.statistic.StatisticPanel;
 public class ComparePanel extends JWorkPanel {
 	private static final long serialVersionUID = 1696555531378569922L;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
+	/** Gibt an, ob angeboten werden soll, die zugehörigen Modelle in den Editor zu laden */
 	private final boolean allowLoadToEditor;
-	private final HelpLink helpLink;
+	/** Anzuzeigende Statistikdateien */
 	private final Statistics[] statistic;
+	/** Schaltfläche "Modell und Statistikdaten anzeigen" */
 	private final JButton showModelButton;
-	private CallcenterModel loadModelIntoEditor;
+	/** Hilfe-Verknüpfung */
+	private final HelpLink helpLink;
+	/** Wird hier ein Modell eingetragen, so steht dieses über {@link #getModelForEditor()} nach dem Schließen des Panels zum Laden in den Editor bereit */
+	private CallcenterModel loadModelIntoEditor=null;
 
 	/**
 	 * Konstruktor der Klasse <code>ComparePanel</code>

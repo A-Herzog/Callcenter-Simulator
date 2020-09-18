@@ -190,7 +190,12 @@ public final class MainPanel extends MainPanelBase {
 
 	private int equalsExampleModel=-1;
 
-	private CallcenterModel pinnedModel=null;
+	/**
+	 * Modell für den Vergleich mit einem geänderten Modell festhalten
+	 */
+	private CallcenterModel pinnedModel;
+
+	/** Statistikdaten, die sich beim Modellvergleich ergeben haben */
 	private final Statistics[] pinnedCompareStatistic=new Statistics[2];
 
 	/**
@@ -1302,8 +1307,9 @@ public final class MainPanel extends MainPanelBase {
 
 	/**
 	 * Generatordialog für Anrufer, Agenten oder Skills aufrufen
-	 * @param editType	0=Anrufer (24 Intervalle), 1=Anrufer (48 Intervalle), 2=Anrufer (96 Intervalle), 3=Agenten, 4=Skills, 5=Schablonen-Import
+	 * @param editType	0,1,2=Anrufer (24/48/49 Intervalle), 3,4,5=Agenten  (24/48/49 Intervalle), 6=Skills, 7=Schablonen-Import, 8=Agenten-Effizient, 9=Agenten-Verfügbarkeit
 	 * @param selectCallcenterNr	Wird hier eine Zahl >=0 übergeben, so wird die entsprechende Callcenternummer im Falle editType=1 verwendet, sonst wird das aktuell gewählte Callcenter verwendet.
+	 * @param file	Datei für Schablonen-Import
 	 */
 	private void commandDataGenerator(int editType, int selectCallcenterNr, File file) {
 		CallcenterModel model=modelPanel.getModel(true);

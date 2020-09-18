@@ -38,7 +38,9 @@ import ui.editor.BaseEditDialog;
 public class CalculatorDialog extends BaseEditDialog {
 	private static final long serialVersionUID = 8846361974707063923L;
 
+	/** Eingabezeile */
 	private JTextField input;
+	/** Ergebnisausgabezeile */
 	private JTextField output;
 
 	/**

@@ -146,6 +146,11 @@ public final class ConnectedSimulation {
 
 	/**
 	 * Übertrag der innerhalb und außerhalb wartenden Kunden (einzelner Kundentyp)
+	 * @param days Simulierte Tage
+	 * @param client	Kundentyp
+	 * @param retry	Außerhalb wartende Kunden
+	 * @param uebertragWaiting	Wartende Kunden
+	 * @param uebertragTolerance	Restwartezeittoleranz der wartenden Kunden
 	 */
 	private static void getModifyCallerDataDirectConnect(int days, KundenDaten client, long[][] retry, long[][] uebertragWaiting, long[][] uebertragTolerance) {
 		for (int k=0;k<days;k++) {
@@ -165,6 +170,12 @@ public final class ConnectedSimulation {
 
 	/**
 	 * Übertrag der innerhalb und außerhalb wartenden Kunden (alle Kundentypen)
+	 * @param lastStatistics	Statistik aus dem letzten Lauf
+	 * @param model	Edítor-Modell
+	 * @param connect	Überträge pro Kundentyp
+	 * @param retry	Außerhalb wartende Kunden
+	 * @param uebertragWaiting	Wartende Kunden
+	 * @param uebertragTolerance	Restwartezeittoleranz der wartenden Kunden
 	 */
 	private static void getModifyDataDirectConnect(Statistics lastStatistics, CallcenterModel model, HashMap<String,ConnectedModelUebertrag> connect, List<long[][]> retry, List<long[][]> uebertragWaiting, List<long[][]> uebertragTolerance) {
 		/* Innerhalb und außerhalb wartende Kunden übertragen */
@@ -191,6 +202,10 @@ public final class ConnectedSimulation {
 
 	/**
 	 * Übertrag der endgültigen Abbrecher (global für alle Kundentypen)
+	 * @param lastStatistics	Statistik aus dem letzten Lauf
+	 * @param model	Edítor-Modell
+	 * @param retryFactor	Wiederholwahrscheinlichkeit
+	 * @param add	Zusätzlich hinzuzufügende Anrufe
 	 */
 	private static void getModifyDataAddCanceledCallerGlobal(Statistics lastStatistics, CallcenterModel model, double retryFactor, List<int[]> add) {
 		for (int i=0;i<model.caller.size();i++) {

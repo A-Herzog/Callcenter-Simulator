@@ -36,7 +36,9 @@ import ui.model.CallcenterModel;
 public class ComparePanelDialog extends JFrame {
 	private static final long serialVersionUID = 5337587149627166880L;
 
+	/** Panel in dem die Daten angezeigt werden */
 	private final ComparePanel compare;
+	/** Meldet zurück, dass das Fenster geschlossen wird, um die GUI des unterliegenden Fensters wieder zu aktivieren */
 	private Runnable closeNotify;
 
 	/**
@@ -72,7 +74,7 @@ public class ComparePanelDialog extends JFrame {
 	/**
 	 * Meldet zurück, dass das Fenster geschlossen wird, um die
 	 * GUI des unterliegenden Fensters wieder zu aktivieren
-	 * @param closeNotify	Objekt vom Type <code>Runnabble</code>, dessen <code>run</code>-Methode aufgerufen wird
+	 * @param closeNotify	Objekt vom Typ {@link Runnable}, dessen <code>run</code>-Methode aufgerufen wird
 	 */
 	public void setCloseNotify(Runnable closeNotify) {
 		this.closeNotify=closeNotify;

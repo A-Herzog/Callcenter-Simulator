@@ -210,7 +210,7 @@ public class UpdateSystem {
 
 	/**
 	 * Öffnet die Verbindung zum Server, um eine Datei herunterzuladen
-	 * @param request	Update-Request
+	 * @param urlString	Update-Request
 	 * @return	Serververbindung oder <code>null</code>, wenn die Verbindung fehlgeschlagen ist.
 	 */
 	private InputStream openServerFile(final String urlString) {

@@ -86,14 +86,23 @@ public class FitDialog extends BaseEditDialog {
 					"<body>\n";
 	private static final String htmlFoot="</body></html>";
 
+	/** Eingabefeld für die Messwerte */
 	private JTextPane inputValues;
+	/** Maximalwert innerhalb der Messwerte */
 	private double inputValuesMax=0;
+	/** Darstellung der Messwerte als empirische Verteilung */
 	private JDataDistributionEditPanel inputDistribution;
+	/** Mussten Werte gerundet werden */
 	private boolean hasFloat;
+	/** Ergebnis der Verteilungsanpassung als Text */
 	private String outputReportPlain;
+	/** Ergebnis der Verteilungsanpassung als HTML */
 	private String outputReportHTML;
+	/** Ausgabefeld für die Ergebnisse der Verteilungsanpassung */
 	private JTextPane outputText;
+	/** Am besten passende Verteilung */
 	private JDistributionPanel outputDistribution;
+
 	private JComboBox<String> ouputSelectInsert;
 	private List<AbstractRealDistribution> outputSelectDist;
 
