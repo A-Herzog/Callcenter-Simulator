@@ -53,6 +53,7 @@ import mathtools.distribution.swing.CommonVariables;
 import systemtools.MsgBox;
 import systemtools.statistics.PDFWriter;
 import systemtools.statistics.StatisticViewer;
+import systemtools.statistics.StatisticsBasePanel;
 
 /**
  * Gibt Texte in Form eines HTML-Panels aus.
@@ -285,5 +286,14 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 
 	@Override
 	public void setUpdateImageSize(IntConsumer setImageSize) {
+	}
+
+	/**
+	 * Soll für diese Komponente der Standard-FileDrop-Listener des {@link StatisticsBasePanel} verwendet werden?
+	 * @return	Übergeordneten FileDrop-Listener verwenden (<code>false</code>) oder eigenen (<code>true</code>)
+	 */
+	@Override
+	public boolean hasOwnFileDropListener() {
+		return false;
 	}
 }
