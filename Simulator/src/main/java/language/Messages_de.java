@@ -156,6 +156,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[395] = "Ok & vorherige Kundengruppe bearbeiten";
     t[402] = "SimStatistic.Thresholds.Status.Ok";
     t[403] = "In Ordnung";
+    t[404] = "Statistic.Viewer.Toolbar.Search.DialogTitle";
+    t[405] = "Text suchen";
     t[418] = "Editor.GeneralData.ThresholdValues.warningYellow.InvalidValue.TimeNeeded";
     t[419] = "Der angegebene Wert f\u00fcr den gelben Schwellenwert ist ung\u00fcltig. Es muss ein Zeitwert angegeben werden.";
     t[420] = "CommandLine.Error.File.TableDoesNotExist";
@@ -1414,10 +1416,10 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3653] = "Keine Eintr\u00e4ge ausw\u00e4hlen";
     t[3656] = "Connected.DoneInfoSingle";
     t[3657] = "%d Tag  simuliert. Ben\u00f6tigte Zeit:";
-    t[3658] = "XML.ImportTemplate.Record.CellTo";
-    t[3659] = "ZelleBis";
-    t[3660] = "XML.Statistic.Queue.Average.Error";
-    t[3661] = "Die angegebene mittlere Warteschlangenl\u00e4nge %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Zahl sein.";
+    t[3658] = "Statistic.Viewer.Toolbar.Search";
+    t[3659] = "Suchen";
+    t[3660] = "Statistic.Viewer.Toolbar.Search.NotFound";
+    t[3661] = "Der Text \"%s\" wurde nicht gefunden.";
     t[3664] = "Loader.InputFile.Select";
     t[3665] = "Datei w\u00e4hlen";
     t[3672] = "InfoDialog.MemoryUsage";
@@ -1832,6 +1834,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4521] = "Schichtl\u00e4nge";
     t[4524] = "Editor.Overview.Category.ExtendedErlangCModel";
     t[4525] = "Erweitertes Erlang-C Modell (Abbrecher und Wiederholer)";
+    t[4526] = "XML.Comment";
+    t[4527] = "Diese Datei wurde mit %s erstellt. Download-Adresse: %s";
     t[4528] = "XML.Statistic.Clients.Count";
     t[4529] = "StatistikKundenAnzahl;KundenAnzahl";
     t[4530] = "LoadCalculator.Tab.ErlangC.Link.Info";
@@ -2000,12 +2004,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4915] = "Ergebnisse";
     t[4916] = "Server.ThreadDoneError";
     t[4917] = "Beendet, FEHLER: %s";
+  }
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4920] = "Model.GenerateDescription.ClientPriority.Same";
     t[4921] = "Alle Kundentypen besitzen dieselbe Priorit\u00e4t.";
     t[4922] = "Editor.CallerGroups.Delete.Info";
     t[4923] = "L\u00f6scht den gew\u00e4hlten Kundentyp";
-  }
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4924] = "SimStatistic.Thresholds.Status.Yellow";
     t[4925] = "Warnung Stufe \"Gelb\"";
     t[4926] = "MainMenu.Simulation.Calibration.Mnemonic";
@@ -3108,6 +3112,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7493] = "Zielwert f\u00fcr den Service-Level (in %)";
     t[7504] = "SimStatistic.ResidenceTime";
     t[7505] = "Verweilzeit";
+    t[7510] = "Statistic.Viewer.Toolbar.Search.Hint";
+    t[7511] = "Sucht nach einem Text auf der aktuellen Seite";
     t[7518] = "Model.Check.ClientType.RetryCheck.Blocked";
     t[7519] = "Bei \"besetzt\", ab dem zweiten Wiederholversuch.";
     t[7520] = "Distribution.DataPoint";
@@ -3900,6 +3906,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9481] = "Es gibt keine Kundengruppe mit dem Namen \"%s\".";
     t[9488] = "Connected.DoneInfoMultiple";
     t[9489] = "%d Tage  simuliert. Ben\u00f6tigte Zeit:";
+    t[9490] = "XML.ImportTemplate.Record.CellTo";
+    t[9491] = "ZelleBis";
     t[9492] = "XML.InterpreterError";
     t[9493] = "Der XML-Interpreter konnte nicht initalisiert werden.";
     t[9494] = "SimStatistic.OptimizeSetup.Intervals.All";
@@ -3998,6 +4006,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9685] = "CallcenterModell";
     t[9696] = "CommandLine.UnknownCommand";
     t[9697] = "Unbekannte Parameter. Rufen Sie den Simulation mit \"Hilfe\" als Parameter auf, um eine Liste der g\u00fcltigen Befehle zu erhalten.";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9704] = "Loader.ProcessError.InvalidTimeValue";
     t[9705] = "Die angegebene Zeit %s ist ung\u00fcltig.";
     t[9706] = "XML.Statistic.Costs.Yield.Error";
@@ -4006,8 +4016,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9709] = "bezogen auf erfolgreiche Kunden";
     t[9712] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMin.Title";
     t[9713] = "Minimalwert f\u00fcr alle Intervalle vorgeben";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9716] = "SettingsDialog.Languages.Info";
     t[9717] = "Die Einstellungen werden angewendet, wenn dieser Dialog mit Ok geschlossen wird.";
     t[9718] = "XML.Model.SkillLevel.ClientType";
@@ -6000,6 +6008,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14797] = "Statistik-Datei f\u00fcr \u00dcbertrag";
     t[14802] = "SimStatistic.Shift.PreferredLength";
     t[14803] = "Gew\u00fcnschte Schichtl\u00e4nge";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14812] = "Optimizer.Error.StatisticFileInvalid";
     t[14813] = "Beim Laden der Statistikdatei %s ist der folgende Fehler aufgetreten";
     t[14816] = "Loader.Info.Technion.CallerOnly.Description";
@@ -6008,8 +6018,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14825] = "Die Werte der Verteilung d\u00fcrfen nicht negativ sein. Wert %d ist aber kleiner als 0.";
     t[14836] = "Server.OfferApplet";
     t[14837] = "Applet \u00fcber den Webserver anbieten";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14844] = "Server.HTTPStarted";
     t[14845] = "HTTP-Server auf Port %d gestartet.";
     t[14852] = "Model.Plausibility.ExtErrorIgnoreable";
@@ -6574,6 +6582,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[16419] = "Beschreibung automatisch erstellen";
     t[16420] = "Editor.AgentsGroup.WorkingTimeOpenEnd";
     t[16421] = "Arbeitszeitende ignorieren und beliebig weiterarbeiten";
+    t[16422] = "XML.Statistic.Queue.Average.Error";
+    t[16423] = "Die angegebene mittlere Warteschlangenl\u00e4nge %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Zahl sein.";
     t[16426] = "XML.Connected.LoadStatistic.ErrorClientTypesDoNotMatch";
     t[16427] = "Die Kundentypen des %d. und des %d. Simulationslaufes unterscheiden sich.";
     t[16434] = "Statistic.PreviousRemove.Hint";

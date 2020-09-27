@@ -225,6 +225,10 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 	}
 
 	@Override
+	public void search(Component owner) {
+	}
+
+	@Override
 	public boolean save(Component owner, File file) {
 		filterUpdated();
 		return DataFilterBase.saveText(results.getText(),file,false);
@@ -283,8 +287,8 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		case CAN_DO_PRINT : return false;
 		case CAN_DO_SAVE : return true;
 		case CAN_DO_UNZOOM: return false;
+		default: return false;
 		}
-		return false;
 	}
 
 	private boolean filterIsUpdating=false;

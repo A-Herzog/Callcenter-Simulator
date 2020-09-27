@@ -156,6 +156,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[395] = "Ok & edit previous client type";
     t[402] = "SimStatistic.Thresholds.Status.Ok";
     t[403] = "Ok";
+    t[404] = "Statistic.Viewer.Toolbar.Search.DialogTitle";
+    t[405] = "Search text";
     t[418] = "Editor.GeneralData.ThresholdValues.warningYellow.InvalidValue.TimeNeeded";
     t[419] = "The entered value for the yellow threshold value is invalid. A time value is expected.";
     t[420] = "CommandLine.Error.File.TableDoesNotExist";
@@ -1414,10 +1416,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[3653] = "Unselect all entries";
     t[3656] = "Connected.DoneInfoSingle";
     t[3657] = "%d day simulated. Needed time:";
-    t[3658] = "XML.ImportTemplate.Record.CellTo";
-    t[3659] = "CellTo";
-    t[3660] = "XML.Statistic.Queue.Average.Error";
-    t[3661] = "The specified average queue length %s is invalid. The value has to be a non-negative number.";
+    t[3658] = "Statistic.Viewer.Toolbar.Search";
+    t[3659] = "Search";
+    t[3660] = "Statistic.Viewer.Toolbar.Search.NotFound";
+    t[3661] = "The text \"%s\" could not be found.";
     t[3664] = "Loader.InputFile.Select";
     t[3665] = "Select file";
     t[3672] = "InfoDialog.MemoryUsage";
@@ -1832,6 +1834,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4521] = "Shift length";
     t[4524] = "Editor.Overview.Category.ExtendedErlangCModel";
     t[4525] = "Extended Erlang-C model (waiting cancelation and retry)";
+    t[4526] = "XML.Comment";
+    t[4527] = "This file was created using %s. Download address: %s";
     t[4528] = "XML.Statistic.Clients.Count";
     t[4529] = "StatisticClientsCount";
     t[4530] = "LoadCalculator.Tab.ErlangC.Link.Info";
@@ -2000,12 +2004,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4915] = "Results";
     t[4916] = "Server.ThreadDoneError";
     t[4917] = "Done, ERROR: %s";
+  }
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4920] = "Model.GenerateDescription.ClientPriority.Same";
     t[4921] = "All client type have the same priority.";
     t[4922] = "Editor.CallerGroups.Delete.Info";
     t[4923] = "Deletes the selected client type";
-  }
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4924] = "SimStatistic.Thresholds.Status.Yellow";
     t[4925] = "Yellow warning level";
     t[4926] = "MainMenu.Simulation.Calibration.Mnemonic";
@@ -3108,6 +3112,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7493] = "Target value for the service level (in %)";
     t[7504] = "SimStatistic.ResidenceTime";
     t[7505] = "Residence time";
+    t[7510] = "Statistic.Viewer.Toolbar.Search.Hint";
+    t[7511] = "Searches for text on the current page";
     t[7518] = "Model.Check.ClientType.RetryCheck.Blocked";
     t[7519] = "After being blocked, from the second retry on.";
     t[7520] = "Distribution.DataPoint";
@@ -3900,6 +3906,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9481] = "There is no client type with name \"%s\".";
     t[9488] = "Connected.DoneInfoMultiple";
     t[9489] = "%d days simulated. Needed time:";
+    t[9490] = "XML.ImportTemplate.Record.CellTo";
+    t[9491] = "CellTo";
     t[9492] = "XML.InterpreterError";
     t[9493] = "Unable to initialize the XML interpreter.";
     t[9494] = "SimStatistic.OptimizeSetup.Intervals.All";
@@ -3998,6 +4006,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9685] = "CallCenterModel";
     t[9696] = "CommandLine.UnknownCommand";
     t[9697] = "Unknown command. Run simulator with parameter \"Help\" to get a list of all available commands.";
+  }
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9704] = "Loader.ProcessError.InvalidTimeValue";
     t[9705] = "The specified time %s is invalid.";
     t[9706] = "XML.Statistic.Costs.Yield.Error";
@@ -4006,8 +4016,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9709] = "calculated on successful clients";
     t[9712] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMin.Title";
     t[9713] = "Set up minmal value for all intervals";
-  }
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9716] = "SettingsDialog.Languages.Info";
     t[9717] = "The settings will be applied when closing this dialog by Ok.";
     t[9718] = "XML.Model.SkillLevel.ClientType";
@@ -6000,6 +6008,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14797] = "Statistic file for carrying over caller";
     t[14802] = "SimStatistic.Shift.PreferredLength";
     t[14803] = "Preferred shift length";
+  }
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14812] = "Optimizer.Error.StatisticFileInvalid";
     t[14813] = "The following error occured while trying to load the statistic file %s";
     t[14816] = "Loader.Info.Technion.CallerOnly.Description";
@@ -6008,8 +6018,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14825] = "The values of the distribution are supposed to be non-negative, but value %d is negative.";
     t[14836] = "Server.OfferApplet";
     t[14837] = "Offer applet via web server";
-  }
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14844] = "Server.HTTPStarted";
     t[14845] = "HTTP server started on port %s.";
     t[14852] = "Model.Plausibility.ExtErrorIgnoreable";
@@ -6574,6 +6582,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16419] = "Automatically generate description";
     t[16420] = "Editor.AgentsGroup.WorkingTimeOpenEnd";
     t[16421] = "Ignore end of working time and continue to work";
+    t[16422] = "XML.Statistic.Queue.Average.Error";
+    t[16423] = "The specified average queue length %s is invalid. The value has to be a non-negative number.";
     t[16426] = "XML.Connected.LoadStatistic.ErrorClientTypesDoNotMatch";
     t[16427] = "The client types for day %d and day %d do not match.";
     t[16434] = "Statistic.PreviousRemove.Hint";

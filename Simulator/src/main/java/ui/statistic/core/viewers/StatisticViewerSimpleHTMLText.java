@@ -162,6 +162,10 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 	}
 
 	@Override
+	public void search(Component owner) {
+	}
+
+	@Override
 	public boolean save(Component owner, File file) {
 		if (textPane==null) initTextPane();
 
