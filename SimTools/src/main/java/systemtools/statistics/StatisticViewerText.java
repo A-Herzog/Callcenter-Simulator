@@ -24,6 +24,8 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -42,6 +44,7 @@ import java.util.function.IntSupplier;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -75,6 +78,7 @@ import mathtools.NumberTools;
 import mathtools.Table;
 import mathtools.TimeTools;
 import mathtools.distribution.swing.CommonVariables;
+import systemtools.GUITools;
 import systemtools.MsgBox;
 import systemtools.images.SimToolsImages;
 
@@ -139,31 +143,32 @@ public abstract class StatisticViewerText implements StatisticViewer {
 		textPane=new JTextPane();
 		textPane.setEditable(false);
 		textPane.setBackground(new Color(0xFF,0xFF,0xF8));
+		textPane.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES,Boolean.TRUE);
 
 		/* Styles zusammenstellen */
-		StyledDocument doc=textPane.getStyledDocument();
+		final StyledDocument doc=textPane.getStyledDocument();
 
-		Style defaultStyle=StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
-		Style s;
+		final Style defaultStyle=StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
+		Style style;
 
-		s=doc.addStyle("default",defaultStyle);
-		StyleConstants.setFontSize(s,StyleConstants.getFontSize(s)+1);
+		style=doc.addStyle("default",defaultStyle);
+		StyleConstants.setFontSize(style,(int)Math.round((StyleConstants.getFontSize(style)+1)*GUITools.getScaleFactor()));
 
-		s=doc.addStyle("h1",defaultStyle);
-		StyleConstants.setFontSize(s,StyleConstants.getFontSize(s)+4);
-		StyleConstants.setBold(s,true);
+		style=doc.addStyle("h1",defaultStyle);
+		StyleConstants.setFontSize(style,(int)Math.round((StyleConstants.getFontSize(style)+4)*GUITools.getScaleFactor()));
+		StyleConstants.setBold(style,true);
 
-		s=doc.addStyle("h2",defaultStyle);
-		StyleConstants.setBold(s,true);
-		StyleConstants.setFontSize(s,StyleConstants.getFontSize(s)+2);
+		style=doc.addStyle("h2",defaultStyle);
+		StyleConstants.setBold(style,true);
+		StyleConstants.setFontSize(style,(int)Math.round((StyleConstants.getFontSize(style)+2)*GUITools.getScaleFactor()));
 
-		s=doc.addStyle("h3",defaultStyle);
-		StyleConstants.setFontSize(s,StyleConstants.getFontSize(s)+1);
-		StyleConstants.setUnderline(s,true);
+		style=doc.addStyle("h3",defaultStyle);
+		StyleConstants.setFontSize(style,(int)Math.round((StyleConstants.getFontSize(style)+1)*GUITools.getScaleFactor()));
+		StyleConstants.setUnderline(style,true);
 
-		s=doc.addStyle("link",defaultStyle);
-		StyleConstants.setFontSize(s,StyleConstants.getFontSize(s)-1);
-		StyleConstants.setForeground(s,Color.BLUE);
+		style=doc.addStyle("link",defaultStyle);
+		StyleConstants.setFontSize(style,(int)Math.round((StyleConstants.getFontSize(style)-1)*GUITools.getScaleFactor()));
+		StyleConstants.setForeground(style,Color.BLUE);
 
 		/* Text einfügen */
 		final int size=lines.size();
@@ -231,7 +236,7 @@ public abstract class StatisticViewerText implements StatisticViewer {
 					final MouseEvent e2=new MouseEvent((Component)e.getSource(),e.getID(),e.getWhen(),e.getModifiersEx(),e.getX(),e.getY(),e.getXOnScreen(),e.getYOnScreen(),e.getClickCount(),false,MouseEvent.BUTTON1);
 					textPane.dispatchEvent(e2);
 
-					final String hint=pointToHint(e.getPoint());
+					final String hint=pointToHint();
 					if (hint!=null) {
 						final JPopupMenu menu=processContextClick(hint);
 						if (menu!=null) menu.show(e.getComponent(),e.getX(),e.getY());
@@ -240,6 +245,16 @@ public abstract class StatisticViewerText implements StatisticViewer {
 				if (SwingUtilities.isLeftMouseButton(e)) {
 					final String url=pointToLink(e.getPoint());
 					if (url!=null) processLinkClick(url);
+				}
+			}
+		});
+
+		textPane.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.isControlDown() && !e.isAltDown() && !e.isShiftDown() && e.getKeyCode()==KeyEvent.VK_F) {
+					search(SwingUtilities.getWindowAncestor(textPane));
+					e.consume();
 				}
 			}
 		});
@@ -1267,7 +1282,7 @@ public abstract class StatisticViewerText implements StatisticViewer {
 		return (String)obj;
 	}
 
-	private String pointToHint(final Point point) {
+	private String pointToHint() {
 		/*
 		Ursprünglich:
 		offset=textPane.viewToModel(point);
@@ -1354,7 +1369,7 @@ public abstract class StatisticViewerText implements StatisticViewer {
 	private void processSearchResults(final Component owner, final String search, final List<Integer> hits) {
 		textPane.getHighlighter().removeAllHighlights();
 
-		if (hits==null || hits.size()==0) {
+		if (hits==null || hits.isEmpty()) {
 			MsgBox.info(owner,StatisticsBasePanel.viewersToolbarSearch,String.format(StatisticsBasePanel.viewersToolbarSearchNotFound,search));
 			return;
 		}

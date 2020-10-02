@@ -16,6 +16,7 @@
 package mathtools.distribution.tools;
 
 import org.apache.commons.math3.distribution.AbstractRealDistribution;
+import org.apache.commons.math3.util.FastMath;
 
 import mathtools.NumberTools;
 import mathtools.distribution.ErlangDistributionImpl;
@@ -59,6 +60,11 @@ public class WrapperErlangDistribution extends AbstractDistributionWrapper {
 	}
 
 	@Override
+	public AbstractRealDistribution getDefaultDistribution() {
+		return getDistribution(100,50);
+	}
+
+	@Override
 	public AbstractRealDistribution getDistributionForFit(double mean, double sd) {
 		return null; /* Erlang-Verteilung brauchen wir nicht explizit -> in Gamma-Verteilung enthalten */
 	}
@@ -86,7 +92,7 @@ public class WrapperErlangDistribution extends AbstractDistributionWrapper {
 	@Override
 	public double getStandardDeviation(final AbstractRealDistribution distribution) {
 		final double n=((ErlangDistributionImpl)distribution).getShape(); double lambda=((ErlangDistributionImpl)distribution).getScale();
-		return Math.sqrt(n*Math.pow(lambda,2));
+		return Math.sqrt(n*FastMath.pow(lambda,2));
 	}
 
 	@Override

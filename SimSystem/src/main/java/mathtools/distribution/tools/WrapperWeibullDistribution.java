@@ -59,6 +59,11 @@ public class WrapperWeibullDistribution extends AbstractDistributionWrapper {
 	}
 
 	@Override
+	public AbstractRealDistribution getDefaultDistribution() {
+		return new WeibullDistribution(2,100);
+	}
+
+	@Override
 	public double getMean(final AbstractRealDistribution distribution) {
 		final double sh = ((WeibullDistribution)distribution).getShape();
 		final double sc = ((WeibullDistribution)distribution).getScale();
@@ -74,7 +79,7 @@ public class WrapperWeibullDistribution extends AbstractDistributionWrapper {
 	@Override
 	public double getStandardDeviation(final AbstractRealDistribution distribution) {
 		double beta=((WeibullDistribution)distribution).getShape(); double lambda=1/((WeibullDistribution)distribution).getScale();
-		return 1/lambda*Math.sqrt(Math.exp(Gamma.logGamma(1+2/beta))-Math.pow(Math.exp(Gamma.logGamma(1+1/beta)),2));
+		return 1/lambda*Math.sqrt(FastMath.exp(Gamma.logGamma(1+2/beta))-FastMath.pow(FastMath.exp(Gamma.logGamma(1+1/beta)),2));
 	}
 
 	@Override

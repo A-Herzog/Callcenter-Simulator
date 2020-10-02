@@ -17,6 +17,7 @@ package mathtools.distribution.tools;
 
 import org.apache.commons.math3.distribution.AbstractRealDistribution;
 import org.apache.commons.math3.distribution.GammaDistribution;
+import org.apache.commons.math3.util.FastMath;
 
 import mathtools.NumberTools;
 
@@ -60,6 +61,11 @@ public class WrapperGammaDistribution extends AbstractDistributionWrapper {
 	}
 
 	@Override
+	public AbstractRealDistribution getDefaultDistribution() {
+		return getDistribution(100,50);
+	}
+
+	@Override
 	public AbstractRealDistribution getDistributionForFit(double mean, double sd) {
 		if (sd<=0 || mean<=0) return null;
 		return super.getDistributionForFit(mean,sd);
@@ -83,7 +89,7 @@ public class WrapperGammaDistribution extends AbstractDistributionWrapper {
 	@Override
 	public double getStandardDeviation(final AbstractRealDistribution distribution) {
 		final double alpha=((GammaDistribution)distribution).getShape(); double beta=((GammaDistribution)distribution).getScale();
-		return Math.sqrt(alpha*Math.pow(beta,2));
+		return Math.sqrt(alpha*FastMath.pow(beta,2));
 	}
 
 	@Override
