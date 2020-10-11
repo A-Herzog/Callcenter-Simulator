@@ -31,6 +31,10 @@ import language.Language;
  * @see	WebServerDataHandler
  */
 public class WebServerTools {
+	/**
+	 * Konstruktor der Klasse<br>
+	 * Diese Klasse kann nicht instanziert werden. Sie stellt nur statische Hilfsroutinen zur Verfügung.
+	 */
 	private WebServerTools() {}
 
 	/**

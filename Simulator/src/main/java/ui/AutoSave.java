@@ -29,6 +29,7 @@ import ui.statistic.core.filter.DataFilterBase;
  * @version 1.0
  */
 public class AutoSave {
+	/** Statistikobjekt, dessen Daten gespeichert werden sollen */
 	private final Statistics statistic;
 
 	/**

@@ -19,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.Window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.Serializable;
 
 import javax.swing.JFrame;
 
@@ -34,6 +35,10 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class ComparePanelDialog extends JFrame {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 5337587149627166880L;
 
 	/** Panel in dem die Daten angezeigt werden */

@@ -20,6 +20,7 @@ import java.awt.FlowLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -46,6 +47,10 @@ import ui.model.CallcenterModel;
  * @author Alexander Herzog
  */
 public class PreplanningDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -3851051029525031101L;
 
 	private final CallcenterModel baseModel;

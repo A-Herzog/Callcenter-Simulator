@@ -38,6 +38,7 @@ import ui.model.CallcenterModelSkillLevel;
  * @author Alexander Herzog
  */
 public class ModelShrinker {
+	/** Zu vereinfachendes Callcenter-Modell */
 	private final CallcenterModel baseModel;
 
 	/**

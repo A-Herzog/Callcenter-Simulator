@@ -23,6 +23,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.Serializable;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -51,6 +52,10 @@ import ui.images.Images;
  * @version 1.0
  */
 public class AutoSaveSetupDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -1382190901066407180L;
 
 	private final boolean batchMode;

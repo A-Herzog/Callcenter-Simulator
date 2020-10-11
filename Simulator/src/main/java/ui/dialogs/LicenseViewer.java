@@ -22,6 +22,7 @@ import java.awt.Desktop;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.util.Arrays;
@@ -51,15 +52,27 @@ import tools.SetupData;
  * @author Alexander Herzog
  */
 public class LicenseViewer extends BaseDialog{
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 6622197213633282594L;
 
-	private final static String htmlHeader="<html><head><style>body {font-family: sans-serif; margin: 5px;}</style></head><body>";
-	private final static String htmlFooter="</body></html>";
+	/**
+	 * HTML-Kopf für die Ausgabe der html-formatierten Lizenztexte.
+	 * @see #htmlFooter
+	 */
+	private static final String htmlHeader="<html><head><style>body {font-family: sans-serif; margin: 5px;}</style></head><body>";
+
+	/**
+	 * HTML-Fußbereich für die Ausgabe der html-formatierten Lizenztexte.
+	 * @see #htmlHeader
+	 */
+	private static final String htmlFooter="</body></html>";
 
 	/**
 	 * Für welchen Programmbestandteil sollen die Lizenzen angezeigt werden?
 	 * @author Alexander Herzog
-	 *
 	 */
 	enum LicensePart {
 		/** Lizenz für das Programm selber */
@@ -71,9 +84,16 @@ public class LicenseViewer extends BaseDialog{
 		/** Lizenz der Komponenten, die Simulator nutzt */
 		SIMULATOR_COMPONENTS(()->Language.tr("LicenseViewer.Part.Components.Simulator"),"LICENSE_COMPONENTS.md","docs/license_components_simulator.md");
 
+		/** Überschrift über dem zugehörigen Tab */
 		private final Supplier<String> name;
+		/** Anzuzeigende Dateien (die Varianten werden der Reihe nach durchprobiert) */
 		private final String[] files;
 
+		/**
+		 * Konstruktor des Enum
+		 * @param name	Überschrift über dem zugehörigen Tab
+		 * @param files	Anzuzeigende Dateien (die Varianten werden der Reihe nach durchprobiert)
+		 */
 		LicensePart(final Supplier<String> name, final String... files) {
 			this.name=name;
 			this.files=files;
@@ -127,6 +147,11 @@ public class LicenseViewer extends BaseDialog{
 		setVisible(true);
 	}
 
+	/**
+	 * Fügt ein Lizenz-Viewer-Tab zu dem Dialog hinzu.
+	 * @param tabs	Tabs-Element zu dem der neue Tab hinzugefügt werden soll
+	 * @param licensePart	Welche Daten sollen in dem Tab angezeigt werden?
+	 */
 	private void addViewer(final JTabbedPane tabs, final LicensePart licensePart) {
 		if (licensePart==null) return;
 		final File file=licensePart.getFile();
@@ -135,6 +160,11 @@ public class LicenseViewer extends BaseDialog{
 		tabs.addTab(licensePart.getName(),getViewer(file));
 	}
 
+	/**
+	 * Lädt eine Datei (Text oder MD) und liefert ein Viewer-Panel für diese.
+	 * @param file	Zu ladende Datei
+	 * @return	Neues Viewer-Panel
+	 */
 	private JPanel getViewer(final File file) {
 		if (file==null) return getTextViewer(null);
 
@@ -143,21 +173,36 @@ public class LicenseViewer extends BaseDialog{
 		return getTextViewer(file);
 	}
 
+	/**
+	 * Lädt eine einfache Textdatei und liefert ein Viewer-Panel für diese.
+	 * @param file	Zu ladende Datei
+	 * @return	Neues Viewer-Panel
+	 */
 	private JPanel getTextViewer(final File file) {
 		final String content=getHTMLFromText(file);
 		return getViewer(content);
 	}
 
+	/**
+	 * Lädt eine Markdown-Datei und liefert ein Viewer-Panel für diese.
+	 * @param file	Zu ladende Datei
+	 * @return	Neues Viewer-Panel
+	 */
 	private JPanel getMDViewer(final File file) {
 		final String content=getHTMLFromMD(file);
 		return getViewer(content);
 	}
 
+	/**
+	 * Erstellt ein Viewer-Panel und füllt dieses mit einem HTML-Text.
+	 * @param content	HTML-Text für den Viewer
+	 * @return	Neues Viewer-Panel
+	 */
 	private JPanel getViewer(final String content) {
 		final JTextPane viewer=new JTextPane();
 
 		viewer.setEditable(false);
-		viewer.addHyperlinkListener(e->linkProcessor(e,viewer));
+		viewer.addHyperlinkListener(e->linkProcessor(e));
 		viewer.setEditorKit(new HTMLEditorKit());
 		try {
 			viewer.read(new ByteArrayInputStream(content.getBytes()),null);
@@ -168,10 +213,20 @@ public class LicenseViewer extends BaseDialog{
 		return panel;
 	}
 
+	/**
+	 * Liefert eine Fehlermeldung als HTML-Zeichenkette.
+	 * @param file	Datei, die nicht geladen werden konnte
+	 * @return	Fehlermeldung als HTML-Zeichenkette
+	 */
 	private String getHTMLError(final File file) {
 		return htmlHeader+"<p>"+String.format(Language.tr("LicenseViewer.FileError"),file.toString())+"</p>"+htmlFooter;
 	}
 
+	/**
+	 * Lädt eine einfache Textdatei und erstellt daraus eine HTML-Zeichenkette
+	 * @param file	Zu ladende Datei
+	 * @return	Liefert die HTML-Zeichenkette (falls die Datei nicht geladen werden konnte, eine HTML-Fehlermeldung)
+	 */
 	private String getHTMLFromText(final File file) {
 		if (file==null) return getHTMLError(new File("nofile"));
 		if (!file.isFile()) return getHTMLError(file);
@@ -186,6 +241,11 @@ public class LicenseViewer extends BaseDialog{
 		return htmlHeader+"<pre><code>"+text+"</code></pre>"+htmlFooter;
 	}
 
+	/**
+	 * Lädt eine einfache Markdown-Datei und erstellt daraus eine HTML-Zeichenkette
+	 * @param file	Zu ladende Datei
+	 * @return	Liefert die HTML-Zeichenkette (falls die Datei nicht geladen werden konnte, eine HTML-Fehlermeldung)
+	 */
 	private String getHTMLFromMD(final File file) {
 		if (file==null) return getHTMLError(new File("nofile"));
 		if (!file.isFile()) return getHTMLError(file);
@@ -204,7 +264,13 @@ public class LicenseViewer extends BaseDialog{
 		return htmlHeader+renderer.render(document)+htmlFooter;
 	}
 
-	private void linkProcessor(final HyperlinkEvent e, final JTextPane viewer) {
+	/**
+	 * Reagiert auf Klicks und Mausbewegungen über die Links
+	 * in den HTML-Viewern
+	 * @param e	Hyperlink-Ereignis, auf das reagiert werden soll
+	 * @see #getViewer(String)
+	 */
+	private void linkProcessor(final HyperlinkEvent e) {
 		if (e.getEventType()==HyperlinkEvent.EventType.ENTERED) {
 			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			return;
@@ -217,7 +283,7 @@ public class LicenseViewer extends BaseDialog{
 
 		if (e.getEventType()==HyperlinkEvent.EventType.ACTIVATED) {
 			try {
-				if (!MsgBox.confirmOpenURL(LicenseViewer.this,e.getURL())) return;
+				if (!MsgBox.confirmOpenURL(this,e.getURL())) return;
 				Desktop.getDesktop().browse(e.getURL().toURI());
 			} catch (IOException | URISyntaxException e1) {
 				MsgBox.error(getOwner(),Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.Address"),e.getURL().toString()));

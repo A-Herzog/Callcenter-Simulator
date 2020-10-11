@@ -24,6 +24,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -70,6 +71,10 @@ import ui.images.Images;
  * @version 1.0
  */
 public class SetupDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 6586401312717916706L;
 
 	private JComboBox<String> programStartWindow;

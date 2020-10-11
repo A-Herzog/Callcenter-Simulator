@@ -18,6 +18,7 @@ package ui;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
@@ -37,6 +38,10 @@ import javax.swing.border.TitledBorder;
  * @see JRibbonBar
  */
 class JRibbonSection extends JPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -3037779257349754703L;
 
 	private JToolBar toolbar;

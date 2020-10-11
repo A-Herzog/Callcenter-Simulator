@@ -28,6 +28,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -71,6 +72,10 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class VarianzAnalysePanel extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -1992201900526618766L;
 
 	private final CallcenterModel model;

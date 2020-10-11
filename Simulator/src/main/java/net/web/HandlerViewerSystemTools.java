@@ -44,6 +44,10 @@ import ui.statistic.simulation.StatisticViewerTextInformation;
  * @see WebServerSystem
  */
 public class HandlerViewerSystemTools {
+	/**
+	 * Konstruktor der Klasse<br>
+	 * Diese Klasse kann nicht instanziert werden. Sie stellt nur statische Hilfsroutinen zur Verfügung.
+	 */
 	private HandlerViewerSystemTools() {}
 
 	private static String getServerListEntry(int index, final File xmlFile) {

@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.management.ManagementFactory;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -72,6 +73,10 @@ import ui.images.Images;
  * @version 1.0
  */
 public class InfoDialog extends JDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -4544783238672067726L;
 
 	/**
@@ -237,6 +242,10 @@ public class InfoDialog extends JDialog {
 	 * @see InfoDialog#createRootPane()
 	 */
 	private class CloseListener extends AbstractAction {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -485008309903554823L;
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {setVisible(false); dispose();}

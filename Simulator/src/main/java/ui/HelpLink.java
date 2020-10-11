@@ -197,8 +197,6 @@ public class HelpLink {
 	/** Hilfeseite für den Einfache-Simulation-Dialog (modal) */
 	public final Runnable dialogSimpleSimulation;
 
-
-
 	private String topic="";
 	private final Runnable openHelpNonModalCallback;
 	private final Runnable openHelpModalCallback;

@@ -15,6 +15,8 @@
  */
 package ui.specialpanels;
 
+import java.io.Serializable;
+
 import ui.model.CallcenterModel;
 
 /**
@@ -22,6 +24,10 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class ViewerWithLoadModelCallback extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 4964712439912861614L;
 
 	/**

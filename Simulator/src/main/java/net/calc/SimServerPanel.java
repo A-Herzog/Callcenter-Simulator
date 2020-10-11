@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -57,8 +58,13 @@ import ui.specialpanels.JWorkPanel;
  * @version 1.0
  */
 public final class SimServerPanel extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -1719057517168514353L;
 
+	/*+ Übergeordnetes Fenster */
 	private final Window owner;
 
 	private final JCheckBox serverSimulation;

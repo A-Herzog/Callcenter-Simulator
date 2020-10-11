@@ -54,6 +54,7 @@ import xml.XMLTools;
  * @version 1.0
  */
 public abstract class WebServerSystem {
+	/** Array mit zulässigen IPs (leere Liste, wenn keine Einschränkung erfolgen soll) */
 	private final String[] permittedIPs;
 	private boolean firstNews=true;
 	private File logFile;

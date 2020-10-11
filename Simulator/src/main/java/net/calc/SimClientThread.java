@@ -31,7 +31,9 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public final class SimClientThread extends NetworkThread {
+	/** Netzwerkname des Servers */
 	private final String serverName;
+	/** Objekt vom Typ <code>CallcenterModel</code>, welches simuliert werden soll */
 	private final CallcenterModel editModel;
 	private Statistics statistics;
 	private String errorMessage;

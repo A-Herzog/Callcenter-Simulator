@@ -29,6 +29,7 @@ import simulator.Statistics;
  * @version 1.0
  */
 public class MultiComplexCallcenterSimulator implements CallcenterSimulatorInterface {
+	/** Array der Simulatorojekte, die in diesem Objekt zusammengefasst werden sollen. */
 	private final CallcenterSimulatorInterface[] simulators;
 	private Statistics statistics=null;
 

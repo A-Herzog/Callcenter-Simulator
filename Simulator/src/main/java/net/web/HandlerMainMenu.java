@@ -30,7 +30,9 @@ import ui.UpdateSystem;
  * @see WebServerDataHandler
  */
 public class HandlerMainMenu implements WebServerDataHandler {
+	/** Applet anbieten */
 	private final boolean showApplet;
+	/** Ordner für die serverseitige Statistik-Anzeige */
 	private final StatisticFolder[] showServerViewer;
 
 	/**

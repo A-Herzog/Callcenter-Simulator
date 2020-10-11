@@ -18,6 +18,7 @@ package tools;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Image;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +38,10 @@ import ui.images.Images;
  * @see JComboBox#setRenderer(javax.swing.ListCellRenderer)
  */
 public class IconListCellRenderer extends DefaultListCellRenderer {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -2336966853757784114L;
 
 	/** Ressourcennamen der Icons zu den Einträgen */

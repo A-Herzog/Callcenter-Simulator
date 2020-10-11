@@ -44,6 +44,9 @@ public class WebServerThread extends Thread {
 	 */
 	public final int port;
 
+	/**
+	 * Wird hier eine nicht leeres Array mit IP-Adressen übergeben, so werden nur Anfragen von diesen Adressen zugelassen.
+	 */
 	private final String[] permittedIPs;
 
 	/**

@@ -15,6 +15,8 @@
  */
 package ui.calculator;
 
+import java.io.Serializable;
+
 import language.Language;
 import mathtools.NumberTools;
 
@@ -26,6 +28,10 @@ import mathtools.NumberTools;
  * @see QueueingCalculatorDialog
  */
 public class QueueingCalculatorTabErlangC extends QueueingCalculatorTabBase {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 3700930282332096430L;
 
 	/** lambda (Ankunftsrate) */

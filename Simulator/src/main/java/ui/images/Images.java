@@ -684,10 +684,26 @@ public enum Images {
 	/** Symbol "Einstellungen - Update - Webseite" */
 	SETUP_UPDATE_WEB_PAGE("world.png");
 
+
+	/**
+	 * Dateiname des Icons
+	 */
 	private final String name;
+
+	/**
+	 * URL des Icons
+	 */
 	private URL url;
+
+	/**
+	 * Icon
+	 */
 	private Icon icon;
 
+	/**
+	 * Konstruktor des Enum
+	 * @param name	Dateiname des Icons
+	 */
 	Images(final String name) {
 		this.name=name;
 	}

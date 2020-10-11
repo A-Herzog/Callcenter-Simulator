@@ -33,7 +33,9 @@ import ui.model.CallcenterRunModel;
  * @version 1.0
  */
 public final class StartAnySimulator {
+	/** Zu prüfendes und zu simulierendes Modell */
 	private final CallcenterModel editModel;
+	/** Optionale Logdatei (kann <code>null</code> sein) */
 	private final File logFile;
 
 	private double[] networkParts=null;

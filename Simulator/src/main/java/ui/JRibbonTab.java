@@ -17,6 +17,7 @@ package ui;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.net.URL;
 
 import javax.swing.Icon;
@@ -30,6 +31,10 @@ import javax.swing.JPanel;
  * @see JRibbonBar
  */
 class JRibbonTab extends JPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 4763704485543681895L;
 
 	private JRibbonSection currentSection;

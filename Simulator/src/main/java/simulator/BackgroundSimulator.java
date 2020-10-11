@@ -34,7 +34,9 @@ import ui.model.CallcenterRunModel;
 public final class BackgroundSimulator {
 	private final static int backgroundMaxCallerDaysPerCore=1000000;
 
+	/** Runnable über das aufgerufen wird, wenn ein neues Modell angefordert werden soll. */
 	private final Runnable modelGetter;
+	/** Consumer, der mögliche Fehlermeldungen aufnimmt */
 	private final Consumer<String> errorInfo;
 
 	private CallcenterModel editModel;

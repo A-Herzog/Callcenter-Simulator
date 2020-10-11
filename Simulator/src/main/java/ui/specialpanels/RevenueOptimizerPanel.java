@@ -18,6 +18,7 @@ package ui.specialpanels;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Window;
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -48,8 +49,13 @@ import ui.model.CallcenterModelCaller;
  * @see RevenueOptimizer
  */
 public class RevenueOptimizerPanel extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -1507079890494303036L;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
 	private final CallcenterModel baseModel;
 	private CallcenterModel bestModel;

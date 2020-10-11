@@ -33,7 +33,9 @@ import ui.UpdateSystem;
  * @see WebServerDataHandler
  */
 public class HandlerViewerSystem implements WebServerDataHandler {
+	/** Verzeichnisse mit Statistikdateien */
 	private final StatisticFolder[] serverFolder;
+	/** Verzeichnis mit Filterskripten */
 	private final String filterFolder;
 
 	/**

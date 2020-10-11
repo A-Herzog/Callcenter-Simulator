@@ -33,6 +33,7 @@ import ui.statistic.core.filter.DataFilter;
  * @see HandlerViewerSystem
  */
 public class FastAccessFolder {
+	/** Reales Verzeichnis */
 	private final File folder;
 
 	/**

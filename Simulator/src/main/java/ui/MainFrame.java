@@ -20,6 +20,7 @@ import java.awt.Frame;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 
 import language.Language;
@@ -37,6 +38,10 @@ import tools.SetupData.StartMode;
  * @version 1.0
  */
 public class MainFrame extends MainFrameBase {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -705771374983903700L;
 
 	/**
@@ -64,6 +69,10 @@ public class MainFrame extends MainFrameBase {
 		setVisible(true);
 	}
 
+	/**
+	 * Minimale anfängliche Fenstergröße bezogen auf eine 100%-Skalierung.
+	 * @see #getScaledDefaultSize(double)
+	 */
 	private static Dimension minMainWindowSize=new Dimension(1025,700);
 
 	private Dimension getScaledDefaultSize(double scale) {
@@ -126,6 +135,10 @@ public class MainFrame extends MainFrameBase {
 		setup.saveSetup();
 	}
 
+	/**
+	 * Wird über {@link MainPanel#setReloadWindow(Runnable)} aufgerufen, wenn
+	 * das Fenster als solches neu geladen werden muss.
+	 */
 	private class ReloadWindow implements Runnable {
 		@Override
 		public void run() {

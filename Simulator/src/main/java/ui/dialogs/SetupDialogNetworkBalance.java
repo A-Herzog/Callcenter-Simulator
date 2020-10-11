@@ -18,6 +18,7 @@ package ui.dialogs;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Window;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,6 +48,10 @@ import ui.model.CallcenterRunModel;
  * @author Alexander Herzog
  */
 public class SetupDialogNetworkBalance extends JDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -9046881414191682213L;
 
 	private final String[] server;

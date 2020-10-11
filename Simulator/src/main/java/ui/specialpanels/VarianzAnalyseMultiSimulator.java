@@ -17,15 +17,15 @@
 
  import javax.swing.JComponent;
 
- import org.apache.commons.math3.distribution.NormalDistribution;
+import org.apache.commons.math3.distribution.NormalDistribution;
 
- import language.Language;
- import mathtools.NumberTools;
- import net.calc.StartAnySimulator;
- import simulator.CallcenterSimulatorInterface;
-import simulator.Statistics;
-import systemtools.MsgBox;
- import ui.model.CallcenterModel;
+import language.Language;
+import mathtools.NumberTools;
+import net.calc.StartAnySimulator;
+import simulator.CallcenterSimulatorInterface;
+ import simulator.Statistics;
+ import systemtools.MsgBox;
+import ui.model.CallcenterModel;
 
  /**
   * Diese Klasse führt die eigentliche Varianzanalyse
@@ -34,7 +34,9 @@ import systemtools.MsgBox;
   * @see VarianzAnalysePanel
   */
  class VarianzAnalyseMultiSimulator {
+	 /** Beliebige Komponente zur optischen Ausrichtung von Meldungsfenster */
 	 private final JComponent parent;
+	 /** Callcenter-Modell welches die Basis der Varianzanalyse darstellt */
 	 private final CallcenterModel model;
 	 private final int simCountNumber;
 	 private int simCount;

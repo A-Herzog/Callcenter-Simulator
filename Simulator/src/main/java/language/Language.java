@@ -42,16 +42,34 @@ public class Language {
 	/** Daten direkt aus einer Java-Klasse statt aus Lokalisierungsressourcen laden. */
 	public static boolean directLoadingMode=true;
 
+	/** Internationalisierungsdaten für Deutsch */
 	private final I18n i18n_de;
+	/** Internationalisierungsdaten für Englisch */
 	private final I18n i18n_en;
+	/** Momentan aktive Internationalisierungsdaten */
 	private I18n i18n;
+	/** Ressourcendaten für Deutsch */
 	private final ResourceBundle res_de;
+	/** Ressourcendaten für Englisch */
 	private final ResourceBundle res_en;
+	/** Momentan aktive Ressourcendaten */
 	private ResourceBundle res;
+	/** Kürzel der momentan aktiven Sprache */
 	private String languageID;
 
+	/** Instanz des Language-Singletons */
 	private static Language language=null;
 
+	/** Cache für {@link #tr(String)} */
+	private static Map<String,String> cache=new HashMap<>();
+	/** Cache für {@link #trAll(String)} */
+	private static Map<String,String[]> allCache=new HashMap<>();
+
+	/**
+	 * Konstruktor der Klasse<br>
+	 * Diese Klasse kann nicht direkt instanziert werden.
+	 * @param loadDirect	Daten direkt aus einer Java-Klasse (<code>true</code>) statt aus Lokalisierungsressourcen (<code>false</code>) laden.
+	 */
 	private Language(boolean loadDirect) {
 		if (loadDirect || noRightsMode) {
 			res_de=new Messages_de();
@@ -70,12 +88,21 @@ public class Language {
 		}
 	}
 
+	/**
+	 * Stellt die momentan aktive Sprache ein.
+	 * @param language	Kürzel der Sprache
+	 * @see #init(String)
+	 */
 	private void selectLanguage(String language) {
 		i18n=(language.equalsIgnoreCase("de"))?i18n_de:i18n_en;
 		res=(language.equalsIgnoreCase("de"))?res_de:res_en;
 		languageID=language;
 	}
 
+	/**
+	 * Liefert das Kürzel der momentan aktiven Sprache.
+	 * @return	Kürzel der Sprache
+	 */
 	private String getCurrentLanguageID() {
 		return languageID;
 	}
@@ -105,6 +132,7 @@ public class Language {
 	public static synchronized void init(String languageID) {
 		if (language==null) language=new Language(directLoadingMode);
 		language.selectLanguage(languageID);
+		cache.clear();
 		allCache.clear();
 	}
 
@@ -123,13 +151,16 @@ public class Language {
 	 * @return	Language-String
 	 */
 	public static synchronized String tr(String id) {
+		String s=cache.get(id);
+		if (s!=null) return s;
+
 		if (language==null) language=new Language(directLoadingMode);
-		String s=null;
 		if (language.i18n!=null) s=language.i18n.tr(id);
 		if (s==null && language.res!=null) try {
 			s=language.res.getString(id);
 		} catch (Exception e) {s=null;}
 		if (s==null || s.equals(id)) {System.out.println("Warning: Missing language string "+id); return id;}
+		cache.put(id,s);
 		return s;
 	}
 
@@ -140,7 +171,7 @@ public class Language {
 	 */
 	public static synchronized List<String> trOther(String id) {
 		if (language==null) language=new Language(directLoadingMode);
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		if (!noRightsMode) {
 			if (language.i18n_de!=null && language.i18n!=language.i18n_de) {String s=language.i18n_de.tr(id); if (s!=null) list.add(s);}
 			if (language.i18n_en!=null && language.i18n!=language.i18n_en) {String s=language.i18n_en.tr(id); if (s!=null) list.add(s);}
@@ -161,8 +192,6 @@ public class Language {
 		return s[0];
 	}
 
-	private static Map<String,String[]> allCache=new HashMap<>();
-
 	/**
 	 * Liefert eine Liste der Anteile (die in der Datei durch Semikollons getrennt sind) eines Language-Strings in der jeweils gewählten Sprache für einen Bezeichner.
 	 * @param id	Bezeichner
@@ -172,7 +201,7 @@ public class Language {
 		String[] result=allCache.get(id);
 		if (result!=null) return result;
 
-		List<String> all=new ArrayList<String>();
+		List<String> all=new ArrayList<>();
 		String value=tr(id);
 		if (value.contains(";")) all.addAll(Arrays.asList(value.split(";"))); else all.add(value);
 		for (String s: trOther(id)) {

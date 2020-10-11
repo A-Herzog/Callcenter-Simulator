@@ -19,6 +19,7 @@ import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.Serializable;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -36,6 +37,10 @@ import ui.editor.BaseEditDialog;
  * @version 1.0
  */
 public class CalculatorDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 8846361974707063923L;
 
 	/** Eingabezeile */

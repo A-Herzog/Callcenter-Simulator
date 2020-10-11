@@ -18,6 +18,7 @@ package ui.specialpanels;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Window;
+import java.io.Serializable;
 import java.util.Hashtable;
 
 import javax.swing.BoxLayout;
@@ -49,6 +50,10 @@ import ui.optimizer.CheckBoxTree;
  * @author Alexander Herzog
  */
 public class RearrangePanel extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -6413752382384948291L;
 
 	private final Window owner;

@@ -18,6 +18,7 @@ package ui;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.net.URL;
 
 import javax.swing.Icon;
@@ -33,6 +34,10 @@ import javax.swing.SwingUtilities;
  * @version 1.0
  */
 class JRibbonBar extends JTabbedPane {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 8136795265917207807L;
 
 	/**

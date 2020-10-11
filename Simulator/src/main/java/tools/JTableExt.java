@@ -16,6 +16,7 @@
 package tools;
 
 import java.awt.Component;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
@@ -44,6 +45,10 @@ import javax.swing.table.TableModel;
  * @version 1.1
  */
 public final class JTableExt extends JTable {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -4675269108501016811L;
 
 	/**
@@ -107,6 +112,10 @@ public final class JTableExt extends JTable {
 		prepare();
 	}
 
+	/**
+	 * Weitere Konfiguration der Tabelle
+	 * (wird vom Konstruktor aufgerufen)
+	 */
 	private void prepare() {
 		putClientProperty("terminateEditOnFocusLost",Boolean.TRUE);
 		getTableHeader().setReorderingAllowed(false);
@@ -129,6 +138,11 @@ public final class JTableExt extends JTable {
 		setPanelRendererAndEditor();
 	}
 
+	/**
+	 * Stellt den Zellen-Renderer und den Zellen-Editor ein.
+	 * @see CellRendererExt
+	 * @see CellEditorExt
+	 */
 	private void setPanelRendererAndEditor() {
 		for (int col=0;col<getColumnCount();col++) if (panelCellColumns.indexOf(col)>=0) {
 			getColumnModel().getColumn(col).setCellRenderer(new CellRendererExt());
@@ -136,6 +150,12 @@ public final class JTableExt extends JTable {
 		}
 	}
 
+	/**
+	 * Höhe einer Zeile anpassen.
+	 * @param rowIndex	0-basierter Zeilenindex
+	 * @param margin	Zusätzlicher Abstand
+	 * @return	Liefert die neue Zeilenhöhe
+	 */
 	private int getPreferredRowHeight(int rowIndex, int margin) {
 		int height=0;
 
@@ -148,6 +168,10 @@ public final class JTableExt extends JTable {
 		return height;
 	}
 
+	/**
+	 * Höhe aller Zeilen anpassen.
+	 * @param margin	Zusätzlicher Abstand
+	 */
 	private void setPreferredRowHeight(int margin) {
 		for (int row=0;row<getRowCount();row++) {
 			int newHeight=getPreferredRowHeight(row,margin);
@@ -198,6 +222,10 @@ public final class JTableExt extends JTable {
 	 *
 	 */
 	private final class CellRendererExt extends DefaultTableCellRenderer {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -6047418281147307757L;
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -211,6 +239,10 @@ public final class JTableExt extends JTable {
 	 * @see JTableExt#setPanelRendererAndEditor()
 	 */
 	private final class CellEditorExt extends AbstractCellEditor implements TableCellEditor {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 6362443731642362983L;
 		@Override
 		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {

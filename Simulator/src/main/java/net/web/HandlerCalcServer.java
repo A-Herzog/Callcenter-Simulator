@@ -30,8 +30,11 @@ import ui.MainFrame;
  * @see WebServerDataHandler
  */
 public class HandlerCalcServer implements WebServerDataHandler {
+	/** Dem Client mitzuteilender Port des Rechenservers */
 	private final int portCalc;
+	/** Dem Client mitzuteilendes Passwort des Rechenservers */
 	private final String passwordCalc;
+	/** jar-Datei für das SaaS-Applet */
 	private final File jarFile;
 
 	private byte[] jarData=null;

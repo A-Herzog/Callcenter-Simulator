@@ -23,6 +23,10 @@ import systemtools.help.HelpBase;
  * @see Help
  */
 public class HelpConsts {
+	/**
+	 * Konstruktor der Klasse<br>
+	 * Diese Klasse kann nicht instanziert werden. Sie enthält nur statische Konstanten.
+	 */
 	private HelpConsts() {}
 
 	/** Startseite der Hilfe */

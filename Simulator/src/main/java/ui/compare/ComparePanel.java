@@ -19,6 +19,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.Serializable;
 import java.util.Arrays;
 
 import javax.swing.JButton;
@@ -40,6 +41,10 @@ import ui.statistic.StatisticPanel;
  * @version 1.0
  */
 public class ComparePanel extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 1696555531378569922L;
 
 	/** Übergeordnetes Fenster */

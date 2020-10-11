@@ -21,6 +21,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,10 @@ import ui.images.Images;
  * @version 1.0
  */
 public class JWorkPanel extends JCloseablePanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 5224062990520423023L;
 
 	/**
