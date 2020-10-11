@@ -41,16 +41,63 @@ public final class StatisticsDataCollector extends StatisticsPerformanceIndicato
 	 */
 	public static String xmlDistributionError="Das Element \"%s\" muss eine Liste von Zahlenwerten enthalten.";
 
+	/**
+	 * Schrittweite mit der {@link #data} bei Bedarf vergrößert wird.
+	 */
 	private static final int GROW_SIZE=10_000;
 
+	/**
+	 * Anzahl der tatsächlich in {@link #data} belegten Einträge.
+	 */
 	private int count;
+
+	/**
+	 * Erfasste Datenpunkte.
+	 */
 	private double[] data;
 
+	/**
+	 * Anzahl an Messwerten auf die sich die anderen Cache-Werte
+	 * beziehen. Wenn {@link #count} immer noch {@link #cacheCount}
+	 * entspricht, können {@link #cacheSum} usw. direkt verwendet werden.
+	 */
 	private int cacheCount;
+
+	/**
+	 * Berechnete Summe, um diese nicht mehrfach berechnen zu müssen.
+	 * @see #getSum()
+	 * @see #cacheCount
+	 */
 	private double cacheSum;
+
+	/**
+	 * Berechneter Mittelwert, um diesen nicht mehrfach berechnen zu müssen.
+	 * @see #getMean()
+	 * @see #cacheCount
+	 */
 	private double cacheMean;
+
+	/**
+	 * Startwert für Teilsumme, um die Berechnung der Teilsumme nicht mehrfach berechnen zu müssen.
+	 * @see #getSum(int, int)
+	 * @see #cacheCount
+	 * @see #cachePartialSum
+	 */
 	private int cachePartialA;
+
+	/**
+	 * Endwert für Teilsumme, um die Berechnung der Teilsumme nicht mehrfach berechnen zu müssen.
+	 * @see #getSum(int, int)
+	 * @see #cacheCount
+	 * @see #cachePartialSum
+	 */
 	private int cachePartialB;
+
+	/**
+	 * Teilsumme, um die Berechnung der Teilsumme nicht mehrfach berechnen zu müssen.
+	 * @see #getSum(int, int)
+	 * @see #cacheCount
+	 */
 	private double cachePartialSum;
 
 	/**

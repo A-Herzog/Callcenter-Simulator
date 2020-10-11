@@ -148,11 +148,34 @@ public class CalcSymbolList {
 	private static final List<String> listNames=new ArrayList<>();
 	/** Liste mit den Namen aller Symbole in Kleinbuchstaben */
 	private static final List<String> listNamesLower=new ArrayList<>();
+
+	/**
+	 * Lock um die Initialisierung Thread-sicher zu gestalten
+	 * @see #initSymbols()
+	 */
 	private static final Semaphore initLock=new Semaphore(1);
+
+	/**
+	 * Liste der nutzerdefinierten Funktionen
+	 * @see #getUserFunctions()
+	 */
 	private List<CalcSymbolPreOperator> listPreOperatorUser=null;
+
+	/**
+	 * Liste der Namen aller Symbole
+	 * @see #getAllSymbolNames()
+	 */
 	private String[] allSymbolNames=null;
+
+	/**
+	 * Liste der Namen aller Symbole in Kleinschreibung
+	 * @see #getAllSymbolNamesLower(boolean)
+	 */
 	private String[] allSymbolNamesLower=null;
 
+	/**
+	 * Internes Synchronisationsobjekt um eine parallele Initialisierung der Symbole zu verhindern
+	 */
 	private static final Object initSync=new Object();
 
 	/**
@@ -361,19 +384,60 @@ public class CalcSymbolList {
 		return allSymbolNames;
 	}
 
+	/**
+	 * Wird in {@link #getAllSymbolNamesLower(boolean)} intern bei der
+	 * Umwandlung einer Liste in ein Array als Platzhalter für
+	 * den Typ verwendet. Durch das statische Vorhalten wird
+	 * so das wiederholte Anlegen eines leeren Arrays vermieden.
+	 */
 	private static final String[] emptyArray=new String[0];
 
+	/**
+	 * Objekt zur Synchronisation von {@link #getToLowerFromCache(int, boolean)}
+	 * und von {@link #putToLowerToCache(String[], int)}
+	 */
 	private static Object toLowerSync=new Object();
+
+	/**
+	 * Hash-Wert des Arrays mit normaler Schreibweise (für den Cache)
+	 * @see #getToLowerFromCache(int, boolean)
+	 * @see #putToLowerToCache(String[], int)
+	 */
 	private static int toLowerHash=0;
+
+	/**
+	 * Array mit Kleinbuchstaben-Einträgen (für den Cache)
+	 * @see #getToLowerFromCache(int, boolean)
+	 * @see #putToLowerToCache(String[], int)
+	 */
 	private static String[] toLowerArr;
 
-	private static String[] getToLowerFromCache(final int hash) {
+	/**
+	 * Versucht ein Array mit bereits früher erstellten Kleinbuchstaben-Einträgen
+	 * aus dem Cache zu beziehen
+	 * @param hash	Hash-Wert des Arrays mit normaler Schreibweise
+	 * @param readOnlyVersion	Im Falle eines Cache-Treffers die Originaldaten aus dem Cache (<code>true</code>) oder eine Kopie davon (<code>true</code>) liefern
+	 * @return	Liefert im Erfolgsfall das Array mit Einträgen in Kleinschreibung
+	 * @see #getAllSymbolNamesLower(boolean)
+	 */
+	private static String[] getToLowerFromCache(final int hash, final boolean readOnlyVersion) {
 		synchronized(toLowerSync) {
 			if (hash!=toLowerHash || toLowerArr==null) return null;
-			return Arrays.copyOf(toLowerArr,toLowerArr.length);
+			if (readOnlyVersion) {
+				return toLowerArr;
+			} else {
+				return Arrays.copyOf(toLowerArr,toLowerArr.length);
+			}
 		}
 	}
 
+	/**
+	 * Speichert ein Array mit Kleinbuchstaben-Einträgen zur
+	 * späteren Verwendung im Cache
+	 * @param arr	Zu speicherndes Array
+	 * @param hash	Hash-Wert des Arrays mit normaler Schreibweise
+	 * @see #getAllSymbolNamesLower(boolean)
+	 */
 	private static void putToLowerToCache(final String[] arr, final int hash) {
 		synchronized(toLowerSync) {
 			toLowerHash=hash;
@@ -383,14 +447,15 @@ public class CalcSymbolList {
 
 	/**
 	 * Liefert eine Liste aller dem System bekannten Symbole (einschließlich Variablennamen) in Kleinschreibweise
+	 * @param readOnlyVersion	Soll die Liste veränderlich sein (<code>false</code>) oder wird sie nur lesend verwendet (<code>true</code>)
 	 * @return	Liste aller bekannten Symbole
 	 */
-	public String[] getAllSymbolNamesLower() {
+	public String[] getAllSymbolNamesLower(final boolean readOnlyVersion) {
 		if (allSymbolNamesLower==null) {
 			if (listPreOperatorUser==null) listPreOperatorUser=getUserFunctions();
 
 			int size=0;
-			if (listPreOperatorUser!=null) size+=listPreOperatorUser.size()*3;
+			if (listPreOperatorUser!=null) size+=listPreOperatorUser.size()*4;
 			size+=listNames.size();
 			size+=variables.length;
 
@@ -404,7 +469,7 @@ public class CalcSymbolList {
 
 			int hash=0;
 			for (int i=0;i<allSymbolNamesList.size();i++) hash+=allSymbolNamesList.get(i).hashCode();
-			final String[] cacheResult=getToLowerFromCache(hash);
+			final String[] cacheResult=getToLowerFromCache(hash,readOnlyVersion);
 			if (cacheResult!=null) return cacheResult;
 
 			allSymbolNamesLower=allSymbolNamesList.toArray(emptyArray);

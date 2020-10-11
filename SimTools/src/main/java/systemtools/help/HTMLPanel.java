@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -51,6 +52,10 @@ import systemtools.images.SimToolsImages;
  * @author Alexander Herzog
  */
 public abstract class HTMLPanel extends JPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -3360161989499967773L;
 
 	/** Wird, wenn nicht <code>null</code>, aufgerufen, wenn der Nutzer auf die Schließen-Schaltfläche klickt. */
@@ -191,6 +196,14 @@ public abstract class HTMLPanel extends JPanel {
 		this(true,true,closeNotify);
 	}
 
+	/**
+	 * Fügt eine neue Schaltfläche zur Symbolleiste {@link #toolBar} hinzu.
+	 * @param title	Titel der Schaltfläche
+	 * @param tip	Tooltip für die Schaltfläche (darf <code>null</code> sein)
+	 * @param icon	Icon für die Schaltfläche (darf <code>null</code> sein)
+	 * @return	Liefert die bereits eingefügte Schaltfläche.
+	 * @see #toolBar
+	 */
 	private JButton addButton(final String title, final String tip, final Icon icon) {
 		JButton button=new JButton(title);
 		if (tip!=null && !tip.equals("")) button.setToolTipText(tip);
@@ -303,6 +316,11 @@ public abstract class HTMLPanel extends JPanel {
 	 */
 	public abstract URL getPageURL(String res);
 
+	/**
+	 * Initialisiert die Einträge zur Auswahl bestimmter Elemente im {@link #contentPopup}.
+	 * @see #contentPopup
+	 * @see ButtonListener
+	 */
 	private void initContentPopup() {
 		contentPopup.removeAll();
 		List<String> content=textPane.getPageContent();
@@ -320,6 +338,14 @@ public abstract class HTMLPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen
+	 * @see HTMLPanel#buttonClose
+	 * @see HTMLPanel#buttonBack
+	 * @see HTMLPanel#buttonNext
+	 * @see HTMLPanel#buttonHome
+	 * @see HTMLPanel#buttonContent
+	 */
 	private final class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -370,6 +396,11 @@ public abstract class HTMLPanel extends JPanel {
 	 */
 	private final Object lockObject=new Object();
 
+	/**
+	 * Reagiert darauf, wenn das Laden einer Seite in {@link HTMLPanel#textPane}
+	 * abgeschlossen ist (und stellt die Vor/Zurück-Schaltflächen usw. korrekt ein).
+	 * @see HTMLPanel#textPane
+	 */
 	private final class PageLoadListener implements Runnable {
 		@Override
 		public void run() {
@@ -396,6 +427,11 @@ public abstract class HTMLPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Reagiert auf das Anklicken von Links innerhalb der HTML-Anzeige.
+	 * @see HTMLPanel#textPane
+	 * @see HTMLPanel#processSpecialLink
+	 */
 	private final class LinkClickListener implements Runnable {
 		@Override
 		public void run() {
@@ -430,6 +466,10 @@ public abstract class HTMLPanel extends JPanel {
 	 * Listener, der auf Escape-Tastendrücke reagiert
 	 */
 	private final class EscapeListener extends AbstractAction {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 3060385322767789283L;
 
 		@Override

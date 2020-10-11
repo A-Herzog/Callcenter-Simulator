@@ -19,6 +19,7 @@ import java.awt.Cursor;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,10 @@ import javax.swing.text.html.HTMLFrameHyperlinkEvent;
  * @version 1.1
  */
 public class HTMLBrowserTextPane extends JTextPane implements HTMLBrowserPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 6093964682884036080L;
 
 	/** Callback, das aufgerufen wird, wenn ein Link angeklickt wird */
@@ -138,11 +143,22 @@ public class HTMLBrowserTextPane extends JTextPane implements HTMLBrowserPanel {
 		return lastClickedURLDescription;
 	}
 
+	/**
+	 * html-Element innerhalb der Darstellung
+	 * @see HTMLBrowserTextPane#scanElement(Element)
+	 */
 	private final class ElementPos {
+		/** HTML-Element */
 		private final Element element;
+		/** Überschriften-Ebene (h1=1, h2=2, ...) */
 		private final int level;
+		/** Position des Elements innerhalb des Textes */
 		private final int position;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param element	HTML-Element
+		 */
 		public ElementPos(Element element) {
 			this.element=element;
 			int l=0;
@@ -169,15 +185,29 @@ public class HTMLBrowserTextPane extends JTextPane implements HTMLBrowserPanel {
 			return s.toString();
 		}
 
+		/**
+		 * Liefert die Überschriften-Ebene (h1=1, h2=2, ...)
+		 * @return	Überschriften-Ebene (h1=1, h2=2, ...)
+		 */
 		public int getLevel() {
 			return level;
 		}
 
+		/**
+		 * Liefert die Position des Elements innerhalb des Textes
+		 * @return	Position des Elements innerhalb des Textes
+		 */
 		public int getPosition() {
 			return position;
 		}
 	}
 
+	/**
+	 * Durchsucht ein Element nach Überschriften
+	 * @param parent	Übergeordnetes HTML-Element
+	 * @return	Liste mit den gefundenen Überschriften
+	 * @see ElementPos
+	 */
 	private final List<ElementPos> scanElement(Element parent) {
 		final List<ElementPos> list=new ArrayList<>();
 
@@ -217,6 +247,12 @@ public class HTMLBrowserTextPane extends JTextPane implements HTMLBrowserPanel {
 		return true;
 	}
 
+	/**
+	 * Reagiert auf Klicks und auch Bewegungen über Links
+	 * @see HTMLBrowserTextPane#lastClickedURL
+	 * @see HTMLBrowserTextPane#lastClickedURLDescription
+	 * @see HTMLBrowserTextPane#linkClickListener
+	 */
 	private final class LinkListener implements HyperlinkListener {
 		@Override
 		public void hyperlinkUpdate(HyperlinkEvent e) {
@@ -244,6 +280,13 @@ public class HTMLBrowserTextPane extends JTextPane implements HTMLBrowserPanel {
 		}
 	}
 
+	/**
+	 * Reagiert darauf, wenn der Text vollständig geladen wurde und aktualisiert dann
+	 * die Liste der Überschriften und ruft weitere Listener auf.
+	 * @see HTMLBrowserTextPane#pageContentList
+	 * @see HTMLBrowserTextPane#pageLoadListener
+	 *
+	 */
 	private final class PageLoadListener implements PropertyChangeListener {
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {

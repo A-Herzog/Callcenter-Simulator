@@ -28,22 +28,35 @@ import simcore.Event;
  * @see EventManager
  */
 public final class MultiArrayEventManagerWithHeapSort extends EventManagerBase implements EventManager {
+	/** Anzahl an Sekunden pro Tag */
 	private static final int dayLength=86400;
+	/** Anzahl an Teilwarteschlangen für die normalen Ereignisse */
 	private static final int queueCount=dayLength/8; /* Höhere Werte bringen keine Verbesserungen! */
+	/** Anzahl an Teilwarteschlangen für die initialen Ereignisse */
 	private static final int queueCountForInitialEvents=dayLength/8;
 
+	/** Wenn ein Tag {@link #dayLength} Sekunden hat und wir {@link #queueCount} Warteschlangen haben, dann gibt dieser Wert an, für wie viele Millisekunden eine Teilwarteschlange zuständig ist. */
 	private static final int milliSecondsPerQueue=1000*dayLength/queueCount;
+	/** Wenn ein Tag {@link #dayLength} Sekunden hat und wir {@link #queueCountForInitialEvents} Warteschlangen für die initialen Ereignisse haben, dann gibt dieser Wert an, für wie viele Millisekunden eine Teilwarteschlange (für die initialen Ereignisse) zuständig ist. */
 	private static final int milliSecondsPerInitialEventsQueue=1000*dayLength/queueCountForInitialEvents;
 
+	/** Liste aus der als letztes durch {@link #getNextEvent()} ein Ereignis entnommen wurde */
 	private int lastList;
+	/** Anzahl an momentan verwalteten Ereignissen über alle Warteschlangen zusammen (nicht initiale Ereignisse) */
 	private int allQueueLength;
+	/** Teilwarteschlangen */
 	private final EventQueue[] queue;
+	/** Teilwarteschlangen für die initialen Ereignisse */
 	private final Event[][] initialEventsQueue;
+	/** Anzahl an Ereignissen in den Initial-Ereignis Teilwarteschlangen */
 	private final int[] initialEventsQueueLength;
 
+	/** Cache für die Teilwarteschlangen-Objekte */
 	private final EventQueue[] queueCache;
+	/** Anzahl an Einträgen in dem Teilwarteschlangen-Objekt-Cache ({@link #queueCache}) */
 	private int queueCacheUsed=0;
 
+	/** Heap-Sort-Implementierung aus {@link HeapSort} verwenden (<code>true</code>) oder {@link Arrays#sort(Object[])} verwenden (<code>false</code>). */
 	private final boolean useHeapSort;
 
 	/**

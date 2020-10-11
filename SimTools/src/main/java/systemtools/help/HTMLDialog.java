@@ -20,6 +20,7 @@ import java.awt.Container;
 import java.awt.Dialog;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.io.Serializable;
 import java.net.URL;
 
 import javax.swing.AbstractAction;
@@ -39,10 +40,27 @@ import systemtools.images.SimToolsImages;
  * @see HTMLPanel
  */
 abstract class HTMLDialog extends JDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -2605193561807240780L;
 
+	/**
+	 * Hilfe-Viewer innerhalb des Fensters
+	 * @see HTMLPanel
+	 */
 	private final HTMLPanel panel;
+
+	/**
+	 * Objekt vom Typ <code>Runnable</code>, welches (wenn ungleich <code>null</code>) aufgerufen wird, wenn ein Nicht-URL-Link angeklickt wird.
+	 */
 	private final Runnable specialLinks;
+
+	/**
+	 * Gibt an, welcher Nicht-URL-Link angeklickt wurde.
+	 * @see #getSpecialLink()
+	 */
 	private String specialLink;
 
 	/**
@@ -116,6 +134,10 @@ abstract class HTMLDialog extends JDialog {
 	 * @see HTMLDialog#createRootPane()
 	 */
 	private final class SpecialKeyListener extends AbstractAction {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -485008309903554823L;
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {setVisible(false); dispose();}
@@ -137,6 +159,10 @@ abstract class HTMLDialog extends JDialog {
 		return specialLink;
 	}
 
+	/**
+	 * Reagiert auf Klicks auf besondere Links
+	 * @see HTMLPanel#setProcessSpecialLink(Runnable)
+	 */
 	private final class SpecialLink implements Runnable {
 		@Override
 		public void run() {

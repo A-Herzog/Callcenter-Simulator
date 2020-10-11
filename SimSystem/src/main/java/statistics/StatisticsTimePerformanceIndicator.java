@@ -146,6 +146,11 @@ public final class StatisticsTimePerformanceIndicator extends StatisticsPerforma
 		reset();
 	}
 
+	/**
+	 * Wurden bislang nur {@link #time0} und {@link #timeMax} erfasst, so kann über
+	 * diese Funktion das vollständige {@link #stateTime}-Array aufgespannt werden.
+	 * @see #set(double, int)
+	 */
 	private void forceExpandStateTime() {
 		if (stateTime==null) {
 			final int size=Math.min(MAX_STATE,Math.max(timeMaxState,10))+1;
@@ -339,7 +344,18 @@ public final class StatisticsTimePerformanceIndicator extends StatisticsPerforma
 		/* stateTime.length ist die richtige Größe, sonst skaliert DataDistributionImpl und getMean() und Co. liefern verzerrte Werte. */
 	}
 
+	/**
+	 * Leeres Verteilungs-Objekt welches von {@link #getReadOnlyDistribution()}
+	 * zurückgeliefert wird, wenn noch keine Daten erfasst wurden.
+	 * @see #getReadOnlyDistribution()
+	 */
 	private static DataDistributionImpl emptyDistribution=new DataDistributionImpl(1,new double[]{0.0});
+
+	/**
+	 * Zuletzt per {@link #getReadOnlyDistribution()} ausgelieferte Verteilung<br>
+	 * (Wird wiederverwendet, wenn sich die Daten seit dem letzten Aufruf nicht verändert haben.)
+	 * @see #getReadOnlyDistribution()
+	 */
 	private DataDistributionImpl readOnlyDistribution=null;
 
 	/**
@@ -395,6 +411,13 @@ public final class StatisticsTimePerformanceIndicator extends StatisticsPerforma
 		return lastTimeMean;
 	}
 
+	/**
+	 * Berechnet ein Quantil der Messreihe aus der Häufigkeitsverteilung.
+	 * @param sum	Summe über die Messreihe
+	 * @param p	Wert für das Quantil
+	 * @return	Quantil der Messreihe
+	 * @see #getQuantil(double)
+	 */
 	private int getQuantil(final double sum, final double p) {
 		final double quantilSum=sum*Math.min(1.0,Math.max(0.0,p));
 		double partialSum=0;
@@ -554,7 +577,7 @@ public final class StatisticsTimePerformanceIndicator extends StatisticsPerforma
 			if (getTimeMax()==0 || getTimeMax()==-1) {
 				node.setTextContent(NumberTools.formatSystemNumber(getReadOnlyDistribution().densityData[0]));
 			} else {
-				node.setTextContent(getReadOnlyDistribution().storeToString());
+				node.setTextContent(getReadOnlyDistribution().storeToStringShort());
 			}
 		}
 

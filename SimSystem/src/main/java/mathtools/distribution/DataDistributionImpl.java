@@ -31,6 +31,10 @@ import mathtools.NumberTools;
  * @version 1.5
  */
 public final class DataDistributionImpl extends AbstractRealDistribution implements Serializable, Cloneable, DistributionWithRandom  {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -2650001189317761476L;
 
 	/**
@@ -261,6 +265,12 @@ public final class DataDistributionImpl extends AbstractRealDistribution impleme
 		return true;
 	}
 
+	/**
+	 * Gleicht die aktuelle und eine weitere Verteilung in Bezug auf die
+	 * Anzahl an Datenpunkten an.
+	 * @param d	Zweite Verteilung, die angepasst werden soll, um zu der aktuellen Verteilung zu passen
+	 * @return	Array aus einer jeweils evtl. angepassten Kopie der aktuellen Verteilung und der zweiten Verteilung (wobei die zweite Verteilung im Original übergeben wird, wenn keine Anpassungen notwendig sind)
+	 */
 	private DataDistributionImpl[] prepare(final DataDistributionImpl d) {
 		final DataDistributionImpl dist1=clone();
 		final DataDistributionImpl dist2;
@@ -814,6 +824,12 @@ public final class DataDistributionImpl extends AbstractRealDistribution impleme
 		return createFromSamplesArray(strings,normalize);
 	}
 
+	/**
+	 * Trennt eine oder mehrere Zeichenketten gemäß einem oder mehreren Trennzeichen
+	 * @param strings	Zeichenketten, die getrennt werden sollen
+	 * @param splitChar	Zu berücksichtigende Trennzeichen
+	 * @return	Einzel-Zeichenketten
+	 */
 	private static String[] splitArray(final String[] strings, final String splitChar) {
 		final String[][] temp=new String[strings.length][];
 		for (int i=0; i<strings.length;i++) temp[i]=strings[i].split(splitChar);
@@ -914,6 +930,49 @@ public final class DataDistributionImpl extends AbstractRealDistribution impleme
 
 	/**
 	 * Wandelt das in <code>densityData</code> gespeicherte Array aus Dichtewerten in eine Zeichenkette um.
+	 * Nullen am Ende werden entfernt.
+	 * Dabei werden Zahlen in System-Form ausgegeben.
+	 * @param separator	Trennzeichen für die Werte der Verteilung
+	 * @param recycleStringBuilder	StringBuilder, der zum Erstellen der Zeichenkette wiederverwendet werden soll
+	 * @return Dichte-Array als durch den Separator getrennte Zeichenkette
+	 * @see #densityData
+	 */
+	public String storeToStringShort(final String separator, final StringBuilder recycleStringBuilder) {
+		if (densityData.length==0) return "";
+
+		final StringBuilder sb;
+		if (recycleStringBuilder==null) {
+			sb=new StringBuilder(densityData.length*(separator.length()+2));
+		} else {
+			sb=recycleStringBuilder;
+			sb.setLength(0);
+		}
+
+		final StringBuilder reuseSB=new StringBuilder();
+		sb.append(NumberTools.formatSystemNumber(densityData[0],reuseSB));
+		int last=1;
+		for (int i=densityData.length-1;i>=1;i--) if (densityData[i]!=0) {last=i; break;}
+		for (int i=1;i<=last;i++) {
+			sb.append(separator);
+			sb.append(NumberTools.formatSystemNumber(densityData[i],reuseSB));
+		}
+
+		return sb.toString();
+	}
+
+	/**
+	 * Wandelt das in <code>densityData</code> gespeicherte Array aus Dichtewerten in eine Zeichenkette um.
+	 * Nullen am Ende werden entfernt.
+	 * Dabei werden Zahlen in System-Form ausgegeben.
+	 * @return Dichte-Array als ";"-getrennte Zeichenkette
+	 * @see #densityData
+	 */
+	public String storeToStringShort() {
+		return storeToStringShort(";",null);
+	}
+
+	/**
+	 * Wandelt das in <code>densityData</code> gespeicherte Array aus Dichtewerten in eine Zeichenkette um.
 	 * Dabei werden Zahlen in lokaler Form ausgegeben.
 	 * @return Dichte-Array als ";"-getrennte Zeichenkette
 	 * @see #densityData
@@ -1000,6 +1059,11 @@ public final class DataDistributionImpl extends AbstractRealDistribution impleme
 		return sum;
 	}
 
+	/**
+	 * Liefert das zweite Moment der Werte (X^2)
+	 * @return	Zweites Moment der Werte
+	 * @see #getStandardDeviation()
+	 */
 	private double getXSqr() {
 		if (densityData.length==0) return 0;
 		double densitySum=0, sum=0;

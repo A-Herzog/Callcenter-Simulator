@@ -23,6 +23,7 @@ import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.function.Consumer;
@@ -49,6 +50,10 @@ import systemtools.images.SimToolsImages;
  * @version 1.2
  */
 public class DescriptionViewer extends JPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 8594822323998433424L;
 
 	/** Callback an das Links (zur dialogbasierten Hilfe) übermittelt werden (kann <code>null</code> sein) */
@@ -103,6 +108,9 @@ public class DescriptionViewer extends JPanel {
 		SwingUtilities.invokeLater(new InitRunnable());
 	}
 
+	/**
+	 * Führt Verarbeitungen durch, die erst nach dem Abschluss des Konstruktors möglich sind.
+	 */
 	private class InitRunnable implements Runnable {
 		@Override
 		public void run() {
@@ -140,6 +148,12 @@ public class DescriptionViewer extends JPanel {
 		updateButton();
 	}
 
+	/**
+	 * Aktualisiert die Schaltfläche je nach dem, ob das Beschreibungs-Panel
+	 * sichtbar ist oder nicht.
+	 * @see #splitterMovedInfo()
+	 * @see #toggleDescription()
+	 */
 	private void updateButton() {
 		if (descriptionVisible) {
 			button.setText(StatisticsBasePanel.descriptionHide);
@@ -152,6 +166,10 @@ public class DescriptionViewer extends JPanel {
 		}
 	}
 
+	/**
+	 * Blendet das Beschreibungs-Panel ein oder aus.
+	 * @see #button
+	 */
 	private void toggleDescription() {
 		descriptionVisible=!descriptionVisible;
 		updateButton();
@@ -167,6 +185,11 @@ public class DescriptionViewer extends JPanel {
 		}
 	}
 
+	/**
+	 * Reagiert auf Bewegungen der Maus über Links und Klicks auf Links.
+	 * @param e	Auslösendes Ereignis
+	 * @see #linkCallback
+	 */
 	private void linkClicked(final HyperlinkEvent e) {
 		if (e.getEventType()==HyperlinkEvent.EventType.ENTERED) {
 			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
