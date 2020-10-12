@@ -74,6 +74,9 @@ public final class Preplanning {
 	 */
 	public static final double DEFAULT_MULTI_SKILL_REDUCTION=0.5;
 
+	/**
+	 * Ausgangs-Callcenter-Modell
+	 */
 	private final CallcenterModel model;
 
 	/**

@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -52,6 +53,10 @@ import ui.model.CallcenterModel;
  * @see ConnectedJTableModel
  */
 public final class ConnectedUebertragEditDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 1382291382514142930L;
 
 	private final HashMap<String,ConnectedModelUebertrag> uebertrag;

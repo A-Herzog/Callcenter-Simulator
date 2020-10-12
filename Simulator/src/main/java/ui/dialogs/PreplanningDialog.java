@@ -52,7 +52,7 @@ public class PreplanningDialog extends BaseEditDialog {
 	 * @see Serializable
 	 */
 	private static final long serialVersionUID = -3851051029525031101L;
-
+	/** Ausgangs-Callcenter-Modell */
 	private final CallcenterModel baseModel;
 	private CallcenterModel resultModel;
 

@@ -168,6 +168,9 @@ public final class MainPanel extends MainPanelBase {
 	 */
 	public static String UNSAVED_MODEL="";
 
+	/**
+	 * Callback, welches ein Neuladen des Fensters veranlasst.
+	 */
 	private Runnable reloadWindow;
 
 	private final HelpLink helpLink;
@@ -191,10 +194,24 @@ public final class MainPanel extends MainPanelBase {
 	private final ArrayList<AbstractButton> menuSimulationShowWebViewer=new ArrayList<>();
 	private final ArrayList<AbstractButton> menuToolsCompareKeptModel=new ArrayList<>();
 
+	/**
+	 * Menüpunkt "Datei" - "Zuletzt verwendet"
+	 */
 	private JMenu menuRecentlyUsed;
 
+	/**
+	 * Willkommen-Seite (wenn gerade aktiv)
+	 */
 	private HTMLPanel welcomePanel;
+
+	/**
+	 * Editor-Panel, welches das Modell vorhält
+	 */
 	private CallcenterModelEditorPanel modelPanel;
+
+	/**
+	 * Statistik-Seite
+	 */
 	private StatisticPanel statisticPanel;
 
 	private JCloseablePanel workPanel=null;
@@ -297,6 +314,10 @@ public final class MainPanel extends MainPanelBase {
 		dropTargetRegister.registerJComponent(welcomePanel.getBrowserJComponent());
 	}
 
+	/**
+	 * Reagiert auf Drag&amp;Drop-Aktionen auf das Editor- oder das Statistik-Panel.
+	 * @param drop	Drag&amp;Drop-Element
+	 */
 	private void dropFile(final FileDropperData drop) {
 		final File file=drop.getFile();
 		if (file.isFile()) {
@@ -317,6 +338,11 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Liefert die Versionskennung der Java-Laufzeitumgebung
+	 * @return	Versionskennung zerlegt in einzelne Teile
+	 * @see #javaVersionCheck()
+	 */
 	private static int[] getJavaVersion() {
 		final String version=System.getProperty("java.version");
 		if (version==null) return new int[]{7,0};
@@ -342,6 +368,10 @@ public final class MainPanel extends MainPanelBase {
 		return new int[]{major,security};
 	}
 
+	/**
+	 * Prüft, ob die verwendete Java-Version noch aktuell ist
+	 * und zeigt ggf. eine Warnung an.
+	 */
 	private void javaVersionCheck() {
 		final SetupData setup=SetupData.getSetup();
 
@@ -388,8 +418,10 @@ public final class MainPanel extends MainPanelBase {
 		return true;
 	}
 
+	/**
+	 * Initiiert die Zuordnung von Aktionsnamen zu {@link Runnable}-Funktionen.
+	 */
 	private void initActions() {
-
 		/* Datei */
 		addAction("FileNew",e->commandFileModelNewFromTemplate());
 		addAction("FileNewWizard",e->commandFileModelNewFromWizard());
@@ -1071,6 +1103,10 @@ public final class MainPanel extends MainPanelBase {
 		return ribbonBar;
 	}
 
+	/**
+	 * Aktualisiert die Liste der zuletzt verwendeten Dateien im Menü.
+	 * @see #menuRecentlyUsed
+	 */
 	private void updateLastFilesList() {
 		SetupData setup=SetupData.getSetup();
 
@@ -1105,6 +1141,11 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Fügt einen Eintrag zu der Liste der zuletzt verwendeten Dateien hinzu,
+	 * speichert das Setup und baut das Menü entsprechend neu auf.
+	 * @param fileName	Dateiname, der zu der Liste hinzugefügt werden soll (wenn er nicht bereits enthalten ist)
+	 */
 	private void addFileToRecentlyUsedList(String fileName) {
 		SetupData setup=SetupData.getSetup();
 		List<String> files=(setup.lastFiles==null)?new ArrayList<String>():new ArrayList<String>(Arrays.asList(setup.lastFiles));
@@ -1134,6 +1175,10 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Darf das aktuelle Modell verworfen werden?
+	 * @return	Liefert <code>true</code>, wenn das aktuell im Editor befindliche Modell verworfen werden darf
+	 */
 	private boolean discardModelOk() {
 		int i=MsgBox.confirmSave(this,Language.tr("Window.DiscardConfirmation.Title"),Language.tr("Window.DiscardConfirmation.Info"));
 		if (i==JOptionPane.YES_OPTION) {
@@ -1250,6 +1295,11 @@ public final class MainPanel extends MainPanelBase {
 		setGUIMode((short)0);
 	}
 
+	/**
+	 * Befehl: Datei - Laden
+	 * @param file	Zu ladende Datei; wird <code>null</code> übergeben, so wird ein Dateiauswahldialog angezeigt
+	 * @return	Liefert <code>true</code>, wenn eine Datei geladen wurde
+	 */
 	private boolean commandFileModelLoad(File file) {
 		if (modelPanel.isModelChanged()) {if (!discardModelOk()) return false;}
 
@@ -1262,6 +1312,10 @@ public final class MainPanel extends MainPanelBase {
 		return (s==null);
 	}
 
+	/**
+	 * Befehl: Datei - Speichern
+	 * @return	Liefert <code>true</code>, wenn das Modell gespeichert wurde
+	 */
 	private boolean commandFileModelSave() {
 		if (modelPanel.getLastFileName().isEmpty()) return commandFileModelSaveAs();
 		String s=modelPanel.saveModel(new File(modelPanel.getLastFileName()));
@@ -1273,6 +1327,10 @@ public final class MainPanel extends MainPanelBase {
 		return (s==null);
 	}
 
+	/**
+	 * Befehl: Datei - Speichern unter
+	 * @return	Liefert <code>true</code>, wenn das Modell gespeichert wurde
+	 */
 	private boolean commandFileModelSaveAs() {
 		String s=modelPanel.saveModel(null);
 		if (modelPanel.getLastFileName().isEmpty()) setAdditionalTitle(UNSAVED_MODEL); else setAdditionalTitle(modelPanel.getLastFileName());
@@ -1283,12 +1341,21 @@ public final class MainPanel extends MainPanelBase {
 		return (s==null);
 	}
 
+	/**
+	 * Befehl: Datei - Statistik laden
+	 * @param file	Zu ladende Datei; wird <code>null</code> übergeben, so wird ein Dateiauswahldialog angezeigt
+	 * @return	Liefert <code>true</code>, wenn eine Datei geladen wurde
+	 */
 	private boolean commandFileStatisticsLoad(File file) {
 		String s=statisticPanel.loadStatistic(file);
 		if (s!=null) MsgBox.error(this,Language.tr("Window.LoadStatisticsError.Title"),s); else setGUIMode((short)1);
 		return (s==null);
 	}
 
+	/**
+	 * Befehl: Datei - Statistik speichern unter
+	 * @return	Liefert <code>true</code>, wenn die Statistikdaten gespeichert wurden
+	 */
 	private void commandFileStatisticsSave() {
 		Statistics[] statistic=statisticPanel.getStatistic();
 		if (statistic==null || statistic.length==0 || statistic[0]==null) {MsgBox.error(this,Language.tr("Window.SaveStatisticsError.Title"),Language.tr("Window.SaveStatisticsError.NoSimulationResults")); return;}
@@ -1296,6 +1363,9 @@ public final class MainPanel extends MainPanelBase {
 		if (s!=null) MsgBox.error(this,Language.tr("Window.SaveStatisticsError.Title"),s);
 	}
 
+	/**
+	 * Befehl: Datei - Einstellungen
+	 */
 	private void commandFileSetup(final boolean showUpdatesPage) {
 		SetupData setup=SetupData.getSetup();
 
@@ -1485,6 +1555,9 @@ public final class MainPanel extends MainPanelBase {
 		setGUIState(new RevenueOptimizerPanel(ownerWindow,new SimDoneNotify(),helpLink,editModel));
 	}
 
+	/**
+	 * Befehl: (Toolbar bei Statistikansicht) - Modell zu diesen Ergebnissen
+	 */
 	private void commandSimulationShowModel() {
 		CallcenterModel editModel=null;
 		if (statisticPanel.getStatistic()!=null && statisticPanel.getStatistic().length>0 && statisticPanel.getStatistic()[0]!=null) editModel=statisticPanel.getStatistic()[0].editModel;
@@ -1529,11 +1602,17 @@ public final class MainPanel extends MainPanelBase {
 		return true;
 	}
 
+	/**
+	 * Befehl: Extras - Rechner
+	 */
 	private void commandToolsRechner() {
 		CalculatorDialog calc=new CalculatorDialog(ownerWindow,helpLink);
 		calc.setVisible(true);
 	}
 
+	/**
+	 * Befehl: Extras - Warteschlangenrechner
+	 */
 	private void commandToolsAuslastungsrechner() {
 		final QueueingCalculatorDialog dialog=new QueueingCalculatorDialog(this,helpLink);
 		dialog.setVisible(true);
@@ -1552,12 +1631,18 @@ public final class MainPanel extends MainPanelBase {
 		setGUIState(new VarianzAnalysePanel(new SimDoneNotify(),model,helpLink));
 	}
 
+	/**
+	 * Befehl: Extras - Verteilung anpassen
+	 */
 	private void commandToolsFitting() {
 		FitDialog fit=new FitDialog(ownerWindow,modelPanel.getModel(true),helpLink);
 		fit.setVisible(true);
 		if (fit.modelChanged) {modelPanel.setModel(fit.model); modelPanel.setModelChanged(true);}
 	}
 
+	/**
+	 * Befehl: Extras - Kommandozeilenbefehl ausführen
+	 */
 	private void commandToolsExecuteCommand() {
 		new CommandLineDialog(this,stream->new CommandLineSystem(null,stream),window->helpLink.dialogCommandLine.run());
 	}
@@ -1591,6 +1676,9 @@ public final class MainPanel extends MainPanelBase {
 		commandSimulationRun(false,file);
 	}
 
+	/**
+	 * Befehl: Extras - Simulationergebnisse verschiedener Modelle vergleichen
+	 */
 	private void commandToolsCompare() {
 		CompareSelectDialog dialog=new CompareSelectDialog(ownerWindow,helpLink.pageCompareModal,5);
 		dialog.setVisible(true);
@@ -1611,6 +1699,9 @@ public final class MainPanel extends MainPanelBase {
 				));
 	}
 
+	/**
+	 * Befehl: Extras - Aktuelles Modell für späteren Vergleich festhalten
+	 */
 	private void commandToolsKeepModel() {
 		CallcenterModel model=modelPanel.getModel(true);
 		CallcenterRunModel runModel=new CallcenterRunModel(model);
@@ -1629,6 +1720,10 @@ public final class MainPanel extends MainPanelBase {
 		for (AbstractButton button : menuToolsCompareKeptModel) button.setEnabled(true);
 	}
 
+	/**
+	 * Befehl Extras - Aktuelles und festgehaltenes Modell vergleichen
+	 * @param level	0: festgehaltenes Modell simulieren; 1: aktuelles Modell simulieren; 2: Ergebnisse anzeigen
+	 */
 	private void commandToolsCompareKeptModel(int level) {
 		if (level==0) {
 			if (pinnedModel==null) {
@@ -1674,6 +1769,9 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Befehl: Extras - Serverdienste
+	 */
 	private void commandToolsServer() {
 		backgroundSimulator.stop(true);
 		setGUIState(new SimServerPanel(ownerWindow,new SimDoneNotify(),helpLink));
@@ -1746,10 +1844,16 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Befehl: Hilfe - Lizenzinformationen
+	 */
 	private void commandHelpLicenseInfo() {
 		new LicenseViewer(this);
 	}
 
+	/**
+	 * Befehl: Hilfe - Programminfo
+	 */
 	private void commandHelpInfo() {
 		final InfoDialog infoDialog=new InfoDialog(MainPanel.this.ownerWindow,VersionConst.version);
 

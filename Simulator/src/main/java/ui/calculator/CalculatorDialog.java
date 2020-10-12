@@ -72,8 +72,19 @@ public class CalculatorDialog extends BaseEditDialog {
 		output.setEditable(false);
 	}
 
+	/**
+	 * Reagiert auf Eingaben in {@link CalculatorDialog#input}
+	 * @see CalculatorDialog#input
+	 */
 	private class InputListener implements KeyListener {
+		/**
+		 * Rechensystem
+		 */
 		private final CalcSystem calc=new CalcSystem();
+
+		/**
+		 * Rechnung aktualisieren
+		 */
 		private void recalc() {
 			input.getText();
 			int pos=calc.parse(input.getText());
@@ -89,6 +100,7 @@ public class CalculatorDialog extends BaseEditDialog {
 			}
 			output.setText(result);
 		}
+
 		@Override public void keyTyped(KeyEvent e) {}
 		@Override public void keyPressed(KeyEvent e) {}
 		@Override public void keyReleased(KeyEvent e) {recalc();}

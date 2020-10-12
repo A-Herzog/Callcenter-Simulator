@@ -16,6 +16,7 @@
 package ui.connected;
 
 import java.awt.Window;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -35,6 +36,10 @@ import ui.editor.BaseEditDialog;
  * @see ConnectedJTableModel
  */
 public final class ConnectedUebertragTypeEditDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 1732595764749627708L;
 
 	private final String[] caller;

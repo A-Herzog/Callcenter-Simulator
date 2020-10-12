@@ -39,9 +39,9 @@ import ui.model.CallcenterModelSkillLevel;
  * @see CallerTableLoader
  */
 public final class TechnionLoader extends CallerTableLoader {
+	/** Datum von dem die Daten geladen werden sollen */
 	private final String dateToUse;
 
-	/**
 	/**
 	 * Konstruktor der Klasse
 	 * @param file	Dateiname der Datei aus der die Daten geladen werden sollen (darf nicht <code>null</code> sein)

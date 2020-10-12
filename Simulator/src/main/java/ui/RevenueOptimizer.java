@@ -38,6 +38,7 @@ public class RevenueOptimizer {
 	private static final double DEFAULT_SIGNIFICANCE_LEVEL=100;
 
 	private final CallcenterModel baseModel;
+	/** Stellt ein, ab welchem Unterschied (relativ zur Standardabweichung des Ertrags des Basismodells und der Agentenanzahl) zwei Modelle als unterschiedlch angesehen werden. */
 	private final double signficanceLevel;
 	private int workForce;
 	private CallcenterModel bestModel;

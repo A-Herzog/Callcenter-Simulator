@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -63,9 +64,15 @@ import xml.XMLTools;
  * @version 1.0
  */
 public final class ConnectedPanel extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -8502043951150157035L;
 
+	/** Elternfenster */
 	private final Window owner;
+	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
 
 	private final JTextField folderField, day0statisticsField;

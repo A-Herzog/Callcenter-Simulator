@@ -18,6 +18,7 @@ package ui.connected;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Window;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,10 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class AdditionalCallerSetupDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -140281987544275534L;
 
 	private final List<String> callerNames;

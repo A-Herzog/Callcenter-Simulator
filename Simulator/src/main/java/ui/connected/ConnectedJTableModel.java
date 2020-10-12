@@ -19,6 +19,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -45,10 +46,17 @@ import xml.XMLTools;
  * @see ConnectedModel
  */
 public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -4974472350493833926L;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
+	/** Hilfe-Callback */
 	private final Runnable helpCallbackModel;
+	/** Callback das aufgerufen wird, wenn die Tabelle aktualisiert werden soll */
 	private final Runnable tableUpdateCallback;
 
 	private final ConnectedModel model=new ConnectedModel();

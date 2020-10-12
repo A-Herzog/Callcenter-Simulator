@@ -17,6 +17,7 @@ package ui.connected;
 
 import java.awt.BorderLayout;
 import java.awt.Window;
+import java.io.Serializable;
 import java.net.URL;
 
 import javax.swing.JButton;
@@ -42,13 +43,20 @@ import ui.statistic.core.StatisticBasePanel;
  * @version 1.0
  */
 public class ConnectedViewer extends ViewerWithLoadModelCallback {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -3595198939335681263L;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
 
+	/** Liste mit den anzuzeigenden Statistikdaten */
 	private final Statistics[] data;
 	private final ConnectedStatisticPanel statistic;
 
+	/** Hilfe-Link */
 	private final HelpLink helpLink;
 
 	/**

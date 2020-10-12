@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Window;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,10 @@ import ui.model.CallcenterModel;
  * @see AbstractSpecialProcessing
  */
 public final class SpecialProcessingDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 3919074252992633185L;
 
 	private final List<AbstractSpecialProcessing> handlers=new ArrayList<AbstractSpecialProcessing>();
