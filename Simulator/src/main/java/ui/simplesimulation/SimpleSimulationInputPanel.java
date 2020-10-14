@@ -18,6 +18,7 @@ package ui.simplesimulation;
 import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.Serializable;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -39,6 +40,10 @@ import mathtools.NumberTools;
  * @see SimpleSimulation
  */
 public class SimpleSimulationInputPanel extends JPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -394335481000773071L;
 
 	private final JTextField editLambda;

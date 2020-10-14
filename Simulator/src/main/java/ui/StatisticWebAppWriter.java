@@ -40,6 +40,7 @@ public class StatisticWebAppWriter {
 	private static final int MIN_LINE_LENGTH=80;
 	private static final String DEFAULT_VIEWER_URL=UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL+"viewer/";
 
+	/** Statistikerebnisse, die als Web-Viewer umgesetzt werden sollen */
 	private final Statistics statistics;
 	private Document resultDoc=null;
 	private String result=null;

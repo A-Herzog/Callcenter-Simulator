@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.Serializable;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -71,8 +72,13 @@ import ui.model.CallcenterModelSkillLevel;
  * @version 1.0
  */
 public class NewModelWizard extends JDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -6076142078109006053L;
 
+	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
 
 	private final JPanel main;
@@ -244,6 +250,10 @@ public class NewModelWizard extends JDialog {
 	}
 
 	private class SpecialKeyListener extends AbstractAction {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -485008309903554823L;
 
 		private final int action;

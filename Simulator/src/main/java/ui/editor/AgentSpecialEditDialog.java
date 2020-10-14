@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Window;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,10 @@ import ui.model.CallcenterModelSkillLevel;
  * @see AgentEditDialog
  */
 public class AgentSpecialEditDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -5377606879040445878L;
 
 	private final CallcenterModelCaller[] caller;

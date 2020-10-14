@@ -43,8 +43,17 @@ import xml.XMLTools;
  * @author Alexander Herzog
  */
 public final class Main {
+	/**
+	 * Wird der Simulator mit einem einfachen Dateinamen als Parameter aufgerufen, so wird angenommen, dass es sich dabei
+	 * um eine zu ladende Datei handelt. Diese wird hier gespeichert.
+	 */
 	private static File loadFile;
 
+	/**
+	 * Verarbeitet mögliche Kommandozeilen-Parameter
+	 * @param args	Die an <code>main</code> übergebenen Parameter
+	 * @return	Gibt <code>true</code> zurück, wenn alle Verarbeitungen bereits auf der Kommandozeile ausgeführt werden konnten und die grafische Oberfläche nicht gestartet werden muss
+	 */
 	private static String[] processConfigFileParameter(String[] args) {
 		if (args.length==0 || !args[0].toLowerCase().startsWith("cfg=")) return args;
 
@@ -111,6 +120,9 @@ public final class Main {
 		SwingUtilities.invokeLater(new RunSimulator());
 	}
 
+	/**
+	 * Ausführen der grafischen Oberfläche über ein <code>invokeLater</code>.
+	 */
 	private static final class RunSimulator implements Runnable {
 		@Override
 		public void run() {

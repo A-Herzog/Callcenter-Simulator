@@ -18,6 +18,7 @@ package ui.optimizer;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Window;
+import java.io.Serializable;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -37,6 +38,10 @@ import ui.editor.CallcenterThresholdIntervalsDialog;
  * @see OptimizeEditPanel
  */
 public class RangeSelectDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 3073283623605767866L;
 
 	private JComboBox<String> comboMin;

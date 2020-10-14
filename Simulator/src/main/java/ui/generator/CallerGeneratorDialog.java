@@ -18,6 +18,7 @@ package ui.generator;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Window;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +40,10 @@ import ui.model.CallcenterModelCaller;
  * @version 1.0
  */
 public final class CallerGeneratorDialog extends GeneratorBaseDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 5863544128633698724L;
 
 	private final List<String> callerNames;

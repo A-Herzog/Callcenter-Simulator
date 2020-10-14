@@ -18,6 +18,7 @@ package ui.editor;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
 import javax.swing.Icon;
 import javax.swing.JPanel;
@@ -35,6 +36,10 @@ import ui.model.CallcenterModelCaller;
  * @see CallerEditDialog
  */
 public class CallerEditPanelCosts extends CallerEditPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -2674610320989485395L;
 
 	private final JTextField revenuePerClient;

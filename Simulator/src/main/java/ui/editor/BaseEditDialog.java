@@ -28,6 +28,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.Serializable;
 import java.net.URL;
 
 import javax.swing.AbstractAction;
@@ -60,6 +61,10 @@ import ui.images.Images;
  * @version 1.0
  */
 public class BaseEditDialog extends JDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -432438550461985704L;
 
 	/**
@@ -205,11 +210,17 @@ public class BaseEditDialog extends JDialog {
 	}
 
 	private class SpecialKeyListener extends AbstractAction {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -485008309903554823L;
 
 		private final int action;
 
-		public SpecialKeyListener(int action) {this.action=action;}
+		public SpecialKeyListener(int action) {
+			this.action=action;
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {

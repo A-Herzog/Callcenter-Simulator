@@ -16,6 +16,7 @@
 package ui.editor.events;
 
 import java.awt.AWTEvent;
+import java.io.Serializable;
 
 /**
  * Dieses Ereignisse kapselt Informationen, die beim Umbenennen einer Callcenter-Modell-Komponente
@@ -25,6 +26,10 @@ import java.awt.AWTEvent;
  * @see RenameListener
  */
 public class RenameEvent extends AWTEvent {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -3009382995603313568L;
 
 	/**

@@ -21,6 +21,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Window;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +54,10 @@ import ui.images.Images;
  * @version 1.0
  */
 public class CallerSpecialEditDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 9065392515740427353L;
 
 	/**
@@ -262,8 +267,15 @@ public class CallerSpecialEditDialog extends BaseEditDialog {
 	}
 
 	private final class SkillLevelListRenderer extends JLabel implements ListCellRenderer<String> {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 5330825980819412995L;
 
+		/**
+		 * Konstruktor der Klasse
+		 */
 		public SkillLevelListRenderer() {
 			setHorizontalAlignment(LEFT);
 			setVerticalAlignment(CENTER);

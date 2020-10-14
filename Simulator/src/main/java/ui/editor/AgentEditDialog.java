@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,10 @@ import ui.model.CallcenterModelSkillLevel;
  * @see CallcenterModelAgent
  */
 public class AgentEditDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 1514347570688540353L;
 
 	private final CallcenterModelAgent agent;

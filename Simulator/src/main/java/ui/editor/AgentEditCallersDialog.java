@@ -19,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Window;
+import java.io.Serializable;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -45,9 +46,15 @@ import ui.model.CallcenterModel;
  * @see AgentEditDialog
  */
 public class AgentEditCallersDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 8756194008858357281L;
 
+	/** Gesamtes Callcenter-Modell */
 	private final CallcenterModel model;
+	/** Über alle Intervalle verteilbare Anzahl an Agenten (Agenten*Intervalle) */
 	private final double agentCount;
 	private DataDistributionImpl distribution;
 

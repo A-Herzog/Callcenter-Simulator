@@ -18,6 +18,7 @@ package ui.generator;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Window;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,10 @@ import ui.model.CallcenterModelSkillLevel;
  * @version 1.0
  */
 public final class SkillsGeneratorDialog extends GeneratorBaseDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 4485497692649353582L;
 
 	private final List<Integer> skillNr;

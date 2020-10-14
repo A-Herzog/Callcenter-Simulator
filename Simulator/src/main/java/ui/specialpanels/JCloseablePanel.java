@@ -17,6 +17,7 @@ package ui.specialpanels;
 
 import java.awt.LayoutManager;
 import java.io.File;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
 
@@ -29,6 +30,10 @@ import javax.swing.JPanel;
  * @version 1.0
  */
 public class JCloseablePanel extends JPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 950090362066642976L;
 
 	/**

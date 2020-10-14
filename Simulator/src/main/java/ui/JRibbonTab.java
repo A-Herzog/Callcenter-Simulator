@@ -37,6 +37,10 @@ class JRibbonTab extends JPanel {
 	 */
 	private static final long serialVersionUID = 4763704485543681895L;
 
+	/**
+	 * Aktuell für Einfüge-Aktionen relevanter
+	 * Abschnitt des Ribbon-Bars
+	 */
 	private JRibbonSection currentSection;
 
 	/**

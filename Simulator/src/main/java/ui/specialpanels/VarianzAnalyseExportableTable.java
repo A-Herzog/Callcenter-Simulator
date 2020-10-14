@@ -19,6 +19,7 @@ import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.io.File;
+import java.io.Serializable;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -37,7 +38,9 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class VarianzAnalyseExportableTable {
+	/** Callcenter-Modell welches die Basis für die Varianzanalyse darstellt */
 	private final CallcenterModel model;
+	/** Alles nach dieser Anzahl an Zeilen fett darstellen */
 	private int boldAfterRow;
 	private final JTable table;
 	private final VarianzAnalyseExportableTableModel tableModel;
@@ -140,6 +143,10 @@ public class VarianzAnalyseExportableTable {
 	}
 
 	private class VarianzAnalyseExportableTableModel extends AbstractTableModel {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -3597759277796840217L;
 
 		@Override

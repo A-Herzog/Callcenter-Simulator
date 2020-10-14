@@ -33,7 +33,9 @@ import ui.statistic.model.StatisticViewerErlangCTools;
  * @version 1.0
  */
 public final class Preplanning {
+	/** Kenngröße, für die ein Wert erreicht werden soll */
 	private Mode mode;
+	/** Soll eine Vereinfachung des Modells vorgenommen werden? */
 	private Mode simplify;
 	private double fixedLoadStatus;
 

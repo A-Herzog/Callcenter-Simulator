@@ -19,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.Vector;
 
 import javax.swing.JComboBox;
@@ -36,6 +37,10 @@ import ui.editor.BaseEditDialog;
  * @version 1.0
  */
 public final class OptimizeSelectResult extends BaseEditDialog  {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -8093197712337120384L;
 
 	private final OptimizeData results;

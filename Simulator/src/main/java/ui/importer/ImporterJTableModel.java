@@ -19,6 +19,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 import java.util.Vector;
@@ -43,11 +44,18 @@ import ui.model.CallcenterModel;
  * @see ImporterData
  */
 public class ImporterJTableModel extends JTableExtAbstractTableModel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -1701976557478075869L;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
+	/** Callback das aufgerufen wird, wenn sich die zugehörige Tabelle aktualisieren soll */
 	private final Runnable tableUpdateCallback;
 
+	/** Callcenter-Modell in das Datenwerte geladen werden sollen */
 	private CallcenterModel model;
 	private final ImporterData data;
 	private ImporterData dataSaved;

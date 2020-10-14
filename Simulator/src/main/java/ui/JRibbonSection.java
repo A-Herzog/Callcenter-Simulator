@@ -44,6 +44,10 @@ class JRibbonSection extends JPanel {
 	 */
 	private static final long serialVersionUID = -3037779257349754703L;
 
+	/**
+	 * Vertikal ausgerichteter Toolbar, der die Symbole
+	 * eines Ribbon-Abschnitts aufnimmt
+	 */
 	private JToolBar toolbar;
 
 	/**

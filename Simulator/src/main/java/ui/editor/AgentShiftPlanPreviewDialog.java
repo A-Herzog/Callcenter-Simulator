@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -61,6 +62,10 @@ import ui.model.CallcenterModelCallcenter;
  * @see CallcenterModelAgent
  */
 public class AgentShiftPlanPreviewDialog extends JDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -3187138325967105147L;
 
 	private static final String[] COLHEADS_DIST = {Language.tr("Statistic.Interval"),Language.tr("SimStatistic.Count")};
@@ -114,6 +119,10 @@ public class AgentShiftPlanPreviewDialog extends JDialog {
 			b.addActionListener(new ExportActionListener(ActionNr.SAVE_DIST_TABLE));
 			b.setToolTipText(Language.tr("Editor.AgentsGroup.Shift.ShowPlan.SaveDistribution.Info"));
 			TableModel data=new DefaultTableModel(getTableData(0),COLHEADS_DIST) {
+				/**
+				 * Serialisierungs-ID der Klasse
+				 * @see Serializable
+				 */
 				private static final long serialVersionUID = -8269778979021579082L;
 				@Override
 				public boolean isCellEditable(int rowIndex, int columnIndex) {return false;}
@@ -152,6 +161,10 @@ public class AgentShiftPlanPreviewDialog extends JDialog {
 		b.addActionListener(new ExportActionListener(ActionNr.SAVE_PLAN_TABLE));
 		b.setToolTipText(Language.tr("Editor.AgentsGroup.Shift.ShowPlan.SavePlanTable.Info"));
 		TableModel data=new DefaultTableModel(getTableData(1),COLHEADS_PLAN) {
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
 			private static final long serialVersionUID = -8269778979021579082L;
 			@Override
 			public boolean isCellEditable(int rowIndex, int columnIndex) {return false;}

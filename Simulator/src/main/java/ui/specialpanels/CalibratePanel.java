@@ -19,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -56,6 +57,10 @@ import xml.XMLTools;
  * @author Alexander Herzog
  */
 public class CalibratePanel extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -4042434827597615142L;
 
 	private final JPanel scrollArea;

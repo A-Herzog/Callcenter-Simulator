@@ -22,6 +22,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.Serializable;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -47,8 +48,13 @@ import ui.specialpanels.JWorkPanel;
  * @version 1.0
  */
 public final class ImporterPanel extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -2618492174899808992L;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
 	private CallcenterModel changedModel=null;
 

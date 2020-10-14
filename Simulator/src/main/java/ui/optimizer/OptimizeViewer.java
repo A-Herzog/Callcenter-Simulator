@@ -18,6 +18,7 @@ package ui.optimizer;
 import java.awt.BorderLayout;
 import java.awt.Window;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 
 import javax.swing.JButton;
@@ -48,14 +49,20 @@ import xml.XMLTools;
  * @version 1.0
  */
 public final class OptimizeViewer extends ViewerWithLoadModelCallback {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -1862842076679854416L;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
 
 	private OptimizeData results;
 	private boolean resultsSaved;
 	private OptimizerStatisticPanel statistic;
 
+	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
 
 	/**
@@ -395,6 +402,10 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 	}
 
 	private final class OptimizerStatisticPanel extends StatisticBasePanel {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 5350416436702759598L;
 
 		public OptimizerStatisticPanel(String title, URL icon, boolean filterTree, Runnable helpModal, HelpLink helpLink, Runnable startSilmulation, Runnable loadStatistics) {

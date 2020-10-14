@@ -21,6 +21,7 @@ import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
@@ -253,6 +254,10 @@ public class CheckBoxTree {
 	}
 
 	private final class CheckBoxNodeEditor extends AbstractCellEditor implements TreeCellEditor {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 3461005571727645288L;
 
 		private final CheckBoxNodeRenderer renderer=new CheckBoxNodeRenderer();

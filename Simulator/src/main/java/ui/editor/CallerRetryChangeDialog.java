@@ -21,6 +21,7 @@ import java.awt.GridLayout;
 import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -42,6 +43,10 @@ import mathtools.NumberTools;
  * @see CallerEditPanelRetryProbability
  */
 public class CallerRetryChangeDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 8911014010474864588L;
 
 	private final List<String> names;

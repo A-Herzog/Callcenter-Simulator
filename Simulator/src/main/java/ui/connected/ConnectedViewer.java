@@ -216,6 +216,10 @@ public class ConnectedViewer extends ViewerWithLoadModelCallback {
 	}
 
 	private final class ConnectedStatisticPanel extends StatisticBasePanel {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 5350416436702759598L;
 
 		public ConnectedStatisticPanel(String title, URL icon, boolean filterTree, HelpLink helpLink, Runnable startSilmulation, Runnable loadStatistics) {

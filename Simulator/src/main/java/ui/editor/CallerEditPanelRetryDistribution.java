@@ -16,6 +16,7 @@
 package ui.editor;
 
 import java.awt.BorderLayout;
+import java.io.Serializable;
 
 import javax.swing.Icon;
 
@@ -31,6 +32,10 @@ import ui.model.CallcenterModelCaller;
  * @see CallerEditDialog
  */
 public class CallerEditPanelRetryDistribution extends CallerEditPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -5849131132110088748L;
 
 	private JDistributionPanel retryTimeDist;

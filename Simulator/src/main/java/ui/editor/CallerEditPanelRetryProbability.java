@@ -19,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +43,10 @@ import ui.model.CallcenterModelCaller;
  * @see CallerEditDialog
  */
 public class CallerEditPanelRetryProbability extends CallerEditPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -4361383032129176751L;
 
 	private final List<String> retryCallerTypeChangeNames;

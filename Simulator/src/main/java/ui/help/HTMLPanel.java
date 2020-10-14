@@ -58,24 +58,52 @@ public final class HTMLPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -3360161989499967773L;
 
+	/** Wird aufgerufen, wenn der Nutzer auf die Schließen-Schaltfläche klickt. */
 	private final Runnable closeNotify;
 
+	/** Toolbar des Panels */
 	private final JToolBar toolBar;
+
+	/** "Schließen"-Schaltfläche */
 	private final JButton buttonClose;
+
+	/** "Start"-Schaltfläche */
 	private final JButton buttonHome;
+
+	/** "Zurück"-Schaltfläche */
 	private final JButton buttonBack;
+
+	/** "Weiter"-Schaltfläche */
 	private final JButton buttonNext;
+
+	/** "Inhalt anzeigen"-Schaltfläche */
 	private final JButton buttonContent;
+
+	/** Panel zur Anzeige des Hilfetextes */
 	private final HTMLBrowserPanel textPane;
+
+	/** Popup zur Anzeige der Inhaltselemente /wird über die "Inhalt anzeigen"-Schaltfläche aktiviert */
 	private final JPopupMenu contentPopup;
 
+	/** Gibt an, ob die Toolbar-Schaltfläche, die eine Popup-Menü mit einer Übersicht der Zwischenüberschriften der Seite enthält, angezeigt werden soll. */
 	private final boolean showContent;
+
+	/** Liste mit den "Zurück"-URLs */
 	private final List<URL> listBack;
+
+	/** Liste mit den "Weiter"-URLs */
 	private final List<URL> listNext;
+
+	/** Aktuell angezeigte URL */
 	private URL currentURL=null;
+
+	/** Startseiten-URL */
 	private URL homeURL=null;
 
+	/** Callback welches aufgerufen wird, wenn der Nutzer auf einen Link klickt, der keine URL enthält. */
 	private Runnable processSpecialLink;
+
+	/** Linkziel für einen angeklickten Link, der keine URL enthält. */
 	private String specialLink="";
 
 	/**
@@ -139,6 +167,14 @@ public final class HTMLPanel extends JPanel {
 		this(true,true,closeNotify);
 	}
 
+	/**
+	 * Fügt eine neue Schaltfläche zur Symbolleiste {@link #toolBar} hinzu.
+	 * @param title	Titel der Schaltfläche
+	 * @param tip	Tooltip für die Schaltfläche (darf <code>null</code> sein)
+	 * @param icon	Icon für die Schaltfläche (darf <code>null</code> sein)
+	 * @return	Liefert die bereits eingefügte Schaltfläche.
+	 * @see #toolBar
+	 */
 	private JButton addButton(String title, String tip, Icon icon) {
 		JButton button=new JButton(title);
 		if (tip!=null && !tip.equals("")) button.setToolTipText(tip);
@@ -269,6 +305,11 @@ public final class HTMLPanel extends JPanel {
 		return HelpConsts.FALLBACK_FOLDER+"/"+res;
 	}
 
+	/**
+	 * Initialisiert die Einträge zur Auswahl bestimmter Elemente im {@link #contentPopup}.
+	 * @see #contentPopup
+	 * @see ButtonListener
+	 */
 	private void initContentPopup() {
 		contentPopup.removeAll();
 		List<String> content=textPane.getPageContent();
@@ -286,6 +327,14 @@ public final class HTMLPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen
+	 * @see HTMLPanel#buttonClose
+	 * @see HTMLPanel#buttonBack
+	 * @see HTMLPanel#buttonNext
+	 * @see HTMLPanel#buttonHome
+	 * @see HTMLPanel#buttonContent
+	 */
 	private final class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -329,8 +378,17 @@ public final class HTMLPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Lade-Lock
+	 * @see HTMLPanel.PageLoadListener
+	 */
 	private final Object lockObject=new Object();
 
+	/**
+	 * Reagiert darauf, wenn das Laden einer Seite in {@link HTMLPanel#textPane}
+	 * abgeschlossen ist (und stellt die Vor/Zurück-Schaltflächen usw. korrekt ein).
+	 * @see HTMLPanel#textPane
+	 */
 	private final class PageLoadListener implements Runnable {
 		@Override
 		public void run() {
@@ -346,6 +404,11 @@ public final class HTMLPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Reagiert auf das Anklicken von Links innerhalb der HTML-Anzeige.
+	 * @see HTMLPanel#textPane
+	 * @see HTMLPanel#processSpecialLink
+	 */
 	private final class LinkClickListener implements Runnable {
 		@Override
 		public void run() {
@@ -376,7 +439,14 @@ public final class HTMLPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Listener, der auf Escape-Tastendrücke reagiert
+	 */
 	private final class EscapeListener extends AbstractAction {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 3060385322767789283L;
 
 		@Override

@@ -19,6 +19,7 @@ import java.awt.FlowLayout;
 import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.Serializable;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -35,6 +36,10 @@ import systemtools.MsgBox;
  * @version 1.0
  */
 public class CopyDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 8727888932261919490L;
 
 	private final String nameLabel;

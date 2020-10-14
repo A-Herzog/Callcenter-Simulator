@@ -93,6 +93,10 @@ public final class ConnectedUebertragTypeEditDialog extends BaseEditDialog {
 	}
 
 	private final class UebertragChangeTableModel extends AbstractTableModel {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 3426277156013494341L;
 		@Override public boolean isCellEditable(int rowIndex, int columnIndex) {return columnIndex>0;}
 		@Override public String getColumnName(int column) {return (column==0)?Language.tr("Connected.ClientType"):Language.tr("Connected.Rate");}

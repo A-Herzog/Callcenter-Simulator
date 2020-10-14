@@ -20,6 +20,7 @@ import java.awt.GridLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,10 @@ import ui.model.CallcenterModelAgent;
  * @version 1.0
  */
 public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 730077141756069208L;
 
 	/**

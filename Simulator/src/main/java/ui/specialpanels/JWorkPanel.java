@@ -70,6 +70,7 @@ public class JWorkPanel extends JCloseablePanel {
 	private JButton closeButton;
 	private JButton helpButton;
 	private final List<JButton> userButtons=new ArrayList<JButton>();
+	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird eine "Hilfe"-Schaltfläche angezeigt und die <code>Run</code>-Methode dieses Objekts beim Klicken auf diese Schaltfläche aufgerufen */
 	private final Runnable helpCallback;
 
 	/**
@@ -101,6 +102,10 @@ public class JWorkPanel extends JCloseablePanel {
 	}
 
 	private final class SpecialKeyListener extends AbstractAction {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -3547884828037503034L;
 
 		private final int action;

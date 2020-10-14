@@ -18,6 +18,7 @@ package ui.editor;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +46,10 @@ import ui.model.CallcenterModelCaller;
  * @see CallcenterModelCaller
  */
 public class CallerEditDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 2913991307659871097L;
 
 	private final CallcenterModelCaller caller;

@@ -57,6 +57,7 @@ public class RevenueOptimizerPanel extends JWorkPanel {
 
 	/** Übergeordnetes Fenster */
 	private final Window owner;
+	/** Für die Ertragsoptimierung zu verwendenes Callcenter-Modell */
 	private final CallcenterModel baseModel;
 	private CallcenterModel bestModel;
 	private CallcenterModel returnModel=null;
@@ -74,7 +75,7 @@ public class RevenueOptimizerPanel extends JWorkPanel {
 	 * @param owner	Übergeordnetes Fenster
 	 * @param doneNotify	Callback wird aufgerufen, wenn das Panel geschlossen werden soll
 	 * @param helpLink	Help-Link
-	 * @param model	Für die Ertragsoptimierung zu verwendenen Callcenter-Modell
+	 * @param model	Für die Ertragsoptimierung zu verwendenes Callcenter-Modell
 	 */
 	public RevenueOptimizerPanel(final Window owner, final Runnable doneNotify, final HelpLink helpLink, final CallcenterModel model) {
 		super(doneNotify,helpLink.pageRevenueOptimizer);

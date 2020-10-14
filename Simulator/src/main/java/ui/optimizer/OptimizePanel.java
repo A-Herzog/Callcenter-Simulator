@@ -22,6 +22,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Window;
 import java.io.File;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Timer;
@@ -67,6 +68,10 @@ import ui.statistic.optimizer.StatisticViewerOptimizerBarChart;
  * @version 1.0
  */
 public final class OptimizePanel extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 7826354435699022765L;
 
 	/**

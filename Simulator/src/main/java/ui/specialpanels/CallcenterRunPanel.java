@@ -18,6 +18,7 @@ package ui.specialpanels;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -47,6 +48,10 @@ import ui.images.Images;
  * @version 1.0
  */
 public class CallcenterRunPanel extends JCloseablePanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 176710490651488333L;
 
 	private final long startTime;
@@ -137,6 +142,10 @@ public class CallcenterRunPanel extends JCloseablePanel {
 
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"),"ESCAPE");
 		getActionMap().put("ESCAPE",new AbstractAction() {
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
 			private static final long serialVersionUID = 190237083100271239L;
 			@Override public void actionPerformed(ActionEvent e) {abortSimulation();}
 		});

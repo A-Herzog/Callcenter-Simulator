@@ -23,6 +23,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -63,10 +64,17 @@ import xml.XMLTools;
  * @version 1.0
  */
 public final class OptimizeEditPanel extends JTabbedPane {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 1988525403055649357L;
 
+	/** Elternfenster */
 	private final Window owner;
+	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
+	/** Datenmodell, dem Informationen zu Anrufer- und Agenten-Gruppen entnommen werden */
 	private final CallcenterModel editModel;
 
 	private int lastProperty=-1;

@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +76,10 @@ import ui.model.CallcenterModelSkillLevel;
  * @see CallcenterModel
  */
 public class SkillLevelEditDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -177706251057837446L;
 
 	private final CallcenterModelSkillLevel skill, tempSkill;
@@ -243,6 +248,10 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		workingTimeComboBox.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {listSelectionChanged();}});
 		p3.add(workingTimeCheckBox=new JCheckBox(Language.tr("Editor.SkillLevel.Distribution.UseGlobal")));
 		workingTime=new JDistributionPanel(new ExponentialDistribution(600),CallcenterModelSkillLevel.callerTypeWorkingTimeMaxX,true) {
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
 			private static final long serialVersionUID = 6683308072127986212L;
 			@Override
 			protected boolean editButtonClicked() {
@@ -281,6 +290,10 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		postprocessingTimeComboBox.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {listSelectionChanged();}});
 		p3.add(postprocessingTimeCheckBox=new JCheckBox(Language.tr("Editor.SkillLevel.Distribution.UseGlobal")));
 		postprocessingTime=new JDistributionPanel(new ExponentialDistribution(300),CallcenterModelSkillLevel.callerTypePostProcessingTimeMaxX,true) {
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
 			private static final long serialVersionUID = 9170868502143676468L;
 			@Override
 			protected boolean editButtonClicked() {
@@ -630,8 +643,15 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 	}
 
 	private final class ClientTypeListRenderer extends JLabel implements ListCellRenderer<String> {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 8557411673629233407L;
 
+		/**
+		 * Konstruktor der Klasse
+		 */
 		public ClientTypeListRenderer() {
 			setHorizontalAlignment(LEFT);
 			setVerticalAlignment(CENTER);

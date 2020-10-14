@@ -37,6 +37,9 @@ import ui.model.CallcenterRunModelSkillLevel;
  * @version 1.0
  */
 public final class RunData {
+	/**
+	 * Werden in dem Modell Mindestwartezeiten verwendet?
+	 */
 	private final boolean minWaitingTimeActive;
 
 	/**

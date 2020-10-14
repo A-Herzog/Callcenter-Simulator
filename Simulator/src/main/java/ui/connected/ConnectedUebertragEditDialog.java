@@ -265,6 +265,10 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 	}
 
 	private final class UebertragTableModel extends JTableExtAbstractTableModel {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -3347645492735924255L;
 
 		@Override

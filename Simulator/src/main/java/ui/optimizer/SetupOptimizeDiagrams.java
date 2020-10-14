@@ -18,6 +18,7 @@ package ui.optimizer;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Window;
+import java.io.Serializable;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -37,8 +38,13 @@ import ui.statistic.optimizer.StatisticViewerOptimizerBarChart;
  * @see OptimizePanel
  */
 public class SetupOptimizeDiagrams extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 2332940485811698342L;
 
+	/** Zugehöriges Callcenter-Modell */
 	private final CallcenterModel model;
 	private final int dataTypeLeft;
 	private final int dataNrLeft;

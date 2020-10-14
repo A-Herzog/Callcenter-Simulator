@@ -29,6 +29,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,6 +80,10 @@ import ui.model.CallcenterModelCallcenter;
  * @see CallcenterModelCallcenter
  */
 public class CallcenterEditDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -4444119481485832099L;
 
 	private final int indexForThisCallcenter;
@@ -1032,6 +1037,10 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	}
 
 	private class AgentListRenderer extends AdvancedListCellRenderer {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 2294389689021269527L;
 
 		@Override

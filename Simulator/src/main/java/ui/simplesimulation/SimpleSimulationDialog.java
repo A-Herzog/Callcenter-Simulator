@@ -18,6 +18,7 @@ package ui.simplesimulation;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Window;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -34,6 +35,10 @@ import ui.editor.BaseEditDialog;
  * @version 1.0
  */
 public class SimpleSimulationDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 3257255566302733981L;
 
 	private SimpleSimulationInputPanel inputPanel;

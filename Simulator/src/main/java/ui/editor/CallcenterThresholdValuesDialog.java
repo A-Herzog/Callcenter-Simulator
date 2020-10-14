@@ -24,6 +24,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
 
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -46,6 +47,10 @@ import ui.model.CallcenterModelWarnings;
  * @version 1.0
  */
 public class CallcenterThresholdValuesDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 8297314571875608691L;
 
 	private JButton buttonAdd;
@@ -183,6 +188,10 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 	}
 
 	private class WarningsListRenderer extends AdvancedListCellRenderer {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 6668671715230234568L;
 
 		@Override

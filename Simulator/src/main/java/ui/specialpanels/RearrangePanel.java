@@ -56,7 +56,9 @@ public class RearrangePanel extends JWorkPanel {
 	 */
 	private static final long serialVersionUID = -6413752382384948291L;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
+	/** Für die Anrufe- oder Agenten-Verlagerung zu verwendenes Callcenter-Modell */
 	private final CallcenterModel editModel;
 	private final Rearranger rearranger;
 	private CallcenterModel loadModelIntoEditor=null;
@@ -73,12 +75,13 @@ public class RearrangePanel extends JWorkPanel {
 	private Statistics[] statistics=null;
 	private ComparePanel comparePanel;
 
+	/** Help-Link */
 	private final HelpLink helpLink;
 
 	/**
 	 * Konstruktor der Klasse
 	 * @param owner	Übergeordnetes Fenster
-	 * @param model	Für die Anrufe- oder Agenten-Verlagerung zu verwendenen Callcenter-Modell
+	 * @param model	Für die Anrufe- oder Agenten-Verlagerung zu verwendenes Callcenter-Modell
 	 * @param doneNotify	Callback wird aufgerufen, wenn das Panel geschlossen werden soll
 	 * @param helpLink	Help-Link
 	 */

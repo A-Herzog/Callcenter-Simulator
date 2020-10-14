@@ -20,6 +20,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,10 @@ import ui.model.CallcenterModelCaller;
  * @see CallerEditDialog
  */
 public class CallerEditPanelForwarding extends CallerEditPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 8805197214671745707L;
 
 	private final List<String> continueTypeSkillType;

@@ -197,8 +197,13 @@ public class HelpLink {
 	/** Hilfeseite für den Einfache-Simulation-Dialog (modal) */
 	public final Runnable dialogSimpleSimulation;
 
+	/** Name des Topics, das angezeigt werden soll */
 	private String topic="";
+
+	/** Runnable, das aufgerufen werden soll, wenn die Hilfe nicht-modal aufgerufen werden soll. */
 	private final Runnable openHelpNonModalCallback;
+
+	/** Runnable, das aufgerufen werden soll, wenn die Hilfe modal aufgerufen werden soll. */
 	private final Runnable openHelpModalCallback;
 
 	/**
@@ -279,6 +284,11 @@ public class HelpLink {
 		return topic;
 	}
 
+	/**
+	 * Zeigt eine bestimmte Hilfeseite an.
+	 * @param modal	Hilfe-Fenster modal anzeigen?
+	 * @param topic	Anzuzeigende Hilfeseite
+	 */
 	private void showHelp(boolean modal, String topic) {
 		this.topic=topic;
 		if (modal) {
@@ -288,10 +298,22 @@ public class HelpLink {
 		}
 	}
 
+	/**
+	 * Dieses Runnable ruft eine bestimmte Hilfeseite auf,
+	 * wenn es aufgerufen wird.
+	 * @see HelpLink#showHelp(boolean, String)
+	 */
 	private class HelpCallback implements Runnable {
+		/** Anzuzeigende Hilfeseite */
 		private final String topic;
+		/** Hilfe-Fenster modal anzeigen? */
 		private final boolean modal;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param topic	Anzuzeigende Hilfeseite
+		 * @param modal	Hilfe-Fenster modal anzeigen?
+		 */
 		public HelpCallback(String topic, boolean modal) {
 			this.topic=topic;
 			this.modal=modal;

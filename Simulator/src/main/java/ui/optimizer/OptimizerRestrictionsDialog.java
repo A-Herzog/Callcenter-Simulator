@@ -21,6 +21,7 @@ import java.awt.GridLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +55,10 @@ import ui.model.CallcenterModelCallcenter;
  * @version 1.0
  */
 public class OptimizerRestrictionsDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -6845756275945658029L;
 
 	/** Einträge */
@@ -109,6 +114,10 @@ public class OptimizerRestrictionsDialog extends BaseEditDialog {
 		DefaultMutableTreeNode treeRoot=new DefaultMutableTreeNode();
 		DefaultTreeModel treeModel=new DefaultTreeModel(treeRoot);
 		content.add(new JScrollPane(tree=new JTree(treeModel){
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
 			private static final long serialVersionUID = 2220382012040310176L;
 			@Override protected void setExpandedState(TreePath path, boolean state) {if (state) super.setExpandedState(path, state);}
 		}),BorderLayout.WEST);

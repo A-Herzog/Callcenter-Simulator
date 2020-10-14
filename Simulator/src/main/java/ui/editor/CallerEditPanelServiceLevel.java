@@ -18,6 +18,7 @@ package ui.editor;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -38,6 +39,10 @@ import ui.model.CallcenterModelCaller;
  * @see CallerEditDialog
  */
 public class CallerEditPanelServiceLevel extends CallerEditPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 2648513300864319341L;
 
 	private JRadioButton serviceLevelGlobal;

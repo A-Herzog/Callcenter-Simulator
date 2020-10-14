@@ -37,7 +37,16 @@ import ui.model.CallcenterRunModelCaller;
  * @version 1.0
  */
 public final class Simulator extends SimulatorBase implements CallcenterSimulatorInterface {
+	/**
+	 * Da die Statistik nur einmal aus den Daten erhoben wird, wird diese für wiederholte Aufrufe von
+	 * {@link #collectStatistic()} hier aufgehoben
+	 * @see #collectStatistic()
+	 */
+
 	private Statistics statisticResults=null;
+	/**
+	 * Namen der Log-Datei (oder <code>null</code>, wenn keine Aufzeichnung erfolgen soll)
+	 */
 	private final File logFile;
 
 	/**

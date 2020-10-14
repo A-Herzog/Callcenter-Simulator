@@ -21,6 +21,7 @@ import java.awt.Window;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,10 @@ import ui.model.CallcenterModelExamples;
  * @version 1.0
  */
 public class NewModelDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -3959552630727959346L;
 
 	private boolean openWizard=false;
@@ -149,6 +154,10 @@ public class NewModelDialog extends BaseEditDialog {
 	}
 
 	private class JModelSelection extends JPanel {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 4412860965612077368L;
 
 		private final JList<CallcenterModel> list;
@@ -185,6 +194,10 @@ public class NewModelDialog extends BaseEditDialog {
 		}
 
 		private class ModelListRenderer extends AdvancedListCellRenderer {
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
 			private static final long serialVersionUID = 6499061601895830242L;
 
 			@Override

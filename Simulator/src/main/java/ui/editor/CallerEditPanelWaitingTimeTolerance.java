@@ -22,6 +22,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -47,6 +48,10 @@ import ui.model.CallcenterModelCaller;
  * @see CallerEditDialog
  */
 public class CallerEditPanelWaitingTimeTolerance extends CallerEditPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 9036391085696026977L;
 
 	private final JCheckBox waitingTimeDistActive;

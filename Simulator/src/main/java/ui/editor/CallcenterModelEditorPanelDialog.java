@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.Serializable;
 
 import javax.swing.AbstractAction;
 import javax.swing.InputMap;
@@ -50,6 +51,10 @@ import ui.statistic.StatisticPanel;
  * @version 1.0
  */
 public class CallcenterModelEditorPanelDialog extends JFrame {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 426126815352751934L;
 
 	private final HelpLink helpLink;
@@ -167,6 +172,10 @@ public class CallcenterModelEditorPanelDialog extends JFrame {
 		KeyStroke stroke=KeyStroke.getKeyStroke("ESCAPE");
 		inputMap.put(stroke,"ESCAPE");
 		rootPane.getActionMap().put("ESCAPE",new AbstractAction(){
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
 			private static final long serialVersionUID = -6894097779421071249L;
 			@Override public void actionPerformed(ActionEvent e) {doClose();}
 		});
@@ -174,6 +183,10 @@ public class CallcenterModelEditorPanelDialog extends JFrame {
 		stroke=KeyStroke.getKeyStroke("F1");
 		inputMap.put(stroke,"F1");
 		rootPane.getActionMap().put("F1",new AbstractAction(){
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
 			private static final long serialVersionUID = -6894097779421071249L;
 			@Override public void actionPerformed(ActionEvent e) {showHelp();}
 		});

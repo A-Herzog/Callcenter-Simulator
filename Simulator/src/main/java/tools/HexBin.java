@@ -6,11 +6,20 @@ package tools;
  * Byte-Arrays und umgekehrt.
  */
 public final class  HexBin {
-	static private final int  BASELENGTH   = 128;
-	static private final int  LOOKUPLENGTH = 16;
-	static final private byte [] hexNumberTable    = new byte[BASELENGTH];
-	static final private char [] lookUpHexAlphabet = new char[LOOKUPLENGTH];
+	/** Länge der Zuordnungstabelle für Hex-Zeichen */
+	private static final int BASELENGTH=128;
+	/** Mögliche verschiedene Hex-Werte für eine Ziffer */
+	private static final int LOOKUPLENGTH=16;
+	/** Zuordnung Hex-Zeichen zu Dezimalwerten */
+	private static final byte[] hexNumberTable=new byte[BASELENGTH];
+	/** Zuordnung Dezimalwerte zu Hex-Zeichen */
+	private static final char[] lookUpHexAlphabet=new char[LOOKUPLENGTH];
 
+	/**
+	 * Konstruktor der Klasse<br>
+	 * Diese Klasse kann nicht instanziert werden. Sie enthält nur statische Hilfsroutinen.
+	 */
+	private HexBin() {}
 
 	static {
 		for (int i = 0; i < BASELENGTH; i++ ) {

@@ -21,6 +21,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -75,9 +76,15 @@ import xml.XMLTools;
  * @version 1.0
  */
 public class BatchPanel extends JWorkPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -2238696032289072168L;
 
+	/** Hilfe-Link */
 	private final HelpLink helpLink;
+	/** Übergeordnetes Fenster */
 	private final Window owner;
 	private final JTabbedPane tabs;
 	private final JTextField folderField;

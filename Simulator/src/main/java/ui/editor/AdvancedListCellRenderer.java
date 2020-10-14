@@ -16,6 +16,7 @@
 package ui.editor;
 
 import java.awt.Component;
+import java.io.Serializable;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
@@ -33,6 +34,10 @@ import language.Language;
  * @see DefaultListCellRenderer
  */
 public class AdvancedListCellRenderer extends DefaultListCellRenderer {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 6246581092762257134L;
 
 	/**

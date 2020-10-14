@@ -21,6 +21,7 @@ import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
@@ -47,7 +48,9 @@ import javax.swing.tree.TreePath;
  */
 public class SelectableTreeSystem {
 	private final List<SelectableTreeNode> nodes=new ArrayList<SelectableTreeNode>();
+	/** Baumstruktur */
 	private final JTree tree;
+	/** Wurzelelement der Baumstruktur */
 	private final DefaultMutableTreeNode root=new DefaultMutableTreeNode();
 	private final DefaultTreeModel model;
 	private final ButtonGroup group=new ButtonGroup();
@@ -203,6 +206,10 @@ public class SelectableTreeSystem {
 	/* SelectableNodeRenderer */
 
 	private final class SelectableNodeRenderer extends DefaultTreeCellRenderer {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 6484012860741022315L;
 
 		private final Color selectionForeground, selectionBackground, textForeground, textBackground;
@@ -281,6 +288,10 @@ public class SelectableTreeSystem {
 	/* SelectableNodeEditor */
 
 	private final class SelectableNodeEditor extends AbstractCellEditor implements TreeCellEditor {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 2729327970043094220L;
 
 		private final SelectableNodeRenderer renderer=new SelectableNodeRenderer();

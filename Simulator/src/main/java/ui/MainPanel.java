@@ -175,7 +175,11 @@ public final class MainPanel extends MainPanelBase {
 
 	private final HelpLink helpLink;
 
+	/**
+	 * Toolbar innerhalb des Panels
+	 */
 	private JToolBar toolBar;
+
 	private JRibbonBar ribbonBar;
 	private JPanel infoPanel;
 
@@ -738,6 +742,10 @@ public final class MainPanel extends MainPanelBase {
 		if (hotkey==null) return;
 
 		Action action=new AbstractAction() {
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
 			private static final long serialVersionUID = 2527640187493552160L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -766,6 +774,10 @@ public final class MainPanel extends MainPanelBase {
 
 	private void addHotkey(final Runnable runnable, KeyStroke hotkey) {
 		Action action=new AbstractAction() {
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
 			private static final long serialVersionUID = 2527640187493552160L;
 			@Override
 			public void actionPerformed(ActionEvent e) {

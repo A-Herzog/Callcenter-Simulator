@@ -27,6 +27,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -40,6 +41,10 @@ import ui.model.CallcenterModelAgent;
  * @version 1.0
  */
 public class AgentShiftPlanDiagram extends JPanel implements mathtools.distribution.swing.JGetImage {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -1735941999019425028L;
 
 	private final List<CallcenterModelAgent> agents;

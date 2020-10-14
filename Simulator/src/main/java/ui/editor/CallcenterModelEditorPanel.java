@@ -29,6 +29,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -108,12 +109,18 @@ import xml.XMLTools;
  * @see CallcenterModel
  */
 public class CallcenterModelEditorPanel extends JPanel implements AbstractReportCommandConnect {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 4413950001154670788L;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
 	private CallcenterModel model;
 	private CallcenterModel modelOriginal;
 	private boolean modelChanged;
+	/** Editor im Read-only-Modus als reinen Betrachter aufrufen */
 	private final boolean readOnly;
 	private String lastFileName;
 
@@ -134,16 +141,26 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	private final JList<CallcenterModelSkillLevel> skillLevelList;
 	private StatisticBasePanel statistics;
 
+	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
 
+	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird die <code>Run</code>-Methode dieses Objekts zur Ausführung des Kunden-Generators (für 24 Intervalle) aufgerufen */
 	private final Runnable generatoCallerCallback24;
+	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird die <code>Run</code>-Methode dieses Objekts zur Ausführung des Kunden-Generators (für 48 Intervalle) aufgerufen */
 	private final Runnable generatoCallerCallback48;
+	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird die <code>Run</code>-Methode dieses Objekts zur Ausführung des Kunden-Generators (für 96 Intervalle) aufgerufen */
 	private final Runnable generatoCallerCallback96;
+	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird die <code>Run</code>-Methode dieses Objekts zur Ausführung des Agenten-Generators (für 24 Intervalle) aufgerufen */
 	private final Runnable generatorAgentsCallback24;
+	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird die <code>Run</code>-Methode dieses Objekts zur Ausführung des Agenten-Generators (für 48 Intervalle) aufgerufen */
 	private final Runnable generatorAgentsCallback48;
+	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird die <code>Run</code>-Methode dieses Objekts zur Ausführung des Agenten-Generators (für 96 Intervalle) aufgerufen */
 	private final Runnable generatorAgentsCallback96;
+	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird die <code>Run</code>-Methode dieses Objekts zur Ausführung des Agenten-Produktivitäts-Generators aufgerufen */
 	private final Runnable generatorAgentsEfficiencyCallback;
+	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird die <code>Run</code>-Methode dieses Objekts zur Ausführung des Agenten-Zuschlag-Generators aufgerufen */
 	private final Runnable generatorAgentsAdditionCallback;
+	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird die <code>Run</code>-Methode dieses Objekts zur Ausführung des Skills-Generators aufgerufen */
 	private final Runnable generatorSkillsCallback;
 
 	/**
@@ -270,6 +287,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	}
 
 	private class DateLabelFormatter extends AbstractFormatter {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -6177382334742454499L;
 		@Override public Object stringToValue(String text) {return CallcenterModel.stringToDate(text);}
 		@Override public String valueToString(Object value) throws ParseException {return (value!=null && (value instanceof Calendar))?CallcenterModel.dateToLocalString((Calendar)value):"";}
@@ -1615,6 +1636,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	}
 
 	private class CallerListRenderer extends AdvancedListCellRenderer {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -3181757143428275248L;
 
 		private boolean callerTypeMayChangeOnRetry(CallcenterModelCaller caller) {
@@ -1693,6 +1718,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	}
 
 	private class CallcenterListRenderer extends AdvancedListCellRenderer {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = 747140015293848146L;
 
 		@Override

@@ -19,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.Arrays;
 
 import javax.swing.JButton;
@@ -40,6 +41,10 @@ import ui.optimizer.RangeSelectDialog;
  * @see CallcenterThresholdValueEditDialog
  */
 public class CallcenterThresholdIntervalsDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 1378188742640248672L;
 
 	private JButton selectAllButton, selectNoneButton, selectRangeButton;

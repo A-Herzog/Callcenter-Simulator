@@ -15,6 +15,8 @@
  */
 package ui.editor;
 
+import java.io.Serializable;
+
 import language.Language;
 import tools.SetupData;
 import ui.HelpLink;
@@ -29,6 +31,10 @@ import ui.statistic.core.StatisticBasePanel;
  * @see CallcenterModelEditorPanel
  */
 public class CallcenterModelInfoPanel extends StatisticBasePanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -4367495882664664124L;
 
 	/**
