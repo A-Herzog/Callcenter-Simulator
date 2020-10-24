@@ -30,8 +30,11 @@ import ui.model.CallcenterModelSimple;
  * @version 1.0
  */
 public class SimpleSimulation extends Thread {
+	/** Objekt zum Starten einer Simulation */
 	private final StartAnySimulator starter;
+	/** Simulator-Objekt */
 	private CallcenterSimulatorInterface simulator;
+	/** Callback das beim Abschluss einer Simulation ausgeführt wird */
 	private Runnable whenDone;
 
 	/**
@@ -144,6 +147,10 @@ public class SimpleSimulation extends Thread {
 		}
 	}
 
+	/**
+	 * Extrahiert die relevanten Kenngrößen aus der Statistik
+	 * @param statistic	Statistikdaten
+	 */
 	private void calcStatistic(final Statistics statistic) {
 		runTime=statistic.simulationData.runTime;
 

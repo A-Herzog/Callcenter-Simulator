@@ -37,12 +37,18 @@ import ui.model.CallcenterModel;
  * @see CommandLineSystem
  */
 public class CommandPreplanning extends AbstractSimulationCommand {
+	/** Eingabe-Modelldatei */
 	private File inputFile;
+	/** Ausgabe-Modelldatei */
 	private File outputFile;
+	/** Kenngröße, für die ein Wert erreicht werden soll */
 	private Preplanning.Mode mode;
+	/** Soll eine Vereinfachung des Modells vorgenommen werden? */
 	private boolean simplify;
-	private boolean extended;
+	/** Zielwert für die Kenngröße */
 	private double value;
+	/** Berücksichtigung von Wiederholern? */
+	private boolean extended;
 
 	@Override
 	public String[] getKeys() {

@@ -62,7 +62,8 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 	private final ConnectedModel model=new ConnectedModel();
 	private ConnectedModel modelSaved=new ConnectedModel();
 
-	private final JPopupMenu popupModel, popupStatistic;
+	private final JPopupMenu popupModel;
+	private final JPopupMenu popupStatistic;
 
 	private int popupRow=-1;
 
@@ -345,7 +346,8 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 	}
 
 	private final class TableButtonListener implements ActionListener {
-		private final int row, nr;
+		private final int row;
+		private final int nr;
 
 		public TableButtonListener(int row, int nr) {
 			this.row=row;
@@ -370,13 +372,16 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		}
 	}
 
+	/**
+	 * Aktualisiert die Tabellendarstellung.
+	 */
 	private void updateTable() {
 		fireTableDataChanged();
 		if (tableUpdateCallback!=null) tableUpdateCallback.run();
 	}
 
 	/**
-	 * Speichert das verbundene Modell in der angegegebenen Datei.
+	 * Speichert das verbundene Modell in der angegebenen Datei.
 	 * @param file	Dateiname zum Speichern des verbundenen Modells
 	 * @return	Gibt an, ob das Speichern erfolgreich war
 	 */

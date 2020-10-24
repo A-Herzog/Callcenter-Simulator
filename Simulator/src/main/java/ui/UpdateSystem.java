@@ -42,8 +42,8 @@ import tools.SetupData;
 import xml.XMLTools;
 
 /**
+ * Update-System
  * @author Alexander Herzog
- * @version 1.0
  */
 public class UpdateSystem {
 	/** Kurze Server-URL; ohne Subdomain */
@@ -67,15 +67,39 @@ public class UpdateSystem {
 	/** Protokoll für Verbindungen zu Update- und Lizenz-Server */
 	public static final String defaultProtocollConnect="https";
 
+	/** Datei zur Speicherung angefangener Downloads bzw. zur Speicherung der Dateianteile während des Downloads */
 	private static final File updateInstallerPart=new File(System.getProperty("java.io.tmpdir"),"CallcenterSimulatorSetup.exe.part");
+	/** Finaler Dateiname der Update-Datei */
 	private static final File updateInstaller=new File(System.getProperty("java.io.tmpdir"),"CallcenterSimulatorSetup.exe");
+	/** Dateiname der Update-Datei, wenn diese gerade ausgeführt werden soll. (Wird beim Start eine entsprechende Datei gefunden, so nimmt der Simulator an, dass das Update ausgeführt wurde und löscht diese.) */
 	private static final File updateInstallerRun=new File(System.getProperty("java.io.tmpdir"),"CallcenterSimulatorSetupWork.exe");
 
+	/**
+	 * Singleton-Instanz dieser Klasse
+	 * @see #getUpdateSystem()
+	 */
 	private static UpdateSystem updateSystem;
 
+	/**
+	 * Stellt sicher, dass nicht gleichzeitig mehrere
+	 * {@link #getUpdateSystem()}-Aufrufe erfolgen und
+	 * so mehrere Singleton-Instanzen generiert werden.
+	 * @see #getUpdateSystem()
+	 */
 	private static final Lock mutex=new ReentrantLock(true);
 
+	/**
+	 * Gesamtgröße der Download-Datei zur Berechnung von {@link #updateDownloadStatusPercent}
+	 * in {@link #downloadFile(InputStream, File)}
+	 * @see #downloadFile(InputStream, File)
+	 */
 	private volatile int updateDownloadStatusFullSize=0;
+
+	/**
+	 * Download-Fortschritt für den Setup-Dialog
+	 * @see #getDownloadState()
+	 * @see #downloadFile(InputStream, File)
+	 */
 	private volatile int updateDownloadStatusPercent=0;
 
 	/**
@@ -97,8 +121,19 @@ public class UpdateSystem {
 	 */
 	public final boolean active;
 
+	/**
+	 * Im Setup-Dialog anzuzeigende neue Version
+	 * @see #getNewVersion()
+	 */
 	private volatile String newVersion;
 
+	/**
+	 * Konstruktor der Klasse<br>
+	 * Diese Klasse kann nicht direkt instanziert werden, sondern es kann
+	 * nur über {@link #getUpdateSystem()} das Singleton-Objekt dieser
+	 * Klasse angefordert werden.
+	 * @see #getUpdateSystem()
+	 */
 	private UpdateSystem() {
 		boolean b=(System.getProperty("os.name").toUpperCase().contains("WIN") && SetupData.getProgramFolder().toString().equals(SetupData.getSetupFolder().toString()));
 		if (b) {
@@ -116,15 +151,6 @@ public class UpdateSystem {
 		if (updateInstallerPart.isFile()) updateInstallerPart.delete();
 		if (updateInstaller.isFile()) updateInstaller.delete();
 		if (updateInstallerRun.isFile()) updateInstallerRun.delete();
-	}
-
-	private boolean checkJavaVersion8() {
-		String[] ver=System.getProperty("java.version").split("\\.");
-		if (ver.length<2) return false;
-		Integer ver1=Integer.parseInt(ver[0]);
-		Integer ver2=Integer.parseInt(ver[1]);
-		if (ver1==null || ver2==null) return false;
-		return (ver1==1 && ver2>=8) || ver1>1;
 	}
 
 	/**
@@ -184,7 +210,11 @@ public class UpdateSystem {
 		return true;
 	}
 
-
+	/**
+	 * Lädt eine Textdatei von einer angegebenen Adresse
+	 * @param urlString	Zu ladende URL
+	 * @return	Inhalt der Textdatei oder im Fehlerfall <code>null</code>
+	 */
 	private static String downloadTextFile(final String urlString) {
 		URL url;
 		try {
@@ -232,6 +262,13 @@ public class UpdateSystem {
 		} catch (IOException e) {return null;}
 	}
 
+	/**
+	 * Lädt Daten aus einem URL-Input-Stream und speichert diese in einem Datei-Output-Stream
+	 * @param inputStream	URL-Input-Stream
+	 * @param outputFile	Datei-Output-Stream
+	 * @return	Liefert im Erfolgsfall <code>true</code>
+	 * @see #downloadFile(String, File)
+	 */
 	private boolean downloadFile(final InputStream inputStream, final File outputFile) {
 		if (inputStream==null) return false;
 
@@ -255,6 +292,12 @@ public class UpdateSystem {
 		return true;
 	}
 
+	/**
+	 * Lädt Daten von einer URL und speichert diese in einer Datei
+	 * @param urlString	URL von der die Daten geladen werden sollen
+	 * @param outputFile	Ausgabedatei
+	 * @return	Liefert im Erfolgsfall <code>true</code>
+	 */
 	private boolean downloadFile(final String urlString, final File outputFile) {
 		try (InputStream inputStream=openServerFile(urlString)) {
 			return downloadFile(inputStream,outputFile);
@@ -263,6 +306,11 @@ public class UpdateSystem {
 		}
 	}
 
+	/**
+	 * Lädt die Update-Datei für eine manuelle Installation herunter
+	 * @param folderForManualInstallation	Zielverzeichnis für die Update-Datei
+	 * @return	Liefert im Erfolgsfall <code>true</code>
+	 */
 	private boolean downloadUpdate(final File folderForManualInstallation) {
 		if (updateInstaller.isFile()) return true;
 
@@ -324,6 +372,13 @@ public class UpdateSystem {
 		return updateDownloadStatusPercent;
 	}
 
+	/**
+	 * Führt einen Update-Check aus
+	 * @param force	Erneuten Check erzwingen, auch wenn bereits geprüft wurde
+	 * @param folderForManualInstallation	Zielpfad für den Download (<code>null</code> für normales, automatisches Update)
+	 * @see #checkUpdate(boolean)
+	 * @see #checkUpdate(File)
+	 */
 	private void checkUpdate(final boolean force, final File folderForManualInstallation) {
 		if (active && updateInstallerPart.isFile()) {
 			if (!updateInstallerPart.delete()) return;
@@ -347,7 +402,6 @@ public class UpdateSystem {
 			public void run() {
 				String s=checkUpdateAvailable();
 				if (!VersionConst.isNewerVersionFull(s)) {newVersion=""; return;}
-				if (!checkJavaVersion8() && VersionConst.isNewerVersionFull("5.9.9999",s)) {newVersion=""; return;} /* kein Update über 5.9 hinaus, wenn nicht Java 8 installiert ist */
 				newVersion=s;
 				if (!active && folderForManualInstallation==null) return;
 				downloadUpdate(folderForManualInstallation);

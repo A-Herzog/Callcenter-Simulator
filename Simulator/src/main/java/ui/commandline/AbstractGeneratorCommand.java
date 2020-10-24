@@ -51,8 +51,11 @@ public abstract class AbstractGeneratorCommand extends AbstractSimulationCommand
 	 */
 	protected String[] name;
 
+	/** Eingabe-Modelldatei */
 	private File modelFile;
+	/** Eingabe-Tabellendatei */
 	private File tableFile;
+	/** Ausgabe-Modelldatei */
 	private File modelFileOut;
 
 	/**

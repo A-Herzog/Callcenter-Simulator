@@ -66,8 +66,11 @@ public class JWorkPanel extends JCloseablePanel {
 	protected JToolBar buttonPanel;
 
 	private JButton workButton;
+	/** Schaltfläche "Abbruch" */
 	private JButton cancelButton;
+	/** Schaltfläche "Schließen" */
 	private JButton closeButton;
+	/** Schaltfläche "Hilfe" */
 	private JButton helpButton;
 	private final List<JButton> userButtons=new ArrayList<JButton>();
 	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird eine "Hilfe"-Schaltfläche angezeigt und die <code>Run</code>-Methode dieses Objekts beim Klicken auf diese Schaltfläche aufgerufen */
@@ -108,9 +111,19 @@ public class JWorkPanel extends JCloseablePanel {
 		 */
 		private static final long serialVersionUID = -3547884828037503034L;
 
+		/**
+		 * Aktion (0: Abbruch, 1: Hilfe)
+		 */
 		private final int action;
 
-		public SpecialKeyListener(int action) {this.action=action;}
+		/**
+		 * Konstruktor der Klasse
+		 * @param action	Aktion (0: Abbruch, 1: Hilfe)
+		 */
+		public SpecialKeyListener(int action) {
+			this.action=action;
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
 			switch (action) {

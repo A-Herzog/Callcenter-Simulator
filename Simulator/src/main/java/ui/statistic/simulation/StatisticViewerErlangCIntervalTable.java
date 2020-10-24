@@ -27,9 +27,12 @@ import ui.statistic.model.StatisticViewerErlangCTools;
  * @version 1.0
  */
 public class StatisticViewerErlangCIntervalTable extends StatisticViewerIntervalTable {
+	/** Darstellungsart, siehe <code>DATA_*</code> Konstanten. */
 	private final Mode dataType;
+	/** Objekt vom Typ {@link Statistics}, dem die Daten entnommen werden sollen */
 	private final Statistics statistic;
-	private final StatisticViewerErlangCTools erlangC1, erlangC2;
+	private final StatisticViewerErlangCTools erlangC1;
+	private final StatisticViewerErlangCTools erlangC2;
 
 	/**
 	 * Welche Informationen sollen angezeigt werden?
@@ -55,7 +58,7 @@ public class StatisticViewerErlangCIntervalTable extends StatisticViewerInterval
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerErlangCIntervalTable</code>
-	 * @param statistic	Objekt vom Typ <code>ComplexStatisticSimData</code>, dem die Daten entnommen werden sollen
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Daten entnommen werden sollen
 	 * @param dataType	Darstellungsart, siehe <code>DATA_*</code> Konstanten.
 	 */
 	public StatisticViewerErlangCIntervalTable(Statistics statistic, Mode dataType) {

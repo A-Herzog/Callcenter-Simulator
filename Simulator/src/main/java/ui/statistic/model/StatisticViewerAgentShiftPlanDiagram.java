@@ -27,6 +27,7 @@ import ui.model.CallcenterModelAgent;
  * @version 1.0
  */
 public class StatisticViewerAgentShiftPlanDiagram extends StatisticViewerImage {
+	/** Konkrete Agenten deren Arbeitszeiten als Schichtplantabelle dargestellt werden sollen */
 	private final List<CallcenterModelAgent> translatedAgents;
 
 	/**

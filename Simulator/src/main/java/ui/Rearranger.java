@@ -81,7 +81,12 @@ public class Rearranger {
 		return null;
 	}
 
-	private boolean[] getSkills(String skillLevel) {
+	/**
+	 * Gibt an, welche Kundengruppen durch die Agenten eines bestimmten Skill-Levels bedient werden können
+	 * @param skillLevel	Name des Skill-Levels
+	 * @return	boolean-Array mit Angaben dazu, welche Kundengruppen durch Agenten des Skill-Levels bedient werden können
+	 */
+	private boolean[] getSkills(final String skillLevel) {
 		boolean[] skills=new boolean[editModel.caller.size()];
 		Arrays.fill(skills,false);
 

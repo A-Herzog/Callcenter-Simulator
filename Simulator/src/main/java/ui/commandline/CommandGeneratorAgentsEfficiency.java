@@ -59,6 +59,15 @@ public final class CommandGeneratorAgentsEfficiency extends AbstractGeneratorCom
 		return Language.tr("CommandLine.GeneratorAgentsEfficiency.Description.Long").split("\n");
 	}
 
+	/**
+	 * Lädt die Agentendaten aus einer Tabelle.
+	 * @param row	Startzeile
+	 * @param col	Startspalte
+	 * @param editModel	Ziel-Callcenter-Modell
+	 * @param table	Eingabetabelle
+	 * @param type	Name der Agentengruppe
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 */
 	private String generatorAgents(int row, int col, CallcenterModel editModel, Table table, String type) {
 		/* Callcenter wählen */
 		CallcenterModelCallcenter callcenter=null;

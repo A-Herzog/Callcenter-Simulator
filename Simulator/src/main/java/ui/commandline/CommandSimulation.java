@@ -35,7 +35,9 @@ import ui.model.CallcenterModel;
  * @see CommandLineSystem
  */
 public final class CommandSimulation extends AbstractSimulationCommand {
+	/** Eingabe-Modelldatei */
 	private File modelFile;
+	/** Ausgabe-Statistikdatei */
 	private File statisticsFile;
 
 	@Override

@@ -35,7 +35,9 @@ import mathtools.distribution.DataDistributionImpl;
  * @see XMLPreprocessing
  */
 public class XMLPreprocessor {
+	/** Als Basis zu verwendende Modell-xml-Datei */
 	private final File xmlFile;
+	/** Zusätzliche, in das Modell aufzunehmende Tabellendaten */
 	private final File tableFile;
 	private final List<String> xmlLines;
 	private final MultiTable multiTable;

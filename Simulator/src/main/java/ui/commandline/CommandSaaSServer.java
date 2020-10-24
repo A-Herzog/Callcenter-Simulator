@@ -33,7 +33,10 @@ import tools.SetupData;
  * @see AbstractCommand
  */
 public class CommandSaaSServer extends AbstractCommand {
+	/** Server-System */
 	private WebServerSystem server;
+
+	/** Sollen nur Initialisierung durchgeführt werden und kein eigentlicher Server gestartet werden? */
 	private boolean isInitMode=false;
 
 	@Override

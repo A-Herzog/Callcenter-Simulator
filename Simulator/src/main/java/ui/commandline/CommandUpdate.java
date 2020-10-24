@@ -47,6 +47,7 @@ import ui.UpdateSystemSignature;
  * @see AbstractCommand
  */
 public class CommandUpdate extends AbstractCommand {
+	/** Ausgabe-jar-Datei */
 	private File jarFile;
 
 	@Override
@@ -76,6 +77,11 @@ public class CommandUpdate extends AbstractCommand {
 		return null;
 	}
 
+	/**
+	 * Prüft, ob ein Update verfügbar ist
+	 * @param out	Ausgabe-Objekt
+	 * @return	Liefert <code>true</code>, wenn ein Update verfügbar ist
+	 */
 	private boolean checkNewVersionAvailable(PrintStream out) {
 		String serverVersion=UpdateSystem.checkUpdateAvailable();
 		if (!ui.VersionConst.isNewerVersionFull(serverVersion)) {
@@ -86,6 +92,11 @@ public class CommandUpdate extends AbstractCommand {
 		return true;
 	}
 
+	/**
+	 * Lädt ein Update herunter
+	 * @param out	Ausgabe-Objekt
+	 * @return	Liefert im Erfolgsfall <code>true</code>.
+	 */
 	private boolean downloadJarFiles(PrintStream out) {
 		try {
 			URL home1=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.updateFullURL1);

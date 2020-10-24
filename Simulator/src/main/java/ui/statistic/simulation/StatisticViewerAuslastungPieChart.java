@@ -30,8 +30,11 @@ import systemtools.statistics.StatisticViewerPieChart;
  * @version 1.0
  */
 public class StatisticViewerAuslastungPieChart extends StatisticViewerPieChart {
+	/** Objekt vom Typ {@link Statistics}, dem die Auslastungszahlen entnommen werden sollen */
 	private final Statistics statistic;
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final Mode dataType;
+	/** Nummer des Callcenters oder des Skill-Levels bei Verwendung von <code>DATA_TYPE_CALLCENTER</code> oder <code>DATA_TYPE_SKILL_LEVEL</code> */
 	private final int dataNr;
 
 	/**
@@ -74,7 +77,7 @@ public class StatisticViewerAuslastungPieChart extends StatisticViewerPieChart {
 
 	/**
 	 *
-	 * @param statistic	Objekt vom Typ <code>ComplexStatisticSimData</code>, dem die Auslastungszahlen entnommen werden sollen
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Auslastungszahlen entnommen werden sollen
 	 * @param dataType	Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten.
 	 * @param dataNr	Nummer des Callcenters oder des Skill-Levels bei Verwendung von <code>DATA_TYPE_CALLCENTER</code> oder <code>DATA_TYPE_SKILL_LEVEL</code>
 	 */

@@ -25,7 +25,9 @@ import systemtools.statistics.StatisticViewerLineChart;
  * @version 1.0
  */
 public class StatisticViewerErlangCDiagramm extends StatisticViewerLineChart {
+	/** Erlang-C Modell aus dem die Daten entnommen werden sollen. */
 	private final StatisticViewerErlangCTools erlangCData;
+	/** Kann ERREICHBARKEIT, WARTEZEIT oder SERVICELEVEL sein. */
 	private final Mode diagramType;
 
 	/**
@@ -52,10 +54,10 @@ public class StatisticViewerErlangCDiagramm extends StatisticViewerLineChart {
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerErlangCDiagramm</code>.
-	 * @param erlangCData Erlang-C Modell aus dem die Daten entmommen werden sollen.
+	 * @param erlangCData Erlang-C Modell aus dem die Daten entnommen werden sollen.
 	 * @param diagramType Kann ERREICHBARKEIT, WARTEZEIT oder SERVICELEVEL sein.
 	 */
-	public StatisticViewerErlangCDiagramm(StatisticViewerErlangCTools erlangCData, Mode diagramType) {
+	public StatisticViewerErlangCDiagramm(final StatisticViewerErlangCTools erlangCData, final Mode diagramType) {
 		super();
 		this.erlangCData=erlangCData;
 		this.diagramType=diagramType;

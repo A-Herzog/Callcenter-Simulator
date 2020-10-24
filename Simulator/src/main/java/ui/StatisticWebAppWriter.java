@@ -37,12 +37,16 @@ import xml.XMLTools;
  * @see Statistics
  */
 public class StatisticWebAppWriter {
+	/** Maximale Zeilenlänge bei der ausgabe */
 	private static final int MIN_LINE_LENGTH=80;
+	/** Pfad für die Bibliotheken für den Viewer */
 	private static final String DEFAULT_VIEWER_URL=UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL+"viewer/";
 
 	/** Statistikerebnisse, die als Web-Viewer umgesetzt werden sollen */
 	private final Statistics statistics;
+	/** xml-Dokument der Statistikdaten */
 	private Document resultDoc=null;
+	/** html-Ausgabe-Daten */
 	private String result=null;
 
 	/**
@@ -53,6 +57,11 @@ public class StatisticWebAppWriter {
 		this.statistics=statistics;
 	}
 
+	/**
+	 * Führt die eigentliche Verarbeitung durch
+	 * @return	Gibt an, ob die Verarbeitung erfolgreich war
+	 * @see #saveToString(String)
+	 */
 	private boolean process() {
 		if (statistics==null) return false;
 		if (result!=null) return true;
@@ -81,6 +90,12 @@ public class StatisticWebAppWriter {
 		return true;
 	}
 
+	/**
+	 * Liefert den html-Kopf- und -Fuß-Bereich
+	 * @param path	Internet-Pfad zu den JS-Bibliotheken und CSS-Dateien
+	 * @param staticMode	Statische Server-Dateien (<code>true</code>) oder php-basierte Server-Dateien (<code>false</code>) einbinden
+	 * @return	Liefert ein 3-elementiges Array: html-Kopfbereich bis in den JS-Bereich in body; JS-Bereich nach den einzufügenden js-Daten; Fußbereich
+	 */
 	private String[] getTemplate(final String path, final boolean staticMode) {
 		String part1,part2,part3;
 		StringBuilder sb;

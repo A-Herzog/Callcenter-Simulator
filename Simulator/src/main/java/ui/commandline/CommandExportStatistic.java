@@ -37,11 +37,20 @@ import xml.XMLTools;
  * @see CommandLineSystem
  */
 public class CommandExportStatistic extends AbstractCommand {
-	private static final int EXPORT_MODE_JSON=1;
-	private static final int EXPORT_MODE_WEBAPP=2;
+	/** Export-Modus */
+	private enum ExportMode {
+		/** JSON-Daten */
+		EXPORT_MODE_JSON,
+		/** WebApp */
+		EXPORT_MODE_WEBAPP
+	}
 
-	private File statisticsInputFile, exportOutputFile;
-	private int exportMode=-1;
+	/** Statistik-Eingabedatei */
+	private File statisticsInputFile;
+	/** Export-Ausgabedatei */
+	private File  exportOutputFile;
+	/** Export-Modus */
+	private ExportMode exportMode=null;
 
 	@Override
 	public String[] getKeys() {
@@ -61,7 +70,12 @@ public class CommandExportStatistic extends AbstractCommand {
 		return Language.tr("CommandLine.ExportStatistic.Description.Long").split("\n");
 	}
 
-	private boolean isStatisticFile(File file) {
+	/**
+	 * Prüft, ob die übergebene Datei eine Statistik-Datei ist
+	 * @param file	Zu prüfende Datei
+	 * @return	Gibt <code>true</code> zurück, wenn es sich um eine Statistik-Datei handelt
+	 */
+	private boolean isStatisticFile(final File file) {
 		XMLTools xml=new XMLTools(file);
 		Element root=xml.load();
 		if (root==null) return false;
@@ -77,10 +91,10 @@ public class CommandExportStatistic extends AbstractCommand {
 		exportOutputFile=new File(additionalArguments[2]);
 
 		String cmd=additionalArguments[0];
-		exportMode=-1;
-		if (cmd.equalsIgnoreCase("json")) exportMode=EXPORT_MODE_JSON;
-		if (cmd.equalsIgnoreCase("WebApp")) exportMode=EXPORT_MODE_WEBAPP;
-		if (exportMode==-1) return Language.tr("CommandLine.ExportStatistic.InvalidExportMode");
+		exportMode=null;
+		if (cmd.equalsIgnoreCase("json")) exportMode=ExportMode.EXPORT_MODE_JSON;
+		if (cmd.equalsIgnoreCase("WebApp")) exportMode=ExportMode.EXPORT_MODE_WEBAPP;
+		if (exportMode==null) return Language.tr("CommandLine.ExportStatistic.InvalidExportMode");
 
 		if (!statisticsInputFile.isFile()) return String.format(Language.tr("CommandLine.Error.File.InputDoesNotExist"),statisticsInputFile);
 		if (!isStatisticFile(statisticsInputFile)) return String.format(Language.tr("CommandLine.Error.File.InputNoValidStatisticFile"),statisticsInputFile);

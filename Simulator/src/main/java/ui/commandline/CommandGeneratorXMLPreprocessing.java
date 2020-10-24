@@ -34,8 +34,11 @@ import ui.dataloader.XMLPreprocessor;
  * @see CommandLineSystem
  */
 public class CommandGeneratorXMLPreprocessing extends AbstractCommand {
+	/** Eingabe-xml-Datei */
 	private File xmlFile;
+	/** Eingabetabelle */
 	private File tableFile;
+	/** Ausgabe-xml-Datei */
 	private File outputFile;
 
 	@Override

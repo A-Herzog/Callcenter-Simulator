@@ -173,6 +173,10 @@ public final class MainPanel extends MainPanelBase {
 	 */
 	private Runnable reloadWindow;
 
+	/**
+	 * Callback das an Dialoge übergeben wird, um
+	 * Hilfeseiten aufrufen zu können.
+	 */
 	private final HelpLink helpLink;
 
 	/**
@@ -180,23 +184,64 @@ public final class MainPanel extends MainPanelBase {
 	 */
 	private JToolBar toolBar;
 
+	/**
+	 * Ribbon-Bar innerhalb des Panels
+	 */
 	private JRibbonBar ribbonBar;
+
+	/**
+	 * Info-Panel für die Anzeige von
+	 * Nachriten innerhalb des Panels
+	 */
 	private JPanel infoPanel;
 
+	/** Schaltfläche "Modell laden" */
 	private JButton loadModelButton;
+
+	/** Schaltfläche "Modell speichern" */
 	private JButton saveModelButton;
+
+	/** Schaltfläche "Statistik laden" */
 	private JButton loadStatisticButton;
+
+	/** Schaltfläche "Statistik speichern" */
 	private JButton saveStatisticButton;
+
+	/** Schaltfläche "Modell-Editor anzeigen" */
 	private JButton editorButton;
+
+	/** Schaltfläche "Statistikansicht anzeigen" */
 	private JButton statistikButton;
+
+	/** Schaltfläche "Simulation starten" */
 	private JButton simButton;
+
+	/** Schaltfläche "Modell zu den Ergebnissen anzeigen" */
 	private JButton showModel;
+
+	/** Schaltfläche "Statistik-WebViewer anzeigen" */
 	private JButton showWebViewer;
 
-	private final ArrayList<AbstractButton> menuSaveStatistics=new ArrayList<>();
-	private final ArrayList<AbstractButton> menuSimulationShowModel=new ArrayList<>();
-	private final ArrayList<AbstractButton> menuSimulationShowWebViewer=new ArrayList<>();
-	private final ArrayList<AbstractButton> menuToolsCompareKeptModel=new ArrayList<>();
+	/**
+	 * Liste der "Statistik speichern"-Menüeinträge oder -Schaltflächen
+	 */
+	private final List<AbstractButton> menuSaveStatistics=new ArrayList<>();
+
+	/**
+	 * Liste der "Modell zu den Ergebnissen anzeigen"-Menüeinträge oder -Schaltflächen
+	 */
+	private final List<AbstractButton> menuSimulationShowModel=new ArrayList<>();
+
+	/**
+	 * Liste der "Statistik-WebViewer anzeigen"-Menüeinträge oder -Schaltflächen
+	 */
+
+	private final List<AbstractButton> menuSimulationShowWebViewer=new ArrayList<>();
+
+	/**
+	 * Liste der "Mit festgehaltenem Modell vergleichen"-Menüeinträge oder -Schaltflächen
+	 */
+	private final List<AbstractButton> menuToolsCompareKeptModel=new ArrayList<>();
 
 	/**
 	 * Menüpunkt "Datei" - "Zuletzt verwendet"
@@ -218,11 +263,37 @@ public final class MainPanel extends MainPanelBase {
 	 */
 	private StatisticPanel statisticPanel;
 
+	/**
+	 * Aktuell aktives Arbeits-Panel für besondere
+	 * Programmfunktionen (kann <code>null</code>
+	 * sein, wenn kein Arbeits-Panel aktiv ist)
+	 */
 	private JCloseablePanel workPanel=null;
+
+
+	/**
+	 * 0=Modell-Editor, 1=Statistik
+	 * @see #setGUIMode(short)
+	 */
 	private short currentGUIMode=-1;
+
+	/**
+	 * System für die Hintergrundsimulation
+	 */
 	private final BackgroundSimulator backgroundSimulator;
+
+	/**
+	 * Stellt ein, ob nach einer laufenden Simulation die
+	 * Ergebnisse sofort gespeichert werden sollen.
+	 * @see #commandSimulationRun(boolean, File)
+	 * @see SimDoneNotify
+	 */
 	private boolean saveAfterSim;
 
+	/**
+	 * Speichert zwischen, ob das aktuelle Modell
+	 * im Editor einem Beispielmodell entspricht
+	 */
 	private int equalsExampleModel=-1;
 
 	/**
@@ -334,6 +405,11 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Liefert dem Namen für die Hilfeseite der Willkommens-Seite
+	 * (ist abhängig davon, ob der normale Toolbar oder der Ribbon-Bar verwendet werden soll).
+	 * @return	Namen für die Hilfeseite der Willkommens-Seite
+	 */
 	private String getWelcomePageName() {
 		if (SetupData.getSetup().ribbonMode) {
 			return HelpConsts.WELCOME_PAGE_RIBBON;
@@ -545,6 +621,11 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Erzeugt einen normalen Toolbar
+	 * @return	Neuer Toolbar
+	 * @see #createToolBar()
+	 */
 	private JToolBar createClassicToolBar() {
 		final JToolBar toolbar=new JToolBar();
 		toolbar.setFloatable(false);
@@ -704,6 +785,13 @@ public final class MainPanel extends MainPanelBase {
 		return menubar;
 	}
 
+	/**
+	 * Erstellt eine Kopie eines Menüeintrags (zur Übertragung aus dem normalen
+	 * Menü in ein Popupmenü eines Ribbon-Menüpunkts)
+	 * @param original	Ausgangsmenüpunkts
+	 * @return	Kopierter Menüpunkt
+	 * @see #setDropDownMenu(JButton, JMenu)
+	 */
 	private JMenuItem cloneMenuItem(final JMenuItem original) {
 		JMenuItem copy=new JMenuItem(original.getText(),original.getIcon());
 		copy.setMnemonic(original.getMnemonic());
@@ -719,6 +807,11 @@ public final class MainPanel extends MainPanelBase {
 		return copy;
 	}
 
+	/**
+	 * Fügt ein Dropdown-Menü an eine Ribbon-Schaltfläche an.
+	 * @param button	Ribbon-Schaltfläche
+	 * @param menu	Ausgangsmenü das kopiert werden soll
+	 */
 	private void setDropDownMenu(final JButton button, final JMenu menu) {
 		for (ActionListener listener : button.getActionListeners()) button.removeActionListener(listener);
 
@@ -735,6 +828,12 @@ public final class MainPanel extends MainPanelBase {
 		});
 	}
 
+	/**
+	 * Registriert einen Hotkey bei dessen Betätigung die {@link ActionListener}
+	 * einer Schaltfläche ausgelöst werden sollen.
+	 * @param button	Schaltfläche deren {@link ActionListener} ausgelöst werden sollen
+	 * @param hotkey	Hotkey der die Ausführung der Aktionen auslösen soll
+	 */
 	private void addHotkey(final AbstractButton button, KeyStroke hotkey) {
 		if (hotkey==null && button!=null && button instanceof JMenuItem) {
 			hotkey=((JMenuItem)button).getAccelerator();
@@ -772,6 +871,11 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Registriert eine Aktion, dei beim Durcken eines Hotkeys ausgelöst werden soll.
+	 * @param runnable	Auszulösende Aktion
+	 * @param hotkey	Hotkey der die Ausführung der Aktion auslösen soll
+	 */
 	private void addHotkey(final Runnable runnable, KeyStroke hotkey) {
 		Action action=new AbstractAction() {
 			/**
@@ -793,6 +897,11 @@ public final class MainPanel extends MainPanelBase {
 		getActionMap().put(hotkey.toString(),action);
 	}
 
+	/**
+	 * Erzeugt den "Modell"-Abschnitt in einem Ribbon-Toolbar-Tab
+	 * @param tab	Ribbon-Toolbar-Tab an das der neue Abschnitt angehängt werden soll
+	 * @see #createRibbonBar()
+	 */
 	private void addRibbonSectionModel(final JRibbonTab tab) {
 		JButton button;
 
@@ -825,6 +934,12 @@ public final class MainPanel extends MainPanelBase {
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_U,InputEvent.CTRL_DOWN_MASK));
 	}
 
+	/**
+	 * Erzeugt den "Daten"-Abschnitt in einem Ribbon-Toolbar-Tab
+	 * @param tab	Ribbon-Toolbar-Tab an das der neue Abschnitt angehängt werden soll
+	 * @param mode	0: Allgemeine Daten; 1: Anrufergruppen; 2: Callcenter und Agenten; 3: Callcenter und Agenten
+	 * @see #createRibbonBar()
+	 */
 	private void addRibbonSectionData(final JRibbonTab tab, final int mode) {
 		JButton button;
 		JMenu menu;
@@ -867,6 +982,11 @@ public final class MainPanel extends MainPanelBase {
 		registerAction(button,"DataSimplify");
 	}
 
+	/**
+	 * Erzeugt den "Simulation"-Abschnitt in einem Ribbon-Toolbar-Tab
+	 * @param tab	Ribbon-Toolbar-Tab an das der neue Abschnitt angehängt werden soll
+	 * @see #createRibbonBar()
+	 */
 	private void addRibbonSectionSimulation(final JRibbonTab tab) {
 		JButton button;
 		JMenu menu;
@@ -899,6 +1019,11 @@ public final class MainPanel extends MainPanelBase {
 		setDropDownMenu(button,menu);
 	}
 
+	/**
+	 * Erzeugt den "Modelle vergleichen"-Abschnitt in einem Ribbon-Toolbar-Tab
+	 * @param tab	Ribbon-Toolbar-Tab an das der neue Abschnitt angehängt werden soll
+	 * @see #createRibbonBar()
+	 */
 	private void addRibbonSectionCompare(final JRibbonTab tab) {
 		JButton button;
 
@@ -914,6 +1039,11 @@ public final class MainPanel extends MainPanelBase {
 		menuToolsCompareKeptModel.add(button);
 	}
 
+	/**
+	 * Erzeugt den "Optimierung"-Abschnitt in einem Ribbon-Toolbar-Tab
+	 * @param tab	Ribbon-Toolbar-Tab an das der neue Abschnitt angehängt werden soll
+	 * @see #createRibbonBar()
+	 */
 	private void addRibbonSectionOptimization(final JRibbonTab tab) {
 		JButton button;
 		JMenu menu;
@@ -940,6 +1070,11 @@ public final class MainPanel extends MainPanelBase {
 		setDropDownMenu(button,menu);
 	}
 
+	/**
+	 * Erzeugt den "Tools"-Abschnitt in einem Ribbon-Toolbar-Tab
+	 * @param tab	Ribbon-Toolbar-Tab an das der neue Abschnitt angehängt werden soll
+	 * @see #createRibbonBar()
+	 */
 	private void addRibbonSectionTools(final JRibbonTab tab) {
 		JButton button;
 		JMenu menu;
@@ -959,6 +1094,11 @@ public final class MainPanel extends MainPanelBase {
 		registerAction(button,"ToolsFitting");
 	}
 
+	/**
+	 * Erzeugt den "System"-Abschnitt in einem Ribbon-Toolbar-Tab
+	 * @param tab	Ribbon-Toolbar-Tab an das der neue Abschnitt angehängt werden soll
+	 * @see #createRibbonBar()
+	 */
 	private void addRibbonSectionSystem(final JRibbonTab tab) {
 		JButton button;
 
@@ -978,6 +1118,11 @@ public final class MainPanel extends MainPanelBase {
 		registerAction(button,"HelpInfo");
 	}
 
+	/**
+	 * Erzeugt den "Statistik"-Abschnitt in einem Ribbon-Toolbar-Tab
+	 * @param tab	Ribbon-Toolbar-Tab an das der neue Abschnitt angehängt werden soll
+	 * @see #createRibbonBar()
+	 */
 	private void addRibbonSectionStatistic(final JRibbonTab tab) {
 		JButton button;
 
@@ -1003,6 +1148,11 @@ public final class MainPanel extends MainPanelBase {
 		menuSimulationShowWebViewer.add(button);
 	}
 
+	/**
+	 * Erzeugt den "Hilfe"-Abschnitt in einem Ribbon-Toolbar-Tab
+	 * @param tab	Ribbon-Toolbar-Tab an das der neue Abschnitt angehängt werden soll
+	 * @see #createRibbonBar()
+	 */
 	private void addRibbonSectionHelp(final JRibbonTab tab) {
 		JButton button;
 
@@ -1037,6 +1187,11 @@ public final class MainPanel extends MainPanelBase {
 		registerAction(button,"HelpUpdates");
 	}
 
+	/**
+	 * Erzeugt einen Ribbon-bassierten Toolbar
+	 * @return	Neuer Toolbar
+	 * @see #createToolBar()
+	 */
 	private JRibbonBar createRibbonBar() {
 		JRibbonBar ribbonBar=new JRibbonBar(actionListener);
 		JRibbonTab tab;
@@ -1095,7 +1250,7 @@ public final class MainPanel extends MainPanelBase {
 		addRibbonSectionTools(tab);
 		addRibbonSectionHelp(tab);
 
-		/* Modellüberglick */
+		/* Modellüberblick */
 		tab=ribbonBar.addRibbonURLIcon(Language.tr("Editor.ModelOverview"),Language.tr("Editor.ModelOverview.Tooltips"),Images.EDITOR_MODELINFO.getURL());
 		addRibbonSectionModel(tab);
 		addRibbonSectionData(tab,0);
@@ -1174,6 +1329,11 @@ public final class MainPanel extends MainPanelBase {
 		updateLastFilesList();
 	}
 
+	/**
+	 * Liefert ein neues Beispielmodell
+	 * @param exampleNr	Nummer des Beispielmodells
+	 * @return	Neues Beispielmodell
+	 */
 	private CallcenterModel getNewModel(int exampleNr) {
 		switch (exampleNr) {
 		case 0: return CallcenterModelExamples.getExampleSmall();
@@ -1202,6 +1362,12 @@ public final class MainPanel extends MainPanelBase {
 		return false;
 	}
 
+	/**
+	 * Lädt das Modell aus dem angegebenen root-Element.
+	 * @param root	XML-Root-Element
+	 * @param fileName	Dateiname der Quelldatei
+	 * @return Gibt <code>null</code> zurück, wenn das Modell erfolgreich geladen wurde. Andernfalls wird die Fehlermeldung als String zurückgegeben.
+	 */
 	private boolean loadModel(final Element root, final String fileName) {
 		if (modelPanel.isModelChanged()) {if (!discardModelOk()) return false;}
 
@@ -1214,6 +1380,11 @@ public final class MainPanel extends MainPanelBase {
 		return (s==null);
 	}
 
+	/**
+	 * Lädt ein Modell aus einer angegebenen Modelldatei.
+	 * @param fileName	Dateiname der Modelldatei
+	 * @return	Gibt <code>true</code> zurück, wenn das Modell erfolgreich geladen wurde.
+	 */
 	private boolean loadModelFileAsString(final String fileName) {
 		final File file=new File(fileName);
 		if (!file.exists()) {
@@ -1225,7 +1396,12 @@ public final class MainPanel extends MainPanelBase {
 		return commandFileModelLoad(file);
 	}
 
-	private boolean loadStatisticsElement(Element root) {
+	/**
+	 * Lädt Statistikdaten aus einem angegebenen root-Element.
+	 * @param root	XML-Root-Element
+	 * @return Gibt <code>true</code> zurück, wenn die Statistikdaten erfolgreich geladen wurde.
+	 */
+	private boolean loadStatisticsElement(final Element root) {
 		String s=statisticPanel.loadStatistic(root);
 		if (s!=null) MsgBox.error(this,Language.tr("Window.LoadStatisticsError.Title"),s); else setGUIMode((short)1);
 		return (s==null);
@@ -1262,6 +1438,11 @@ public final class MainPanel extends MainPanelBase {
 		return false;
 	}
 
+	/**
+	 * Stellt ein Modell für den Modell-Editor ein
+	 * @param model	Neues Modell
+	 * @return	Liefert <code>true</code>, wenn das neue Modell eingestellt werden konnte (d.h. wenn das alte Modell verworfen werden konnte)
+	 */
 	private boolean setModel(final CallcenterModel model) {
 		if (modelPanel.isModelChanged()) {if (!discardModelOk()) return false;}
 
@@ -1273,6 +1454,9 @@ public final class MainPanel extends MainPanelBase {
 		return true;
 	}
 
+	/**
+	 * Befehl: Datei - Neues Modell
+	 */
 	private void commandFileModelNewFromTemplate() {
 		if (modelPanel.isModelChanged()) {if (!discardModelOk()) return;}
 
@@ -1293,6 +1477,9 @@ public final class MainPanel extends MainPanelBase {
 		setGUIMode((short)0);
 	}
 
+	/**
+	 * Befehl: Datei - Neues Modell mit Assistent anlegen
+	 */
 	private void commandFileModelNewFromWizard() {
 		if (modelPanel.isModelChanged()) {if (!discardModelOk()) return;}
 
@@ -1366,7 +1553,6 @@ public final class MainPanel extends MainPanelBase {
 
 	/**
 	 * Befehl: Datei - Statistik speichern unter
-	 * @return	Liefert <code>true</code>, wenn die Statistikdaten gespeichert wurden
 	 */
 	private void commandFileStatisticsSave() {
 		Statistics[] statistic=statisticPanel.getStatistic();
@@ -1377,6 +1563,7 @@ public final class MainPanel extends MainPanelBase {
 
 	/**
 	 * Befehl: Datei - Einstellungen
+	 * @param showUpdatesPage	Initial die Updates-Seite anzeigen? (Statt der "Benutzeroberfläche"-Seite)
 	 */
 	private void commandFileSetup(final boolean showUpdatesPage) {
 		SetupData setup=SetupData.getSetup();
@@ -1431,6 +1618,9 @@ public final class MainPanel extends MainPanelBase {
 		if (model!=null) {modelPanel.setModel(model); modelPanel.setModelChanged(true);}
 	}
 
+	/**
+	 * Befehl: Daten - Modell vereinfachen
+	 */
 	private void commandDataSimplify() {
 		if (modelPanel.isModelChanged()) {if (!discardModelOk()) return;}
 		if (!MsgBox.confirm(this,Language.tr("Shrink.Title"),Language.tr("Shrink.Info"),Language.tr("Shrink.Yes.Info"),Language.tr("Shrink.No.Info"))) return;
@@ -1444,17 +1634,28 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Befehl: Daten - Daten gemäß vorgegenem Format verarbeiten
+	 */
 	private void commandDataSpecialLoader() {
 		SpecialProcessingDialog dialog=new SpecialProcessingDialog(ownerWindow,helpLink);
 		dialog.setVisible(true);
 		if (dialog.getClosedBy()==BaseEditDialog.CLOSED_BY_OK && dialog.getModel()!=null) setModel(dialog.getModel());
 	}
 
+	/**
+	 * Befehl: Simulation - Modellprüfung
+	 */
 	private void commandSimulationCheck() {
 		final String results=CallcenterRunModel.check(modelPanel.getModel(true));
 		MsgBox.info(this,Language.tr("Model.Plausibility.ResultsTitle"),results);
 	}
 
+	/**
+	 * Befehl: Simulation - Simulation starten
+	 * @param autoSaveResults	Nach der Simulation Ergebnisse sofort speichern?
+	 * @param logFile	Optionale Logging-Ausgabedatei
+	 */
 	private void commandSimulationRun(final boolean autoSaveResults, File logFile) {
 		saveAfterSim=autoSaveResults;
 
@@ -1482,32 +1683,51 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Befehl: Simulation - Simulation starten und Ergebnisse speichern
+	 */
 	private void commandSimulationRunAndSaveSetup() {
 		AutoSaveSetupDialog dialog=new AutoSaveSetupDialog(ownerWindow,helpLink.dialogAutoSave);
 		dialog.setVisible(true);
 	}
 
+	/**
+	 * Befehl: Simulation - Stapelverarbeitung
+	 */
 	private void commandSimulationBatch() {
 		backgroundSimulator.stop(true);
 		setGUIState(new BatchPanel(ownerWindow,modelPanel.getModel(true),new SimDoneNotify(),helpLink));
 	}
 
+	/**
+	 * Befehl: Simulation - Wartezeittoleranzkalibrierung
+	 */
 	private void commandSimulationCalibrate() {
 		backgroundSimulator.stop(true);
 		setGUIState(new CalibratePanel(modelPanel.getModel(true),new SimDoneNotify(),helpLink));
 	}
 
+	/**
+	 * Befehl: Simulation - Mehrtägige Simulation
+	 * @param loadFile	 Zu ladende Verkettete-XML-Datei. (Wird <code>null</code> übergeben, so wird initial kein Modell geladen.)
+	 */
 	private void commandSimulationConnected(File loadFile) {
 		backgroundSimulator.stop(true);
 		setGUIState(new ConnectedPanel(ownerWindow,loadFile,new SimDoneNotify(),helpLink));
 	}
 
+	/**
+	 * Befehl: Simulation - Ergebnisse einer mehrtägigen Simulation anzeigen
+	 */
 	private void commandSimulationConnectedViewer() {
 		File file=XMLTools.showLoadDialog(this,Language.tr("Window.ConnectedResults.Title"));
 		if (file==null) return;
 		showConnectedViewer(file);
 	}
 
+	/**
+	 * Befehl: Simulation - Agenten-Vorplanung
+	 */
 	private void commandSimulationPreplanning() {
 		if (modelPanel.isModelChanged()) {if (!discardModelOk()) return;}
 		backgroundSimulator.stop(true);
@@ -1519,7 +1739,11 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
-	private void commandSimulationOptimize(File file) {
+	/**
+	 * Befehl: Simulation - Optimierer
+	 * @param file	Initial zu ladende Optimierungseinstellungendatei (kann <code>null</code> sein)
+	 */
+	private void commandSimulationOptimize(final File file) {
 		CallcenterModel editModel=modelPanel.getModel(true);
 
 		CallcenterRunModel runModel=new CallcenterRunModel(editModel);
@@ -1534,12 +1758,18 @@ public final class MainPanel extends MainPanelBase {
 		setGUIState(new OptimizePanel(ownerWindow,new SimDoneNotify(),editModel,file,helpLink));
 	}
 
+	/**
+	 * Befehl: Simulation - Optimierer-Ergebnis anzeigen
+	 */
 	private void commandSimulationOptimizeViewer() {
 		File file=XMLTools.showLoadDialog(this,Language.tr("Window.OptimizerResults.Titel"));
 		if (file==null) return;
 		showOptimizeViewer(file);
 	}
 
+	/**
+	 * Befehl: Simulation - Anrufer oder Agenten verlagern
+	 */
 	private void commandSimulationRearrange() {
 		CallcenterModel editModel=modelPanel.getModel(true);
 		Rearranger rearranger=new Rearranger(editModel);
@@ -1552,6 +1782,9 @@ public final class MainPanel extends MainPanelBase {
 		setGUIState(new RearrangePanel(ownerWindow,new SimDoneNotify(),editModel,helpLink));
 	}
 
+	/**
+	 * Befehl: Simulation - Heuristische Ertragsverbesserung
+	 */
 	private void commandSimulationRevenueOptimizer() {
 		CallcenterModel editModel=modelPanel.getModel(true);
 
@@ -1583,6 +1816,10 @@ public final class MainPanel extends MainPanelBase {
 		modelViewer.setVisible(true);
 	}
 
+	/**
+	 * Befehl: (Toolbar bei Statistikansicht) - WebViewer
+	 * @return	Liefert <code>true</code>, wenn der WebViewer erfolgreich aufgerufen werden konnte
+	 */
 	private boolean commandSimulationShowWebViewer() {
 		if (statisticPanel.getStatistic()==null || statisticPanel.getStatistic().length!=1 || statisticPanel.getStatistic()[0]==null) {
 			MsgBox.error(this,Language.tr("Window.SaveStatisticsError.Title"),Language.tr("Window.SaveStatisticsError.NoSimulationResults"));
@@ -1615,7 +1852,7 @@ public final class MainPanel extends MainPanelBase {
 	}
 
 	/**
-	 * Befehl: Extras - Rechner
+	 * Befehl: Tools - Rechner
 	 */
 	private void commandToolsRechner() {
 		CalculatorDialog calc=new CalculatorDialog(ownerWindow,helpLink);
@@ -1623,18 +1860,24 @@ public final class MainPanel extends MainPanelBase {
 	}
 
 	/**
-	 * Befehl: Extras - Warteschlangenrechner
+	 * Befehl: Tools - Warteschlangenrechner
 	 */
 	private void commandToolsAuslastungsrechner() {
 		final QueueingCalculatorDialog dialog=new QueueingCalculatorDialog(this,helpLink);
 		dialog.setVisible(true);
 	}
 
+	/**
+	 * Befehl: Tools - Simulation eines Einfach-Modells
+	 */
 	private void commandToolsSimpleSimulation() {
 		SimpleSimulationDialog sim=new SimpleSimulationDialog(ownerWindow,helpLink);
 		sim.setVisible(true);
 	}
 
+	/**
+	 * Befehl: Tools - Varianzanalyse erstellen
+	 */
 	private void commandToolsVarianzanalyse() {
 		CallcenterModel model=modelPanel.getModel(true);
 
@@ -1644,7 +1887,7 @@ public final class MainPanel extends MainPanelBase {
 	}
 
 	/**
-	 * Befehl: Extras - Verteilung anpassen
+	 * Befehl: Tools - Verteilung anpassen
 	 */
 	private void commandToolsFitting() {
 		FitDialog fit=new FitDialog(ownerWindow,modelPanel.getModel(true),helpLink);
@@ -1653,11 +1896,15 @@ public final class MainPanel extends MainPanelBase {
 	}
 
 	/**
-	 * Befehl: Extras - Kommandozeilenbefehl ausführen
+	 * Befehl: Tools - Kommandozeilenbefehl ausführen
 	 */
 	private void commandToolsExecuteCommand() {
 		new CommandLineDialog(this,stream->new CommandLineSystem(null,stream),window->helpLink.dialogCommandLine.run());
 	}
+
+	/**
+	 * Befehl: Tools - Simulationslauf in Logdatei aufzeichnen
+	 */
 
 	private void commandToolsLogRun() {
 		CallcenterModel editModel=modelPanel.getModel(true);
@@ -1689,7 +1936,7 @@ public final class MainPanel extends MainPanelBase {
 	}
 
 	/**
-	 * Befehl: Extras - Simulationergebnisse verschiedener Modelle vergleichen
+	 * Befehl: Tools - Simulationergebnisse verschiedener Modelle vergleichen
 	 */
 	private void commandToolsCompare() {
 		CompareSelectDialog dialog=new CompareSelectDialog(ownerWindow,helpLink.pageCompareModal,5);
@@ -1712,7 +1959,7 @@ public final class MainPanel extends MainPanelBase {
 	}
 
 	/**
-	 * Befehl: Extras - Aktuelles Modell für späteren Vergleich festhalten
+	 * Befehl: Tools - Aktuelles Modell für späteren Vergleich festhalten
 	 */
 	private void commandToolsKeepModel() {
 		CallcenterModel model=modelPanel.getModel(true);
@@ -1782,13 +2029,17 @@ public final class MainPanel extends MainPanelBase {
 	}
 
 	/**
-	 * Befehl: Extras - Serverdienste
+	 * Befehl: Tools - Serverdienste
 	 */
 	private void commandToolsServer() {
 		backgroundSimulator.stop(true);
 		setGUIState(new SimServerPanel(ownerWindow,new SimDoneNotify(),helpLink));
 	}
 
+	/**
+	 * Befehl: Hilfe - Hilfe
+	 * @param topic	Anzuzeigende Hilfeseite
+	 */
 	private void commandHelp(String topic) {
 		/* Ggf. passende Hilfeseite finde */
 		if (topic==null || topic.isEmpty()) {
@@ -1804,6 +2055,9 @@ public final class MainPanel extends MainPanelBase {
 		Help.topic(this,topic);
 	}
 
+	/**
+	 * Befehl: Hilfe - Modell anzeigen
+	 */
 	private void commandHelpModel() {
 		File modelFile=new File(new File(System.getProperty("user.dir")),Language.tr("Window.Info.ModelOverview.FileName"));
 		if (!modelFile.isFile()) modelFile=new File(new File(System.getProperty("user.dir"))+File.separator+"docs",Language.tr("Window.Info.ModelOverview.FileName"));
@@ -1825,6 +2079,9 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Befehl: Hilfe - Glossar anzeigen
+	 */
 	private void commandHelpGlossary() {
 		File modelFile=new File(new File(System.getProperty("user.dir")),Language.tr("Window.Info.ShowGlossary.FileName"));
 		if (!modelFile.isFile()) modelFile=new File(new File(System.getProperty("user.dir"))+File.separator+"docs",Language.tr("Window.Info.ShowGlossary.FileName"));
@@ -1846,6 +2103,9 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Befehl: Hilfe - Lehrbuch
+	 */
 	private void commandHelpBook() {
 		try {
 			final URI uri=new URI("https://www.springer.com/de/book/9783658183080");
@@ -1886,14 +2146,23 @@ public final class MainPanel extends MainPanelBase {
 		if (infoDialog.showLicenses) commandHelpLicenseInfo();
 	}
 
-	private void showOptimizeViewer(OptimizeData results) {
+	/**
+	 * Zeigt die Optimierungsergebnisse an.
+	 * @param results	Optimierungsergebnisse
+	 */
+	private void showOptimizeViewer(final OptimizeData results) {
 		OptimizeViewer viewer=new OptimizeViewer(ownerWindow,helpLink);
 		viewer.loadResults(results);
 		viewer.setCloseNotify(new ModelCallbackViewerClosed(viewer));
 		setGUIState(viewer);
 	}
 
-	private boolean showOptimizeViewer(File file) {
+	/**
+	 * Zeigt die Optimierungsergebnisse an.
+	 * @param file	Zu ladende Datei mit Optimierungsergebnissen
+	 * @return	Liefert <code>true</code>, wenn die Daten erfolgreich geladen werden konnte
+	 */
+	private boolean showOptimizeViewer(final File file) {
 		OptimizeViewer viewer=new OptimizeViewer(ownerWindow,helpLink);
 		String s=viewer.loadResults(file);
 		if (s!=null) {MsgBox.error(this,Language.tr("Window.OptimizerResults.Error"),s); return false;}
@@ -1902,7 +2171,12 @@ public final class MainPanel extends MainPanelBase {
 		return true;
 	}
 
-	private boolean showConnectedViewer(File file) {
+	/**
+	 * Zeigt die Ergebnisse einer mehrtägigen Simulation an
+	 * @param file	Zu ladende Datei mitden Ergebnissen der mehrtägigen Simulation
+	 * @return	Liefert <code>true</code>, wenn die Daten erfolgreich geladen werden konnte
+	 */
+	private boolean showConnectedViewer(final File file) {
 		ConnectedModel model=new ConnectedModel();
 		String s=model.loadFromFile(file);
 		if (s!=null) {
@@ -1924,6 +2198,10 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Liefert das Hilfe-Thema für die aktuell geöffnete Seite im Programmfenster
+	 * @return	Runnable das die entsprechende Hilfe-Aktion ausführt
+	 */
 	private Runnable findHelpTopic() {
 		if (workPanel != null) {
 			if (workPanel instanceof BatchPanel) return helpLink.pageBatch;
@@ -1949,10 +2227,18 @@ public final class MainPanel extends MainPanelBase {
 		return null;
 	}
 
+	/**
+	 * Zeigt eine Hilfe-Seite als modalen Dialog an.
+	 * @param topic	Anzuzeigende Hilfeseite
+	 */
 	private void showModalHelp(String topic) {
 		Help.topicModal(this,topic);
 	}
 
+	/**
+	 * DTD-Datei zur Beschreibung der Dateiformate aufrufen
+	 * (wird über Hilfe-Special-Links ausgeführt).
+	 */
 	private void showDTD() {
 		File modelFile=new File(new File(System.getProperty("user.dir")),Language.tr("XML.DTD"));
 		if (!modelFile.isFile()) {
@@ -1966,6 +2252,10 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * XSD-Datei zur Beschreibung der Dateiformate aufrufen
+	 * (wird über Hilfe-Special-Links ausgeführt).
+	 */
 	private void showXSD() {
 		File modelFile=new File(new File(System.getProperty("user.dir")),Language.tr("XML.XSD"));
 		if (!modelFile.isFile()) {
@@ -1979,6 +2269,10 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Aktiviert oder deaktiviert ein besonderes Arbeits-Panel im Hauptfenster
+	 * @param workPanel	Arbeits-Panel (kann <code>null</code> sein, wenn die normalen Programmfunktionen des Hauptfensters aktiviert werden sollen)
+	 */
 	private void setGUIState(JCloseablePanel workPanel) {
 		if (workPanel==null) {
 			final JMenuBar menu=((JFrame)ownerWindow).getJMenuBar();
@@ -2001,6 +2295,12 @@ public final class MainPanel extends MainPanelBase {
 		this.workPanel=workPanel;
 	}
 
+	/**
+	 * Stellt sicher, dass während der Verarbeitung von
+	 * {@link #setGUIMode(short)} keine weiteren Aufrufe
+	 * stattfinden.
+	 * @see #setGUIMode(short)
+	 */
 	private boolean inSetGUIMode=false;
 
 	/**
@@ -2073,14 +2373,18 @@ public final class MainPanel extends MainPanelBase {
 		inSetGUIMode=false;
 	}
 
-	private void runAutoSave(Statistics statistic) {
-		SetupData setup=SetupData.getSetup();
+	/**
+	 * Führt die automatische Speicherung der Statistikdaten durch.
+	 * @param statistic	Zu speichernde Statistikdaten
+	 */
+	private void runAutoSave(final Statistics statistic) {
+		final SetupData setup=SetupData.getSetup();
 		if (!setup.autoSaveStatistic && !setup.autoSaveFilter) {
 			MsgBox.warning(this,Language.tr("Window.RunAndSave.NoResultsToBeSavedDefined.Title"),Language.tr("Window.RunAndSave.NoResultsToBeSavedDefined.Info"));
 			return;
 		}
 
-		AutoSave autoSave=new AutoSave(statistic);
+		final AutoSave autoSave=new AutoSave(statistic);
 		if (setup.autoSaveStatistic) {
 			String s=autoSave.saveStatistic(setup.autoSaveStatisticFolder);
 			if (s!=null) MsgBox.error(this,Language.tr("Window.SaveStatisticsError.Title"),s);
@@ -2167,9 +2471,18 @@ public final class MainPanel extends MainPanelBase {
 		this.reloadWindow=reloadWindow;
 	}
 
+	/**
+	 * Wird beim Schließen des Modell-Viewers (eines Modells zu den Statistikergebnissen) aufgerufen.
+	 * @see ViewerWithLoadModelCallback
+	 */
 	private class ModelCallbackViewerClosed implements Runnable {
+		/** Modell-Viewer */
 		private final ViewerWithLoadModelCallback viewer;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param viewer	Modell-Viewer
+		 */
 		public ModelCallbackViewerClosed(ViewerWithLoadModelCallback viewer) {
 			this.viewer=viewer;
 		}
@@ -2187,8 +2500,17 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Wird beim Abschluss einer Simulation aufgerufen.
+	 */
 	private class SimDoneNotify implements Runnable {
-		public void simDone(boolean runComplete, File logFile, final Statistics statistic) {
+		/**
+		 * Führt die Verarbeitung zum Abschluss einer Simulation durch.
+		 * @param runComplete	Ist die Simulation erfolgreich abgeschlossen worden?
+		 * @param logFile	Log-Datei für die Simulation
+		 * @param statistic	Während der Simulation generierte Statistikdaten
+		 */
+		public void simDone(final boolean runComplete, final File logFile, final Statistics statistic) {
 			if (runComplete) {
 				statisticPanel.setStatistic(new Statistics[] {statistic});
 
@@ -2295,9 +2617,18 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Wird beim Schließen des Modell-Viewers aufgerufen.
+	 * @see	CallcenterModelEditorPanelDialog
+	 */
 	private class ModelViewerClosed implements Runnable {
+		/** Modell-Viewer */
 		private final CallcenterModelEditorPanelDialog modelViewer;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param modelViewer	Modell-Viewer
+		 */
 		public ModelViewerClosed(CallcenterModelEditorPanelDialog modelViewer) {
 			this.modelViewer=modelViewer;
 		}
@@ -2314,6 +2645,9 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Liefert einen möglichen Hilfe-Special-Link aus dem Welcome-Panel-
+	 */
 	private class ProcessSpecialWelcomeLink extends ProcessSpecialLink {
 		@Override
 		protected String getHRef() {
@@ -2321,6 +2655,10 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Führt die Verarbeitung beim Anklicken eines Hilfe-Special-Links durch.
+	 * @param href	Hilfe-Special-Link
+	 */
 	private void processSpecialLink(final String href) {
 		if (href.equalsIgnoreCase("escape")) {setGUIMode((short)0); return;}
 		if (href.equalsIgnoreCase("go")) {setGUIMode((short)0); return;}
@@ -2350,7 +2688,14 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Klasse zur Verarbeitung von Hilfe-Special-Links
+	 */
 	private abstract class ProcessSpecialLink implements Runnable {
+		/**
+		 * Liefert die Adresse des angeklicken Links
+		 * @return	Adresse des angeklicken Links
+		 */
 		protected abstract String getHRef();
 
 		@Override
@@ -2363,9 +2708,17 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Wird nach dem Abschluss des Modell-Generator-Dialogs aufgerufen
+	 */
 	private class GeneratorCallback implements Runnable {
+		/** 	0,1,2=Anrufer (24/48/49 Intervalle), 3,4,5=Agenten (24/48/49 Intervalle), 6=Skills, 7=Schablonen-Import, 8=Agenten-Effizient, 9=Agenten-Verfügbarkeit */
 		private final int editType;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param editType		0,1,2=Anrufer (24/48/49 Intervalle), 3,4,5=Agenten (24/48/49 Intervalle), 6=Skills, 7=Schablonen-Import, 8=Agenten-Effizient, 9=Agenten-Verfügbarkeit
+		 */
 		public GeneratorCallback(int editType) {
 			this.editType=editType;
 		}
@@ -2376,6 +2729,12 @@ public final class MainPanel extends MainPanelBase {
 		}
 	}
 
+	/**
+	 * Task der zeitgesteuert ausgeführt wird, um eine
+	 * Kopie des aktuellen Modells im Editor für die Hintergrundsimulation
+	 * bereit zu stellen.
+	 * @see MainPanel#backgroundSimulator
+	 */
 	private class BackgroundModelGetter extends TimerTask {
 		@Override
 		public void run() {

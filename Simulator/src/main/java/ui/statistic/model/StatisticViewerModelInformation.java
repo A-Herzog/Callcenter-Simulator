@@ -35,7 +35,9 @@ import ui.model.CallcenterModelSkillLevel;
  * @version 1.0
  */
 public class StatisticViewerModelInformation extends StatisticViewerText {
+	/** Callcenter-Editor-Modell dem die Daten entnommen werden sollen */
 	private final CallcenterModel model;
+	/** Kurz gehaltene, allgemeine Informationen anzeigen (<code>false</code>) oder vollständige Modellbeschteibung (<code>true</code>) */
 	private final boolean fullInformation;
 
 	/**
@@ -43,7 +45,7 @@ public class StatisticViewerModelInformation extends StatisticViewerText {
 	 * @param model	Callcenter-Editor-Modell dem die Daten entnommen werden sollen
 	 * @param fullInformation	Kurz gehaltene, allgemeine Informationen anzeigen (<code>false</code>) oder vollständige Modellbeschteibung (<code>true</code>)
 	 */
-	public StatisticViewerModelInformation(CallcenterModel model, boolean fullInformation) {
+	public StatisticViewerModelInformation(final CallcenterModel model, final boolean fullInformation) {
 		super();
 		this.model=model;
 		this.fullInformation=fullInformation;

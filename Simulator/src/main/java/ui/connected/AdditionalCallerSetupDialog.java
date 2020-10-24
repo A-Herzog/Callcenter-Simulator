@@ -49,8 +49,11 @@ public class AdditionalCallerSetupDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = -140281987544275534L;
 
+	/** Liste mit den Name der Kundentypen, für die zusätzliche Kunden eingespielt werden sollen */
 	private final List<String> callerNames;
+	/** Liste mit den Anzahlen der zusätzlichen Kunden je Kundentyp */
 	private final List<Integer> callerCount;
+	/** Eingabefelder für die Anzahlen an Erstanrufern */
 	private JTextField[] callerEdit;
 
 	/**
@@ -59,7 +62,7 @@ public class AdditionalCallerSetupDialog extends BaseEditDialog {
 	 * @param helpCallback	Callback, um die Online-Hilfe als modales Fenster aufzurufen.
 	 * @param model	Callcenter-Modell, dem die Kundentypen-Namen entnommen werden sollen
 	 * @param callerNames	Liste mit den Name der Kundentypen, für die zusätzliche Kunden eingespielt werden sollen
-	 * @param callerCount	Liste mit den Anzahen der zusätzlichen Kunden je Kundentyp
+	 * @param callerCount	Liste mit den Anzahlen der zusätzlichen Kunden je Kundentyp
 	 */
 	public AdditionalCallerSetupDialog(Window owner, Runnable helpCallback, CallcenterModel model, List<String> callerNames, List<Integer> callerCount) {
 		super(owner,Language.tr("Connected.Additional.Title"),getCallerNames(model),false,helpCallback);

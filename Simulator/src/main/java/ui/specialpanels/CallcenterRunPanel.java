@@ -61,11 +61,15 @@ public class CallcenterRunPanel extends JCloseablePanel {
 	private boolean abortRun=false;
 	private JLabel info, info2;
 	private JLabel statusbar;
+	/** Fortschrittsbalken */
 	private JProgressBar progress;
+	/** "Abbrechen"-Schaltfläche */
 	private JButton cancel;
+	/** Simulator dessen Fortschritt in diesem Panel dargestellt werden soll */
 	private final CallcenterSimulatorInterface simulator;
 	private final Timer timer;
 	private int countTimerIntervals;
+	/** Callback wird aufgerufen, wenn das Batch-Panel geschlossen werden soll */
 	private final Runnable doneNotify;
 
 	/**
@@ -83,7 +87,7 @@ public class CallcenterRunPanel extends JCloseablePanel {
 	 * @param autoSaveResults	Ergebnisse automatisch speichern
 	 * @param compareModelsMode	Simulationsmodus (siehe {@link #compareModelsMode})
 	 */
-	public CallcenterRunPanel(CallcenterSimulatorInterface simulator, Runnable doneNotify, boolean autoSaveResults, int compareModelsMode) {
+	public CallcenterRunPanel(final CallcenterSimulatorInterface simulator, final Runnable doneNotify, final boolean autoSaveResults, final int compareModelsMode) {
 		super(new BorderLayout());
 
 		this.compareModelsMode=compareModelsMode;
@@ -151,6 +155,9 @@ public class CallcenterRunPanel extends JCloseablePanel {
 		});
 	}
 
+	/**
+	 * Bricht die Simulation ab.
+	 */
 	private void abortSimulation() {
 		cancel.setEnabled(false);
 		abortRun=true;

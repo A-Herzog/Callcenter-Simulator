@@ -27,7 +27,9 @@ import systemtools.statistics.StatisticViewerPieChart;
  * @version 1.0
  */
 public class StatisticViewerKundenAnteilePieChart extends StatisticViewerPieChart {
+	/** Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen */
 	private final Statistics statistic;
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final Mode dataType;
 
 	/**
@@ -71,7 +73,7 @@ public class StatisticViewerKundenAnteilePieChart extends StatisticViewerPieChar
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerKundenAnteilePieChart</code>
-	 * @param statistic	Objekt vom Typ <code>ComplexStatisticSimData</code>, dem die Kundendaten entnommen werden sollen
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen
 	 * @param dataType	Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten.
 	 */
 	public StatisticViewerKundenAnteilePieChart(Statistics statistic, Mode dataType) {

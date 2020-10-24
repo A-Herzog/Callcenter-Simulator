@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,16 +58,30 @@ import ui.commandline.AbstractReportCommandConnect;
  * @see StatisticNode
  */
 public class StatisticBasePanel extends JPanel implements AbstractReportCommandConnect {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -7826682745490191755L;
 
+	/** Soll ein Vergleich zu den jeweils vorherigen Ergebnissen angeboten werden? */
 	private final boolean storeLastRoot;
+
+	/** Früheres Wurzelelement des Statistikbaums */
 	private StatisticNode lastRoot;
+
+	/** Wurzelelement des Statistikbaums */
 	private StatisticNode currentRoot;
 
+	/** Splitter zwischen Baumstruktur und Viewern */
 	private final JSplitPane splitPane;
+
+	/** Statistikbaum */
 	private final StatisticTreePanel tree;
+
 	private final StatisticDataPanel[] data;
 
+	/** Listener die bei Drag&amp;Drop-Operationen auf den Viewern benachrichtigt werden */
 	private final List<ActionListener> fileDropListeners;
 
 	/**
@@ -164,6 +179,14 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 		tree.setDataFileName(commandLineDataFileName);
 	}
 
+	/**
+	 * Liefert {@link JFreeChart}-Komponenten aus einer Reihe von Viewern zurück.
+	 * @param viewer	Viewer in denen nach {@link JFreeChart}-Komponenten gesucht werden soll
+	 * @param chartClass	Viewer-Klasse die berücksichtigt werden soll
+	 * @return	Array mit allen {@link JFreeChart}-Komponenten; kann auch <code>null</code> sein, wenn die Viewer nicht vom passenden Klassentyp sind.
+	 * @see #adjustLineCharts(JFreeChart[])
+	 * @see #adjustBarCharts(JFreeChart[])
+	 */
 	private final JFreeChart[] getCharts(StatisticViewer viewer[], Class<? extends StatisticViewer> chartClass) {
 		JFreeChart[] chart=new JFreeChart[viewer.length];
 		for (int i=0;i<viewer.length;i++) {
@@ -175,6 +198,12 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 		return chart;
 	}
 
+	/**
+	 * Liefert zu einem Statistikknoten die Viewer vom letzten Simulationslauf (als Vergleichswerte)
+	 * @param currentNode	Aktueller Statistikknoten
+	 * @return	Viewer vom letzten Lauf (sofern verfügbar, sonst <code>null</code>)
+	 * @see #lastRoot
+	 * 	 */
 	private StatisticViewer[] getLastViewer(final StatisticNode currentNode) {
 		if (lastRoot==null || currentNode==null) return null;
 
@@ -209,6 +238,12 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 		}
 	}
 
+	/**
+	 * Passt Viewer-übergreifend bei mehreren Liniendiagrammen den
+	 * y-Achsenbereich an, so dass alle Diagramme denselben Bereich verwenden.
+	 * @param chart	Anzupassende Diagramme
+	 * @see #getCharts(StatisticViewer[], Class)
+	 */
 	private final void adjustLineCharts(JFreeChart[] chart) {
 		for (int nr=0;nr<chart[0].getXYPlot().getRangeAxisCount();nr++) {
 			Range r=chart[0].getXYPlot().getRangeAxis(nr).getRange();
@@ -225,6 +260,12 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 		}
 	}
 
+	/**
+	 * Passt Viewer-übergreifend bei mehreren Balkendiagrammen den
+	 * y-Achsenbereich an, so dass alle Diagramme denselben Bereich verwenden.
+	 * @param chart	Anzupassende Diagramme
+	 * @see #getCharts(StatisticViewer[], Class)
+	 */
 	private final void adjustBarCharts(JFreeChart[] chart) {
 		for (int nr=0;nr<chart[0].getCategoryPlot().getRangeAxisCount();nr++) {
 			Range r=chart[0].getCategoryPlot().getRangeAxis(nr).getRange();
@@ -406,12 +447,22 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 		return fileDropListeners.remove(fileDropListener);
 	}
 
-	private boolean dropFile(final FileDropperData data) {
+	/**
+	 * Muss aufgerufen werden, wenn eine Datei per Drag&amp;drop auf dem Statistik-Panel
+	 * abgelegt wird. Es werden dann die registrierten {@link #fileDropListeners} benachrichtigt.
+	 * @param data	Drag&amp;drop-Daten
+	 */
+	private void dropFile(final FileDropperData data) {
 		final ActionEvent event=FileDropperData.getActionEvent(data);
 		for (ActionListener listener: fileDropListeners) listener.actionPerformed(event);
-		return true;
 	}
 
+	/**
+	 * Registriert eine Komponente, die bei Drag&amp;drop-Operationen
+	 * {@link #dropFile(FileDropperData)} aufrufen soll.
+	 * @param component	Zu registrierende Komponente
+	 * @see #dropFile(FileDropperData)
+	 */
 	private void registerComponentForFileDrop(final Component component) {
 		new FileDropper(component,e->{
 			final FileDropperData dropper=(FileDropperData)e.getSource();
@@ -419,6 +470,13 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 		});
 	}
 
+	/**
+	 * Registriert eine Komponente, die bei Drag&amp;drop-Operationen
+	 * auf sich und auf ihre Kindkomponenten
+	 * {@link #dropFile(FileDropperData)} aufrufen soll.
+	 * @param component	Zu registrierende Komponente
+	 * @see #dropFile(FileDropperData)
+	 */
 	private void registerComponentAndChildsForFileDrop(final Component component) {
 		if (component==null) return;
 		registerComponentForFileDrop(component);

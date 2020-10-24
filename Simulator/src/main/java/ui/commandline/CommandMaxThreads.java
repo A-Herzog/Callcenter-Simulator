@@ -32,6 +32,7 @@ import tools.SetupData;
  * @see CommandLineSystem
  */
 public class CommandMaxThreads extends AbstractCommand {
+	/** Maximalzahl an Threads (-1 für unbegrenzt) */
 	private int newValue;
 
 	@Override

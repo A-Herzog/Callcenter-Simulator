@@ -63,10 +63,14 @@ import ui.statistic.core.filter.DataFilterBase;
  * @version 1.0
  */
 public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
+	/** Übergeordnetes Element */
 	private final Component owner;
+	/** Hilfe für Schnellzugriff-Seite */
 	private final Runnable helpFastAccess;
+	/** Hilfe für Schnellzugriff-Dialog */
 	private final Runnable helpFastAccessModal;
 	private DataFilter dataFilter=null;
+	/** Statistik-Objekt, dem die Daten entnommen werden sollen */
 	private final Statistics statistic;
 	private JTextArea filter;
 	private JTextArea results;

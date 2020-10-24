@@ -47,12 +47,15 @@ import javax.swing.tree.TreePath;
  * @see JTree
  */
 public class SelectableTreeSystem {
+	/** Knoten im Baum */
 	private final List<SelectableTreeNode> nodes=new ArrayList<SelectableTreeNode>();
 	/** Baumstruktur */
 	private final JTree tree;
 	/** Wurzelelement der Baumstruktur */
 	private final DefaultMutableTreeNode root=new DefaultMutableTreeNode();
+	/** Datenmodell für die Baumdarstellung */
 	private final DefaultTreeModel model;
+	/** Gruppe für die Radiobuttons */
 	private final ButtonGroup group=new ButtonGroup();
 
 	/**
@@ -77,10 +80,25 @@ public class SelectableTreeSystem {
 		return createNode(text,TreeNodeType.TREENODETYPE_TEXT,0,false);
 	}
 
+	/**
+	 * Legt einen Baumeintrag an.
+	 * @param text	Anzuzeigender Text
+	 * @param type	Typ des Eintrags
+	 * @param id	ID für den Eintrag
+	 * @return	Neuer Eintrag für die Baumstruktur
+	 */
 	private DefaultMutableTreeNode createNode(String text, TreeNodeType type, int id) {
 		return createNode(text,type,id,false);
 	}
 
+	/**
+	 * Legt einen Baumeintrag an.
+	 * @param text	Anzuzeigender Text
+	 * @param type	Typ des Eintrags
+	 * @param id	ID für den Eintrag
+	 * @param selected	Checkbox oder Radiobutton selektrieren (ohne Bedeutung für Texte)
+	 * @return	Neuer Eintrag für die Baumstruktur
+	 */
 	private DefaultMutableTreeNode createNode(String text, TreeNodeType type, int id, boolean selected) {
 		SelectableTreeNode node=new SelectableTreeNode(text,type,selected,id);
 		nodes.add(node);
@@ -156,11 +174,18 @@ public class SelectableTreeSystem {
 		return nodes;
 	}
 
-	/* SelectableTreeNode */
-
+	/**
+	 * Typ des Baumeintrags
+	 * @see SelectableTreeSystem#createNode(String, TreeNodeType, int)
+	 * @see SelectableTreeSystem#createNode(String, TreeNodeType, int, boolean)
+	 *
+	 */
 	private enum TreeNodeType {
+		/** Normaler Text */
 		TREENODETYPE_TEXT,
+		/** Checkbox */
 		TREENODETYPE_CHECKBOX,
+		/** Radiobutton (alle Radiobuttons im Baum werden automatisch in eine Gruppe zusammengefasst) */
 		TREENODETYPE_RADIOBUTTON
 	}
 
@@ -169,13 +194,22 @@ public class SelectableTreeSystem {
 	 * @author Alexander Herzog
 	 */
 	public final class SelectableTreeNode {
+		/** Anzuzeigender Text */
 		private final String text;
+		/** Typ des Eintrags */
 		private final TreeNodeType type;
 		/** Radiobutton oder CheckBox */
 		public final JToggleButton toggle;
 		/** Bei der Erstellung angegebene ID */
 		public final int id;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param text	Anzuzeigender Text
+		 * @param type	Typ des Eintrags
+		 * @param selected	Checkbox oder Radiobutton selektrieren (ohne Bedeutung für Texte)
+		 * @param id	ID für den Eintrag
+		 */
 		private SelectableTreeNode(String text, TreeNodeType type, boolean selected, int id) {
 			this.text=text;
 			this.type=type;
@@ -203,8 +237,10 @@ public class SelectableTreeSystem {
 		}
 	}
 
-	/* SelectableNodeRenderer */
-
+	/**
+	 * Renderer für die Einträge in {@link SelectableTreeSystem#tree}
+	 * @see SelectableTreeSystem#tree
+	 */
 	private final class SelectableNodeRenderer extends DefaultTreeCellRenderer {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -212,9 +248,20 @@ public class SelectableTreeSystem {
 		 */
 		private static final long serialVersionUID = 6484012860741022315L;
 
-		private final Color selectionForeground, selectionBackground, textForeground, textBackground;
+		/** Vordergrundfarbe im Selektiert-Fall */
+		private final Color selectionForeground;
+		/** Hintergrundfarbe im Selektiert-Fall */
+		private final Color  selectionBackground;
+		/** Vordergrundfarbe im Standardfall */
+		private final Color textForeground;
+		/** Hintergrundfarbe im Standardfall */
+		private final Color  textBackground;
+		/** Zugehöriger Baumeintrag */
 		private SelectableTreeNode node;
 
+		/**
+		 * Konstruktor der Klasse
+		 */
 		public SelectableNodeRenderer() {
 			selectionForeground=UIManager.getColor("Tree.selectionForeground");
 			selectionBackground=UIManager.getColor("Tree.selectionBackground");
@@ -222,10 +269,20 @@ public class SelectableTreeSystem {
 			textBackground=UIManager.getColor("Tree.textBackground");
 		}
 
+		/**
+		 * Liefert den zugehörigen Baumeintrag
+		 * @return	Zugehöriger Baumeintrag
+		 */
 		public SelectableTreeNode getNode() {
 			return node;
 		}
 
+		/**
+		 * Liefert eine Checkbox.
+		 * @param node	Baumknoten
+		 * @param selected	Ausgewählt?
+		 * @return	Neue Checkbox
+		 */
 		private JCheckBox getCheckBox(SelectableTreeNode node, boolean selected) {
 			JCheckBox checkBox=(JCheckBox)node.toggle;
 
@@ -248,6 +305,12 @@ public class SelectableTreeSystem {
 
 		}
 
+		/**
+		 * Liefert ein Radiobutton.
+		 * @param node	Baumknoten
+		 * @param selected	Ausgewählt?
+		 * @return	Neues Radiobutton
+		 */
 		private JRadioButton getRadioButton(SelectableTreeNode node, boolean selected) {
 			JRadioButton radioButton=(JRadioButton)node.toggle;
 
@@ -285,8 +348,9 @@ public class SelectableTreeSystem {
 		}
 	}
 
-	/* SelectableNodeEditor */
-
+	/**
+	 * Editor für einen Eintrag
+	 */
 	private final class SelectableNodeEditor extends AbstractCellEditor implements TreeCellEditor {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -294,10 +358,16 @@ public class SelectableTreeSystem {
 		 */
 		private static final long serialVersionUID = 2729327970043094220L;
 
+		/** Renderer für den Eintrag */
 		private final SelectableNodeRenderer renderer=new SelectableNodeRenderer();
+		/** Zugehörige Baumstruktur */
 		private final JTree tree;
 
-		public SelectableNodeEditor(JTree tree) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param tree	Zugehörige Baumstruktur
+		 */
+		public SelectableNodeEditor(final JTree tree) {
 			this.tree=tree;
 		}
 
@@ -337,19 +407,34 @@ public class SelectableTreeSystem {
 			return editor;
 		}
 
+		/**
+		 * System über Ende der Bearbeitung eines Eintrags benachrichtigen.
+		 */
 		public void publicFireEditingStopped() {
 			fireEditingStopped();
 		}
 	}
 
-	/* SelectableItemListener */
-
+	/**
+	 * Reagiert auf Klicks auf einen Baumeintrag
+	 */
 	private final class SelectableItemListener implements ItemListener {
+		/** Zugehöriger Editor für den Eintrag */
 		private final SelectableNodeEditor editor;
+		/** Baumeintrag */
 		private final DefaultMutableTreeNode node;
+		/** Umschalt-Button */
 		private final JToggleButton toggleButton;
+		/** Baumstruktur */
 		private final JTree tree;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param editor	Zugehöriger Editor für den Eintrag
+		 * @param node	Baumeintrag
+		 * @param toggleButton	Umschalt-Button
+		 * @param tree	Baumstruktur
+		 */
 		public SelectableItemListener(SelectableNodeEditor editor, DefaultMutableTreeNode node, JToggleButton toggleButton, JTree tree) {
 			this.editor=editor;
 			this.node=node;
@@ -357,12 +442,22 @@ public class SelectableTreeSystem {
 			this.tree=tree;
 		}
 
+		/**
+		 * Zweig aktualisieren.
+		 * @param selected	Eintrag selektieren?
+		 * @return	Muss die Darstellung neu gezeichnet werden?
+		 */
 		private boolean updateSystemFromLeaf(boolean selected) {
 			if (!(node.getUserObject() instanceof SelectableTreeNode)) return false;
 			((SelectableTreeNode)node.getUserObject()).toggle.setSelected(selected);
 			return true;
 		}
 
+		/**
+		 * Wurzelelement aktualisieren.
+		 * @param selected	Eintrag selektieren?
+		 * @return	Muss die Darstellung neu gezeichnet werden?
+		 */
 		private boolean updateSystemFromRoot(boolean selected) {
 			if (!(node.getUserObject() instanceof SelectableTreeNode)) return false;
 			((SelectableTreeNode)node.getUserObject()).toggle.setSelected(selected);
@@ -378,6 +473,11 @@ public class SelectableTreeSystem {
 			return needRepaint;
 		}
 
+		/**
+		 * Einstellungen aktualisieren.
+		 * @param selected	Eintrag selektieren?
+		 * @return	Muss die Darstellung neu gezeichnet werden?
+		 */
 		private boolean updateSystem(boolean selected) {
 			return node.isLeaf()?updateSystemFromLeaf(selected):updateSystemFromRoot(selected);
 		}

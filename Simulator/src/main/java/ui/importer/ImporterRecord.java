@@ -61,10 +61,14 @@ public final class ImporterRecord implements Cloneable {
 	 */
 	public String cellEnd="";
 
+	/**
+	 * Liste aller {@link ImporterProcessor}-Klassen, zum Verarbeiten der Importschablonen.
+	 * @see #getImporterProcessors()
+	 */
 	private static List<ImporterProcessor> importerProcessors=null;
 
 	/**
-	 * Liefert eine Liste aller <code>ImporterProcessor</code>-Klassen, zum Verarbeiten
+	 * Liefert eine Liste aller {@link ImporterProcessor}-Klassen, zum Verarbeiten
 	 * der Importschablonen.
 	 * (Hier müssen die <code>ImporterProcessor</code>-Klassen registriert werden.
 	 * <code>getImporterProcessors</code> liefert dann eine gecachede Version davon.)
@@ -100,7 +104,7 @@ public final class ImporterRecord implements Cloneable {
 	}
 
 	/**
-	 * Liefert eine Liste aller <code>ImporterProcessor</code>-Klassen, zum Verarbeiten
+	 * Liefert eine Liste aller {@link ImporterProcessor}-Klassen, zum Verarbeiten
 	 * der Importschablonen.
 	 * @return	Liste mit <code>ImporterProcessor</code>-Objekten.
 	 */

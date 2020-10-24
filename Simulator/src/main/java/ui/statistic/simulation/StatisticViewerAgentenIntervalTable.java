@@ -29,7 +29,9 @@ import simulator.Statistics.AgentenDaten;
  * @version 1.0
  */
 public class StatisticViewerAgentenIntervalTable extends StatisticViewerIntervalTable {
+	/** Darstellungsart */
 	private final Mode dataType;
+	/** Statistikobjekt dem die Agentendaten entnommen werden sollen */
 	private final Statistics statistic;
 
 	/**

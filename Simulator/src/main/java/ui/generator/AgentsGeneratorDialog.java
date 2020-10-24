@@ -63,7 +63,9 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 	}
 
 	private List<CallcenterModelAgent> agents;
+	/** Welches Callcenter soll als Empfänger für die Daten vorgeschlagen werden? (kann -1 sein) */
 	private int selectCallcenterNr;
+	/** Welche Daten sollen geladen werden? */
 	private final AgentsGeneratorMode mode;
 
 	private JComboBox<String> callcenterSelect=null;
@@ -85,7 +87,12 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 		this.mode=mode;
 	}
 
-	private static String getTitle(AgentsGeneratorMode mode) {
+	/**
+	 * Liefert den Dialogtitel in Abhängigkeit vom Modus
+	 * @param mode	Welche Daten sollen geladen werden?
+	 * @return	Dialogtitel in Abhängigkeit vom Modus
+	 */
+	private static String getTitle(final AgentsGeneratorMode mode) {
 		switch (mode) {
 		case AGENTS_GENERATOR_MODE_WORKING: return Language.tr("Generator.LoadAgentsData");
 		case AGENTS_GENERATOR_MODE_EFFICIENCY: return Language.tr("Generator.LoadAgentsProductivity");

@@ -38,6 +38,7 @@ import ui.connected.ConnectedSimulation;
  * @see CommandLineSystem
  */
 public final class CommandConnected extends AbstractSimulationCommand {
+	/** Verbundenes Modell */
 	private ConnectedModel model;
 
 	@Override
@@ -58,6 +59,12 @@ public final class CommandConnected extends AbstractSimulationCommand {
 		return Language.tr("CommandLine.Connected.Description.Long").split("\n");
 	}
 
+	/**
+	 * Initialisiert die Modelleinstellungen basiertend auf den angegebenen Kommandozeilenparametern
+	 * @param additionalArguments	Kommandozeilenparameter
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 * @see #prepare(String[], InputStream, PrintStream)
+	 */
 	private String initModelFromArguments(String[] additionalArguments) {
 		if (additionalArguments.length<3) return String.format(Language.tr("CommandLine.Connected.Error.ParameterNumber1"),additionalArguments.length);
 		if (additionalArguments.length%2==0) return String.format(Language.tr("CommandLine.Connected.Error.ParameterNumber2"),additionalArguments.length);

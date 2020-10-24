@@ -31,7 +31,9 @@ import ui.model.CallcenterModelCallcenter;
  * @version 1.0
  */
 public class StatisticViewerAgentsTable extends StatisticViewerTable {
+	/** Callcenter-Modell, aus dem die Daten gewonnen werden sollen */
 	private final CallcenterModel model;
+	/** Bestimmt, wie die Agenten-Arbeitszeiten sortiert bzw. zusammengefasst werden sollen */
 	private final Mode viewType;
 
 	/**
@@ -61,7 +63,7 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 	 * @param model	Callcenter-Modell, aus dem die Daten gewonnen werden sollen
 	 * @param viewType	Bestimmt, wie die Agenten-Arbeitszeiten sortiert bzw. zusammengefasst werden sollen
 	 */
-	public StatisticViewerAgentsTable(CallcenterModel model, Mode viewType) {
+	public StatisticViewerAgentsTable(final CallcenterModel model, final Mode viewType) {
 		super();
 		this.model=model;
 		this.viewType=viewType;

@@ -29,13 +29,14 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class StatisticViewerCallerTable extends StatisticViewerTable {
+	/** Callcenter-Modell, aus dem die Daten gewonnen werden sollen */
 	private final CallcenterModel model;
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerCallerTable</code>
 	 * @param model	Callcenter-Modell, aus dem die Daten gewonnen werden sollen
 	 */
-	public StatisticViewerCallerTable(CallcenterModel model) {
+	public StatisticViewerCallerTable(final CallcenterModel model) {
 		super();
 		this.model=model;
 	}
@@ -44,7 +45,7 @@ public class StatisticViewerCallerTable extends StatisticViewerTable {
 	protected void buildTable() {
 		final List<String> columnNames=new ArrayList<>();
 		final List<List<String>> data=new ArrayList<>();
-		
+
 		columnNames.add(Language.tr("Statistic.Interval"));
 		int count=0;
 		for (int i=0;i<model.caller.size();i++) if (model.caller.get(i).active) {count++; columnNames.add(model.caller.get(i).name);}
@@ -72,7 +73,7 @@ public class StatisticViewerCallerTable extends StatisticViewerTable {
 		int s=0;
 		for (int i=0;i<model.caller.size();i++) if (model.caller.get(i).active) {col.add(""+model.caller.get(i).freshCallsCountMean); s+=model.caller.get(i).freshCallsCountMean;}
 		col.add(""+s);
-		
+
 		setData(data,columnNames);
 	}
 }

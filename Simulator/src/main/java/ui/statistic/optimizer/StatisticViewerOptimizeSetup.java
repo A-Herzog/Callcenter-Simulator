@@ -29,7 +29,9 @@ import ui.optimizer.OptimizeSetup;
  * @version 1.0
  */
 public class StatisticViewerOptimizeSetup extends StatisticViewerText {
+	/** Optimierungsergebnisobjekt dem die Optimierungsergebnisse entnommen werden sollen */
 	private final OptimizeData results;
+	/** Gibt an, welche Informationen ausgegeben werden sollen */
 	private final Mode dataType;
 
 	/**

@@ -63,6 +63,9 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 */
 	private static final long serialVersionUID = -2131842717612014699L;
 
+	/**
+	 * Anzuzeigende Statistikdaten
+	 */
 	private Statistics[] statisticData;
 
 	/**
@@ -136,8 +139,11 @@ public final class StatisticPanel extends StatisticBasePanel {
 
 	private class MultiNumbers {
 		public final String name;
-		public int[] nr;
-		public MultiNumbers(String name, int size) {this.name=name; nr=new int[size];}
+		public final int[] nr;
+		public MultiNumbers(final String name, final int size) {
+			this.name=name;
+			nr=new int[size];
+		}
 	}
 
 	private MultiNumbers[] callerTypes(Statistics data[]) {

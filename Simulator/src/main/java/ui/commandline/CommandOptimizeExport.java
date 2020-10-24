@@ -33,7 +33,10 @@ import ui.optimizer.OptimizeData;
  * @see CommandLineSystem
  */
 public class CommandOptimizeExport extends AbstractCommand {
-	private File optimizeFile, statisticsFile;
+	/** Eingabe-Optimierer-Ergebnisse */
+	private File optimizeFile;
+	/** Ausgabe-Statistikdaten */
+	private File statisticsFile;
 
 	@Override
 	public String[] getKeys() {

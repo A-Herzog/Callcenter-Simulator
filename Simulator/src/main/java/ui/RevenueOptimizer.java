@@ -35,21 +35,40 @@ import ui.model.CallcenterModelCaller;
  * @version 1.0
  */
 public class RevenueOptimizer {
+	/** Ab welchem Unterschied (relativ zur Standardabweichung des Ertrags des Basismodells und der Agentenanzahl) sollen im Standardfall zwei Modelle als unterschiedlch angesehen werden? */
 	private static final double DEFAULT_SIGNIFICANCE_LEVEL=100;
 
+	/** Ausgangsmodell */
 	private final CallcenterModel baseModel;
 	/** Stellt ein, ab welchem Unterschied (relativ zur Standardabweichung des Ertrags des Basismodells und der Agentenanzahl) zwei Modelle als unterschiedlch angesehen werden. */
 	private final double signficanceLevel;
+	/** Im Ausgangsmodell verfügbare Bedienleistung (in Agenten-Halbstunden) */
 	private int workForce;
+	/** Bestes bisheriges Modell */
 	private CallcenterModel bestModel;
+	/** Mittlerer Ertrag im Basismodell */
 	private double baseRevenue;
+	/** Standardabweichung des Ertrags im Basismodell */
 	private double baseRevenueSD;
+	/** Bester bisheriger Ertrag */
 	private double bestRevenue;
+	/** Intervalle pro Tag */
 	private int steps;
+	/** Hinzugefügte Agenten-intervalle */
 	private int agentsAdded;
+	/** Entfernte Agenten-intervalle */
 	private int agentsRemoved;
 
+	/**
+	 * Fehlermeldung zu dem fehlgeschlagenen Funktionsaufruf
+	 * @see #getError()
+	 */
 	private String error=null;
+
+	/**
+	 * Bricht den Optimierungsprozess ab.
+	 * @see #setAbort()
+	 */
 	private boolean abortOptimization=false;
 
 	/**
@@ -71,13 +90,18 @@ public class RevenueOptimizer {
 	}
 
 	/**
-	 * Schälgt der Aufruf einer Funktion fehlt, so wird hier die Fehlermeldung geliefert.
-	 * @return	Fehlermeldung zu dem fehlgeschlagenen Funktionsaufruf.
+	 * Schlägt der Aufruf einer Funktion fehlt, so wird hier die Fehlermeldung geliefert.
+	 * @return	Fehlermeldung zu dem fehlgeschlagenen Funktionsaufruf
 	 */
 	public String getError() {
 		return error;
 	}
 
+	/**
+	 * Bereitet ein Modell für die Simulation vor.
+	 * @param model	Ausgangsmodell
+	 * @return	Neues Modell
+	 */
 	private CallcenterModel prepareModel(final CallcenterModel model) {
 		CallcenterModel model2=model.clone();
 
@@ -134,6 +158,11 @@ public class RevenueOptimizer {
 		return false;
 	}
 
+	/**
+	 * Berechnet den Ertrag mit Hilfe einer Simulation
+	 * @param model	Zu simulierendes Modell
+	 * @return	Ertrag
+	 */
 	private Double calcRevenue(CallcenterModel model) {
 		StartAnySimulator start=new StartAnySimulator(model);
 		error=start.check();
@@ -201,6 +230,11 @@ public class RevenueOptimizer {
 		return new int[]{agentsAdded, agentsRemoved};
 	}
 
+	/**
+	 * Berechnet die in {@link #baseModel} verfügbare Agenten-Halbstunden-Arbeitsleistung
+	 * @return	Verfügbare Agenten-Halbstunden-Arbeitsleistung
+	 * @see #workForce
+	 */
 	private int calcWorkForce() {
 		int sum=0;
 		for (CallcenterModelCallcenter callcenter : baseModel.callcenter) if (callcenter.active) for (CallcenterModelAgent agents : callcenter.agents) if (agents.active) {
@@ -218,6 +252,15 @@ public class RevenueOptimizer {
 		return sum;
 	}
 
+	/**
+	 * Fügt Agenten zu einer Gruppe hinzu.
+	 * @param iNr	0-basierte Nummer des Intervalls
+	 * @param cNr	0-basierte Nummer des Callcenters
+	 * @param aNr	0-basierte Nummer der Agentengruppe in dem Callcenter
+	 * @param signficanceLevelInt	Notwendiges Signifikanz-Level für Verbesserungen
+	 * @param changeQuantity	Anzahl an hinzuzufügenden Agenten-Halbstundenintervallen
+	 * @return	Gibt <code>true</code> zurück, wenn die Optimierung erfolgreich abgeschlossen werden konnte.
+	 */
 	private boolean runGroupAddAgents(int iNr, int cNr, int aNr, double signficanceLevelInt, int changeQuantity) {
 		CallcenterModel workingModel=bestModel.clone();
 		while (!abortOptimization) {
@@ -239,6 +282,15 @@ public class RevenueOptimizer {
 		return true;
 	}
 
+	/**
+	 * Entfernt Agenten aus einer Gruppe.
+	 * @param iNr	0-basierte Nummer des Intervalls
+	 * @param cNr	0-basierte Nummer des Callcenters
+	 * @param aNr	0-basierte Nummer der Agentengruppe in dem Callcenter
+	 * @param signficanceLevelInt	Notwendiges Signifikanz-Level für Verbesserungen
+	 * @param changeQuantity	Anzahl an zu entfernenden Agenten-Halbstundenintervallen
+	 * @return	Gibt <code>true</code> zurück, wenn die Optimierung erfolgreich abgeschlossen werden konnte.
+	 */
 	private boolean runGroupRemoveAgents(int iNr, int cNr, int aNr, double signficanceLevelInt, int changeQuantity) {
 		CallcenterModel workingModel=bestModel.clone();
 		while (!abortOptimization) {
@@ -270,6 +322,14 @@ public class RevenueOptimizer {
 		return true;
 	}
 
+	/**
+	 * Führt die Optimierung für ein Intervall und eine Agentengruppe aus.
+	 * @param iNr	0-basierte Nummer des Intervalls
+	 * @param cNr	0-basierte Nummer des Callcenters
+	 * @param aNr	0-basierte Nummer der Agentengruppe in dem Callcenter
+	 * @return	Gibt <code>true</code> zurück, wenn die Optimierung erfolgreich abgeschlossen werden konnte.
+	 * @see #runInterval(int)
+	 */
 	private boolean runGroup(int iNr, int cNr, int aNr) {
 		double signficanceLevelInt=signficanceLevel*baseRevenueSD/workForce;
 
@@ -285,7 +345,13 @@ public class RevenueOptimizer {
 		return true;
 	}
 
-	private boolean runInterval(int nr) {
+	/**
+	 * Führt die Optimierung für ein Intervall aus.
+	 * @param nr	0-basierte Nummer des Intervalls
+	 * @return	Gibt <code>true</code> zurück, wenn die Optimierung erfolgreich abgeschlossen werden konnte.
+	 * @see #run()
+	 */
+	private boolean runInterval(final int nr) {
 		for (int i=0;i<baseModel.callcenter.size();i++) {
 			CallcenterModelCallcenter callcenter=baseModel.callcenter.get(i);
 			if (callcenter.active) {
@@ -304,7 +370,7 @@ public class RevenueOptimizer {
 	}
 
 	/**
-	 * Führt die eigentliche Optimierung aus
+	 * Führt die eigentliche Optimierung aus.
 	 * @return	Gibt <code>true</code> zurück, wenn die Optimierung erfolgreich abgeschlossen werden konnte.
 	 */
 	public boolean run() {

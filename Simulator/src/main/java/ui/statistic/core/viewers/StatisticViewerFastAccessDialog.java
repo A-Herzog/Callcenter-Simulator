@@ -73,6 +73,7 @@ public class StatisticViewerFastAccessDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 871510627014695528L;
 
+	/** xml-Dokument (Statistik oder Modell) dem die Daten entnommen werden sollen */
 	private final Document xmlDoc;
 	private final int simDays;
 	private final boolean plainMode;

@@ -28,11 +28,12 @@ import systemtools.statistics.StatisticViewerText;
  * @version 1.0
  */
 public class StatisticViewerKostenText extends StatisticViewerText {
+	/** Objekt vom Typ {@link Statistics}, dem die Kostendaten entnommen werden sollen */
 	private final Statistics statistic;
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerKostenText</code>
-	 * @param statistic	Objekt vom Typ <code>ComplexStatisticSimData</code>, dem die Kostendaten entnommen werden sollen
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Kostendaten entnommen werden sollen
 	 */
 	public StatisticViewerKostenText(Statistics statistic) {
 		super();

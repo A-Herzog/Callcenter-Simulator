@@ -49,6 +49,11 @@ public class ModelShrinker {
 		baseModel=model;
 	}
 
+	/**
+	 * Stellt das Basismodell (als Kopie des im Konstruktor übergebenen Modells) zur Verfügung
+	 * @return	Basismodell
+	 * @see #calc(boolean)
+	 */
 	private CallcenterModel calcBasics() {
 		CallcenterModel model=baseModel.clone();
 		/* Callcenter behalten wir, nur Caller und Skills werden neu gesetzt */
@@ -58,7 +63,15 @@ public class ModelShrinker {
 		return model;
 	}
 
-	private static AbstractRealDistribution joinDistributions(List<AbstractRealDistribution> distribution, List<Double> weight, String fallbackDistributionName, boolean useMax) {
+	/**
+	 * Fasst mehrere Wahrscheinlichkeitsverteilungen zusammen
+	 * @param distribution	Zusammenzufassende Wahrscheinlichkeitsverteilungen
+	 * @param weight	Gewichtung der zusammenzufassenden Wahrscheinlichkeitsverteilungen
+	 * @param fallbackDistributionName	Verteilung, die verwendet werden soll, wenn das Zusammenfassen nicht möglich ist
+	 * @param useMax	Soll der neue Erwartungswert der Mittelwert der Einzel-Erwartungswerte sein (<code>false</code>) oder die Summe der Einzel-Erwartungswerte (<code>true</code>)
+	 * @return	Neue Wahrscheinlichkeitsverteilung
+	 */
+	private static AbstractRealDistribution joinDistributions(final List<AbstractRealDistribution> distribution, final List<Double> weight, final String fallbackDistributionName, final boolean useMax) {
 		if (distribution.size()==0) return new NeverDistributionImpl();
 		if (distribution.size()==1) return distribution.get(0);
 
@@ -98,12 +111,23 @@ public class ModelShrinker {
 		return joinedDistribution;
 	}
 
-	private static AbstractRealDistribution joinDistributions(List<AbstractRealDistribution> distribution, String fallbackDistributionName, boolean useMax) {
+	/**
+	 * Fasst mehrere Wahrscheinlichkeitsverteilungen zusammen
+	 * @param distribution	Zusammenzufassende Wahrscheinlichkeitsverteilungen
+	 * @param fallbackDistributionName	Verteilung, die verwendet werden soll, wenn das Zusammenfassen nicht möglich ist
+	 * @param useMax	Soll der neue Erwartungswert der Mittelwert der Einzel-Erwartungswerte sein (<code>false</code>) oder die Summe der Einzel-Erwartungswerte (<code>true</code>)
+	 * @return	Neue Wahrscheinlichkeitsverteilung
+	 */
+	private static AbstractRealDistribution joinDistributions(final List<AbstractRealDistribution> distribution, final String fallbackDistributionName, final boolean useMax) {
 		List<Double> weight=new ArrayList<Double>();
 		for (int i=0;i<distribution.size();i++) weight.add(1.0);
 		return joinDistributions(distribution,weight,fallbackDistributionName,useMax);
 	}
 
+	/**
+	 * Berechnet die Daten zu den Anrufern.
+	 * @return	Neue Anrufergruppe
+	 */
 	private CallcenterModelCaller calcCaller() {
 		CallcenterModelCaller caller=new CallcenterModelCaller();
 
@@ -303,7 +327,13 @@ public class ModelShrinker {
 		return caller;
 	}
 
-	private void changeCallcenter(String callerTypeName, List<CallcenterModelCallcenter> callcenterList) {
+
+	/**
+	 * Vereinfacht die Callcenter des Modells.
+	 * @param callerTypeName	Name der neuen einheitlichen Kundengruppe
+	 * @param callcenterList	Liste der Callcenter
+	 */
+	private void changeCallcenter(final String callerTypeName, final List<CallcenterModelCallcenter> callcenterList) {
 		for (CallcenterModelCallcenter callcenter : callcenterList) {
 			callcenter.callerMinWaitingTimeName.clear();
 			callcenter.callerMinWaitingTime.clear();
@@ -313,7 +343,13 @@ public class ModelShrinker {
 		}
 	}
 
-	private CallcenterModelSkillLevel calcSkillLevel(String callerTypeName, boolean useMaxAHT) {
+	/**
+	 * Berecnhet die Daten zu den Agenten-Skill-Levels
+	 * @param callerTypeName	Name des zusammengefassten Kundentyps
+	 * @param useMaxAHT	Maximum (<code>true</code>) oder Durchschnitt (<code>false</code>) verwenden
+	 * @return	Neues Skill-Level
+	 */
+	private CallcenterModelSkillLevel calcSkillLevel(final String callerTypeName, final boolean useMaxAHT) {
 		CallcenterModelSkillLevel skillLevel=new CallcenterModelSkillLevel();
 		skillLevel.name=Language.tr("SimStatistic.AllClients");
 
@@ -391,7 +427,7 @@ public class ModelShrinker {
 	public CallcenterModel calc(boolean useMaxAHT) {
 		String callerTypeName="";
 
-		CallcenterModel model=calcBasics();
+		final CallcenterModel model=calcBasics();
 
 		CallcenterModelCaller caller=calcCaller();
 		if (caller!=null) {model.caller.add(caller); callerTypeName=caller.name;}

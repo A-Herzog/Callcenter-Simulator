@@ -29,7 +29,9 @@ import ui.model.CallcenterModelAgent;
  * @version 1.0
  */
 public class StatisticViewerAgentenPieChart extends StatisticViewerPieChart {
+	/** Callcenter-Modell, aus dem die Daten gewonnen werden sollen */
 	private final CallcenterModel model;
+	/** 0-basierte Nummer des Callcenters zu dem Daten angezeigt werden sollen (Werte &lt;0 werden als "über alle Callcenter" interpretiert) */
 	private final int callcenterNr;
 
 	/**
@@ -37,7 +39,7 @@ public class StatisticViewerAgentenPieChart extends StatisticViewerPieChart {
 	 * @param model	Callcenter-Modell, aus dem die Daten gewonnen werden sollen
 	 * @param callcenterNr	 0-basierte Nummer des Callcenters zu dem Daten angezeigt werden sollen (Werte &lt;0 werden als "über alle Callcenter" interpretiert)
 	 */
-	public StatisticViewerAgentenPieChart(CallcenterModel model, int callcenterNr) {
+	public StatisticViewerAgentenPieChart(final CallcenterModel model, final int callcenterNr) {
 		super();
 		this.model=model;
 		this.callcenterNr=callcenterNr;

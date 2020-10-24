@@ -36,7 +36,12 @@ import ui.optimizer.Optimizer;
  * @see CommandLineSystem
  */
 public final class CommandOptimize extends AbstractSimulationCommand {
-	private File modelFile, optimizeFile, statisticsFile;
+	/** Eingabe-Modelldatei */
+	private File modelFile;
+	/** Eingabe-Optimierer-Konfiguration */
+	private File optimizeFile;
+	/** Ausgabe-Statistikdatei */
+	private File statisticsFile;
 
 	@Override
 	public String[] getKeys() {
@@ -69,7 +74,12 @@ public final class CommandOptimize extends AbstractSimulationCommand {
 		return null;
 	}
 
-	private void runOptimizer(Optimizer optimizer, PrintStream out) {
+	/**
+	 * Führt die eigentliche Optimierung aus.
+	 * @param optimizer	Optimierer-System
+	 * @param out	Ausgabe für Fehlermeldungen
+	 */
+	private void runOptimizer(final Optimizer optimizer, final PrintStream out) {
 		boolean firstRun=true;
 		int changeNeeded=0;
 		while (changeNeeded!=0 || firstRun) {

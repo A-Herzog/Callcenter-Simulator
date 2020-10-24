@@ -36,8 +36,11 @@ import ui.statistic.model.StatisticViewerErlangCTools;
  * @version 1.0
  */
 public class StatisticViewerOptimizerTable extends StatisticViewerTable {
+	/** Optimierungsergebnisobjekt dem die Optimierungsergebnisse entnommen werden sollen */
 	private final OptimizeData results;
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private Mode dataType;
+	/** Zusätzliche Angaben zur Darstellungsart, z.B. Nummer des Kundentyps */
 	private final int dataNr;
 
 	/**

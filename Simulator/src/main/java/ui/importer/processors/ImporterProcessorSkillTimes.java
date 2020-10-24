@@ -50,7 +50,9 @@ public class ImporterProcessorSkillTimes extends ImporterProcessor {
 		SKILL_WORKING_TIME_ADDON
 	}
 
+	/** Gibt an, was geladen werden soll */
 	private final SkillMode mode;
+	/** Gibt das Intervall an, um das es sich handelt. (-1 für globale Verteilung) */
 	private final int interval;
 
 	/**

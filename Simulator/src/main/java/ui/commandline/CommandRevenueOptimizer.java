@@ -35,7 +35,9 @@ import ui.model.CallcenterModel;
  * @see CommandLineSystem
  */
 public class CommandRevenueOptimizer extends AbstractSimulationCommand {
+	/** Eingabe-Modelldatei */
 	private File inputFile;
+	/** Ausgabe-Modelldatei */
 	private File outputFile;
 
 	@Override

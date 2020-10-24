@@ -16,6 +16,7 @@
 package ui.statistic.core;
 
 import java.awt.Window;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,12 +39,20 @@ import ui.statistic.StatisticPanel;
  * @version 1.0
  */
 public final class StatisticFilterDialog extends BaseEditDialog {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -5055497416534668594L;
 
+	/** Liste mit allen IDs */
 	private final String[] ids;
+	/** Welche IDs sidn ausgewählt? */
 	private final boolean[] select;
+	/** Liste mit den momentan ausgeblendeten IDs */
 	private final List<String> hiddenIDs;
 
+	/** Tabelle zur Auswahl der IDs */
 	private JCheckboxTable table;
 
 	/**

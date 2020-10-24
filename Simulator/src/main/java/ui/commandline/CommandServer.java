@@ -35,8 +35,11 @@ import tools.SetupData;
  * @see AbstractCommand
  */
 public class CommandServer extends AbstractCommand {
+	/** Server-Port */
 	private int serverPort=6783;
+	/** Server-Passwort */
 	private String serverPassword="";
+	/** Maximal Anzahl an Threads pro Anfrage */
 	private int serverMaxThreads=0;
 
 	/**
@@ -44,6 +47,7 @@ public class CommandServer extends AbstractCommand {
 	 */
 	protected File serverLogFile=null;
 
+	/** Server-System */
 	private WebServerSystem server;
 
 	@Override

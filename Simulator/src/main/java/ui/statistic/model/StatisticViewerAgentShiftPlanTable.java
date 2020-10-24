@@ -28,15 +28,8 @@ import ui.model.CallcenterModelAgent;
  * @version 1.0
  */
 public class StatisticViewerAgentShiftPlanTable extends StatisticViewerTable {
+	/** Konkrete Agenten deren Arbeitszeiten als Schichtplantabelle dargestellt werden sollen */
 	private final List<CallcenterModelAgent> translatedAgents;
-
-	private static final String[] COLHEADS = {
-			Language.tr("SimStatistic.Count"),
-			Language.tr("SimStatistic.Shift.Start"),
-			Language.tr("SimStatistic.Shift.End"),
-			Language.tr("SimStatistic.Shift.Length"),
-			Language.tr("SimStatistic.SkillLevel")
-	};
 
 	/**
 	 * Konstruktor der Klasse
@@ -49,7 +42,13 @@ public class StatisticViewerAgentShiftPlanTable extends StatisticViewerTable {
 
 	@Override
 	protected void buildTable() {
-		setData(getTableData(translatedAgents),COLHEADS);
+		setData(getTableData(translatedAgents),new String[]{
+				Language.tr("SimStatistic.Count"),
+				Language.tr("SimStatistic.Shift.Start"),
+				Language.tr("SimStatistic.Shift.End"),
+				Language.tr("SimStatistic.Shift.Length"),
+				Language.tr("SimStatistic.SkillLevel")
+		});
 	}
 
 	private static String[][] getTableData(List<CallcenterModelAgent> agents) {

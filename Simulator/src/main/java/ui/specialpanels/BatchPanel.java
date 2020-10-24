@@ -115,7 +115,7 @@ public class BatchPanel extends JWorkPanel {
 
 	private final FileDropper drop2;
 
-	private JPanel createDialogLine(JComponent parent, String text) {
+	private JPanel createDialogLine(final JComponent parent, final String text) {
 		JPanel content=new JPanel(new BorderLayout());
 		JPanel textPanel=new JPanel(new FlowLayout());
 		textPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,5));

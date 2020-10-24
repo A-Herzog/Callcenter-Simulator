@@ -36,6 +36,7 @@ import ui.model.CallcenterModel;
  * @see CommandLineSystem
  */
 public final class CommandBatch extends AbstractSimulationCommand {
+	/** Verzeichnis für die Modelldateien */
 	private File batchFolder;
 
 	@Override

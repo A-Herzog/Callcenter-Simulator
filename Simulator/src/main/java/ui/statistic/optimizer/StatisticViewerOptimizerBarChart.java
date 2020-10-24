@@ -48,7 +48,9 @@ import ui.optimizer.OptimizeData;
 public class StatisticViewerOptimizerBarChart extends StatisticViewerBarChart {
 	private final Statistics statistic1;
 	private final Statistics statistic2;
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final int dataType;
+	/** Index im <code>kundenProTyp</code>-Array bzw. im <code>agentenProCallcenter</code>-Array, aus dem die Daten genommen werden sollen. ("-1" bedeutet, dass das <code>kundenGlobal</code>- bzw. das <code>agentenGlobal</code>-Objekt verwendet wird.) */
 	private final int dataNr;
 
 	/**

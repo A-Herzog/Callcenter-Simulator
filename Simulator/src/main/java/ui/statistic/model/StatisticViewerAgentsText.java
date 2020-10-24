@@ -27,7 +27,9 @@ import ui.statistic.simulation.StatisticViewerTextInformation;
  * @author Alexander Herzog
  */
 public class StatisticViewerAgentsText extends StatisticViewerText {
+	/** Callcenter-Modell, aus dem die Daten gewonnen werden sollen */
 	private final CallcenterModel model;
+	/** Bestimmt, wie die Agenten-Arbeitszeiten sortiert bzw. zusammengefasst werden sollen */
 	private final Mode viewType;
 
 	/**
@@ -52,7 +54,7 @@ public class StatisticViewerAgentsText extends StatisticViewerText {
 	 * @param model	Callcenter-Modell, aus dem die Daten gewonnen werden sollen
 	 * @param viewType	Bestimmt, wie die Agenten-Arbeitszeiten sortiert bzw. zusammengefasst werden sollen
 	 */
-	public StatisticViewerAgentsText(CallcenterModel model, Mode viewType) {
+	public StatisticViewerAgentsText(final CallcenterModel model, final Mode viewType) {
 		super();
 		this.model=model;
 		this.viewType=viewType;

@@ -37,6 +37,7 @@ public final class Preplanning {
 	private Mode mode;
 	/** Soll eine Vereinfachung des Modells vorgenommen werden? */
 	private Mode simplify;
+	/** Vorgebene Auslastung */
 	private double fixedLoadStatus;
 
 	/**
@@ -52,7 +53,7 @@ public final class Preplanning {
 		/** Vorplanung auf Basis eines vorgegebenen Service-Level-Ziels */
 		MODE_SERVICE_LEVEL,
 
-		/** Vorplanung auf Basis statischen Auslastung */
+		/** Vorplanung auf Basis einer statischen Auslastung */
 		MODE_FIXED_LOAD,
 
 		/** Modell vor der Rechnung nicht vereinfachen. */
@@ -86,7 +87,16 @@ public final class Preplanning {
 	 */
 	public boolean isMultiSkillModel;
 
+	/**
+	 * Führt die Verarbeitung für einen Kundentyp aus.
+	 * @see ClientTypeRunnable
+	 */
 	private ClientTypeRunnable[] worker=null;
+
+	/**
+	 * Führt die Gesamtplanung über alle Kundentypen aus.
+	 * @see JoinedRunnable
+	 */
 	private JoinedRunnable joinedWorker=null;
 
 	/**
@@ -123,6 +133,12 @@ public final class Preplanning {
 		return false;
 	}
 
+	/**
+	 * Führt mehrere Callcenter-Modelle zusammen.
+	 * @param workModel	Ausgangsmodell
+	 * @param list	Weitere Modelle
+	 * @return	Neues Modell
+	 */
 	private CallcenterModel joinModels(final CallcenterModel workModel, final CallcenterModel[] list) {
 		if (list==null || list.length==0) return workModel;
 
@@ -143,6 +159,11 @@ public final class Preplanning {
 		return model;
 	}
 
+	/**
+	 * Liefert die Namen der aktiven Kundentypen
+	 * @param workModel	Modell dem die Daten entnommen werden sollen
+	 * @return	Namen der aktiven Kundentypen
+	 */
 	private String[] getActiveClientTypes(final CallcenterModel workModel) {
 		List<String> list=new ArrayList<>();
 		for (CallcenterModelCaller caller : workModel.caller) if (caller.active) {
@@ -154,6 +175,12 @@ public final class Preplanning {
 		return list.toArray(new String[0]);
 	}
 
+	/**
+	 * Erstellt ein Callcenter-Modell in dem nur eine bestimmte Anrufergruppe aktiv ist
+	 * @param workModel	Modell dem die Daten entnommen werden sollen
+	 * @param name	Name der Anrufergruppe, die aktiv sein soll
+	 * @return	Neues Callcenter-Modell
+	 */
 	private CallcenterModel getModelForClientType(final CallcenterModel workModel, final String name) {
 		CallcenterModel model=workModel.clone();
 		for (CallcenterModelCaller caller : model.caller) if (caller.active) {
@@ -163,6 +190,14 @@ public final class Preplanning {
 		return model;
 	}
 
+	/**
+	 * Erstellt ein Callcenter-Modell für einen Kundentyp
+	 * @param baseModel	Ausgangsmodell
+	 * @param callerTypeName	Kundentypname
+	 * @param multiSkillReduction	Reduktion der geplanten Multiskiller gegenüber den Singleskillern (Wert &ge;0, siehe hier <code>DEFAULT_MULTI_SKILL_REDUCTION</code>)
+	 * @param agentCount	Anzahl an Agenten pro Halbstundenintervall
+	 * @return	Neues Callcenter-Modell
+	 */
 	private CallcenterModel buildModel(final CallcenterModel baseModel, final String callerTypeName, final double multiSkillReduction, final int[] agentCount) {
 		CallcenterModel model=baseModel.clone();
 
@@ -186,6 +221,12 @@ public final class Preplanning {
 		return model;
 	}
 
+	/**
+	 * Erstellt ein Callcenter-Modell
+	 * @param baseModel	Ausgangsmodell
+	 * @param agentCount	Anzahl an Agenten pro Halbstundenintervall
+	 * @return	Neues Callcenter-Modell
+	 */
 	private CallcenterModel buildModel(final CallcenterModel baseModel, final int[] agentCount) {
 		CallcenterModel model=baseModel.clone();
 
@@ -209,16 +250,25 @@ public final class Preplanning {
 		return model;
 	}
 
+	/**
+	 * Liefert die Mindestanzahl um eine bestimmte Anzahl an Kunden bedienen zu können
+	 * @param baseModel	Basismodell
+	 * @param callerTypeName	Zu betrachtender Kundentyp
+	 * @param multiSkillReduction	Reduktion der geplanten Multiskiller gegenüber den Singleskillern (Wert &ge;0, siehe hier <code>DEFAULT_MULTI_SKILL_REDUCTION</code>)
+	 * @return	Agentenanzahl pro Halbstundenintervall
+	 */
 	private int[] getMinAgentCount(final CallcenterModel baseModel, final String callerTypeName, final double multiSkillReduction) {
-		int[] dummyCount=new int[48]; Arrays.fill(dummyCount,1000);
-		CallcenterModel newModel=buildModel(baseModel,callerTypeName,multiSkillReduction,dummyCount);
+		final int[] dummyCount=new int[48];
+		Arrays.fill(dummyCount,1000);
 
-		StatisticViewerErlangCTools erlangC=new StatisticViewerErlangCTools(newModel,false);
-		double[][] data=erlangC.getCallerAndMu();
-		double[] caller=data[0];
-		double[] mu=data[1];
+		final CallcenterModel newModel=buildModel(baseModel,callerTypeName,multiSkillReduction,dummyCount);
 
-		int[] result=new int[48];
+		final StatisticViewerErlangCTools erlangC=new StatisticViewerErlangCTools(newModel,false);
+		final double[][] data=erlangC.getCallerAndMu();
+		final double[] caller=data[0];
+		final double[] mu=data[1];
+
+		final int[] result=new int[48];
 		for (int i=0;i<48;i++) {
 			result[i]=(int)Math.round(caller[i]/(mu[i]*1800));
 		}
@@ -226,16 +276,24 @@ public final class Preplanning {
 		return result;
 	}
 
-	private int[] getMinAgentCount(final CallcenterModel baseModel,double scale) {
-		int[] dummyCount=new int[48]; Arrays.fill(dummyCount,1000);
-		CallcenterModel newModel=buildModel(baseModel,dummyCount);
+	/**
+	 * Liefert die Mindestanzahl um eine bestimmte Anzahl an Kunden bedienen zu können
+	 * @param baseModel	Basismodell
+	 * @param scale	Skalierungsfaktor
+	 * @return	Agentenanzahl pro Halbstundenintervall
+	 */
+	private int[] getMinAgentCount(final CallcenterModel baseModel, final double scale) {
+		final int[] dummyCount=new int[48];
+		Arrays.fill(dummyCount,1000);
 
-		StatisticViewerErlangCTools erlangC=new StatisticViewerErlangCTools(newModel,false);
-		double[][] data=erlangC.getCallerAndMu();
-		double[] caller=data[0];
-		double[] mu=data[1];
+		final CallcenterModel newModel=buildModel(baseModel,dummyCount);
 
-		int[] result=new int[48];
+		final StatisticViewerErlangCTools erlangC=new StatisticViewerErlangCTools(newModel,false);
+		final double[][] data=erlangC.getCallerAndMu();
+		final double[] caller=data[0];
+		final double[] mu=data[1];
+
+		final int[] result=new int[48];
 		for (int i=0;i<48;i++) {
 			result[i]=(int)Math.round(caller[i]/(mu[i]*1800)*scale);
 		}
@@ -272,6 +330,14 @@ public final class Preplanning {
 		}
 	}
 
+	/**
+	 * Berechnet ein Modell mit vorgegebener Auslastung
+	 * @param workModel	Ausgangsmodell
+	 * @param load	Ziel-Auslastung
+	 * @param multiSkillReduction	Reduktion der geplanten Multiskiller gegenüber den Singleskillern (Wert &ge;0, siehe hier <code>DEFAULT_MULTI_SKILL_REDUCTION</code>)
+	 * @return	Neues Modell
+	 * @see #calc(Mode, Mode, double, boolean, double)
+	 */
 	private CallcenterModel calcFixed(final CallcenterModel workModel, final double load, final double multiSkillReduction) {
 		final String[] activeClientTypes=getActiveClientTypes(workModel);
 		final CallcenterModel[] newModel=new CallcenterModel[activeClientTypes.length];
@@ -288,6 +354,16 @@ public final class Preplanning {
 		return joinModels(workModel,newModel);
 	}
 
+	/**
+	 * Berechnet ein Modell mit einem vorgegebenen Zielwert für eine bestimmte Eigenschaft
+	 * @param workModel	Ausgangsmodell
+	 * @param mode	Kenngröße, für die ein Wert erreicht werden soll
+	 * @param value	Zielwert für die Kenngröße
+	 * @param extended	Berücksichtigung von Wiederholern?
+	 * @param multiSkillReduction	Reduktion der geplanten Multiskiller gegenüber den Singleskillern (Wert &ge;0, siehe hier <code>DEFAULT_MULTI_SKILL_REDUCTION</code>)
+	 * @return	Neues Modell
+	 * @see #calc(Mode, Mode, double, boolean, double)
+	 */
 	private CallcenterModel calcErlangC(final CallcenterModel workModel, final Mode mode, final double value, final boolean extended, final double multiSkillReduction) {
 		final String[] activeClientTypes=getActiveClientTypes(workModel);
 
@@ -348,17 +424,38 @@ public final class Preplanning {
 		}
 	}
 
+	/**
+	 * Für die Verarbeitung für einen Kundentyp durch.
+	 * @see Preplanning#worker
+	 */
 	private class ClientTypeRunnable implements Runnable {
+		/** Kenngröße, für die ein Wert erreicht werden soll */
 		private final Mode mode;
+		/** Zielwert für die Kenngröße */
 		private final double value;
+		/** Berücksichtigung von Wiederholern? */
 		private final boolean extended;
+		/** Reduktion der geplanten Multiskiller gegenüber den Singleskillern (Wert &ge;0, siehe hier <code>DEFAULT_MULTI_SKILL_REDUCTION</code>) */
 		private final double multiSkillReduction;
+		/** Ausgangsmodell */
 		private final CallcenterModel inputModel;
+		/** Name der aktuell zu betrachtenden Kundengruppe */
 		private final String callerTypeName;
 
+		/** Ergebnismodell */
 		public CallcenterModel result;
+		/** Fortschritt bei der Verarbeitung (0..1) */
 		public double status;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param mode	Kenngröße, für die ein Wert erreicht werden soll
+		 * @param value	Zielwert für die Kenngröße
+		 * @param extended	Berücksichtigung von Wiederholern?
+		 * @param multiSkillReduction	Reduktion der geplanten Multiskiller gegenüber den Singleskillern (Wert &ge;0, siehe hier <code>DEFAULT_MULTI_SKILL_REDUCTION</code>)
+		 * @param inputModel	Ausgangsmodell
+		 * @param callerTypeName	 Name der aktuell zu betrachtenden Kundengruppe
+		 */
 		public ClientTypeRunnable(final Mode mode, final double value, final boolean extended, final double multiSkillReduction, final CallcenterModel inputModel, final String callerTypeName) {
 			this.mode=mode;
 			this.value=value;
@@ -406,15 +503,32 @@ public final class Preplanning {
 		}
 	}
 
+	/**
+	 * Führt die Gesamtplanung über alle Kundentypen aus.
+	 * @see Preplanning#joinedWorker
+	 */
 	private class JoinedRunnable implements Runnable {
+		/** Kenngröße, für die ein Wert erreicht werden soll */
 		private final Mode mode;
+		/** Zielwert für die Kenngröße */
 		private final double value;
+		/** Berücksichtigung von Wiederholern? */
 		private final boolean extended;
+		/** Ausgangsmodell */
 		private final CallcenterModel inputModel;
 
+		/** Ergebnismodell */
 		public CallcenterModel result;
+		/** Fortschritt bei der Verarbeitung (0..1) */
 		public double status;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param mode	Kenngröße, für die ein Wert erreicht werden soll
+		 * @param value	Zielwert für die Kenngröße
+		 * @param extended	Berücksichtigung von Wiederholern?
+		 * @param inputModel	Ausgangsmodell
+		 */
 		public JoinedRunnable(final Mode mode, final double value, final boolean extended, final CallcenterModel inputModel) {
 			this.mode=mode;
 			this.value=value;

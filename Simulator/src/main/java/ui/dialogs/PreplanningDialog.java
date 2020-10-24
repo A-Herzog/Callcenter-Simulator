@@ -52,21 +52,43 @@ public class PreplanningDialog extends BaseEditDialog {
 	 * @see Serializable
 	 */
 	private static final long serialVersionUID = -3851051029525031101L;
-	/** Ausgangs-Callcenter-Modell */
+
+	/**
+	 * Ausgangs-Callcenter-Modell
+	 */
 	private final CallcenterModel baseModel;
+
+	/**
+	 * Neues Callcenter-Modell
+	 * @see #getResultModel()
+	 */
 	private CallcenterModel resultModel;
 
+	/** Vorschlagswerte für das Kenngrößen-Wert-Eingabefeld */
 	private final String[] values=new String[]{"98%","30","80%"};
+	/** Fortschrittsanzeige */
 	private JProgressBar progress;
+	/** Zuletzt in {@link #comboMode} gewählter Eintrag */
 	private int lastSelectedIndex=0;
+	/** Auswahlfeld für die Art der Vorplanung */
 	private JComboBox<String> comboMode;
+	/** Auswahlfeld für die Art der optionalen vorhergehenden Modellvereinfachung */
 	private JComboBox<String> comboSimplify;
+	/** Auswahlfeld für die Ziel-Kenngröße */
 	private JComboBox<String> comboValueType;
+	/** Eingabefeld für den Wert der Ziel-Kenngröße */
 	private JTextField value;
+	/** Zusätzliche Informationen für das Ziel-Kenngröße-Eingabefeld */
 	private JLabel valueInfo;
+	/** Eingabefeld für die Auslastung */
 	private JTextField valueFixed;
+	/** Zusätzliche Informationen für das Auslastung-Eingabefeld */
 	private JLabel valueFixedInfo;
 
+	/**
+	 * Arbeitssthread in dem die Anpassungen durchgeführt werden.
+	 * @see Preplanning
+	 */
 	private Thread planningThread;
 
 	/**
@@ -213,6 +235,12 @@ public class PreplanningDialog extends BaseEditDialog {
 		return resultModel;
 	}
 
+	/**
+	 * Reagiert auf Änderungen an {@link PreplanningDialog#comboMode}
+	 * und {@link PreplanningDialog#comboValueType}.
+	 * @see PreplanningDialog#comboMode
+	 * @see PreplanningDialog#comboValueType
+	 */
 	private class ComboListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -236,6 +264,12 @@ public class PreplanningDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Eingaben in {@link PreplanningDialog#valueFixed}
+	 * und {@link PreplanningDialog#value}.
+	 * @see PreplanningDialog#valueFixed
+	 * @see PreplanningDialog#value
+	 */
 	private class EditListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

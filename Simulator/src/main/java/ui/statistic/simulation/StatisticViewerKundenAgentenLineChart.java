@@ -34,8 +34,11 @@ import ui.model.CallcenterModelCallcenter;
  * @version 1.0
  */
 public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineChart {
+	/** Objekt vom Typ {@link Statistics}, dem die Kunden- bzw. Agentendaten entnommen werden sollen */
 	private final Statistics statistic;
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final Mode dataType;
+	/** Index im <code>kundenProTyp</code>-Array bzw. im <code>agentenProCallcenter</code>-Array, aus dem die Daten genommen werden sollen. ("-1" bedeutet, dass das <code>kundenGlobal</code>- bzw. das <code>agentenGlobal</code>-Objekt verwendet wird.) */
 	private final int dataNr;
 
 	/**
@@ -192,7 +195,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerKundenAgentenLineChart</code>
-	 * @param statistic	Objekt vom Typ <code>ComplexStatisticSimData</code>, dem die Kunden- bzw. Agentendaten entnommen werden sollen
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Kunden- bzw. Agentendaten entnommen werden sollen
 	 * @param dataType	Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten.
 	 * @param dataNr	Index im <code>kundenProTyp</code>-Array bzw. im <code>agentenProCallcenter</code>-Array, aus dem die Daten genommen werden sollen. ("-1" bedeutet, dass das <code>kundenGlobal</code>- bzw. das <code>agentenGlobal</code>-Objekt verwendet wird.)
 	 */

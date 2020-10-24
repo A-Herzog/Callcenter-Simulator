@@ -121,10 +121,14 @@ public class FitDialog extends BaseEditDialog {
 	/** Am besten passende Verteilung */
 	private JDistributionPanel outputDistribution;
 
+	/** Wo soll die Verteilung in das Modell eingefügt werden? */
 	private JComboBox<String> ouputSelectInsert;
+	/** Welche Verteilung soll eingefügt werden? */
 	private List<AbstractRealDistribution> outputSelectDist;
 
+	/** Baumstruktur zur Auswahl, wie die angepasste Verteilung in das Modell übernommen werden soll */
 	private SelectableTreeSystem tree;
+	/** Schaltfläche "Einfügen" (Verteilung in das Modell) */
 	private JButton ouputSelectButton;
 
 	/**
@@ -244,6 +248,12 @@ public class FitDialog extends BaseEditDialog {
 	@Override protected boolean checkData() {return true;}
 	@Override protected void storeData() {}
 
+	/**
+	 * Baut die Baumstruktur {@link #tree} auf, um eine Auswahl, wie die
+	 * angepasste Verteilung in das Modell übernommen werden soll,
+	 * zu ermöglichen.
+	 * @see #tree
+	 */
 	private void addItemsToOutputTree() {
 		DefaultMutableTreeNode root=tree.getRoot(), node, node2;
 
@@ -271,13 +281,26 @@ public class FitDialog extends BaseEditDialog {
 		tree.reload(true);
 	}
 
+	/**
+	 * Reagiert auf einen Klick auf eine Schaltfläche.
+	 */
 	private class ButtonListener implements ActionListener {
+		/** Index der Schaltfläche */
 		private final int buttonNr;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param buttonNr	Index der Schaltfläche
+		 */
 		public ButtonListener(final int buttonNr) {
 			this.buttonNr=buttonNr;
 		}
 
+		/**
+		 * Lädt die Werte aus einem Array
+		 * @param newValues	Zu ladende Werte
+		 * @return	Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
+		 */
 		private boolean loadValuesFromArray(double newValues[][]) {
 			if (newValues==null || newValues.length==0 || newValues[0]==null || newValues[0].length==0) return false;
 
@@ -306,6 +329,10 @@ public class FitDialog extends BaseEditDialog {
 			return true;
 		}
 
+		/**
+		 * Lädt die Werte aus der Zwischenablage.
+		 * @return	Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
+		 */
 		private boolean loadValuesFromClipboard() {
 			Transferable cont=getToolkit().getSystemClipboard().getContents(this);
 			if (cont==null) return false;
@@ -316,10 +343,17 @@ public class FitDialog extends BaseEditDialog {
 			return loadValuesFromArray(JDataLoader.loadNumbersTwoRowsFromString(FitDialog.this,s,1,Integer.MAX_VALUE));
 		}
 
+		/**
+		 * Lädt die Werte aus einer Datei.
+		 * @return	Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
+		 */
 		private boolean loadValuesFromFile() {
 			return loadValuesFromArray(JDataLoader.loadNumbersTwoRows(FitDialog.this,Language.tr("FitDialog.LoadValues"),1,Integer.MAX_VALUE));
 		}
 
+		/**
+		 * Führt die Verteilungsanpassung durch.
+		 */
 		private void calcFit() {
 			DistributionFitter fitter=new DistributionFitter();
 			fitter.process(inputDistribution.getDistribution());
@@ -337,16 +371,30 @@ public class FitDialog extends BaseEditDialog {
 			ouputSelectButton.setEnabled(true);
 		}
 
+		/**
+		 * Kopiert die Ergebnisse in die Zwischenablage.
+		 */
 		private void copyResults() {
 			getToolkit().getSystemClipboard().setContents(new StringSelection(outputReportPlain),null);
 		}
 
+		/**
+		 * Lädt die Werte per Drag&amp;drop aus einer Datei.
+		 * @param dropper	Drag&amp;drop-Objekt
+		 * @return	Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
+		 */
 		private boolean fileDrop(FileDropperData dropper) {
 			final boolean ok=loadValuesFromArray(JDataLoader.loadNumbersTwoRowsFromFile(FitDialog.this,dropper.getFile(),1,Integer.MAX_VALUE));
 			if (ok) dropper.dragDropConsumed();
 			return ok;
 		}
 
+		/**
+		 * Verteilung in Modell übernehmen.
+		 * @param id	Stelle an der die Verteilung verwendet werden soll
+		 * @param dist	Zu verwendende Verteilung
+		 * @see #insertInfoModel()
+		 */
 		private void insertInfoProperty(int id, AbstractRealDistribution dist) {
 			if (id<10000000) {
 				/* Kundentyp */
@@ -371,6 +419,9 @@ public class FitDialog extends BaseEditDialog {
 			}
 		}
 
+		/**
+		 * Verteilung in Modell übernehmen.
+		 */
 		private void insertInfoModel() {
 			AbstractRealDistribution dist=outputSelectDist.get(ouputSelectInsert.getSelectedIndex());
 

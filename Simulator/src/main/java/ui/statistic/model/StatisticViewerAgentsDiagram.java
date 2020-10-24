@@ -32,10 +32,15 @@ import ui.model.CallcenterModelSkillLevel;
  * @version 1.0
  */
 public class StatisticViewerAgentsDiagram extends StatisticViewerLineChart {
+	/** Callcenter-Modell, aus dem die Daten gewonnen werden sollen */
 	private final CallcenterModel model;
+	/** Callcenter, in der die jeweilige Agentengruppe arbeitet */
 	private final List<CallcenterModelCallcenter> callcenter;
+	/** Liste der Agentengruppen */
 	private final List<CallcenterModelAgent> agents;
+	/** Bestimmt, wie die Agenten-Arbeitszeiten sortiert bzw. zusammengefasst werden sollen */
 	private final Mode viewType;
+	/** Angabe des Skills bzw. des Kundentyps (siehe <code>viewType</code>) */
 	private final String viewValue;
 
 	/**
@@ -68,7 +73,7 @@ public class StatisticViewerAgentsDiagram extends StatisticViewerLineChart {
 	 * @param viewType	Bestimmt, wie die Agenten-Arbeitszeiten sortiert bzw. zusammengefasst werden sollen
 	 * @param viewValue	Angabe des Skills bzw. des Kundentyps (siehe <code>viewType</code>)
 	 */
-	public StatisticViewerAgentsDiagram(CallcenterModel model, List<CallcenterModelAgent> agents, List<CallcenterModelCallcenter> callcenter, Mode viewType, String viewValue) {
+	public StatisticViewerAgentsDiagram(final CallcenterModel model, final List<CallcenterModelAgent> agents, final List<CallcenterModelCallcenter> callcenter, final Mode viewType, final String viewValue) {
 		super();
 		this.model=model;
 		this.callcenter=callcenter;

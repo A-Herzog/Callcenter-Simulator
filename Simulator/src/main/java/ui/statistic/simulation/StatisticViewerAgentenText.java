@@ -27,7 +27,9 @@ import systemtools.statistics.StatisticViewerText;
  * @version 1.0
  */
 public class StatisticViewerAgentenText extends StatisticViewerText {
+	/** Statistikobjekt dem die Agentendaten entnommen werden sollen */
 	private final Statistics statistic;
+	/** Wonach sollen die Agenten gruppiert werden? */
 	private final SortType sortType;
 
 	/**

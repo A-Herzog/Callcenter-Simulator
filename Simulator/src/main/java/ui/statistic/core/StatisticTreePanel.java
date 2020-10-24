@@ -24,6 +24,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,12 +68,20 @@ import ui.statistic.core.viewers.StatisticViewerSpecialHTMLText;
  * @see StatisticBasePanel
  */
 public class StatisticTreePanel extends JPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = 2558288206599547578L;
 
+	/** Hilfe-Callback für den Aufruf der Hilfeseite für die Statistik */
 	private final Runnable helpModal;
+	/** Hilfe-Objekt, welches alle Hilfe-Links enthält */
 	private final HelpLink helpLink;
 
+	/** Callback zum Starten einer Simulation */
 	private final Runnable startSimulation;
+	/** Callback zum Laden von Statistikdaten */
 	private final Runnable loadStatistics;
 
 	private StatisticNode statisticData;
@@ -87,6 +96,7 @@ public class StatisticTreePanel extends JPanel {
 	private DefaultMutableTreeNode reportNode;
 
 	private final DefaultMutableTreeNode noDataSelected=new DefaultMutableTreeNode("("+Language.tr("Statistic.NoDataSelected")+")");
+
 	/**
 	 * Konstruktor der Klasse <code>StatisticPanel</code>
 	 * @param title	Titel, der über der Baumstruktur angezeigt wird

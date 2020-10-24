@@ -46,6 +46,7 @@ import simulator.Statistics;
  * @author Alexander Herzog
  */
 public class DataFilterBase {
+	/** XML-Dokument, aus dem die Daten entnommen werden sollen */
 	private final Document xmlDoc;
 	private StringBuilder results;
 	private int simDays=1;
@@ -65,11 +66,11 @@ public class DataFilterBase {
 	protected final List<String> varValues;
 
 	/**
-	 * Konstruktor der Klasse <code>DataFilterBase</code>
+	 * Konstruktor der Klasse
 	 * @param xmlDoc XML-Dokument, aus dem die Daten entnommen werden sollen
 	 * @param readSimDays	Anzahl an zu simulierenden Tagen aus dem XML-Dokument mit auslesen
 	 */
-	public DataFilterBase(Document xmlDoc, boolean readSimDays) {
+	public DataFilterBase(final Document xmlDoc, final boolean readSimDays) {
 		varNames=new ArrayList<String>();
 		varValues=new ArrayList<String>();
 		this.xmlDoc=xmlDoc;

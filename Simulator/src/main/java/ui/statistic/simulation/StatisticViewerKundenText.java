@@ -40,7 +40,9 @@ import ui.statistic.core.StatisticFilterDialog;
  * @version 1.0
  */
 public class StatisticViewerKundenText extends StatisticViewerText {
+	/** Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen */
 	private final Statistics statistic;
+	/** Darstellungsart */
 	private final Mode dataType;
 
 	/**
@@ -72,7 +74,7 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerKundenText</code>
-	 * @param statistic	Objekt vom Typ <code>ComplexStatisticSimData</code>, dem die Kundendaten entnommen werden sollen
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen
 	 * @param dataType	Darstellungsart
 	 */
 	public StatisticViewerKundenText(Statistics statistic, Mode dataType) {

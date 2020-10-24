@@ -256,8 +256,15 @@ public class NewModelWizard extends JDialog {
 		 */
 		private static final long serialVersionUID = -485008309903554823L;
 
+		/**
+		 * Aktion (0: Abbruch, 1: Hilfe)
+		 */
 		private final int action;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param action	Aktion (0: Abbruch, 1: Hilfe)
+		 */
 		public SpecialKeyListener(int action) {this.action=action;}
 
 		@Override

@@ -71,6 +71,7 @@ public class CalibratePanel extends JWorkPanel {
 	private final JLabel statusLabel;
 	private final JProgressBar statusProgress;
 
+	/** Für die Kalibrierung zu verwendenes Callcenter-Modell */
 	private final CallcenterModel model;
 	private CallcenterModel editModel;
 	private Timer timer;
@@ -89,7 +90,7 @@ public class CalibratePanel extends JWorkPanel {
 
 	/**
 	 * Konstruktor der Klasse
-	 * @param model	Für die Kalibrierung zu verwendenen Callcenter-Modell
+	 * @param model	Für die Kalibrierung zu verwendenes Callcenter-Modell
 	 * @param doneNotify	Callback wird aufgerufen, wenn das Panel geschlossen werden soll
 	 * @param helpLink	Help-Link
 	 */

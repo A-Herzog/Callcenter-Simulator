@@ -61,7 +61,7 @@ public interface CallcenterSimulatorInterface {
 
 	/**
 	 * Führt nach dem Ende der Simulation die Statistikdaten der einzelnen Threads zusammen und
-	 * gibt diese als gemeinsames Objekt des Typs <code>ComplexStatisticSimData</code> zurück.
+	 * gibt diese als gemeinsames Objekt des Typs {@link Statistics} zurück.
 	 * @return Statistikobjekt mit Daten, die von allen Threads zusammengeführt wurden.
 	 */
 	Statistics collectStatistic();

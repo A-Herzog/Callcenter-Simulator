@@ -26,13 +26,14 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class StatisticViewerCallerPieChart extends StatisticViewerPieChart {
+	/** Callcenter-Modell, aus dem die Daten gewonnen werden sollen */
 	private final CallcenterModel model;
 
 	/**
 	 * Konstruktor der Klasse
 	 * @param model Callcenter-Modell, aus dem die Daten gewonnen werden sollen
 	 */
-	public StatisticViewerCallerPieChart(CallcenterModel model) {
+	public StatisticViewerCallerPieChart(final CallcenterModel model) {
 		super();
 		this.model=model;
 	}

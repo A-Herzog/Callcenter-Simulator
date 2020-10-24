@@ -39,8 +39,11 @@ import ui.statistic.model.StatisticViewerErlangCTools;
  * @version 1.0
  */
 public class StatisticViewerOptimizerLineChart extends StatisticViewerLineChart {
+	/** Objekt vom Typ <code>OptimizeData</code>, dem die Optimierungsergebnisse entnommen werden sollen */
 	private final OptimizeData results;
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final Mode dataType;
+	/** Index im <code>kundenProTyp</code>-Array bzw. im <code>agentenProCallcenter</code>-Array, aus dem die Daten genommen werden sollen. ("-1" bedeutet, dass das <code>kundenGlobal</code>- bzw. das <code>agentenGlobal</code>-Objekt verwendet wird.) */
 	private final int dataNr;
 
 	/**

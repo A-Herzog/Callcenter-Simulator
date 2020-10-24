@@ -39,7 +39,12 @@ import ui.statistic.core.filter.DataFilterBase;
  * @see CommandLineSystem
  */
 public final class CommandFilter extends AbstractSimulationCommand {
-	private File statisticsInputFile, filterFile, filterResultFile;
+	/** Statistik-Eingabedatei */
+	private File statisticsInputFile;
+	/** Filter-Eingabedatei */
+	private File filterFile;
+	/** Ausgabedatei für die gefilternten Ergebnisse */
+	private File filterResultFile;
 
 	@Override
 	public String[] getKeys() {
@@ -73,6 +78,14 @@ public final class CommandFilter extends AbstractSimulationCommand {
 		return null;
 	}
 
+	/**
+	 * Führt die Verarbeitung des Filters aus.
+	 * @param statistic	Statistik-Eingabedaten
+	 * @param commands	Filterbefehle
+	 * @param results	Ausgabedatei
+	 * @param out	Ausgabe für Fehlermeldungen
+	 * @see #run(AbstractCommand[], InputStream, PrintStream)
+	 */
 	private void runFilter(Statistics statistic, String commands, File results, PrintStream out) {
 		DataFilter dataFilter=new DataFilter(statistic.saveToXMLDocument());
 		if (!dataFilter.run(commands,false)) {

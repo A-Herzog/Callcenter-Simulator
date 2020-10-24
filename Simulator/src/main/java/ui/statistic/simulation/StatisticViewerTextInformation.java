@@ -51,7 +51,9 @@ import ui.statistic.core.StatisticFilterDialog;
  * @version 1.0
  */
 public class StatisticViewerTextInformation extends StatisticViewerText {
+	/** Statistik-Objekt, das die anzuzeigenden Informationen enthält */
 	private final Statistics statistic;
+	/** Angabe, was angezeigt werden soll (siehe <code>MODE_</code>-Konstanten) */
 	private final Mode mode;
 
 	/**
@@ -88,7 +90,7 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerBaseInformation</code>
-	 * @param statistic	Statistik-Objekt, dass die anzuzeigenden Informationen enthält
+	 * @param statistic	Statistik-Objekt, das die anzuzeigenden Informationen enthält
 	 * @param mode	Angabe, was angezeigt werden soll (siehe <code>MODE_</code>-Konstanten)
 	 */
 	public StatisticViewerTextInformation(Statistics statistic, Mode mode) {

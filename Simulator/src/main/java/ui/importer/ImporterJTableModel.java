@@ -218,6 +218,9 @@ public class ImporterJTableModel extends JTableExtAbstractTableModel {
 		return newModel;
 	}
 
+	/**
+	 * Aktualisiert die Tabellendarstellung.
+	 */
 	private final void updateTable() {
 		fireTableDataChanged();
 		if (tableUpdateCallback!=null) tableUpdateCallback.run();

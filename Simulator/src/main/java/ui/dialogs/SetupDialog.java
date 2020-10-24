@@ -77,43 +77,103 @@ public class SetupDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 6586401312717916706L;
 
-	private JComboBox<String> programStartWindow;
-	private JComboBox<String> programMenuMode;
-	private JComboBox<String> programStartModel;
-	private JCheckBox programStartWelcomePage;
-	private JCheckBox programStartJavaCheck;
-	private JComboBox<String> fontSizes;
-	private JComboBox<String> lookAndFeel;
+	/* Dialogseite "Benutzeroberfläche" */
+
+	/** Auswahlfeld "Anzeigesprache" */
 	private JComboBox<String> languages;
+	/** Auswahlfeld "Menü-Modus" */
+	private JComboBox<String> programMenuMode;
+	/** Auswahlfeld "Schriftgrößen" */
+	private JComboBox<String> fontSizes;
+	/** Auswahlfeld "Thema" */
+	private JComboBox<String> lookAndFeel;
+	/** Auswahlfeld "Fenstergröße beim Programmstart" */
+	private JComboBox<String> programStartWindow;
+	/** Auswahlfeld "Modell beim Programmstart laden" */
+	private JComboBox<String> programStartModel;
+	/** Option "Willkommensseite beim Programmstart anzeigen" */
+	private JCheckBox programStartWelcomePage;
+	/** Option "Java-Version prüfen und waren, wenn veraltet und unsicher" */
+	private JCheckBox programStartJavaCheck;
+
+	/* Dialogseite "Simulation" */
+
+	/** Option "Strenge Prüfung des Modells" */
 	private JCheckBox strictCheck;
+	/** Option "Simulation im Hintergrund starten" */
 	private JCheckBox backgroundSim;
+	/** Eingabefeld "Maximale Anzahl an Threads" */
 	private JTextField maxNumberOfThreads;
+	/** Option "Anzahl an zu simulierenden Tagen erhöhen wenn sinnvoll" */
 	private JCheckBox increaseNumberOfDays;
+	/** Auswahloption "Simulation auf lokalem Rechner durchführen" */
 	private JRadioButton simulationLocal;
+	/** Auswahloption "Simulation auf Rechner im Netzwerk durchführen" */
 	private JRadioButton simulationRemote;
+	/** Eingabefeld "Netzwerkname des Servers" */
 	private JTextField networkName;
+	/** Eingabefeld "Portnummer des Servers" */
 	private JTextField networkPort;
+	/** Eingabefeld "Passwort für Server (optional)" */
 	private JTextField networkPasswort;
+	/** Eingabefeld "Anteil an Tagen, der auf dem Server simuliert werden soll" */
 	private JTextField networkServer;
+	/** Schaltfläche "Automatisch einstellen" (Aufteilung lokal/remote Simulation) */
 	private JButton networkLocalButton;
+
+	/* Dialogseite "Simulationsserver" */
+
+	/** Eingabefeld "Portnummer des Simulationsservers" */
 	private JTextField networkServerPort;
+
+	/** Eingabefeld "Portnummer des Webservers" */
 	private JTextField networkServerPortWeb;
+
+	/** Eingabefeld "Passwort für Server (optional)" */
 	private JTextField networkServerPasswort;
+
+	/** Eingabebereich "Zulässige Client-IPs" */
 	private JTextArea networkServerIPs;
+
+	/* Dialogseite "Grafiken" */
+
+	/** Eingabefeld "Auflösung beim Speichern" */
 	private JTextField imageSize;
+
+	/* Dialogseite "Statistik" */
+
+	/** Option "Texte mit Word öffnen" */
 	private JCheckBox openWord;
+	/** Option "Texte mit OpenOffice/LibreOffice öffnen" */
 	private JCheckBox openODT;
+	/** Option "Tabellen mit Excel öffnen" */
 	private JCheckBox openExcel;
+	/** Option "Tabellen mit OpenOffice/LibreOffice öffnen" */
 	private JCheckBox openODS;
+
+	/* Dialogseite "Updates" */
+
+	/** Option "Programm automatisch aktualisieren" */
 	private JCheckBox autoUpdate;
+	/** Infotext 1 für Updates */
 	private JLabel autoUpdateInfo;
+	/** Infotext 2 für Updates */
 	private JLabel autoUpdateInfo2;
+	/** Schaltfläche "Updates jetzt suchen" */
 	private JButton autoUpdateButton;
+	/** Schaltfläche "Manuell aktualisieren" */
 	private JButton manualUpdateButton;
+	/** Popupmenü für Schaltfläche "Manuell aktualisieren" */
 	private JPopupMenu manualUpdatePopup;
-	private JMenuItem manualUpdatePopupWebPage, manualUpdatePopupDownload;
+	/** Eintrag "Webseite aufrufen" für Manuelles-Update-Popupmenü */
+	private JMenuItem manualUpdatePopupWebPage;
+	/** Eintrag "Update herunterladen" für Manuelles-Update-Popupmenü */
+	private JMenuItem manualUpdatePopupDownload;
+
+	/** Referenz auf das Setup-Singleton. */
 	private final SetupData setup=SetupData.getSetup();
 
+	/** Timer für die Anzeige des Fortschritts des Update-Downloads */
 	private Timer downloadInfoTimer;
 
 	/**
@@ -404,6 +464,9 @@ public class SetupDialog extends BaseEditDialog {
 		return true;
 	}
 
+	/**
+	 * Lädt die Einstellungen aus dem Setup in den Dialog.
+	 */
 	private void loadData() {
 		switch (setup.startSizeMode) {
 		case START_MODE_DEFAULT: programStartWindow.setSelectedIndex(0); break;
@@ -462,6 +525,9 @@ public class SetupDialog extends BaseEditDialog {
 		loadDataAutoUpdate();
 	}
 
+	/**
+	 * Aktualisiert die Anzeige des Update-Fortschritts.
+	 */
 	private void loadDataAutoUpdate() {
 		if (!UpdateSystem.getUpdateSystem().active) {
 			autoUpdateInfo2.setText("<html><body>"+Language.tr("SettingsDialog.AutoUpdate.WindowsOnly")+"</body></html>");
@@ -488,6 +554,10 @@ public class SetupDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Zeigt Informationen zum Download an.
+	 * @param isAutoUpdate	Handelt es sich bei dem Download um ein Auto-Update?
+	 */
 	private void startDownloadInfo(final boolean isAutoUpdate) {
 		final String statusDone=isAutoUpdate?Language.tr("SettingsDialog.Update.UpdateOnRestart"):Language.tr("SettingsDialog.Update.ReadyForManualInstall");
 		final String statusFailed=Language.tr("SettingsDialog.Update.Failed");
@@ -566,6 +636,9 @@ public class SetupDialog extends BaseEditDialog {
 		setup.saveSetup();
 	}
 
+	/**
+	 * Führt jetzt eine Aktualisierung aus.
+	 */
 	private void doUpdateNow() {
 		UpdateSystem update=UpdateSystem.getUpdateSystem();
 		if (update.getNewVersion()==null) update.checkUpdate(true);
@@ -573,6 +646,10 @@ public class SetupDialog extends BaseEditDialog {
 		loadDataAutoUpdate();
 	}
 
+	/**
+	 * Führt den lokal/remote Netzwerk-Balance Test durch.
+	 * @see #networkLocalButton
+	 */
 	private void autoSetupNetworkBalance() {
 		if (!checkData()) return;
 
@@ -590,6 +667,9 @@ public class SetupDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Führt ein manuelles Update durch.
+	 */
 	private void doManualUpdate() {
 		JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
@@ -605,6 +685,9 @@ public class SetupDialog extends BaseEditDialog {
 		MsgBox.info(this,Language.tr("SettingsDialog.Update.ManualUpdateAvailable.DownloadTitle"),Language.tr("SettingsDialog.Update.ManualUpdateAvailable.DownloadInfo"));
 	}
 
+	/**
+	 * Öffnet die Update-Webseite.
+	 */
 	private void openDownloadWebPage() {
 		try {
 			final URL url=new URL(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL);
@@ -615,6 +698,14 @@ public class SetupDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen.
+	 * @see SetupDialog#autoUpdateButton
+	 *@see SetupDialog#manualUpdateButton
+	 *@see SetupDialog#manualUpdatePopupWebPage
+	 *@see SetupDialog#manualUpdatePopupDownload
+	 *@see SetupDialog#networkLocalButton
+	 */
 	private class ButtonWork implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

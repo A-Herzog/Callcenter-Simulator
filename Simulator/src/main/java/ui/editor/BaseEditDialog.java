@@ -91,11 +91,17 @@ public class BaseEditDialog extends JDialog {
 	 */
 	public static final int CLOSED_BY_NEXT=3;
 
+	/** Schaltfläche "Ok" */
 	private JButton okButton=null;
+	/** Schaltfläche "Abbruch" */
 	private JButton cancelButton=null;
+	/** Schaltfläche "Hilfe" */
 	private JButton helpButton=null;
+	/** Schaltfläche "Zurück" */
 	private JButton previousButton;
+	/** Schaltfläche "Weiter" */
 	private JButton nextButton;
+	/** Schaltfläche "Schließen" */
 	private JButton closeButton=null;
 
 	/**
@@ -174,6 +180,11 @@ public class BaseEditDialog extends JDialog {
 		this(owner,title,null,readOnly,helpCallback);
 	}
 
+	/**
+	 * Liefert das übergeordnete Fenster zu einer Komponente
+	 * @param owner Komponente für die das übergeordnete Fenster gesucht werden soll
+	 * @return	Übergeordnetes Fenster oder <code>null</code>, wenn kein entsprechendes Fenster gefunden wurde
+	 */
 	private static Window getOwnerWindow(Component owner) {
 		while (owner!=null && !(owner instanceof Window)) owner=owner.getParent();
 		return (Window)owner;
@@ -216,8 +227,15 @@ public class BaseEditDialog extends JDialog {
 		 */
 		private static final long serialVersionUID = -485008309903554823L;
 
+		/**
+		 * Aktion (0: Abbruch, 1: Hilfe)
+		 */
 		private final int action;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param action	Aktion (0: Abbruch, 1: Hilfe)
+		 */
 		public SpecialKeyListener(int action) {
 			this.action=action;
 		}

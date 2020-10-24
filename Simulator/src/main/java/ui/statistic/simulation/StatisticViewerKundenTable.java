@@ -32,7 +32,9 @@ import systemtools.statistics.StatisticViewerTable;
  * @version 1.0
  */
 public class StatisticViewerKundenTable extends StatisticViewerTable {
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final Mode dataType;
+	/** Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen */
 	private final Statistics statistic;
 
 	/**
@@ -125,7 +127,7 @@ public class StatisticViewerKundenTable extends StatisticViewerTable {
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerKundenTable</code>
-	 * @param statistic	Objekt vom Typ <code>ComplexStatisticSimData</code>, dem die Kundendaten entnommen werden sollen
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen
 	 * @param dataType	Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten.
 	 */
 	public StatisticViewerKundenTable(Statistics statistic, Mode dataType) {
@@ -231,7 +233,7 @@ public class StatisticViewerKundenTable extends StatisticViewerTable {
 
 	/**
 	 * Erzeugt die Tabelle
-	 * @param statistic	<code>ComplexStatisticSimData</code>-Objekt, dem die Kundendaten entnommen werden sollen
+	 * @param statistic	{@link Statistics}-Objekt, dem die Kundendaten entnommen werden sollen
 	 * @param rowNames	Namen der einzelnen Zeilen (stehen in der ersten Spalte)
 	 */
 	private void buildClientTable(Statistics statistic, String[] rowNames) {

@@ -46,11 +46,15 @@ import ui.model.CallcenterModel;
  * @see AbstractSpecialProcessing
  */
 public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessing {
+	/** Eingabefeld für die Eingabedatei */
 	private JTextField fileInput;
+	/** Dateiauswahl-Schaltfläche für die Eingabedatei */
 	private JButton fileInputButton;
 	private JComboBox<String> tagSelect;
 	private final Vector<String> tagList=new Vector<String>();
+	/** Eingabefeld für die Ausgabedatei */
 	private JTextField fileOutput=null;
+	/** Dateiauswahl-Schaltfläche für die Ausgabedatei */
 	private JButton fileOutputButton=null;
 
 	/**
@@ -200,6 +204,10 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 		return col;
 	}
 
+	/**
+	 * Übernimmt die neuen Eingaben in {@link #fileInput}.
+	 * @see #fileInput
+	 */
 	private final void inputFileChanged() {
 		String selectedTag=(tagSelect.getModel().getSelectedItem()==null)?null:tagSelect.getModel().getSelectedItem().toString();
 		tagList.clear();
@@ -208,6 +216,12 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 		if (tagList.size()>0) tagSelect.setSelectedIndex(Math.max(0,tagList.indexOf(selectedTag)));
 	}
 
+	/**
+	 * Reagiert auf Klicks auf {@link AbstractTechnionProcessing#fileInputButton}
+	 * und auf {@link AbstractTechnionProcessing#fileOutputButton}.
+	 * @see AbstractTechnionProcessing#fileInputButton
+	 * @see AbstractTechnionProcessing#fileOutputButton
+	 */
 	private final class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -227,6 +241,11 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 		}
 	}
 
+	/**
+	 * Reagiert auf Eingabe in
+	 * {@link AbstractTechnionProcessing#fileInput}.
+	 * @see AbstractTechnionProcessing#fileInput
+	 */
 	private final class FileInputListener implements KeyListener {
 		@Override public void keyPressed(KeyEvent arg0) {inputFileChanged();}
 		@Override public void keyReleased(KeyEvent arg0) {inputFileChanged();}

@@ -32,11 +32,12 @@ import tools.SetupData;
  * @see CommandLineSystem
  */
 public class CommandLanguage extends AbstractCommand {
+	/** Einzustellende Sprache ("de" oder "en") */
 	private String languageName="";
 
 	@Override
 	public String[] getKeys() {
-		List<String> list=new ArrayList<String>();
+		final List<String> list=new ArrayList<String>();
 		list.add(Language.tr("CommandLine.Language.Name"));
 		for (String s: Language.trOther("CommandLine.Language.Name")) if (!list.contains(s)) list.add(s);
 		return list.toArray(new String[0]);
@@ -59,8 +60,12 @@ public class CommandLanguage extends AbstractCommand {
 		return null;
 	}
 
+	/**
+	 * Stellt eine Sprache im Setup ein.
+	 * @param languageID	ID der Sprache ("de" oder "en")
+	 */
 	private void setLanguage(String languageID) {
-		SetupData setup=SetupData.getSetup();
+		final SetupData setup=SetupData.getSetup();
 		setup.language=languageID;
 		setup.saveSetup();
 	}

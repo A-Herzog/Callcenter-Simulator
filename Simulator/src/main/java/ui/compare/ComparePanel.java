@@ -125,7 +125,7 @@ public class ComparePanel extends JWorkPanel {
 				item.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						CallcenterModelEditorPanelDialog modelViewer=new CallcenterModelEditorPanelDialog(owner,statisticData.editModel,statisticData,allowLoadToEditor,helpLink);
+						final CallcenterModelEditorPanelDialog modelViewer=new CallcenterModelEditorPanelDialog(owner,statisticData.editModel,statisticData,allowLoadToEditor,helpLink);
 						modelViewer.setCloseNotify(new ModelViewerClosed(modelViewer));
 						JWorkPanel.setEnableGUI(ComparePanel.this,false);
 						modelViewer.setVisible(true);
@@ -147,10 +147,19 @@ public class ComparePanel extends JWorkPanel {
 		return loadModelIntoEditor;
 	}
 
+	/**
+	 * Reagiert darauf, wenn der Viewer geschlossen werden soll.
+	 * @see CallcenterModelEditorPanelDialog
+	 */
 	private class ModelViewerClosed implements Runnable {
+		/** Modell-Viewer */
 		private final CallcenterModelEditorPanelDialog modelViewer;
 
-		public ModelViewerClosed(CallcenterModelEditorPanelDialog modelViewer) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param modelViewer	Modell-Viewer
+		 */
+		public ModelViewerClosed(final CallcenterModelEditorPanelDialog modelViewer) {
 			this.modelViewer=modelViewer;
 		}
 

@@ -23,6 +23,7 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,10 @@ import ui.statistic.core.viewers.StatisticViewerSpecialHTMLText;
  * @see #setViewer(StatisticViewer, StatisticViewer, String, String, URL)
  */
 public class StatisticDataPanel extends JPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -5311723790827549382L;
 
 	private final Runnable updateAllViewerCallback;

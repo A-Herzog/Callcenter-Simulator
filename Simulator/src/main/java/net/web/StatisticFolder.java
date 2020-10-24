@@ -171,7 +171,7 @@ public class StatisticFolder {
 	 * Prüft ob die Datei mit dem angegebenen Dateinamen in dem Verzeichnis existiert als Statistik-Datei geladen werden kann.
 	 * Wenn ja liefert die Funktion ein Statistik-Objekt zurück.
 	 * @param fileName	Dateiname (ohne Pfad) der gesuchten Datei
-	 * @return	<code>ComplexStatisticSimData</code>-Objekt mit den Daten der angegebenen Datei oder <code>null</code> im Fehlerfall.
+	 * @return	{@link Statistics}-Objekt mit den Daten der angegebenen Datei oder <code>null</code> im Fehlerfall.
 	 */
 	public Statistics getStatisticFromFile(String fileName) {
 		File file=getFileByName(fileName);

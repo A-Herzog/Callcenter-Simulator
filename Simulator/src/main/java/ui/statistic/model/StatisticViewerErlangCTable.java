@@ -32,13 +32,14 @@ import systemtools.statistics.StatisticViewerTable;
  * @version 1.0
  */
 public class StatisticViewerErlangCTable extends StatisticViewerTable {
+	/** Erlang-C-Vergleichsrechnung der die anzuzeigenden Daten entnommen werden sollen */
 	private final StatisticViewerErlangCTools erlangCData;
 
 	/**
 	 * Konstruktor der Klasse
 	 * @param erlangCData	Erlang-C-Vergleichsrechnung der die anzuzeigenden Daten entnommen werden sollen
 	 */
-	public StatisticViewerErlangCTable(StatisticViewerErlangCTools erlangCData) {
+	public StatisticViewerErlangCTable(final StatisticViewerErlangCTools erlangCData) {
 		super();
 		this.erlangCData=erlangCData;
 	}

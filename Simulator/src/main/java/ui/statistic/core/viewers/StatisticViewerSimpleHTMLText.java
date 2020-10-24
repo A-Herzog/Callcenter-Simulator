@@ -62,7 +62,9 @@ import systemtools.statistics.StatisticsBasePanel;
  */
 public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 	private JTextPane textPane=null;
+	/** Auszugebender Text */
 	private final String infoText;
+	/** Die hier optional angegeben {@link Runnable}-Objekte werden aufgerufen, wenn der Nutzer auf einen Link mit dem Ziel "special:nr" klickt; dabei ist nr-1 der Index der {@link Runnable}-Objektes in dem Array */
 	private final Runnable[] specialLinkListener;
 	private String specialLink;
 
@@ -88,7 +90,7 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 	 * @param infoText	Auszugebender Text
 	 * @param specialLinkListener	Die hier optional angegeben {@link Runnable}-Objekte werden aufgerufen, wenn der Nutzer auf einen Link mit dem Ziel "special:nr" klickt; dabei ist nr-1 der Index der {@link Runnable}-Objektes in dem Array
 	 */
-	public StatisticViewerSimpleHTMLText(String infoText, Runnable[] specialLinkListener) {
+	public StatisticViewerSimpleHTMLText(final String infoText, final Runnable[] specialLinkListener) {
 		this.infoText=infoText;
 		this.specialLinkListener=specialLinkListener;
 	}

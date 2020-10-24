@@ -46,6 +46,8 @@ public abstract class CallerTableLoader extends TableLoader {
 
 	private final HashMap<String,CallerData> data;
 	private final int intervalCount;
+
+	/** Welche Daten sollen in der Ergebnistabelle ausgegeben werden? */
 	private SaveMode saveMode=SaveMode.SAVEMODE_FULL;
 
 	/**
@@ -56,7 +58,7 @@ public abstract class CallerTableLoader extends TableLoader {
 	protected CallerTableLoader(final File file, final int intervalCount) {
 		super(file);
 		this.intervalCount=intervalCount;
-		data=new HashMap<String, CallerData>();
+		data=new HashMap<String,CallerData>();
 	}
 
 	/**
@@ -238,6 +240,11 @@ public abstract class CallerTableLoader extends TableLoader {
 		/** Verteilung der mitteren Bedienzeiten pro Intervall */
 		public final DataDistributionImpl serviceTime;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param name	Name des Kundentyps
+		 * @param intervalCount	Anzahl an Intervallen
+		 */
 		private CallerData(final String name, final int intervalCount) {
 			this.name=name;
 			freshCallsCount=new DataDistributionImpl(86399,intervalCount);

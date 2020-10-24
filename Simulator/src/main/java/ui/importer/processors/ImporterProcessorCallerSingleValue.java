@@ -58,6 +58,7 @@ public final class ImporterProcessorCallerSingleValue extends ImporterProcessorS
 		CALLER_VALUE_CONTINUE
 	}
 
+	/** Gibt an, welche Information importiert werden soll */
 	private final CallerValue mode;
 
 	/**

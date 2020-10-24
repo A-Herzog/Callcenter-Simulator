@@ -105,6 +105,11 @@ public class ComparePanelDialog extends JFrame {
 		return compare.getModelForEditor();
 	}
 
+	/**
+	 * Wird an das Compare-Panel übergeben, damit dieses den Dialog benachrichtigen kann,
+	 * wenn dieser geschlossen werden soll.
+	 * @see ComparePanelDialog#compare
+	 */
 	private class CloseNotify implements Runnable {
 		@Override
 		public void run() {

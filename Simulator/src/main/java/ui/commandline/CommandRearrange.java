@@ -37,9 +37,15 @@ import xml.XMLTools;
  * @see AbstractCommand
  */
 public class CommandRearrange extends AbstractCommand {
-	private File inputFile, outputFile;
+	/** Eingabe-Modelldatei */
+	private File inputFile;
+	/** Ausgabe-Modelldatei */
+	private File outputFile;
+	/** Sollen Agenten (<code>true</code>) oder Anrufe (<code>false</code>) verlagert werden? */
 	private boolean modeAgents;
+	/** Muss eine Zahl zwischen 0 und 1 enthalten, die angibt, wie stark das Ausgangsmodell und das neue Modell berücksichtigt werden sollen (0=nur Ausgangsmodell, 1=nur neues Modell) */
 	private double value;
+	/**  Liste der Agenten- bzw. Anrufergruppen (bei Agentengruppen in der Form "Nr-CallcenterName" mit "Nr" 1-basierend), die verändert werden sollen. Wird <code>null</code> oder eine leere Liste übergeben, so werden alle Gruppen angepasst. */
 	private String[] groups=null;
 
 	@Override
@@ -60,12 +66,22 @@ public class CommandRearrange extends AbstractCommand {
 		return Language.tr("CommandLine.Rearrange.Description.Long").split("\n");
 	}
 
-	private final Element loadXMLFile(File file) {
+	/**
+	 * Lädt eine xml-Datei
+	 * @param file	Zu ladende Datei
+	 * @return Tritt ein Fehler auf, so wird <code>null</code> zurück gegeben, ansonsten das Root-Element der Daten
+	 */
+	private final Element loadXMLFile(final File file) {
 		XMLTools xml=new XMLTools(file);
 		return xml.load();
 	}
 
-	private final boolean isModelFile(File file) {
+	/**
+	 * Prüft, ob die übergebene Datei eine Modell Datei ist
+	 * @param file	Zu prüfende Datei
+	 * @return	Gibt <code>true</code> zurück, wenn es sich um eine Modell Datei handelt
+	 */
+	private final boolean isModelFile(final File file) {
 		Element root=loadXMLFile(file);
 		if (root==null) return false;
 		for (String s: CallcenterModel.XMLBaseElement) if (root.getNodeName().equalsIgnoreCase(s)) return true;

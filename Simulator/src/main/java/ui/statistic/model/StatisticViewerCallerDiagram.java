@@ -26,16 +26,17 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class StatisticViewerCallerDiagram extends StatisticViewerLineChart {
+	/** Callcenter-Modell, aus dem die Daten gewonnen werden sollen */
 	private final CallcenterModel model;
+	/** Gibt an, die Anrufer welchen Kundentyps angezeigt werden sollen (-1=alle Kundentypen) */
 	private final int callerNr;
-
 
 	/**
 	 * Konstruktor der Klasse
 	 * @param model Callcenter-Modell, aus dem die Daten gewonnen werden sollen
 	 * @param callerNr Gibt an, die Anrufer welchen Kundentyps angezeigt werden sollen (-1=alle Kundentypen)
 	 */
-	public StatisticViewerCallerDiagram(CallcenterModel model, int callerNr) {
+	public StatisticViewerCallerDiagram(final CallcenterModel model, final int callerNr) {
 		super();
 		this.model=model;
 		this.callerNr=callerNr;

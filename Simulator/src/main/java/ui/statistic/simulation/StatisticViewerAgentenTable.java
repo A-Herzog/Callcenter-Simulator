@@ -31,7 +31,9 @@ import systemtools.statistics.StatisticViewerTable;
  * @version 1.0
  */
 public class StatisticViewerAgentenTable extends StatisticViewerTable {
+	/** Wonach sollen die Agenten gruppiert werden? */
 	private final SortType sortType;
+	/** Statistikobjekt dem die Agentendaten entnommen werden sollen */
 	private final Statistics statistic;
 
 	/**

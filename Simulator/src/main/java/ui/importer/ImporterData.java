@@ -36,6 +36,11 @@ import xml.XMLTools;
  * @see ImporterRecord
  */
 public final class ImporterData implements Cloneable {
+	/**
+	 * Fehlermeldung, wenn {@link #process(CallcenterModel, MultiTable)} fehlgeschlagen ist
+	 * @see #getProcessError()
+	 * @see #process(CallcenterModel, MultiTable)
+	 */
 	private String processError;
 
 	/**
@@ -93,6 +98,11 @@ public final class ImporterData implements Cloneable {
 		records.clear();
 	}
 
+	/**
+	 * Lädt die Schablonenliste aus einem xml-Root-Element.
+	 * @param root	xml-Root-Element
+	 * @return	Gibt <code>null</code> zurück, wenn das Laden erfolgreich war, sonst eine Fehlermeldung.
+	 */
 	private boolean loadFromXML(Element root) {
 		if (!Language.trAll("XML.ImportTemplate",root.getNodeName())) return false;
 
@@ -149,12 +159,16 @@ public final class ImporterData implements Cloneable {
 		return true;
 	}
 
-	private void addDataToXML(Element root) {
+	/**
+	 * Speichert die aktuelle Schablonenliste.
+	 * @param root	xml-Root-Element
+	 */
+	private void addDataToXML(final Element root) {
 		for (int i=0;i<records.size();i++) records.get(i).saveToXMLElement(root);
 	}
 
 	/**
-	 * Speichert die aktuelle Schablonenliste
+	 * Speichert die aktuelle Schablonenliste.
 	 * @param file	Dateiname, in der die Liste gespeichert werden soll
 	 * @return	Gibt <code>true</code> zurück, wenn das Speichern erfolgreich war.
 	 */
@@ -226,7 +240,7 @@ public final class ImporterData implements Cloneable {
 	}
 
 	/**
-	 * Liefert eine Fehlermeldung zurück, wenn <code>process</code> fehlgeschlagen ist.
+	 * Liefert eine Fehlermeldung zurück, wenn {@link #process(CallcenterModel, MultiTable)} fehlgeschlagen ist.
 	 * @return	Fehlermeldung
 	 * @see #process(CallcenterModel, MultiTable)
 	 */

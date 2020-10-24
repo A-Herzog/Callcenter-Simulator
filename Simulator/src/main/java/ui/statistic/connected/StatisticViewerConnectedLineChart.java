@@ -40,8 +40,11 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class StatisticViewerConnectedLineChart extends StatisticViewerLineChart {
+	/** Array aus Objekten vom Typ {@link Statistics}, dem die Ergebnisse der einzelnen Simulationstage entnommen werden sollen */
 	private final Statistics[] results;
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final Mode dataType;
+	/** Index im <code>kundenProTyp</code>-Array bzw. im <code>agentenProCallcenter</code>-Array, aus dem die Daten genommen werden sollen. ("-1" bedeutet, dass das <code>kundenGlobal</code>- bzw. das <code>agentenGlobal</code>-Objekt verwendet wird.) */
 	private final int dataNr;
 
 	/**
@@ -118,7 +121,7 @@ public class StatisticViewerConnectedLineChart extends StatisticViewerLineChart 
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerConnectedLineChart</code>
-	 * @param results	Array aus Objekten vom Typ <code>ComplexStatisticSimData</code>, dem die Ergebnisse der einzelnen Simulationstage entnommen werden sollen
+	 * @param results	Array aus Objekten vom Typ {@link Statistics}, dem die Ergebnisse der einzelnen Simulationstage entnommen werden sollen
 	 * @param dataType	Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten.
 	 * @param dataNr	Index im <code>kundenProTyp</code>-Array bzw. im <code>agentenProCallcenter</code>-Array, aus dem die Daten genommen werden sollen. ("-1" bedeutet, dass das <code>kundenGlobal</code>- bzw. das <code>agentenGlobal</code>-Objekt verwendet wird.)
 	 */

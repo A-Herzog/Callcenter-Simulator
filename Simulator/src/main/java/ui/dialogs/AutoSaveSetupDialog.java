@@ -58,20 +58,36 @@ public class AutoSaveSetupDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = -1382190901066407180L;
 
+	/** Wählt aus, ob der Dialog im Batch-Modus oder im Einzel-Simulations-Modus geöffnet werden soll */
 	private final boolean batchMode;
 
+	/** Option "Statistik-Ergebnisse speichern" */
 	private JCheckBox saveCheckBox;
+	/** Eingabefeld für "Statistik-Ergebnisse speichern" */
 	private JTextField saveFolder;
+	/** Dateiauswahl-Schaltfläche für "Statistik-Ergebnisse speichern" */
 	private JButton saveButton;
+	/** Option "Gefilterte Statistik-Ergebnisse speichern" */
 	private JCheckBox filterCheckBox;
+	/** Auswahloption "Schnellzugriff-Skript 1 von der Statistikseite verwenden" */
 	private JRadioButton filterInternal;
+	/** Auswahloption "Externtes Skript verwenden" */
 	private JRadioButton filterExternal;
+	/** Eingabefeld "Externes Skript" */
 	private JTextField filterExternalFile;
+	/** Dateiauswahl-Schaltfläche für "Externes Skript" */
 	private JButton filterExternalButton;
+	/** Eingabefeld "Ausgabedatei für Filter-Ergebnisse" */
 	private JTextField filterOutputFile;
+	/** Dateiauswahl-Schaltfläche für "Ausgabedatei für Filter-Ergebnisse" */
 	private JButton filterOutputButton;
 
-	private FileDropper drop1, drop2, drop3;
+	/** Datei-Dropper für "Statistik-Ergebnisse speichern"-Eingabefeld */
+	private FileDropper drop1;
+	/** Datei-Dropper für "Externes Skript"-Eingabefeld */
+	private FileDropper drop2;
+	/** Datei-Dropper für "Ausgabedatei für Filter-Ergebnisse"-Eingabefeld */
+	private FileDropper drop3;
 
 	/**
 	 * Erzeugt den Dialog wahlweise im Batch-Modus oder im Einzel-Simulations-Modus.
@@ -212,7 +228,13 @@ public class AutoSaveSetupDialog extends BaseEditDialog {
 		setup.saveSetupWithWarning(this);
 	}
 
-	private String selectTextFile(String dialogTitle, String oldFileName) {
+	/**
+	 * Zeigt einen Dialog zur Auswahl einer Textdatei an.
+	 * @param dialogTitle	Dialogtitel
+	 * @param oldFileName	Bisherige Datei (kann <code>null</code> oder leer sein)
+	 * @return	Neue Datei oder <code>null</code>, wenn die Auswahl abgebrochen wurde
+	 */
+	private String selectTextFile(final String dialogTitle, final String oldFileName) {
 		JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
 		fc.setDialogTitle(dialogTitle);
@@ -231,6 +253,14 @@ public class AutoSaveSetupDialog extends BaseEditDialog {
 		return file.getAbsolutePath();
 	}
 
+	/**
+	 * Reagiert auf Klicks auf {@link AutoSaveSetupDialog#saveButton},
+	 * {@link AutoSaveSetupDialog#filterExternalButton},
+	 * {@link AutoSaveSetupDialog#filterOutputButton} und Drag&amp;drop-Operationen.
+	 * @see AutoSaveSetupDialog#saveButton
+	 * @see AutoSaveSetupDialog#filterExternalButton
+	 * @see AutoSaveSetupDialog#filterOutputButton
+	 */
 	private class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

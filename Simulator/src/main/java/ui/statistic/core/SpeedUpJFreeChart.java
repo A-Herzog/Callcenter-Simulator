@@ -31,7 +31,9 @@ import org.jfree.data.xy.XYSeriesCollection;
  * @version 1.0
  */
 public class SpeedUpJFreeChart extends Thread {
+	/** xlsx-Arbeitsmappe */
 	private static XSSFWorkbook wbX;
+	/** xls-Arbeitsmappe */
 	private static HSSFWorkbook wbH;
 	/* public static SpreadSheet sheet; */
 

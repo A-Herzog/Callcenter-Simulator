@@ -34,7 +34,7 @@ public class StatisticViewerIntervalTable extends StatisticViewerTable {
 
 	/**
 	 * Erzeugt die Tabelle
-	 * @param statistic	<code>ComplexStatisticSimData</code>-Objekt, dem die Daten entnommen werden sollen
+	 * @param statistic	{@link Statistics}-Objekt, dem die Daten entnommen werden sollen
 	 * @param colNames	Namen der einzelnen Spalten (die "Intervall"-Spalte wird automatisch erzeugt und muss hier nicht miz aufgeführt werden)
 	 * @param sumRow	Optional Name für eine Summen-Zeile (bei <code>null</code> wird keine Zeile erzeugt)
 	 */
@@ -44,7 +44,7 @@ public class StatisticViewerIntervalTable extends StatisticViewerTable {
 
 	/**
 	 * Liefert eine Zeile der Tabelle
-	 * @param statistic	statistic	<code>ComplexStatisticSimData</code>-Objekt, dem die Daten entnommen werden sollen
+	 * @param statistic	statistic	{@link Statistics}-Objekt, dem die Daten entnommen werden sollen
 	 * @param colNr	Nummer der zu erzeugenden Spalte (die erste Spalte nach der "Intervall"-Spalte trägt die Nummer 0)
 	 * @return	48 Strings, die die Spalte bilden
 	 */

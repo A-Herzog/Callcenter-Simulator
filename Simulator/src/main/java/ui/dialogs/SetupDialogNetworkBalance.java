@@ -54,10 +54,19 @@ public class SetupDialogNetworkBalance extends JDialog {
 	 */
 	private static final long serialVersionUID = -9046881414191682213L;
 
+	/** Liste der Server entsprechend {@link SetupData#networkServer} */
 	private final String[] server;
+	/** Liste der Ports der Server entsprechend {@link SetupData#networkPort} */
 	private final int[] port;
+	/** Liste der Passwörter für die Server entsprechend {@link SetupData#networkPassword} */
 	private final String[] password;
+	/** Fortschrittsbalken für den Test */
 	private final JProgressBar progress;
+
+	/**
+	 * Optimale Lastverteilung nach Abschluss des Tests
+	 * @see #getServerParts()
+	 */
 	private double[] serverParts=null;
 
 	/**
@@ -120,12 +129,26 @@ public class SetupDialogNetworkBalance extends JDialog {
 		return serverParts;
 	}
 
+	/**
+	 * Stellt den aktuellen Fortschritt ein.
+	 * @param percent	Fortschritt in Prozent
+	 * @see #progress
+	 */
 	private synchronized void setProgress(int percent) {
 		progress.setValue(percent);
 		repaint();
 	}
 
+	/**
+	 * Arbeitssthread zum Tests des lokalen Rechners und des entfernten Servers
+	 */
 	private class WorkThread extends Thread {
+		/**
+		 * Wartet auf den Abschluss mehrerer Simulationen.
+		 * @param simulator	Laufende Simulatoren bei denen auf den Abschluss gewartet werden soll
+		 * @param percentAdd	Summand	für die Berechnung des Fortschritts für {@link SetupDialogNetworkBalance#setProgress(int)}
+		 * @param percentFactor	Faktor für die Berechnung des Fortschritts für {@link SetupDialogNetworkBalance#setProgress(int)}
+		 */
 		private void waitForSimulationDone(CallcenterSimulatorInterface[] simulator, double percentAdd, double percentFactor) {
 			int count=0;
 			while (true) {
@@ -143,6 +166,13 @@ public class SetupDialogNetworkBalance extends JDialog {
 			}
 		}
 
+		/**
+		 * Führt die Simulationen (lokale und remote) durch und sammelt die Ergebnisse.
+		 * @param days	Zu simulierende Tage
+		 * @param percentAdd	Summand	für die Berechnung des Fortschritts für {@link SetupDialogNetworkBalance#setProgress(int)}
+		 * @param percentFactor	Faktor für die Berechnung des Fortschritts für {@link SetupDialogNetworkBalance#setProgress(int)}
+		 * @return	Statistikergebnisse der Simulationen
+		 */
 		private Statistics[] getStatistics(int days, double percentAdd, double percentFactor) {
 			Statistics[] statistics=new Statistics[server.length+1];
 

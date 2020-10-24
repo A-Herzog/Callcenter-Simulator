@@ -40,6 +40,11 @@ public class AutoSave {
 		this.statistic=statistic;
 	}
 
+	/**
+	 * Versucht ein Verzeichnis anzulegen
+	 * @param dir	Neu Anzulegendes Verzeichnis
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 */
 	private String createFolder(File dir) {
 		if (dir==null) return null;
 		if (dir.isFile()) return String.format(Language.tr("AutoSave.ErrorOutputFolderExistsAsFile"),dir);

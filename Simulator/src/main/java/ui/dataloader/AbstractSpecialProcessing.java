@@ -59,8 +59,24 @@ import ui.model.CallcenterModel;
  * @see SpecialProcessingDialog
  */
 public abstract class AbstractSpecialProcessing {
+	/**
+	 * Das in der rechten Dialoghälfte anzuzeigende Control, über das der Importfilter konfiguriert werden kann
+	 * @see #getPanel()
+	 */
 	private JPanel panel;
+
+	/**
+	 * Viewer zur Anzeige weiterer Informationen
+	 * @see #addInfoText(JPanel, String)
+	 */
 	private JTextPane viewer;
+
+	/**
+	 * Reagiert auf Drag&amp;drop-Operationen auf die in
+	 * {@link #addFileInputLine(JPanel, String, String, JButton)}
+	 * erzeugten Eingabezeile.
+	 * @see #addFileInputLine(JPanel, String, String, JButton)
+	 */
 	private final List<FileDropper> drop;
 
 	/**
@@ -214,6 +230,10 @@ public abstract class AbstractSpecialProcessing {
 		sp.setBorder(BorderFactory.createEmptyBorder());
 	}
 
+	/**
+	 * Reagiert auf Klicks in {@link AbstractSpecialProcessing#viewer}
+	 * @see AbstractSpecialProcessing#viewer
+	 */
 	private final class LinkListener implements HyperlinkListener {
 		@Override
 		public void hyperlinkUpdate(HyperlinkEvent e) {
@@ -245,6 +265,13 @@ public abstract class AbstractSpecialProcessing {
 		}
 	}
 
+	/**
+	 * Bearbeitung der Drag&amp;drop-Operationen auf den in
+	 * {@link AbstractSpecialProcessing#addFileInputLine(JPanel, String, String, JButton)}
+	 * erzeugten Eingabezeilen.
+	 * @see AbstractSpecialProcessing#addFileInputLine(JPanel, String, String, JButton)
+	 * @see AbstractSpecialProcessing#drop
+	 */
 	private final class FileDropActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -255,6 +282,12 @@ public abstract class AbstractSpecialProcessing {
 			for (Component c: dropper.getComponents()) if (c instanceof JTextField && dropFile(data.getFile(),(JTextField)c)) {data.dragDropConsumed(); break;}
 		}
 
+		/**
+		 * Führt die Datei-Lade-Operation aus
+		 * @param file	Zu verwendende Datei
+		 * @param field	Eingabefeld auf das die Datei gezogen wurde
+		 * @return	Liefert <code>true</code>, wenn die Datei existiert und ihr Name in das Eingabefeld eingetragen werden konnte
+		 */
 		private final boolean dropFile(File file, JTextField field) {
 			if (!file.exists()) return false;
 			field.setText(file.toString());

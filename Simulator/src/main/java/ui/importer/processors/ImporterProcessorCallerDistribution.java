@@ -59,6 +59,7 @@ public final class ImporterProcessorCallerDistribution extends ImporterProcessor
 		CALLER_DIST_RECALL_TIMES
 	}
 
+	/** Gibt an, welche Verteilung geladen werden soll */
 	private final CallerDist mode;
 
 	/**

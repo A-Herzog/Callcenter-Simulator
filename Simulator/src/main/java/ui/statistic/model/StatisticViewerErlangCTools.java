@@ -39,7 +39,9 @@ import ui.model.CallcenterModelSkillLevel;
  * @version 1.0
  */
 public class StatisticViewerErlangCTools {
+	/** Callcenter-Modell, von dem Wartezeit und Service-Level bestimmt werden sollen */
 	private CallcenterModel model;
+	/** Einfaches (<code>false</code>) oder erweitertes (<code>true</code>) Erlang-C-Modell */
 	private final boolean extended;
 	private boolean calcDone=false;
 
@@ -63,7 +65,7 @@ public class StatisticViewerErlangCTools {
 	 * @param model	Callcenter-Modell, von dem Wartezeit und Service-Level bestimmt werden sollen
 	 * @param	extended	Einfaches (<code>false</code>) oder erweitertes (<code>true</code>) Erlang-C-Modell
 	 */
-	public StatisticViewerErlangCTools(CallcenterModel model, boolean extended) {
+	public StatisticViewerErlangCTools(final CallcenterModel model, final boolean extended) {
 		this.model=model;
 		this.extended=extended;
 

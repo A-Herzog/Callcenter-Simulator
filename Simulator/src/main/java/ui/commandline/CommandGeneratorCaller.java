@@ -50,6 +50,15 @@ public final class CommandGeneratorCaller extends AbstractGeneratorCommand {
 		return Language.tr("CommandLine.GeneratorClients.Description.Long").split("\n");
 	}
 
+	/**
+	 * Lädt die Kundenankünfte aus einer Tabelle.
+	 * @param row	Startzeile
+	 * @param col	Startspalte
+	 * @param editModel	Ziel-Callcenter-Modell
+	 * @param table	Eingabetabelle
+	 * @param type	Name des Kundentyps
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 */
 	private String generatorCaller(int row, int col, CallcenterModel editModel, Table table, String type) {
 		/* Anrufergruppe wählen */
 		CallcenterModelCaller caller=null;

@@ -35,9 +35,13 @@ import ui.model.CallcenterModel;
  * @see CommandLineSystem
  */
 public class CommandImporter extends AbstractSimulationCommand {
+	/** Eingabe-Modelldatei */
 	private File modelFileIn;
+	/** Ausgabe-Modelldatei */
 	private File modelFileOut;
+	/** Eingabe-Importschablone */
 	private File importerFile;
+	/** Eingabe-Tabelle */
 	private File tableFile;
 
 	@Override

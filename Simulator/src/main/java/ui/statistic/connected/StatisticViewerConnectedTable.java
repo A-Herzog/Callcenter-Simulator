@@ -36,7 +36,9 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class StatisticViewerConnectedTable extends StatisticViewerTable {
+	/** Array aus Objekten vom Typ {@link Statistics}, dem die Ergebnisse der einzelnen Simulationstage entnommen werden sollen */
 	private final Statistics[] results;
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private Mode dataType;
 
 	/**
@@ -133,7 +135,7 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerConnectedTable</code>
-	 * @param results	Array aus Objekten vom Typ <code>ComplexStatisticSimData</code>, dem die Ergebnisse der einzelnen Simulationstage entnommen werden sollen
+	 * @param results	Array aus Objekten vom Typ {@link Statistics}, dem die Ergebnisse der einzelnen Simulationstage entnommen werden sollen
 	 * @param dataType	Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten.
 	 */
 	public StatisticViewerConnectedTable(Statistics[] results, Mode dataType) {

@@ -30,7 +30,9 @@ import systemtools.statistics.StatisticViewerBarChart;
  * @version 1.0
  */
 public class StatisticViewerKundenAgentenBarChart extends StatisticViewerBarChart {
+	/** Objekt vom Typ {@link Statistics}, dem die Kunden- bzw. die Agentendaten entnommen werden sollen */
 	private final Statistics statistic;
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final Mode dataType;
 
 	/**
@@ -113,7 +115,7 @@ public class StatisticViewerKundenAgentenBarChart extends StatisticViewerBarChar
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerKundenAgentenLineChart</code>
-	 * @param statistic	Objekt vom Typ <code>ComplexStatisticSimData</code>, dem die Kunden- bzw. die Agentendaten entnommen werden sollen
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Kunden- bzw. die Agentendaten entnommen werden sollen
 	 * @param dataType	Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten.
 	 */
 	public StatisticViewerKundenAgentenBarChart(Statistics statistic, Mode dataType) {

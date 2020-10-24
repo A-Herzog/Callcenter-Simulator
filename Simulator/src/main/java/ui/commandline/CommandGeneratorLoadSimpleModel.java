@@ -32,9 +32,13 @@ import ui.dataloader.SimpleModelLoader;
  * @see CommandLineSystem
  */
 public class CommandGeneratorLoadSimpleModel extends AbstractCommand {
+	/** Eingabetabellendateien */
 	private final List<File> tableFile;
+	/** Arbeitsblattnamen in den Eingabetabellen */
 	private final List<String> tableName;
+	/** Spaltennamen in den Eingabetabellen */
 	private final List<String> tableColumn;
+	/** Ausgabemodelldatei */
 	private File modelFile;
 
 	/**
@@ -65,6 +69,12 @@ public class CommandGeneratorLoadSimpleModel extends AbstractCommand {
 		return Language.tr("CommandLine.GeneratorLoadSimpleModel.Description.Long").split("\n");
 	}
 
+	/**
+	 * Trennt einen Text an einem Trennzeichen
+	 * @param text	Text
+	 * @param separator	Trennzeichen
+	 * @return	Teiltexte
+	 */
 	private List<String> split(String text, char separator) {
 		List<String> results=new ArrayList<String>();
 		StringBuilder sb=new StringBuilder();
@@ -96,7 +106,12 @@ public class CommandGeneratorLoadSimpleModel extends AbstractCommand {
 		return results;
 	}
 
-	private String processParameter(String parameter) {
+	/**
+	 * Führt die Interpretation der übergebenen Kommandozeilenparameter aus.
+	 * @param parameter	Kommandozeilenparameter
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 */
+	private String processParameter(final String parameter) {
 		List<String> parts=split(parameter,'!');
 		while (parts.size()<3) parts.add("");
 

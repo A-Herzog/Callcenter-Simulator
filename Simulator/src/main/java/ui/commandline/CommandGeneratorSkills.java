@@ -59,6 +59,15 @@ public final class CommandGeneratorSkills extends AbstractGeneratorCommand {
 		return Language.tr("CommandLine.GeneratorSkillLevel.Description.Long").split("\n");
 	}
 
+	/**
+	 * Lädt die Bedienzeiten für einen Skill-Level aus einer Tabelle.
+	 * @param row	Startzeile
+	 * @param col	Startspalte
+	 * @param editModel	Ziel-Callcenter-Modell
+	 * @param table	Eingabetabelle
+	 * @param type	Name des Skill-Level
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 */
 	private String generatorSkills(int row, int col, CallcenterModel editModel, Table table, String type) {
 		/* Skill-Level wählen */
 		CallcenterModelSkillLevel skill=null;

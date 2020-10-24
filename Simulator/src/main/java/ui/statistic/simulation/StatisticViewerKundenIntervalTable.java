@@ -28,8 +28,10 @@ import simulator.Statistics.KundenDaten;
  * @version 1.0
  */
 public class StatisticViewerKundenIntervalTable extends StatisticViewerIntervalTable {
+	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final Mode dataType;
 	private final long days;
+	/** Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen */
 	private final Statistics statistic;
 
 	/**
@@ -177,7 +179,7 @@ public class StatisticViewerKundenIntervalTable extends StatisticViewerIntervalT
 
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerKundenIntervalTable</code>
-	 * @param statistic	Objekt vom Typ <code>ComplexStatisticSimData</code>, dem die Kundendaten entnommen werden sollen
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen
 	 * @param dataType	Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten.
 	 */
 	public StatisticViewerKundenIntervalTable(Statistics statistic, Mode dataType) {
