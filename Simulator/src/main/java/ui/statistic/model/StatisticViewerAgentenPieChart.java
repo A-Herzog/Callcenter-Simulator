@@ -54,6 +54,12 @@ public class StatisticViewerAgentenPieChart extends StatisticViewerPieChart {
 			addPieSegment(String.format("%s (%s "+Language.tr("Statistic.ManHours")+")",model.skills.get(i).name,NumberTools.formatNumber(workingHours[i]/2)),workingHours[i]);
 	}
 
+	/**
+	 * Liefert die verfügbare Bedienleistung pro Skill-Level
+	 * @param model	Gesamtes Modell
+	 * @param callcenterNr	Nummer des Callcenters (oder -1 für Summe über alle)
+	 * @return	Verfügbare Bedienleistung pro Skill-Level
+	 */
 	private double[] calcWorkingHours(CallcenterModel model, int callcenterNr) {
 		double[] workingHours=new double[model.skills.size()];
 		for (int i=0;i<workingHours.length;i++) workingHours[i]=0;

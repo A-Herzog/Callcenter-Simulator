@@ -69,7 +69,12 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 		setData(getTableData(statistic,getRowNames(statistic)),getColNames(statistic));
 	}
 
-	private String[] getColNames(Statistics statistic) {
+	/**
+	 * Liefert die Namen für die Spaltenüberschriften.
+	 * @param statistic	Statistikobjekt
+	 * @return	Namen für die Spaltenüberschriften
+	 */
+	private String[] getColNames(final Statistics statistic) {
 		List<String> list=new ArrayList<String>();
 		list.add("");
 		switch (sortType) {
@@ -86,7 +91,12 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 		return list.toArray(new String[0]);
 	}
 
-	private String[] getRowNames(Statistics statistic) {
+	/**
+	 * Liefert die Namen für die Zeilen (erste Spalte).
+	 * @param statistic	Statistikobjekt
+	 * @return	Namen für die Zeilen
+	 */
+	private String[] getRowNames(final Statistics statistic) {
 		List<String> list=new ArrayList<String>(Arrays.asList(new String[]{
 				Language.tr("SimStatistic.Number"),
 				Language.tr("SimStatistic.NumberOfConversations"),
@@ -113,12 +123,25 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 		return list.toArray(new String[0]);
 	}
 
-	private void addTimeAndPercent(List<String> list, long time, long div, long sum) {
+	/**
+	 * Fügt eine Zeile mit Zeit- und Prozentangaben an die Liste an
+	 * @param list	Ausgabeliste
+	 * @param time	Zeit
+	 * @param div	Divisionswert
+	 * @param sum	Gesamtwert (für Anteilsberechnung)
+	 */
+	private void addTimeAndPercent(final List<String> list, final long time, final long div, final long sum) {
 		list.add(addTimeCell(time,div));
 		list.add(addPercentCellParts(time,sum));
 	}
 
-	private List<String> getLine(AgentenDaten agenten, long days) {
+	/**
+	 * Liefert eine Ausgabeliste für eine Agentengruppe
+	 * @param agenten	Agentengruppe
+	 * @param days	Anzahl an simulierten Tagen
+	 * @return	Ausgabeliste
+	 */
+	private List<String> getLine(final AgentenDaten agenten, final long days) {
 		List<String> line=new ArrayList<String>();
 
 		long sum=agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt;
@@ -142,7 +165,13 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 		return line;
 	}
 
-	private Table getTableData(Statistics statistic,String[] rowNames) {
+	/**
+	 * Erstellt den Tabelleninhalt
+	 * @param statistic	Statistikobjekt
+	 * @param rowNames	Zeilennamen (erste Spalte)
+	 * @return	Tabelleninhalt
+	 */
+	private Table getTableData(Statistics statistic, String[] rowNames) {
 		Table table=new Table();
 
 		table.addLine(rowNames);

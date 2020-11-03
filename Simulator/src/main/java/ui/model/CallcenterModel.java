@@ -142,6 +142,12 @@ public final class CallcenterModel implements Cloneable {
 		return c;
 	}
 
+	/**
+	 * Erhöht die Anzahl an zu simulierenden Tagen,
+	 * so dass alle CPU-Kerne gleichmäßig ausgelastet werden.
+	 * @param days	Anfängliche Anzahl an zu simulierenden Tagen
+	 * @return	Evtl. erhöhte Anzahl an zu simulierenden Tagen
+	 */
 	private int increaseDays(int days) {
 		int threadCount=Math.min(SetupData.getSetup().getRealMaxThreadNumber(),Runtime.getRuntime().availableProcessors());
 		while (days%threadCount!=0) days++;
@@ -448,15 +454,15 @@ public final class CallcenterModel implements Cloneable {
 	 * @return	Liefert im Erfolgsfall das <code>Document</code>-Element und im Fehlerfall <code>null</code>.
 	 */
 	public Document saveToXMLDocument() {
-		XMLTools xml=new XMLTools();
-		Element root=xml.generateRoot(Language.trPrimary("XML.Model.BaseElement"));
+		final XMLTools xml=new XMLTools();
+		final Element root=xml.generateRoot(Language.trPrimary("XML.Model.BaseElement"));
 		if (root==null) return null;
 		addDataToXML(root,false);
 		return root.getOwnerDocument();
 	}
 
-	private void addDataToXML(Element node, boolean isStatisticFilePart) {
-		Document doc=node.getOwnerDocument();
+	private void addDataToXML(final Element node, final boolean isStatisticFilePart) {
+		final Document doc=node.getOwnerDocument();
 		Element e;
 
 		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Model.Name"))); e.setTextContent(name);

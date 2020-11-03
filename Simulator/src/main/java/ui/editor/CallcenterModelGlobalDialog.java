@@ -60,14 +60,20 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 697889756470834433L;
 
+	/** Eingabefeld für die maximale Warteschlangenlänge */
 	private JTextField maxQueueLength;
+	/** Eingabefeld für die Anzahl an zu simulierenden Tagen */
 	private JTextField days;
+	/** Auswahlbox für die gewünschte Schichtlänge */
 	private JComboBox<String> preferredShiftLength;
+	/** Auswahlbox für die minimale Schichtlänge */
 	private JComboBox<String> minimumShiftLength;
+	/** Eingabefeld für den Service-Level */
 	private JTextField serviceLevel;
 	private JButton efficiency;
 	private JButton addition;
 
+	/** Callcenter-Modell für das die Einstellungen bearbeitet werden sollen */
 	private final CallcenterModel model;
 
 	/**

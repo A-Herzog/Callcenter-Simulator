@@ -37,13 +37,13 @@ import ui.model.CallcenterModelSkillLevel;
 public class StatisticViewerModelInformation extends StatisticViewerText {
 	/** Callcenter-Editor-Modell dem die Daten entnommen werden sollen */
 	private final CallcenterModel model;
-	/** Kurz gehaltene, allgemeine Informationen anzeigen (<code>false</code>) oder vollständige Modellbeschteibung (<code>true</code>) */
+	/** Kurz gehaltene, allgemeine Informationen anzeigen (<code>false</code>) oder vollständige Modellbeschreibung (<code>true</code>) */
 	private final boolean fullInformation;
 
 	/**
 	 * Konstruktor der Klasse
 	 * @param model	Callcenter-Editor-Modell dem die Daten entnommen werden sollen
-	 * @param fullInformation	Kurz gehaltene, allgemeine Informationen anzeigen (<code>false</code>) oder vollständige Modellbeschteibung (<code>true</code>)
+	 * @param fullInformation	Kurz gehaltene, allgemeine Informationen anzeigen (<code>false</code>) oder vollständige Modellbeschreibung (<code>true</code>)
 	 */
 	public StatisticViewerModelInformation(final CallcenterModel model, final boolean fullInformation) {
 		super();
@@ -51,6 +51,10 @@ public class StatisticViewerModelInformation extends StatisticViewerText {
 		this.fullInformation=fullInformation;
 	}
 
+	/**
+	 * Generiert die kurz gehaltenen, allgemeinen Informationen
+	 * @see #buildText()
+	 */
 	private void buildShortText() {
 		addHeading(1,Language.tr("SimStatistic.ModelInformation.Title"));
 
@@ -85,7 +89,11 @@ public class StatisticViewerModelInformation extends StatisticViewerText {
 		endParagraph();
 	}
 
-	private void listDataDistribution(DataDistributionImpl data) {
+	/**
+	 * Gibt eine Verteilung aus.
+	 * @param data	Verteilung
+	 */
+	private void listDataDistribution(final DataDistributionImpl data) {
 		int count=0;
 		final int secondsPerInterval=86400/data.densityData.length;
 		final int perLine=8; /* Einträge pro Zeile */
@@ -99,7 +107,12 @@ public class StatisticViewerModelInformation extends StatisticViewerText {
 		}
 	}
 
-	private void buildLongCallerText(CallcenterModelCaller caller) {
+	/**
+	 * Erstellt eine Beschreibung zu einer Anrufergruppe.
+	 * @param caller	Anrufergruppe
+	 * @see #buildLongText()
+	 */
+	private void buildLongCallerText(final CallcenterModelCaller caller) {
 		String s="";
 		DataDistributionImpl data;
 
@@ -194,7 +207,13 @@ public class StatisticViewerModelInformation extends StatisticViewerText {
 		endParagraph();
 	}
 
-	private void buildLongCallcenterText(CallcenterModelCallcenter callcenter, CallcenterModel model) {
+	/**
+	 * Erstellt eine Beschreibung zu einem Callcenter.
+	 * @param callcenter	Callcenter
+	 * @param model	Gesamtes Modell
+	 * @see #buildLongText()
+	 */
+	private void buildLongCallcenterText(final CallcenterModelCallcenter callcenter, final CallcenterModel model) {
 		String s="";
 
 		if (!callcenter.active) s=" ("+Language.tr("Dialog.deactivated.lower")+")";
@@ -219,7 +238,15 @@ public class StatisticViewerModelInformation extends StatisticViewerText {
 		for (int i=0;i<callcenter.agents.size();i++) buildLongAgentText(i+1,callcenter.agents.get(i),callcenter,model);
 	}
 
-	private void buildLongAgentText(int nr, CallcenterModelAgent agent, CallcenterModelCallcenter callcenter, CallcenterModel model) {
+	/**
+	 * Erstellt eine Beschreibung zu einer Agentengruppe.
+	 * @param nr	1-basierte Nummer der Agentengruppe innerhalb des Callcenters
+	 * @param agent	Agentengruppe
+	 * @param callcenter	Callcenter in dem sich die Agentengruppe befindet
+	 * @param model	Gesamtes Modell
+	 * @see #buildLongText()
+	 */
+	private void buildLongAgentText(final int nr, CallcenterModelAgent agent, final CallcenterModelCallcenter callcenter, final CallcenterModel model) {
 		String s="";
 
 		if (!agent.active) s=" ("+Language.tr("Dialog.deactivated.lower")+")";
@@ -280,7 +307,12 @@ public class StatisticViewerModelInformation extends StatisticViewerText {
 		endParagraph();
 	}
 
-	private void buildLongSkillsText(CallcenterModelSkillLevel skill) {
+	/**
+	 * Erstellt eine Beschreibung zu einem Skill-Level
+	 * @param skill	Skill-Level
+	 * @see #buildLongText()
+	 */
+	private void buildLongSkillsText(final CallcenterModelSkillLevel skill) {
 		addHeading(2,Language.tr("SimStatistic.SkillLevel")+" \""+skill.name+"\"");
 
 		String[] sArray;
@@ -304,6 +336,10 @@ public class StatisticViewerModelInformation extends StatisticViewerText {
 		}
 	}
 
+	/**
+	 * Generiert die vollständige Modellbeschreibung.
+	 * @see #buildText()
+	 */
 	private void buildLongText() {
 		addHeading(1,Language.tr("SimStatistic.CallcenterModell")+" \""+model.name+"\"");
 

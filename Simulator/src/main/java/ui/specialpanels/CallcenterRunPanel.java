@@ -54,12 +54,20 @@ public class CallcenterRunPanel extends JCloseablePanel {
 	 */
 	private static final long serialVersionUID = 176710490651488333L;
 
+	/** Startzeitpunkt der Simulation */
 	private final long startTime;
+	/** Geschätzte gesamte Simulationslaufzeit bei letzten Aktualisierung der Forschrittsdaten */
 	private int lastGesamt;
 
+	/** Wurde die Simulation erfolgreich abgeschlossen? */
 	private boolean runComplete=false;
+	/** Abbruch der Simulation */
 	private boolean abortRun=false;
-	private JLabel info, info2;
+	/** Info-Zeile 1 für Ausgaben zum Simulationsfortschritt ({@link UpdateInfoTask}) */
+	private JLabel info;
+	/** Info-Zeile 2 für Ausgaben zum Simulationsfortschritt ({@link UpdateInfoTask}) */
+	private JLabel info2;
+	/** Statuszeile */
 	private JLabel statusbar;
 	/** Fortschrittsbalken */
 	private JProgressBar progress;
@@ -67,7 +75,9 @@ public class CallcenterRunPanel extends JCloseablePanel {
 	private JButton cancel;
 	/** Simulator dessen Fortschritt in diesem Panel dargestellt werden soll */
 	private final CallcenterSimulatorInterface simulator;
+	/** Timer um regelmäßig den Fortschritt der Simulation in der GUI anzeigen zu können */
 	private final Timer timer;
+	/** Zählung der Aufrufe von {@link UpdateInfoTask} */
 	private int countTimerIntervals;
 	/** Callback wird aufgerufen, wenn das Batch-Panel geschlossen werden soll */
 	private final Runnable doneNotify;
@@ -163,6 +173,9 @@ public class CallcenterRunPanel extends JCloseablePanel {
 		abortRun=true;
 	}
 
+	/**
+	 * Aktualisiert die Anzeige gemäß des Simulationsfortschritts
+	 */
 	private class UpdateInfoTask extends TimerTask {
 		@Override
 		public void run() {

@@ -31,7 +31,9 @@ public class StatisticViewerErlangCIntervalTable extends StatisticViewerInterval
 	private final Mode dataType;
 	/** Objekt vom Typ {@link Statistics}, dem die Daten entnommen werden sollen */
 	private final Statistics statistic;
+	/** Ergebnisse gem‰ﬂ der Erlang-C-Formel */
 	private final StatisticViewerErlangCTools erlangC1;
+	/** Ergebnisse gem‰ﬂ der erweiterten Erlang-C-Formel */
 	private final StatisticViewerErlangCTools erlangC2;
 
 	/**
@@ -69,6 +71,10 @@ public class StatisticViewerErlangCIntervalTable extends StatisticViewerInterval
 		erlangC2=new StatisticViewerErlangCTools(statistic.editModel,true);
 	}
 
+	/**
+	 * Liefert die Spaltennamen.
+	 * @return	Spaltennamen
+	 */
 	private final String[] getTitle() {
 		String value="";
 		switch (dataType) {

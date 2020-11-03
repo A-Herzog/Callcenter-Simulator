@@ -44,11 +44,13 @@ public class RangeSelectDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 3073283623605767866L;
 
+	/** Auswahlbox zum Festlegen der Startzeit des Intervalls */
 	private JComboBox<String> comboMin;
+	/** Auswahlbox zum Festlegen der Endzeit des Intervalls */
 	private JComboBox<String> comboMax;
 
 	/**
-	 * Wofür soll ein Zeitbereich ausgewählt werden=
+	 * Wofür soll ein Zeitbereich ausgewählt werden?
 	 * @author Alexander Herzog
 	 * @see RangeSelectDialog#RangeSelectDialog(Window, Runnable, Mode)
 	 */
@@ -59,9 +61,17 @@ public class RangeSelectDialog extends BaseEditDialog {
 		MODE_THRESHOLD
 	}
 
+	/**
+	 * Wofür soll ein Zeitbereich ausgewählt werden?
+	 */
 	private final Mode mode;
 
-	private static String getTitle(Mode mode) {
+	/**
+	 * Liefert den Titel des Dialogs.
+	 * @param mode	Wofür soll ein Zeitbereich ausgewählt werden?
+	 * @return	Titel des Dialogs
+	 */
+	private static String getTitle(final Mode mode) {
 		switch (mode) {
 		case MODE_OPTIMIZE: return Language.tr("Optimizer.Tabs.UseIntervals.RangeDialog.Title");
 		case MODE_THRESHOLD: return Language.tr("Editor.GeneralData.ThresholdValues.Intervals.RangeDialog.Title");

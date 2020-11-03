@@ -63,34 +63,58 @@ public class CalibratePanel extends JWorkPanel {
 	 */
 	private static final long serialVersionUID = -4042434827597615142L;
 
+	/** Gesamter Darstellungsbereich */
 	private final JPanel scrollArea;
-	private final JScrollPane scroll1, scroll2;
+	/** Scroll-Bereich in {@link #scrollArea} für Eingaben */
+	private final JScrollPane scroll1;
+	/** Scroll-Bereich in {@link #scrollArea} für Ausgaben */
+	private final JScrollPane scroll2;
+	/** Eingabefelder für die Ziel-Erreichbarkeiten pro Kundentyp */
 	private final JTextField[] successInput;
-	private final JTextField waitingTimeToleranceCVInput, successTargetWindowSizeInput;
+	/** Eingabefeld "Variationskoeffizient der Wartezeittoleranzen" */
+	private final JTextField waitingTimeToleranceCVInput;
+	/** Eingabefeld "Maximale Zielabweichung" */
+	private final JTextField successTargetWindowSizeInput;
+	/** Ausgabefeld für Status-Informationen */
 	private final JTextArea statusField;
+	/** Text in der Statusleiste */
 	private final JLabel statusLabel;
+	/** Fortschrittsanzeige in der Statusleiste */
 	private final JProgressBar statusProgress;
 
-	/** Für die Kalibrierung zu verwendenes Callcenter-Modell */
+	/** Für die Kalibrierung zu verwendendes Callcenter-Modell */
 	private final CallcenterModel model;
+	/** Von {@link #model} abgeleitetes, verändertes Callcenter-Modell für die Simulation */
 	private CallcenterModel editModel;
+	/** Timer um regelmäßig den Fortschritt der Simulation in der GUI anzeigen zu können */
 	private Timer timer;
+	/** Startzeitpunkt der ersten Simulation */
 	private long startTime;
+	/** Zählt die Anzahl an Simulationen (gezählt wird beim Start) */
 	private int simCount;
+	/** Zählt die Aufrufe von {@link SimTimerTask} */
 	private int count;
+	/** Wurden alle Simulationen abgeschlossen? */
 	private boolean allDone;
+	/** Aktuelle Wartezeittoleranzen */
 	private double[] waitingTimeTolerance;
+	/** Aktuelle Änderungen der Wartezeittoleranzen */
 	private double[] waitingTimeToleranceStepSize;
+	/** Änderungen im letzten Schritt */
 	private List<Double> lastChanges;
+	/** Erreichbarkeit pro Kundentyp im letzten Schritt */
 	private double[] successTarget;
+	/** Variationskoeffizient der Wartezeittoleranzen */
 	private double waitingTimeToleranceCV;
+	/** Maximale Zielabweichung */
 	private double successTargetWindowSize;
 
+	/** Simulator, der die konkreten Simulationen ausführt */
 	private CallcenterSimulatorInterface simulator;
 
 	/**
 	 * Konstruktor der Klasse
-	 * @param model	Für die Kalibrierung zu verwendenes Callcenter-Modell
+	 * @param model	Für die Kalibrierung zu verwendendes Callcenter-Modell
 	 * @param doneNotify	Callback wird aufgerufen, wenn das Panel geschlossen werden soll
 	 * @param helpLink	Help-Link
 	 */
@@ -150,11 +174,19 @@ public class CalibratePanel extends JWorkPanel {
 		addFooter(Language.tr("Calibrate.Simulation.Start"),Images.SIMULATION_CALIBRATE.getIcon(),Language.tr("Calibrate.Simulation.Abort"));
 	}
 
-	private void addStatusLine(String line) {
+	/**
+	 * Gibt eine Zeile in dem Status-Ausgaben-Bereich aus.
+	 * @param line	Auszugebende Informationszeile
+	 */
+	private void addStatusLine(final String line) {
 		if (statusField.getText().isEmpty()) statusField.setText(line); else statusField.setText(statusField.getText()+"\n"+line);
 		statusField.setCaretPosition(statusField.getText().length());
 	}
 
+	/**
+	 * Startet die nächste Simulation
+	 * @return	Liefert <code>true</code>, wenn eine weitere Simulation gestartet werden konnte, und <code>false</code>, wenn die Simulation aller Modelle abgeschlossen ist
+	 */
 	private boolean initNextSimulation() {
 		simulator=null;
 
@@ -175,6 +207,9 @@ public class CalibratePanel extends JWorkPanel {
 		return simulator!=null;
 	}
 
+	/**
+	 * Schließt die aktuelle Simulation ab.
+	 */
 	private void doneSimulation() {
 		String errorMessage=simulator.finalizeRun();
 		/* Vom Server gesandte Meldungen ausgeben */
@@ -247,6 +282,10 @@ public class CalibratePanel extends JWorkPanel {
 		addStatusLine(sb.toString());
 	}
 
+	/**
+	 * Wird nach dem Abschluss aller Simulationen
+	 * (erfolgreich oder durch Abbruch) aufgerufen.
+	 */
 	private void everythingDone() {
 		if (cancelWork) {
 			addStatusLine(String.format(Language.tr("Calibrate.Simulation.Aborted"),""+simCount));
@@ -277,6 +316,15 @@ public class CalibratePanel extends JWorkPanel {
 		statusProgress.setValue(0);
 	}
 
+	/**
+	 * Prüft in Regelmäßigen Abständen, ob die
+	 * laufende Simulation abgeschlossen wurde
+	 * und die nächste Simulation gestartet
+	 * werden kann.
+	 * @see CalibratePanel#initNextSimulation()
+	 * @see CalibratePanel#doneSimulation()
+	 * @see CalibratePanel#everythingDone()
+	 */
 	private class SimTimerTask extends TimerTask {
 		@Override
 		public void run() {
@@ -293,6 +341,12 @@ public class CalibratePanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Initialisiert das Modell für die Kalibrierung.
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 * @see CalibratePanel#model
+	 * @see CalibratePanel#editModel
+	 */
 	private String initModel() {
 		/* Initialdaten aus Modell auslesen */
 		editModel=model.clone();

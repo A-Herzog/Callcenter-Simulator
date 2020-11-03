@@ -47,6 +47,7 @@ public final class BackgroundSimulator {
 	private boolean noStart=false;
 	private boolean fullBackgroundSimulation=true;
 
+	/** Anzahl der verfügbaren CPU-Kerne */
 	private final int cores=Runtime.getRuntime().availableProcessors();
 
 	/**

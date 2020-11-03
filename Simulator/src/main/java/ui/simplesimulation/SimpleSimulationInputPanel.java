@@ -46,16 +46,34 @@ public class SimpleSimulationInputPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -394335481000773071L;
 
+	/** Eingabefeld für lambda */
 	private final JTextField editLambda;
+	/** Auswahlfeld: Begrenzte Wartezeittoleranz? */
 	private final JCheckBox checkboxWT;
-	private final JTextField editEWT, editStdWT;
-	private final JTextField editRetryProbability, editERetry;
+	/** Eingabefeld für E[WT] */
+	private final JTextField editEWT;
+	/** Eingabefeld für Std[WT] */
+	private final JTextField  editStdWT;
+	/** Eingabefeld für die Wiederholwahrscheinlichkeit */
+	private final JTextField editRetryProbability;
+	/** Eingabefeld für den mittleren Wiederholabstand */
+	private final JTextField editERetry;
+	/** Eingabefeld für c */
 	private final JTextField editC;
-	private final JTextField editES, editStdS;
+	/** Eingabefeld für E[S] */
+	private final JTextField editES;
+	/** Eingabefeld für Std[S] */
+	private final JTextField editStdS;
+	/** Auswahlfeld: Nachbearbeitungszeiten verwenden? */
 	private final JCheckBox checkboxS2;
-	private final JTextField editES2, editStdS2;
+	/** Eingabefeld für E[Nachbearbeitungszeit] */
+	private final JTextField editES2;
+	/** Eingabefeld für Std[Nachbearbeitungszeit] */
+	private final JTextField editStdS2;
+	/** Eingabefeld für die Weiterleitungswahrscheinlichkeit */
 	private final JTextField editContinueProbability;
 
+	/** Runnable zur Aktualisierung der Ausgabe */
 	private final Runnable updateSimulation;
 
 	/**
@@ -90,11 +108,24 @@ public class SimpleSimulationInputPanel extends JPanel {
 		editContinueProbability=addInputLine(this,Language.tr("LoadCalculator.ContinueProbability")+":","<html><body>P("+Language.tr("LoadCalculator.CallContinue")+")=</body></html>",NumberTools.formatPercent(0.2));
 	}
 
+	/**
+	 * Fügt eine Überschriftszeile zu einem Panel hinzu.
+	 * @param parent	Panel, in das die Überschriftszeile eingefügt werden soll
+	 * @param text	Anzuzeigender Text
+	 */
 	private void addTopInfo(JPanel parent, String text) {
 		parent.add(new JLabel("<html><body><b>"+text+"</b></body></html>"));
 		parent.add(Box.createVerticalStrut(10));
 	}
 
+	/**
+	 * Diese Funktion fügt ein Textfeld inkl. Beschreibung zu einem Panel hinzu.
+	 * @param parent	Panel, in das das Eingabefeld eingefügt werden soll
+	 * @param title	Optionaler Titel über dem Textfeld (kann <code>null</code> sein)
+	 * @param label	Beschriftung für das Textfeld
+	 * @param defaultValue	Anfänglicher Wert für das Textfeld
+	 * @return	Referenz auf das neu erzeugte Textfeld
+	 */
 	private JTextField addInputLine(final JPanel parent, final String title, final String label, final String defaultValue) {
 		JPanel panel;
 		JTextField field;
@@ -109,6 +140,13 @@ public class SimpleSimulationInputPanel extends JPanel {
 		return field;
 	}
 
+	/**
+	 * Erzeugt eine Checkbox
+	 * @param parent	Übergeordnetes Element in das die Checkbox eingefügt werden soll
+	 * @param title	Beschriftung der Checkbox
+	 * @param defaultValue	Initialer Wert der Checkbox
+	 * @return	Neue Checkbox (bereits in das übergeordnete Element eingefügt)
+	 */
 	private JCheckBox addCheckBox(final JPanel parent, final String title, final boolean defaultValue) {
 		JPanel panel;
 		JCheckBox checkbox;
@@ -163,11 +201,13 @@ public class SimpleSimulationInputPanel extends JPanel {
 		return new SimpleSimulationInput(lambda,EWT,StdWT,retryProbability,ERetry,c,ES,StdS,ES2,StdS2,continueProbability);
 	}
 
+	/**
+	 * Reagiert auf Änderungen in der GUI und aktualisiert die Ausgabe.
+	 */
 	private class UpdateSimulation implements ChangeListener, KeyListener {
-		private void update() {updateSimulation.run();}
-		@Override public void stateChanged(ChangeEvent e) {update();}
-		@Override public void keyTyped(KeyEvent e) {update();}
-		@Override public void keyPressed(KeyEvent e) {update();}
-		@Override public void keyReleased(KeyEvent e) {update();}
+		@Override public void stateChanged(ChangeEvent e) {updateSimulation.run();}
+		@Override public void keyTyped(KeyEvent e) {updateSimulation.run();}
+		@Override public void keyPressed(KeyEvent e) {updateSimulation.run();}
+		@Override public void keyReleased(KeyEvent e) {updateSimulation.run();}
 	}
 }

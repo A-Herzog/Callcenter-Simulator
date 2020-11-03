@@ -60,7 +60,7 @@ public final class SimpleModelLoader extends SimpleModelBaseLoader {
 	/**
 	 * Legt die Tabelle mit den Anruferzahlen fest.
 	 * @param file	Dateiname der Tabelle mit den Anruferzahlen.
-	 * @param table	abelle in der Arbeitsmappe (kann <code>null</code> oder leer sein, dann wird die erste Tabelle verwendet)
+	 * @param table	Tabelle in der Arbeitsmappe (kann <code>null</code> oder leer sein, dann wird die erste Tabelle verwendet)
 	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
 	 */
 	public String setCallerTable(final File file, final String table) {
@@ -70,7 +70,7 @@ public final class SimpleModelLoader extends SimpleModelBaseLoader {
 	/**
 	 * Legt die Tabelle mit den Agentenzahlen fest.
 	 * @param file	Dateiname der Tabelle mit den Agentenzahlen.
-	 * @param table	abelle in der Arbeitsmappe (kann <code>null</code> oder leer sein, dann wird die erste Tabelle verwendet)
+	 * @param table	Tabelle in der Arbeitsmappe (kann <code>null</code> oder leer sein, dann wird die erste Tabelle verwendet)
 	 * @param startCol	Startspalte (kann <code>null</code> oder leer sein, dann wird "A" angenommen, d.h. es werden dann keine Spalten entfernt)
 	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
 	 */

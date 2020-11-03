@@ -120,14 +120,35 @@ public class StatisticViewerAuslastungPieChart extends StatisticViewerPieChart {
 		}
 	}
 
+	/**
+	 * Erzeugt eine Textzeile zur Beschriftung eines Tortensegments.
+	 * @param label	Name für das Segment
+	 * @param value	Wert (wird durch <code>count</code> dividiert)
+	 * @param count	Gesamtanzahl
+	 * @param sum	Summe für Prozentangabe
+	 * @return	Textzeile zur Beschriftung
+	 */
 	private String buildText(String label, long value, long count, long sum) {
 		return String.format("%s (%s, %s)",label,TimeTools.formatTime((int)Math.round((double)value/count)),NumberTools.formatPercent((double)value/sum));
 	}
 
+	/**
+	 * Fügt ein Segment zu dem Tortendiagramm hinzu.
+	 * @param label	Name für das Segment
+	 * @param value	Wert (wird durch <code>count</code> dividiert)
+	 * @param count	Gesamtanzahl
+	 * @param sum	Summe für Prozentangabe
+	 * @param color	Farbe für das Segment
+	 */
 	private void segment(String label, long value, long count, long sum, Color color) {
 		addPieSegment(buildText(label,value,count,sum),value,color);
 	}
 
+	/**
+	 * Generiert ein Tortendiagramm über die Auslastung einer Agentengruppe.
+	 * @param agenten	Agentengruppe
+	 * @param days	Anzahl an simulierten Tagen
+	 */
 	private void buildPie(AgentenDaten agenten, long days) {
 		long sum=agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt;
 		long count=days;
@@ -138,6 +159,12 @@ public class StatisticViewerAuslastungPieChart extends StatisticViewerPieChart {
 		segment(Language.tr("SimStatistic.PostProcessingTime"),agenten.postProcessingGesamt,count,sum,Color.GREEN);
 	}
 
+	/**
+	 * Generiert ein Tortendiagramm über die Auslastung einer Agentengruppe
+	 * und differenziert dieses weiter nach Kundentypen aus.
+	 * @param agenten	Agentengruppe
+	 * @param days	Anzahl an simulierten Tagen
+	 */
 	private void buildFullPie(AgentenDaten agenten, long days) {
 		long sum=agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt;
 		long count=days;

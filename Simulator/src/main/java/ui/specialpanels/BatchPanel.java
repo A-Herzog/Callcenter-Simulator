@@ -86,35 +86,77 @@ public class BatchPanel extends JWorkPanel {
 	private final HelpLink helpLink;
 	/** Übergeordnetes Fenster */
 	private final Window owner;
+	/** Registerreiter */
 	private final JTabbedPane tabs;
+
+	/* Dialogseite "Verzeichnis abarbeiten" */
+
+	/** Eingabefeld "Verzeichnis" */
 	private final JTextField folderField;
+	/** Schaltfläche zur Auswahl eines Verzeichnisses für {@link #folderField} */
 	private final JButton folderButton;
+
+	/* Dialogseite "Parameterreihe erstellen" */
+
+	/** Eingabefeld "Ausgabeverzeichnis" */
 	private final JTextField xmlFolderField;
+	/** Schaltfläche zur Auswahl eines Ausgabeverzeichnis für {@link #xmlFolderField} */
 	private final JButton xmlFolderButton;
+	/** Eingabefeld "XML-Element" */
 	private final JTextField xmlField;
+	/** Schaltfläche zur Auswahl eines XML-Elements für {@link #xmlField} */
 	private final JButton xmlButton;
+	/** Auswahlbox "Zu veränderndes Element" */
 	private final JComboBox<String> xmlType;
-	private final JTextField xmlFrom, xmlTo, xmlStepSize;
+	/** Eingabefeld "von" */
+	private final JTextField xmlFrom;
+	/** Eingabefeld "bis" */
+	private final JTextField xmlTo;
+	/** Eingabefeld "Schrittweite" */
+	private final JTextField xmlStepSize;
+
+	/** Ausgabefeld für Status-Informationen */
 	private final JTextArea statusField;
+	/** Text in der Statusleiste */
 	private final JLabel statusLabel;
+	/** Fortschrittsanzeige in der Statusleiste */
 	private final JProgressBar statusProgress;
 
+	/** Für die Batch-Verarbeitung zu verwendendes Callcenter-Modell */
 	private final CallcenterModel model;
+	/** Eingabedateien im Modus "Verzeichnis abarbeiten" */
 	private List<File> inFiles;
+	/** XML-Element im Modus "Parameterreihe erstellen" */
 	private String inXMLKey;
+	/** Typ des XML-Elements im Modus "Parameterreihe erstellen" */
 	private int inXMLType;
+	/** Werte für {@link #inXMLKey} */
 	private List<Double> inValues;
+	/** Ausgabe-Dateien für die verschiedenen Werte {@link #inValues} */
 	private List<File> outFiles;
+	/** Timer um regelmäßig den Fortschritt der Simulation in der GUI anzeigen zu können */
 	private Timer timer;
+	/** Startzeitpunkt der ersten Simulation */
 	private long startTime;
+	/** Zählt die Anzahl an Simulationen (gezählt wird beim Start) */
 	private int simCount;
+	/** Zählt die Aufrufe von {@link SimTimerTask} */
 	private int count;
+
+	/** Simulator, der die konkreten Simulationen ausführt */
 	private CallcenterSimulatorInterface simulator;
 
+	/** Reagiert auf Datei-Drag&amp;drop-Operationen auf {@link #folderField} */
 	private final FileDropper drop1;
-
+	/** Reagiert auf Datei-Drag&amp;drop-Operationen auf {@link #xmlField} */
 	private final FileDropper drop2;
 
+	/**
+	 * Erzeugt eine Textzeile
+	 * @param parent	Übergeordnetes Element
+	 * @param text	Auszugebender Text
+	 * @return	Panel das die Textzeile enthält (bereits in das übergeordnetes Element eingefügt)
+	 */
 	private JPanel createDialogLine(final JComponent parent, final String text) {
 		JPanel content=new JPanel(new BorderLayout());
 		JPanel textPanel=new JPanel(new FlowLayout());
@@ -130,7 +172,7 @@ public class BatchPanel extends JWorkPanel {
 	/**
 	 * Konstruktor der Klasse
 	 * @param owner	Übergeordnetes Fenster
-	 * @param model	Für die Batch-Verarbeitung zu verwendenen Callcenter-Modell
+	 * @param model	Für die Batch-Verarbeitung zu verwendendes Callcenter-Modell
 	 * @param doneNotify	Callback wird aufgerufen, wenn das Batch-Panel geschlossen werden soll
 	 * @param helpLink	Hilfe-Link
 	 */
@@ -234,7 +276,12 @@ public class BatchPanel extends JWorkPanel {
 		addFooterButton(Language.tr("Batch.AdditionalOutputSetting"));
 	}
 
-	private boolean testXMLFieldForModel(String xmlKey) {
+	/**
+	 * Prüft, ob ein bestimmter XML-Pfad in dem Modell existiert
+	 * @param xmlKey	XML-Pfad
+	 * @return	Liefert <code>true</code>, wenn der Pfad auf eine änderbare Modelleigenschaft verweist
+	 */
+	private boolean testXMLFieldForModel(final String xmlKey) {
 		Document xmlDoc=model.saveToXMLDocument();
 		if (xmlDoc==null) return false;
 
@@ -247,6 +294,10 @@ public class BatchPanel extends JWorkPanel {
 		return true;
 	}
 
+	/**
+	 * Zeigt einen Dialog zur Auswahl eines Ein- oder Ausgabeverzeichnisses an.
+	 * @return	Liefert im Erfolgsfall den Namen des Verzeichnisses sonst <code>null</code>
+	 */
 	private final String selectFolder() {
 		JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
@@ -258,6 +309,10 @@ public class BatchPanel extends JWorkPanel {
 		return file.toString();
 	}
 
+	/**
+	 * Zeigt einen Dialog zur Auswahl eines XML-Elements an.
+	 * @see #xmlButton
+	 */
 	private final void selectXML() {
 		Document xmlDoc=model.saveToXMLDocument();
 		if (xmlDoc==null) return;
@@ -267,7 +322,12 @@ public class BatchPanel extends JWorkPanel {
 		xmlField.setText(dialog.getXMLSelector());
 	}
 
-	private boolean isModelFile(File file) {
+	/**
+	 * Handelt es sich bei einer Datei um eine Modell-Datei?
+	 * @param file	Zu prüfende Datei
+	 * @return	Liefert <code>true</code>, wenn es sich um eine Modell-Datei handelt
+	 */
+	private boolean isModelFile(final File file) {
 		if (file==null || !file.exists()) return false;
 
 		XMLTools xml=new XMLTools(file);
@@ -277,11 +337,21 @@ public class BatchPanel extends JWorkPanel {
 		return false;
 	}
 
-	private void addStatusLine(String line) {
+	/**
+	 * Gibt eine Zeile in dem Status-Ausgaben-Bereich aus.
+	 * @param line	Auszugebende Informationszeile
+	 */
+	private void addStatusLine(final String line) {
 		if (statusField.getText().isEmpty()) statusField.setText(line); else statusField.setText(statusField.getText()+"\n"+line);
 		statusField.setCaretPosition(statusField.getText().length());
 	}
 
+	/**
+	 * Ändert den Wert in {@link #inXMLKey}
+	 * @param oldValue	Bisherige Verteilung oder bisheriger Wert
+	 * @param newValue	Einzutragender Wert
+	 * @return	Neue Verteilung oder neuer Wert
+	 */
 	private String changeElementValue(String oldValue, double newValue) {
 		if (inXMLType==0) {
 			return NumberTools.formatNumber(newValue);
@@ -302,6 +372,14 @@ public class BatchPanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Ändert den Wert eines XML-Objekt
+	 * @param selectors	Zusammenstellung der Pfad-Komponenten
+	 * @param parent	Übergeordnetes XML-Element
+	 * @param parentTags	Namen der übergeordneten Elemente
+	 * @param newValue	Neuer Wert für das XML-Objekt
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 */
 	private String changeElement(Scanner selectors, Element parent, List<String> parentTags, double newValue) {
 		/* Selektor dekodieren */
 		String sel=selectors.next();
@@ -370,6 +448,14 @@ public class BatchPanel extends JWorkPanel {
 		return changeElement(selectors,searchResult,tags,newValue);
 	}
 
+	/**
+	 * Ändert einen XML-Eintrag in einem Callcenter-Modell
+	 * @param model	Bisheriges Callcenter-Modell
+	 * @param xmlKey	Zu änderndes XML-Element
+	 * @param xmlType	Typ des zu ändernden XML-Elements
+	 * @param value	Neuer Wert
+	 * @return	Liefert im Erfolgsfall ein neues Callcenter-Modell, sonst eine Fehlermeldung
+	 */
 	private Object changeModel(CallcenterModel model, String xmlKey, int xmlType, double value) {
 		Document xmlDoc=model.saveToXMLDocument();
 		if (xmlDoc==null) return Language.tr("Batch.Parameter.XMLTag.NotAbleToSave");
@@ -387,6 +473,10 @@ public class BatchPanel extends JWorkPanel {
 		return editModel;
 	}
 
+	/**
+	 * Startet die nächste Simulation
+	 * @return	Liefert <code>true</code>, wenn eine weitere Simulation gestartet werden konnte, und <code>false</code>, wenn die Simulation aller Modelle abgeschlossen ist
+	 */
 	private boolean initNextSimulation() {
 		simulator=null;
 
@@ -436,6 +526,9 @@ public class BatchPanel extends JWorkPanel {
 		return simulator!=null;
 	}
 
+	/**
+	 * Schließt die aktuelle Simulation ab.
+	 */
 	private void doneSimulation() {
 		String errorMessage=simulator.finalizeRun();
 		/* Vom Server gesandte Meldungen ausgeben */
@@ -460,6 +553,10 @@ public class BatchPanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Wird nach dem Abschluss aller Simulationen
+	 * (erfolgreich oder durch Abbruch) aufgerufen.
+	 */
 	private void everythingDone() {
 		if (cancelWork)
 			addStatusLine(String.format(Language.tr("Batch.Simulation.Canceled"),""+simCount));
@@ -486,6 +583,15 @@ public class BatchPanel extends JWorkPanel {
 		statusProgress.setValue(0);
 	}
 
+	/**
+	 * Prüft in Regelmäßigen Abständen, ob die
+	 * laufende Simulation abgeschlossen wurde
+	 * und die nächste Simulation gestartet
+	 * werden kann.
+	 * @see BatchPanel#initNextSimulation()
+	 * @see BatchPanel#doneSimulation()
+	 * @see BatchPanel#everythingDone()
+	 */
 	private class SimTimerTask extends TimerTask {
 		@Override
 		public void run() {
@@ -502,6 +608,12 @@ public class BatchPanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Startet eine Mehrfach-Simulation im Modus
+	 * "Verzeichnis abarbeiten".
+	 * @return	Liefert <code>true</code>, wenn die Mehrfach-Simulation erfolgreich gestartet werden konnte
+	 * @see #run()
+	 */
 	private final boolean runFolder() {
 		/* Vorbereitung des Batch-Runs */
 		if (folderField.getText().isEmpty()) {addStatusLine(Language.tr("Dialog.Title.Error").toUpperCase()+":\n  "+Language.tr("Batch.Folder.ErrorNoInputFolder")); return false;}
@@ -537,6 +649,12 @@ public class BatchPanel extends JWorkPanel {
 		return true;
 	}
 
+	/**
+	 * Startet eine Mehrfach-Simulation im Modus
+	 * "Parameterreihe erstellen".
+	 * @return	Liefert <code>true</code>, wenn die Mehrfach-Simulation erfolgreich gestartet werden konnte
+	 * @see #run()
+	 */
 	private final boolean runParameter() {
 		/* Vorbereitung des Batch-Runs */
 		File batchFolder=null;
@@ -645,6 +763,9 @@ public class BatchPanel extends JWorkPanel {
 		dialog.setVisible(true);
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen
+	 */
 	private class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

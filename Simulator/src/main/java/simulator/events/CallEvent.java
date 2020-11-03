@@ -25,8 +25,8 @@ import simcore.SimData;
 import simulator.LogTools;
 import simulator.RunData.AgentRecord;
 import simulator.RunData.CallerRecord;
-import simulator.Statistics.KundenDaten;
 import simulator.SimulationData;
+import simulator.Statistics.KundenDaten;
 import ui.model.CallcenterRunModelCaller;
 
 /**
@@ -46,6 +46,13 @@ public final class CallEvent extends Event {
 	 */
 	public CallcenterRunModelCaller callerGroup;
 
+	/**
+	 * Erfasst einen Anruf
+	 * @param data	Simulationsdatenobjekt
+	 * @param callerRecord	Anruferdatensatz
+	 * @param time	Aktuelle Simulationszeit
+	 * @param newCall	Neuer Anruf (<code>true</code>) oder Weiterleitung (<code>false</code>)
+	 */
 	private static void logCall(final SimulationData data, final CallerRecord callerRecord, final long time, final boolean newCall) {
 		final KundenDaten statisticGlobal=data.statisticSimData.kundenGlobal;
 		final KundenDaten statisticClient=callerRecord.statisticClient;

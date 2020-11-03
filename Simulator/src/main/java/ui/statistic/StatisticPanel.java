@@ -137,15 +137,35 @@ public final class StatisticPanel extends StatisticBasePanel {
 		setStatisticData(root,doc);
 	}
 
+	/**
+	 * Hält Daten zu mehreren Datenobjekten vor.
+	 * @see StatisticPanel#callerTypes(Statistics[])
+	 * @see StatisticPanel#agentCallcenterTypes(Statistics[])
+	 * @see StatisticPanel#agentSkillLevelTypes(Statistics[])
+	 */
 	private class MultiNumbers {
+		/** Name des Datenobjekts */
 		public final String name;
+		/** Anzahlwerte */
 		public final int[] nr;
+
+		/**
+		 * Konstruktor der Klasse
+		 * @param name	Name des Datenobjekts
+		 * @param size	Anzahl der zu speichernden Anzahlwerte
+		 */
 		public MultiNumbers(final String name, final int size) {
 			this.name=name;
 			nr=new int[size];
 		}
 	}
 
+	/**
+	 * Liefert die Anzahlen an Anrufern pro Gruppe
+	 * @param data	Statistik-Eingabedaten
+	 * @return	Anrufer pro Gruppe
+	 * @see MultiNumbers
+	 */
 	private MultiNumbers[] callerTypes(Statistics data[]) {
 		List<MultiNumbers> list=new ArrayList<MultiNumbers>();
 		if (data.length>0 && data[0]!=null) for (int i=0;i<data[0].kundenProTyp.length;i++) {
@@ -162,6 +182,12 @@ public final class StatisticPanel extends StatisticBasePanel {
 		return list.toArray(new MultiNumbers[0]);
 	}
 
+	/**
+	 * Liefert die Anzahlen an Agenten pro Callcenter
+	 * @param data	Statistik-Eingabedaten
+	 * @return	Agenten pro Callcenter
+	 * @see MultiNumbers
+	 */
 	private MultiNumbers[] agentCallcenterTypes(Statistics data[]) {
 		List<MultiNumbers> list=new ArrayList<MultiNumbers>();
 		if (data.length>0 && data[0]!=null) for (int i=0;i<data[0].agentenProCallcenter.length;i++) {
@@ -178,6 +204,12 @@ public final class StatisticPanel extends StatisticBasePanel {
 		return list.toArray(new MultiNumbers[0]);
 	}
 
+	/**
+	 * Liefert die Anzahlen an Agenten pro Skill-Level
+	 * @param data	Statistik-Eingabedaten
+	 * @return	Agenten pro Skill-Level
+	 * @see MultiNumbers
+	 */
 	private MultiNumbers[] agentSkillLevelTypes(Statistics data[]) {
 		List<MultiNumbers> list=new ArrayList<MultiNumbers>();
 		if (data.length>0 && data[0]!=null) for (int i=0;i<data[0].agentenProSkilllevel.length;i++) {
@@ -194,6 +226,11 @@ public final class StatisticPanel extends StatisticBasePanel {
 		return list.toArray(new MultiNumbers[0]);
 	}
 
+	/**
+	 * Generiert den Statistikbaum
+	 * @param root	Wurzelelement des Statistikbaums
+	 * @param data	Statistikobjekte dem die Daten für die jeweiligen Baumeinträge entnommen werden sollen
+	 */
 	private void addStatisticToTree(StatisticNode root, Statistics data[]) {
 		StatisticNode node, node2, node3;
 		List<StatisticViewer> list=new ArrayList<StatisticViewer>();

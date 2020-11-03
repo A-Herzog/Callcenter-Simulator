@@ -44,7 +44,15 @@ public abstract class CallerTableLoader extends TableLoader {
 		SAVEMODE_FRESHCALLS
 	}
 
+	/**
+	 * Zuordnung der Kundentypnamen zu den Daten für die Kundentypen
+	 * @see #getCallerDataForTypeName(String)
+	 */
 	private final HashMap<String,CallerData> data;
+
+	/**
+	 * Anzahl der Intervalle pro Tag
+	 */
 	private final int intervalCount;
 
 	/** Welche Daten sollen in der Ergebnistabelle ausgegeben werden? */
@@ -233,9 +241,9 @@ public abstract class CallerTableLoader extends TableLoader {
 		public final DataDistributionImpl freshCallsCount;
 		/** Verteilung der Anzahl an Warteabbrüchen pro Intervall */
 		public final DataDistributionImpl cancelCount;
-		/** Verteilung der mitteren Wartezeiten pro Intervall */
+		/** Verteilung der mittleren Wartezeiten pro Intervall */
 		public final DataDistributionImpl waitingTime;
-		/** Verteilung der mitteren Abbruchzeiten pro Intervall */
+		/** Verteilung der mittleren Abbruchzeiten pro Intervall */
 		public final DataDistributionImpl cancelTime;
 		/** Verteilung der mitteren Bedienzeiten pro Intervall */
 		public final DataDistributionImpl serviceTime;

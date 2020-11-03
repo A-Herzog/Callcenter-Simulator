@@ -27,8 +27,11 @@ import java.util.concurrent.Semaphore;
  */
 public class CloseRequestSignal {
 	/* private final CloseSignalHandler signal; */
+	/** Quit-Flag */
 	private boolean quit=false;
+	/** Prüft auf Tastendrücke, wenn hier ein {@link InputStream} übergeben wird */
 	private final InputStream listenKeys;
+	/** Sichert parallele {@link #isQuit()}-Aufrufe ab */
 	private final Semaphore mutex;
 
 	/**

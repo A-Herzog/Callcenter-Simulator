@@ -41,8 +41,11 @@ public class SimpleSimulationDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 3257255566302733981L;
 
+	/** Eingabebereich */
 	private SimpleSimulationInputPanel inputPanel;
+	/** Ausgabebereich */
 	private SimpleSimulationResultsPanel resultsPanel;
+	/** Letzte Eingaben */
 	private SimpleSimulationInput lastInput=null;
 
 	/**
@@ -75,6 +78,9 @@ public class SimpleSimulationDialog extends BaseEditDialog {
 		});
 	}
 
+	/**
+	 * Aktualisiert die Ausgaben
+	 */
 	private class UpdateSimulation implements Runnable {
 		@Override
 		public void run() {

@@ -169,6 +169,10 @@ public abstract class CallerEditPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Gibt 0 zurück, wenn es keine besonderen Wünsche seitens des Panels gibt; ansonsten die Nummer des Generators, die geöffnet werden soll.
+	 * @see #getOpenGenerator()
+	 */
 	private int openGenerator=0;
 
 	/**
@@ -182,7 +186,7 @@ public abstract class CallerEditPanel extends JPanel {
 	}
 
 	/**
-	 * Ergmöglich dem Eltern-Dialog abzufragen, ob dieses Panel den Generator öffnen möchte
+	 * Ermöglicht dem Eltern-Dialog abzufragen, ob dieses Panel den Generator öffnen möchte
 	 * @return	Gibt 0 zurück, wenn es keine besonderen Wünsche seitens des Panels gibt; ansonsten die Nummer des Generators, die geöffnet werden soll.
 	 */
 	public final int getOpenGenerator() {
@@ -246,13 +250,21 @@ public abstract class CallerEditPanel extends JPanel {
 	 * @version 1.0
 	 */
 	public final static class InitData {
+		/** Eltern-Dialog-Fenster vom Type <code>BaseEditDialog</code> (bei dem gegebenenfalls die <code>closeDialog</code>-Funktion aufgerufen wird, wenn das Panel den Dialog schließen möchte). */
 		private final BaseEditDialog parent;
+		/** Anrufergruppe, die bearbeitet werden soll. (Wird der Klasse per protected Membervariable zur Verfügung gestellt.) */
 		private final CallcenterModelCaller caller;
+		/** Gibt den Index den aktuellen Kundentyps in der Liste alle Kundentypen an (z.B. um diesen in solch einer Liste hervorzuheben) (Wird der Klasse per protected Membervariable zur Verfügung gestellt.) */
 		private final int callerTypeIndexForThisType;
+		/** Systemweiter Service-Level (Wird der Klasse per protected Membervariable zur Verfügung gestellt.) */
 		private final short serviceLevelModel;
+		/** Liste aller Anrufergruppennamen (Wird der Klasse per protected Membervariable zur Verfügung gestellt.) */
 		private final String[] callerTypeNames;
+		/** Liste aller Skill-Level-Namen (Wird der Klasse per protected Membervariable zur Verfügung gestellt.) */
 		private final String[] skills;
+		/** Gibt an, ob die Einstellungen verändert werden dürfen. (Wird der Klasse per protected Membervariable zur Verfügung gestellt.) */
 		private final boolean readOnly;
+		/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird eine "Hilfe"-Schaltfläche angezeigt und die <code>Run</code>-Methode dieses Objekts beim Klicken auf diese Schaltfläche aufgerufen */
 		private final Runnable helpCallback;
 
 		/**

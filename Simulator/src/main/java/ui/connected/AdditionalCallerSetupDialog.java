@@ -71,6 +71,11 @@ public class AdditionalCallerSetupDialog extends BaseEditDialog {
 		createSimpleGUI(400,500,null,null);
 	}
 
+	/**
+	 * Liefert die Namen der Anrufergruppen in dem Modell
+	 * @param model	Modell dem die Daten entnommen werden sollen
+	 * @return	Namen der Anrufergruppen
+	 */
 	private static String[] getCallerNames(CallcenterModel model) {
 		List<String> names=new ArrayList<String>();
 		for (int i=0;i<model.caller.size();i++) names.add(model.caller.get(i).name);

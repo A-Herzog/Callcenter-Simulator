@@ -17,6 +17,7 @@ package ui.simplesimulation;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -32,10 +33,16 @@ import mathtools.TimeTools;
  * @version 1.0
  */
 public class SimpleSimulationResultsPanel extends JPanel {
+	/**
+	 * Serialisierungs-ID der Klasse
+	 * @see Serializable
+	 */
 	private static final long serialVersionUID = -5694519365920895160L;
 
+	/** Ausgabebereich */
 	private final JTextPane text;
 
+	/** HTML-Kopf für die Ausgaben */
 	private static final String head=
 			"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n"+
 					"<html>\n"+
@@ -45,10 +52,12 @@ public class SimpleSimulationResultsPanel extends JPanel {
 					"  </style>\n"+
 					"</head>\n"+
 					"<body>\n";
+
+	/** HTML-Fuß für die Ausgaben */
 	private static final String foot="</body></html>";
 
 	/**
-	 * Konstruktor der Klasse <code>SimpleSimulationResultsPanel</code>
+	 * Konstruktor der Klasse
 	 */
 	public SimpleSimulationResultsPanel() {
 		setLayout(new BorderLayout());
@@ -59,6 +68,11 @@ public class SimpleSimulationResultsPanel extends JPanel {
 		add(new JScrollPane(text),BorderLayout.CENTER);
 	}
 
+	/**
+	 * Liefert eine html-formatierte Zusammenstellung der Ergebnisse der Einfach-Simulation
+	 * @param simulator	Simulator der die Ergebnisse vorhält
+	 * @return	Zusammenstellung der Ergebnisse
+	 */
 	private String getResultsText(final SimpleSimulation simulator) {
 		if (simulator.error!=null) return "<b>"+Language.tr("Dialog.Title.Error")+"</b><br>"+simulator.error;
 

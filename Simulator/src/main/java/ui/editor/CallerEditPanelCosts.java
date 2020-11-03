@@ -42,13 +42,16 @@ public class CallerEditPanelCosts extends CallerEditPanel {
 	 */
 	private static final long serialVersionUID = -2674610320989485395L;
 
+	/** Eingabefeld für den Ertrag pro Kunde */
 	private final JTextField revenuePerClient;
+	/** Eingabefeld für die Kosten pro Warteabbruch */
 	private final JTextField costPerCancel;
+	/** Eingabefeld für die Kosten pro Wartesekunde */
 	private final JTextField costPerWaitingSec;
 
 	/**
 	 * Konstruktor der Klasse
-	 * @param initData	Informamtionen über den aktuellen Kundentyp zur Initialisierung des Panels
+	 * @param initData	Informationen über den aktuellen Kundentyp zur Initialisierung des Panels
 	 * @see CallerEditPanel.InitData
 	 */
 	public CallerEditPanelCosts(final InitData initData) {

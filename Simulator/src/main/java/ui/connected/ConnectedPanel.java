@@ -92,8 +92,11 @@ public final class ConnectedPanel extends JWorkPanel {
 
 	private File logFile=null;
 
+	/** Timer um regelmäßig den Fortschritt der Simulation in der GUI anzeigen zu können */
 	private Timer timer;
+	/** Startzeitpunkt der ersten Simulation */
 	private long startTime;
+	/** Zählt die Aufrufe von {@link SimTimerTask} */
 	private int count;
 
 	/**
@@ -265,6 +268,10 @@ public final class ConnectedPanel extends JWorkPanel {
 		if (dialog.getClosedBy()==BaseEditDialog.CLOSED_BY_OK) tableModel.setAddditionalDay0Caller(dialog.getCallerNames(),dialog.getCallerCount());
 	}
 
+	/**
+	 * Wird nach dem Abschluss aller Simulationen
+	 * (erfolgreich oder durch Abbruch) aufgerufen.
+	 */
 	private void everythingDone() {
 		String s;
 		if (cancelWork)
@@ -289,6 +296,13 @@ public final class ConnectedPanel extends JWorkPanel {
 		logFile=null;
 	}
 
+	/**
+	 * Prüft in Regelmäßigen Abständen, ob die
+	 * laufende Simulation abgeschlossen wurde
+	 * und die nächste Simulation gestartet
+	 * werden kann.
+	 * @see ConnectedPanel#everythingDone()
+	 */
 	private final class SimTimerTask extends TimerTask {
 		@Override
 		public void run() {

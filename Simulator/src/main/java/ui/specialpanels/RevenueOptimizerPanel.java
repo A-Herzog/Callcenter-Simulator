@@ -57,17 +57,25 @@ public class RevenueOptimizerPanel extends JWorkPanel {
 
 	/** Übergeordnetes Fenster */
 	private final Window owner;
-	/** Für die Ertragsoptimierung zu verwendenes Callcenter-Modell */
+	/** Für die Ertragsoptimierung zu verwendendes Callcenter-Modell */
 	private final CallcenterModel baseModel;
+	/** Bisheriges bestes Modell */
 	private CallcenterModel bestModel;
+	/** Modell für die Rückgabe an den Editor */
 	private CallcenterModel returnModel=null;
 
+	/** Fußzeile mit Informationen */
 	private final JPanel bottomInfoPanel;
+	/** Text innerhalb der Fußzeile */
 	private final JLabel bottomInfoLabel;
+	/** Bereich für Statusausgaben */
 	private final JTextPane statusField;
 
+	/** Ertrags-Optimierer-System */
 	private RevenueOptimizer revenueOptimizer;
-	private Thread thread;
+	/** Thread in dem die eigentliche Optimierung erfolgt */
+	private OptimizeThread thread;
+	/** Timer zum regelmäßigen Aufruf von {@link UpdateTimer} während einer laufenden Optimierung */
 	private Timer timer;
 
 	/**
@@ -75,7 +83,7 @@ public class RevenueOptimizerPanel extends JWorkPanel {
 	 * @param owner	Übergeordnetes Fenster
 	 * @param doneNotify	Callback wird aufgerufen, wenn das Panel geschlossen werden soll
 	 * @param helpLink	Help-Link
-	 * @param model	Für die Ertragsoptimierung zu verwendenes Callcenter-Modell
+	 * @param model	Für die Ertragsoptimierung zu verwendendes Callcenter-Modell
 	 */
 	public RevenueOptimizerPanel(final Window owner, final Runnable doneNotify, final HelpLink helpLink, final CallcenterModel model) {
 		super(doneNotify,helpLink.pageRevenueOptimizer);
@@ -109,6 +117,11 @@ public class RevenueOptimizerPanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Löscht die bisherigen Ausgaben in {@link #statusField}
+	 * und initialisiert die Stile für die Ausgabe.
+	 * @see #statusField
+	 */
 	private void clearText() {
 		StyledDocument doc=new DefaultStyledDocument();
 
@@ -147,6 +160,11 @@ public class RevenueOptimizerPanel extends JWorkPanel {
 		super.done();
 	}
 
+	/**
+	 * Gibt eine Meldung in {@link #statusField} aus.
+	 * @param heading	Überschrift
+	 * @param line	Meldung
+	 */
 	private synchronized void addStatusLine(final int heading, final String line) {
 		StyledDocument doc=statusField.getStyledDocument();
 		switch (heading) {
@@ -186,6 +204,9 @@ public class RevenueOptimizerPanel extends JWorkPanel {
 		setWorkMode(true);
 	}
 
+	/**
+	 * Aktualisiert die Anzeige gemäß des Simulationsfortschritts
+	 */
 	private class UpdateTimer extends TimerTask {
 		@Override
 		public void run() {
@@ -219,7 +240,15 @@ public class RevenueOptimizerPanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Thread der die eigentliche Optimierung durchführt.
+	 * @see RevenueOptimizerPanel#revenueOptimizer
+	 * @see RevenueOptimizer
+	 */
 	private class OptimizeThread extends Thread {
+		/**
+		 * Konstruktor der Klasse
+		 */
 		public OptimizeThread() {
 			super("RevenueOptimizerThread");
 		}

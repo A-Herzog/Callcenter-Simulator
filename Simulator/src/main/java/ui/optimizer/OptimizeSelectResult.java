@@ -43,9 +43,13 @@ public final class OptimizeSelectResult extends BaseEditDialog  {
 	 */
 	private static final long serialVersionUID = -8093197712337120384L;
 
+	/** Optimierungsergebnisse aus denen die enthaltenen Statistikdaten die zur Auswahl angeboten werden sollen */
 	private final OptimizeData results;
+	/** Statistikdaten die zur Auswahl angeboten werden sollen */
 	private final Statistics[] resultsDirect;
+	/** Auswahlbox zur Auswahl der anzuzeigenden Statistikdaten */
 	private JComboBox<String> comboBox;
+	/** Beschreibung zu dem in {@link #comboBox} ausgewählten Modell */
 	private JTextPane text;
 
 	/**
@@ -113,6 +117,10 @@ public final class OptimizeSelectResult extends BaseEditDialog  {
 		return comboBox.getSelectedIndex();
 	}
 
+	/**
+	 * Reagiert auf eine Veränderung der Auswahl in {@link OptimizeSelectResult#comboBox}
+	 * @see OptimizeSelectResult#comboBox
+	 */
 	private final class ComboBoxListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

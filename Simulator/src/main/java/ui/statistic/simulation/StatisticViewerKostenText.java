@@ -47,7 +47,12 @@ public class StatisticViewerKostenText extends StatisticViewerText {
 	}
 	 */
 
-	private void buildClientCosts(KundenDaten kunden, long days) {
+	/**
+	 * Generiert den Kostentext für eine Kundengruppe
+	 * @param kunden	Kundengruppe
+	 * @param days	Anzahl an simulierten Tagen
+	 */
+	private void buildClientCosts(final KundenDaten kunden, final long days) {
 		if (kunden.name.isEmpty()) addHeading(2,Language.tr("SimStatistic.AllClients.Short")); else addHeading(2,kunden.name);
 		beginParagraph();
 		addLineDiv2(1,Language.tr("SimStatistic.Yield.Clients"),kunden.revenue,days);
@@ -57,7 +62,12 @@ public class StatisticViewerKostenText extends StatisticViewerText {
 		endParagraph();
 	}
 
-	private void buildAgentCosts(AgentenDaten agenten, long days) {
+	/**
+	 * Generiert den Kostentext für eine Agentengruppe
+	 * @param agenten	Agentengruppe
+	 * @param days	Anzahl an simulierten Tagen
+	 */
+	private void buildAgentCosts(final AgentenDaten agenten, final long days) {
 		if (agenten.name.isEmpty() && agenten.type.isEmpty()) addHeading(2,Language.tr("SimStatistic.AllAgents")); else {
 			if (agenten.name.isEmpty())	addHeading(2,agenten.type); else addHeading(2,agenten.name);
 		}

@@ -35,6 +35,7 @@ import mathtools.distribution.tools.DistributionTools;
  * @see CallcenterModel
  */
 public class CallcenterModelWarnings implements Cloneable {
+	/** Handelt es sich um die Zusammenstellung der Warnungskonfigurationen für den Editor (<code>false</code>) oder sind dies Statistikdaten (<code>true</code>) */
 	private final boolean withStatistics;
 
 	/**
@@ -152,13 +153,17 @@ public class CallcenterModelWarnings implements Cloneable {
 		/** ID des Typs */
 		public final int id;
 
-		WarningType(int id) {
+		/**
+		 * Konstruktor der Enum
+		 * @param id	ID des Typs
+		 */
+		WarningType(final int id) {
 			this.id=id;
 		}
 	}
 
 	/**
-	 * Über welche Interwalle soll die als Schwellenwert
+	 * Über welche Intervalle soll die als Schwellenwert
 	 * zu betrachtende Kenngröße berechnet werden?
 	 * @author Alexander Herzog
 	 * @see CallcenterModelWarnings.WarningRecord#modeTime
@@ -168,7 +173,7 @@ public class CallcenterModelWarnings implements Cloneable {
 		/** Im Mittel über alle Intervalle (<code>modeTime</code>) bzw. Kunden- oder Agentengruppen (<code>modeGroups</code>) */
 		WARNING_MODE_AVERAGE(0),
 
-		/** Für jedes Intervall einzelen (<code>modeTime</code>) bzw. für jede Kunden- oder Agentengruppen einzeln (<code>modeGroups</code>) */
+		/** Für jedes Intervall einzeln (<code>modeTime</code>) bzw. für jede Kunden- oder Agentengruppen einzeln (<code>modeGroups</code>) */
 		WARNING_MODE_EACH(1),
 
 		/** Für ausgewählte Intervalle (<code>modeTime</code>) bzw. für eine bestimmte Kunden- oder Agentengruppe (<code>modeGroups</code>) */
@@ -177,7 +182,11 @@ public class CallcenterModelWarnings implements Cloneable {
 		/** ID des Modus */
 		public final int id;
 
-		WarningMode(int id) {
+		/**
+		 * Konstruktor der Enum
+		 * @param id	ID des Modus
+		 */
+		WarningMode(final int id) {
 			this.id=id;
 		}
 	}
@@ -201,7 +210,11 @@ public class CallcenterModelWarnings implements Cloneable {
 		/** ID des Status */
 		public final int id;
 
-		WarningStatus(int id) {
+		/**
+		 * Konstruktor der Enum
+		 * @param id	ID des Status
+		 */
+		WarningStatus(final int id) {
 			this.id=id;
 		}
 	}

@@ -23,8 +23,8 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.function.IntConsumer;
 import java.util.function.IntSupplier;
@@ -69,22 +69,37 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 	private final Runnable helpFastAccess;
 	/** Hilfe für Schnellzugriff-Dialog */
 	private final Runnable helpFastAccessModal;
+	/** System zur Filterung der Daten */
 	private DataFilter dataFilter=null;
 	/** Statistik-Objekt, dem die Daten entnommen werden sollen */
 	private final Statistics statistic;
+	/** Eingabebereich für das Filter-Skript */
 	private JTextArea filter;
+	/** Ausgabebereich für die Ergebnisse */
 	private JTextArea results;
+	/** Symbolleiste */
 	private JToolBar toolbar;
+	/** Auswahlbox zur Auswahl des aktuellen Skriptes */
 	private JComboBox<ComboBoxItem> toolbarFilter;
+	/** Schaltfläche "Neu" */
 	private JButton toolbarNew;
+	/** Schaltfläche "Laden" */
 	private JButton toolbarLoad;
+	/** Schaltfläche "Speichern" */
 	private JButton toolbarSave;
+	/** Schaltfläche "Tools" */
 	private JButton toolbarTools;
+	/** Schaltfläche "Hilfe" */
 	private JButton toolbarHelp;
+	/** Popupmenü zur Anzeige beim Anklicken von {@link #toolbarTools} */
 	private JPopupMenu toolbarToolsMenu;
+	/** Menüpunkt zur Auswahl eines XML-Elements */
 	private JMenuItem toolbarSelect;
+	/** Menü zur Anzeige der Vorlagen */
 	private JMenu toolbarTemplate;
+	/** Menüpunkte für die Skript-Vorlagen */
 	private JMenuItem[] toolbarTemplateItem;
+	/** Zuletzt verwendetes Filter-Skript */
 	private String lastFilterText;
 
 	/**
@@ -106,11 +121,14 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		return ViewerType.TYPE_SPECIAL;
 	}
 
+	/** Namen für Skript-Vorlagen */
 	private static final String[] templateNames={
 			Language.tr("Statistic.FastAccess.Template.DisplayAccessibility"),
 			Language.tr("Statistic.FastAccess.Template.DisplayServiceLevel"),
 			Language.tr("Statistic.FastAccess.Template.DisplayAverageWaitingTime")
 	};
+
+	/** Skript-Vorlagen */
 	private static final String[] templateContent={
 			"Title "+Language.tr("Statistic.FastAccess.Template.DisplayAccessibility")+"\n"+
 					"Format percent\n"+
@@ -244,7 +262,13 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 	@Override
 	public String ownSettingsName() {return null;}
 
-	private boolean saveTextToFile(Component parentFrame, String text) {
+	/**
+	 * Speichert ein Skript in einer Datei
+	 * @param parentFrame	Übergeordnetes Fenster (zur Ausrichtung von Dialogen)
+	 * @param text	Skripttext
+	 * @return	Liefert <code>true</code>, wenn der Text gespeichert werden konnte
+	 */
+	private boolean saveTextToFile(final Component parentFrame, final String text) {
 		JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
 		fc.setDialogTitle(Language.tr("FileType.Save.Text"));
@@ -268,7 +292,12 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		return DataFilterBase.saveText(text,file,false);
 	}
 
-	private String loadTextFromFile(Container parentFrame) {
+	/**
+	 * Versucht ein Skript aus einer Datei zu laden.
+	 * @param parentFrame	Übergeordnetes Fenster (zur Ausrichtung von Dialogen)
+	 * @return	Liefert im Erfolgsfall den geladenen Text, sonst <code>null</code>
+	 */
+	private String loadTextFromFile(final Container parentFrame) {
 		JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
 		fc.setDialogTitle(Language.tr("FileType.Load.Text"));
@@ -295,8 +324,15 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		}
 	}
 
+	/**
+	 * Läuft gerade ein Aktualisierungsvorgang?
+	 * @see #filterUpdated()
+	 */
 	private boolean filterIsUpdating=false;
 
+	/**
+	 * Aktualisiert die Ausgabe basierend auf dem geänderten Filterskirpt.
+	 */
 	private void filterUpdated() {
 		if (dataFilter==null) dataFilter=new DataFilter(statistic.saveToXMLDocument());
 		filterIsUpdating=true;
@@ -319,7 +355,12 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		}
 	}
 
-	private boolean discardFilterOk(Container parentFrame) {
+	/**
+	 * Prüft, ob das aktuelle Skript verworfen werden darf (und fragt ggf. den Nutzer dazu).
+	 * @param parentFrame	Übergeordnetes Fenster (zur Ausrichtung von Dialogen)
+	 * @return	Liefert <code>true</code>, wenn das Skript verworfen werden darf
+	 */
+	private boolean discardFilterOk(final Container parentFrame) {
 		if (filter.getText().equals(lastFilterText)) return true;
 
 		int i=MsgBox.confirmSave(owner,Language.tr("Statistic.FastAccess.DiscardConfirm.Title"),Language.tr("Statistic.FastAccess.DiscardConfirm.Info"));
@@ -331,15 +372,18 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		return false;
 	}
 
-	private class FilterKeyListener implements KeyListener {
-		@Override
-		public void keyTyped(KeyEvent e) {}
-		@Override
-		public void keyPressed(KeyEvent e) {}
+	/**
+	 * Reagiert auf Tastendrücke in {@link StatisticViewerFastAccess#filter}
+	 * @see StatisticViewerFastAccess#filter
+	 */
+	private class FilterKeyListener extends KeyAdapter {
 		@Override
 		public void keyReleased(KeyEvent e) {filterUpdated();}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen in der Symbolleiste
+	 */
 	private class ToolBarActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -418,14 +462,27 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		}
 	}
 
+	/**
+	 * Einträge für {@link StatisticViewerFastAccess#toolbarFilter}
+	 * @see StatisticViewerFastAccess#toolbarFilter
+	 */
 	private class ComboBoxItem {
+		/** Anzuzeigender Text */
 		private String value;
 
-		public ComboBoxItem(String value) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param value	Anzuzeigender Text
+		 */
+		public ComboBoxItem(final String value) {
 			this.value=value;
 		}
 
-		public void setValue(String newValue) {
+		/**
+		 * Stellt einen neuen anzuzeigenden Text ein.
+		 * @param newValue	Anzuzeigender Text
+		 */
+		public void setValue(final String newValue) {
 			value=newValue;
 		}
 

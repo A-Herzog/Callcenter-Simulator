@@ -44,6 +44,11 @@ public class FastAccessFolder {
 		this.folder=(folder!=null && !folder.trim().isEmpty())?new File(folder):null;
 	}
 
+	/**
+	 * Liest eine Datei in eine Zeichenkette ein
+	 * @param file	Zu ladende Datei
+	 * @return	Zeichenkette oder <code>null</code>, wenn das Laden fehlgeschlagen ist
+	 */
 	private String readFile(File file) {
 		try (BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(file),StandardCharsets.UTF_8))) {
 			StringBuilder sb=new StringBuilder();

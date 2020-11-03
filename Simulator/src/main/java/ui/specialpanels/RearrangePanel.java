@@ -58,21 +58,39 @@ public class RearrangePanel extends JWorkPanel {
 
 	/** Übergeordnetes Fenster */
 	private final Window owner;
-	/** Für die Anrufe- oder Agenten-Verlagerung zu verwendenes Callcenter-Modell */
+	/** Für die Anrufe- oder Agenten-Verlagerung zu verwendendes Callcenter-Modell */
 	private final CallcenterModel editModel;
+	/** System zur Verlagerung von Anrufern oder Agenten */
 	private final Rearranger rearranger;
+	/** Neues Modell, das in den Editor geladen werden soll */
 	private CallcenterModel loadModelIntoEditor=null;
 
+	/** Registerreiter */
 	private final JTabbedPane tabs;
+
+	/* Dialogseite "Anrufer verlagern" */
+
+	/** Baumstruktur zur Auswahl der Anrufergruppen */
 	private final CheckBoxTree callsTree;
+	/** Stärke der Verlagerung der Anrufergruppen */
 	private final JSlider callerSlider;
+
+	/* Dialogseite "Agenten verlagern" */
+
+	/** Baumstruktur zur Auswahl der Agentengruppen */
 	private final CheckBoxTree agentsTree;
+	/** Stärke der Verlagerung der Agentengruppen */
 	private final JSlider agentsSlider;
+	/** Option "Agentenverteilung leicht zugunsten späterer Stunden verschieben" */
 	private final JCheckBox agentsAdditionalMove;
 
+	/** Simulator, der die konkreten Simulationen ausführt */
 	private CallcenterSimulatorInterface simulator;
+	/** Arbeitspanel */
 	private CallcenterRunPanel runPanel;
+	/** Statistik für Ausgangsfall und verändertes Modell */
 	private Statistics[] statistics=null;
+	/** Vorher-Nachher-Vergleich */
 	private ComparePanel comparePanel;
 
 	/** Help-Link */
@@ -81,7 +99,7 @@ public class RearrangePanel extends JWorkPanel {
 	/**
 	 * Konstruktor der Klasse
 	 * @param owner	Übergeordnetes Fenster
-	 * @param model	Für die Anrufe- oder Agenten-Verlagerung zu verwendenes Callcenter-Modell
+	 * @param model	Für die Anrufe- oder Agenten-Verlagerung zu verwendendes Callcenter-Modell
 	 * @param doneNotify	Callback wird aufgerufen, wenn das Panel geschlossen werden soll
 	 * @param helpLink	Help-Link
 	 */
@@ -133,7 +151,13 @@ public class RearrangePanel extends JWorkPanel {
 		addFooterButton(Language.tr("Rearranger.Button.SimulateAndCompare"),Images.REARRANGE_RUN.getURL());
 	}
 
-	private String lineWrap(String text, int maxLength) {
+	/**
+	 * Bricht eine lange Zeile mittel html-Anweisungen (&lt;br&gt;) um.
+	 * @param text	Lange Zeile
+	 * @param maxLength	Maximallänge pro Abschnitt
+	 * @return	Zeile mit Umbrüchen
+	 */
+	private String lineWrap(String text, final int maxLength) {
 		StringBuilder sb=new StringBuilder();
 		while (!text.isEmpty()) {
 			StringBuilder line=new StringBuilder();
@@ -154,7 +178,13 @@ public class RearrangePanel extends JWorkPanel {
 		return sb.toString();
 	}
 
-	private JSlider getSlider(String minLabel, String maxLabel) {
+	/**
+	 * Erstellt einen Schieberegler mit Minimalwert 0 und Maximalwert 20
+	 * @param minLabel	Beschriftung für den Minimalwert
+	 * @param maxLabel	Beschriftung für den Maximalwert
+	 * @return	Neuer Schieberegler
+	 */
+	private JSlider getSlider(final String minLabel, final String maxLabel) {
 		JSlider slider=new JSlider(SwingConstants.HORIZONTAL,0,20,15);
 		slider.setMajorTickSpacing(2);
 		slider.setMinorTickSpacing(1);
@@ -168,6 +198,11 @@ public class RearrangePanel extends JWorkPanel {
 		return slider;
 	}
 
+	/**
+	 * Erzeugt ein Infopanel mit einem html-formatierten Text
+	 * @param info	Auszugebender Text, der html-Formatierungen enthalten kann
+	 * @return	Infopanel
+	 */
 	private JPanel getLabel(String info) {
 		JPanel p=new JPanel(new FlowLayout(FlowLayout.LEFT));
 		p.add(new JLabel("<html>"+info+"</html>"));
@@ -182,6 +217,10 @@ public class RearrangePanel extends JWorkPanel {
 		return loadModelIntoEditor;
 	}
 
+	/**
+	 * Führt die Verlagerung gemäß der Einstellungen durch.
+	 * @return	Neues Callcenter-Modell mit verlagerten Kunden- oder Agentengruppen
+	 */
 	private CallcenterModel rearrange() {
 		if (tabs.getSelectedIndex()==0) {
 			String s=rearranger.canMoveCalls();
@@ -205,16 +244,26 @@ public class RearrangePanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Führt die Verlagerung gemäß der Einstellungen durch
+	 * und schließt im Erfolgsfall das Panel und lädt das
+	 * neue Modell in den Editor.
+	 */
 	private void rearrangeAndClose() {
-		CallcenterModel newModel=rearrange();
+		final CallcenterModel newModel=rearrange();
 		if (newModel==null) return;
 
 		loadModelIntoEditor=newModel;
 		done();
 	}
 
+	/**
+	 * Führt die Simulation von Ausgangs- und
+	 * verändertem Modell durch und zeigt ein
+	 * Panel zum Vergleich der Ergebnisse an.
+	 */
 	private void simulateAndCompare() {
-		CallcenterModel newModel=rearrange();
+		final CallcenterModel newModel=rearrange();
 		if (newModel==null) return;
 
 		StartAnySimulator startAnySimulator;
@@ -240,7 +289,14 @@ public class RearrangePanel extends JWorkPanel {
 		if (index==1) {simulateAndCompare(); return;}
 	}
 
+	/**
+	 * Reagiert auf den Abschluss einer Simulation
+	 */
 	private class SimDoneNotify implements Runnable {
+		/**
+		 * Stellt die Standardansicht der grafischen
+		 * Oberfläche nach einer Simulation wieder her.
+		 */
 		public void setDefaultGUIState() {
 			simulator=null;
 			statistics=null;

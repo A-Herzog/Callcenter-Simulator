@@ -46,17 +46,23 @@ public class SetupOptimizeDiagrams extends BaseEditDialog {
 
 	/** Zugehöriges Callcenter-Modell */
 	private final CallcenterModel model;
+	/** Bisheriger Datentyp für die linke Seite */
 	private final int dataTypeLeft;
+	/** Bisheriger Unter-Datentyp für die linke Seite */
 	private final int dataNrLeft;
+	/** Bisheriger Datentyp für die rechts Seite */
 	private final int dataTypeRight;
+	/** Bisheriger Unter-Datentyp für die rechte Seite */
 	private final int dataNrRight;
 
+	/** Listenansicht zur Auswahl der Anzeige im linken Diagramm */
 	private JList<String> leftList;
+	/** Listenansicht zur Auswahl der Anzeige im rechten Diagramm */
 	private JList<String> rightList;
 
 	/**
 	 * Konstruktor der Klasse
-	 * @param owner	Übergeorndetes Fenster
+	 * @param owner	Übergeordnetes Fenster
 	 * @param helpCallback	Hilfe-Callback
 	 * @param model	Zugehöriges Callcenter-Modell
 	 * @param dataTypeLeft	Bisheriger Datentyp für die linke Seite

@@ -48,10 +48,22 @@ public class StatisticViewerCallerDiagram extends StatisticViewerLineChart {
 		initTooltips();
 	}
 
+	/**
+	 * Liefert den Namen einer Anrufergruppe
+	 * @param model	Gesamtes Modell
+	 * @param callerNr	Nummer der Anrufergruppe (kann auch -1 sein)
+	 * @return	Name einer Anrufergruppe (kann auch "Alle Kundengruppen" sein)
+	 */
 	private String getCallerName(CallcenterModel model, int callerNr) {
 		if (callerNr<0) return Language.tr("SimStatistic.AllClients"); else return model.caller.get(callerNr).name;
 	}
 
+	/**
+	 * Erzeugt die Verteilung für die Diagrammdarstellung.
+	 * @param model Callcenter-Modell, aus dem die Daten gewonnen werden sollen
+	 * @param callerNr Gibt an, die Anrufer welchen Kundentyps angezeigt werden sollen (-1=alle Kundentypen)
+	 * @return	Verteilung für die Diagrammdarstellung
+	 */
 	private DataDistributionImpl buildDistribution(CallcenterModel model, int callerNr) {
 		/* Unnormierte Verteilung bestimmen */
 		DataDistributionImpl dist=new DataDistributionImpl(48,48);

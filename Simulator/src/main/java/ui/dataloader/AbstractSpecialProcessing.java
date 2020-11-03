@@ -176,7 +176,7 @@ public abstract class AbstractSpecialProcessing {
 
 	/**
 	 * Fügt eine beschriftete Eingabezeile mit optionalem Button in ein Panel ein und
-	 * sorgt dafür, dass Dateien auf der Eingabezeile per Drag&Drop abgelegt werden können.
+	 * sorgt dafür, dass Dateien auf der Eingabezeile per Drag&amp;Drop abgelegt werden können.
 	 * @param parent	Übergeordnetes Element
 	 * @param name	Beschriftungstext
 	 * @param initialValue	Vorgabetext für die Eingabezeile (kann <code>null</code> sein)

@@ -64,7 +64,7 @@ public final class SimServerPanel extends JWorkPanel {
 	 */
 	private static final long serialVersionUID = -1719057517168514353L;
 
-	/*+ Übergeordnetes Fenster */
+	/** Übergeordnetes Fenster */
 	private final Window owner;
 
 	private final JCheckBox serverSimulation;
@@ -247,7 +247,11 @@ public final class SimServerPanel extends JWorkPanel {
 		getFooterButton(0).setVisible(running && serverSaaS.isSelected());
 	}
 
-	private void addStatusLine(String text) {
+	/**
+	 * Gibt eine Zeile in dem Status-Ausgaben-Bereich aus.
+	 * @param text	Auszugebende Informationszeile
+	 */
+	private void addStatusLine(final String text) {
 		statusField.setText(statusField.getText()+text);
 	}
 

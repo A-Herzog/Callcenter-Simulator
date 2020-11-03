@@ -42,8 +42,11 @@ public class VarianzAnalyseExportableTable {
 	private final CallcenterModel model;
 	/** Alles nach dieser Anzahl an Zeilen fett darstellen */
 	private int boldAfterRow;
+	/** Darzustellende Tabelle */
 	private final JTable table;
+	/** Datenmodell in {@link #table} */
 	private final VarianzAnalyseExportableTableModel tableModel;
+	/** Tabellendaten */
 	private final Table tableData;
 
 	/**
@@ -142,6 +145,10 @@ public class VarianzAnalyseExportableTable {
 		getOutputTable().save(file);
 	}
 
+	/**
+	 * Datenmodell für {@link VarianzAnalyseExportableTable#table}
+	 * @see VarianzAnalyseExportableTable#table
+	 */
 	private class VarianzAnalyseExportableTableModel extends AbstractTableModel {
 		/**
 		 * Serialisierungs-ID der Klasse

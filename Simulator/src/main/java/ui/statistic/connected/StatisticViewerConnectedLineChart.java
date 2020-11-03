@@ -132,6 +132,12 @@ public class StatisticViewerConnectedLineChart extends StatisticViewerLineChart 
 		this.dataNr=dataNr;
 	}
 
+	/**
+	 * Konfiguriert die Diagrammanzeige
+	 * @param title	Diagrammtitel
+	 * @param yLabel	y-Achsen-Beschriftung
+	 * @param percent	Soll die y-Achse Zahlenwerte (<code>false</code>) oder Prozentwerte (<code>true</code>) anzeigen?
+	 */
 	private void initConnectedChart(String title, String yLabel, boolean percent) {
 		initLineChart(title);
 
@@ -165,7 +171,13 @@ public class StatisticViewerConnectedLineChart extends StatisticViewerLineChart 
 		plot.setDomainAxis(axis);
 	}
 
-	private void addConnectedSeries(String title, Paint paint, List<Double> dist) {
+	/**
+	 * Fügt eine Datenreihe zu dem Diagramm hinzu.
+	 * @param title	Titel der Datenreihe
+	 * @param paint	Darstellung der Datenreihe
+	 * @param dist	Datenreihe
+	 */
+	private void addConnectedSeries(final String title, final Paint paint, final List<Double> dist) {
 		if (dist.size()>1) {
 			XYSeries series=new XYSeries(title);
 			for (int i=0;i<dist.size();i++) series.add(i+1,dist.get(i));
@@ -174,6 +186,11 @@ public class StatisticViewerConnectedLineChart extends StatisticViewerLineChart 
 		}
 	}
 
+	/**
+	 * Liefert den Namen für einen bestimmten Simulationstag.
+	 * @param index	Index des Tages
+	 * @return	Namen für einen bestimmten Simulationstag
+	 */
 	private String getDayName(int index) {
 		if (index>=0 && index<results.length) {
 			String date=results[index].editModel.date;

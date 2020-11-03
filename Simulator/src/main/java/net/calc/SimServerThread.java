@@ -36,8 +36,11 @@ import ui.model.CallcenterRunModel;
  * @version 1.0
  */
 public final class SimServerThread extends NetworkThread {
+	/** Wird aufgerufen, wenn ein neuer Rechentask gestartet wurde */
 	private final Runnable threadBusy;
+	/** Maximale Anzahl an zu verwendenden Rechenthreads */
 	private final int maxThreads;
+	/** Zulässige Client-IP-Adressen (oder <code>null</code>, wenn keine IP-Filterung erfolgen soll) */
 	private final String[] permittedIPs;
 
 	private boolean workStarted=false;

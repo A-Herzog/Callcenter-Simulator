@@ -171,13 +171,18 @@ public final class OptimizeData {
 	 * Erstellt unterhalb des übergebenen XML-Knotens einen neuen Knoten, der die gesamten Optimierer-Daten enthält.
 	 * @param parent	Eltern-XML-Knoten
 	 */
-	public void saveToXML(Element parent) {
+	public void saveToXML(final Element parent) {
 		Document doc=parent.getOwnerDocument();
 		Element node=doc.createElement(Language.trPrimary("XML.OptimizerResults")); parent.appendChild(node);
 		addDataToXML(node);
 	}
 
-	private void addDataToXML(Element node) {
+	/**
+	 * Speichert die Optimierer-Einstellungen in einem XML-Knoten.
+	 * @param node	XML-Knoten in dem die Optimierer-Einstellungen gespeichert werden sollen
+	 * @see #saveToXML(Element)
+	 */
+	private void addDataToXML(final Element node) {
 		Document doc=node.getOwnerDocument();
 		Element e;
 

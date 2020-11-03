@@ -52,7 +52,9 @@ public class CallerEditDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 2913991307659871097L;
 
+	/** Objekt vom Typ <code>CallcenterModelCaller</code> welches die Kundentyp-Daten enthält (beim Klicken auf "Ok" wird auch dieses Objekt verändert) */
 	private final CallcenterModelCaller caller;
+	/** Array mit allen <code>CallcenterModelCaller</code>-Objekten (um Einstellungen auf andere Kundentypen anwenden zu können) */
 	private final CallcenterModelCaller[] callers;
 	private final int callerTypeIndexForThisType;
 	private final CallerEditPanel.InitData initData;

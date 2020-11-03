@@ -138,7 +138,7 @@ public final class CallcenterRunModelCaller {
 	/** Liste der Wahrscheinlichkeiten, mit denen Wiederanrufe zu den bestimmten Kundentypen erfolgen (wird von <code>checkAndInit</code> von Rate zu Wahrscheinlichkeit umgewandelt) in Abhängigkeit vom Skill-Level des bedienenden Agenten */
 	public final List<List<Double>> recallSkillLevelProbabilities;
 
-	/** Wird temporär bei der Intialisierung verwendet */
+	/** Wird temporär bei der Initialisierung verwendet */
 
 	private List<String> tempRetryCallerTypeAfterBlockedFirstRetry;
 	private List<Double> tempRetryCallerTypeAfterBlockedFirstRetryProbability;

@@ -60,6 +60,11 @@ public class StatisticViewerAgentsText extends StatisticViewerText {
 		this.viewType=viewType;
 	}
 
+	/**
+	 * Gibt die Daten für die verfügbare Agentenarbeitsleistung aus.
+	 * @param name	Name des Callcenters oder des Skill-Levels
+	 * @param isSkillLevel	Wurde ein Callcenter-Name (<code>false</code>) oder ein Skill-Level-Name (<code>true</code>) angegeben?
+	 */
 	private void buildAgentData(String name, boolean isSkillLevel) {
 		if (name==null || name.isEmpty()) addHeading(2,Language.tr("SimStatistic.AllActiveAgents")); else addHeading(2,name);
 

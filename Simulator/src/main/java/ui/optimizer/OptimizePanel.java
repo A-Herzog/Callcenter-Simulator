@@ -80,29 +80,50 @@ public final class OptimizePanel extends JWorkPanel {
 	 */
 	public static boolean SHOW_OPTIMIZER_SUCCESS_DIALOG=false;
 
+	/** Editor-Callcenter-Modell, das als Basis für die Optimierungen verwendet werden soll */
 	private final CallcenterModel editModel;
+	/** System, das die eigentliche Optimierung durchführt */
 	private Optimizer optimizer;
+	/** Hält die Optimierung an ({@link #pauseClick()}) */
 	private boolean pauseMode;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
 
+	/** Ergebnisse (in Bezug auf die Zielgröße) aus dem initialen Optimierungsschritt */
 	private DataDistributionImpl initialRunResults=null;
 
+	/** Haupt-Panel (kann Eingabebereich aber auch Simulationsfortschrittsanzeige beinhalten) */
 	private final JPanel main;
+	/** Eingabebereich zur Konfiguration der Optimierung */
 	private OptimizeEditPanel editPanel;
+	/** Anzeige der Veränderung der Zielgröße während der Optimierung */
 	private JFreeChart optimizeChart;
+	/** Anzeige der Veränderung der Stellgröße während der Optimierung */
 	private JFreeChart changeChart;
+	/** Anzeige des Simulationsfortschritts */
 	private JProgressBar simProgress;
+	/** Timer zur Überwachung des Simulationsfortschritts ({@link SimTimerTask}) */
 	private Timer timer;
+	/** Zählt die Aufrufe von {@link SimTimerTask} */
 	private int timerCount;
 
+	/** Darzustellende Größe im linken Diagramm */
 	private int dataTypeLeft=-1;
+	/** Untereintrag für die darzustellende Größe im linken Diagramm */
 	private int dataNrLeft=-1;
+	/** Darzustellende Größe im rechten Diagramm */
 	private int dataTypeRight=-2;
+	/** Untereintrag für die darzustellende Größe im rechten Diagramm */
 	private int dataNrRight=-1;
 
+	/** Hilfe-Link */
 	private final HelpLink helpLink;
 
+	/**
+	 * Ergebnisse der Optimierung
+	 * @see #getResults()
+	 */
 	private OptimizeData results=null;
 
 	/**
@@ -148,6 +169,11 @@ public final class OptimizePanel extends JWorkPanel {
 		return results;
 	}
 
+	/**
+	 * Legt die Schaltflächen fest, die während der Bearbeitung
+	 * der Einstellungen und während der Optimierung in der
+	 * Symbolleiste angezeigt werden sollen.
+	 */
 	private void createFooterButtons() {
 		addFooter(Language.tr("Optimizer.StartOptimization"),Images.OPTIMIZER.getIcon(),Language.tr("Optimizer.StopOptimization"));
 		JButton button;
@@ -177,8 +203,14 @@ public final class OptimizePanel extends JWorkPanel {
 		getFooterButton(4).setVisible(false);
 	}
 
-	private ChartPanel initChart(JFreeChart chart) {
-		CategoryPlot plot=chart.getCategoryPlot();
+	/**
+	 * Führt die allgemeine Initialisierung eines Diagramms durch.
+	 * @param chart	Diagrammobjekt
+	 * @return	Panel in das das Diagrammobjekt eingebettet wird
+	 * @see #createRunPanel()
+	 */
+	private ChartPanel initChart(final JFreeChart chart) {
+		final CategoryPlot plot=chart.getCategoryPlot();
 
 		plot.setRenderer(new StackedBarRenderer());
 		plot.getDomainAxis().setCategoryLabelPositions(CategoryLabelPositions.UP_45);
@@ -186,7 +218,7 @@ public final class OptimizePanel extends JWorkPanel {
 		((BarRenderer)(plot.getRenderer())).setShadowVisible(false);
 		((BarRenderer)(plot.getRenderer())).setBarPainter(new StandardBarPainter());
 
-		ChartPanel chartPanel=new ChartPanel(
+		final ChartPanel chartPanel=new ChartPanel(
 				chart,
 				ChartPanel.DEFAULT_WIDTH,
 				ChartPanel.DEFAULT_HEIGHT,
@@ -195,11 +227,11 @@ public final class OptimizePanel extends JWorkPanel {
 				ChartPanel.DEFAULT_MAXIMUM_DRAW_WIDTH,
 				ChartPanel.DEFAULT_MAXIMUM_DRAW_HEIGHT,
 				ChartPanel.DEFAULT_BUFFER_USED,
-				true,  // properties
-				false,  // save
-				true,  // print
-				true,  // zoom
-				true   // tooltips
+				true,  /* properties */
+				false,  /* save */
+				true,  /* print */
+				true,  /* zoom */
+				true   /* tooltips */
 				);
 		chartPanel.setPopupMenu(null);
 		chart.setBackgroundPaint(null);
@@ -209,6 +241,11 @@ public final class OptimizePanel extends JWorkPanel {
 		return chartPanel;
 	}
 
+	/**
+	 * Legt das Panel an, das während der Optimierung
+	 * den jeweiligen Fortschritt anzeigt.
+	 * @return	Panel zur Anzeige während der Optimierung
+	 */
 	private JPanel createRunPanel() {
 		JPanel status=new JPanel(new BorderLayout());
 		JPanel p;
@@ -225,25 +262,34 @@ public final class OptimizePanel extends JWorkPanel {
 		return status;
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltfläche zur Unterbrechung
+	 * bzw. zur Fortsetzung einer angehaltenen Optimierung.
+	 * @see #pauseMode
+	 */
 	private void pauseClick() {
 		pauseMode=!pauseMode;
 		getFooterButton(2).setText(pauseMode?Language.tr("Optimizer.Resume"):Language.tr("Optimizer.Pause"));
 		getFooterButton(3).setVisible(pauseMode);
 	}
 
+	/**
+	 * Anzeige der bisherigen Teilergebnisse einer
+	 * momentan pausierten Optimierung.
+	 */
 	private void temporaryResultsClick() {
-		OptimizeData data=optimizer.getResults();
+		final OptimizeData data=optimizer.getResults();
 		if (data==null) {
 			MsgBox.error(this,Language.tr("Optimizer.Results.NoData.Title"),Language.tr("Optimizer.Results.NoData.Info"));
 			return;
 		}
-		Statistics[] results=data.data.toArray(new Statistics[0]);
+		final Statistics[] results=data.data.toArray(new Statistics[0]);
 
 		OptimizeSelectResult dialog=new OptimizeSelectResult(owner,results,helpLink.pageOptimizeModal);
 		dialog.setVisible(true);
 		if (dialog.getClosedBy()!=BaseEditDialog.CLOSED_BY_OK) return;
 
-		Statistics statistic=results[dialog.getSelectedResult()];
+		final Statistics statistic=results[dialog.getSelectedResult()];
 
 		final CallcenterModelEditorPanelDialog viewer=new CallcenterModelEditorPanelDialog(owner,statistic.editModel,statistic,false,helpLink);
 		viewer.setCloseNotify(new Runnable() {@Override public void run() {setEnableGUI(owner,true);}});
@@ -262,8 +308,12 @@ public final class OptimizePanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Stellt ein, welche Diagramme während der Optimierung angezeigt werden sollen.
+	 * @see SetupOptimizeDiagrams
+	 */
 	private void setupDiagrams() {
-		boolean oldPauseState=pauseMode;
+		final boolean oldPauseState=pauseMode;
 		try {
 			pauseMode=true;
 			SetupOptimizeDiagrams dialog=new SetupOptimizeDiagrams(owner,helpLink.pageOptimizeModal,editModel,dataTypeLeft,dataNrLeft,dataTypeRight,dataNrRight);
@@ -291,6 +341,11 @@ public final class OptimizePanel extends JWorkPanel {
 		((CardLayout)main.getLayout()).show(main,running?"run":"edit");
 	}
 
+	/**
+	 * Initialisiert eine Optimierung.
+	 * @return	Liefert im Erfolgsfall das {@link Optimizer}-Objekt, sonst <code>null</code> (eine Fehlermeldung wurde dann bereits ausgegeben)
+	 * @see Optimizer
+	 */
 	private Optimizer initOptimizer() {
 		OptimizeSetup optimizeSetup=editPanel.getOptimizeSetup();
 		if (optimizeSetup==null) return null;
@@ -310,6 +365,10 @@ public final class OptimizePanel extends JWorkPanel {
 		return opt;
 	}
 
+	/**
+	 * Wird nach dem Abschluss aller Simulationen
+	 * (erfolgreich oder durch Abbruch) aufgerufen.
+	 */
 	private void everythingDone() {
 		setWorkMode(false);
 		results=optimizer.getResults();
@@ -327,6 +386,13 @@ public final class OptimizePanel extends JWorkPanel {
 		if (results!=null) done();
 	}
 
+	/**
+	 * Konfiguriert die Diagrammanzeige
+	 * @param chart	Diagramm
+	 * @param title	Diagrammtitel
+	 * @param yLabel	y-Achsen-Beschriftung
+	 * @param percent	Soll die y-Achse Zahlenwerte (<code>false</code>) oder Prozentwerte (<code>true</code>) anzeigen?
+	 */
 	private void initOptimizeChartCustom(JFreeChart chart, String title, String yLabel, boolean percent) {
 		chart.setTitle(title);
 
@@ -342,7 +408,13 @@ public final class OptimizePanel extends JWorkPanel {
 		chart.getCategoryPlot().getDomainAxis().setLabel(Language.tr("Statistic.Units.IntervalHalfHour"));
 	}
 
-	private void updateOptimizeChartCustom(JFreeChart chart, int dataType, int dataNr) {
+	/**
+	 * Aktualisiert ein Ausgabediagramm.
+	 * @param chart	Ausgabediagramm
+	 * @param dataType	Darzustellende Größe im Diagramm
+	 * @param dataNr	Untereintrag für die darzustellende Größe im Diagramm
+	 */
+	private void updateOptimizeChartCustom(final JFreeChart chart, final int dataType, final int dataNr) {
 		OptimizeData results=optimizer.getResults();
 		if (results==null || results.data==null || results.data.size()==0) return;
 		Statistics statistic1=results.data.get(0);
@@ -355,7 +427,11 @@ public final class OptimizePanel extends JWorkPanel {
 		}
 	}
 
-	private void updateOptimizeChart(JFreeChart chart) {
+	/**
+	 * Aktualisiert das Zielgrößen-Diagramm (links).
+	 * @param chart	Zielgrößen-Diagramm (links)
+	 */
+	private void updateOptimizeChart(final JFreeChart chart) {
 		String s;
 		boolean up;
 		switch (optimizer.getOptimizeSetup().optimizeProperty) {
@@ -436,7 +512,11 @@ public final class OptimizePanel extends JWorkPanel {
 		if (optimizer.getCurrentRunNr()>3) chart.getCategoryPlot().getRendererForDataset(optimizeDataSet).setSeriesPaint(2,Color.YELLOW);
 	}
 
-	private void updateAgentChart(JFreeChart chart) {
+	/**
+	 * Aktualisiert das Stellgrößen-Diagramm (rechts).
+	 * @param chart	Stellgrößen-Diagramm (rechts)
+	 */
+	private void updateAgentChart(final JFreeChart chart) {
 		chart.setTitle(Language.tr("Optimizer.NumberOfAgents"));
 		chart.getCategoryPlot().getDomainAxis().setLabel(Language.tr("Statistic.Units.IntervalHalfHour"));
 		NumberAxis axis=(NumberAxis)(chart.getCategoryPlot().getRangeAxis());
@@ -496,6 +576,11 @@ public final class OptimizePanel extends JWorkPanel {
 		if (optimizer.getCurrentRunNr()>2) chart.getCategoryPlot().getRendererForDataset(changeDataSet).setSeriesPaint(2,Color.YELLOW);
 	}
 
+	/**
+	 * Aktualisiert während einer laufenden Optimierung
+	 * die Diagrammdarstellungen, um die jeweils neusten
+	 * Ergebnisse darzustellen.
+	 */
 	private void updateCharts() {
 		switch (dataTypeLeft) {
 		case -1: updateOptimizeChart(optimizeChart); break;
@@ -509,6 +594,12 @@ public final class OptimizePanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Prüft in regelmäßigen Abständen, ob die
+	 * laufende Simulation abgeschlossen wurde
+	 * und die nächste Simulation gestartet
+	 * werden kann.
+	 */
 	private final class SimTimerTask extends TimerTask {
 		@Override
 		public void run() {

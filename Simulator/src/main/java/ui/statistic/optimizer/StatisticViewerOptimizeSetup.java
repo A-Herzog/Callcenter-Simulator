@@ -57,6 +57,11 @@ public class StatisticViewerOptimizeSetup extends StatisticViewerText {
 		this.dataType=dataType;
 	}
 
+	/**
+	 * Ausgabe der
+	 * Einstellungen der Optimierung
+	 * @see Mode#DATA_SETUP
+	 */
 	private void buildTextSetup() {
 		String s="",t="";
 
@@ -169,6 +174,11 @@ public class StatisticViewerOptimizeSetup extends StatisticViewerText {
 		endParagraph();
 	}
 
+	/**
+	 * Ausgabe der
+	 * Angaben zum verwendeten System
+	 * @see Mode#DATA_SYSTEM
+	 */
 	private void buildTextSystem() {
 		addHeading(1,Language.tr("SimStatistic.SystemData"));
 

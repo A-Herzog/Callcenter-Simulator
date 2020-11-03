@@ -79,6 +79,7 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 	/** Statistikbaum */
 	private final StatisticTreePanel tree;
 
+	/** Parallele Statistikdaten-Viewer */
 	private final StatisticDataPanel[] data;
 
 	/** Listener die bei Drag&amp;Drop-Operationen auf den Viewern benachrichtigt werden */
@@ -131,7 +132,9 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 			p.setLayout(new GridLayout(numberOfViewers,0));
 		}
 		data=new StatisticDataPanel[numberOfViewers];
-		for (int i=0;i<data.length;i++) p.add(data[i]=new StatisticDataPanel(new UpdateAllViewer()),i);
+		for (int i=0;i<data.length;i++) p.add(data[i]=new StatisticDataPanel(()->{
+			for (int j=0;j<data.length;j++) data[j].updateViewer();
+		}),i);
 		splitPane.setRightComponent(p);
 
 		/* Copy-Hotkey erkennen */
@@ -216,6 +219,13 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 		return lastNode.viewer;
 	}
 
+	/**
+	 * Stellt neue Viewer für den Datenbereich ein.
+	 * @param node	Ausgewählter Statistik-Knoten in der Baumdarstellung
+	 * @param viewer	Zugehörige Viewer
+	 * @param info	Infotext übern den Viewern
+	 * @param icon	Icon über den Viewern
+	 */
 	private final void setViewer(final StatisticNode node, final StatisticViewer viewer[], final String info, final URL icon) {
 		final StatisticViewer[] lastViewer=getLastViewer(node);
 
@@ -421,13 +431,6 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 	 */
 	public final boolean selectReportNode() {
 		return tree.selectReportNode();
-	}
-
-	private class UpdateAllViewer implements Runnable {
-		@Override
-		public void run() {
-			for (int i=0;i<data.length;i++) data[i].updateViewer();
-		}
 	}
 
 	/**

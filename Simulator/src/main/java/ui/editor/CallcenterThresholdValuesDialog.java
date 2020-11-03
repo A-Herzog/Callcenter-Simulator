@@ -53,13 +53,17 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 8297314571875608691L;
 
+	/** Schaltfläche "Hinzufügen" */
 	private JButton buttonAdd;
+	/** Schaltfläche "Bearbeiten" */
 	private JButton buttonEdit;
+	/** Schaltfläche "Löschen" */
 	private JButton buttonDelete;
 
 	private JList<CallcenterModelWarnings.WarningRecord> list;
 	private DefaultListModel<CallcenterModelWarnings.WarningRecord> listData;
 
+	/** Gesamtes Callcenter-Modell */
 	private final CallcenterModel model;
 	private final CallcenterModelWarnings warnings;
 

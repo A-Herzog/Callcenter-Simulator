@@ -30,6 +30,7 @@ import simulator.Statistics.KundenDaten;
 public class StatisticViewerKundenIntervalTable extends StatisticViewerIntervalTable {
 	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final Mode dataType;
+	/** Anzahl der Wiederholungen der Simulation */
 	private final long days;
 	/** Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen */
 	private final Statistics statistic;
@@ -226,7 +227,12 @@ public class StatisticViewerKundenIntervalTable extends StatisticViewerIntervalT
 		buildIntervalTable(statistic,getKundenCols(statistic),sumRow);
 	}
 
-	private String[] getKundenCols(Statistics statistic) {
+	/**
+	 * Liefert die Überschriftenzeile.
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen
+	 * @return	Überschriftenzeile
+	 */
+	private String[] getKundenCols(final Statistics statistic) {
 		String[] cols=new String[statistic.kundenProTyp.length+1];
 		for (int i=0;i<cols.length-1;i++) cols[i]=statistic.kundenProTyp[i].name;
 		switch (dataType) {
@@ -249,7 +255,12 @@ public class StatisticViewerKundenIntervalTable extends StatisticViewerIntervalT
 		return cols;
 	}
 
-	private String[] getKundenCol(KundenDaten kunden) {
+	/**
+	 * Liefert die Spalten mit Daten zu einem Kundentyp.
+	 * @param kunden	Kundentyp
+	 * @return	Spalten mit Daten zu dem Kundentyp
+	 */
+	private String[] getKundenCol(final KundenDaten kunden) {
 		DataDistributionImpl dist, dist2=null;
 		String sum;
 		switch (dataType) {

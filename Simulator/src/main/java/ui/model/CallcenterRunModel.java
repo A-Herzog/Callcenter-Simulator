@@ -39,7 +39,7 @@ public final class CallcenterRunModel {
 	/** Zugehöriges Editor-Modell */
 	public final CallcenterModel editModel;
 
-	/* Kundentype */
+	/* Kundentypen */
 
 	/** Liste der Kundentypen */
 	public final CallcenterRunModelCaller[] caller;

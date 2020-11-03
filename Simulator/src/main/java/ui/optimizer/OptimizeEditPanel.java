@@ -77,52 +77,99 @@ public final class OptimizeEditPanel extends JTabbedPane {
 	/** Datenmodell, dem Informationen zu Anrufer- und Agenten-Gruppen entnommen werden */
 	private final CallcenterModel editModel;
 
+	/* Dialogseite "Optimierungsgröße" */
+
+	/** Letzter in {@link #optProperty} gewählter Eintrag */
 	private int lastProperty=-1;
+	/** Optimierungseigenschaft */
 	private final JComboBox<String> optProperty;
-	private final JLabel optValueLabel, optValueLabel2, optValueLabel3;
+	/** Informationstext zu den Einstellungen 1 */
+	private final JLabel optValueLabel;
+	/** Informationstext zu den Einstellungen 2 */
+	private final JLabel optValueLabel2;
+	/** Informationstext zu den Einstellungen 3 */
+	private final JLabel optValueLabel3;
+	/** Eingabefeld für den Zielwert der Optimierung */
 	private final JTextField optValue;
+	/** Option: Auch Agentenanzahl reduzieren */
 	private final JCheckBox optValueMaxActive;
+	/** Eingabefeld für Maximum für Zielwert im Falle, dass {@link #optValueMaxActive} gewählt ist */
 	private final JTextField optValueMax;
+	/** Werte für {@link #optValue} für die verschiedenen Zielgrößen */
 	private final String[] lastValue=new String[]{"95%","95%","00:15:00","00:15:00","00:05:00","00:05:00","80%","80%","90%","90%","80%"};
+	/** Werte für {@link #optValueMax} für die verschiedenen Zielgrößen */
 	private final String[] lastMaxValue=new String[]{"99%","99%","00:00:02","00:00:02","00:02:00","00:02:00","95%","95%","60%","60%","60%"};
+
+	/** Auswahl wie der Zielwert im Tagesverlauf erreicht werden muss (im  Mittel, in jedem Intervall, ...) */
 	private final JComboBox<String> optInterval;
+	/** Auswahl für welche Kunden- oder Agentengruppen der Zielwert erreicht werden muss */
 	private final JComboBox<String> optGroups;
+	/** Auswahlmöglichkeiten für {@link #optGroups} wenn Kundentypen gewählt werden können */
 	private final String[] groupsCaller=new String[]{
 			Language.tr("Optimizer.CallerGroups.AverageOverAll"),
 			Language.tr("Optimizer.CallerGroups.ForAllGroups"),
 			Language.tr("Optimizer.CallerGroups.SelectedGroups")
 	};
+	/** Auswahlmöglichkeiten für {@link #optGroups} wenn Agentengruppen gewählt werden können */
 	private final String[] groupsAgents=new String[]{
 			Language.tr("Optimizer.AgentGroups.AverageOverAll"),
 			Language.tr("Optimizer.AgentGroups.ForAllGroups"),
 			Language.tr("Optimizer.AgentGroups.SelectedGroups")
 	};
+	/** Soll der Zielwert gemäß {@link #optGroups} für bestimmte Gruppen erreicht werden, so können hier die Gruppen gewählt werden */
 	private final CheckBoxTree optGroupTree;
 
+	/* Dialogseite "Stellgröße" */
+
+	/** Eingabefeld für den Änderungsfaktor */
 	private final JTextField changeValue;
+	/** Schaltfläche "Einschränkungen" */
 	private final JButton changeRestictionsButton;
+	/** Erklärung für {@link #changeRestictionsButton} */
 	private final JLabel changeRestrictionsLabel;
+	/** Auswahl, ob alle oder nur bestimmte Gruppen (Kunden oder Agenten) verändert werden sollen */
 	private final JComboBox<String> changeGroups;
+	/** Auswahl der Gruppen (Kunden oder Agenten) die verändert werden sollen */
 	private final CheckBoxTree changeGroupTree;
 
-	private final JTextField day0statisticsField;
-	private final JButton day0statisticsButton;
-	private JButton day0configButton;
-	private JButton additionalDay0Caller;
-
-	private HashMap<String,ConnectedModelUebertrag> uebertrag;
-	private final List<String> uebertragAdditionalCaller;
-	private final List<Integer> uebertragAdditionalCount;
-
+	/** Namen der Gruppen für gruppen-spezifische Einschränkungen */
 	private final List<String> groupRestrictionName;
+	/** Intervall-abhängige Minimalwerte für die gruppen-spezifische Einschränkungen */
 	private final List<DataDistributionImpl> groupRestrictionMin;
+	/** Intervall-abhängige Maximalwerte für die gruppen-spezifische Einschränkungen */
 	private final List<DataDistributionImpl> groupRestrictionMax;
 
-	private JButton selectAllButton, selectNoneButton, selectRangeButton;
+	/* Dialogseite "Intervalle" */
+
+	/** Schaltfläche "Alle auswählen" */
+	private JButton selectAllButton;
+	/** Schaltfläche "Nichts auswählen" */
+	private JButton selectNoneButton;
+	/** Schaltfläche "Bereich auswählen" */
+	private JButton selectRangeButton;
+	/** Tabelle zur Darstellung der verfügbaren Zeitslots */
 	private JCheckboxTable intervalTable;
 
+	/* Dialogseite "Übertrag" */
+
+	/** Eingabefeld für "Statistik-Datei für Übertrag" */
+	private final JTextField day0statisticsField;
+	/** Schaltfläche zur Auswahl der Datei für "Statistik-Datei für Übertrag" für {@link #day0statisticsField} */
+	private final JButton day0statisticsButton;
+	/** Schaltfläche "Übertrag der Warteabbrecher" */
+	private JButton day0configButton;
+	/** Schaltfläche "Zusätzlicher manueller Übertrag in den Tag hinein" */
+	private JButton additionalDay0Caller;
+
+	/** Übertrag aus dem Vortag pro Anrufergruppe */
+	private HashMap<String,ConnectedModelUebertrag> uebertrag;
+	/** Namen der Anrufergruppen für zusätzlichen, manuellen Übertrag */
+	private final List<String> uebertragAdditionalCaller;
+	/** Anzahlen der Anrufer in den Anrufergruppen für zusätzlichen, manuellen Übertrag */
+	private final List<Integer> uebertragAdditionalCount;
+
 	/**
-	 * Konstruktor der Klasse <code>OptimizeEditPanel</code>
+	 * Konstruktor der Klasse {@link OptimizeEditPanel}
 	 * @param owner	Elternfenster
 	 * @param editModel Datenmodell, dem Informationen zu Anrufer- und Agenten-Gruppen entnommen werden
 	 * @param helpLink Verknüpfung mit der Online-Hilfe
@@ -313,11 +360,24 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		setOptimizeSetup(new OptimizeSetup());
 	}
 
+	/**
+	 * Soll der Knoten selektiert werden?
+	 * @param node	Eltern-Name
+	 * @param subIndex	Eigener Index
+	 * @param parentData	Mögliche Eltern-Bezeichner
+	 * @param nodeData	Mögliche eigene Bezeichner
+	 * @return	Soll der Knoten selektiert werden?
+	 */
 	private boolean selectNode(String node, int subIndex, String[] parentData, int[] nodeData) {
 		for (int i=0;i<parentData.length;i++) if (node.equalsIgnoreCase(parentData[i]) && subIndex==nodeData[i]-1) return true;
 		return false;
 	}
 
+	/**
+	 * Wählt in einer {@link CheckBoxTree}-Struktur Einträge gemäß ihren Namen aus
+	 * @param root	Wurzelelement der Baumstruktur
+	 * @param data	Namen der auszuwählenden Einträge
+	 */
 	private void setTreeSelectFromArray(DefaultMutableTreeNode root, String[] data) {
 		String[] parentData;
 		int[] nodeData;
@@ -687,7 +747,20 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		return setup.saveToFile(file);
 	}
 
+	/**
+	 * Reagiert auf eine veränderte Auswahl in
+	 * {@link OptimizeEditPanel#optProperty},
+	 * {@link OptimizeEditPanel#optGroups} und
+	 * {@link OptimizeEditPanel#changeGroups}.
+	 * @see OptimizeEditPanel#optProperty
+	 * @see OptimizeEditPanel#optGroups
+	 * @see OptimizeEditPanel#changeGroups
+	 */
 	private final class DialogElementListener implements ActionListener {
+		/**
+		 * Veränderte Auswahl für welche Kunden- oder Agentengruppen der Zielwert erreicht werden muss
+		 * @see OptimizeEditPanel#optGroups
+		 */
 		private void optGroupsChanged() {
 			optGroupTree.tree.setEnabled(optGroups.getSelectedIndex()==2);
 
@@ -700,6 +773,10 @@ public final class OptimizeEditPanel extends JTabbedPane {
 			}
 		}
 
+		/**
+		 * Veränderte Auswahl, ob alle oder nur bestimmte Gruppen (Kunden oder Agenten) verändert werden sollen
+		 * @see OptimizeEditPanel#changeGroups
+		 */
 		private void changeGroupsChanged() {
 			changeGroupTree.tree.setEnabled(changeGroups.getSelectedIndex()==1);
 		}
@@ -712,6 +789,11 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		}
 	}
 
+	/**
+	 * Zeigt einen Auswahldialog zur Auswahl einer Übertrags-Statistik-Datei an.
+	 * @see #day0statisticsField
+	 * @see #day0statisticsButton
+	 */
 	private final void selectDay0Statistics() {
 		File file=XMLTools.showLoadDialog(this,Language.tr("Optimizer.LoadStatistic"));
 		if (file==null) return;
@@ -724,6 +806,10 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		day0statisticsField.setText(file.toString());
 	}
 
+	/**
+	 * Veränderte Optimierungseigenschaft
+	 * @see #optProperty
+	 */
 	private void optPropertyChanged() {
 		if (lastProperty>=0) {
 			lastValue[lastProperty]=optValue.getText();
@@ -799,7 +885,15 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen
+	 */
 	private final class ButtonListener implements ActionListener {
+		/**
+		 * Zeigt den Dialog zur Konfiguration des Übertrag der Warteabbrecher an.
+		 * @see OptimizeEditPanel#day0configButton
+		 * @see ConnectedUebertragEditDialog
+		 */
 		private void editDay0Statistics() {
 			File statisticFile=null;
 			if (!day0statisticsField.getText().trim().isEmpty()) {
@@ -810,6 +904,11 @@ public final class OptimizeEditPanel extends JTabbedPane {
 			editDialog.setVisible(true);
 		}
 
+		/**
+		 * Zeigt einen Dialog zur Konfiguration des zusätzlichen Übertrags an.
+		 * @see OptimizeEditPanel#additionalDay0Caller
+		 * @see AdditionalCallerSetupDialog
+		 */
 		private void editAdditionalCaller() {
 			AdditionalCallerSetupDialog dialog=new AdditionalCallerSetupDialog(owner,helpLink.pageConnectedModal,editModel,uebertragAdditionalCaller,uebertragAdditionalCount);
 			dialog.setVisible(true);
@@ -821,12 +920,23 @@ public final class OptimizeEditPanel extends JTabbedPane {
 			}
 		}
 
+		/**
+		 * Zeigt einen Dialog zur Auswahl des Bereichs, der bei der Optimierung
+		 * berücksichtigt werden soll, an.
+		 * @see OptimizeEditPanel#selectRangeButton
+		 * @see RangeSelectDialog
+		 */
 		private void setupRange() {
 			RangeSelectDialog dialog=new RangeSelectDialog(owner,helpLink.pageOptimizeModal,RangeSelectDialog.Mode.MODE_OPTIMIZE);
 			dialog.setVisible(true);
 			if (dialog.getClosedBy()==BaseEditDialog.CLOSED_BY_OK) intervalTable.selectRange(dialog.getMin(),dialog.getMax());
 		}
 
+		/**
+		 * Zeigt einen Dialog zur Konfiguration der gruppen-abhängigen Einschränkungen für die Stellgröße an.
+		 * @see OptimizeEditPanel#changeRestictionsButton
+		 * @see OptimizerRestrictionsDialog
+		 */
 		private void editRestrictions() {
 			OptimizerRestrictionsDialog dialog=new OptimizerRestrictionsDialog(owner,helpLink.pageOptimizeModal,editModel,groupRestrictionName,groupRestrictionMin,groupRestrictionMax);
 			dialog.setVisible(true);

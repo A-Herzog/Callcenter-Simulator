@@ -37,6 +37,7 @@ public class HandlerCalcServer implements WebServerDataHandler {
 	/** jar-Datei für das SaaS-Applet */
 	private final File jarFile;
 
+	/** jar-Datei für das SaaS-Applet */
 	private byte[] jarData=null;
 
 	/**

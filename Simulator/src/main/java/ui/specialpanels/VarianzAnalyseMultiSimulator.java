@@ -17,15 +17,15 @@
 
  import javax.swing.JComponent;
 
-import org.apache.commons.math3.distribution.NormalDistribution;
+ import org.apache.commons.math3.distribution.NormalDistribution;
 
-import language.Language;
-import mathtools.NumberTools;
-import net.calc.StartAnySimulator;
-import simulator.CallcenterSimulatorInterface;
- import simulator.Statistics;
- import systemtools.MsgBox;
-import ui.model.CallcenterModel;
+ import language.Language;
+ import mathtools.NumberTools;
+ import net.calc.StartAnySimulator;
+ import simulator.CallcenterSimulatorInterface;
+import simulator.Statistics;
+import systemtools.MsgBox;
+ import ui.model.CallcenterModel;
 
  /**
   * Diese Klasse führt die eigentliche Varianzanalyse
@@ -38,11 +38,16 @@ import ui.model.CallcenterModel;
 	 private final JComponent parent;
 	 /** Callcenter-Modell welches die Basis der Varianzanalyse darstellt */
 	 private final CallcenterModel model;
+	 /** Anzahl an Wiederholungen des gesamten Modells */
 	 private final int simCountNumber;
+	 /** Zählt die Anzahl an Simulationen (gezählt wird beim Start) */
 	 private int simCount;
+	 /** Summen der Wartezeiten pro Kundentyp und global */
 	 private final double[] waitingTimeSum;
+	 /** Quadrierte Summen der Wartezeiten pro Kundentyp und global */
 	 private final double[] waitingTimeSum2;
 
+	 /** Simulator, der die konkreten Simulationen ausführt */
 	 private CallcenterSimulatorInterface simulator;
 
 	 /**
@@ -160,10 +165,25 @@ import ui.model.CallcenterModel;
 		 return true;
 	 }
 
+	 /**
+	  * Berechnet aus Messreihen-Kenngrößen die Standardabweichung
+	  * @param x2	Quadrierte Summe der Werte
+	  * @param x	Summe der Werte
+	  * @param n	Anzahl der Werte
+	  * @return	Standardabweichung der Messreihe
+	  */
 	 private double calcStd(double x2, double x, double n) {
 		 if (n>0) return Math.sqrt((x2)/n-x*x/n/n); else return 0;
 	 }
 
+	 /**
+	  * Berechnet aus Messreihen-Kenngrößen ein Konfidenzintervall
+	  * @param x2	Quadrierte Summe der Werte
+	  * @param x	Summe der Werte
+	  * @param n	Anzahl der Werte
+	  * @param p	Wahrscheinlichkeit, zu der das Konfidenzintervall bestimmt werden soll
+	  * @return	Konfidenzintervall der Messreihe zur Wahrscheinlichkeit <code>p</code>
+	  */
 	 private double[] calcConfidence(double x2, double x, double n, double p) {
 		 double[] interval=new double[2];
 

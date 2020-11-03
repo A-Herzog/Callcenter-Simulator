@@ -47,7 +47,13 @@ public class CallcenterThresholdIntervalsDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 1378188742640248672L;
 
-	private JButton selectAllButton, selectNoneButton, selectRangeButton;
+	/** Schaltfläche "Alle auswählen" */
+	private JButton selectAllButton;
+	/** Schaltfläche "Nichts auswählen" */
+	private JButton selectNoneButton;
+	/** Schaltfläche "Bereich auswählen" */
+	private JButton selectRangeButton;
+	/** Tabelle zur Darstellung der verfügbaren Zeitslots */
 	private JCheckboxTable intervalTable;
 
 	/**
@@ -110,6 +116,9 @@ public class CallcenterThresholdIntervalsDialog extends BaseEditDialog {
 		content.add(new JScrollPane(intervalTable=new JCheckboxTable(intervalString,intervalSelect,Language.tr("Editor.GeneralData.ThresholdValues.Intervals.TimeCaption"))),BorderLayout.CENTER);
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen
+	 */
 	private class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

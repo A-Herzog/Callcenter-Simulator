@@ -44,42 +44,60 @@ import ui.model.CallcenterRunModel;
  * @version 1.0
  */
 public final class Optimizer {
+	/** Initiales {@link CallcenterModel}, das die Basis der Optimierungsläufe darstellt */
 	private final CallcenterModel initialEditModel;
+	/** Objekt vom Typ {@link OptimizeSetup}, welches Informationen darüber enthält, was zu optimieren ist */
 	private final OptimizeSetup setup;
 
+	/** Übergeordnetes Fenster */
 	private final Window owner;
+	/** Ausgabestream */
 	private final PrintStream out;
 
+	/** Wie viele Zwischenschritte sollen bei der Statistik-Speicherung übersprungen werden (1=keine überspringen) */
 	private int memorySavingLevel=1;
 	private int lastOKInterval=-1;
 	private int lastOKInterval2=-1;
 	private boolean thisIsLastRun=false;
+	/** Wurde die Optimierung abgebrochen? ({@link #isCanceled()}) */
 	private boolean canceled=false;
 
+	/** Gesamtzahl der Simulationsläufe */
 	private int runNr=0;
 	private final int steps;
+	/** Aktuelle Anzahl an Agenten pro Intervall */
 	private DataDistributionImpl agents;
+	/** Veränderung der Anzahl an Agenten im letzten Optimierungsschritt */
 	private DataDistributionImpl agentsChangedLast;
+	/** Veränderung der Anzahl an Agenten seit Start der Optimierung */
 	private DataDistributionImpl agentsChanged;
 	private final DataDistributionImpl intervalNeedsChange;
 	private final Map<String,DataDistributionImpl> intervalChangeAllowed;
 	private final DataDistributionImpl intervalPercent;
 	private final DataDistributionImpl intervalAbsoluteAdd;
 
+	/** Startzeitpunkt der ersten Simulation */
 	private long startTime;
+	/** Simulator-Objekt über das die einzelnen Simulationen der Optimierung ausgeführt werden */
 	private CallcenterSimulatorInterface simulator;
 
+	/** Ergebnisse aus dem vorherigen Optimierungsschritt */
 	private DataDistributionImpl resultLast=null;
+	/** Ergebnisse aus dem zuletzt abgeschlossenen Optimierungsschritt */
 	private DataDistributionImpl resultCurrent=null;
 
+	/**
+	 * Ergebnisse der Optimierung
+	 * @see #getResults()
+	 */
 	private OptimizeData results;
 
 	/**
-	 * Konstruktor der Klasse <code>Optimizer</code>
+	 * Konstruktor der Klasse
 	 * @param owner	Übergeordnetes Fenster
 	 * @param out	Ausgabestream
-	 * @param initialEditModel	Initiales <code>CallcenterModel</code>, das die Basis der Optimierungsläufe darstellt.
-	 * @param setup	Objekt vom Typ <code>OptimizeSetup</code>, welches Informationen darüber enthält, was zu optimieren ist.
+	 * @param initialEditModel	Initiales {@link CallcenterModel}, das die Basis der Optimierungsläufe darstellt.
+	 * @param setup	Objekt vom Typ {@link OptimizeSetup}, welches Informationen darüber enthält, was zu optimieren ist.
 	 */
 	public Optimizer(Window owner, PrintStream out, CallcenterModel initialEditModel, OptimizeSetup setup) {
 		this.initialEditModel=initialEditModel;
@@ -137,6 +155,10 @@ public final class Optimizer {
 		return count>0;
 	}
 
+	/**
+	 * Sind in mindestens einem Callcenter des Modells Einstellungen zur minimalen Schichtlänge der Agenten aktiv?
+	 * @return	Liefert <code>true</code>, wenn Einstellungen zur minimalen Schichtlänge der Agenten aktiv sind
+	 */
 	private boolean minimumShiftLengthsActive() {
 		if (initialEditModel.minimumShiftLength>1) return true;
 		for (CallcenterModelCallcenter callcenter: initialEditModel.callcenter) if (callcenter.active) for (CallcenterModelAgent agents: callcenter.agents) if (agents.active && agents.count<0 && agents.minimumShiftLength>1) return true;
@@ -879,7 +901,12 @@ public final class Optimizer {
 		return result;
 	}
 
-	private final void storeResults(Statistics statistics, boolean isFinalRun) {
+	/**
+	 * Nimmt die Ergebnisse eines Optimierungslaufes in {@link #results} auf.
+	 * @param statistics	Neue Statistikergebnisse
+	 * @param isFinalRun	Ist dies der letzten bzw. finale Lauf gewesen?
+	 */
+	private final void storeResults(final Statistics statistics, final boolean isFinalRun) {
 		/* Neue Ergebnisse in Liste aufnehmen */
 		if (isFinalRun) {results.data.add(statistics); return;}
 		if (memorySavingLevel==1 || runNr%memorySavingLevel==1) results.data.add(statistics);

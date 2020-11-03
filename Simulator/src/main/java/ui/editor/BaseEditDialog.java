@@ -115,12 +115,44 @@ public class BaseEditDialog extends JDialog {
 	 */
 	protected final Window owner;
 
+	/**
+	 * Gibt an, wie der Dialog geschlossen wurde.
+	 * @see #getClosedBy()
+	 */
 	private int closedBy=CLOSED_BY_CANCEL;
 
+	/**
+	 * Beschriftungen für die benutzerdefinierten Schaltflächen
+	 * @see #addUserButtons(String[], URL[], Runnable[])
+	 * @see #addUserButtons(String[], String[], URL[], Runnable[])
+	 */
 	private String[] userButtonCaptions=null;
+
+	/**
+	 * Tooltips für die benutzerdefinierten Schaltflächen
+	 * @see #addUserButtons(String[], URL[], Runnable[])
+	 * @see #addUserButtons(String[], String[], URL[], Runnable[])
+	 */
 	private String[] userButtonTooltips=null;
+
+	/**
+	 * Icons für die benutzerdefinierten Schaltflächen
+	 * @see #addUserButtons(String[], URL[], Runnable[])
+	 * @see #addUserButtons(String[], String[], URL[], Runnable[])
+	 */
 	private URL[] userButtonIcons=null;
+
+	/**
+	 * Listener, der beim Anklicken einer benutzerdefinierten Schaltfläche aktiviert wird.
+	 * @see #userButtons
+	 */
 	private Runnable[] userButtonHandlers=null;
+
+	/**
+	 * Benutzerdefinierte Schaltflächen
+	 * @see #addUserButtons(String[], URL[], Runnable[])
+	 * @see #addUserButtons(String[], String[], URL[], Runnable[])
+	 */
 	private JButton[] userButtons;
 
 	/**
@@ -220,6 +252,10 @@ public class BaseEditDialog extends JDialog {
 		return rootPane;
 	}
 
+	/**
+	 * Klasse zur Reaktion auf F1- und Escape-Tastendrücke
+	 * @see BaseEditDialog#createRootPane()
+	 */
 	private class SpecialKeyListener extends AbstractAction {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -467,7 +503,7 @@ public class BaseEditDialog extends JDialog {
 	/**
 	 * Diese leere Methode muss in den Nachkommen von <code>BaseEditDialog</code>
 	 * überladen werden, um die einzelnen Dialogseiten zu erzeugen
-	 * (sofern <code>createTabsGUI</code> verwender werden soll).
+	 * (sofern <code>createTabsGUI</code> verwendet werden soll).
 	 * @param tabs	Referenz auf das <code>JTabbedPane</code>, welche die Tabs aufnimmt.
 	 */
 	protected void createTabs(JTabbedPane tabs) {}
@@ -475,7 +511,7 @@ public class BaseEditDialog extends JDialog {
 	/**
 	 * Diese leere Methode muss in den Nachkommen von <code>BaseEditDialog</code>
 	 * überladen werden, um den Dialoginhalt zu erzeugen
-	 * (sofern <code>createSimpleGUI</code> verwender werden soll).
+	 * (sofern <code>createSimpleGUI</code> verwendet werden soll).
 	 * @param content	Referenz auf das Panel, welches den Dialoginhalt aufnimmt.
 	 */
 	protected void createSimpleContent(JPanel content) {}
@@ -670,7 +706,9 @@ public class BaseEditDialog extends JDialog {
 	 * Gibt an, wie der Dialog geschlossen wurde.
 	 * @return	Enthält eine der <code>CLOSED_BY_*</code>-Konstanten.
 	 */
-	public final int getClosedBy() {return closedBy;}
+	public final int getClosedBy() {
+		return closedBy;
+	}
 
 	/**
 	 * Liefert zurück, welcher Tab als letztes aktiv war.

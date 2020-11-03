@@ -116,7 +116,13 @@ public class StatisticViewerAgentenIntervalTable extends StatisticViewerInterval
 		buildIntervalTable(statistic,getAgentenCols(dataType,statistic),sumRow);
 	}
 
-	private static String[] getAgentenCols(Mode dataType, Statistics statistic) {
+	/**
+	 * Liefert die Spaltennamen für die Tabelle.
+	 * @param dataType	Welche Informationen sollen in der Tabelle angezeigt werden?
+	 * @param statistic	Statistikobjekt
+	 * @return	Liste der Spaltennamen für die Tabelle
+	 */
+	private static String[] getAgentenCols(final Mode dataType, final Statistics statistic) {
 		String[] cols=null;
 
 		switch (dataType) {
@@ -173,7 +179,13 @@ public class StatisticViewerAgentenIntervalTable extends StatisticViewerInterval
 		return cols;
 	}
 
-	private String[] getAgentenCol(AgentenDaten agenten, long days) {
+	/**
+	 * Liefert eine Spalte für die Tabelle.
+	 * @param agenten	Agentengruppe
+	 * @param days	Anzahl an simulierten Tagen
+	 * @return	Spalte für die Tabelle
+	 */
+	private String[] getAgentenCol(final AgentenDaten agenten, final long days) {
 		String[] col=new String[49];
 
 		double[] d;
@@ -210,7 +222,14 @@ public class StatisticViewerAgentenIntervalTable extends StatisticViewerInterval
 		return col;
 	}
 
-	private String[] getAgentenDetailsCol(AgentenDaten agenten, long days, int colNr) {
+	/**
+	 * Liefert eine Spalte für die Tabelle (Detailsansicht).
+	 * @param agenten	Agentengruppe
+	 * @param days	Anzahl an simulierten Tagen
+	 * @param colNr	Nummer der zu erzeugenden Spalte (die erste Spalte nach der "Intervall"-Spalte trägt die Nummer 0)
+	 * @return	Spalte für die Tabelle
+	 */
+	private String[] getAgentenDetailsCol(final AgentenDaten agenten, final long days, final int colNr) {
 		String[] col=new String[49];
 
 		switch (dataType) {
@@ -235,7 +254,12 @@ public class StatisticViewerAgentenIntervalTable extends StatisticViewerInterval
 		return col;
 	}
 
-	private String[] getModellAgentenCol(AgentModelData agents) {
+	/**
+	 * Liefert eine Spalte für die Tabelle.
+	 * @param agents	Modell-Agentengruppe
+	 * @return	Spalte für die Tabelle
+	 */
+	private String[] getModellAgentenCol(final AgentModelData agents) {
 		String[] col=new String[49];
 		col[48]="";
 		double sum=0,v;
@@ -258,7 +282,12 @@ public class StatisticViewerAgentenIntervalTable extends StatisticViewerInterval
 		return col;
 	}
 
-	private String[] getQueueCol(Statistics statistic) {
+	/**
+	 * Liefert eine Spalte mit Angaben zur Warteschlangenlänge
+	 * @param statistic	Statistikobjekt
+	 * @return	Spalte mit Angaben zur Warteschlangenlänge
+	 */
+	private String[] getQueueCol(final Statistics statistic) {
 		String[] col=new String[49];
 		for (int i=0;i<48;i++) col[i]=NumberTools.formatNumber(statistic.meanQueueLengthProIntervall.densityData[i]);
 		col[48]=NumberTools.formatNumber(statistic.meanQueueLength);
@@ -270,7 +299,7 @@ public class StatisticViewerAgentenIntervalTable extends StatisticViewerInterval
 	 * @see complexcallcenter.statistic.simulation.StatisticViewerIntervalTable#getUserCol(complexcallcenter.simulator.ComplexStatisticSimData, int)
 	 */
 	@Override
-	protected String[] getUserCol(Statistics statistic, int colNr) {
+	protected String[] getUserCol(final Statistics statistic, final int colNr) {
 		switch (dataType) {
 		case DATA_TYPE_AUSLASTUNG:
 		case DATA_TYPE_BEREITZEIT:

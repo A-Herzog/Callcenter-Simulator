@@ -52,6 +52,9 @@ public class CheckBoxTree {
 	 */
 	public final JTree tree;
 
+	/**
+	 * Datenmodell für {@link #tree}
+	 */
 	private final DefaultTreeModel model;
 
 	/**
@@ -203,7 +206,9 @@ public class CheckBoxTree {
 	 * @see CheckBoxTree#newNode(String, boolean)
 	 */
 	public static final class CheckBoxNode {
+		/** Beschriftung der Checkbox */
 		private final String text;
+		/** Gibt an, ob die Checkbox selektiert sein soll */
 		private boolean selected=true;
 
 		/**
@@ -211,8 +216,9 @@ public class CheckBoxTree {
 		 * @param text	Beschriftung der Checkbox
 		 * @param selected	Gibt an, ob die Checkbox initial selektiert sein soll
 		 */
-		public CheckBoxNode(String text, boolean selected) {
-			this.text=text; this.selected=selected;
+		public CheckBoxNode(final String text, final boolean selected) {
+			this.text=text;
+			this.selected=selected;
 		}
 
 		/**
@@ -253,6 +259,9 @@ public class CheckBoxTree {
 		}
 	}
 
+	/**
+	 * Editor für die Einträge in {@link CheckBoxTree#tree}
+	 */
 	private final class CheckBoxNodeEditor extends AbstractCellEditor implements TreeCellEditor {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -260,17 +269,28 @@ public class CheckBoxTree {
 		 */
 		private static final long serialVersionUID = 3461005571727645288L;
 
+		/**
+		 * Basis-Renderer
+		 */
 		private final CheckBoxNodeRenderer renderer=new CheckBoxNodeRenderer();
+
+		/**
+		 * Zugehörige Baumstruktur
+		 */
 		private final JTree tree;
 
-		public CheckBoxNodeEditor(JTree tree) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param tree	Zugehörige Baumstruktur
+		 */
+		public CheckBoxNodeEditor(final JTree tree) {
 			this.tree=tree;
 		}
 
 		@Override
 		public Object getCellEditorValue() {
-			JCheckBox checkbox=renderer.getLeafRenderer();
-			CheckBoxNode checkBoxNode=new CheckBoxNode(checkbox.getText(),checkbox.isSelected());
+			final JCheckBox checkbox=renderer.getLeafRenderer();
+			final CheckBoxNode checkBoxNode=new CheckBoxNode(checkbox.getText(),checkbox.isSelected());
 			return checkBoxNode;
 		}
 
@@ -305,25 +325,61 @@ public class CheckBoxTree {
 			return editor;
 		}
 
+		/**
+		 * Wird von {@link CheckBoxItemListener#itemStateChanged(ItemEvent)}
+		 * aufgerufen, wenn sich die Einstellung einer Checkbox verändert hat.
+		 */
 		public void publicFireEditingStopped() {
 			fireEditingStopped();
 		}
 	}
 
+	/**
+	 * Reagiert auf Änderungen der Einstellungen der Checkboxen
+	 * in {@link CheckBoxTree#tree}
+	 */
 	private final class CheckBoxItemListener implements ItemListener {
+		/**
+		 * Editor für den Eintrag
+		 */
 		private final CheckBoxNodeEditor editor;
+
+		/**
+		 * Aktueller Eintrag
+		 */
 		private final DefaultMutableTreeNode node;
+
+		/**
+		 * Checkbox in dem aktuellen Eintrag
+		 */
 		private final JCheckBox checkBox;
+
+		/**
+		 * Zugehörige Baumstruktur
+		 */
 		private final JTree tree;
 
-		public CheckBoxItemListener(CheckBoxNodeEditor editor, DefaultMutableTreeNode node, JCheckBox checkBox, JTree tree) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param editor	Editor für den Eintrag
+		 * @param node	Aktueller Eintrag
+		 * @param checkBox	Checkbox in dem aktuellen Eintrag
+		 * @param tree	Zugehörige Baumstruktur
+		 */
+		public CheckBoxItemListener(final CheckBoxNodeEditor editor, final DefaultMutableTreeNode node, final JCheckBox checkBox, final JTree tree) {
 			this.editor=editor;
 			this.node=node;
 			this.checkBox=checkBox;
 			this.tree=tree;
 		}
 
-		private boolean updateSystemFromLeaf(boolean selected) {
+		/**
+		 * Reagiert darauf, wenn eine Checkbox, die keine weiteren Untereinträge besitzt, aktiviert oder deaktiviert wurde.
+		 * @param selected	Checkbox aktiviert oder deaktiviert
+		 * @return	Gibt <code>true</code> zurück, wenn der Baum neu gezeichnet werden soll
+		 * @see #updateSystem(boolean)
+		 */
+		private boolean updateSystemFromLeaf(final boolean selected) {
 			if (!(node.getParent() instanceof DefaultMutableTreeNode)) return false;
 			DefaultMutableTreeNode parent=(DefaultMutableTreeNode)node.getParent();
 
@@ -346,7 +402,13 @@ public class CheckBoxTree {
 			}
 		}
 
-		private boolean updateSystemFromRoot(boolean selected) {
+		/**
+		 * Reagiert darauf, wenn eine Checkbox, die Untereinträge besitzt, aktiviert oder deaktiviert wurde.
+		 * @param selected	Checkbox aktiviert oder deaktiviert
+		 * @return	Gibt <code>true</code> zurück, wenn der Baum neu gezeichnet werden soll
+		 * @see #updateSystem(boolean)
+		 */
+		private boolean updateSystemFromRoot(final boolean selected) {
 			boolean needRepaint=false;
 			for (int i=0;i<node.getChildCount();i++) {
 				if (!(node.getChildAt(i) instanceof DefaultMutableTreeNode)) continue;
@@ -358,7 +420,13 @@ public class CheckBoxTree {
 			return needRepaint;
 		}
 
-		private boolean updateSystem(boolean selected) {
+		/**
+		 * Reagiert darauf, wenn eine Checkbox aktiviert oder deaktiviert wurde.
+		 * @param selected	Checkbox aktiviert oder deaktiviert
+		 * @return	Gibt <code>true</code> zurück, wenn der Baum neu gezeichnet werden soll
+		 * @see #itemStateChanged(ItemEvent)
+		 */
+		private boolean updateSystem(final boolean selected) {
 			return node.isLeaf()?updateSystemFromLeaf(selected):updateSystemFromRoot(selected);
 		}
 
@@ -370,11 +438,38 @@ public class CheckBoxTree {
 		}
 	}
 
+	/**
+	 * Renderer für die Einträge in {@link CheckBoxTree#tree}
+	 */
 	private final class CheckBoxNodeRenderer implements TreeCellRenderer {
+		/**
+		 * Basis-Element
+		 */
 		private final JCheckBox checkBox=new JCheckBox();
 
-		private final Color selectionForeground, selectionBackground, textForeground, textBackground;
+		/**
+		 * Vordergrundfarbe für selektierte Elemente
+		 */
+		private final Color selectionForeground;
 
+		/**
+		 * Hintergrundfarbe für selektierte Elemente
+		 */
+		private final Color selectionBackground;
+
+		/**
+		 * Vordergrundfarbe für nicht-selektierte Elemente
+		 */
+		private final Color textForeground;
+
+		/**
+		 * Hintergrundfarbe für nicht-selektierte Elemente
+		 */
+		private final Color textBackground;
+
+		/**
+		 * Konstruktor der Klasse
+		 */
 		public CheckBoxNodeRenderer() {
 			Font fontValue;
 			fontValue=UIManager.getFont("Tree.font");
@@ -389,7 +484,13 @@ public class CheckBoxTree {
 			textBackground=UIManager.getColor("Tree.textBackground");
 		}
 
-		protected JCheckBox getLeafRenderer() {return checkBox;}
+		/**
+		 * Liefert einen Renderer für einen Eintrag.
+		 * @return	Renderer für einen Eintrag
+		 */
+		protected JCheckBox getLeafRenderer() {
+			return checkBox;
+		}
 
 		@Override
 		public Component getTreeCellRendererComponent(JTree tree, Object value,	boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {

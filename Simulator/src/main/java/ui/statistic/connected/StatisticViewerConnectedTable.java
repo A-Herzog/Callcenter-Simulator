@@ -149,13 +149,22 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 		setData(getTableData(),getColNames());
 	}
 
+	/**
+	 * Liefert Spaltennamen aus {@link #getColNames()} aber ohne die Simulationstage-Spalte
+	 * @param extraCaption	Zusätzlicher Vorspann für die Spaltennamen
+	 * @return	Spaltennamen
+	 */
 	private	List<String> getColParts(String extraCaption) {
-		ArrayList<String> cols=new ArrayList<String>(Arrays.asList(getColNames()));
+		final ArrayList<String> cols=new ArrayList<String>(Arrays.asList(getColNames()));
 		cols.remove(0);
 		for (int i=0;i<cols.size();i++) cols.set(i,extraCaption+" "+cols.get(i));
 		return cols;
 	}
 
+	/**
+	 * Liefert eine Liste der Agentengruppen-Namen.
+	 * @return	Liste der Agentengruppen-Namen
+	 */
 	private List<String> getModelAgentsGroups() {
 		List<String> groupNames=new ArrayList<String>();
 		for (AgentModelData group: results[0].agentenModellProGruppe) groupNames.add(group.name);
@@ -163,6 +172,10 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 		return groupNames;
 	}
 
+	/**
+	 * Liefert die Namen für die Spaltenüberschriften.
+	 * @return	Namen für die Spaltenüberschriften
+	 */
 	private String[] getColNames() {
 		int dataCols=0;
 		List<String> colNames=null;
@@ -303,9 +316,14 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 		return cols;
 	}
 
-	private void addKundenLines(Table table, int nr) {
-		String[] row1=new String[results.length];
-		String[] row2=new String[results.length];
+	/**
+	 * Fügt die Datenreihen für einen Kundentyp zu der Ausgabetabelle hinzu.
+	 * @param table	Ausgabetabelle
+	 * @param nr Nummer des Kundentyps oder -1 für die Daten über alle Kundentypen
+	 */
+	private void addKundenLines(final Table table, final int nr) {
+		final String[] row1=new String[results.length];
+		final String[] row2=new String[results.length];
 
 		for (int i=0;i<results.length;i++) {
 			Statistics statistic=results[i];
@@ -352,7 +370,14 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 		if (dataType==Mode.DATA_TYPE_CALLERS || dataType==Mode.DATA_TYPE_SUCCESS || dataType==Mode.DATA_TYPE_CANCEL) table.addLine(row2);
 	}
 
-	private void addAgentenLines(Table table, int nr, boolean proCallcenter) {
+	/**
+	 * Fügt die Datenreihen für eine Agentengruppe zu der Ausgabetabelle hinzu.
+	 * @param table	Ausgabetabelle
+	 * @param nr Nummer der Agentengruoppe oder -1 für die Daten über alle Gruppen
+	 * @param perCallcenter	Die Nummer bezieht sich auf die Callcenter-Gruppen-Nummerierung (<code>true</code>) oder auf die Skill-Level-Nummerierung (<code>false</code>)
+	 */
+
+	private void addAgentenLines(final Table table, final int nr, final boolean perCallcenter) {
 		String[] row1=new String[results.length];
 		String[] row2=new String[results.length];
 		String[] row3=new String[results.length];
@@ -362,7 +387,7 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 		for (int i=0;i<results.length;i++) {
 			Statistics statistic=results[i];
 			AgentenDaten agenten;
-			if (proCallcenter) {
+			if (perCallcenter) {
 				agenten=(nr>=0)?statistic.agentenProCallcenter[nr]:statistic.agentenGlobal;
 			} else {
 				agenten=(nr>=0)?statistic.agentenProSkilllevel[nr]:statistic.agentenGlobal;
@@ -396,7 +421,11 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 		}
 	}
 
-	private void addLines(Table table) {
+	/**
+	 * Fügt die Datenreihen zu der Ausgabetabelle hinzu.
+	 * @param table	Ausgabetabelle
+	 */
+	private void addLines(final Table table) {
 		List<String> groupNames=null;
 		switch (dataType) {
 		case DATA_TYPE_CALLERS:
@@ -481,6 +510,11 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 		}
 	}
 
+	/**
+	 * Liefert den Namen für einen bestimmten Simulationstag.
+	 * @param index	Index des Tages
+	 * @return	Namen für einen bestimmten Simulationstag
+	 */
 	private String getDayName(int index) {
 		if (index>=0 && index<results.length) {
 			String date=results[index].editModel.date;
@@ -490,8 +524,12 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 		return ""+(index+1);
 	}
 
+	/**
+	 * Erstellt und liefert die Tabelle mit den auszugebenden Daten.
+	 * @return	Tabelle mit den auszugebenden Daten
+	 */
 	private Table getTableData() {
-		Table table=new Table();
+		final Table table=new Table();
 
 		/* Kein Processing, Daten direkt ausgeben */
 		switch (dataType) {

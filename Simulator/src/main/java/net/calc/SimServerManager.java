@@ -38,7 +38,7 @@ public abstract class SimServerManager {
 	 * Konstruktor der Klasse <code>SimServerManager</code>
 	 * @param port	Port, auf dem auf eingehende Verbindungen gewartet werden soll.
 	 * @param password	Zu verwendendes Passwort für die verschlüsselte Datenübertragung (leer oder <code>null</code> für unverschlüsselte Übertragung)
-	 * @param maxThreads Gibt die Maximalanzahl an zu verwendenden Threads an. (<=0 um ohne Begrenzung zu arbeiten)
+	 * @param maxThreads Gibt die Maximalanzahl an zu verwendenden Threads an. (&le;0 um ohne Begrenzung zu arbeiten)
 	 * @param permittedIPs Gibt eine Liste von IP-Adressen (oder auch Anfängen von Adressen) an, die berechtigt sind, den Server zu nutzen. Wird <code>null</code> oder eine leere Liste übergeben, so werden alle Adressen akzeptiert.
 	 */
 	protected SimServerManager(int port, String password, int maxThreads, String[] permittedIPs) {

@@ -78,27 +78,54 @@ public class VarianzAnalysePanel extends JWorkPanel {
 	 */
 	private static final long serialVersionUID = -1992201900526618766L;
 
+	/** Für die Varianzanalyse zu verwendendes Callcenter-Modell */
 	private final CallcenterModel model;
+	/** Anzahl der Wiederholungen der Simulation */
 	private int repeatCount;
+	/** Anzahl an simulierten Tagen pro Simulation */
 	private int simDays;
 
+	/** Eingabefeld "Anzahl an Wiederholungen" */
 	private final JTextField repeatNumber;
-	private final JButton copyButton, saveButton;
-	private final JTabbedPane tabs, tabs2;
+	/** Schaltfläche "Kopieren" */
+	private final JButton copyButton;
+	/** Schaltfläche "Speichern" */
+	private final JButton saveButton;
+	/** Tab "100 Simulationstage" */
+	private final JTabbedPane tabs;
+	/** Tab "Variable Anzahl an Simulationstagen" */
+	private final JTabbedPane tabs2;
+	/** Darstellung des Simulationsfortschritts */
 	private final JProgressBar statusProgress;
 
+	/** Ausgabetabelle für 100 Simulationstage */
 	private final VarianzAnalyseExportableTable singleTable;
+	/** Ausgabetabelle für "Variable Anzahl an Simulationstagen" */
 	private final VarianzAnalyseExportableTable globalTable;
+	/** Panel das die Diagrammausgabe beinhaltet */
 	private ChartPanel chartPanel;
+	/** Diagramm zur Darstellung der Varianzanalyse-Ergebnisse */
 	private JFreeChart chart;
+	/** Darstellung in {@link #chart} */
 	private XYPlot plot;
+	/** Datenreihen in {@link #plot} */
 	private XYSeriesCollection plotData;
 
+	/** Simulator der die eigentliche Verarbeitung durchführt */
 	private VarianzAnalyseMultiSimulator multiSimulator;
 
+	/** Timer zum regelmäßigen Aufruf von {@link SimTimerTask} während einer laufenden Simulation */
 	private Timer timer;
+	/** Zählt die Aufrufe von {@link SimTimerTask} */
 	private int count;
 
+	/**
+	 * Initialisiert die Diagrammdarstellung
+	 * @see #chartPanel
+	 * @see #chart
+	 * @see #plot
+	 * @see #plotData
+	 */
 	private void initChart() {
 		final String xLabel=Language.tr("VarianceAnalysis.SimulatedDays");
 		final String yLabel=Language.tr("VarianceAnalysis.WaitingTimeCVBetweenSimulations");
@@ -158,7 +185,7 @@ public class VarianzAnalysePanel extends JWorkPanel {
 	/**
 	 * Konstruktor der Klasse
 	 * @param doneNotify	Callback wird aufgerufen, wenn das Panel geschlossen werden soll
-	 * @param model	Für die Varianzanalyse zu verwendenen Callcenter-Modell
+	 * @param model	Für die Varianzanalyse zu verwendendes Callcenter-Modell
 	 * @param helpLink	Help-Link
 	 */
 	public VarianzAnalysePanel(final Runnable doneNotify, final CallcenterModel model, final HelpLink helpLink) {
@@ -218,6 +245,14 @@ public class VarianzAnalysePanel extends JWorkPanel {
 		tabs.setEnabled(!running);
 	}
 
+	/**
+	 * Liest die Anzahl der Wiederholungen der Simulation
+	 * aus {@link #repeatNumber} aus und schreibt sie in
+	 * {@link #repeatCount}.
+	 * @param showErrorMessage	Soll eine Fehlermeldung angezeigt werden, wenn die Anzahl in {@link #repeatNumber} fehlerhaft ist?
+	 * @return	Liefert <code>true</code>, wenn die Anzahl korrekt aus {@link #repeatNumber} ausgelesen werden konnte
+	 * @see #repeatCount
+	 */
 	private boolean readRepeatCount(boolean showErrorMessage) {
 		Integer I=NumberTools.getNotNegativeInteger(repeatNumber.getText());
 		if (I==null || I==0) {
@@ -228,10 +263,15 @@ public class VarianzAnalysePanel extends JWorkPanel {
 		return true;
 	}
 
-	private void addSeries(String title) {
-		XYSeries series=new XYSeries(title);
+	/**
+	 * Fügt eine Datenreihe zu dem Diagramm hinzu
+	 * @param title	Name der Datenreihe
+	 * @see #plotData
+	 */
+	private void addSeries(final String title) {
+		final XYSeries series=new XYSeries(title);
 		plotData.addSeries(series);
-		int nr=plotData.getSeriesCount()-1;
+		final int nr=plotData.getSeriesCount()-1;
 		Color color=Color.BLACK;
 		switch (nr%8) {
 		case 0: color=Color.RED; break;
@@ -266,6 +306,12 @@ public class VarianzAnalysePanel extends JWorkPanel {
 		multiSimulatorStart();
 	}
 
+	/**
+	 * Startet einen Simulationslauf innerhalb der Varianzanalyse
+	 * mit steigender Anzahl an simulierten Tagen.
+	 * @see #simDays
+	 * @see #multiSimulatorDone()
+	 */
 	private void multiSimulatorStart() {
 		simDays+=5;
 		multiSimulator=new VarianzAnalyseMultiSimulator(this,model,(tabs.getSelectedIndex()==0)?(model.days):simDays,repeatCount);
@@ -279,6 +325,14 @@ public class VarianzAnalysePanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Prüft in Regelmäßigen Abständen, ob die
+	 * laufende Simulation abgeschlossen wurde
+	 * und die nächste Simulation gestartet
+	 * werden kann.
+	 * @see VarianzAnalyseMultiSimulator#initNextSimulation()
+	 * @see VarianzAnalysePanel#multiSimulatorDone()
+	 */
 	private class SimTimerTask extends TimerTask {
 		@Override
 		public void run() {
@@ -296,6 +350,11 @@ public class VarianzAnalysePanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Wird zum Abschluss eines Simulationslaufs innerhalb der Varianzanalyse
+	 * mit steigender Anzahl an simulierten Tagen ausgeführt.
+	 * @see #multiSimulatorStart()
+	 */
 	private void multiSimulatorDone() {
 		if (cancelWork) {
 			if (tabs.getSelectedIndex()==0)	MsgBox.error(this,Language.tr("VarianceAnalysis.Stop.Title"),String.format(Language.tr("VarianceAnalysis.Stop.Info"),""+multiSimulator.getCurrentSimNumber()));
@@ -328,6 +387,9 @@ public class VarianzAnalysePanel extends JWorkPanel {
 		super.done();
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen
+	 */
 	private class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -379,15 +441,29 @@ public class VarianzAnalysePanel extends JWorkPanel {
 			}
 		}
 
+		/**
+		 * Zwischenablagen-Datenobjekt für ein Bild
+		 */
 		private class TransferableImage implements Transferable{
-			public TransferableImage(Image image) {theImage=image;}
+			/**
+			 * Auszugebendes Bild
+			 */
+			private final Image theImage;
+
+			/**
+			 * Konstruktor der Klasse
+			 * @param image	Auszugebendes Bild
+			 */
+			public TransferableImage(Image image) {
+				theImage=image;
+			}
+
 			@Override
 			public DataFlavor[] getTransferDataFlavors(){return new DataFlavor[]{DataFlavor.imageFlavor};}
 			@Override
 			public boolean isDataFlavorSupported(DataFlavor flavor){return flavor.equals(DataFlavor.imageFlavor);}
 			@Override
 			public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException{if (flavor.equals(DataFlavor.imageFlavor)) return theImage; else throw new UnsupportedFlavorException(flavor);}
-			private final Image theImage;
 		}
 	}
 }

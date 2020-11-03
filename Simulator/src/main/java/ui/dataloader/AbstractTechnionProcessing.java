@@ -50,7 +50,9 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 	private JTextField fileInput;
 	/** Dateiauswahl-Schaltfläche für die Eingabedatei */
 	private JButton fileInputButton;
+	/** Auswahlbox für den Tag */
 	private JComboBox<String> tagSelect;
+	/** Verfügbare Tage */
 	private final Vector<String> tagList=new Vector<String>();
 	/** Eingabefeld für die Ausgabedatei */
 	private JTextField fileOutput=null;
@@ -181,6 +183,11 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 	 */
 	protected abstract CallcenterModel processTechnion(final TechnionLoader loader, final File outFile);
 
+	/**
+	 * Liefert eine Liste der in einer Datei verfügbaren Tage.
+	 * @param fileName	Eingabedatei
+	 * @return	Verfügbare Tage
+	 */
 	private final List<String> getDays(String fileName) {
 		if (fileName==null || fileName.isEmpty()) return null;
 		File file=new File(fileName);

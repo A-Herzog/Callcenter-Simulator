@@ -47,6 +47,13 @@ public class StatisticViewerSpecialHTMLText extends	StatisticViewerSimpleHTMLTex
 		VIEWER_NODATA
 	}
 
+	/**
+	 * Erzeugt den auszugebenden Text
+	 * @param type Gibt an, was angezeigt werden soll (siehe <code>VIEWER_*</code>-Konstanten)	 *
+	 * @param startSimulation <code>Runnable</code>-Objekt, das beim Klick auf "Simulation jetzt starten" ausgeführt werden soll.
+	 * @param loadStatistics <code>Runnable</code>-Objekt, das beim Klick auf "Statistikdaten laden" ausgeführt werden soll.
+	 * @return	Auszugebender Text
+	 */
 	private static final String buildInfoText(ViewerCategory type, Runnable startSimulation, Runnable loadStatistics) {
 		switch (type) {
 		case VIEWER_CATEGORY: return Language.tr("Statistic.GeneralPage.SelectCategoryHTML");
@@ -67,6 +74,12 @@ public class StatisticViewerSpecialHTMLText extends	StatisticViewerSimpleHTMLTex
 		return "";
 	}
 
+	/**
+	 * Generiert die Callbacks zum Start einer Simulation und zum Laden von Statistikdaten
+	 * @param startSimulation <code>Runnable</code>-Objekt, das beim Klick auf "Simulation jetzt starten" ausgeführt werden soll.
+	 * @param loadStatistics <code>Runnable</code>-Objekt, das beim Klick auf "Statistikdaten laden" ausgeführt werden soll.
+	 * @return	Callbacks zum Start einer Simulation und zum Laden von Statistikdaten
+	 */
 	private static final Runnable[] buildSpecialLinkListener(Runnable startSimulation, Runnable loadStatistics) {
 		List<Runnable> runner=new ArrayList<Runnable>();
 		if (startSimulation!=null) runner.add(startSimulation);

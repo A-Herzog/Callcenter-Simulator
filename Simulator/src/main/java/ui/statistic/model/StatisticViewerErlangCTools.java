@@ -43,21 +43,35 @@ public class StatisticViewerErlangCTools {
 	private CallcenterModel model;
 	/** Einfaches (<code>false</code>) oder erweitertes (<code>true</code>) Erlang-C-Modell */
 	private final boolean extended;
+	/** Wurde die Berechnung abgeschlossen ({@link #calc()})? */
 	private boolean calcDone=false;
 
+	/** Wiederholwahrscheinlichkeiten pro Intervall */
 	private final double[] retryProbability=new double[48];
+	/** Bedienrate pro Intervall */
 	private final double[] mu=new double[48];
+	/** Abbruchrate pro Intervall */
 	private final double[] nu=new double[48];
+	/** Anzahl an verfügbaren Ageten pro Intervall */
 	private final double[] agents=new double[48];
 
+	/** Anzahl an Anrufern pro Intervall */
 	private final double[] caller=new double[48];
+	/** Anzahl an Wiederholern pro Intervall */
 	private final double[] retryCaller=new double[48];
+	/** Mittlere Wartezeit pro Intervall */
 	private final double[] meanWaitingTime=new double[48];
+	/** Anteil erfolgreicher Anrufe pro Intervall */
 	private final double[] successProbability=new double[48];
+	/** Service-Level pro Intervall */
 	private final double[] serviceLevel=new double[48];
 
+	/** Wiederholer aus dem jeweils vorherigen Intervall (75%) */
 	private final double[] retryCallerFromLastInterval1=new double[48];
+	/** Wiederholer aus dem jeweils vorherigen Intervall (25%) */
 	private final double[] retryCallerFromLastInterval2=new double[48];
+
+	/** Parser-Objekt für Formeln für die wartezeitanhängige Bediendauer */
 	private MathParser parser;
 
 	/**
@@ -97,6 +111,10 @@ public class StatisticViewerErlangCTools {
 		calcSingleInterval(interval);
 	}
 
+	/**
+	 * Berechnet die Daten für ein Intervall.
+	 * @param interval	Zeitintervall für das die Berechnung erfolgen soll
+	 */
 	private void calcSingleInterval(int interval) {
 		double lambda=(caller[interval]+((interval==0)?0.0:retryCallerFromLastInterval1[interval-1]))/1800;
 		int c=(int)Math.round(agents[interval]);
@@ -131,6 +149,9 @@ public class StatisticViewerErlangCTools {
 		retryCallerFromLastInterval2[interval]=retryCaller[interval]*0.25;
 	}
 
+	/**
+	 * Führt die Gesamtberechnung wenn nötig durch.
+	 */
 	private void calc() {
 		if (calcDone) return;
 		calcDone=true;
@@ -145,38 +166,67 @@ public class StatisticViewerErlangCTools {
 	 * Liefert ein Array der Länge 48 mit der jeweiligen Anzahl an Erstanrufern pro Intervall
 	 * @return	Erstanrufer pro Intervall
 	 */
-	public double[] getFreshCalls() {calc(); return caller;}
+	public double[] getFreshCalls() {
+		calc();
+		return caller;
+	}
 
 	/**
 	 * Liefert ein Array der Länge 48 mit der jeweiligen Anzahl an Wiederholern pro Intervall
 	 * @return	Wiederholer pro Intervall
 	 */
-	public double[] getRetryCalls() {calc(); return retryCaller;}
+	public double[] getRetryCalls() {
+		calc();
+		return retryCaller;
+	}
 
 	/**
 	 * Liefert ein Array der Länge 48 mit mittleren Wartezeiten (auf Sekundenbasis)
 	 * @return	Mittlere Wartezeiten Array
 	 */
-	public double[] getMeanWaitingTime() {calc(); return meanWaitingTime;}
+	public double[] getMeanWaitingTime() {
+		calc();
+		return meanWaitingTime;
+	}
 
 	/**
 	 * Liefert ein Array der Länge 48 mit Erreichbarkeitswahrscheinlichkeiten
 	 * @return	Erreichbarkeitswahrscheinlichkeiten Array
 	 */
-	public double[] getSuccessProbability() {calc(); return successProbability;}
+	public double[] getSuccessProbability() {
+		calc();
+		return successProbability;
+	}
 
 	/**
 	 * Liefert ein Array der Länge 48 mit Service-Level-Werten
 	 * @return	Service-Level-Werte Array
 	 */
-	public double[] getServiceLevel() {calc(); return serviceLevel;}
+	public double[] getServiceLevel() {
+		calc();
+		return serviceLevel;
+	}
 
 	/**
 	 * Liefert ein Array der Länge 48 mit Werten, wie viele Agenten pro Intervall eingeplant sind
 	 * @return	Agentenanzahl-Array
 	 */
-	public double[] getAgents() {calc(); return agents;}
+	public double[] getAgents() {
+		calc();
+		return agents;
+	}
 
+	/**
+	 * Berechnet die Wahrscheinlichkeit für eine bestimmte Wartezeit
+	 * @param Cn	C[n] aus der Erlang-C-Formel
+	 * @param pi0	pi0 aus der Erlang-C-Formel
+	 * @param K	Gesamtanzahl an Telefonleitungen
+	 * @param c	Anzahl an verfügbaren Agenten
+	 * @param mu	Bedienrate
+	 * @param nu	Abbruchrate
+	 * @param t	Zeitdauer für die die Wartezeitwahrscheinlichkeit berechnet werden soll
+	 * @return	Wahrscheinlichkeit dafür, dass Kunden höcgstens so lange wie angegeben warten müssen
+	 */
 	private double getWaitingTimeProbability(double[] Cn, double pi0, int K, int c, double mu, double nu, double t) {
 		/* 1-Cn[K]*pi0-pi0*sum(n=c...K-1)Cn[n]*gamma(n-c+1,(c*mu+nu)*t)/(n-c)! */
 
@@ -195,6 +245,10 @@ public class StatisticViewerErlangCTools {
 		return ergebnis;
 	}
 
+	/**
+	 * Berechnet die Anzahl an Anrufern und verfügbaren Agenten
+	 * @param model	Gesamtes Modell
+	 */
 	private void getCallerAndAgents(CallcenterModel model) {
 		/* Bestimmung der Anzahl an Anrufern (Weiterleitungen werden approximativ berücksichtigt), der Weiterleitungswahrscheinlichkeit und der Wiederholwahrscheinlichkeit pro Halbstundenintervall */
 		for (int j=0;j<48;j++) {caller[j]=0; retryProbability[j]=0; nu[j]=0;}
@@ -250,6 +304,13 @@ public class StatisticViewerErlangCTools {
 		for (int i=0;i<48;i++) if (mu[i]!=0) mu[i]=agents[i]/mu[i];
 	}
 
+	/**
+	 * Berechnet die mittlere Bediendauer für eine Agentengruppe.
+	 * @param model	Gesamtes Modell
+	 * @param a	Agentengruppe
+	 * @param interval	Zeitintervall
+	 * @return	Mittlere Bediendauer
+	 */
 	private double getMeanWorkingTime(CallcenterModel model, CallcenterModelAgent a, int interval) {
 		CallcenterModelSkillLevel s=null;
 		for (int i=0;i<model.skills.size();i++) if (model.skills.get(i).name.equalsIgnoreCase(a.skillLevel)) {s=model.skills.get(i); break;}

@@ -57,15 +57,21 @@ public class CallcenterModelEditorPanelDialog extends JFrame {
 	 */
 	private static final long serialVersionUID = 426126815352751934L;
 
+	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
 
+	/** Symbolleiste */
 	private JToolBar toolbar;
+	/** "Schließen"-Schaltfläche */
 	private JButton closeButton;
+	/** "Speichern"-Schaltfläche */
 	private JButton saveButton;
+	/** "Laden"-Schaltfläche */
 	private JButton loadButton;
 	private JButton saveStatisticButton=null;
 	private JButton editorButton=null;
 	private JButton statistikButton=null;
+	/** "Hilfe"-Schaltfläche */
 	private JButton helpButton;
 	private JPanel tabs;
 	private CallcenterModelEditorPanel modelPanel;
@@ -262,6 +268,9 @@ public class CallcenterModelEditorPanelDialog extends JFrame {
 		if (statistikButton!=null && statistikButton.isSelected()) helpLink.pageStatisticModal.run();
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Symbolleisten-Schaltflächen
+	 */
 	private class ToolbarListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

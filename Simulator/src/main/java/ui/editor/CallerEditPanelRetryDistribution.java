@@ -42,7 +42,7 @@ public class CallerEditPanelRetryDistribution extends CallerEditPanel {
 
 	/**
 	 * Konstruktor der Klasse
-	 * @param initData	Informamtionen über den aktuellen Kundentyp zur Initialisierung des Panels
+	 * @param initData	Informationen über den aktuellen Kundentyp zur Initialisierung des Panels
 	 * @see CallerEditPanel.InitData
 	 */
 	public CallerEditPanelRetryDistribution(final InitData initData) {

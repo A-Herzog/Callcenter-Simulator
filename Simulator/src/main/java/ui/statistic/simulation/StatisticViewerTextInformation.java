@@ -93,18 +93,30 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 	 * @param statistic	Statistik-Objekt, das die anzuzeigenden Informationen enthält
 	 * @param mode	Angabe, was angezeigt werden soll (siehe <code>MODE_</code>-Konstanten)
 	 */
-	public StatisticViewerTextInformation(Statistics statistic, Mode mode) {
+	public StatisticViewerTextInformation(final Statistics statistic, final Mode mode) {
 		super();
 		this.statistic=statistic;
 		this.mode=mode;
 	}
 
+	/**
+	 * Zeigt im Fußbereich der Hilfeseite eine "Erklärung einblenden"-Schaltfläche, die,
+	 * wenn sie angeklickt wird, eine html-Hilfeseite anzeigt.
+	 * @param topic	Hilfe-Thema (wird als Datei in den "description_*"-Ordern gesucht)
+	 */
 	private void addDescription(final String topic) {
 		final URL url=StatisticViewerTextInformation.class.getResource("description_"+Language.getCurrentLanguage()+"/"+topic+".html");
 		addDescription(url,helpTopic->Help.topic(getViewer(false),helpTopic));
 	}
 
-	private void buildBaseClientData(KundenDaten kunden, long simDays, int serviceLevel) {
+	/**
+	 * Ausgabe Basisinformation zu einem bestimmten Kundentyp
+	 * @param kunden	Kundentyp
+	 * @param simDays	Anzahl an simulierten Tagen
+	 * @param serviceLevel	Service-Level-Sekundenwert
+	 * @see #buildBaseInformation()
+	 */
+	private void buildBaseClientData(final KundenDaten kunden, final long simDays, final int serviceLevel) {
 		String hiddenSetup=SetupData.getSetup().simOverviewFilter;
 
 		String serviceLevelText="P(W<="+serviceLevel+")";
@@ -128,7 +140,12 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		endParagraph();
 	}
 
-	private void buildBaseQueueLengthData(Statistics statistic) {
+	/**
+	 * Ausgabe von Angaben zu den Warteschlangenlängen
+	 * @param statistic	Statistik-Objekt, das die anzuzeigenden Informationen enthält
+	 * @see #buildBaseInformation()
+	 */
+	private void buildBaseQueueLengthData(final Statistics statistic) {
 		addHeading(2,Language.tr("SimStatistic.AverageQueueLength"));
 
 		beginParagraph();
@@ -185,7 +202,12 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		return time;
 	}
 
-	private void buildBaseCallcenterData(AgentenDaten agenten) {
+	/**
+	 * Ausgabe von Basisdaten zu einer Agentengruppe
+	 * @param agenten	Agentengruppe
+	 * @see #buildBaseInformation()
+	 */
+	private void buildBaseCallcenterData(final AgentenDaten agenten) {
 		String hiddenSetup=SetupData.getSetup().simOverviewFilter;
 
 		if (agenten.name.isEmpty()) addHeading(2,Language.tr("SimStatistic.AllActiveAgents")); else addHeading(2,agenten.name);
@@ -211,6 +233,10 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		endParagraph();
 	}
 
+	/**
+	 * Ergebnisübersicht anzeigen
+	 * @see Mode#MODE_BASE_INFORMATION
+	 */
 	private void buildBaseInformation() {
 		addHeading(1,Language.tr("SimStatistic.ResultOverview"));
 
@@ -247,6 +273,11 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		addDescription("BaseInformation");
 	}
 
+	/**
+	 * Ausgabe von
+	 * Daten zu Simulator und Simulationslauf
+	 * @see Mode#MODE_SYSTEM_INFORMATION
+	 */
 	private void buildSystemInformation() {
 		addHeading(1,Language.tr("SimStatistic.SystemData"));
 
@@ -283,7 +314,14 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		}
 	}
 
-	private void buildKonfidenceClientData(KundenDaten kunden, long simDays, int serviceLevel) {
+	/**
+	 * Ausgabe von Konfidenzintervallen zu einem bestimmten Kundentyp
+	 * @param kunden	Kundentyp
+	 * @param simDays	Anzahl an simulierten Tagen
+	 * @param serviceLevel	Service-Level-Sekundenwert
+	 * @see #buildConfidenceInformation()
+	 */
+	private void buildKonfidenceClientData(final KundenDaten kunden, final long simDays, final int serviceLevel) {
 		String hiddenSetup=SetupData.getSetup().confidenceFilter;
 
 		if (kunden.name.isEmpty()) addHeading(2,Language.tr("SimStatistic.AllClients")); else addHeading(2,kunden.name);
@@ -391,6 +429,11 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 	}
 
 
+	/**
+	 * Ausgabe von
+	 * Konfidenzintervallen zu Wartezeiten, Erfolgswahrscheinlichkeiten und Service-Level
+	 * @see Mode#MODE_CONFIDENCE_INFORMATION
+	 */
 	private void buildConfidenceInformation() {
 		addHeading(1,Language.tr("SimStatistic.ConfidenceIntervals"));
 
@@ -406,6 +449,11 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		addDescription("ConfidenceInformation");
 	}
 
+	/**
+	 * Ausgabe einer
+	 * Modellbeschreibung
+	 * @see Mode#MODE_MODEL_INFORMATION
+	 */
 	private void buildModelInformation() {
 		addHeading(1,Language.tr("SimStatistic.ModelInformation.Name"));
 		addLines(statistic.editModel.name);
@@ -424,6 +472,11 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		addLines(statistic.editModel.generateDescription());
 	}
 
+	/**
+	 * Ausgabe von
+	 * Schwellenwerten
+	 * @see Mode#MODE_THRESHOLDS
+	 */
 	private void buildThresholdAndRecommendationsInformation() {
 		addHeading(1,Language.tr("SimStatistic.ThresholdsAndRecommendations"));
 
@@ -431,7 +484,12 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		buildRecommendations(true);
 	}
 
-	private void buildRecommendations(boolean fullInformation) {
+	/**
+	 * Ausgabe von Empfehlungen
+	 * @param fullInformation	Vollständige (<code>true</code>) oder überblicksartige Informationen (<code>false</code>)
+	 * @see #buildThresholdAndRecommendationsInformation()
+	 */
+	private void buildRecommendations(final boolean fullInformation) {
 		List <String> recommendations=new ArrayList<String>();
 
 		/* Schlechte Erreichbarkeit */
@@ -503,7 +561,12 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		}
 	}
 
-	private void buildThresholdInformation(boolean fullInformation) {
+	/**
+	 * Ausgabe von Schwellenwert-Informationen
+	 * @param fullInformation	Vollständige (<code>true</code>) oder überblicksartige Informationen (<code>false</code>)
+	 * @see #buildThresholdAndRecommendationsInformation()
+	 */
+	private void buildThresholdInformation(final boolean fullInformation) {
 		if (!fullInformation && statistic.warnings.records.size()==0) return;
 
 		addHeading(2,Language.tr("SimStatistic.Thresholds"));
@@ -644,29 +707,55 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		return (mode==Mode.MODE_BASE_INFORMATION || mode==Mode.MODE_CONFIDENCE_INFORMATION)?Images.STATISTICS_FILTER.getIcon():null;
 	}
 
+	/** Filter-ID für Sichtbarkeit von Erstanrufern */
 	private final static int FILTER_OVERVIEW_CLIENTS_FRESHCALLS=0;
+	/** Filter-ID für Sichtbarkeit von Wiederanrufern */
 	private final static int FILTER_OVERVIEW_CLIENTS_RECALL=1;
+	/** Filter-ID für Sichtbarkeit von Anrufern */
 	private final static int FILTER_OVERVIEW_CLIENTS_CALLS=2;
+	/** Filter-ID für Sichtbarkeit von Erreichbarkeit auf Anrufbasis */
 	private final static int FILTER_OVERVIEW_CLIENTS_ACCESSIBILITY_CALLS=3;
+	/** Filter-ID für Sichtbarkeit von Erreichbarkeit auf Kundenbasis */
 	private final static int FILTER_OVERVIEW_CLIENTS_ACCESSIBILITY_CLIENTS=4;
+	/** Filter-ID für Sichtbarkeit von Kunden-Wartezeiten */
 	private final static int FILTER_OVERVIEW_CLIENTS_WAITINGTIME=5;
+	/** Filter-ID für Sichtbarkeit von Kunden-Abbruchzeiten */
 	private final static int FILTER_OVERVIEW_CLIENTS_CANCELTIME=6;
+	/** Filter-ID für Sichtbarkeit von Kunden-Weiterleitungen */
 	private final static int FILTER_OVERVIEW_CLIENTS_FORWARDED=7;
+	/** Filter-ID für Sichtbarkeit von Kunden-Blockierungen */
 	private final static int FILTER_OVERVIEW_CLIENTS_BLOCKED=8;
+	/** Filter-ID für Sichtbarkeit von Service-Level-Angabe über für erfolgreichen Anrufe */
 	private final static int FILTER_OVERVIEW_CLIENTS_SERVICELEVEL_CALL_SUCCESS=9;
+	/** Filter-ID für Sichtbarkeit von Service-Level-Angabe über für erfolgreichen Kunden */
 	private final static int FILTER_OVERVIEW_CLIENTS_SERVICELEVEL_CLIENT_SUCCESS=10;
+	/** Filter-ID für Sichtbarkeit von Service-Level-Angabe über für alle Anrufe */
 	private final static int FILTER_OVERVIEW_CLIENTS_SERVICELEVEL_CALL_ALL=11;
+	/** Filter-ID für Sichtbarkeit von Service-Level-Angabe über für alle Kunden */
 	private final static int FILTER_OVERVIEW_CLIENTS_SERVICELEVEL_CLIENT_ALL=12;
+	/** Filter-ID für Sichtbarkeit von Warteschlangenlängenangaben */
 	private final static int FILTER_OVERVIEW_QUEUE=13;
+	/** Filter-ID für Sichtbarkeit von Agentenanzahlen */
 	private final static int FILTER_OVERVIEW_AGENTS_NUMBER=14;
+	/** Filter-ID für Sichtbarkeit von Agentenanzahlen im Leerlauf */
 	private final static int FILTER_OVERVIEW_AGENTS_IDLE=15;
+	/** Filter-ID für Sichtbarkeit von Agentenanzahlen in technischer Bereitzeit */
 	private final static int FILTER_OVERVIEW_AGENTS_TECHNICAL=16;
+	/** Filter-ID für Sichtbarkeit von Agentenanzahlen im Bedienung */
 	private final static int FILTER_OVERVIEW_AGENTS_HOLDING=17;
+	/** Filter-ID für Sichtbarkeit von Agentenanzahlen im Nachbearbeitungszeit */
 	private final static int FILTER_OVERVIEW_AGENTS_POSTPROCESSING=18;
+	/** Filter-ID für Sichtbarkeit von Agentenanzahlen (eingeplant) */
 	private final static int FILTER_OVERVIEW_AGENTS_WORK_SCHEDULED=19;
+	/** Filter-ID für Sichtbarkeit von Agentenanzahlen (eingeplant und arbeitend) */
 	private final static int FILTER_OVERVIEW_AGENTS_WORK_WORKED=20;
+	/** Filter-ID für Sichtbarkeit von Schwellenwert-Angaben */
 	private final static int FILTER_OVERVIEW_THRESHOLDS=21;
 
+	/**
+	 * Liefert die Bezeichner für die Filter-IDs für die Übersichtsabschnitte.
+	 * @return	Bezeichner für die Filter-IDs für die Übersichtsabschnitte
+	 */
 	private String[] getOverviewIDs() {
 		String[] ids=new String[]{
 				Language.tr("SimStatistic.Clients")+" - "+Language.tr("SimStatistic.FreshCalls"),
@@ -690,19 +779,30 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 				Language.tr("SimStatistic.Agents")+" - "+Language.tr("SimStatistic.PostProcessingTime"),
 				Language.tr("SimStatistic.Agents")+" - "+Language.tr("SimStatistic.AgentsWorkingHours.Scheduled"),
 				Language.tr("SimStatistic.Agents")+" - "+Language.tr("SimStatistic.AgentsWorkingHours.Worked"),
-				Language.tr("SimStatistic.Thresholds") // Neuer Titel "ThresholdsAndRecommendations"
+				Language.tr("SimStatistic.Thresholds")
 		};
 		return ids;
 	}
 
+	/** Filter-ID für Sichtbarkeit von Konfidenzintervallen für die Erreichbarkeit auf Anrufbasis */
 	private final static int FILTER_CONFIDENCE_ACCESSIBILITY_CALLS=0;
+	/** Filter-ID für Sichtbarkeit von Konfidenzintervallen für die Erreichbarkeit auf Kundenbasis */
 	private final static int FILTER_CONFIDENCE_ACCESSIBILITY_CLIENTS=1;
+	/** Filter-ID für Sichtbarkeit von Konfidenzintervallen für die Wartezeiten */
 	private final static int FILTER_CONFIDENCE_WAITINGTIME=2;
+	/** Filter-ID für Sichtbarkeit von Konfidenzintervallen für den Service-Level über die erfolgreichen Anrufe */
 	private final static int FILTER_CONFIDENCE_SERVICELEVEL_CALL_SUCCESS=3;
+	/** Filter-ID für Sichtbarkeit von Konfidenzintervallen für den Service-Level über die erfolgreichen Kunden */
 	private final static int FILTER_CONFIDENCE_SERVICELEVEL_CLIENT_SUCCESS=4;
+	/** Filter-ID für Sichtbarkeit von Konfidenzintervallen für den Service-Level über die alle Anrufe */
 	private final static int FILTER_CONFIDENCE_SERVICELEVEL_CALL_ALL=5;
+	/** Filter-ID für Sichtbarkeit von Konfidenzintervallen für den Service-Level über die alle Kunden */
 	private final static int FILTER_CONFIDENCE_SERVICELEVEL_CLIENT_ALL=6;
 
+	/**
+	 * Liefert die Bezeichner für die Filter-IDs für die Konfidenzintervalle.
+	 * @return	Bezeichner für die Filter-IDs für die Konfidenzintervalle
+	 */
 	private String[] getConfidenceIDs() {
 		String[] ids=new String[]{
 				Language.tr("SimStatistic.Accessibility")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",
@@ -751,12 +851,24 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		}
 	}
 
+	/**
+	 * Prüft, ob ein bestimmter Absatz sichtbar sein soll
+	 * @param setup	Einstellungen zu sichtbaren/ausgeblendeten Absätzen
+	 * @param id	ID des zu prüfenden Absatzes
+	 * @return	Liefert <code>true</code>, wenn der Absatz sichtbar sein soll
+	 */
 	private boolean isIDVisible(String setup, int id) {
 		while (setup.length()<id+1) setup+="X";
 		boolean b=setup.charAt(id)!='-';
 		return b;
 	}
 
+	/**
+	 * Liefert eine Aufstellung der momentan ausgeblendeten Absatz-IDs.
+	 * @param ids	Gesamtliste der Absatz-IDs.
+	 * @param setup	Einstellungen zu sichtbaren/ausgeblendeten Absätzen
+	 * @return	Aufstellung der momentan ausgeblendeten Absatz-IDs
+	 */
 	private String[] getHiddenIDs(String[] ids, String setup) {
 		if (setup==null) setup="";
 		while (setup.length()<ids.length) setup+="X";
@@ -766,6 +878,12 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		return hiddenIDs.toArray(new String[0]);
 	}
 
+	/**
+	 * Liefert die Einstellungen zu sichtbaren/ausgeblendeten Absätzen
+	 * @param ids	Gesamtliste der Absatz-IDs.
+	 * @param hidden	Aufstellung der momentan ausgeblendeten Absatz-IDs
+	 * @return	Einstellungen zu sichtbaren/ausgeblendeten Absätzen
+	 */
 	private String setHiddenIDs(String[] ids, String[] hidden) {
 		final List<String> hiddenIDs=Arrays.asList(hidden);
 		StringBuilder setupString=new StringBuilder();

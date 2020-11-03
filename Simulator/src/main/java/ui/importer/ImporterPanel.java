@@ -56,6 +56,7 @@ public final class ImporterPanel extends JWorkPanel {
 
 	/** Übergeordnetes Fenster */
 	private final Window owner;
+	/** Verändertes Modell */
 	private CallcenterModel changedModel=null;
 
 	private final JTextField tableField;

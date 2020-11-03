@@ -87,6 +87,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	private static final long serialVersionUID = -4444119481485832099L;
 
 	private final int indexForThisCallcenter;
+	/** Listen mit allen Callcenter-Namen (um doppelte Namen zu verhindern) */
 	private final String[] callcenterNames;
 
 	private final CallcenterModelCallcenter callcenter;
@@ -121,6 +122,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 
 	private JTextField[] waitingTimeByType;
 
+	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
 
 	private boolean openAgentsGenerator24=false;

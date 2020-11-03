@@ -26,7 +26,7 @@ import ui.model.CallcenterModelAgent;
 import ui.model.CallcenterModelCallcenter;
 
 /**
- * Zeigt Informationen über die Agentenarbeitszeien als Tabelle an.
+ * Zeigt Informationen über die Agentenarbeitszeiten als Tabelle an.
  * @author Alexander Herzog
  * @version 1.0
  */
@@ -80,6 +80,13 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 		}
 	}
 
+	/**
+	 * Berechnet die Anzahl an aktiven Agenten pro Intervall
+	 * @param interval	Zeitintervall
+	 * @param translatedAgents	Liste der Agenten
+	 * @return	Anzahl an aktiven Agenten in dem Intervall
+	 * @see #buildTimeTable(List, boolean)
+	 */
 	private int activeAgentsInInterval(int interval, List<CallcenterModelAgent> translatedAgents) {
 		int count=0;
 		for (int i=0;i<translatedAgents.size();i++) {
@@ -91,6 +98,11 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 		return count;
 	}
 
+	/**
+	 * Erstellt die Tabelle der Agentenarbeitszeiten
+	 * @param translatedAgents	Liste der Agenten
+	 * @param sumColumn	Ausgabe einer Summen-Spalte
+	 */
 	private void buildTimeTable(List<ArrayList<CallcenterModelAgent>> translatedAgents, boolean sumColumn) {
 		final List<List<String>> data=new ArrayList<>();
 
@@ -111,6 +123,11 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 		setData(data,columnNames);
 	}
 
+	/**
+	 * Ausgabe der
+	 * Agenten nach Callcentern sortiert
+	 * @see Mode#BY_CALLCENTER
+	 */
 	private void callcenterTable() {
 		/* Spaltenüberschriften */
 		for (int i=0;i<model.callcenter.size();i++)	if (model.callcenter.get(i).active) columnNames.add(model.callcenter.get(i).name);
@@ -134,6 +151,11 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 		buildTimeTable(translatedAgents,true);
 	}
 
+	/**
+	 * Ausgabe der
+	 * Agenten nach Skill-Levels sortiert
+	 * @see Mode#BY_SKILLLEVEL
+	 */
 	private void skillLevelTable() {
 		/* Spaltenüberschriften */
 		for (int i=0;i<model.skills.size();i++)	columnNames.add(model.skills.get(i).name);
@@ -157,6 +179,11 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 		buildTimeTable(agents,true);
 	}
 
+	/**
+	 * Ausgabe der
+	 * Agenten nach bedienbaren Kundentypen sortiert
+	 * @see Mode#BY_SKILL
+	 */
 	private void skillTable() {
 		/* Spaltenüberschriften */
 		for (int i=0;i<model.caller.size();i++)	if (model.caller.get(i).active) columnNames.add(model.caller.get(i).name);

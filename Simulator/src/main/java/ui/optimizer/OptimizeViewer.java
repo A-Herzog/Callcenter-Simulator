@@ -58,8 +58,21 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 	/** Übergeordnetes Fenster */
 	private final Window owner;
 
+	/**
+	 * Objekt vom Typ <code>OptimizeData</code>, aus dem die Ergebnisse geladen werden sollen.
+	 * @see #loadResults(OptimizeData)
+	 */
 	private OptimizeData results;
+
+	/**
+	 * Wurden die Ergebnisse bereits gespeichert?
+	 * @see #closeCheck()
+	 */
 	private boolean resultsSaved;
+
+	/**
+	 * Panel zur Anzeige der Statistikdaten
+	 */
 	private OptimizerStatisticPanel statistic;
 
 	/** Verknüpfung mit der Online-Hilfe */
@@ -70,7 +83,7 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 	 * @param owner	Übergeordnetes Fenster
 	 * @param helpLink Verknüpfung mit der Online-Hilfe
 	 */
-	public OptimizeViewer(Window owner, HelpLink helpLink) {
+	public OptimizeViewer(final Window owner, final HelpLink helpLink) {
 		super(null,helpLink.pageOptimizeViewer);
 		this.owner=owner;
 		this.helpLink=helpLink;
@@ -106,7 +119,7 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 	 * und unterstellt dabei, dass die Ergebnisse noch nicht gespeichert wurden.
 	 * @param results	Objekt vom Typ <code>OptimizeData</code>, aus dem die Ergebnisse geladen werden sollen.
 	 */
-	public void loadResults(OptimizeData results) {
+	public void loadResults(final OptimizeData results) {
 		this.results=results;
 		resultsSaved=false;
 
@@ -120,7 +133,7 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 	 * @param file	Datei, aus der die Optimierungsergebnisse geladen werden sollen
 	 * @return	Gibt <code>null</code> zurück, wenn die Daten korrekt geladen werden konnten. Andernfalls wird eine Fehlermeldung zurückgegeben.
 	 */
-	public String loadResults(File file) {
+	public String loadResults(final File file) {
 		OptimizeData data=new OptimizeData();
 		String s=data.loadFromFile(file);
 		if (s!=null) return s;
@@ -129,7 +142,13 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		return null;
 	}
 
-	private void addNodes(StatisticNode root) {
+	/**
+	 * Fügt die Einträge zu den Optimierungsergebnissen zu der Baumstruktur in
+	 * der Statistikansicht hinzu.
+	 * @param root	Wurzelelement für die Baumstruktur
+	 * @see #loadResults(OptimizeData)
+	 */
+	private void addNodes(final StatisticNode root) {
 		StatisticNode node, node2, node3;
 
 		/* Allgemeine Daten */
@@ -302,6 +321,10 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		root.addChild(new StatisticNode(Language.tr("OptimizeResults.AllResults"),new StatisticViewerOptimizerTable(results,StatisticViewerOptimizerTable.Mode.DATA_TYPE_SUMMARY)));
 	}
 
+	/**
+	 * Speichert die Optimierungsergebnisse in einer Datei.
+	 * @return	Liefert <code>true</code>, wenn die Ergebnisse erfolgreich gespeichert werden konnten
+	 */
 	private boolean saveResults() {
 		if (results==null) return true;
 
@@ -312,6 +335,10 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		return b;
 	}
 
+	/**
+	 * Prüft, ob der Viewer geschlossen werden darf (wozu ggf. der Nutzer gefragt wird).
+	 * @return	Darf der Viewer geschlossen werden?
+	 */
 	private boolean closeCheck() {
 		if (results==null || resultsSaved) return true;
 

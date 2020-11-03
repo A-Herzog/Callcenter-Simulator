@@ -65,6 +65,7 @@ public class JWorkPanel extends JCloseablePanel {
 	 */
 	protected JToolBar buttonPanel;
 
+	/** Schaltfläche "Start" */
 	private JButton workButton;
 	/** Schaltfläche "Abbruch" */
 	private JButton cancelButton;
@@ -72,6 +73,7 @@ public class JWorkPanel extends JCloseablePanel {
 	private JButton closeButton;
 	/** Schaltfläche "Hilfe" */
 	private JButton helpButton;
+	/** Weitere benutzerdefinierte Schaltflächen ({@link #addFooterButton(String)}) */
 	private final List<JButton> userButtons=new ArrayList<JButton>();
 	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird eine "Hilfe"-Schaltfläche angezeigt und die <code>Run</code>-Methode dieses Objekts beim Klicken auf diese Schaltfläche aufgerufen */
 	private final Runnable helpCallback;
@@ -104,6 +106,9 @@ public class JWorkPanel extends JCloseablePanel {
 
 	}
 
+	/**
+	 * Reagiert auf F1- und Escape-Tastendrücke
+	 */
 	private final class SpecialKeyListener extends AbstractAction {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -149,14 +154,17 @@ public class JWorkPanel extends JCloseablePanel {
 		}
 	}
 
+	/** Name der "Start"-Schaltfläche */
 	private String workName=null;
+	/** Symbol, welches auf der "Start"-Schaltfläche angezeigt werden soll */
 	private Icon workIcon=null;
+	/** Name der "Abbrechen"-Schaltfläche */
 	private String cancelName=null;
 
 	/**
 	 * Fügt die Fußzeile mit den Schaltflächen zum Starten des Prozesses und zum Schließen des Panels ein.
 	 * @param workName	Name der "Start"-Schaltfläche
-	 * @param workIcon	Symbol, welches auf der "Start"-Schaltläche angezeigt werden soll
+	 * @param workIcon	Symbol, welches auf der "Start"-Schaltfläche angezeigt werden soll
 	 * @param cancelName	Name der "Abbrechen"-Schaltfläche
 	 */
 	protected final void addFooter(String workName, Icon workIcon, String cancelName) {
@@ -165,6 +173,9 @@ public class JWorkPanel extends JCloseablePanel {
 		this.cancelName=cancelName;
 	}
 
+	/**
+	 * Fügt den Fußbereich hinzu.
+	 */
 	private final void addCompleteFooter() {
 		/* add(buttonPanel=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.SOUTH); */
 		add(buttonPanel=new JToolBar(),BorderLayout.NORTH);
@@ -282,6 +293,15 @@ public class JWorkPanel extends JCloseablePanel {
 	 */
 	protected void userButtonClick(int index, JButton button) {}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen
+	 * @see JWorkPanel#workButton
+	 * @see JWorkPanel#cancelButton
+	 * @see JWorkPanel#closeButton
+	 * @see JWorkPanel#helpButton
+	 * @see JWorkPanel#userButtons
+	 *
+	 */
 	private final class WorkButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

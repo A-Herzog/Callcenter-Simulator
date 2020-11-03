@@ -48,11 +48,28 @@ import simulator.Statistics;
 public class DataFilterBase {
 	/** XML-Dokument, aus dem die Daten entnommen werden sollen */
 	private final Document xmlDoc;
+	/** Ergebnisse der Skript-Ausführung */
 	private StringBuilder results;
+	/** Anzahl der simulierten Tage */
 	private int simDays=1;
 
+	/**
+	 * Namen der registrierten Befehle
+	 * @see #registerCommand(DataFilterCommand)
+	 */
 	private final List<String> commandNames;
+
+	/**
+	 * Registrierte Befehle
+	 * @see #registerCommand(DataFilterCommand)
+	 */
 	private final List<DataFilterCommand> commandObjects;
+
+	/**
+	 * Darf der jeweilige Befehl {@link #commandObjects}
+	 * ohne Parameter aufgerufen werden?
+	 * @see #registerCommand(DataFilterCommand)
+	 */
 	private final List<Boolean> commandAllowEmptyParameters;
 
 	/**
@@ -116,6 +133,11 @@ public class DataFilterBase {
 		commandAllowEmptyParameters.add(commandRunner.allowEmptyParameters());
 	}
 
+	/**
+	 * Entfernt "//"-Kommentare aus einer Zeile
+	 * @param line	Zu bearbeitende Zeile
+	 * @return	Zeile ohne Kommentare
+	 */
 	private String removeComments(String line) {
 		if (line.indexOf("//")==-1) return line;
 		boolean inText=false;
@@ -130,6 +152,10 @@ public class DataFilterBase {
 		return line;
 	}
 
+	/**
+	 * Einträge für die Trenner benötigt werden
+	 * @see #simDaysCheck(List)
+	 */
 	private static String[] needsDiv={
 			Language.trPrimary("XML.Statistic.Clients")+","+Language.trPrimary("XML.Statistic.Clients.Count")+",*",
 			Language.trPrimary("XML.Statistic.Clients")+","+Language.trPrimary("XML.Statistic.Clients.WaitingTime.Clients")+",*",
@@ -168,6 +194,10 @@ public class DataFilterBase {
 			Language.trPrimary("XML.Statistic.Agents")+","+Language.trPrimary("XML.Statistic.Agents.ClientType")+","+Language.trPrimary("XML.Statistic.Agents.Summary.TechnicalFreeTimePerInterval")
 	};
 
+	/**
+	 * Einträge die nicht formatiert werden sollen.
+	 * @see #doNotFormatCheck(List)
+	 */
 	private static String[] doNotFormat={
 			Language.trPrimary("XML.Model.BaseElement")+","+Language.trPrimary("XML.Model.Name"),
 			Language.trPrimary("XML.Model.BaseElement")+","+Language.trPrimary("XML.Model.Version"),
@@ -178,6 +208,11 @@ public class DataFilterBase {
 			Language.trPrimary("XML.Statistic.Info.ServerOS")
 	};
 
+	/**
+	 * Prüft, ob für den Inhalt eines XML-Pfades Trenner benötigt werden.
+	 * @param path	XML-Pfad
+	 * @return	Trenner benötigt?
+	 */
 	private static boolean simDaysCheck(List<String> path) {
 		if (path==null || path.size()==0) return false;
 		for (int i=0;i<needsDiv.length;i++) {
@@ -190,6 +225,11 @@ public class DataFilterBase {
 		return false;
 	}
 
+	/**
+	 * Prüft, ob für den Inhalt eines XML-Pfades von der Formatierung ausgenommen werden soll.
+	 * @param path	XML-Pfad
+	 * @return	Keine Formatierung des Inhalts?
+	 */
 	private static boolean doNotFormatCheck(List<String> path) {
 		if (path==null || path.size()==0) return false;
 		for (int i=0;i<doNotFormat.length;i++) {
@@ -273,6 +313,17 @@ public class DataFilterBase {
 		return formatNumber(NumberTools.formatSystemNumber(value),null,simDays,systemNumbers,percent,time,distributionSeparator);
 	}
 
+	/**
+	 * Selektiert ein XML-Objekt
+	 * @param selectors	Zusammenstellung der Pfad-Komponenten
+	 * @param parent	Übergeordnetes XML-Element
+	 * @param parentTags	Namen der übergeordneten Elemente
+	 * @param systemNumbers	 Legt fest, ob Zahlen in System- oder lokaler Notation ausgegeben werden sollen.
+	 * @param percent	Als Prozentwert oder normale Fließkommazahl
+	 * @param time	Als Zeitangabe oder als Zahl
+	 * @param distributionSeparator	Trenner für die Einträge bei Verteilungen
+	 * @return	Gibt ein String-Array aus zwei Elementen zurück. Im ersten Eintrag wird ein Fehler und im zweiten ein Wert zurückgegeben. Genau einer der beiden Einträge ist immer <code>null</code>.
+	 */
 	private String[] findElement(Scanner selectors, Element parent, List<String> parentTags, boolean systemNumbers, boolean percent, boolean time, char distributionSeparator) {
 		/* Selektor dekodieren */
 		String sel=selectors.next();
@@ -393,6 +444,11 @@ public class DataFilterBase {
 		results.append(output);
 	}
 
+	/**
+	 * Führt einen Befehl aus
+	 * @param command	Auszuführender Befehl
+	 * @return	Ergebnis
+	 */
 	private String processCommand(String command) {
 		int index=-1;
 		String parameters="";
@@ -445,7 +501,7 @@ public class DataFilterBase {
 	 * Liefert nach der Ausführungen von <code>run</code> Informationen zurück.
 	 * Wenn <code>run</code> erfolgreich war, liefert diese Funktion die Rückgabewerte
 	 * des Skriptes, sonst eine Fehlermeldung.
-	 * @return	Ergebnisse der Sctipt-Ausführung
+	 * @return	Ergebnisse der Skript-Ausführung
 	 * @see #run(String, boolean)
 	 */
 	public final String getResults() {

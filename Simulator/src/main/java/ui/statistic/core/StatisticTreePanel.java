@@ -84,17 +84,32 @@ public class StatisticTreePanel extends JPanel {
 	/** Callback zum Laden von Statistikdaten */
 	private final Runnable loadStatistics;
 
+	/** Wurzel des Statistikdaten-Baumes */
 	private StatisticNode statisticData;
+	/** Statistik-Objekt, welches alle Daten für den Schnellfilter enthält (kann <code>null</code> sein, dann wird keine xslt-Transform-Option angeboten) */
 	private Statistics statistic;
+	/** Gibt an, für wie viele Ansichten Report-Nodes usw. erzeugt werden sollen */
 	private int numberOfViewers;
 
+	/**
+	 * Ausgeblendete Einträge
+	 * @see #getHiddenIDs()
+	 * @see #setHiddenIDs(String[])
+	 * @see #setHiddenIDsFromSetupString(String)
+	 */
 	private final Set<String> hiddenIDs=new LinkedHashSet <String>();
 
-	private final JButton filter, report;
+	/** Schaltfläche zum Filtern der Baumstruktur */
+	private final JButton filter;
+	/** Schaltfläche zum Anzeigen des Reportgenerators */
+	private final JButton report;
 
+	/** Baumstruktur */
 	private final StatisticTree tree;
+	/** Beumeintrag für die Report-Erstellung */
 	private DefaultMutableTreeNode reportNode;
 
+	/** Anzuzeigender Eintrag, wenn kein Bauminhalt vorhanden ist */
 	private final DefaultMutableTreeNode noDataSelected=new DefaultMutableTreeNode("("+Language.tr("Statistic.NoDataSelected")+")");
 
 	/**
@@ -175,6 +190,11 @@ public class StatisticTreePanel extends JPanel {
 		tree.setDataFileName(commandLineDataFileName);
 	}
 
+	/**
+	 * Aktualisiert die Datenansicht
+	 * @param node	Gewählter Statistikknoten
+	 * @param treeNode	Zugehöriger Baumknoten
+	 */
 	private void updateDataPanel(StatisticNode node, DefaultMutableTreeNode treeNode) {
 		if (node==null || node.viewer.length==0) {
 			report.setVisible(reportNode!=null);
@@ -325,7 +345,17 @@ public class StatisticTreePanel extends JPanel {
 		return hiddenIDs.toArray(new String[0]);
 	}
 
+	/**
+	 * Läuft gerade eine Verarbeitung der Einstellungen?
+	 * @see #setHiddenIDs(String[])
+	 */
 	private boolean settingHiddenIDs=false;
+
+	/**
+	 * Wurde gerade eine entsprechende Verarbeitung abgeschlossen?
+	 * @see #setHiddenIDs(String[])
+	 * @see #setStatisticData(StatisticNode, Statistics, int)
+	 */
 	private boolean settingHiddenIDsDone=false;
 
 	/**
@@ -366,6 +396,11 @@ public class StatisticTreePanel extends JPanel {
 		try {setStatisticData(statisticData,statistic,numberOfViewers);} finally {settingHiddenIDs=false;}
 	}
 
+	/**
+	 * Fügt einen Eintrag zu der Baumstruktur hinzu.
+	 * @param sNode	Statistikknoten
+	 * @param tNode	Zugehöriger Baumknoten
+	 */
 	private final void addToTree(StatisticNode sNode, DefaultMutableTreeNode tNode) {
 		for (int i=0;i<sNode.getChildCount();i++) {
 			StatisticNode sChild=sNode.getChild(i);
@@ -376,6 +411,9 @@ public class StatisticTreePanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Zeigt den Dialog zur Filterung der Baumstruktur an.
+	 */
 	private final void showFilterDialog() {
 		if (statisticData==null) return;
 
@@ -422,7 +460,7 @@ public class StatisticTreePanel extends JPanel {
 	/**
 	 * Ruft den PDF-Report-Generator auf und speichert den Report in der angegebenen Form in der angegebenen Datei.
 	 * @param outputFile	Dateiname, in der der PDF-Report gespeichert werden soll.
-	 * @param exportAllItems	Exportiert entweder alle Einträge (<code>true</code>) oder nur die im Viewer selektrierten (<code>false</code>).
+	 * @param exportAllItems	Exportiert entweder alle Einträge (<code>true</code>) oder nur die im Viewer selektierten (<code>false</code>).
 	 * @return	Gibt an, ob der Report erfolgreich erstellt werden konnte.
 	 */
 	public boolean runReportGeneratorPDF(File outputFile, boolean exportAllItems) {
@@ -434,6 +472,15 @@ public class StatisticTreePanel extends JPanel {
 		return reportViewer.save(this,outputFile,StatisticViewerReport.FileFormat.FORMAT_PDF,exportAllItems);
 	}
 
+	/**
+	 * Listet die Viewer auf einer Ebene auf
+	 * @param parentName	Name des übergeordneten Eintrags
+	 * @param parent	Baumeintrag des übergeordneten Eintrags
+	 * @param viewers	Zu ergänzende Liste der Viewer auf der aktuellen Ebene
+	 * @param types	Zu ergänzende Liste der Typen der Viewer auf der aktuellen Ebene
+	 * @param names	Zu ergänzende Liste der Namen der Viewer auf der aktuellen Ebene
+	 * @see #getReportList(File)
+	 */
 	private void getViewersAndNames(String parentName, DefaultMutableTreeNode parent, List<StatisticViewer> viewers, List<String> types, List<String> names) {
 		if (parent==null) return;
 		int count=parent.getChildCount();
@@ -524,6 +571,11 @@ public class StatisticTreePanel extends JPanel {
 	 */
 	protected void setReportSelectSettings(String settings) {}
 
+	/**
+	 * Reagiert auf Klick auf die Schaltflächen in der Symbolleiste
+	 * @see StatisticTreePanel#report
+	 * @see StatisticTreePanel#filter
+	 */
 	private final class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

@@ -31,6 +31,11 @@ import ui.simplesimulation.SimpleSimulation;
  * @see SimpleSimulation
  */
 public class CallcenterModelSimple {
+	/**
+	 * Konstruktor der Klasse<br>
+	 * Diese Klasse kann nicht instanziert werden,
+	 * sie stellt lediglich statische Hilfsroutinen zur Verfügung.
+	 */
 	private CallcenterModelSimple() {}
 
 	/**

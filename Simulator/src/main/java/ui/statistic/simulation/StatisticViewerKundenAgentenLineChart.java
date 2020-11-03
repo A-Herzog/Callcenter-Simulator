@@ -249,8 +249,10 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		}
 	}
 
-	private void firstKundenChartRequest()
-	{
+	/**
+	 * Generiert ein Kundendaten-Diagramm.
+	 */
+	private void firstKundenChartRequest() {
 		KundenDaten kunden;
 		String type;
 
@@ -457,7 +459,12 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		initTooltips();
 	}
 
-	private DataDistributionImpl agentenProInterval(int nr) {
+	/**
+	 * Liefert die Verteilung der aktiven Agenten pro Intervall.
+	 * @param nr	Nummer des Callcenters oder -1 für den globalen Wert über alle Callcenter
+	 * @return	Verteilung der aktiven Agenten pro Intervall
+	 */
+	private DataDistributionImpl agentenProInterval(final int nr) {
 		DataDistributionImpl dist=new DataDistributionImpl(48,48);
 
 		/* Liste über alle Callcenter ? */
@@ -491,6 +498,9 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		return dist;
 	}
 
+	/**
+	 * Generiert ein Agentendaten-Diagramm.
+	 */
 	private void firstAgentenChartRequest() {
 		AgentenDaten agenten;
 		String type;
@@ -549,6 +559,9 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 		}
 	}
 
+	/**
+	 * Generiert ein Warteschlangenlängen-Diagramm.
+	 */
 	private void firstQueueChartRequest() {
 		switch (dataType) {
 		case DATA_TYPE_QUEUE:

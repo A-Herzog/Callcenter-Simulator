@@ -29,13 +29,20 @@ import simulator.Statistics;
  * @version 1.0
  */
 public class MultiComplexCallcenterSimulator implements CallcenterSimulatorInterface {
-	/** Array der Simulatorojekte, die in diesem Objekt zusammengefasst werden sollen. */
+	/**
+	 * Array der Simulatorobjekte, die in diesem Objekt zusammengefasst werden sollen.
+	 */
 	private final CallcenterSimulatorInterface[] simulators;
+
+	/**
+	 * Statistikergebnisse
+	 * @see #collectStatistic()
+	 */
 	private Statistics statistics=null;
 
 	/**
-	 * Konstruktur der Klasse <code>MultiComplexCallcenterSimulator</code>
-	 * @param simulators	Array der Simulatorojekte, die in diesem Objekt zusammengefasst werden sollen.
+	 * Konstruktor der Klasse <code>MultiComplexCallcenterSimulator</code>
+	 * @param simulators	Array der Simulatorobjekte, die in diesem Objekt zusammengefasst werden sollen.
 	 */
 	public MultiComplexCallcenterSimulator(CallcenterSimulatorInterface[] simulators) {
 		this.simulators=simulators;

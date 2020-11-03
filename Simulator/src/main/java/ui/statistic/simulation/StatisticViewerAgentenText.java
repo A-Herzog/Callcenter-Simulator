@@ -70,15 +70,15 @@ public class StatisticViewerAgentenText extends StatisticViewerText {
 	@Override
 	protected void buildText() {
 		addHeading(1,Language.tr("SimStatistic.AgentsWorkLoad"));
-		buildAgentData(statistic.agentenGlobal,statistic.simulationData.runRepeatCount,false);
+		buildAgentData(statistic.agentenGlobal,statistic.simulationData.runRepeatCount);
 		switch (sortType) {
 		case SORT_BY_CALLCENTER:
 			if (statistic.agentenProCallcenter.length>1) for (int i=0;i<statistic.agentenProCallcenter.length;i++)
-				buildAgentData(statistic.agentenProCallcenter[i],statistic.simulationData.runRepeatCount,false);
+				buildAgentData(statistic.agentenProCallcenter[i],statistic.simulationData.runRepeatCount);
 			break;
 		case SORT_BY_SKILL_LEVEL:
 			if (statistic.agentenProSkilllevel.length>1) for (int i=0;i<statistic.agentenProSkilllevel.length;i++)
-				buildAgentData(statistic.agentenProSkilllevel[i],statistic.simulationData.runRepeatCount,true);
+				buildAgentData(statistic.agentenProSkilllevel[i],statistic.simulationData.runRepeatCount);
 			break;
 		}
 
@@ -89,7 +89,12 @@ public class StatisticViewerAgentenText extends StatisticViewerText {
 		 */
 	}
 
-	private void buildAgentData(AgentenDaten agenten, long days, boolean isSkillLevel) {
+	/**
+	 * Erstellt den Text für eine Agentengruppe.
+	 * @param agenten	Agentengruppe
+	 * @param days	Anzahl an simulierten Tagen
+	 */
+	private void buildAgentData(AgentenDaten agenten, long days) {
 		if (agenten.name.isEmpty() && agenten.type.isEmpty()) addHeading(2,Language.tr("SimStatistic.AllActiveAgents")); else {
 			if (agenten.name.isEmpty())	addHeading(2,agenten.type); else addHeading(2,agenten.name);
 		}

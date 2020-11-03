@@ -178,6 +178,11 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 		setData(getTableData(),getColNames());
 	}
 
+	/**
+	 * Liefert Spaltennamen aus {@link #getColNames()} aber ohne die Simulationstage-Spalte
+	 * @param extraCaption	Zusätzlicher Vorspann für die Spaltennamen
+	 * @return	Spaltennamen
+	 */
 	private	List<String> getColParts(String extraCaption) {
 		List<String> cols=new ArrayList<String>(Arrays.asList(getColNames()));
 		cols.remove(0);
@@ -185,6 +190,10 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 		return cols;
 	}
 
+	/**
+	 * Liefert die Namen für die Spaltenüberschriften.
+	 * @return	Namen für die Spaltenüberschriften
+	 */
 	private String[] getColNames() {
 		int dataCols=0;
 
@@ -365,7 +374,13 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 		return cols;
 	}
 
-	private double average(final double[] data, Statistics statistic) {
+	/**
+	 * Berechnet den mit den Anrufern pro Intervall gewichteten Mittelwert über eine Datenreihe
+	 * @param data	Datenreihe
+	 * @param statistic	Statistikobjekt dem die Informationen zu den Anzahlen an Anrufern pro Intervall entnommen werden sollen
+	 * @return	Gewichteter Mittelwert der Datenreihe
+	 */
+	private double average(final double[] data, final Statistics statistic) {
 		double count=0, sum=0;
 		final double[] weights=statistic.kundenGlobal.anrufeProIntervall.densityData;
 		for (int i=0;i<48;i++) {
@@ -375,12 +390,17 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 		return (count>0)?(sum/count):0;
 	}
 
-	private void addKundenLines(Table table, int nr) {
-		String[] row1=new String[results.data.size()];
-		String[] row2=new String[results.data.size()];
-		String[] row3=new String[results.data.size()];
-		String[] row4=new String[results.data.size()];
-		String[] row5=new String[results.data.size()];
+	/**
+	 * Gibt die Daten zu einem Kundentyp aus.
+	 * @param table	Ausgabetabelle
+	 * @param nr	Nummer des Kundentyps oder -1 für globale Daten über alle
+	 */
+	private void addKundenLines(final Table table, final int nr) {
+		final String[] row1=new String[results.data.size()];
+		final String[] row2=new String[results.data.size()];
+		final String[] row3=new String[results.data.size()];
+		final String[] row4=new String[results.data.size()];
+		final String[] row5=new String[results.data.size()];
 
 		StatisticViewerErlangCTools erlangC1, erlangC2;
 		double erlang1, erlang2, simValue;
@@ -480,7 +500,13 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 		if (dataType==Mode.DATA_TYPE_ERLANGC_SUCCESS || dataType==Mode.DATA_TYPE_ERLANGC_WAITING_TIME || dataType==Mode.DATA_TYPE_ERLANGC_SERVICE_LEVEL) table.addLine(row5);
 	}
 
-	private void addAgentenLines(Table table, int nr, boolean proCallcenter) {
+	/**
+	 * Gibt die Daten zu einer Agentengruppe aus.
+	 * @param table	Ausgabetabelle
+	 * @param nr	Nummer der Agentengruppe in der pro Callcenter oder pro Skill-Lvel Liste
+	 * @param proCallcenter	Ausgabe pro Callcenter (<code>true</code>) oder pro Skill-Level (<code>false</code>)
+	 */
+	private void addAgentenLines(final Table table, final int nr, final boolean proCallcenter) {
 		String[] row1=new String[results.data.size()];
 		String[] row2=new String[results.data.size()];
 		String[] row3=new String[results.data.size()];
@@ -535,7 +561,11 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 		}
 	}
 
-	private void addLines(Table table) {
+	/**
+	 * Fügt die Datenreihen zu der Ausgabetabelle hinzu.
+	 * @param table	Ausgabetabelle
+	 */
+	private void addLines(final Table table) {
 		switch (dataType) {
 		case DATA_TYPE_CALLERS:
 		case DATA_TYPE_SUCCESS:
@@ -577,6 +607,10 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 		}
 	}
 
+	/**
+	 * Erstellt und liefert die Tabelle mit den auszugebenden Daten.
+	 * @return	Tabelle mit den auszugebenden Daten
+	 */
 	private Table getTableData() {
 		Table table=new Table();
 

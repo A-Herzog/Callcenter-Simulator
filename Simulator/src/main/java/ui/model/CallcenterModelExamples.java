@@ -32,6 +32,11 @@ import mathtools.distribution.OnePointDistributionImpl;
  * @version 1.0
  */
 public class CallcenterModelExamples {
+	/**
+	 * Konstruktor der Klasse<br>
+	 * Diese Klasse kann nicht instanziert werden,
+	 * sie stellt lediglich statische Hilfsroutinen zur Verfügung.
+	 */
 	private CallcenterModelExamples() {}
 
 	/**
@@ -53,7 +58,7 @@ public class CallcenterModelExamples {
 		return model;
 	}
 
-	private static final CallcenterModel getExampleErlang(String name, String description, DataDistributionImpl callerDist, DataDistributionImpl agentDist) {
+	private static final CallcenterModel getExampleErlang(final String name, final String description, final DataDistributionImpl callerDist, final DataDistributionImpl agentDist) {
 		CallcenterModel model=new CallcenterModel();
 		model.name=name;
 		model.description=description;
@@ -122,7 +127,7 @@ public class CallcenterModelExamples {
 		return model;
 	}
 
-	private static final CallcenterModel getExampleErlang(String name, int callerCount, int agentCount) {
+	private static final CallcenterModel getExampleErlang(final String name, final int callerCount, final int agentCount) {
 		String description=String.format(Language.tr("Example.Exlang.Description"),NumberTools.formatLong(callerCount*48),NumberTools.formatNumber(((double)callerCount)/30),""+agentCount);
 
 		double[] callerArray=new double[48];

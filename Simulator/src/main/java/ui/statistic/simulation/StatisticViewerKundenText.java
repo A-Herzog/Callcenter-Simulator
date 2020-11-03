@@ -128,7 +128,13 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 		 */
 	}
 
-	private void buildClientData(KundenDaten kunden, int days, int serviceLevel) {
+	/**
+	 * Gibt die Daten zu einem Kundentyp aus.
+	 * @param kunden	Kundentyp
+	 * @param days	Anzahl an simulierten Tagen
+	 * @param serviceLevel	Service-Level-Sekundenwert
+	 */
+	private void buildClientData(final KundenDaten kunden, final int days, final int serviceLevel) {
 		if (kunden.name.isEmpty()) addHeading(2,Language.tr("SimStatistic.AllClients")); else addHeading(2,kunden.name);
 
 		long l;
@@ -241,20 +247,37 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 	@Override
 	public Icon ownSettingsIcon() {return (dataType==Mode.DATA_TYPE_COUNT || dataType==Mode.DATA_TYPE_WAITINGTIME)?Images.STATISTICS_FILTER.getIcon():null;}
 
+	/** Filter-ID für Sichtbarkeit von Erstanrufern */
 	private final static int FILTER_COUNT_FRESHCALLS=0;
+	/** Filter-ID für Sichtbarkeit von Wiederanrufern */
 	private final static int FILTER_COUNT_RECALLINGCLIENTS=1;
+	/** Filter-ID für Sichtbarkeit von Anrufern */
 	private final static int FILTER_COUNT_CALLS=2;
+	/** Filter-ID für Sichtbarkeit von blockierten Anrufen */
 	private final static int FILTER_COUNT_CALLSBLOCKED=3;
+	/** Filter-ID für Sichtbarkeit von beim Warten abgebrochenen Anrufen */
 	private final static int FILTER_COUNT_CALLSWAITINGCANCELED=4;
+	/** Filter-ID für Sichtbarkeit von übertragenen Anrufen */
 	private final static int FILTER_COUNT_CALLSCARRIEDOVER=5;
+	/** Filter-ID für Sichtbarkeit von abgebrochenen Kunden */
 	private final static int FILTER_COUNT_CLIENTSCANCELED=6;
+	/** Filter-ID für Sichtbarkeit von weitergeleiteten Anrufen */
 	private final static int FILTER_COUNT_FORWARDED_CALLS=7;
+	/** Filter-ID für Sichtbarkeit von weitergeleiteten Kunden */
 	private final static int FILTER_COUNT_FORWARDED_CLIENTS=8;
+	/** Filter-ID für Sichtbarkeit von wiederholten Anrufen */
 	private final static int FILTER_COUNT_RETRY_CALL=9;
+	/** Filter-ID für Sichtbarkeit von wiederholten Kunden */
 	private final static int FILTER_COUNT_RETRY_CLIENT=10;
+	/** Filter-ID für Sichtbarkeit von erfolgreichen Anrufen */
 	private final static int FILTER_COUNT_SUCCESSFUL_CALL=11;
+	/** Filter-ID für Sichtbarkeit von erfolgreichen Kunden */
 	private final static int FILTER_COUNT_SUCCESSFUL_CLIENT=12;
 
+	/**
+	 * Liefert die Bezeichner für die Filter-IDs zu den Zählwerten.
+	 * @return	Bezeichner für die Filter-IDs zu den Zählwerten
+	 */
 	private String[] getCountIDs() {
 		String[] ids=new String[]{
 				Language.tr("SimStatistic.FreshCalls"),
@@ -274,13 +297,23 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 		return ids;
 	}
 
+	/** Filter-ID für Sichtbarkeit von Wartezeiten der Anrufe */
 	private final static int FILTER_WAITINGTIME_WAITING_CALL=0;
+	/** Filter-ID für Sichtbarkeit von Verweilzeiten der Anrufe */
 	private final static int FILTER_WAITINGTIME_RESIDENCE_CALL=1;
+	/** Filter-ID für Sichtbarkeit von Abbruchzeiten der Anrufe */
 	private final static int FILTER_WAITINGTIME_CANCEL_CALL=2;
+	/** Filter-ID für Sichtbarkeit von Wartezeiten der Kunden */
 	private final static int FILTER_WAITINGTIME_WAITING_CLIENT=3;
+	/** Filter-ID für Sichtbarkeit von Verweilzeiten der Kunden */
 	private final static int FILTER_WAITINGTIME_RESIDENCE_CLIENT=4;
+	/** Filter-ID für Sichtbarkeit von Abbruchzeiten der Kunden */
 	private final static int FILTER_WAITINGTIME_CANCEL_CLIENT=5;
 
+	/**
+	 * Liefert die Bezeichner für die Filter-IDs zu den Wartezeiten.
+	 * @return	Bezeichner für die Filter-IDs zu den Wartezeiten
+	 */
 	private String[] getWaitingTimeIDs() {
 		String[] ids=new String[]{
 				Language.tr("SimStatistic.WaitingTimes")+" ("+Language.tr("SimStatistic.OnCallBasis")+")",
@@ -328,12 +361,24 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 		}
 	}
 
+	/**
+	 * Prüft, ob ein bestimmter Absatz sichtbar sein soll
+	 * @param setup	Einstellungen zu sichtbaren/ausgeblendeten Absätzen
+	 * @param id	ID des zu prüfenden Absatzes
+	 * @return	Liefert <code>true</code>, wenn der Absatz sichtbar sein soll
+	 */
 	private boolean isIDVisible(String setup, int id) {
 		while (setup.length()<id+1) setup+="X";
 		boolean b=setup.charAt(id)!='-';
 		return b;
 	}
 
+	/**
+	 * Liefert eine Aufstellung der momentan ausgeblendeten Absatz-IDs.
+	 * @param ids	Gesamtliste der Absatz-IDs.
+	 * @param setup	Einstellungen zu sichtbaren/ausgeblendeten Absätzen
+	 * @return	Aufstellung der momentan ausgeblendeten Absatz-IDs
+	 */
 	private String[] getHiddenIDs(String[] ids, String setup) {
 		if (setup==null) setup="";
 		while (setup.length()<ids.length) setup+="X";
@@ -343,6 +388,12 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 		return hiddenIDs.toArray(new String[0]);
 	}
 
+	/**
+	 * Liefert die Einstellungen zu sichtbaren/ausgeblendeten Absätzen
+	 * @param ids	Gesamtliste der Absatz-IDs.
+	 * @param hidden	Aufstellung der momentan ausgeblendeten Absatz-IDs
+	 * @return	Einstellungen zu sichtbaren/ausgeblendeten Absätzen
+	 */
 	private String setHiddenIDs(String[] ids, String[] hidden) {
 		final List<String> hiddenIDs=Arrays.asList(hidden);
 		StringBuilder setupString=new StringBuilder();

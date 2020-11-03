@@ -161,6 +161,12 @@ public class StatisticViewerOptimizerLineChart extends StatisticViewerLineChart 
 		this.dataNr=dataNr;
 	}
 
+	/**
+	 * Konfiguriert die Diagrammanzeige
+	 * @param title	Diagrammtitel
+	 * @param yLabel	y-Achsen-Beschriftung
+	 * @param percent	Soll die y-Achse Zahlenwerte (<code>false</code>) oder Prozentwerte (<code>true</code>) anzeigen?
+	 */
 	private void initOptimizeChart(String title, String yLabel, boolean percent) {
 		initLineChart(title);
 
@@ -185,7 +191,13 @@ public class StatisticViewerOptimizerLineChart extends StatisticViewerLineChart 
 		plot.setDomainAxis(axis);
 	}
 
-	private void addOptimizeSeries(String title, Paint paint, List<Double> dist) {
+	/**
+	 * Fügt eine Datenreihe zu dem Diagramm hinzu.
+	 * @param title	Titel der Datenreihe
+	 * @param paint	Darstellung der Datenreihe
+	 * @param dist	Anzuzeigende Datenreihe
+	 */
+	private void addOptimizeSeries(final String title, final Paint paint, final List<Double> dist) {
 		if (dist.size()>1) {
 			XYSeries series=new XYSeries(title);
 			for (int i=0;i<dist.size();i++) series.add(i+1,dist.get(i));
@@ -194,6 +206,12 @@ public class StatisticViewerOptimizerLineChart extends StatisticViewerLineChart 
 		}
 	}
 
+	/**
+	 * Berechnet den mit den Anrufern pro Intervall gewichteten Mittelwert über eine Datenreihe
+	 * @param data	Datenreihe
+	 * @param statistic	Statistikobjekt dem die Informationen zu den Anzahlen an Anrufern pro Intervall entnommen werden sollen
+	 * @return	Gewichteter Mittelwert der Datenreihe
+	 */
 	private double average(final double[] data, Statistics statistic) {
 		double count=0, sum=0;
 		final double[] weights=statistic.kundenGlobal.anrufeProIntervall.densityData;

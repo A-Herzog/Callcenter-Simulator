@@ -124,7 +124,6 @@ public class StatisticViewerKundenTable extends StatisticViewerTable {
 		DATA_TYPE_CLIENT_CANCELTIME_DIST_LONG
 	}
 
-
 	/**
 	 * Konstruktor der Klasse <code>StatisticViewerKundenTable</code>
 	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen
@@ -141,18 +140,32 @@ public class StatisticViewerKundenTable extends StatisticViewerTable {
 		buildClientTable(statistic,getRowNames());
 	}
 
+	/**
+	 * Liefert Sekundenwerte als Zeilennamen.
+	 * @return	Sekundenwerte als Zeilennamen
+	 * @see #getRowNames()
+	 */
 	private String[] getTimeArray() {
 		String[] row=new String[KundenDaten.DistMax];
 		for (int i=0;i<KundenDaten.DistMax;i++) row[i]=i+" "+Language.tr("Statistic.Seconds");
 		return row;
 	}
 
+	/**
+	 * Liefert Halbstundenwerte als Zeilennamen.
+	 * @return	Halbstundenwerte als Zeilennamen
+	 * @see #getRowNames()
+	 */
 	private String[] getLongTimeArray() {
 		String[] row=new String[KundenDaten.DistMax];
 		for (int i=0;i<KundenDaten.DistMax;i++) row[i]=TimeTools.formatTime(i*1800)+"-"+TimeTools.formatTime((i+1)*1800-1);
 		return row;
 	}
 
+	/**
+	 * Liefert die Zeilennamen.
+	 * @return	Zeilennamen
+	 */
 	private String[] getRowNames() {
 		switch (dataType) {
 		case DATA_TYPE_COUNT:
@@ -395,7 +408,13 @@ public class StatisticViewerKundenTable extends StatisticViewerTable {
 		return line;
 	}
 
-	private Table getTableData(Statistics statistic,String[] rowNames) {
+	/**
+	 * Liefert die Datentabelle.
+	 * @param statistic		Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen
+	 * @param rowNames	Überschriftenzeile
+	 * @return	Datentabelle
+	 */
+	private Table getTableData(final Statistics statistic, final String[] rowNames) {
 		Table table=new Table();
 
 		table.addLine(rowNames);
@@ -405,7 +424,12 @@ public class StatisticViewerKundenTable extends StatisticViewerTable {
 		return table.transpose();
 	}
 
-	private String[] getTableHeading(Statistics statistic) {
+	/**
+	 * Liefert die Überschriftenzeile.
+	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Kundendaten entnommen werden sollen
+	 * @return	Überschriftenzeile
+	 */
+	private String[] getTableHeading(final Statistics statistic) {
 		String[] head=new String[statistic.kundenProTyp.length+2];
 		head[0]="";
 		for (int i=0;i<statistic.kundenProTyp.length;i++) head[i+1]=statistic.kundenProTyp[i].name;

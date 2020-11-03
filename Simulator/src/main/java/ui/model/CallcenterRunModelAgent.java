@@ -31,6 +31,7 @@ import language.Language;
  * @see CallcenterModelAgent
  */
 public final class CallcenterRunModelAgent {
+	/** Editor-Modell-Agentengruppe */
 	private final CallcenterModelAgent editAgent;
 
 	/** Beginn der Arbeitszeit */
@@ -60,7 +61,7 @@ public final class CallcenterRunModelAgent {
 	 * @param editModel	Editor-Modell-Agentengruppe
 	 * @param groupNr Nummer der Agentengruppe
 	 */
-	public CallcenterRunModelAgent(CallcenterModelAgent editModel, int groupNr) {
+	public CallcenterRunModelAgent(final CallcenterModelAgent editModel, final int groupNr) {
 		editAgent=editModel;
 		workingTimeStart=editModel.workingTimeStart;
 		workingTimeEnd=editModel.workingTimeEnd;

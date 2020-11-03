@@ -88,10 +88,24 @@ public class StatisticViewerAgentsDiagram extends StatisticViewerLineChart {
 		initTooltips();
 	}
 
+	/**
+	 * Liefert den Namen der Agentengruppe
+	 * @param viewValue	Name der Agentengruppe oder leer bzw. <code>null</code>, wenn es um alle Agenten geht
+	 * @return	Name der Agentengruppe
+	 */
 	private static String getAgentenName(String viewValue) {
 		if (viewValue==null || viewValue.isEmpty()) return Language.tr("SimStatistic.AllAgents"); else return viewValue;
 	}
 
+	/**
+	 * Generiert die Verteilung für die Diagrammdarstellung
+	 * @param model	Callcenter-Modell, aus dem die Daten gewonnen werden sollen
+	 * @param callcenter	Callcenter, in der die jeweilige Agentengruppe arbeitet
+	 * @param agents	Liste der Agentengruppen
+	 * @param viewType	Bestimmt, wie die Agenten-Arbeitszeiten sortiert bzw. zusammengefasst werden sollen
+	 * @param viewValue	Angabe des Skills bzw. des Kundentyps (siehe <code>viewType</code>)
+	 * @return	Verteilung für die Diagrammdarstellung
+	 */
 	private static DataDistributionImpl buildDistribution(CallcenterModel model, List<CallcenterModelCallcenter> callcenter, List<CallcenterModelAgent> agents, Mode viewType, String viewValue) {
 		/* Relevante Agenten bestimmen und ggf. Schichtplan erstellen */
 		List<CallcenterModelAgent> translatedAgents=new ArrayList<CallcenterModelAgent>();

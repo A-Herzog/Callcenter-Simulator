@@ -40,7 +40,7 @@ public final class CallcenterRunModelSkillLevel {
 
 	/**
 	 * Liefert den Index in den folgenden Arrays für Kunden des jeweils durch den
-	 * Index in diesem Array spzifizierten Typs. Werte -1 bedeuten, dass in diesem
+	 * Index in diesem Array spezifizierten Typs. Werte -1 bedeuten, dass in diesem
 	 * Skill-Level keine Daten für den jeweiligen Kundentyp hinterlegt sind.
 	 */
 	public short[] callerTypeByIndex;

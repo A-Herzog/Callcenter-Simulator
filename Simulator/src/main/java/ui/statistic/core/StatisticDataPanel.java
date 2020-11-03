@@ -61,25 +61,58 @@ public class StatisticDataPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -5311723790827549382L;
 
+	/** Optionales Callback, welches aufgerufen wird, wenn alle Viewer aktualisiert werden sollen (dies passiert nach dem Schließen von {@link StatisticViewer#ownSettings(JPanel)}) */
 	private final Runnable updateAllViewerCallback;
 
+	/** Feld zur Anzeige des Titels */
 	private final JLabel titleLabel;
-	private final JLabel infoIcon, infoLabel;
-	private final JButton zoom, copy, print, save, settings, selectAll, selectNone, saveTables, last;
+	/** Feld zur Anzeige des Info-Icons */
+	private final JLabel infoIcon;
+	/** Feld zur Anzeige des Info-Textes */
+	private final JLabel infoLabel;
+	/** Schaltfläche Zoomfaktor zurücksetzen */
+	private final JButton zoom;
+	/** Schaltfläche Kopieren */
+	private final JButton copy;
+	/** Schaltfläche Drucken */
+	private final JButton print;
+	/** Schaltfläche Speichern */
+	private final JButton save;
+	/** Schaltfläche Einstellungen */
+	private final JButton  settings;
+	/** Schaltfläche "Alle auswählen" */
+	private final JButton selectAll;
+	/** Schaltfläche "Alle abwählen" */
+	private final JButton selectNone;
+	/** Schaltfläche "Tabellen speichern" */
+	private final JButton saveTables;
+	/** Schaltfläche "Vergleich mit Ergebnissen aus vorheriger Simulation */
+	private final JButton last;
+	/** Anzeigebereich für die Statistikausgabe */
 	private final JPanel dataPanel;
 
+	/** Popupmenü zur Konfiguration ({@link #settings}) */
 	private final JPopupMenu settingsPopup;
+	/** Menüpunkt für benutzerdefinierte Einstellungen im {@link #settingsPopup}-Menü */
 	private final JMenuItem settingsCustomSettings;
 
+	/** Symbolleiste */
 	private JToolBar buttonPanel;
+	/** Infopanel über den Viewern */
 	private JPanel mainInfoPanel;
+	/** Titel auf dem Infopanel */
 	private JPanel titlePanel;
+	/** Informationstext auf dem Infopanel */
 	private JPanel infoPanel;
 
+	/** Optionale zusätzliche benutzerdefinierte Schaltflächen in der Symbolleiste */
 	private final List<JButton> userToolbarButtons;
 
+	/** Aktueller Viewer */
 	private StatisticViewer viewer=null;
+	/** Viewer von vorheriger Simulation */
 	private StatisticViewer lastViewer=null;
+	/** Container der die eigentlich Inhalte des Viewers enthält */
 	private Container viewerContainer=null;
 
 	/**
@@ -267,6 +300,10 @@ public class StatisticDataPanel extends JPanel {
 		return viewerContainer;
 	}
 
+	/**
+	 * Aktualisiert die Ausgabe
+	 * @param needReInit	Muss der Viewer in Bezug auf die Daten zwingend neu initialisiert werden?
+	 */
 	private void updateViewerContainer(boolean needReInit) {
 		if (viewerContainer!=null) dataPanel.remove(viewerContainer);
 
@@ -297,6 +334,9 @@ public class StatisticDataPanel extends JPanel {
 		viewerContainer.setVisible(true);
 	}
 
+	/**
+	 * Stellt den Standard-Zoomfaktor wieder her.
+	 */
 	private final void unZoom() {
 		if (viewer==null) return;
 		viewer.unZoom();
@@ -310,37 +350,57 @@ public class StatisticDataPanel extends JPanel {
 		viewer.copyToClipboard(getToolkit().getSystemClipboard());
 	}
 
+	/**
+	 * Druckt die Daten in dem aktuellen Viewer.
+	 */
 	private final void printData() {
 		if (viewer==null) return;
 		viewer.print();
 	}
 
+	/**
+	 * Speichert die Daten in dem aktuellen Viewer.
+	 */
 	private final void saveData() {
 		if (viewer==null) return;
 		Container c=getParent(); while ((c!=null) && (!(c instanceof Frame))) c=c.getParent();
 		viewer.save(c);
 	}
 
+	/**
+	 * Speichert, wenn es sich um den Report-Viewer handelt, die Tabellendaten in einer Tabellen-Arbeitsmappe.
+	 */
 	private final void saveTables() {
 		if (viewer==null) return;
 		if (!(viewer instanceof StatisticViewerReport)) return;
 		((StatisticViewerReport)viewer).saveTablesToWorkbook(this);
 	}
 
+	/**
+	 * Selektiert, wenn es sich um den Report-Viewer handelt, alle Einträge.
+	 */
 	private final void reportSelectAll() {
 		if (viewer==null) return;
 		if (!(viewer instanceof StatisticViewerReport)) return;
 		((StatisticViewerReport)viewer).selectAll();
 	}
 
+	/**
+	 * Wählt, wenn es sich um den Report-Viewer handelt, alle Einträge ab.
+	 */
 	private final void reportSelectNone() {
 		if (viewer==null) return;
 		if (!(viewer instanceof StatisticViewerReport)) return;
 		((StatisticViewerReport)viewer).selectNone();
 	}
 
+	/**
+	 * Zeigt den Dialog mit zusätzlichen Einstellungen zu dem Viewer an.
+	 * @return	Liefert <code>true</code>, wenn der Dialog per "Ok" geschlossen wurde.
+	 * @see StatisticViewer#ownSettings(JPanel)
+	 */
 	private boolean showCustomDialog() {
-		boolean b=viewer.ownSettings(this);
+		final boolean b=viewer.ownSettings(this);
 		if (b) {
 			updateViewerContainer(true);
 			if (updateAllViewerCallback!=null) updateAllViewerCallback.run();
@@ -355,6 +415,12 @@ public class StatisticDataPanel extends JPanel {
 		updateViewerContainer(true);
 	}
 
+	/**
+	 * Fügt einen zusätzlichen Viewer hinzu
+	 * @param currentViewer	Aktueller Viewer
+	 * @param additionalViewer	Zusätzlicher Viewer
+	 * @see #resetSubViewer(StatisticViewer)
+	 */
 	private void addSubViewer(final StatisticViewer currentViewer, final StatisticViewer additionalViewer) {
 		final Container viewerComponent=currentViewer.getViewer(false);
 		final Container parent=viewerComponent.getParent();
@@ -370,6 +436,11 @@ public class StatisticDataPanel extends JPanel {
 		split.setDividerLocation(0.5);
 	}
 
+	/**
+	 * Entfernt einen möglichen zusätzlichen Viewer
+	 * @param currentViewer	Aktueller Viewer
+	 * @see #addSubViewer(StatisticViewer, StatisticViewer)
+	 */
 	private void resetSubViewer(final StatisticViewer currentViewer) {
 		final Container viewerComponent=currentViewer.getViewer(false).getParent();
 		final Container parent=viewerComponent.getParent();
@@ -379,6 +450,13 @@ public class StatisticDataPanel extends JPanel {
 		parent.add(currentViewer.getViewer(false));
 	}
 
+	/**
+	 * Aktiviert oder deaktiviert die parallele Anzeige
+	 * der Ergebnisse des vorherigen Simulationslaufs.
+	 * @see #addSubViewer(StatisticViewer, StatisticViewer)
+	 * @see #resetSubViewer(StatisticViewer)
+
+	 */
 	private void showLast() {
 		if (last.getText().equals(Language.tr("Statistic.Previous"))) {
 			last.setText(Language.tr("Statistic.PreviousRemove"));
@@ -391,6 +469,9 @@ public class StatisticDataPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Symbolleisten-Schaltflächen
+	 */
 	private final class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

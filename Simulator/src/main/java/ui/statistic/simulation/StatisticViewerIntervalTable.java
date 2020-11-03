@@ -35,7 +35,7 @@ public class StatisticViewerIntervalTable extends StatisticViewerTable {
 	/**
 	 * Erzeugt die Tabelle
 	 * @param statistic	{@link Statistics}-Objekt, dem die Daten entnommen werden sollen
-	 * @param colNames	Namen der einzelnen Spalten (die "Intervall"-Spalte wird automatisch erzeugt und muss hier nicht miz aufgeführt werden)
+	 * @param colNames	Namen der einzelnen Spalten (die "Intervall"-Spalte wird automatisch erzeugt und muss hier nicht mit aufgeführt werden)
 	 * @param sumRow	Optional Name für eine Summen-Zeile (bei <code>null</code> wird keine Zeile erzeugt)
 	 */
 	protected void buildIntervalTable(Statistics statistic, String[] colNames, String sumRow) {
@@ -52,6 +52,12 @@ public class StatisticViewerIntervalTable extends StatisticViewerTable {
 		return new String[0];
 	}
 
+	/**
+	 * Liefert die Spalten mit den Intervall-Zeitangaben.
+	 * @param sumRow	Beschriftung der Summen-Zeile
+	 * @return	Spalten mit den Intervall-Zeitangaben
+	 * @see #getTableData(Statistics, int, String)
+	 */
 	private String[] getTimeRow(String sumRow) {
 		String[] row=new String[48+((sumRow!=null)?1:0)];
 		for (int i=0;i<48;i++) row[i]=TimeTools.formatTime(i*1800)+"-"+TimeTools.formatTime((i+1)*1800-1);
@@ -59,6 +65,14 @@ public class StatisticViewerIntervalTable extends StatisticViewerTable {
 		return row;
 	}
 
+	/**
+	 * Erzeugt die Ausgabetabelle.
+	 * @param statistic	{@link Statistics}-Objekt, dem die Daten entnommen werden sollen
+	 * @param userColCount	Anzahl der benutzerdefinierten Spalten
+	 * @param sumRow	Optional Name für eine Summen-Zeile (bei <code>null</code> wird keine Zeile erzeugt)
+	 * @return	Ausgabetabelle
+	 * @see #buildIntervalTable(Statistics, String[], String)
+	 */
 	private Table getTableData(Statistics statistic, int userColCount, String sumRow) {
 		Table table=new Table();
 		table.addLine(getTimeRow(sumRow));
@@ -69,10 +83,15 @@ public class StatisticViewerIntervalTable extends StatisticViewerTable {
 		return table.transpose();
 	}
 
+	/**
+	 * Liefert die Spaltenüberschriften.
+	 * @param colNames	Namen der einzelnen Spalten (die "Intervall"-Spalte wird automatisch erzeugt und muss hier nicht mit aufgeführt werden)
+	 * @return	Spaltenüberschriften
+	 * @see #buildIntervalTable(Statistics, String[], String)
+	 */
 	private String[] getTableHeading(String[] colNames) {
 		List<String> list=new ArrayList<String>(Arrays.asList(colNames));
 		list.add(0,Language.tr("Statistic.Interval"));
 		return list.toArray(new String[0]);
 	}
-
 }

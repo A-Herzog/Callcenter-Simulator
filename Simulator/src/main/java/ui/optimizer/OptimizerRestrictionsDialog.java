@@ -68,18 +68,35 @@ public class OptimizerRestrictionsDialog extends BaseEditDialog {
 	/** Maximalwert pro Eintrag und Intervall */
 	public final List<DataDistributionImpl> max;
 
+	/** Ausgangs-Callcenter-Modell */
 	private final CallcenterModel editModel;
 
+	/** Baumstruktur zur Auswahl der Gruppe, deren Einstellungen bearbeitet werden sollen */
 	private JTree tree;
+	/** Arbeitsbereich rechts neben der Baumstruktur */
 	private JPanel editArea;
+	/** Zuletzt ausgewählte Gruppe */
 	private InfoObject lastSelected;
+	/** Auswahl: Liegen für die aktuelle Gruppe Einschränkungen vor? */
 	private JCheckBox active;
+	/** Schaltfläche "Tools" zur Auslösung von {@link #toolsMenu} */
 	private JButton tools;
+	/** Hält die Funktionen zur Einstellung eines einheitlichen Minimal- und Maximalwertes vor ({@link #toolsMenuMin}, {@link #toolsMenuMax}) */
 	private JPopupMenu toolsMenu;
-	private JMenuItem toolsMenuMin, toolsMenuMax;
+	/** Menüpunkt "Konstanten Minimalwert vorgeben" */
+	private JMenuItem toolsMenuMin;
+	/** Menüpunkt "Konstanten Maximalwert vorgeben" */
+	private JMenuItem toolsMenuMax;
+	/** Verteilungseditor für die Auswahl der Minimalwerte pro Intervall */
 	private JDataDistributionEditPanel minEdit;
+	/** Verteilungseditor für die Auswahl der Maximalwerte pro Intervall */
 	private JDataDistributionEditPanel maxEdit;
 
+	/**
+	 * Erfolgt gerade die Verarbeitung der Veränderung
+	 * der Auswahl in {@link #tree}?
+	 * @see SelectionListener#valueChanged(TreeSelectionEvent)
+	 */
 	private boolean treeSelectionChange=false;
 
 	/**
@@ -176,10 +193,23 @@ public class OptimizerRestrictionsDialog extends BaseEditDialog {
 		tree.setSelectionRow(0);
 	}
 
+	/**
+	 * Repräsentiert eine in
+	 * {@link OptimizerRestrictionsDialog#tree}
+	 * dargestellte Gruppe.
+	 * @see OptimizerRestrictionsDialog#tree
+	 */
 	private class InfoObject {
+		/** Callcenter */
 		public final String callcenter;
+		/** Nummer der Agentengruppe in dem Callcenter */
 		public final int groupNr;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param callcenter	Callcenter
+		 * @param groupNr	Nummer der Agentengruppe in dem Callcenter
+		 */
 		public InfoObject (String callcenter, int groupNr) {
 			this.callcenter=callcenter;
 			this.groupNr=groupNr;
@@ -191,11 +221,20 @@ public class OptimizerRestrictionsDialog extends BaseEditDialog {
 			return Language.tr("Optimizer.AgentGroup")+" "+groupNr;
 		}
 
+		/**
+		 * Liefert den Namen der Gruppe.
+		 * @return	Name der Gruppe
+		 */
 		public String toDataString() {
 			return ""+groupNr+"-"+callcenter;
 		}
 	}
 
+	/**
+	 * Reagiert auf eine Veränderung der Auswahl in
+	 * {@link OptimizerRestrictionsDialog#tree}
+	 * @see OptimizerRestrictionsDialog#tree
+	 */
 	private class SelectionListener implements TreeSelectionListener {
 		@Override
 		public void valueChanged(TreeSelectionEvent e) {
@@ -258,6 +297,9 @@ public class OptimizerRestrictionsDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen
+	 */
 	private class DialogListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

@@ -47,6 +47,7 @@ public class AgentShiftPlanDiagram extends JPanel implements mathtools.distribut
 	 */
 	private static final long serialVersionUID = -1735941999019425028L;
 
+	/** Liste der Agenten, die in dem Plan berücksichtigt werden sollen */
 	private final List<CallcenterModelAgent> agents;
 	private int agentCount=0;
 
@@ -127,6 +128,11 @@ public class AgentShiftPlanDiagram extends JPanel implements mathtools.distribut
 		paintDiagramm(g,dataRect);
 	}
 
+	/**
+	 * Objekt für die Zwischenablage
+	 * @see AgentShiftPlanDiagram#copyToClipboard(int)
+	 *
+	 */
 	private class TransferableImage implements Transferable{
 		public TransferableImage(Image image) {theImage=image;}
 		@Override

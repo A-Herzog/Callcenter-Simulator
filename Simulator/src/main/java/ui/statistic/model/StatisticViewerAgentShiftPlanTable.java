@@ -51,6 +51,11 @@ public class StatisticViewerAgentShiftPlanTable extends StatisticViewerTable {
 		});
 	}
 
+	/**
+	 * Erstellt die Daten für die Tabelle
+	 * @param agents	Liste der Agenten
+	 * @return	Daten für die Tabelle
+	 */
 	private static String[][] getTableData(List<CallcenterModelAgent> agents) {
 		String[][] data=new String[agents.size()+1][];
 

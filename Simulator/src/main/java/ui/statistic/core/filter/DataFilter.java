@@ -28,18 +28,23 @@ import mathtools.distribution.tools.DistributionTools;
  * @version 1.0
  */
 public class DataFilter extends DataFilterBase {
+	/** In System- (<code>true</code>) oder lokaler Notation (<code>false</code>) ausgeben? */
 	private boolean systemNumbers;
+	/** Als Prozentwert (<code>true</code>) oder normale Flieﬂkommazahl (<code>false</code>) ausgeben? */
 	private boolean percent;
+	/** Als Zeitangabe (<code>true</code>) oder als Zahl (<code>false</code>) ausgeben? */
 	private boolean time;
+	/** Zahlentrenner bei der Ausgabe von Verteilungsdaten */
 	private char separator;
 
+	/** Titel des Datenfilters */
 	private String title;
 
 	/**
 	 * Konstruktor der Klasse <code>CallcenterSimulatorDataFilter</code>
 	 * @param xmlDoc XML-Dokument, aus dem die Daten entnommen werden sollen
 	 */
-	public DataFilter(Document xmlDoc) {
+	public DataFilter(final Document xmlDoc) {
 		super(xmlDoc,true);
 		registerCommand(new TextCommand());
 		registerCommand(new PrintCommand());
@@ -54,6 +59,10 @@ public class DataFilter extends DataFilterBase {
 		registerCommand(new CVCommand());
 	}
 
+	/**
+	 * Implementierung des "Text"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class TextCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "Text";}
@@ -68,6 +77,10 @@ public class DataFilter extends DataFilterBase {
 		}
 	}
 
+	/**
+	 * Implementierung des "Title"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class TitleCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "Title";}
@@ -82,6 +95,10 @@ public class DataFilter extends DataFilterBase {
 		}
 	}
 
+	/**
+	 * Implementierung des "Print"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class PrintCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "Print";}
@@ -105,6 +122,10 @@ public class DataFilter extends DataFilterBase {
 		}
 	}
 
+	/**
+	 * Implementierung des "Format"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class FormatCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "Format";}
@@ -122,6 +143,10 @@ public class DataFilter extends DataFilterBase {
 		}
 	}
 
+	/**
+	 * Implementierung des "Separator"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class SeparatorCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "Separator";}
@@ -136,6 +161,10 @@ public class DataFilter extends DataFilterBase {
 		}
 	}
 
+	/**
+	 * Implementierung des "Set"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class SetCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "Set";}
@@ -161,6 +190,10 @@ public class DataFilter extends DataFilterBase {
 		}
 	}
 
+	/**
+	 * Implementierung des "Calc"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class CalcCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "Calc";}
@@ -185,6 +218,10 @@ public class DataFilter extends DataFilterBase {
 		}
 	}
 
+	/**
+	 * Implementierung des "Sum"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class SumCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "Sum";}
@@ -212,6 +249,10 @@ public class DataFilter extends DataFilterBase {
 		}
 	}
 
+	/**
+	 * Implementierung des "Mean"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class MeanCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "Mean";}
@@ -238,6 +279,10 @@ public class DataFilter extends DataFilterBase {
 		}
 	}
 
+	/**
+	 * Implementierung des "SD"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class SDCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "SD";}
@@ -264,6 +309,10 @@ public class DataFilter extends DataFilterBase {
 		}
 	}
 
+	/**
+	 * Implementierung des "CV"-Befehls
+	 * @see DataFilterBase#registerCommand(DataFilterCommand)
+	 */
 	private class CVCommand implements DataFilterCommand {
 		@Override
 		public String getName() {return "CV";}

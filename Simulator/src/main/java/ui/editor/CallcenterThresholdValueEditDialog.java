@@ -191,6 +191,16 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		addElement(p,new JLabel(name));
 	}
 
+	/**
+	 * Diese Funktion fügt ein Textfeld inkl. Beschreibung zu einem Panel hinzu.
+	 * Das Panel sollte dabei den Layout-Typ GridLayout(2n,1) besitzen.
+	 * @param p	Panel, in das das Eingabefeld eingefügt werden soll
+	 * @param name	Beschriftung für das Textfeld
+	 * @param initialValue	Anfänglicher Wert für das Textfeld
+	 * @param width	Anzahl an anzuzeigenden Spalten
+	 * @param additionalInfo	Optionaler zusätzlicher Text hinter dem Eingabefeld (kann <code>null</code> sein)
+	 * @return	Referenz auf das neu erzeugte Textfeld
+	 */
 	private JTextField addInputLine(JPanel p, String name, String initialValue, int width, String additionalInfo) {
 		JPanel subPanel,p2;
 

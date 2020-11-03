@@ -33,7 +33,9 @@ public class StatisticViewerErlangCLineChart extends StatisticViewerLineChart {
 	private final Mode dataType;
 	/** Objekt vom Typ {@link Statistics}, dem die Daten entnommen werden sollen */
 	private final Statistics statistic;
+	/** Ergebnisse gem‰ﬂ der Erlang-C-Formel */
 	private final StatisticViewerErlangCTools erlangC1;
+	/** Ergebnisse gem‰ﬂ der erweiterten Erlang-C-Formel */
 	private final StatisticViewerErlangCTools erlangC2;
 
 	/**

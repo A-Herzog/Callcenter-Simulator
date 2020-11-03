@@ -65,7 +65,11 @@ public final class RunData {
 	 */
 	public final ArrayList<CallerRecord>[] externalQueueByType;
 
+	/**
+	 * Anzahl an Kunden in der Warteschlange
+	 */
 	private int queueLength;
+
 	private int phoneCallQueueLength;
 
 	/**

@@ -46,7 +46,9 @@ import ui.optimizer.OptimizeData;
  * @version 1.0
  */
 public class StatisticViewerOptimizerBarChart extends StatisticViewerBarChart {
+	/** Statistik des Ausgangsmodells */
 	private final Statistics statistic1;
+	/** Statistik des finalen Modells */
 	private final Statistics statistic2;
 	/** Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten. */
 	private final int dataType;
@@ -132,6 +134,12 @@ public class StatisticViewerOptimizerBarChart extends StatisticViewerBarChart {
 		this.dataNr=dataNr;
 	}
 
+	/**
+	 * Konfiguriert die Diagrammanzeige
+	 * @param title	Diagrammtitel
+	 * @param yLabel	y-Achsen-Beschriftung
+	 * @param percent	Soll die y-Achse Zahlenwerte (<code>false</code>) oder Prozentwerte (<code>true</code>) anzeigen?
+	 */
 	private void initOptimizeChart(String title, String yLabel, boolean percent) {
 		initBarChart(title);
 
@@ -156,20 +164,48 @@ public class StatisticViewerOptimizerBarChart extends StatisticViewerBarChart {
 		initTooltips();
 	}
 
+	/**
+	 * Fügt eine Textzeile zu einer Liste hinzu.
+	 * @param list	Liste
+	 * @param title	Titel der Textzeile
+	 * @param subTitle	Untertitel der Textzeile
+	 * @see #getDiagramTypesList(CallcenterModel)
+	 */
 	private static void addLineToList(final List<String> list, final String title, final String subTitle) {
 		list.add("<html><body><b>"+title+"</b><br>"+subTitle+"</body></html>");
 	}
 
+	/**
+	 * Fügt Textzeilen zu den Kundentypen zu einer Liste hinzu.
+	 * @param list	Liste
+	 * @param model	Gesamtes Modell
+	 * @param title	Titel der Textzeilen
+	 * @see #getDiagramTypesList(CallcenterModel)
+	 */
 	private static void addCallerLinesToList(final List<String> list, final CallcenterModel model, final String title) {
 		for (CallcenterModelCaller caller: model.caller) list.add("<html><body><b>"+title+"</b><br>"+caller.name+"</body></html>");
 		list.add("<html><body><b>"+title+"</b><br>"+Language.tr("SimStatistic.AllClients")+"</body></html>");
 	}
 
+	/**
+	 * Fügt Textzeilen zu den Callcentern zu einer Liste hinzu.
+	 * @param list	Liste
+	 * @param model	Gesamtes Modell
+	 * @param title	Titel der Textzeilen
+	 * @see #getDiagramTypesList(CallcenterModel)
+	 */
 	private static void addCallcenterLinesToList(final List<String> list, final CallcenterModel model, final String title) {
 		for (CallcenterModelCallcenter callcenter: model.callcenter) list.add("<html><body><b>"+title+"</b><br>"+callcenter.name+"</body></html>");
 		list.add("<html><body><b>"+title+"</b><br>"+Language.tr("SimStatistic.AllCallcenter")+"</body></html>");
 	}
 
+	/**
+	 * Fügt Textzeilen zu den Skill-Leveln zu einer Liste hinzu.
+	 * @param list	Liste
+	 * @param model	Gesamtes Modell
+	 * @param title	Titel der Textzeilen
+	 * @see #getDiagramTypesList(CallcenterModel)
+	 */
 	private static void addSkillLevelLinesToList(final List<String> list, final CallcenterModel model, final String title) {
 		for (CallcenterModelSkillLevel skillLevel : model.skills) list.add("<html><body><b>"+title+"</b><br>"+skillLevel.name+"</body></html>");
 		list.add("<html><body><b>"+title+"</b><br>"+Language.tr("SimStatistic.AllSkillLevel")+"</body></html>");

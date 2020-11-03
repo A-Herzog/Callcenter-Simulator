@@ -229,7 +229,7 @@ public final class Statistics extends StatisticsBase {
 	}
 
 	/**
-	 * Berechner die durch die Anrufer entstandenen Kosten am Ende der Simulation
+	 * Berechnet die durch die Anrufer entstandenen Kosten am Ende der Simulation
 	 */
 	public void calcCallerCosts() {
 		double d1=0,d2=0,d3=0;
@@ -670,6 +670,11 @@ public final class Statistics extends StatisticsBase {
 		if (warnings!=null) warnings.saveToXML(node);
 	}
 
+	/**
+	 * Addiert die Diche-Daten einer Verteilung zu einer anderen
+	 * @param sum	Verteilungs-Objekt zu dem die zweite Dichte addiert werden soll (d.h. die Daten dieses Objektes werden verändert)
+	 * @param add	Zweite Verteilungs-Objekt dessen Dichte-Daten bei der ersten Verteilung aufaddiert werden sollen
+	 */
 	private static void addDensity(final DataDistributionImpl sum, final DataDistributionImpl add) {
 		final double[] s=sum.densityData;
 		final double[] a=add.densityData;

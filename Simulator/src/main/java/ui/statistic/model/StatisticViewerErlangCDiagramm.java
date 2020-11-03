@@ -69,6 +69,11 @@ public class StatisticViewerErlangCDiagramm extends StatisticViewerLineChart {
 		initTooltips();
 	}
 
+	/**
+	 * Liefert den Diagrammtitel.
+	 * @param diagramType	Welche Informationen sollen angezeigt werden?
+	 * @return	Diagrammtitel
+	 */
 	private static String getTitle(Mode diagramType) {
 		switch (diagramType) {
 		case ERREICHBARKEIT: return Language.tr("SimStatistic.Accessibility.OverTheDay");
@@ -78,6 +83,11 @@ public class StatisticViewerErlangCDiagramm extends StatisticViewerLineChart {
 		return "";
 	}
 
+	/**
+	 * Liefert den Namen der Datenreihe.
+	 * @param diagramType	Welche Informationen sollen angezeigt werden?
+	 * @return	Name der Datenreihe
+	 */
 	private static String getSeriesTitle(Mode diagramType) {
 		switch (diagramType) {
 		case ERREICHBARKEIT: return Language.tr("SimStatistic.Accessibility");
@@ -87,6 +97,12 @@ public class StatisticViewerErlangCDiagramm extends StatisticViewerLineChart {
 		return "";
 	}
 
+	/**
+	 * Erstellt die Verteilung für die Diagrammdarstellung.
+	 * @param erlangCData	Erlang-C Modell aus dem die Daten entnommen werden sollen
+	 * @param diagramType	Welche Informationen sollen angezeigt werden?
+	 * @return	Verteilung für die Diagrammdarstellung
+	 */
 	private static DataDistributionImpl buildDistribution(StatisticViewerErlangCTools erlangCData, Mode diagramType) {
 		DataDistributionImpl dist=new DataDistributionImpl(48,48);
 		switch (diagramType) {

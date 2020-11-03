@@ -46,6 +46,7 @@ public final class CallerGeneratorDialog extends GeneratorBaseDialog {
 	 */
 	private static final long serialVersionUID = 5863544128633698724L;
 
+	/** Liste der Namen der verfügbaren Kundengruppen */
 	private final List<String> callerNames;
 	private List<JComboBox<String>> select;
 
