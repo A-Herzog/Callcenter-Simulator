@@ -5783,7 +5783,7 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14242] = "XML.OptimizerSetup.InitialInventory.ClientType.Name";
     t[14243] = "Name";
     t[14252] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMax";
-    t[14253] = "Konstanten Maximalwert vorhgeben";
+    t[14253] = "Konstanten Maximalwert vorgeben";
     t[14258] = "Optimizer.ChangedNumberOfAgents";
     t[14259] = "Angepasste Agentenanzahl";
     t[14262] = "MainMenu.Simulation.ConnectedSimulationResults";
@@ -5977,7 +5977,7 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14714] = "Calibrate.ErrorInvalidTargetAccessibility";
     t[14715] = "Die Ziel-Erreichbarkeit f\u00fcr Kundentyp %s ist ung\u00fcltig.";
     t[14728] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMin";
-    t[14729] = "Konstanten Minimalwert vorhgeben";
+    t[14729] = "Konstanten Minimalwert vorgeben";
     t[14740] = "MainMenu.View.Welcome";
     t[14741] = "Willkommensseite";
     t[14744] = "XML.Statistic.Clients.Summary.CallsCombinedWaitingCancelTime";
