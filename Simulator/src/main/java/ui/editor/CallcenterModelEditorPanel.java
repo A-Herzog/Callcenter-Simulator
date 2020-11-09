@@ -58,8 +58,6 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -117,28 +115,59 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 
 	/** Übergeordnetes Fenster */
 	private final Window owner;
+	/** Aktuell in Bearbeitung befindliches Modell */
 	private CallcenterModel model;
+	/** Unverändertes Originalmodell, um prüfen zu können, ob das Modell im Editor verändert wurde */
 	private CallcenterModel modelOriginal;
+	/** Wurde das Modell seit dem letzten Laden oder Speichern verändert */
 	private boolean modelChanged;
 	/** Editor im Read-only-Modus als reinen Betrachter aufrufen */
 	private final boolean readOnly;
+	/** Beim letzten Laden oder Speichern verwendeter Dateiname */
 	private String lastFileName;
 
+	/** Registerreiter für den Dialog */
 	private JTabbedPane tabs;
 
+	/* Dialogseite "Allgemeine Daten" */
+
+	/** Eingabefeld für den Namen des Modells */
 	private JTextField name;
+	/** Eingabepanel für das Datum des Modelltages */
 	private UtilDateModel dateModel;
+	/** Eingabefeld für die Modellbeschreibung */
 	private JTextArea description;
+	/** Schaltfläche "Globale Parameter" */
 	private JButton globalParameters;
+	/** Schaltfläche "Schwellenwerte" */
 	private JButton thresholdValues;
+	/** Schaltfläche "Beschreibung automatisch erstellen" */
 	private JButton generateDescription;
 
+	/* Dialogseite "Anrufergruppen" */
+
+	/** Datenmodell für die Listendarstellung der Anrufergruppen ({@link #callerList}) */
 	private final DefaultListModel<CallcenterModelCaller> callerListData;
+	/** Listendarstellung der Anrufergruppen */
 	private final JList<CallcenterModelCaller> callerList;
+
+	/* Dialogseite "Callcenter und Agenten" */
+
+	/** Datenmodell für die Listendarstellung der Callcenter ({@link #callcenterList}) */
 	private final DefaultListModel<CallcenterModelCallcenter> callcenterListData;
+	/** Listendarstellung der Callcenter */
 	private final JList<CallcenterModelCallcenter> callcenterList;
+
+	/* Dialogseite "Skill-Level der Agenten" */
+
+	/** Datenmodell für die Listendarstellung der Skill-Level ({@link #skillLevelList}) */
 	private final DefaultListModel<CallcenterModelSkillLevel> skillLevelListData;
+	/** Listendarstellung der Skill-Level */
 	private final JList<CallcenterModelSkillLevel> skillLevelList;
+
+	/* Dialogseite "Modellüberblick" */
+
+	/** Anzeige der ohne Simulation ermittelbaren Daten (Modellüberblick) */
 	private StatisticBasePanel statistics;
 
 	/** Verknüpfung mit der Online-Hilfe */
@@ -210,7 +239,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		if (withTabs) {
 			add(tabs=new JTabbedPane());
 			tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-			tabs.addChangeListener(new TabChangeListener());
+			tabs.addChangeListener(e->{if (tabs.getSelectedIndex()==tabs.getTabCount()-1) updateStatistics();});
 		} else {
 			setLayout(new CardLayout());
 		}
@@ -286,6 +315,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		setModel(model);
 	}
 
+	/**
+	 * Formatierung der Darstellung in {@link CallcenterModelEditorPanel#dateModel}
+	 * @see CallcenterModelEditorPanel#dateModel
+	 */
 	private class DateLabelFormatter extends AbstractFormatter {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -296,7 +329,11 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		@Override public String valueToString(Object value) throws ParseException {return (value!=null && (value instanceof Calendar))?CallcenterModel.dateToLocalString((Calendar)value):"";}
 	}
 
-	private void buildGeneralTab(JPanel mainarea) {
+	/**
+	 * Erzeugt die Dialogseite "Allgemeine Daten"
+	 * @param mainarea	Hauptpanel
+	 */
+	private void buildGeneralTab(final JPanel mainarea) {
 		JPanel p,p2;
 
 		mainarea.setLayout(new BorderLayout());
@@ -360,10 +397,30 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		description.setEditable(!readOnly);
 	}
 
+	/**
+	 * Erzeugt eine Symbolleiste über eine Liste
+	 * @param parent	Übergeordnetes Element für die Symbolleiste
+	 * @param actionListenerNr	Nummer unter der sich die Schaltflächen in dem Button-Listener melden
+	 * @param iconAdd	Icon "Hinzufügen"
+	 * @param iconEdit	Icon "Bearbeiten"
+	 * @param iconDelete	Icon "Löschen"
+	 * @param iconCopy	Icon "Kopieren"
+	 * @param iconUp	Icon "Nach oben verschieben"
+	 * @param iconDown	Icon "Nach unten verschieben"
+	 * @param iconTools	Icon "Tools"
+	 * @param addTooltip	Tooltip für die "Hinzufügen"-Schaltfläche
+	 * @param showTooltip	Tooltip für die "Anzeigen"-Schaltfläche (vergleichbar mit "Bearbeiten", aber im Nur-Lese-Modus)
+	 * @param editTooltip	Tooltip für die "Bearbeiten"-Schaltfläche
+	 * @param deleteTooltip	Tooltip für die "Löschen"-Schaltfläche
+	 * @param copyTooltip	Tooltip für die "Kopieren"-Schaltfläche
+	 * @param upTooltip	Tooltip für die "Nach oben verschieben"-Schaltfläche
+	 * @param downTooltip	Tooltip für die "Nach unten verschieben"-Schaltfläche
+	 * @return	Button-Listener der auf die Schaltflächen reagiert
+	 */
 	private ButtonActionListener addEditPanel(JPanel parent, int actionListenerNr, Icon iconAdd, Icon iconEdit, Icon iconDelete, Icon iconCopy, Icon iconUp, Icon iconDown, Icon iconTools, String addTooltip, String showTooltip, String editTooltip, String deleteTooltip, String copyTooltip, String upTooltip, String downTooltip) {
 		JToolBar p;
-		JButton[] buttons=new JButton[7];
-		ButtonActionListener listener=new ButtonActionListener(actionListenerNr);
+		final JButton[] buttons=new JButton[7];
+		final ButtonActionListener listener=new ButtonActionListener(actionListenerNr);
 
 		parent.add(p=new JToolBar(),BorderLayout.NORTH);
 		p.setFloatable(false);
@@ -419,6 +476,12 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		return listener;
 	}
 
+	/**
+	 * Erstellt ein Listenfeld.
+	 * @param parent	Übergeordnetes Element für das Listenfeld
+	 * @param list	Darzustellende Liste
+	 * @param actionListener	Listener der auf die verschiedenen Listen-Aktionen reagieren soll
+	 */
 	private void addList(JPanel parent, @SuppressWarnings("rawtypes") JList list, ButtonActionListener actionListener) {
 		parent.add(new JScrollPane(list),BorderLayout.CENTER);
 		ListListener mouseKeySelectionListener=new ListListener(list,actionListener.buttons,actionListener);
@@ -427,6 +490,13 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		list.addListSelectionListener(mouseKeySelectionListener);
 	}
 
+
+	/**
+	 * Stellt sicher, dass keine überlappenden Set- und Get-Operationen
+	 * in Bezug auf das Modell erfolgen.
+	 * @see #setModel(CallcenterModel)
+	 * @see #getModel(boolean)
+	 */
 	private final Lock mutexGetSetModel=new ReentrantLock();
 
 	/**
@@ -586,6 +656,11 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	 */
 	public void setModelChanged(boolean changed) {modelChanged=changed;}
 
+	/**
+	 * Aktualisiert die Anrufergruppen-Liste
+	 * @see #callerListData
+	 * @see #callerList
+	 */
 	private void updateCallerList() {
 		int index=callerList.getSelectedIndex();
 		callerListData.clear();
@@ -636,6 +711,11 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		return callcenterList.getSelectedIndex();
 	}
 
+	/**
+	 * Aktualisiert die Callcenter-Liste
+	 * @see #callcenterListData
+	 * @see #callcenterList
+	 */
 	private void updateCallcenterList() {
 		int index=callcenterList.getSelectedIndex();
 		callcenterListData.clear();
@@ -645,6 +725,11 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
+	/**
+	 * Aktualisiert die Callcenter-Liste
+	 * @see #skillLevelListData
+	 * @see #skillLevelList
+	 */
 	private void updateSkillLevelList() {
 		int index=skillLevelList.getSelectedIndex();
 		skillLevelListData.clear();
@@ -657,6 +742,11 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
+	/**
+	 * Liefert eine Liste aller Anrufergruppennamen.
+	 * @param addNewName	Wird ein Wert ungleich <code>null</code> übergeben, so wird dieser Wert an die Ausgabeliste angehängt
+	 * @return	Liste aller Anrufergruppennamen
+	 */
 	private String[] callerNames(String addNewName) {
 		String[] callerTypeNames=new String[model.caller.size()+((addNewName!=null)?1:0)];
 		for (int i=0;i<model.caller.size();i++) callerTypeNames[i]=model.caller.get(i).name;
@@ -664,12 +754,20 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		return callerTypeNames;
 	}
 
-	private String[] skillNames() {
+	/**
+	 * Liefert eine Liste aller Skill-Level-Namen.
+	 * @return	Liste aller Skill-Level-Namen
+	 */
+	final private String[] skillNames() {
 		String[] skills=new String[model.skills.size()];
 		for (int i=0;i<model.skills.size();i++) skills[i]=model.skills.get(i).name;
 		return skills;
 	}
 
+	/**
+	 * Befehl: Anrufergruppe hinzufügen
+	 * @see #callerList
+	 */
 	private void addCaller() {
 		CallcenterModelCaller caller=new CallcenterModelCaller();
 
@@ -699,6 +797,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
+	/**
+	 * Befehl: Anrufergruppe bearbeiten
+	 * @see #callerList
+	 */
 	private void editCaller() {
 		if (callerList.getSelectedIndex()<0) return;
 		int index=callerList.getSelectedIndex();
@@ -735,6 +837,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
+	/**
+	 * Befehl: Anrufergruppe löschen
+	 * @see #callerList
+	 */
 	private void delCaller() {
 		if (callerList.getSelectedIndex()<0) return;
 		if (!MsgBox.confirm(this,Language.tr("Editor.Caller.DeleteGroup.Title"),
@@ -752,6 +858,9 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateCallerList();
 	}
 
+	/**
+	 * Reagiert darauf, wenn eine Anrufergruppe umbenannt wurde.
+	 */
 	private class CallerTypeRenameListener implements RenameListener {
 		@Override
 		public void renamed(RenameEvent e) {
@@ -790,6 +899,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
+	/**
+	 * Befehl: Anrufergruppe kopieren
+	 * @see #callerList
+	 */
 	private void copyCaller() {
 		if (callerList.getSelectedIndex()<0) return;
 		CallcenterModelCaller newCaller=model.caller.get(callerList.getSelectedIndex()).clone();
@@ -809,13 +922,23 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		callerList.setSelectedIndex(callerListData.getSize()-1);
 	}
 
-	private String[] callcenterNames(String addNewName) {
+	/**
+	 * Liefert eine Liste aller Callcenter-Namen.
+	 * @param addNewName	Wird ein Wert ungleich <code>null</code> übergeben, so wird dieser Wert an die Ausgabeliste angehängt
+	 * @return	Liste aller Callcenter-Namen
+	 */
+
+	private String[] callcenterNames(final String addNewName) {
 		String[] callcenterNames=new String[model.callcenter.size()+((addNewName!=null)?1:0)];
 		for (int i=0;i<model.callcenter.size();i++) callcenterNames[i]=model.callcenter.get(i).name;
 		if (addNewName!=null) callcenterNames[callcenterNames.length-1]=addNewName;
 		return callcenterNames;
 	}
 
+	/**
+	 * Befehl: Anrufergruppe in der Liste nach oben verschieben
+	 * @see #callerList
+	 */
 	private void moveCallerUp() {
 		int selected=callerList.getSelectedIndex();
 		CallcenterModelCaller c1=model.caller.get(selected);
@@ -826,6 +949,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateCallerList();
 	}
 
+	/**
+	 * Befehl: Anrufergruppe in der Liste nach unten verschieben
+	 * @see #callerList
+	 */
 	private void moveCallerDown() {
 		int selected=callerList.getSelectedIndex();
 		CallcenterModelCaller c1=model.caller.get(selected);
@@ -836,6 +963,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateCallerList();
 	}
 
+	/**
+	 * Befehl: Callcenter hinzufügen
+	 * @see #callcenterList
+	 */
 	private void addCallcenter() {
 		CallcenterModelCallcenter callcenter=new CallcenterModelCallcenter();
 
@@ -865,6 +996,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		if (dialog.isOpenAgentsAdditionGenerator() && generatorAgentsAdditionCallback!=null) SwingUtilities.invokeLater(generatorAgentsAdditionCallback);
 	}
 
+	/**
+	 * Befehl: Callcenter bearbeiten
+	 * @see #callcenterList
+	 */
 	private void editCallcenter() {
 		if (callcenterList.getSelectedIndex()<0) return;
 		int index=callcenterList.getSelectedIndex();
@@ -901,6 +1036,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
+	/**
+	 * Befehl: Callcenter löschen
+	 * @see #callcenterList
+	 */
 	private void delCallcenter() {
 		if (callcenterList.getSelectedIndex()<0) return;
 
@@ -915,6 +1054,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateCallcenterList();
 	}
 
+	/**
+	 * Befehl: Callcenter kopieren
+	 * @see #callcenterList
+	 */
 	private void copyCallcenter() {
 		if (callcenterList.getSelectedIndex()<0) return;
 
@@ -976,6 +1119,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		callcenterList.setSelectedIndex(callcenterListData.getSize()-1);
 	}
 
+	/**
+	 * Befehl: Callcenter in der Liste nach oben verschieben
+	 * @see #callcenterList
+	 */
 	private void moveCallcenterUp() {
 		int selected=callcenterList.getSelectedIndex();
 		if (selected<1) return;
@@ -987,6 +1134,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateCallcenterList();
 	}
 
+	/**
+	 * Befehl: Callcenter in der Liste nach unten verschieben
+	 * @see #callcenterList
+	 */
 	private void moveCallcenterDown() {
 		int selected=callcenterList.getSelectedIndex();
 		if (selected<0 || selected==callcenterList.getModel().getSize()-1) return;
@@ -998,6 +1149,9 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateCallcenterList();
 	}
 
+	/**
+	 * Reagiert darauf, wenn ein Skill-Level umbenannt wird
+	 */
 	private class SkillLevelRenameListener implements RenameListener {
 		@Override
 		public void renamed(RenameEvent e) {
@@ -1009,13 +1163,23 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
-	private String[] skillLevelNames(String addNewName) {
+	/**
+	 * Liefert eine Liste aller Skill-Level-Namen.
+	 * @param addNewName	Wird ein Wert ungleich <code>null</code> übergeben, so wird dieser Wert an die Ausgabeliste angehängt
+	 * @return	Liste aller Skill-Level-Namen
+	 */
+
+	private String[] skillLevelNames(final String addNewName) {
 		String[] skillLevelNames=new String[model.skills.size()+((addNewName!=null)?1:0)];
 		for (int i=0;i<model.skills.size();i++) skillLevelNames[i]=model.skills.get(i).name;
 		if (addNewName!=null) skillLevelNames[skillLevelNames.length-1]=addNewName;
 		return skillLevelNames;
 	}
 
+	/**
+	 * Befehl: Skill-Level hinzufügen
+	 * @see #skillLevelList
+	 */
 	private void addSkillLevel() {
 		CallcenterModelSkillLevel skill=new CallcenterModelSkillLevel();
 
@@ -1041,6 +1205,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		if (dialog.isOpenGenerator() && generatorSkillsCallback!=null) SwingUtilities.invokeLater(generatorSkillsCallback);
 	}
 
+	/**
+	 * Befehl: Skill-Level bearbeiten
+	 * @see #skillLevelList
+	 */
 	private void editSkillLevel() {
 		if (skillLevelList.getSelectedIndex()<0) return;
 		int index=skillLevelList.getSelectedIndex();
@@ -1072,6 +1240,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
+	/**
+	 * Befehl: Skill-Level löschen
+	 * @see #skillLevelList
+	 */
 	private void delSkillLevel() {
 		if (skillLevelList.getSelectedIndex()<0) return;
 		if (!MsgBox.confirm(this,
@@ -1086,6 +1258,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateSkillLevelList();
 	}
 
+	/**
+	 * Befehl: Skill-Level kopieren
+	 * @see #skillLevelList
+	 */
 	private void copySkillLevel() {
 		if (skillLevelList.getSelectedIndex()<0) return;
 
@@ -1105,6 +1281,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		skillLevelList.setSelectedIndex(skillLevelListData.getSize()-1);
 	}
 
+	/**
+	 * Befehl: Skill-Level in der Liste nach oben verschieben
+	 * @see #skillLevelList
+	 */
 	private void moveSkillLevelUp() {
 		int selected=skillLevelList.getSelectedIndex();
 		CallcenterModelSkillLevel s1=model.skills.get(selected);
@@ -1115,6 +1295,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateSkillLevelList();
 	}
 
+	/**
+	 * Befehl: Skill-Level in der Liste nach unten verschieben
+	 * @see #skillLevelList
+	 */
 	private void moveSkillLevelDown() {
 		int selected=skillLevelList.getSelectedIndex();
 		CallcenterModelSkillLevel s1=model.skills.get(selected);
@@ -1125,6 +1309,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateSkillLevelList();
 	}
 
+	/**
+	 * Aktualisiert den Modellüberblíck.
+	 * @see #statistics
+	 */
 	private void updateStatistics() {
 		if (statistics==null) return;
 		StatisticNode root=new StatisticNode();
@@ -1214,6 +1402,9 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		statistics.setStatisticData(root);
 	}
 
+	/**
+	 * Befehl: Erstanruferanzahl in allen Gruppen verändern
+	 */
 	private void changeCallerCount() {
 		String[] countNames=new String[model.caller.size()];
 		int[] countValues=new int[model.caller.size()];
@@ -1237,6 +1428,9 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateCallerList();
 	}
 
+	/**
+	 * Befehl: Agentenanzahl in allen Intervallen in allen Callcentern verändern
+	 */
 	private void changeAgentCount() {
 		int groupCount=0;
 		for (CallcenterModelCallcenter callcenter : model.callcenter) groupCount+=callcenter.agents.size();
@@ -1289,12 +1483,25 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		updateCallcenterList();
 	}
 
-	private class ListListener implements KeyListener,MouseListener,ListSelectionListener {
+
+	/**
+	 * Reagiert auf Ereignisse für eine Listendarstellung
+	 */
+	private class ListListener implements KeyListener, MouseListener, ListSelectionListener {
+		/** Liste auf deren Ereignisse reagiert werden soll */
 		@SuppressWarnings("rawtypes")
 		private final JList list;
+		/** Zu der Listendarstellung gehörige Schaltflächen */
 		private final JButton[] buttons;
+		/** Aktions-Callbacks zu der Liste bzw. den Schaltflächen */
 		private final ActionListener actionListener;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param list	Liste auf deren Ereignisse reagiert werden soll
+		 * @param buttons	Zu der Listendarstellung gehörige Schaltflächen
+		 * @param actionListener	Aktions-Callbacks zu der Liste bzw. den Schaltflächen
+		 */
 		public ListListener(@SuppressWarnings("rawtypes") JList list, JButton[] buttons, ActionListener actionListener) {
 			this.list=list;
 			this.buttons=buttons;
@@ -1304,11 +1511,18 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		@Override
 		public void keyTyped(KeyEvent e) {}
 
-		private void buttonClick(JButton button) {
+		/**
+		 * Löst die Verarbeitung für einen Klick auf eine Schaltfläche aus.
+		 * @param button	Schaltfläche deren Aktion ausgeführt werden soll
+		 */
+		private void buttonClick(final JButton button) {
 			ActionEvent e=new ActionEvent(button,0,button.getText());
 			actionListener.actionPerformed(e);
 		}
 
+		/**
+		 * Aktiviert oder deaktiviert den selektierten Listeneintrag.
+		 */
 		private void toggleActive() {
 			if (list.getSelectedIndex()<0) return;
 
@@ -1336,6 +1550,12 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 			if (e.getKeyCode()==KeyEvent.VK_DOWN && (e.getModifiersEx() & InputEvent.CTRL_DOWN_MASK)!=0) {buttonClick(buttons[5]); e.consume();}
 		}
 
+		/**
+		 * Löst ggf. ein Popupmenü zu einem Eintrag in der Anrufer- oder der Callcenter-Liste aus.
+		 * @see CallcenterModelEditorPanel#callerList
+		 * @see CallcenterModelEditorPanel#callcenterList
+		 * @param e	Maus-Ereignis
+		 */
 		private void mousePopup(MouseEvent e) {
 			if (!e.isPopupTrigger()) return;
 
@@ -1417,11 +1637,23 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 			popup.show(e.getComponent(),e.getX(), e.getY());
 		}
 
+		/**
+		 * Reagiert auf einen Eintrag in dem Anrufergruppen- oder Callcenter-Listen-Popupmenü
+		 * @see CallcenterModelEditorPanel#callerList
+		 * @see CallcenterModelEditorPanel#callcenterList
+		 */
 		private class PopupActionListener implements ActionListener {
+			/** Nummer des angeklickten Menüpunktes */
 			private final int buttonNr;
+			/** Index des Eintrags in der aktuellen Liste */
 			private final int index;
 
-			public PopupActionListener(int buttonNr, int index) {
+			/**
+			 * Konstruktor der Klasse
+			 * @param buttonNr	Nummer des angeklickten Menüpunktes
+			 * @param index	Index des Eintrags in der aktuellen Liste
+			 */
+			public PopupActionListener(final int buttonNr, final int index) {
 				this.buttonNr=buttonNr;
 				this.index=index;
 			}
@@ -1456,14 +1688,39 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
+	/**
+	 * Reagiert auf einen Klick auf eine der Schaltflächen über einer
+	 * der Listen auf einer der Dialogseiten.
+	 */
 	private class ButtonActionListener implements ActionListener {
+		/** Art der zugehörigen Liste (0: Anrufergruppen, 1: Callcenter und Agenten, 2: Skill-Level) */
 		private final int nr;
+
+		/**
+		 * Zu der Liste gehörige Schaltflächen.
+		 * @see CallcenterModelEditorPanel#addEditPanel(JPanel, int, Icon, Icon, Icon, Icon, Icon, Icon, Icon, String, String, String, String, String, String, String)
+		 */
 		public JButton[] buttons;
 
+		/**
+		 * In {@link #openTinyPopup(String, Icon, Component)} erzeugter Menüpunkt
+		 * @see #openTinyPopup(String, Icon, Component)
+		 */
 		private JMenuItem popupItem=null;
+
+		/** In {@link #openTinyPopup(String[], Icon[], Component)} erzeugte Menüpunkte
+		 *  @see #openTinyPopup(String[], Icon[], Component)
+		 */
 		private JMenuItem[] popupItems=null;
 
-		private void openTinyPopup(String item, Icon icon, Component invoker) {
+		/**
+		 * Erzeugt ein kleines Popupmenü mit einem Menüpunkt.
+		 * @param item	Name des Menüpunkts
+		 * @param icon	Icon für den Menüpunkt
+		 * @param invoker	Aufrufer (zur Ausrichtung des Menüs)
+		 * @see #actionPerformed(ActionEvent)
+		 */
+		private void openTinyPopup(final String item, final Icon icon, final Component invoker) {
 			JPopupMenu popupMenu=new JPopupMenu();
 			popupMenu.add(popupItem=new JMenuItem(item));
 			popupItem.addActionListener(this);
@@ -1471,7 +1728,14 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 			popupMenu.show(invoker,0,invoker.getBounds().height);
 		}
 
-		private void openTinyPopup(String[] items, Icon[] icons, Component invoker) {
+		/**
+		 * Erzeugt ein kleines Popupmenü mit mehreren Menüpunkten.
+		 * @param items	Namen der Menüpunkte
+		 * @param icons	Icons für die Menüpunkte
+		 * @param invoker	Aufrufer (zur Ausrichtung des Menüs)
+		 * @see #actionPerformed(ActionEvent)
+		 */
+		private void openTinyPopup(final String[] items, final Icon[] icons, final Component invoker) {
 			JPopupMenu popupMenu=new JPopupMenu();
 			popupItems=new JMenuItem[items.length];
 			for (int i=0;i<items.length;i++) {
@@ -1483,7 +1747,13 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 			popupMenu.show(invoker,0,invoker.getBounds().height);
 		}
 
-		public ButtonActionListener(int nr) {this.nr=nr;}
+		/**
+		 * Konstruktor der Klasse
+		 * @param nr	Art der zugehörigen Liste (0: Anrufergruppen, 1: Callcenter und Agenten, 2: Skill-Level)
+		 */
+		public ButtonActionListener(int nr) {
+			this.nr=nr;
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -1622,7 +1892,13 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
-	private List<CallcenterModelAgent> calcShiftPlan(List<CallcenterModelAgent> agents, CallcenterModelCallcenter callcenter) {
+	/**
+	 * Berechnet einen Schichtplan für die Anzeige im Modelüberblick
+	 * @param agents	Liste der Agenten in einem Callcenter
+	 * @param callcenter	Callcenter
+	 * @return	Liste der Schichtplan-Agenten
+	 */
+	private List<CallcenterModelAgent> calcShiftPlan(final List<CallcenterModelAgent> agents, final CallcenterModelCallcenter callcenter) {
 		List<CallcenterModelAgent> agentsList=new ArrayList<CallcenterModelAgent>();
 		for (int i=0;i<agents.size();i++) if (agents.get(i).active) {
 			if (agents.get(i).count>=0) agentsList.add(agents.get(i)); else agentsList.addAll(agents.get(i).calcAgentShifts(false,callcenter,model,true));
@@ -1630,11 +1906,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		return agentsList;
 	}
 
-	private class TabChangeListener implements ChangeListener {
-		@Override
-		public void stateChanged(ChangeEvent e) {if (tabs.getSelectedIndex()==tabs.getTabCount()-1) updateStatistics();}
-	}
-
+	/**
+	 * Renderer für die Liste der Anrufergruppen
+	 * @see CallcenterModelEditorPanel#callerList
+	 */
 	private class CallerListRenderer extends AdvancedListCellRenderer {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -1642,7 +1917,12 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		 */
 		private static final long serialVersionUID = -3181757143428275248L;
 
-		private boolean callerTypeMayChangeOnRetry(CallcenterModelCaller caller) {
+		/**
+		 * Kann sich der Kundentyp für Kunden eines bestimmten Typs bei einer Wiederholung verändern?
+		 * @param caller	Zu prüfender Kundentyp
+		 * @return	Liefert <code>true</code>, wenn die Kunden dieses Typs bei einer Wiederholung unter einem neuen Typ auftreten können
+		 */
+		private boolean callerTypeMayChangeOnRetry(final CallcenterModelCaller caller) {
 			for (int i=0;i<caller.retryCallerTypeRateAfterBlockedFirstRetry.size();i++) if (caller.retryCallerTypeRateAfterBlockedFirstRetry.get(i)>0) return true;
 			for (int i=0;i<caller.retryCallerTypeRateAfterBlocked.size();i++) if (caller.retryCallerTypeRateAfterBlocked.get(i)>0) return true;
 			for (int i=0;i<caller.retryCallerTypeRateAfterGiveUpFirstRetry.size();i++) if (caller.retryCallerTypeRateAfterGiveUpFirstRetry.get(i)>0) return true;
@@ -1717,6 +1997,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		}
 	}
 
+	/**
+	 * Renderer für die Skill-Level-Liste
+	 * @see CallcenterModelEditorPanel#callcenterList
+	 */
 	private class CallcenterListRenderer extends AdvancedListCellRenderer {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -1778,7 +2062,15 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 
 	}
 
+	/**
+	 * Renderer für die Skill-Level-Liste
+	 * @see CallcenterModelEditorPanel#skillLevelList
+	 */
 	private class SkillLevelListRenderer extends AdvancedListCellRenderer {
+		/**
+		 * Serialisierungs-ID der Klasse
+		 * @see Serializable
+		 */
 		private static final long serialVersionUID = -838162614370052084L;
 
 		@Override

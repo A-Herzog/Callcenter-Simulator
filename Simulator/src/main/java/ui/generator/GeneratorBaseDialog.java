@@ -100,8 +100,20 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 	 */
 	protected final int neededRows;
 
+	/**
+	 * Eingabefeld für die Tabellendatei
+	 */
 	private JTextField tableField;
+
+	/**
+	 * Schaltfläche zur Auswahl einer Tabellendatei.
+	 * @see #loadTable(File)
+	 */
 	private JButton tableButton;
+
+	/**
+	 * Zentraler Arbeitsbereich
+	 */
 	private JPanel cards;
 
 	/**
@@ -193,17 +205,30 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 		return (getClosedBy()==BaseEditDialog.CLOSED_BY_OK)?model:null;
 	}
 
+	/**
+	 * Aktiviert oder deaktiviert die Darstellung der GUI-Karte.
+	 * @param dataCard	GUI-Elemente darstellen?
+	 */
 	private final void setCard(boolean dataCard) {
 		if (!dataCard) table=null;
 		((CardLayout)cards.getLayout()).show(cards,dataCard?"data":"empty");
 	}
 
+	/**
+	 * Zeigt einen Dialog zur Auswahl einer Tabellendatei an.
+	 * @return	Liefert im Erfolgsfall den Namen der Tabellendatei, sonst <code>null</code>.
+	 */
 	private final File selectFile() {
 		Container c=getParent(); while ((c!=null) && (!(c instanceof Frame))) c=c.getParent();
 		File file=Table.showLoadDialog(c,Language.tr("Generator.SelectTableFile")); if (file==null) return null;
 		return file;
 	}
 
+	/**
+	 * Lädt die Daten aus {@link #table} in
+	 * {@link #rows}, {@link #colIndex} und {@link #heading}.
+	 * @return	Liefert im Erfolgsfall <code>true</code>
+	 */
 	private final boolean loadTableData() {
 		/* Gemeinsamen Datenbereich ermitteln */
 		rows=getCommonNumberArea(table,neededRows);
@@ -219,6 +244,11 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 		return true;
 	}
 
+	/**
+	 * Lädt und verarbeitet eine Tabellendatei
+	 * @param file	Zu ladende Datei (kann <code>null</code> sein, dann wird die entsprechende GUI deaktiviert)
+	 * @return	Liefert im Erfolgsfall <code>true</code> (im Fehlerfall werden außerdem Fehlermeldungen ausgegeben)
+	 */
 	private final boolean loadTable(File file) {
 		if (file==null || !file.isFile()) {setCard(false); return false;}
 		Table table=new Table(Table.IndexMode.COLS);
@@ -241,6 +271,9 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 		return b;
 	}
 
+	/**
+	 * Reagiert auf Eingaben und auf Klicks auf die Schaltflächen
+	 */
 	private final class TableButtonListener implements ActionListener, KeyListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

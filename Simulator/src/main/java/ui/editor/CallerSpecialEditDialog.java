@@ -72,25 +72,43 @@ public class CallerSpecialEditDialog extends BaseEditDialog {
 		MODE_RECALL
 	}
 
+	/**
+	 * Welche Daten sollen in dem Dialog bearbeitet werden?
+	 * @see Mode
+	 */
 	private final Mode mode;
 
+	/** Liste der Namen der Skill-Levels */
 	private final String[] skills;
 
+	/** Liste mit Skill-Levels für Skill-Level-abhängige Werte */
 	private final List<String> continueTypeSkillType;
+	/** Liste mit den Wahrscheinlichkeiten pro Skill-Level */
 	private final List<Double> continueTypeSkillTypeProbability;
+	/** Liste mit den Listen der neuen Kundentypnamen pro Skill-Level */
 	private final List<List<String>> continueTypeSkillTypeName;
+	/** Liste mit den Listen der Kundentyp-Änderungs-Wahrscheinlichkeiten pro Skill-Level */
 	private final List<List<Double>> continueTypeSkillTypeRate;
 
+	/** Sonderregel für den Kundentyp aktiv? */
 	private final boolean[] active;
+	/** Wahrscheinlichkeiten für dies Kundentypen */
 	private final double[] probability;
+	/** Raten mit denen der Kundentyp geändert wird */
 	private final double[][] rate;
 
+	/** Zuletzt in {@link #list} gewählter Eintrag */
 	private int lastSelectedIndex;
+	/** Liste der Kundentypen */
 	private JList<String> list;
+	/** Datenmodell für die Liste der Kundentypen ({@link #list()}) */
 	private DefaultListModel<String> listData;
 
+	/** Option: Sonderregel für den Kundentyp aktiv? */
 	private JCheckBox ruleActive;
+	/** Eingabefeld für die Wahrscheinlichkeit für diesen Kundentyp */
 	private JTextField ruleProbability;
+	/** Eingabefelder für die Raten mit denen der Kundentyp geändert wird */
 	private JTextField[] ruleRate;
 
 	/**
@@ -124,6 +142,9 @@ public class CallerSpecialEditDialog extends BaseEditDialog {
 		createSimpleGUI(500,400,null,null);
 	}
 
+	/**
+	 * Lädt die im Konstruktor übergebenen Daten in die internen Strukturen.
+	 */
 	private void loadData() {
 		/* Alles auf 0 setzen */
 		for (int i=0;i<active.length;i++) {
@@ -234,6 +255,10 @@ public class CallerSpecialEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf eine veränderte Auswahl in {@link CallerSpecialEditDialog#list()}
+	 * @see CallerSpecialEditDialog#list
+	 */
 	private class ListListener implements ListSelectionListener {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
@@ -266,6 +291,10 @@ public class CallerSpecialEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Renderer für die Liste der Skill-Level
+	 * @see CallerSpecialEditDialog#list
+	 */
 	private final class SkillLevelListRenderer extends JLabel implements ListCellRenderer<String> {
 		/**
 		 * Serialisierungs-ID der Klasse

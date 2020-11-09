@@ -42,6 +42,9 @@ public class CallerEditPanelRecallerDistribution extends CallerEditPanel {
 	 */
 	private static final long serialVersionUID = -5982396824981613714L;
 
+	/**
+	 * Panel zur Konfiguration der Wiederanrufabstände-Verteilung
+	 */
 	private JDistributionPanel recallTimeDist;
 
 	/**

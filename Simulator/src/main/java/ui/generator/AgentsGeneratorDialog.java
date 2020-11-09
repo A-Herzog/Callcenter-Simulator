@@ -18,8 +18,6 @@ package ui.generator;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Window;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +52,7 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 	 * @see AgentsGeneratorDialog#AgentsGeneratorDialog(Window, Runnable, CallcenterModel, int, AgentsGeneratorMode, int)
 	 */
 	public enum AgentsGeneratorMode {
-		/** Anzahl an alktiven Agenten pro Intervall */
+		/** Anzahl an aktiven Agenten pro Intervall */
 		AGENTS_GENERATOR_MODE_WORKING,
 		/** Produktivität pro Intervall */
 		AGENTS_GENERATOR_MODE_EFFICIENCY,
@@ -62,14 +60,18 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 		AGENTS_GENERATOR_MODE_ADDITION
 	}
 
+	/** Agentengruppen in dem aktuellen Callcenter */
 	private List<CallcenterModelAgent> agents;
 	/** Welches Callcenter soll als Empfänger für die Daten vorgeschlagen werden? (kann -1 sein) */
 	private int selectCallcenterNr;
 	/** Welche Daten sollen geladen werden? */
 	private final AgentsGeneratorMode mode;
 
+	/** Auswahlbox zur Wahl des Callcenters für das die Daten importiert werden sollen */
 	private JComboBox<String> callcenterSelect=null;
+	/** Panel zur Aufnahme der Elemente zur Auswahl des Ziel-Callcenters usw. */
 	private JPanel tab;
+	/** Auswahl welche Spalten für das verwendet werden sollen */
 	private List<JComboBox<String>> select;
 
 	/**
@@ -134,11 +136,17 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 			MsgBox.error(this,"Kein Callcenter vorhanden","Es wurden keine Callcenter definiert, für die Agentendaten geladen werden könnten.");
 			return false;
 		}
-		callcenterSelect.addActionListener(new CallcenterSelectListener());
+		callcenterSelect.addActionListener(e->callcenterSelected());
 
 		return true;
 	}
 
+	/**
+	 * Vergleicht zwei {@link String}-Arrays
+	 * @param list1	{@link String}-Array 1
+	 * @param list2	{@link String}-Array 2
+	 * @return	Liefert <code>true</code>, wenn beide Arrays exakt dieselben Werte (ggf. in verschiedener Reihenfolge und ohne Berücksichtigung der Groß- und Kleinschreibung) enthalten
+	 */
 	private static boolean arraysMatch(String[] list1, String[] list2) {
 		for (int i=0;i<list1.length;i++) {
 			String s=list1[i];
@@ -183,6 +191,10 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 		return comboBox;
 	}
 
+	/**
+	 * Reagiert auf die Auswahl eines Callcenters.
+	 * @see #callcenterSelect
+	 */
 	private void callcenterSelected() {
 		tab.removeAll();
 		agents=null;
@@ -302,10 +314,5 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 				break;
 			}
 		}
-	}
-
-	private final class CallcenterSelectListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {callcenterSelected();}
 	}
 }

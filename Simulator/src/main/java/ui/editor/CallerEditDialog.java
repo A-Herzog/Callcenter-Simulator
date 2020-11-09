@@ -56,15 +56,28 @@ public class CallerEditDialog extends BaseEditDialog {
 	private final CallcenterModelCaller caller;
 	/** Array mit allen <code>CallcenterModelCaller</code>-Objekten (um Einstellungen auf andere Kundentypen anwenden zu können) */
 	private final CallcenterModelCaller[] callers;
+	/** Index dieses Kundentyps in der Liste aller Kundentypen */
 	private final int callerTypeIndexForThisType;
+	/** Datensatz mit allen Informationen, die ein Panel zur Initialisierung benötigt */
 	private final CallerEditPanel.InitData initData;
 
+	/** Liste der Tabs in dem Dialogs */
 	private final List<CallerEditPanel> panels=new ArrayList<CallerEditPanel>();
+
+	/** Listener die benachrichtigt werden sollen, wenn in dem Dialog ein Kundentyp umbenannt wird */
 	private final List<RenameListener> listener=new ArrayList<RenameListener>();
 
+	/** Popupmenü für die Kosten-Dialogseite */
 	private final JPopupMenu popupMenu;
-	private final JMenuItem[] applyThisPage, applyAllPages;
+	/** Menüpunkte zum Übertragen der Einstellungen dieser Dialogseite von dieser Gruppe zu anderen Gruppen */
+	private final JMenuItem[] applyThisPage;
+	/** Menüpunkte zum Übertragen der Einstellungen aller Dialogseiten von dieser Gruppe zu anderen Gruppen */
+	private final JMenuItem[] applyAllPages;
 
+	/**
+	 * Dialog zum Laden von Anruferzahlen pro Intervall öffnen?
+	 * @see #isOpenGenerator()
+	 */
 	private int openGenerator=0;
 
 	/**
@@ -93,7 +106,12 @@ public class CallerEditDialog extends BaseEditDialog {
 		applyAllPages=new JMenuItem[callerTypeNames.length+1];
 		if (!readOnly && callerTypeNames.length>1) {
 			buildMenu();
-			addUserButtons(new String[]{""}, new String[]{Language.tr("Editor.Caller.Apply.Info")}, new URL[]{Images.GENERAL_TOOLS.getURL()}, new Runnable[]{new ToolsButtonHandler()});
+			addUserButtons(
+					new String[]{""},
+					new String[]{Language.tr("Editor.Caller.Apply.Info")},
+					new URL[]{Images.GENERAL_TOOLS.getURL()},
+					new Runnable[]{()->{final JButton b=getUserButton(0); popupMenu.show(b,0,b.getHeight());}}
+					);
 		}
 		String previousText=null;
 		if (previous) previousText=readOnly?Language.tr("Editor.Caller.Move.ViewPrevious"):Language.tr("Editor.Caller.Move.EditPrevious");
@@ -103,6 +121,10 @@ public class CallerEditDialog extends BaseEditDialog {
 		tabs.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
 	}
 
+	/**
+	 * Erstellt das Menü für die Tools-Schaltfläche (zum Übertragen der Daten zu den anderen Gruppen)
+	 * @see #popupMenu
+	 */
 	private void buildMenu() {
 		final Icon user=Images.EDITOR_CALLER.getIcon();
 		final Icon userRed=Images.EDITOR_CALLER_RED.getIcon();
@@ -237,15 +259,12 @@ public class CallerEditDialog extends BaseEditDialog {
 		for (CallerEditPanel p : panels) p.nameChange(newName);
 	}
 
-	private class ToolsButtonHandler implements Runnable{
-		@Override
-		public void run() {
-			final JButton b=getUserButton(0);
-			popupMenu.show(b,0,b.getHeight());
-		}
-	}
-
-	private boolean checkPagesForApply(boolean allPages) {
+	/**
+	 * Können die Daten einer bestimmten Seite an auf Anrufergruppen übertragen werden?
+	 * @param allPages	Nur aktuelle Seite (<code>false</code>) oder alle Seiten (<code>true</code>) prüfen
+	 * @return	Liefert im Erfolgsfall <code>true</code> (im Fehlerfall wird eine Fehlermeldung ausgegeben)
+	 */
+	private boolean checkPagesForApply(final boolean allPages) {
 		for (int i=0;i<panels.size();i++) if (allPages || i==tabs.getSelectedIndex()) {
 			CallerEditPanel p=panels.get(i);
 			String[] error=p.check(null);
@@ -267,7 +286,12 @@ public class CallerEditDialog extends BaseEditDialog {
 		return true;
 	}
 
-	private void applyPages(int page, int clientType) {
+	/**
+	 * Überträgt die Einstellungen aus einer Dialogseite an eine andere Anrufergruppe
+	 * @param page	Index der Dialogseite deren Einstellungen übertragen werden sollen
+	 * @param clientType	Index der Anrufergruppe in die die Einstellungen eingetragen werden sollen
+	 */
+	private void applyPages(final int page, final int clientType) {
 		for (int i=0;i<callers.length;i++) if (clientType==i || (clientType==-1 && i!=callerTypeIndexForThisType)) {
 			for (int j=0;j<panels.size();j++) if (page==j || page==-1) {
 				panels.get(j).writeToCaller(callers[i]);
@@ -275,6 +299,13 @@ public class CallerEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Klicks im {@link CallerEditDialog#popupMenu}
+	 * auf die Menüpunkte.
+	 * @see CallerEditDialog#popupMenu
+	 * @see CallerEditDialog#applyThisPage
+	 * @see CallerEditDialog#applyAllPages
+	 */
 	private class PopupActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

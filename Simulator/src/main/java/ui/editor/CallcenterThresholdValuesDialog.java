@@ -60,11 +60,14 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 	/** Schaltfläche "Löschen" */
 	private JButton buttonDelete;
 
+	/** Listendarstellung der Schwellenwert-Datensätze */
 	private JList<CallcenterModelWarnings.WarningRecord> list;
+	/** Listenmodell der Schwellenwert-Datensätze für {@link #list} */
 	private DefaultListModel<CallcenterModelWarnings.WarningRecord> listData;
 
 	/** Gesamtes Callcenter-Modell */
 	private final CallcenterModel model;
+	/** Arbeitskopie der Schwellenwert-Datensätze aus {@link #model} */
 	private final CallcenterModelWarnings warnings;
 
 	/**
@@ -120,11 +123,19 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 		return model;
 	}
 
+	/**
+	 * Baut die Liste der Schwellenwert-Datensätze neu auf.
+	 * @see #list
+	 * @see #listData
+	 */
 	private void buildList() {
 		listData.clear();
 		for (CallcenterModelWarnings.WarningRecord record : warnings.records) listData.addElement(record);
 	}
 
+	/**
+	 * Befehl: Schwellenwert-Datensatz hinzufügen
+	 */
 	private void warningAdd() {
 		if (readOnly) return;
 		CallcenterModelWarnings.WarningRecord record=new CallcenterModelWarnings.WarningRecord();
@@ -135,6 +146,9 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 		buildList();
 	}
 
+	/**
+	 * Befehl: Schwellenwert-Datensatz bearbeiten
+	 */
 	private void warningEdit() {
 		if (list.getSelectedIndex()<0) return;
 		int index=list.getSelectedIndex();
@@ -147,6 +161,9 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 		buildList();
 	}
 
+	/**
+	 * Befehl: Schwellenwert-Datensatz löschen
+	 */
 	private void warningDelete() {
 		if (readOnly) return;
 		if (list.getSelectedIndex()<0) return;
@@ -154,6 +171,12 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 		buildList();
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen
+	 * und auf Tastendrücke in der Listendarstellung
+	 * @see CallcenterThresholdValuesDialog#list
+	 *
+	 */
 	private class DialogElementListener implements ActionListener, KeyListener, MouseListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -191,6 +214,10 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 		public void mouseExited(MouseEvent e) {}
 	}
 
+	/**
+	 * Renderer für die Einträge in {@link CallcenterThresholdValuesDialog#list()}
+	 * @see CallcenterThresholdValuesDialog#list
+	 */
 	private class WarningsListRenderer extends AdvancedListCellRenderer {
 		/**
 		 * Serialisierungs-ID der Klasse

@@ -54,19 +54,43 @@ public class CallerEditPanelWaitingTimeTolerance extends CallerEditPanel {
 	 */
 	private static final long serialVersionUID = 9036391085696026977L;
 
+	/** Option: Kunden sind nur bereit, endlich lange zu warten */
 	private final JCheckBox waitingTimeDistActive;
+	/** Auswahlbox für den Typ der Wartezeittoleranz (kurze Verteilung, lange Verteilung, Schätzung) */
 	private final JComboBox<String> waitingTimeCalc;
+	/** Panel das Verteilungseditoren und Eingabefelder für die Schätzung aufnimmt */
 	private final JPanel waitingTimePanel;
+	/** Verteilungseditor für die Wartezeittoleranz-Verteilung (kurz) */
 	private final JDistributionPanel waitingTimeDist;
+	/** Verteilungseditor für die Wartezeittoleranz-Verteilung (lang) */
 	private final JDistributionPanel waitingTimeDistLong;
+	/** Eingabefeld für die mittlere Wartezeit der Kunden (für die Wartezeittoleranz-Schätzung) */
 	private final JTextField waitingTimeCalcMeanWaitingTime;
+	/** Eingabefeld für die Abbruchwahrscheinlichkeit der Kunden (für die Wartezeittoleranz-Schätzung) */
 	private final JTextField waitingTimeCalcCancelProbability;
+	/** Eingabefeld für zusätzliche Verschiebung der Wartezeittoleranz (für die Wartezeittoleranz-Schätzung) */
 	private final JTextField waitingTimeCalcAdd;
+	/** Info-Ausgabe: Geschätzte mittlere Wartezeittoleranz */
 	private final JLabel waitingTimeCalcResultMean;
+	/** Info-Ausgabe: Geschätzte Standardabweichung der Wartezeittoleranz */
 	private final JLabel waitingTimeCalcResultSd;
 
+	/**
+	 * Möglicher Wartezeittoleranz-Typ: kurz (für Card-Layout)
+	 * @see #waitingTimePanel
+	 */
 	private static final String waitingTimePanel_Tab1="Verteilung (kurz)";
+
+	/**
+	 * Möglicher Wartezeittoleranz-Typ: lang (für Card-Layout)
+	 * @see #waitingTimePanel
+	 */
 	private static final String waitingTimePanel_Tab2="Verteilung (lang)";
+
+	/**
+	 * Möglicher Wartezeittoleranz-Typ: Schätzung (für Card-Layout)
+	 * @see #waitingTimePanel
+	 */
 	private static final String waitingTimePanel_Tab3="Schaetzung";
 
 	/**
@@ -202,6 +226,12 @@ public class CallerEditPanelWaitingTimeTolerance extends CallerEditPanel {
 		return Images.EDITOR_CALLER_PAGE_WAITING_TIME_TOLERANCE.getIcon();
 	}
 
+	/**
+	 * Zeigt gemäß der Auswahl in {@link #waitingTimeCalc}
+	 * das passende Panel in {@link #waitingTimePanel} an.
+	 * @see #waitingTimeCalc
+	 * @see #waitingTimePanel
+	 */
 	private void setActiveCard() {
 		String s=null;
 		switch (waitingTimeCalc.getSelectedIndex()) {
@@ -212,6 +242,11 @@ public class CallerEditPanelWaitingTimeTolerance extends CallerEditPanel {
 		if (s!=null) ((CardLayout)waitingTimePanel.getLayout()).show(waitingTimePanel,s);
 	}
 
+	/**
+	 * Aktualisiert die Wartezeittoleranz-Schätzung.
+	 * @see #waitingTimeCalcResultMean
+	 * @see #waitingTimeCalcResultSd
+	 */
 	private void updateWaitingTimeCalc() {
 		Double EW=TimeTools.getExactTime(waitingTimeCalcMeanWaitingTime,true);
 		Double PA=NumberTools.getProbability(waitingTimeCalcCancelProbability,true);

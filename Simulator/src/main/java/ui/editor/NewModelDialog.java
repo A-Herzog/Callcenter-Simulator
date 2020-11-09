@@ -55,10 +55,20 @@ public class NewModelDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = -3959552630727959346L;
 
+	/**
+	 * Soll das Modell über den Assistenten angelegt werden?
+	 * @see #getModel()
+	 */
 	private boolean openWizard=false;
 
+	/** Registerkarten für die verschiedenen Arten, ein neues Modell anzulegen */
 	private JTabbedPane tabs;
-	private JModelSelection empty, examples, templates;
+	/** Liste "Leeres Modell" */
+	private JModelSelection empty;
+	/** Liste "Beispielmodelle" */
+	private JModelSelection examples;
+	/** Liste "Vorlagen" */
+	private JModelSelection templates;
 
 	/**
 	 * Konstruktor der Klasse
@@ -100,8 +110,13 @@ public class NewModelDialog extends BaseEditDialog {
 		if (models.size()>0) tabs.addTab(Language.tr("MainMenu.File.NewModel.Tab.Templates"),templates=new JModelSelection(models));
 	}
 
-	private List<CallcenterModel> getModelsFromFolder(File folder) {
-		List<CallcenterModel> models=new ArrayList<CallcenterModel>();
+	/**
+	 * Liefert eine Liste aller in einem Verzeichnis vorhandenen Modelle
+	 * @param folder	Zu durchsuchendes Verzeichnis
+	 * @return	Liste der Modelle in dem Verzeichnis (Liste kann leer sein, ist aber nie <code>null</code>)
+	 */
+	private List<CallcenterModel> getModelsFromFolder(final File folder) {
+		final List<CallcenterModel> models=new ArrayList<CallcenterModel>();
 		if (folder !=null && folder.isDirectory()) {
 			File[] list=folder.listFiles();
 			if (list!=null)	for (File file : list) {
@@ -134,8 +149,15 @@ public class NewModelDialog extends BaseEditDialog {
 		}
 	}
 
-	private String wrapString(String text, int lineLengt, String wrapMarker) {
-		StringBuilder sb=new StringBuilder();
+	/**
+	 * Bricht einen Text nach jeweils einer bestimmten Zeilenlänge um.
+	 * @param text	Text
+	 * @param lineLengt	Zeilenlänge
+	 * @param wrapMarker	Am Ende jeder Zeile einzufügendes Symbol (z.B. "&lt;br&gt;")
+	 * @return	Text mit Zeilenumbrüchen
+	 */
+	private String wrapString(final String text, final int lineLengt, final String wrapMarker) {
+		final StringBuilder sb=new StringBuilder();
 		StringBuilder part=new StringBuilder();
 
 		for (int i=0;i<text.length();i++) {
@@ -153,6 +175,10 @@ public class NewModelDialog extends BaseEditDialog {
 		return sb.toString();
 	}
 
+	/**
+	 * Darstellung einer Liste von Callcenter-Modellen inkl.
+	 * der Anzeige einer Beschreibung zu dem jeweils gewählten Modell.
+	 */
 	private class JModelSelection extends JPanel {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -160,10 +186,21 @@ public class NewModelDialog extends BaseEditDialog {
 		 */
 		private static final long serialVersionUID = 4412860965612077368L;
 
+		/**
+		 * Liste der verfügbaren Callcenter-Modelle
+		 */
 		private final JList<CallcenterModel> list;
+
+		/**
+		 * Beschreibung des aktuell gewählten Modells
+		 */
 		private final JTextArea description;
 
-		public JModelSelection(List<CallcenterModel> models) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param models	In der Liste anzuzeigende Modelle
+		 */
+		public JModelSelection(final List<CallcenterModel> models) {
 			super(new BorderLayout());
 
 			JSplitPane splitPane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
@@ -189,10 +226,17 @@ public class NewModelDialog extends BaseEditDialog {
 			list.setSelectedIndex(0);
 		}
 
+		/**
+		 * Liefert das aktuell in der Liste gewählte Callcenter-Modell zurück.
+		 * @return	Aktuell in der Liste gewähltes Callcenter-Modell
+		 */
 		public CallcenterModel getSelectedModel() {
 			return list.getSelectedValue();
 		}
 
+		/**
+		 * Renderer für die Einträge in {@link JModelSelection#list}
+		 */
 		private class ModelListRenderer extends AdvancedListCellRenderer {
 			/**
 			 * Serialisierungs-ID der Klasse
@@ -236,6 +280,11 @@ public class NewModelDialog extends BaseEditDialog {
 			}
 		}
 
+		/**
+		 * Reagiert auf eine veränderte Auswahl in {@link JModelSelection#list}
+		 * sowie auf Doppelklicks auf Einträge in der Liste.
+		 * @see JModelSelection#list
+		 */
 		private class ModelSelectionListener implements ListSelectionListener, MouseListener {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {

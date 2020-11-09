@@ -282,6 +282,12 @@ public class CallcenterModelWarnings implements Cloneable {
 			return record;
 		}
 
+		/**
+		 * Vergleich diesen Schwellenwert-Überschreitungs-Warnungsdatensatz mit einem weiteren Datensatz.
+		 * @param record	Anderer Schwellenwert-Überschreitungs-Warnungsdatensatz
+		 * @param withStatistics	Liegen konkrete Werte vor?
+		 * @return	Liefert <code>true</code>, wenn beide Datensätze inhaltlich identisch sind.
+		 */
 		private boolean equalsWarningRecord(final WarningRecord record, final boolean withStatistics) {
 			/* Typ */
 			if (record.type!=type) return false;
@@ -305,7 +311,7 @@ public class CallcenterModelWarnings implements Cloneable {
 			if (Math.abs(record.warningYellow-warningYellow)>0.00001) return false;
 			if (Math.abs(record.warningRed-warningRed)>0.00001) return false;
 
-			/* Wert unf Warnungsstatus */
+			/* Wert und Warnungsstatus */
 			if (withStatistics) {
 				if (Math.abs(record.value-value)>0.00001) return false;
 				if (record.warningStatus!=warningStatus) return false;
@@ -314,6 +320,12 @@ public class CallcenterModelWarnings implements Cloneable {
 			return true;
 		}
 
+		/**
+		 * Lädt einen einzelnen Warnungs-Datensatz aus einem XML-Element
+		 * @param node	XML-Element
+		 * @param withStatistics	Handelt es sich um die Zusammenstellung der Warnungskonfigurationen für den Editor (<code>false</code>) oder sind dies Statistikdaten (<code>true</code>)
+		 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+		 */
 		private String loadFromXML(final Element node, final boolean withStatistics) {
 			/* Typ */
 			String typeString=Language.trAllAttribute("XML.Model.Warnings.Record.Type",node);
@@ -431,6 +443,11 @@ public class CallcenterModelWarnings implements Cloneable {
 			return null;
 		}
 
+		/**
+		 * Speichert einen einzelnen Warnungs-Datensatz in einem XML-Element
+		 * @param parent	Übergeordnetes XML-Element
+		 * @param withStatistics	Handelt es sich um die Zusammenstellung der Warnungskonfigurationen für den Editor (<code>false</code>) oder sind dies Statistikdaten (<code>true</code>)
+		 */
 		private final void saveToXML(final Element parent, final boolean withStatistics) {
 			Element node;
 			parent.appendChild(node=parent.getOwnerDocument().createElement(Language.trPrimary("XML.Model.Warnings.Record")));

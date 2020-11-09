@@ -58,6 +58,14 @@ public class CallcenterModelExamples {
 		return model;
 	}
 
+	/**
+	 * Erstellt ein Callcenter-Modell
+	 * @param name	Name des Modells
+	 * @param description	Beschreibung für das Modell
+	 * @param callerDist	Verteilung der Kundenankünfte in der einzigen Kundengruppe über den Tag
+	 * @param agentDist	Verteilung der verfügbaren Agenten über den Tag
+	 * @return	Callcenter-Modell
+	 */
 	private static final CallcenterModel getExampleErlang(final String name, final String description, final DataDistributionImpl callerDist, final DataDistributionImpl agentDist) {
 		CallcenterModel model=new CallcenterModel();
 		model.name=name;
@@ -127,6 +135,13 @@ public class CallcenterModelExamples {
 		return model;
 	}
 
+	/**
+	 * Erstellt ein mit Erlang-C vergleichbares Callcenter-Modell
+	 * @param name	Name des Modells
+	 * @param callerCount	Anzahl an Anrufern pro Tag
+	 * @param agentCount	Anzahl an dauerhaft verfügbaren Agenten
+	 * @return	Callcenter-Modell
+	 */
 	private static final CallcenterModel getExampleErlang(final String name, final int callerCount, final int agentCount) {
 		String description=String.format(Language.tr("Example.Exlang.Description"),NumberTools.formatLong(callerCount*48),NumberTools.formatNumber(((double)callerCount)/30),""+agentCount);
 

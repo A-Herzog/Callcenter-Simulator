@@ -415,7 +415,12 @@ public final class Statistics extends StatisticsBase {
 		}
 	}
 
-	private void checkWarning(CallcenterModelWarnings.WarningRecord record) {
+	/**
+	 * Prüft, ob die Warnungsschwellen eines Warnungs-Datensatzes überschritten
+	 * sind und trägt dies wenn ja in den Datensatz ein.
+	 * @param record	Warnungs-Datensatz
+	 */
+	private void checkWarning(final CallcenterModelWarnings.WarningRecord record) {
 		record.value=calcWarningValue(record);
 		record.warningStatus=CallcenterModelWarnings.WarningStatus.WARNING_STATUS_OK;
 		switch (record.type) {
@@ -906,10 +911,25 @@ public final class Statistics extends StatisticsBase {
 		public List<List<Long>> kundenNextDayUebertragRestWaitingToleranceProSimDay=new ArrayList<List<Long>>();
 
 
-		private KundenDaten() {this("");}
+		/**
+		 * Konstruktor der Klasse
+		 */
+		private KundenDaten() {
+			this("");
+		}
 
-		private KundenDaten(final String name) {this.name=name;}
+		/**
+		 * Konstruktor der Klasse
+		 * @param name	Name der Kundengruppe
+		 */
+		private KundenDaten(final String name) {
+			this.name=name;
+		}
 
+		/**
+		 * Fügt Daten eines weiteren Kunden-Datensatzes zu diesem Datensatz hinzu.
+		 * @param data	Weitere Daten die zu diesem Datensatz hinzugefügt werden sollen
+		 */
 		private final void addData(final KundenDaten data) {
 			kunden+=data.kunden;
 			kundenErfolg+=data.kundenErfolg;

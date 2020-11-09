@@ -514,7 +514,15 @@ public final class CallcenterModelCaller implements Cloneable {
 		}
 	}
 
-	private String loadRetryCallerTypChaneData(Element node, List<String> names, List<Double> rates) {
+	/**
+	 * Lädt Daten zu Kundentypänderungen bei einer Wiederholung aus einem XML-Element
+	 * @param node	XML-Knoten aus dem die Daten geladen werden sollen
+	 * @param names	Liste mit den neuen Kundentypen
+	 * @param rates	Liste mit den Raten, die zu den Kundentypen gehören
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 * @see #loadFromXML(Element)
+	 */
+	private String loadRetryCallerTypeChangeData(Element node, List<String> names, List<Double> rates) {
 		NodeList l=node.getChildNodes();
 		for (int i=0; i<l.getLength();i++) {
 			if (!(l.item(i) instanceof Element)) continue;
@@ -730,22 +738,22 @@ public final class CallcenterModelCaller implements Cloneable {
 						continue;
 					}
 					if (Language.trAll("XML.Model.ClientType.Retry.ClientType.BlockedFirst",t)) {
-						String u=loadRetryCallerTypChaneData(e2,retryCallerTypeAfterBlockedFirstRetry,retryCallerTypeRateAfterBlockedFirstRetry);
+						String u=loadRetryCallerTypeChangeData(e2,retryCallerTypeAfterBlockedFirstRetry,retryCallerTypeRateAfterBlockedFirstRetry);
 						if (u!=null) return s;
 						continue;
 					}
 					if (Language.trAll("XML.Model.ClientType.Retry.ClientType.Blocked",t)) {
-						String u=loadRetryCallerTypChaneData(e2,retryCallerTypeAfterBlocked,retryCallerTypeRateAfterBlocked);
+						String u=loadRetryCallerTypeChangeData(e2,retryCallerTypeAfterBlocked,retryCallerTypeRateAfterBlocked);
 						if (u!=null) return s;
 						continue;
 					}
 					if (Language.trAll("XML.Model.ClientType.Retry.ClientType.CanceledFirst",t)) {
-						String u=loadRetryCallerTypChaneData(e2,retryCallerTypeAfterGiveUpFirstRetry,retryCallerTypeRateAfterGiveUpFirstRetry);
+						String u=loadRetryCallerTypeChangeData(e2,retryCallerTypeAfterGiveUpFirstRetry,retryCallerTypeRateAfterGiveUpFirstRetry);
 						if (u!=null) return s;
 						continue;
 					}
 					if (Language.trAll("XML.Model.ClientType.Retry.ClientType.Canceled",t)) {
-						String u=loadRetryCallerTypChaneData(e2,retryCallerTypeAfterGiveUp,retryCallerTypeRateAfterGiveUp);
+						String u=loadRetryCallerTypeChangeData(e2,retryCallerTypeAfterGiveUp,retryCallerTypeRateAfterGiveUp);
 						if (u!=null) return s;
 						continue;
 					}

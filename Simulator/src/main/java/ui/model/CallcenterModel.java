@@ -461,6 +461,11 @@ public final class CallcenterModel implements Cloneable {
 		return root.getOwnerDocument();
 	}
 
+	/**
+	 * Fügt die Daten zu einem Callcenter-Modell in ein xml-Element ein
+	 * @param node	xml-Element
+	 * @param isStatisticFilePart	Soll das Modell als Teil einer Statistikdatei ausgegeben werden
+	 */
 	private void addDataToXML(final Element node, final boolean isStatisticFilePart) {
 		final Document doc=node.getOwnerDocument();
 		Element e;

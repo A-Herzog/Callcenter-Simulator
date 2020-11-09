@@ -54,12 +54,31 @@ public class CallerEditPanelFreshCalls extends CallerEditPanel {
 	 */
 	private static final long serialVersionUID = -2300068644945818994L;
 
+	/** Eingabefeld für die mittlere Anzahl an Erstanrufern */
 	private final JTextField freshCallsCountMean;
+	/** Eingabefeld für die Standardabweichung in Bezug auf die Anzahl an Erstanrufern */
 	private final JTextField freshCallsCountSD;
+	/** Schaltfläche "Tools" */
 	private JButton tools;
+	/** Popupmenü mit weiteren Funktionen, das über die {@link #tools}-Schaltfläche aufgerufen wird */
 	private final JPopupMenu toolsPopup;
-	private JMenuItem tools1, tools2, tools3, tools4, tools5, tools6, tools7;
+	/** Menüpunkt "Anzahl an Anrufern pro Tag aus Zähldichte festlegen" */
+	private JMenuItem tools1;
+	/** Menüpunkt "Anzahl an Anrufern pro Tag auf Zähldichte verteilen" */
+	private JMenuItem tools2;
+	/** Menüpunkt "Zähldichte auf 1 normieren" */
+	private JMenuItem tools3;
+	/** Menüpunkt "Zähldichte auf ganze Zahlen erweitern" */
+	private JMenuItem tools4;
+	/** Menüpunkt "Ankunftsverteilung aller Kunden (auf Stundenbasis) global laden" */
+	private JMenuItem tools5;
+	/** Menüpunkt "Ankunftsverteilung aller Kunden (auf Halbstundenbasis) global laden" */
+	private JMenuItem tools6;
+	/** Menüpunkt "Ankunftsverteilung aller Kunden (auf 15-Minutenbasis) global laden" */
+	private JMenuItem tools7;
+	/** Verteilung der Erstanrufer über den Tag */
 	private JDataDistributionEditPanel freshCalls;
+	/** Auswahl der Granularität von {@link #freshCalls} (15 Minuten, 30 Minuten oder 60 Minuten) */
 	private JComboBox<String> freshCallsType;
 
 	/**
@@ -169,17 +188,31 @@ public class CallerEditPanelFreshCalls extends CallerEditPanel {
 		return Images.EDITOR_CALLER_PAGE_FRESH.getIcon();
 	}
 
-	private double isInteger(double[] d) {
+	/**
+	 * Liefert den maximalen Abstand zur nächsten Ganzzahl der Einträge eines Arrays.
+	 * @param d	Zu durchsuchendes Array
+	 * @return	Maximaler Abstand zur nächsten Ganzzahl der Einträge des Arrays
+	 */
+	private double isInteger(final double[] d) {
 		double max=0;
 		for (int i=0;i<d.length;i++) max=Math.max(max,Math.abs(d[i]-Math.round(d[i])));
 		return max;
 	}
 
-	private void round(double[] d) {
+	/**
+	 * Rundet alle Einträge eines Arrays
+	 * @param d	Array dessen Einträge gerundet werden sollen
+	 */
+	private void round(final double[] d) {
 		for (int i=0;i<d.length;i++) d[i]=Math.round(d[i]);
 	}
 
-	private boolean makeDensityInteger(double[] d) {
+	/**
+	 * Erweitert die Einträge eines Arrays auf ganze Zahlen.
+	 * @param d	Zu erweiterndes Array
+	 * @return	Liefert <code>true</code>, wenn das Array entsprechend erweitert werden konnte
+	 */
+	private boolean makeDensityInteger(final double[] d) {
 		final double eps=0.0000001;
 
 		if (d.length==0) return true;

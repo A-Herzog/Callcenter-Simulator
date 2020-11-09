@@ -68,11 +68,30 @@ public class AgentShiftPlanPreviewDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = -3187138325967105147L;
 
-	private static final String[] COLHEADS_DIST = {Language.tr("Statistic.Interval"),Language.tr("SimStatistic.Count")};
-	private static final String[] COLHEADS_PLAN = {Language.tr("SimStatistic.Count"),Language.tr("Editor.AgentsGroup.Shift.Start"),Language.tr("Editor.AgentsGroup.Shift.End"),Language.tr("Editor.AgentsGroup.Shift.Length"),Language.tr("Editor.AgentsGroup.SkillLevel")};
+	/**
+	 * Spaltenüberschriften für die Verteilungstabelle
+	 */
+	private static final String[] COLHEADS_DIST = {
+			Language.tr("Statistic.Interval"),
+			Language.tr("SimStatistic.Count")
+	};
 
+	/**
+	 * Spaltenüberschriften für die Schichtplantabelle
+	 */
+	private static final String[] COLHEADS_PLAN = {
+			Language.tr("SimStatistic.Count"),
+			Language.tr("Editor.AgentsGroup.Shift.Start"),
+			Language.tr("Editor.AgentsGroup.Shift.End"),
+			Language.tr("Editor.AgentsGroup.Shift.Length"),
+			Language.tr("Editor.AgentsGroup.SkillLevel")
+	};
+
+	/** Berechnete Agenten in dem Schichtplan */
 	private final List<CallcenterModelAgent> agents;
+	/** Anzeige der Verteilungstabelle */
 	private final DataDistributionImpl distribution;
+	/** Anzeige des Schichtplans */
 	private final AgentShiftPlanDiagram agentShiftPlanDiagram;
 
 	/**
@@ -182,7 +201,7 @@ public class AgentShiftPlanPreviewDialog extends JDialog {
 		tabs.setIconAt(showDistribution?3:1,Images.EDITOR_SHIFT_PLAN_RESULT_TABLE.getIcon());
 
 		content.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.SOUTH);
-		p.add(b=new JButton(Language.tr("Dialog.Button.Ok"))); b.addActionListener(new ButtonActionListener());
+		p.add(b=new JButton(Language.tr("Dialog.Button.Ok"))); b.addActionListener(e->setVisible(false));
 		b.setIcon(Images.MSGBOX_OK.getIcon());
 
 		getRootPane().setDefaultButton(b);
@@ -196,6 +215,11 @@ public class AgentShiftPlanPreviewDialog extends JDialog {
 		setVisible(true);
 	}
 
+	/**
+	 * Erstellt die Verteilungs- oder Schichtplantabelle.
+	 * @param nr	Verteilungstabelle (0) oder Schichtplantabelle (!=0)
+	 * @return	Verteilungs- oder Schichtplantabelle
+	 */
 	private String[][] getTableData(int nr) {
 		String[][] data;
 		if (nr==0) {
@@ -237,28 +261,46 @@ public class AgentShiftPlanPreviewDialog extends JDialog {
 		return data;
 	}
 
-	private class ButtonActionListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {setVisible(false);}
-	}
-
+	/**
+	 * Auszuführende Export-Aktion
+	 * @see ExportActionListener
+	 */
 	private enum ActionNr {
+		/** Verteilung als Tabelle in die Zwischenablage kopieren */
 		COPY_DIST_TABLE,
+		/** Verteilung als Tabelle speichern */
 		SAVE_DIST_TABLE,
+		/** Schichtplan als Tabelle in die Zwischenablage kopieren */
 		COPY_PLAN_TABLE,
+		/** Schichtplan als Tabelle speichern */
 		SAVE_PLAN_TABLE,
+		/** Schichtplan als Bild in die Zwischenablage kopieren */
 		COPY_PLAN_IMAGE,
+		/** Schichtplan als Bild speichern */
 		SAVE_PLAN_IMAGE
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen Export-Schaltflächen
+	 */
 	private class ExportActionListener implements ActionListener {
+		/** Auszuführende Aktion */
 		private final ActionNr nr;
 
-		public ExportActionListener(ActionNr nr) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param nr	Auszuführende Aktion
+		 */
+		public ExportActionListener(final ActionNr nr) {
 			this.nr=nr;
 		}
 
-		private Table getTable(int nr) {
+		/**
+		 * Erstellt die Verteilungs- oder Schichtplantabelle.
+		 * @param nr	Verteilungstabelle (0) oder Schichtplantabelle (!=0)
+		 * @return	Verteilungs- oder Schichtplantabelle
+		 */
+		private Table getTable(final int nr) {
 			Table table=new Table();
 			if (nr==0) {
 				/* Verteilung über den Tag */
@@ -271,8 +313,12 @@ public class AgentShiftPlanPreviewDialog extends JDialog {
 			return table;
 		}
 
+		/**
+		 * Zeigt einen Dialog zur Auswahl einer Bilddatei zum Speichern an
+		 * @return	Ausgewählter Bilddateiname oder <code>null</code>, wenn die Auswahl abgebrochen wurde
+		 */
 		private File getImageSaveName() {
-			JFileChooser fc=new JFileChooser();
+			final JFileChooser fc=new JFileChooser();
 			CommonVariables.initialDirectoryToJFileChooser(fc);
 			fc.setDialogTitle(Language.tr("FileType.Save.Image"));
 			FileFilter jpg=new FileNameExtensionFilter(Language.tr("FileType.jpeg")+" (*.jpg, *.jpeg)","jpg","jpeg");

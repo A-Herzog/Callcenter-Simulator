@@ -89,6 +89,12 @@ public abstract class CallerTableLoader extends TableLoader {
 		saveMode=newSaveMode;
 	}
 
+	/**
+	 * Trägt die Ergebnisse für den Modus "Alle Daten zu den Anrufern ausgeben" in eine Tabelle ein.
+	 * @param results	Tabelle in die die Ergebnisse eingetragen werden sollen
+	 * @return	Gibt <code>true</code> zurück, wenn die Ergebnisse erfolgreich in die Tabelle eingetragen werden konnten
+	 * @see #getResults(Table)
+	 */
 	private final boolean getResultsFull(final Table results) {
 		if (data.size()==0) return false;
 		String[] keys=data.keySet().toArray(new String[0]);
@@ -135,6 +141,12 @@ public abstract class CallerTableLoader extends TableLoader {
 		return true;
 	}
 
+	/**
+	 * Trägt die Ergebnisse für den Modus "Nur Verteilung der Erstanrufer ausgeben " in eine Tabelle ein.
+	 * @param results	Tabelle in die die Ergebnisse eingetragen werden sollen
+	 * @return	Gibt <code>true</code> zurück, wenn die Ergebnisse erfolgreich in die Tabelle eingetragen werden konnten
+	 * @see #getResults(Table)
+	 */
 	private final boolean getResultsFreshCallsOnly(final Table results) {
 		if (data.size()==0) return false;
 		String[] keys=data.keySet().toArray(new String[0]);

@@ -26,8 +26,8 @@ import simulator.LogTools;
 import simulator.RunData;
 import simulator.RunData.AgentRecord;
 import simulator.RunData.CallerRecord;
-import simulator.Statistics.KundenDaten;
 import simulator.SimulationData;
+import simulator.Statistics.KundenDaten;
 import ui.model.CallcenterRunModelCaller;
 
 /**
@@ -61,6 +61,12 @@ public final class Service2StartEvent extends Event {
 	 */
 	public short skillLevelNr;
 
+	/**
+	 * Erfasst den Abschluss eines Anrufs
+	 * @param data	Simulationsdatenobjekt
+	 * @param serviceLevelSeconds	Service-Level-Sekunden für die Wartezeit vor der Bedienung
+	 * @param callContinue	Wird der Anrufer weitergeleitet?
+	 */
 	private void logCallDone(final SimulationData data, final int serviceLevelSeconds, final boolean callContinue) {
 		if (callContinue) {
 			/* Weiterleitung wird als neuer Anruf gewertet */
@@ -125,6 +131,10 @@ public final class Service2StartEvent extends Event {
 		}
 	}
 
+	/**
+	 * Erfasst eine Weiterleitung
+	 * @param data	Simulationsdatenobjekt
+	 */
 	private void logCallContinue(SimulationData data) {
 		final KundenDaten statisticGlobal=data.statisticSimData.kundenGlobal;
 		final KundenDaten statisticClient=caller.statisticClient;

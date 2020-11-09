@@ -60,29 +60,49 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 2534499825234284466L;
 
+	/** Zu betrachtende Intervalle */
 	private DataDistributionImpl intervals;
+	/** Schwellenwerte-Datensatz in dem beim Schließen des Dialogs die Daten zurückgeschrieben werden */
 	private final CallcenterModelWarnings.WarningRecord record;
 
+	/** Liste aller Kundengruppennamen */
 	private final String[] groupsClients;
+	/** Liste aller Callcenternamen */
 	private final String[] groupsCallcenters;
 
+	/** Auswahlbox für die Kenngröße */
 	private JComboBox<String> selectType;
+	/** Auswahlbox für die Art der Zeit (im Mittel, in jedem Intervall, für bestimmte Intervalle) */
 	private JComboBox<String> selectTime;
+	/** Schaltfläche zur Auswahl der zu berücksichtigenden Intervalle */
 	private JButton timeButton;
+	/** Hinweistext zu den ausgewählten Intervallen */
 	private JLabel timeLabel;
+	/** Auswahlbox für die Art der Gruppen (über alle, für jede, für eine bestimmte) */
 	private JComboBox<String> selectGroups;
+	/** Auswahlbox für die Gruppe, für die der Schwellenwert gilt */
 	private JComboBox<String> selectGroupName;
+	/** Datenmodell für die Gruppen-Auswahlbox {@link #selectGroupName} */
 	private DefaultComboBoxModel<String> selectGroupNameModel;
+	/** Wird die Liste {@link #selectGroupName} gerade per {@link #setGroupNames()} aktualisiert? */
 	private boolean justSettingGroup=false;
+	/** Eingabefeld für Schwellenwert für gelbe Warnung */
 	private JTextField warningYellow;
+	/** Eingabefeld für Schwellenwert für rote Warnung */
 	private JTextField warningRed;
 
+	/** Kundengruppe für die dieser Datensatz gelten soll */
 	private String groupNameClients;
+	/** Agentengruppe für die dieser Datensatz gelten soll */
 	private String groupNameAgents;
 
+	/** Zeitwert ab der die gelbe Warnung gelten soll */
 	private String warningYellowTime;
+	/** Prozentwert ab der die gelbe Warnung gelten soll */
 	private String warningYellowPercent;
+	/** Zeitwert ab der die rote Warnung gelten soll */
 	private String warningRedTime;
+	/** Prozentwert ab der die rote Warnung gelten soll */
 	private String warningRedPercent;
 
 	/**
@@ -169,6 +189,11 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Fügt ein Panel als Zeile zu einem Eltern-Panel hinzu
+	 * @param p	Eltern-Panel
+	 * @param child	Hinzuzufügendes Panel
+	 */
 	private void addElement(JPanel p, JComponent child) {
 		JPanel subPanel;
 		p.add(subPanel=new JPanel(new FlowLayout(FlowLayout.LEFT,0,0)));
@@ -177,6 +202,12 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 
 	}
 
+	/**
+	 * Fügt mehrere Panels als Zeile zu einem Eltern-Panel hinzu
+	 * @param p	Eltern-Panel
+	 * @param childs	Hinzuzufügende Panels
+	 * @param horizontalStrut	Horizonaler Abstand zwischen den Panels
+	 */
 	private void addElement(JPanel p, JComponent[] childs, int horizontalStrut) {
 		JPanel subPanel;
 		p.add(subPanel=new JPanel(new FlowLayout(FlowLayout.LEFT,0,0)));
@@ -187,7 +218,12 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		}
 	}
 
-	private void addLabel(JPanel p, String name) {
+	/**
+	 * Erzeugt eine Zeile mit einem Text
+	 * @param p	Übergeordnetes Element
+	 * @param name	Text der in der neuen Zeile angezeigt werden soll
+	 */
+	private void addLabel(final JPanel p, final String name) {
 		addElement(p,new JLabel(name));
 	}
 
@@ -298,6 +334,12 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		warningRed.addActionListener(new DialogListener());
 	}
 
+	/**
+	 * Stellt gemäß der gewählten Kenngröße die Liste der Gruppen
+	 * neu ein.
+	 * @see #selectGroupNameModel
+	 * @see #selectGroupName
+	 */
 	private void setGroupNames() {
 		justSettingGroup=true;
 		selectGroupNameModel.removeAllElements();
@@ -317,7 +359,12 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		justSettingGroup=false;
 	}
 
-	private boolean checkWarningValues(boolean message) {
+	/**
+	 * Prüft die Dialogeinstellungen
+	 * @param message	Soll im Fehlerfall eine Meldung ausgegeben werden?
+	 * @return	Liefert <code>true</code>, wenn alle Einstellungen in Ordnung sind
+	 */
+	private boolean checkWarningValues(final boolean message) {
 		CallcenterModelWarnings.WarningType type=CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CALL;
 		switch (selectType.getSelectedIndex()) {
 		case 0: type=CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CALL; break;
@@ -365,6 +412,10 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		return true;
 	}
 
+	/**
+	 * Aktualisiert den Info-Label zu den gewählten Intervallen.
+	 * @see #timeLabel
+	 */
 	private void updateIntervalsLabel() {
 		timeLabel.setVisible(selectTime.getSelectedIndex()==CallcenterModelWarnings.WarningMode.WARNING_MODE_SELECTED.id);
 		long count=Math.round(intervals.sum());
@@ -450,8 +501,15 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Klicks und Veränderungen der verschiedenen Elemente des Dialogs
+	 */
 	private class DialogListener implements ActionListener, KeyListener {
-		public void changed(Object obj) {
+		/**
+		 * Auf Klick oder Tastendruck reagieren
+		 * @param obj	Auslösendes Element
+		 */
+		public void changed(final Object obj) {
 			if (obj==selectType) {
 
 				CallcenterModelWarnings.WarningType type=CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CALL;

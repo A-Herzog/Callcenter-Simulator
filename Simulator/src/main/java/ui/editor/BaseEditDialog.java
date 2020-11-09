@@ -402,6 +402,16 @@ public class BaseEditDialog extends JDialog {
 		userButtonHandlers=handlers;
 	}
 
+	/**
+	 * Fügt den Kopfbereich zu dem Dialog hinzu
+	 * @param content	Gesamter Inhaltsbereich des Dialogs
+	 * @param nameLabel	Beschriftung für das Name-Eingabefeld (kann <code>null</code> sein, dann wird kein Eingabefeld angelegt)
+	 * @param nameValue Initialer Inhalt des Name-Eingabefeldes ({@link #name})
+	 * @param activeLabel	Beschriftung für die Aktiv-Checkbox (kann <code>null</code> sein, dann wird keine Checkbox angelegt)
+	 * @param activeValue Initiale Einstellung für die Aktiv-Checkbox ({@link #active})
+	 * @see #name
+	 * @see #active
+	 */
 	private void addHeader(Container content, String nameLabel, String nameValue, String activeLabel, boolean activeValue) {
 		JPanel p;
 
@@ -429,6 +439,14 @@ public class BaseEditDialog extends JDialog {
 		}
 	}
 
+	/**
+	 * Fügt den Fußbereich zu dem Dialog hinzu
+	 * @param content	Gesamter Inhaltsbereich des Dialogs
+	 * @param xSize	Breite des Fensters
+	 * @param ySize	Höhe des Fensters
+	 * @param previous Beschriftung der Vorgänger-Schaltläche (wird ausgeblendet, wenn gleich null oder leer)
+	 * @param next Beschriftung der Nachfolger-Schaltläche (wird ausgeblendet, wenn gleich null oder leer)
+	 */
 	private void addFooter(Container content, int xSize, int ySize, String previous, String next) {
 		JPanel p;
 
@@ -764,6 +782,10 @@ public class BaseEditDialog extends JDialog {
 		return userButtons[index];
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen möglichen Schaltflächen
+	 * zum Schließen des Dialogs
+	 */
 	private class CloseButtonActionEvents implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -777,12 +799,19 @@ public class BaseEditDialog extends JDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Tastendrücke in {@link BaseEditDialog#name}
+	 * @see BaseEditDialog#name
+	 */
 	private class NameKeyListener implements KeyListener {
 		@Override public void keyTyped(KeyEvent e) {nameChange(name.getText());}
 		@Override public void keyPressed(KeyEvent e) {nameChange(name.getText());}
 		@Override public void keyReleased(KeyEvent e) {nameChange(name.getText());}
 	}
 
+	/**
+	 * Listener für die benutzerdefinierten Schaltflächen
+	 */
 	private class UserButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

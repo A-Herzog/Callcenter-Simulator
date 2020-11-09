@@ -56,10 +56,15 @@ public final class CallcenterRunModelSkillLevel {
 	/** Liste der Kundentyp spezifischen Prioritäten */
 	public int[] callerTypeScore;
 
+	/** Liste der Kundentypnamen */
 	private List<String> callerTypeNameList;
+	/** Liste der Kundentyp-spezifischen Bedienzeitverlängerung in Abhängigkeit von der Wartezeit */
 	private List<String[]> callerTypeWorkingTimeAddOnList;
+	/** Liste der Kundentyp-spezifischen Bedienzeitverteilungen */
 	private List<AbstractRealDistribution[]> callerTypeWorkingTimeList;
+	/** Liste der Kundentyp-spezifischen Nachbearbeitungszeitverteilung */
 	private List<AbstractRealDistribution[]> callerTypePostProcessingTimeList;
+	/** Liste der Kundentyp spezifischen Prioritäten */
 	private List<Integer> callerTypeScoreList;
 
 	/**

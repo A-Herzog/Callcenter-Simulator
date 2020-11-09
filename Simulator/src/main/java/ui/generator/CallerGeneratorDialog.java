@@ -48,6 +48,7 @@ public final class CallerGeneratorDialog extends GeneratorBaseDialog {
 
 	/** Liste der Namen der verfügbaren Kundengruppen */
 	private final List<String> callerNames;
+	/** Auswahl welche Spalten für das verwendet werden sollen */
 	private List<JComboBox<String>> select;
 
 	/**

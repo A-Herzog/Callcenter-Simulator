@@ -81,27 +81,61 @@ public class NewModelWizard extends JDialog {
 	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
 
+	/** Panel in dem die einzelnen Assistenten-Seiten angezeigt werden sollen */
 	private final JPanel main;
+	/** Index der aktuell aktiven Seite */
 	private int cardNr=-1;
+	/** Zeigt den Informationstext zu der jeweiligen Seite oberhalb des Konfigurationsbereichs an. */
 	private JTextPane info=null;
+	/** Schaltfläche "Ok" */
 	private final JButton okButton;
+	/** Schaltfläche "Abbrechen" */
 	private final JButton cancelButton;
+	/** Schaltfläche "Hilfe" */
 	private final JButton helpButton;
+	/** Schaltfläche "Zurück" */
 	private final JButton previousButton;
+	/** Schaltfläche "Weiter" */
 	private final JButton nextButton;
 
+	/* Seite 1 */
+
+	/** Verteilung der Erstanrufer */
 	private JDataDistributionEditPanel freshCalls;
+
+	/* Seite 2 */
+
+	/** Option: Kunden geben das Warten nie auf */
 	private JRadioButton waitingTimeTypeInfinite;
+	/** Option: Mittlere Wartezeittoleranz der Kunden */
 	private JRadioButton waitingTimeTypeValue;
+	/** Eingabefeld für die mittlere Wartezeittoleranz */
 	private JTextField waitingTimeValue;
+	/** Option: Anteil der Warteabbrecher, der später einen neuen Versuch tätigt */
 	private JCheckBox retryTypeValue;
+	/** Eingabefeld für die Wiederholwahrscheinlichkeit */
 	private JTextField retryTimeValue;
+
+	/* Seite 3 */
+
+	/** Option: Anteil der Kunden, der nach dem Gespräch weitergeleitet wird */
 	private JCheckBox continueTypeValue;
+	/** Eingabefeld für die Weiterleitungswahrscheinlichkeit */
 	private JTextField continueProbabilityValue;
+
+	/* Seite 4 */
+
+	/** Eingabefeld für die mittlere Bediendauer */
 	private JTextField workingTime1;
+	/** Eingabefeld für die mittlere Nachbearbeitungszeit */
 	private JTextField workingTime2;
+	/** Eingabefeld für die geplante Auslastung der Agenten */
 	private JTextField workLoad;
 
+	/**
+	 * Neues Callcenter-Modell
+	 * @see #getModel()
+	 */
 	private CallcenterModel model=null;
 
 	/**
@@ -159,6 +193,9 @@ public class NewModelWizard extends JDialog {
 		setPage(0);
 	}
 
+	/**
+	 * Erstellt die eigentliche GUI.
+	 */
 	private void buildContent() {
 		JPanel page,p,p2;
 
@@ -249,6 +286,10 @@ public class NewModelWizard extends JDialog {
 		return rootPane;
 	}
 
+	/**
+	 * Reagiert auf F1- und Escape-Tastendrücke
+	 * auf dem Dialog selber.
+	 */
 	private class SpecialKeyListener extends AbstractAction {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -276,6 +317,11 @@ public class NewModelWizard extends JDialog {
 		}
 	}
 
+	/**
+	 * Wechselt die aktuelle Seite in dem Assistenten-Dialog.
+	 * @param nr	Anzuzeigende Seite (0..3)
+	 * @return	Gibt <code>true</code> zurück, wenn die Einstellungen auf der bisherigen Seite in Ordnung sind und somit ein Seitenwechsel möglich war
+	 */
 	private boolean setPage(int nr) {
 		Integer I;
 		Double D;
@@ -362,6 +408,11 @@ public class NewModelWizard extends JDialog {
 		return true;
 	}
 
+	/**
+	 * Erstellt auf Basis der Dialogeinstellungen das Callcenter-Modell.
+	 * @return	Liefert im Erfolgsfall <code>true</code>
+	 * @see #model
+	 */
 	private boolean buildModel() {
 		if (!setPage(cardNr)) return false;
 
@@ -446,6 +497,9 @@ public class NewModelWizard extends JDialog {
 		return true;
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen in dem Dialog.
+	 */
 	private class ActionEvents implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

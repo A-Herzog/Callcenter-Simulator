@@ -65,7 +65,7 @@ public final class Simulator extends SimulatorBase implements CallcenterSimulato
 	 * @param runModel	Beinhaltet das aktuell zu simulierende Laufzeit-Modell
 	 * @return	Gibt zurück, wie viele Threads unter den als Parameter angegebenen Bedingungen verwendet werden sollen.
 	 */
-	private static int getThreadCount(File logFile, CallcenterRunModel runModel) {
+	private static int getThreadCount(final File logFile, final CallcenterRunModel runModel) {
 		if (logFile!=null) return 1;
 
 		/* Mehr Speicher für das JRE ist per -Xmx6G einstellbar, der Simulator verwendet dann auch entsprechend mehr. */
@@ -77,6 +77,13 @@ public final class Simulator extends SimulatorBase implements CallcenterSimulato
 		return Math.min(getThreadCountByAgents(MB,countKiloAgents),getThreadCountByCalls(MB,countKiloCalls));
 	}
 
+	/**
+	 * Berechnet die maximale Thread-Anzahl mit Blick auf die Anzahl an Agenten
+	 * @param MB	Verfügbarer Arbeitsspeicher (in MB)
+	 * @param countKiloAgents	Anzahl an Agenten (in 1000ern)
+	 * @return	Maximale Thread-Anzahl
+	 * @see #getThreadCount(File, CallcenterRunModel)
+	 */
 	private static int getThreadCountByAgents(long MB, int countKiloAgents) {
 		if (MB<3600) {
 			if (countKiloAgents>=192) return 1;
@@ -107,6 +114,13 @@ public final class Simulator extends SimulatorBase implements CallcenterSimulato
 		return 64;
 	}
 
+	/**
+	 * Berechnet die maximale Thread-Anzahl mit Blick auf die Anzahl an Agenten
+	 * @param MB	Verfügbarer Arbeitsspeicher (in MB)
+	 * @param countKiloCalls	Anzahl an Anrufern (in 1000ern)
+	 * @return	Maximale Thread-Anzahl
+	 * @see #getThreadCount(File, CallcenterRunModel)
+	 */
 	private static int getThreadCountByCalls(long MB, int countKiloCalls) {
 		if (MB<3600) {
 			if (countKiloCalls>=7680) return 1;
@@ -169,9 +183,24 @@ public final class Simulator extends SimulatorBase implements CallcenterSimulato
 		return data;
 	}
 
+	/**
+	 * Adresse des eigenen Rechners (um diese nicht immer wieder abrufen zu müssen)
+	 * @see #collectStatisticIntern()
+	 */
 	private static String serverAddress=null;
+
+	/**
+	 * Betriebssystem-Daten zum eigenen Rechner (um diese nicht immer wieder abrufen zu müssen)
+	 * @see #collectStatisticIntern()
+	 */
 	private static String serverOS=null;
 
+	/**
+	 * Führt nach dem Ende der Simulation die Statistikdaten der einzelnen Threads zusammen und
+	 * gibt diese als gemeinsames Objekt des Typs Statistics zurück.
+	 * @return Statistik
+	 * @see #collectStatistic()
+	 */
 	private Statistics collectStatisticIntern() {
 		if (threads==null || threads.length==0 || threads[0]==null || threads[0].simData==null) return null;
 		Statistics statistics=((SimulationData)threads[0].simData).statisticSimData;

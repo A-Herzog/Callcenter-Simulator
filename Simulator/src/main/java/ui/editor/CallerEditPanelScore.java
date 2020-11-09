@@ -43,9 +43,13 @@ public class CallerEditPanelScore extends CallerEditPanel {
 	 */
 	private static final long serialVersionUID = -7843545974839816989L;
 
+	/** Eingabefeld für den Basis-Score */
 	private final JTextField scoreBase;
+	/** Eingabefeld für den Score-Wert pro Wartesekunde */
 	private final JTextField scoreSecond;
+	/** Eingabefeld für den Score-Aufschlag bei Weiterleitungen */
 	private final JTextField scoreContinued;
+	/** Zeigt eine Warnung an, wenn der Wartezeit-Score-Wert {@link #scoreSecond} gleich 0 ist. */
 	private JLabel scoreWarning;
 
 	/**

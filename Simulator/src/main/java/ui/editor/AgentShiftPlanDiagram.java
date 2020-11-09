@@ -49,6 +49,7 @@ public class AgentShiftPlanDiagram extends JPanel implements mathtools.distribut
 
 	/** Liste der Agenten, die in dem Plan berücksichtigt werden sollen */
 	private final List<CallcenterModelAgent> agents;
+	/** Anzahl an individuellen Agenten in dem Schichtplan */
 	private int agentCount=0;
 
 	/**
@@ -61,7 +62,13 @@ public class AgentShiftPlanDiagram extends JPanel implements mathtools.distribut
 		if (translatedAgents!=null) for (int i=0;i<translatedAgents.size();i++) agentCount+=translatedAgents.get(i).count;
 	}
 
-	private Rectangle paintDiagrammRect(Graphics g, Rectangle r) {
+	/**
+	 * Zeichnet den Rahmen für das Diagramm
+	 * @param g Grafik-Ausgabeobjekt
+	 * @param r	Gesamter Zeichenbereich
+	 * @return	Zeichenbereich für den Diagramminhalt
+	 */
+	private Rectangle paintDiagrammRect(final Graphics g, final Rectangle r) {
 		g.setColor(Color.white);
 		g.fillRect(0,0,r.width,r.height);
 
@@ -90,6 +97,11 @@ public class AgentShiftPlanDiagram extends JPanel implements mathtools.distribut
 		return dataRect;
 	}
 
+	/**
+	 * Zeichnet den Inhalt des Diagramms
+	 * @param g	Grafik-Ausgabeobjekt
+	 * @param dataRect	Zeichenbereich für den Diagramminhalt
+	 */
 	private void paintDiagramm(Graphics g, Rectangle dataRect) {
 		if (agents==null || agents.size()==0) return;
 
@@ -134,14 +146,25 @@ public class AgentShiftPlanDiagram extends JPanel implements mathtools.distribut
 	 *
 	 */
 	private class TransferableImage implements Transferable{
-		public TransferableImage(Image image) {theImage=image;}
+		/**
+		 * Auszugebendes Bild
+		 */
+		private final Image theImage;
+
+		/**
+		 * Konstruktor der Klasse
+		 * @param image	Auszugebendes Bild
+		 */
+		public TransferableImage(Image image) {
+			theImage=image;
+		}
+
 		@Override
 		public DataFlavor[] getTransferDataFlavors(){return new DataFlavor[]{DataFlavor.imageFlavor};}
 		@Override
 		public boolean isDataFlavorSupported(DataFlavor flavor){return flavor.equals(DataFlavor.imageFlavor);}
 		@Override
 		public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException{if (flavor.equals(DataFlavor.imageFlavor)) return theImage; else throw new UnsupportedFlavorException(flavor);}
-		private final Image theImage;
 	}
 
 	/**

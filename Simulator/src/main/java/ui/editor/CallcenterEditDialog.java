@@ -86,49 +86,127 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = -4444119481485832099L;
 
+	/** Index dieses Callcenters in der Liste aller Callcenter */
 	private final int indexForThisCallcenter;
 	/** Listen mit allen Callcenter-Namen (um doppelte Namen zu verhindern) */
 	private final String[] callcenterNames;
 
+	/** Objekt vom Typ <code>CallcenterModelCallcenter</code> welches die Callcenter-Daten enthält (beim Klicken auf "Ok" wird auch dieses Objekt verändert) */
 	private final CallcenterModelCallcenter callcenter;
+	/** Objekt vom Typ <code>CallcenterModel</code> welches das globale Modell enthält */
 	private final CallcenterModel model;
 
+	/**
+	 * Liste der Listener die über Skill-Level-Namensänderungen benachrichtigt werden sollen
+	 * @see SkillLevelRenameListener
+	 */
 	private final List<RenameListener> listener;
 
-	private List<CallcenterModelAgent> agents;
-	private DefaultListModel<CallcenterModelAgent> agentListData;
-	private JList<CallcenterModelAgent> agentList;
+	/* Dialogseite "Agenten" */
+
+	/** Schaltfläche "Hinzufügen" */
 	private JButton agentAddButton;
+	/** Schaltfläche "Bearbeiten" */
 	private JButton agentEditButton;
+	/** Schaltfläche "Löschen" */
 	private JButton agentDeleteButton;
+	/** Schaltfläche "Kopieren" */
 	private JButton agentCopyButton;
+	/** Schaltfläche "Nach oben" */
 	private JButton agentUpButton;
+	/** Schaltfläche "Nach unten" */
 	private JButton agentDownButton;
+	/** Schaltfläche "Tools" */
 	private JButton agentToolsButton;
 
+	/** Liste der Agentengruppen in diesem Callcenter */
+	private List<CallcenterModelAgent> agents;
+	/** Listenmodell für {@link #agentList} zur Darstellung der Agentengruppen in diesem Callcenter  */
+	private DefaultListModel<CallcenterModelAgent> agentListData;
+	/** Listendarstellung der Agentengruppen in diesem Callcenter */
+	private JList<CallcenterModelAgent> agentList;
+
+	/* Dialogseite "Callcenter-Parameter" */
+
+	/** Eingabefeld für die technische Bereitzeit */
 	private JTextField technicalFreeTime;
+	/** Option: Die technische Bereitzeit wird als Wartezeit empfunden */
 	private JCheckBox technicalFreeTimeIsWaitingTime;
+	/** Eingabefeld für den Score des Callcenters*/
 	private JTextField score;
+	/** Eingabefeld "Faktor für die Agentenscore zur Berücksichtigung der freien Zeit seit dem letzten Anruf" */
 	private JTextField agentScoreFreeTimeSinceLastCall;
+	/** Eingabefeld "Faktor für die Agentenscore zur Berücksichtigung des Leerlaufanteils" */
 	private JTextField agentScoreFreeTimePart;
+	/** "Produktivität der Agentengruppen in diesem Callcenter"-Schaltfläche */
 	private JButton efficiency;
+	/** "Krankheitsbedingter Zuschlag in diesem Callcenter"-Schaltfläche */
 	private JButton addition;
 
-	private final JPopupMenu popupMenu2;
-	private final JMenuItem[] applyThisPage, applyAllPages;
+	/* Dialogseite "Mindestwartezeiten" */
 
-	private JPopupMenu popupMenu;
-	private JMenuItem popupItem1, popupItem2a, popupItem2b, popupItem2c, popupItem3, popupItem4, popupItem5, popupItem6, popupItem7;
-
+	/** Eingabefelder für die Mindestwartezeiten nach Kundentypen */
 	private JTextField[] waitingTimeByType;
+
+	/** Popupmenü für die Kosten-Dialogseite */
+	private final JPopupMenu popupMenu2;
+	/** Menüpunkte zum Übertragen der Einstellungen dieser Dialogseite von dieser Gruppe zu anderen Gruppen */
+	private final JMenuItem[] applyThisPage;
+	/** Menüpunkte zum Übertragen der Einstellungen aller Dialogseiten von dieser Gruppe zu anderen Gruppen */
+	private final JMenuItem[] applyAllPages;
+
+	/** Popupmenü zum Verändern der Agentenanzahlen in allen Intervallen ({@link #agentToolsButton}) */
+	private JPopupMenu popupMenu;
+	/** Menüpunkt "Agentenanzahl in allen Intervallen in allen Gruppen ändern" */
+	private JMenuItem popupItem1;
+	/** Menüpunkt "Agentenarbeitszeiten aller Agentengruppen auf Stundenbasis global laden" */
+	private JMenuItem popupItem2a;
+	/** Menüpunkt "Agentenarbeitszeiten aller Agentengruppen auf Halbstundenbasis global laden" */
+	private JMenuItem popupItem2b;
+	/** Menüpunkt "Agentenarbeitszeiten aller Agentengruppen auf 15-Minuten-Basis global laden" */
+	private JMenuItem popupItem2c;
+	/** Menüpunkt "Produktivität aller Agentengruppen global laden" */
+	private JMenuItem popupItem3;
+	/** Menüpunkt "Krankheitsbedingten Zuschlag aller Agentengruppen global laden" */
+	private JMenuItem popupItem4;
+	/** Menüpunkt "Produktivität aller Agentengruppen in diesem Callcenter einstellen" */
+	private JMenuItem popupItem5;
+	/** Menüpunkt "Krankheitsbedingten Zuschlag aller Agentengruppen in diesem Callcenter einstellen" */
+	private JMenuItem popupItem6;
+	/** Menüpunkt "Agentengruppen mit festen Arbeitszeiten aus Tabelle laden" */
+	private JMenuItem popupItem7;
 
 	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
 
+	/**
+	 * Dialog zum Laden von Agentenarbeitszeiten auf Stundenbasis öffnen?
+	 * @see #isOpenAgentsGenerator24()
+	 */
 	private boolean openAgentsGenerator24=false;
+
+	/**
+	 * Dialog zum Laden von Agentenarbeitszeiten auf Halbstundenbasis öffnen?
+	 * @see #isOpenAgentsGenerator48()
+	 */
 	private boolean openAgentsGenerator48=false;
+
+	/**
+	 * Dialog zum Laden von Agentenarbeitszeiten auf Viertelstundenbasis öffnen?
+	 * @see #isOpenAgentsGenerator96()
+	 */
 	private boolean openAgentsGenerator96=false;
+
+	/**
+	 * Dialog zum Laden von Agentenproduktivitäten öffnen?
+	 * @see #isOpenAgentsEfficiencyGenerator()
+	 */
 	private boolean openAgentsEfficiencyGenerator=false;
+
+	/**
+	 * Dialog zum Laden von krankheitsbedingten Zuschlägen öffnen?
+	 * @see #isOpenAgentsAdditionGenerator()
+	 */
 	private boolean openAgentsAdditionGenerator=false;
 
 	/**
@@ -156,7 +234,12 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		applyAllPages=new JMenuItem[callcenterNames.length+1];
 		if (!readOnly && callcenterNames.length>1) {
 			buildMenu();
-			addUserButtons(new String[]{""}, new String[]{Language.tr("Editor.Callcenter.Apply.Info")}, new URL[]{Images.GENERAL_TOOLS.getURL()}, new Runnable[]{new ToolsButtonHandler()});
+			addUserButtons(
+					new String[]{""},
+					new String[]{Language.tr("Editor.Callcenter.Apply.Info")},
+					new URL[]{Images.GENERAL_TOOLS.getURL()},
+					new Runnable[]{()->{final JButton b=getUserButton(0); popupMenu2.show(b,0,b.getHeight());}}
+					);
 		}
 
 		String previousText=null;
@@ -172,6 +255,10 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Erstellt das Menü für die Tools-Schaltfläche (zum Übertragen der Daten zu den anderen Gruppen)
+	 * @see #popupMenu2
+	 */
 	private void buildMenu() {
 		final Icon callcenter=Images.EDITOR_CALLCENTER.getIcon();
 
@@ -433,6 +520,11 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		tabs.setIconAt(2,Images.EDITOR_MINIMUM_WAITING_TIMES.getIcon());
 	}
 
+	/**
+	 * Aktualisiert die Darstellung der Agentengruppen
+	 * @see #agentList
+	 * @see #agentListData
+	 */
 	private void updateAgentsList() {
 		int selected=agentList.getSelectedIndex();
 
@@ -444,6 +536,11 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		if (agentListData.size()>0)	agentList.setSelectedIndex(Math.min(agentListData.size()-1,selected));
 	}
 
+	/**
+	 * Prüft den Inhalt einer Dialogseite
+	 * @param index	Index der zu prüfenden Dialogseite
+	 * @return	Liefert im Erfolgsfall <code>null</code> und im Fehlerfall ein zwei-elementiges Array aus Titel und Inhalt der Fehlermeldung
+	 */
 	private String[] plainCheckPage(int index) {
 		String[] error=null;
 
@@ -509,7 +606,12 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		return true;
 	}
 
-	private void storePage(CallcenterModelCallcenter callcenter, int index) {
+	/**
+	 * Speichert den Inhalt einer Dialogseite in einem Callcenter-Objekt
+	 * @param callcenter	Callcenter-Objekt in das die Daten eingetragen werden sollen
+	 * @param index	Index der Dialogseite
+	 */
+	private void storePage(final CallcenterModelCallcenter callcenter, final int index) {
 		switch (index) {
 		case 1:
 			/* Parameter */
@@ -548,6 +650,11 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		for (int i=1;i<=2;i++) storePage(callcenter,i);
 	}
 
+	/**
+	 * Befehl: Agentengruppe hinzufügen
+	 * @see #agentList
+	 * @see #agentListData
+	 */
 	private void agentAdd() {
 		CallcenterModelAgent agent=new CallcenterModelAgent();
 		if (model.skills.size()>0) agent.skillLevel=model.skills.get(0).name;
@@ -560,6 +667,11 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		agentList.setSelectedIndex(agentListData.getSize()-1);
 	}
 
+	/**
+	 * Befehl: Agentengruppe bearbeiten
+	 * @see #agentList
+	 * @see #agentListData
+	 */
 	private void agentEdit() {
 		if (agentList.getSelectedIndex()<0) return;
 		int index=agentList.getSelectedIndex();
@@ -588,6 +700,11 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		if (editCount>0) updateAgentsList();
 	}
 
+	/**
+	 * Befehl: Agentengruppe löschen
+	 * @see #agentList
+	 * @see #agentListData
+	 */
 	private void agentDelete() {
 		if (agentList.getSelectedIndex()<0) return;
 		if (!MsgBox.confirm(
@@ -601,11 +718,21 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		updateAgentsList();
 	}
 
+	/**
+	 * Befehl: Aktivitätsstatus einer Agentengruppe umschalten
+	 * @see #agentList
+	 * @see #agentListData
+	 */
 	private void agentToggleActive() {
 		agents.get(agentList.getSelectedIndex()).active=!agents.get(agentList.getSelectedIndex()).active;
 		updateAgentsList();
 	}
 
+	/**
+	 * Befehl: Agentengruppe kopieren
+	 * @see #agentList
+	 * @see #agentListData
+	 */
 	private void agentCopy() {
 		if (agentList.getSelectedIndex()<0) return;
 
@@ -665,6 +792,11 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		agentList.setSelectedIndex(agentListData.getSize()-1);
 	}
 
+	/**
+	 * Befehl: Agentengruppe in der Liste nach oben verschieben
+	 * @see #agentList
+	 * @see #agentListData
+	 */
 	private void agentMoveUp() {
 		int selected=agentList.getSelectedIndex();
 		if (selected<1) return;
@@ -676,6 +808,11 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		updateAgentsList();
 	}
 
+	/**
+	 * Befehl: Agentengruppe in der Liste nach unten verschieben
+	 * @see #agentList
+	 * @see #agentListData
+	 */
 	private void agentMoveDown() {
 		int selected=agentList.getSelectedIndex();
 		if (selected<0 || selected==agentList.getModel().getSize()-1) return;
@@ -687,7 +824,12 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		updateAgentsList();
 	}
 
-	private int[][] loadFixedTimedAgentsFromTableSheet(Table table) {
+	/**
+	 * Lädt Agentengruppen mit festen Arbeitszeiten einer Tabelle.
+	 * @param table	Tabelle aus der die Daten geladen werden sollen
+	 * @return	Array mit jeweils einem Eintrag pro Gruppe (jeweils ein 3-elementiges Array aus Anzahl, Startzeit, Endzeit)
+	 */
+	private int[][] loadFixedTimedAgentsFromTableSheet(final Table table) {
 		if (table.getSize(0)==0 || table.getSize(1)<2) return null;
 
 		List<Integer> count=new ArrayList<Integer>();
@@ -732,6 +874,10 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		return results;
 	}
 
+	/**
+	 * Lädt Agentengruppen mit festen Arbeitszeiten aus auszuwählenden einer Tabelle.
+	 * @return	Liefert im Erfolgsfall <code>true</code>
+	 */
 	private boolean loadFixedTimedAgentsFromTable() {
 		File tableFile=MultiTable.showLoadDialog(this,Language.tr("Editor.Callcenter.Tools.LoadFixedGroupsFromFile.LoadTableTitle"));
 		if (tableFile==null) return false;
@@ -767,6 +913,10 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		return false;
 	}
 
+	/**
+	 * Befehl: Agentenanzahl in allen Intervallen in allen Gruppen ändern
+	 * @see #popupItem1
+	 */
 	private final void changeAgentCount() {
 		String[] countNames=new String[agents.size()];
 		int[] countValues=new int[agents.size()];
@@ -816,7 +966,12 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		updateAgentsList();
 	}
 
-	private boolean checkPagesForApply(int page) {
+	/**
+	 * Können die Daten einer bestimmten Seite an auf Callcenter übertragen werden?
+	 * @param page	Zu prüfende Seite
+	 * @return	Liefert im Erfolgsfall <code>true</code> (im Fehlerfall wird eine Fehlermeldung ausgegeben)
+	 */
+	private boolean checkPagesForApply(final int page) {
 		String[] error=null;
 		for (int i=1;i<=2;i++) {
 			String[] e=plainCheckPage(i);
@@ -840,12 +995,20 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		return true;
 	}
 
-	private void applyPage(int index, int callcenter) {
+	/**
+	 * Überträgt die Einstellungen aus einer Dialogseite an ein anderes Callcenter
+	 * @param index	Index der Dialogseite deren Einstellungen übertragen werden sollen
+	 * @param callcenter	Index des Callcenters in das die Einstellungen eingetragen werden sollen
+	 */
+	private void applyPage(final int index, final int callcenter) {
 		for (int i=0;i<model.callcenter.size();i++) if (callcenter==i || (callcenter==-1 && i!=indexForThisCallcenter)) {
 			storePage(model.callcenter.get(i),index);
 		}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen in diesem Dialog
+	 */
 	private class ButtonActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -901,6 +1064,10 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Ereignisse für die Listendarstellung {@link CallcenterEditDialog#agentList}
+	 * @see CallcenterEditDialog#agentList
+	 */
 	private class ListListener implements KeyListener,MouseListener,ListSelectionListener {
 		@Override
 		public void keyTyped(KeyEvent e) {}
@@ -915,6 +1082,11 @@ public class CallcenterEditDialog extends BaseEditDialog {
 			if (e.getKeyCode()==KeyEvent.VK_DOWN && (e.getModifiersEx() & InputEvent.CTRL_DOWN_MASK)!=0) {agentMoveDown(); e.consume();}
 		}
 
+		/**
+		 * Löst ggf. ein Popupmenü zu einem Eintrag in der Agentengruppen-Liste aus.
+		 * @see CallcenterEditDialog#agents
+		 * @param e	Maus-Ereignis
+		 */
 		private void mousePopup(MouseEvent e) {
 			if (!e.isPopupTrigger()) return;
 
@@ -939,7 +1111,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 			}
 
 			JMenuItem item;
-			JPopupMenu popup=new JPopupMenu();
+			final JPopupMenu popup=new JPopupMenu();
 
 			if (activateListener!=null) {
 				popup.add(item=new JCheckBoxMenuItem(name,active));
@@ -982,11 +1154,23 @@ public class CallcenterEditDialog extends BaseEditDialog {
 			popup.show(e.getComponent(),e.getX(), e.getY());
 		}
 
+		/**
+		 * Reagiert auf einen Eintrag in dem Agentengruppen-Listen-Popupmenü
+		 * @see CallcenterEditDialog#agents
+		 * @see ListListener#mousePopup(MouseEvent)
+		 */
 		private class PopupActionListener implements ActionListener {
+			/** Nummer des angeklickten Menüpunktes */
 			private final int buttonNr;
+			/** Gewählte Zeile in der Liste */
 			private final int index;
 
-			public PopupActionListener(int buttonNr, int index) {
+			/**
+			 * Konstruktor der Klasse
+			 * @param buttonNr	Nummer des angeklickten Menüpunktes
+			 * @param index	Gewählte Zeile in der Liste
+			 */
+			public PopupActionListener(final int buttonNr, final int index) {
 				this.buttonNr=buttonNr;
 				this.index=index;
 			}
@@ -1029,6 +1213,12 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert darauf, wenn in {@link SkillLevelEditDialog}
+	 * ein Skill-Level umbenannt wurde.
+	 * @see SkillLevelEditDialog
+	 * @see AgentEditDialog#editSkillLevel()
+	 */
 	private class SkillLevelRenameListener implements RenameListener {
 		@Override
 		public void renamed(RenameEvent e) {
@@ -1038,6 +1228,10 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Renderer für {@link CallcenterEditDialog#agentList}
+	 * @see CallcenterEditDialog#agentList
+	 */
 	private class AgentListRenderer extends AdvancedListCellRenderer {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -1098,7 +1292,18 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Tastendrücke in den verschiedenen
+	 * Eingabefeldern des Dialogs
+	 */
 	private class DialogElementListener implements KeyListener {
+		/**
+		 * Reagiert auf ein Tastenereignis
+		 * @param e	Tastenereignis
+		 * @see #keyTyped(KeyEvent)
+		 * @see #keyPressed(KeyEvent)
+		 * @see #keyReleased(KeyEvent)
+		 */
 		private void keyEvent(KeyEvent e) {
 			NumberTools.getNotNegativeInteger(technicalFreeTime,true);
 			NumberTools.getNotNegativeInteger(score,true);
@@ -1123,14 +1328,13 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		}
 	}
 
-	private class ToolsButtonHandler implements Runnable{
-		@Override
-		public void run() {
-			final JButton b=getUserButton(0);
-			popupMenu2.show(b,0,b.getHeight());
-		}
-	}
-
+	/**
+	 * Reagiert auf Klicks im {@link CallcenterEditDialog#popupMenu2}
+	 * auf die Menüpunkte.
+	 * @see CallcenterEditDialog#popupMenu2
+	 * @see CallcenterEditDialog#applyThisPage
+	 * @see CallcenterEditDialog#applyAllPages
+	 */
 	private class PopupActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

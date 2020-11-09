@@ -32,6 +32,10 @@ import ui.model.CallcenterRunModel;
  * @version 1.0
  */
 public final class BackgroundSimulator {
+	/**
+	 * Maximalanzahl an zu simulierenden Anrufen pro CPU-Kern,
+	 * damit eine Hintergrundsimulation erfolgen darf.
+	 */
 	private final static int backgroundMaxCallerDaysPerCore=1000000;
 
 	/** Runnable über das aufgerufen wird, wenn ein neues Modell angefordert werden soll. */
@@ -39,12 +43,19 @@ public final class BackgroundSimulator {
 	/** Consumer, der mögliche Fehlermeldungen aufnimmt */
 	private final Consumer<String> errorInfo;
 
+	/** Hinterlegtes Editor-Modell, welches mit neu übergebenen Modellen verglichen wird */
 	private CallcenterModel editModel;
+	/** Laufzeit-Modell für die Hintergrundsimulation */
 	private CallcenterRunModel runModel;
+	/** Simulator-Objekt für die Hintergrundsimulation */
 	private CallcenterSimulatorInterface simulator;
+	/** Timer dessen Aktionsmethode in regelmäßigen Abständen prüft, ob sich das Modell verändert hat */
 	private Timer updateTimer;
+	/** Sichert parallele Zugriffe auf {@link #simulator} ab */
 	private final Lock simMutex;
+	/** Legt fest, dass momentan keine Hintergrundsimulation gestartet werden darf */
 	private boolean noStart=false;
+	/** Soll nur eine Modellprüfung (<code>false</code>) oder eine vollständige Simulation (<code>true</code>) im Hintergrund durchgeführt werden? */
 	private boolean fullBackgroundSimulation=true;
 
 	/** Anzahl der verfügbaren CPU-Kerne */
@@ -83,7 +94,12 @@ public final class BackgroundSimulator {
 		fullBackgroundSimulation=ok;
 
 		updateTimer=new Timer("Background-Check",true);
-		updateTimer.schedule(new UpdateTimerTask(),1000,1000);
+		updateTimer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				modelGetter.run();
+			}
+		},1000,1000);
 
 		setErrorLabel(null);
 	}
@@ -103,7 +119,11 @@ public final class BackgroundSimulator {
 		}
 	}
 
-	private void setErrorLabel(String s) {
+	/**
+	 * Liefert über {@link #errorInfo} eine Fehlermeldung aus.
+	 * @param s	Auszugebende Fehlermeldung (<code>null</code> für "kein Fehler")
+	 */
+	private void setErrorLabel(final String s) {
 		if (errorInfo!=null) errorInfo.accept(s);
 	}
 
@@ -223,12 +243,5 @@ public final class BackgroundSimulator {
 		CallcenterModel model=this.editModel;
 		this.editModel=null;
 		setModel(model);
-	}
-
-	private final class UpdateTimerTask extends TimerTask {
-		@Override
-		public void run() {
-			modelGetter.run();
-		}
 	}
 }

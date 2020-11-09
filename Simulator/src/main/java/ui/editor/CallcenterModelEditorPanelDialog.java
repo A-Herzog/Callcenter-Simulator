@@ -68,17 +68,28 @@ public class CallcenterModelEditorPanelDialog extends JFrame {
 	private JButton saveButton;
 	/** "Laden"-Schaltfl‰che */
 	private JButton loadButton;
+	/** "Statistik speichern"-Schaltfl‰che */
 	private JButton saveStatisticButton=null;
+	/** "Modell-Editor"-Schaltfl‰che */
 	private JButton editorButton=null;
+	/** "Simulationsergebnisse"-Schaltfl‰che */
 	private JButton statistikButton=null;
 	/** "Hilfe"-Schaltfl‰che */
 	private JButton helpButton;
+	/** Registerseite in dem Dialog */
 	private JPanel tabs;
+	/** Modell-Editor */
 	private CallcenterModelEditorPanel modelPanel;
+	/** Statistikansicht */
 	private StatisticPanel statisticPanel;
 
+	/** Callback das aufgerufen wird, wenn das Fenster geschlossen werden soll, um die GUI des unterliegenden Fensters wieder zu aktivieren */
 	private Runnable closeNotify;
 
+	/**
+	 * Wurde ausgew‰hlt, dass das aktuell angezeigte Modell in den Editor geladen werden soll?
+	 * @see #getLoadModelToEditor()
+	 */
 	private boolean loadModelToEditor=false;
 
 	/**
@@ -230,11 +241,18 @@ public class CallcenterModelEditorPanelDialog extends JFrame {
 		this.closeNotify=closeNotify;
 	}
 
+	/**
+	 * Befehl: Modell speichern.
+	 */
 	private void saveModel() {
 		String s=modelPanel.saveModel(null);
 		if (s!=null) MsgBox.error(this,Language.tr("Window.SaveModelError.Title"),s);
 	}
 
+	/**
+	 * Stellt die Betriebsart des Dialogs ein.
+	 * @param mode	Betriebsart (0: Modell-Editor, 1: Statistikansicht)
+	 */
 	private void setGUIMode(int mode) {
 		if (editorButton!=null) {
 			editorButton.setSelected(mode==0);
@@ -249,12 +267,19 @@ public class CallcenterModelEditorPanelDialog extends JFrame {
 		((CardLayout)tabs.getLayout()).show(tabs,s);
 	}
 
+	/**
+	 * Befehl: Fenster schlieﬂen.
+	 */
+
 	private void doClose() {
 		if (closeNotify!=null) closeNotify.run();
 		setVisible(false);
 		dispose();
 	}
 
+	/**
+	 * Befehl: Hilfe aufrufen.
+	 */
 	private void showHelp() {
 		if (editorButton.isSelected()) {
 			switch (modelPanel.getSelectedTabIndex()) {

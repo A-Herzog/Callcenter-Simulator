@@ -39,7 +39,7 @@ import mathtools.NumberTools;
 /**
  * In diesem Dialog können optionale Kundentyp-Änderungen bei
  * Anrufwiederholungen konfiguriert werden.
- * @author Alexander Herzg
+ * @author Alexander Herzog
  * @see CallerEditPanelRetryProbability
  */
 public class CallerRetryChangeDialog extends BaseEditDialog {
@@ -49,10 +49,14 @@ public class CallerRetryChangeDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 8911014010474864588L;
 
+	/** Liste mit Namen der neuen Kundentypen */
 	private final List<String> names;
+	/** Liste mit den zu {@link #names} gehörenden Raten */
 	private final List<Double> rates;
 
+	/** Option: Kundentyp vor Wahlwiederholung gemäß folgenden Raten neu festlegen */
 	private JCheckBox activeAdvancedMode;
+	/** Eingabefelder mit den Raten mit denen sich der Kundentyp zu {@link #names} ändert */
 	private final JTextField[] rateInput;
 
 	/**
@@ -120,6 +124,10 @@ public class CallerRetryChangeDialog extends BaseEditDialog {
 		for (int i=0;i<rateInput.length;i++) rates.set(i,(activeAdvancedMode.isSelected())?NumberTools.getNotNegativeDouble(rateInput[i],true):0.0);
 	}
 
+	/**
+	 * Reagiert auf Tastendrücke in {@link CallerRetryChangeDialog#rateInput}
+	 * @see CallerRetryChangeDialog#rateInput
+	 */
 	private class RateInputListener implements KeyListener {
 		@Override public void keyTyped(KeyEvent e) {activeAdvancedMode.setSelected(true); checkData();}
 		@Override public void keyPressed(KeyEvent e) {activeAdvancedMode.setSelected(true); checkData();}

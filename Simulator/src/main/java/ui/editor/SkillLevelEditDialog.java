@@ -82,39 +82,77 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = -177706251057837446L;
 
-	private final CallcenterModelSkillLevel skill, tempSkill;
+	/** Im Konstruktor übergebenes Skill-Level-Objekt in das beim Schließen mit "Ok" die Daten zurückgeschrieben werden */
+	private final CallcenterModelSkillLevel skill;
+	/** Temporäre Arbeitskopie des Skill-Levels zur Anzeige im Dialog */
+	private final CallcenterModelSkillLevel  tempSkill;
 
+	/** Index dieses Skill-Levels in der Liste aller Skill-Level */
 	private int indexForThisSkillLevel;
+	/** Listen mit allen Skill-Level-Namen (um doppelte Namen zu verhindern) */
 	private final String[] skillLevelNames;
 
+	/** Listener die über Skill-Level-Namensänderungen benachrichtigt werden sollen */
 	private final List<RenameListener> listener;
 
+	/** Schaltfläche "Skill hinzufügen" */
 	private JButton addButton;
+	/** Schaltfläche "Skill löschen" */
 	private JButton delButton;
+	/** Schaltfläche "Skill kopieren" */
 	private JButton copyButton;
+	/** Schaltfläche "Tools" */
 	private JButton toolsButton;
+	/** Durch das {@link #toolsButton} aufrufbares Popupmenü */
 	private JPopupMenu toolsPopup;
+	/** Menüpunkte "Einstellungen zu anderem Skill kopieren" ({@link #toolsPopup}) */
 	private JMenuItem[] toolsPopupCopyTo;
+	/** Menüpunkte "Verteilungen global laden" ({@link #toolsPopup}) */
 	private JMenuItem generatorButton;
+	/** Liste der Skills in diesem Skill-Level */
 	private JList<String> list;
-	private int lastSelected=-1;
-	private int lastInterval1=-1, lastInterval2=-1, lastInterval3=-1;
+	/** Datenmodell der Liste der Skills in diesem Skill-Level {@link #list} */
 	private DefaultListModel<String> listData;
+	/** Zuletzt in {@link #list} ausgewählter Eintrag */
+	private int lastSelected=-1;
+	/** Zuletzt in {@link #workingTimeComboBox} ausgewähltes Intervall */
+	private int lastInterval1=-1;
+	/** Zuletzt in {@link #postprocessingTimeComboBox} ausgewähltes Intervall */
+	private int  lastInterval2=-1;
+	/** Zuletzt in {@link #workingTimeAddOnComboBox} ausgewähltes Intervall */
+	private int  lastInterval3=-1;
+	/** Darstellung der Registerreiter für Bedien-, Nachbearbeitungszeit usw. */
 	private JTabbedPane tabs;
+	/** Verteilung der Bedienzeiten im aktuellen Skill */
 	private JDistributionPanel workingTime;
+	/** Verteilung der Nachbearbeitungszeiten im aktuellen Skill */
 	private JDistributionPanel postprocessingTime;
+	/** Auswahlbox für das Zeitintervall für {@link #workingTime} */
 	private JComboBox<String> workingTimeComboBox;
+	/** Auswahlbox für das Zeitintervall für {@link #workingTimeAddOn} */
 	private JComboBox<String> workingTimeAddOnComboBox;
+	/** Auswahlbox für das Zeitintervall für {@link #postprocessingTime} */
 	private JComboBox<String> postprocessingTimeComboBox;
+	/** Option: Intervall-abhängige Bedienzeit für dieses Intervall aktiv? */
 	private JCheckBox workingTimeCheckBox;
+	/** Option: Intervall-abhängige wartezeitabhängige Bedienzeitverlängerung für dieses Intervall aktiv? */
 	private JCheckBox workingTimeAddOnCheckBox;
+	/** Option: Intervall-abhängige Nachbearbeitungszeit für dieses Intervall aktiv? */
 	private JCheckBox postprocessingTimeCheckBox;
+	/** Eingabefeld für die wartezeitabhängige Bedienzeitverlängerung */
 	private JTextField workingTimeAddOn;
-	private JTextField score;
+	/** Hilfe-Schaltfläche zur Erklärung der wartezeitabhängigen Bedienzeitverlängerung */
 	private JButton workingTimeAddOnButton;
+	/** Eingabefeld für den Score für den Kundentyp */
+	private JTextField score;
 
+	/**
+	 * Dialog zum Laden von Bedienzeiten öffnen?
+	 * @see #isOpenGenerator()
+	 */
 	private boolean openGenerator=false;
 
+	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
 
 	/**
@@ -327,7 +365,12 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		initListSystem(false);
 	}
 
-	private void initListSystem(boolean selectLast) {
+	/**
+	 * Initialisiert die Skill-Liste
+	 * @param selectLast	Zuletzt gewählten Eintrag nach der Neuinitialisierung wieder auswählen?
+	 * @see #list
+	 */
+	private void initListSystem(final boolean selectLast) {
 		if (tempSkill.callerTypeName.size()==0) {
 			tabs.setVisible(false);
 		} else {
@@ -392,6 +435,10 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert darauf, wenn sich die Auswahl in {@link #list} geändert hat.
+	 * @see #list
+	 */
 	private void listSelectionChanged() {
 		AbstractRealDistribution dist;
 
@@ -444,6 +491,9 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		score.setBackground(SystemColor.text);
 	}
 
+	/**
+	 * Befehl: Skill hinzufügen
+	 */
 	private void addSkill() {
 		if (tempSkill.callerTypeName.size()==callerTypeNames.length) return;
 		String[] options=new String[callerTypeNames.length-tempSkill.callerTypeName.size()];
@@ -469,6 +519,9 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		initListSystem(true);
 	}
 
+	/**
+	 * Befehl: Skill löschen
+	 */
 	private void delSkill() {
 		int i=list.getSelectedIndex();
 		if (i<0) return;
@@ -493,6 +546,9 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		initListSystem(false);
 	}
 
+	/**
+	 * Befehl: Skill kopieren
+	 */
 	private void copySkill() {
 		listSelectionChanged();
 		int index=list.getSelectedIndex();
@@ -533,7 +589,11 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		initListSystem(true);
 	}
 
-	private void copySettingsToSkillLevel(int index) {
+	/**
+	 * Kopiert die Einstellungen aus dem aktuelle Skill zu einem anderen Skill
+	 * @param index	Index des Ziel-Skills (oder -1 für alle)
+	 */
+	private void copySettingsToSkillLevel(final int index) {
 		listSelectionChanged();
 		for (int i=0;i<tempSkill.callerTypeName.size();i++) if (i!=lastSelected && (i==index || index==-1)) {
 			tempSkill.callerTypeWorkingTimeAddOn.set(i,tempSkill.callerTypeWorkingTimeAddOn.get(lastSelected));
@@ -567,6 +627,9 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		if (index>=0) tabs.setSelectedIndex(index);
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen in dem Dialog
+	 */
 	private class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -603,6 +666,10 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Ereignisse für die Listendarstellung {@link SkillLevelEditDialog#list}
+	 * @see SkillLevelEditDialog#list
+	 */
 	private class ListListener implements ListSelectionListener,KeyListener {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {listSelectionChanged();}
@@ -619,7 +686,18 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		public void keyReleased(KeyEvent e) {}
 	}
 
+	/**
+	 * Reagiert auf Tastendrücke in den verschiedenen
+	 * Eingabefeldern des Dialogs
+	 */
 	private class DialogElementListener implements KeyListener {
+		/**
+		 * Reagiert auf ein Tastenereignis
+		 * @param e	Tastenereignis
+		 * @see #keyTyped(KeyEvent)
+		 * @see #keyPressed(KeyEvent)
+		 * @see #keyReleased(KeyEvent)
+		 */
 		private void keyEvent(KeyEvent e) {
 			NumberTools.getNotNegativeInteger(score,true);
 			MathParser calc=new CalcSystem(workingTimeAddOn.getText(),new String[]{"w"});
@@ -642,6 +720,10 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Renderer für die Kundentypendarstellung in {@link SkillLevelEditDialog#list()}
+	 * @see SkillLevelEditDialog#list
+	 */
 	private final class ClientTypeListRenderer extends JLabel implements ListCellRenderer<String> {
 		/**
 		 * Serialisierungs-ID der Klasse

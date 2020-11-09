@@ -87,6 +87,13 @@ public final class CallEvent extends Event {
 		}
 	}
 
+	/**
+	 * Erfasst einen blockierten Anruf
+	 * @param data	Simulationsdatenobjekt
+	 * @param callerRecord	Anruferobjekt
+	 * @param time	Zeitpunkt des erfolglosen Anrufs
+	 * @param retry	Wird der Kunde später eine Wiederholung starten?
+	 */
 	private static void logBlocked(final SimulationData data, final CallerRecord callerRecord, final long time, final boolean retry) {
 		final KundenDaten statisticGlobal=data.statisticSimData.kundenGlobal;
 		final KundenDaten statisticClient=callerRecord.statisticClient;
@@ -110,6 +117,14 @@ public final class CallEvent extends Event {
 		}
 	}
 
+	/**
+	 * Legt für einen Anrufer die Abbruch- und Recheck-Events an.
+	 * @param callerRecord	Kudnendatensatz
+	 * @param agentRecord	Agentendatensatz (kann <code>null</code> sein, wenn noch keine Zuordnung besteht)
+	 * @param time	Zeitpunkt des Anrufs
+	 * @param data	Simulationsdatenobjekt
+	 * @return	Zeitpunkt an dem der Kunde das Warten aufgeben wird
+	 */
 	private static long buildEvents(final CallerRecord callerRecord, final AgentRecord agentRecord, final long time, final SimulationData data) {
 		long cancelTime=Long.MAX_VALUE;
 

@@ -48,10 +48,15 @@ public final class SkillsGeneratorDialog extends GeneratorBaseDialog {
 	 */
 	private static final long serialVersionUID = 4485497692649353582L;
 
+	/** Nummern der Skill-Level */
 	private final List<Integer> skillNr;
+	/** Nummern der Skills innerhalb der Skill-Level */
 	private final List<Integer> skillSubNr;
+	/** Namen der Skill-Level */
 	private final List<String> skillNames;
+	/** Namen der Anrufertypen innerhalb der Skill-Level */
 	private final List<String> skillCallerNames;
+	/** Auswahl welche Spalten für das verwendet werden sollen */
 	private List<JComboBox<String>> select;
 
 	/**

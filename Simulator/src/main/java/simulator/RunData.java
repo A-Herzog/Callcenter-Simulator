@@ -53,6 +53,9 @@ public final class RunData {
 	private int callerRecordCacheFill=0;
 	private int callerRecordTempCacheCount=0;
 
+	/**
+	 * Liste der Kundentypen
+	 */
 	private final CallcenterRunModelCaller[] queueCallerTypes;
 
 	/**
@@ -70,6 +73,12 @@ public final class RunData {
 	 */
 	private int queueLength;
 
+	/**
+	 * Anzahl an Kunden in der für die Anzahl an Telefonleitungen
+	 * relevanten Warteschlange
+	 * @see CallcenterRunModelCaller#blocksLine
+	 * @see #getPhoneCallQueueLength()
+	 */
 	private int phoneCallQueueLength;
 
 	/**
@@ -111,9 +120,27 @@ public final class RunData {
 		freeAgents=new ArrayList<AgentRecord>(); /* SplitList bringt leider nichts */
 	}
 
+	/**
+	 * Zeitpunkt an dem sich die Warteschlangenlänge das
+	 * letzte Mal geändert hat.
+	 * @see #queueLengthChanged(long, Statistics)
+	 */
 	private long lastQueueLengthChangeTime;
+
+	/**
+	 * Wert auf den sich die Warteschlangenlänge bei
+	 * der letzten Veränderung geändert hat.
+	 * @see #queueLengthChanged(long, Statistics)
+	 */
 	private int lastQueueLength;
 
+	/**
+	 * Wird aufgerufen, wenn sich die Warteschlangenlänge verändert hat.
+	 * @param now	Aktueller Zeitpunkt
+	 * @param statistic	Statistikobjekt
+	 * @see #addCallerToQueue(CallerRecord, long, Statistics)
+	 * @see #removeCallerFromQueue(CallerRecord, long, Statistics)
+	 */
 	private void queueLengthChanged(final long now, final Statistics statistic) {
 		/* Neuer Tag */
 		if (now<lastQueueLengthChangeTime) {
@@ -360,6 +387,11 @@ public final class RunData {
 		return bestCaller;
 	}
 
+	/**
+	 * Umrechnungsfaktor von Millisekunden auf Halbstundenintervalle
+	 * (um Divisionen während der Simulation einzusparen)
+	 * @see #addIntervalParts(DataDistributionImpl, int, int, int)
+	 */
 	private final double factor=1.0/1800.0/1000.0;
 
 	private void addIntervalParts(final DataDistributionImpl dist, final int timeFrom, final int timeTo, final int multiply) {
@@ -488,6 +520,11 @@ public final class RunData {
 		/** Verweilzeitübertrag von vorherigen Gesprächen (vor einer Weiterleitung) **/
 		public int callerStayingTime;
 
+		/**
+		 * Reinitialisiert den Kundendatensatz.<br>
+		 * (Die Objekte werden nicht immer wieder angelegt und
+		 * abgebaut, sondern wiederverwendet.)
+		 */
 		private final void reinit() {
 			retryCount=0;
 			callContinued=false;
@@ -586,7 +623,9 @@ public final class RunData {
 		}
 
 		/**
-		 * Reinitialisiert den Agentendatensatz.
+		 * Reinitialisiert den Agentendatensatz.<br>
+		 * (Die Objekte werden nicht immer wieder angelegt und
+		 * abgebaut, sondern wiederverwendet.)
 		 */
 		public void reinit() {
 			status=AGENT_VOR_DIENST;

@@ -54,16 +54,25 @@ public class CallerEditPanelForwarding extends CallerEditPanel {
 	 */
 	private static final long serialVersionUID = 8805197214671745707L;
 
+	/** Liste der Kundentypen bei Weiterleitungen */
 	private final List<String> continueTypeSkillType;
+	/** Liste der Wahrscheinlichkeiten einer Weiterleitung zu einem bestimmten Kundentyp */
 	private final List<Double> continueTypeSkillTypeProbability;
+	/** Skill-Level-Namen für die Agententyp-abhängigen Weiterleitungen */
 	private final List<List<String>> continueTypeSkillTypeName;
+	/** Raten für die Agententyp-abhängigen Weiterleitungen */
 	private final List<List<Double>> continueTypeSkillTypeRate;
 
+	/** Eingabefeld für die allgemeine Weiterleitungswahrscheinlichkeit */
 	private final JTextField continueProbability;
+	/** Beschriftung für die Wahrscheinlichkeiten von Weiterleitungen zum aktuellen Kundentyp (um so direkt auf Änderungen des Namens des aktuellen Typs reagieren zu können) */
 	private JLabel continueToThisType;
+	/** Eingabefelder für die Weiterleitungswahrscheinlichkeiten zu den einzelnen Kundentypen */
 	private final JTextField[] continueToType;
-	private JLabel continueSpecialLabel;
+	/** Schaltfläche "Agententyp-abhängige Weiterleitungen" */
 	private JButton continueSpecialButton;
+	/** Zeigt an, ob Agententyp-abhängige Weiterleitungen vorhanden sind */
+	private JLabel continueSpecialLabel;
 
 	/**
 	 * Konstruktor der Klasse
@@ -197,6 +206,10 @@ public class CallerEditPanelForwarding extends CallerEditPanel {
 		return Images.EDITOR_CALLER_PAGE_FORWARDING.getIcon();
 	}
 
+	/**
+	 * Konfiguriert die Informationsanzeige, ob Agententyp-abhängige Weiterleitungen vorliegen.
+	 * @see #continueSpecialLabel
+	 */
 	private void setContinueSpecialLabel() {
 		continueSpecialLabel.setText(
 				(continueTypeSkillType.size()>0)?Language.tr("Editor.Caller.Forwarding.AgentSpecific.Active"):Language.tr("Editor.Caller.Forwarding.AgentSpecific.NotActive")

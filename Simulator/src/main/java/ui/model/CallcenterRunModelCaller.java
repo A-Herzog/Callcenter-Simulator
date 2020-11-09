@@ -140,21 +140,132 @@ public final class CallcenterRunModelCaller {
 
 	/** Wird temporär bei der Initialisierung verwendet */
 
+	/**
+	 * Temporäre Liste für
+	 * "Liste der möglichen neuen Kundentypen bei Kundentypenänderung nach "besetzt" - erster Versuch"
+	 * (wird später in das effizientere Array {@link #retryCallerTypeAfterBlockedFirstRetry} überführt)
+	 * @see #retryCallerTypeAfterBlockedFirstRetry
+	 */
 	private List<String> tempRetryCallerTypeAfterBlockedFirstRetry;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der Wahrscheinlichkeiten für die Kundentypenänderung nach "besetzt" - erster Versuch"
+	 * (wird später in das effizientere Array {@link #retryCallerTypeRateAfterBlockedFirstRetry} überführt)
+	 * @see #retryCallerTypeRateAfterBlockedFirstRetry
+	 */
 	private List<Double> tempRetryCallerTypeAfterBlockedFirstRetryProbability;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der möglichen neuen Kundentypen bei Kundentypenänderung nach "besetzt" - ab dem zweiten Versuch"
+	 * (wird später in das effizientere Array {@link #retryCallerTypeAfterBlocked} überführt)
+	 * @see #retryCallerTypeAfterBlocked
+	 */
 	private List<String> tempRetryCallerTypeAfterBlocked;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der Wahrscheinlichkeiten für die Kundentypenänderung nach "besetzt" - ab dem zweiten Versuch"
+	 * (wird später in das effizientere Array {@link #retryCallerTypeRateAfterBlocked} überführt)
+	 * @see #retryCallerTypeRateAfterBlocked
+	 */
 	private List<Double> tempRetryCallerTypeAfterBlockedProbability;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der möglichen neuen Kundentypen bei Kundentypenänderung nach Warteabbruch - erster Versuch"
+	 * (wird später in das effizientere Array {@link #retryCallerTypeAfterGiveUpFirstRetry} überführt)
+	 * @see #retryCallerTypeAfterGiveUpFirstRetry
+	 */
 	private List<String> tempRetryCallerTypeAfterGiveUpFirstRetry;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der Wahrscheinlichkeiten für die Kundentypenänderung nach Warteabbruch - erster Versuch"
+	 * (wird später in das effizientere Array {@link #retryCallerTypeRateAfterGiveUpFirstRetry} überführt)
+	 * @see #retryCallerTypeRateAfterGiveUpFirstRetry
+	 */
 	private List<Double> tempRetryCallerTypeAfterGiveUpFirstRetryProbability;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der möglichen neuen Kundentypen bei Kundentypenänderung nach Warteabbruch - ab dem zweiten Versuch"
+	 * (wird später in das effizientere Array {@link #retryCallerTypeAfterGiveUp} überführt)
+	 * @see #retryCallerTypeAfterGiveUp
+	 */
 	private List<String> tempRetryCallerTypeAfterGiveUp;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der Wahrscheinlichkeiten für die Kundentypenänderung nach Warteabbruch - ab dem zweiten Versuch"
+	 * (wird später in das effizientere Array {@link #retryCallerTypeRateAfterGiveUp} überführt)
+	 * @see #retryCallerTypeRateAfterGiveUp
+	 */
 	private List<Double> tempRetryCallerTypeAfterGiveUpProbability;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der möglichen neuen Kundentypen bei einer Weiterleitung"
+	 * (wird später in das effizientere Array {@link #continueType} überführt)
+	 * @see #continueType
+	 */
 	private List<String> tempContinueTypeName;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der Wahrscheinlichkeiten, mit denen Weiterleitungen zu den bestimmten Kundentypen erfolgen"
+	 * (wird später in das effizientere Array {@link #continueTypeProbability} überführt)
+	 * @see #continueTypeProbability
+	 */
 	private List<Double> tempContinueTypeProbability;
+
+	/**
+	 * Temporäre Liste für
+	 * "Spezielle Weiterleitungsmöglichkeiten in Abhängigkeit vom Skill-Level des bedienenden Agenten"
+	 * (wird später in das effizientere Array {@link #continueSkillLevel} überführt)
+	 * @see #continueSkillLevel
+	 */
 	private List<String> tempContinueTypeSkillType;
+
+	/**
+	 * Temporäre Liste für
+	 * "Spezielle Weiterleitungswahrscheinlichkeiten in Abhängigkeit vom Skill-Level des bedienenden Agenten"
+	 * (wird später in das effizientere Array {@link #continueSkillLevelProbability} überführt)
+	 * @see #continueSkillLevelProbability
+	 */
 	private List<List<String>> tempContinueTypeSkillTypeName;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der möglichen neuen Kundentypen bei einem Wiederanruf"
+	 * (wird später in das effizientere Array {@link #recallType} überführt)
+	 * @see #recallType
+	 */
 	private List<String> tempRecallTypeName;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der Wahrscheinlichkeiten, mit denen Wiederanrufe zu den bestimmten Kundentypen erfolgen"
+	 * (wird später in das effizientere Array {@link #recallTypeProbability} überführt)
+	 * @see #recallTypeProbability
+	 */
 	private List<Double> tempRecallTypeProbability;
+
+	/**
+	 * Temporäre Liste für
+	 * "Spezielle Wiederanrufmöglichkeiten in Abhängigkeit vom Skill-Level des bedienenden Agenten"
+	 * (wird später in das effizientere Array {@link #recallSkillLevel} überführt)
+	 * @see #recallSkillLevel
+	 */
 	private List<String> tempRecallTypeSkillType;
+
+	/**
+	 * Temporäre Liste für
+	 * "Liste der möglichen neuen Kundentypen bei einem Wiederanruf in Abhängigkeit vom Skill-Level des bedienenden Agenten"
+	 * (wird später in das effizientere Array {@link #recallSkillLevelType} überführt)
+	 * @see #recallSkillLevelType
+	 */
 	private List<List<String>> tempRecallTypeSkillTypeName;
 
 	/** Nach diesen Zeiten (in Sekunden) Mindestwartezeit-Rechecks durchführen */
@@ -298,12 +409,28 @@ public final class CallcenterRunModelCaller {
 		tempRecallTypeSkillTypeName=editModel.recallTypeSkillTypeName;
 	}
 
+	/**
+	 * Wandelt eine Liste mit {@link Double}-Werten in ein Array aus <code>double</code>-Werten um.
+	 * @param list	Liste mit {@link Double}-Werten
+	 * @return	Array aus <code>double</code>-Werten
+	 */
 	private static double[] doubleArrayFromDoubleList(List<Double> list) {
-		double[] d=new double[list.size()];
-		for (int i=0;i<d.length;i++) d[i]=list.get(i);
-		return d;
+		return list.stream().mapToDouble(Double::doubleValue).toArray();
 	}
 
+	/**
+	 * Übersetzt eine Liste mit Raten in eine Liste mit Wahrscheinlichkeiten
+	 * @param caller	Liste der Anrufergruppen
+	 * @param strict	Strenge Modellprüfung
+	 * @param listProbabilites	Liste mit den Raten
+	 * @param listNames	Zu den Wahrscheinlichkeiten gehörige Gruppennamen
+	 * @param listCaller	Berechnete Wahrscheinlichkeiten
+	 * @param errorSize	Fehlermeldung Anzahl passt nicht
+	 * @param errorContinueToUnknown	Fehlermeldung Name für Weiterleitung unbekannt
+	 * @param errorNegativeProbability	Fehlermeldung negative Rate
+	 * @param errorSumZero	Fehlermeldung Summe über alle Raten ist 0
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 */
 	private static String calcProbabilities(final CallcenterRunModelCaller[] caller, final boolean strict, final List<Double> listProbabilites, final List<String> listNames, final List<CallcenterRunModelCaller> listCaller, final String errorSize, final String errorContinueToUnknown, final String errorNegativeProbability, final String errorSumZero) {
 		double sum;
 

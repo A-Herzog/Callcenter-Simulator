@@ -38,6 +38,9 @@ public class CallerEditPanelRetryDistribution extends CallerEditPanel {
 	 */
 	private static final long serialVersionUID = -5849131132110088748L;
 
+	/**
+	 * Verteilungseditor für die Wiederholabstände-Verteilung
+	 */
 	private JDistributionPanel retryTimeDist;
 
 	/**

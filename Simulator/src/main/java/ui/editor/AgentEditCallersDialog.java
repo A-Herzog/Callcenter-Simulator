@@ -56,9 +56,21 @@ public class AgentEditCallersDialog extends BaseEditDialog {
 	private final CallcenterModel model;
 	/** Über alle Intervalle verteilbare Anzahl an Agenten (Agenten*Intervalle) */
 	private final double agentCount;
+
+	/**
+	 * Verteilung der verfügbaren Agenten über die Intervalle
+	 * @see #getDistribution()
+	 */
 	private DataDistributionImpl distribution;
 
+	/**
+	 * Namen der Kundengruppen
+	 */
 	private String[] byCaller;
+
+	/**
+	 * Eingabefelder für die Raten denen die Kundenankünfte die in Agetenverteilung eingehen sollen
+	 */
 	private JTextField[] byCallerRate;
 
 	/**

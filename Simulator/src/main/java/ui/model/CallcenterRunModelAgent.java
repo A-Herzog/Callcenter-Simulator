@@ -55,6 +55,7 @@ public final class CallcenterRunModelAgent {
 	/** Nummer der Agentengruppe im Edit-Modell, auf der dieser Agent basiert. */
 	public final int groupNr;
 
+	/** Name des Skill-Levels */
 	private final String skillLevelName;
 
 	/** Konstruktor der Klasse <code>CallcenterRunModelAgent</code>
@@ -103,6 +104,15 @@ public final class CallcenterRunModelAgent {
 		return null;
 	}
 
+	/**
+	 * Fügt eine Reihe von Agenten zu einer Laufzeit-Agenten-Liste hinzu
+	 * @param agentList	Modell-Agenten
+	 * @param groupNr	Nummer der Agentengruppe
+	 * @param callcenter	Zu betrachtendes Callcenter
+	 * @param model	Gesamtes Callcenter-Modell
+	 * @param runList	Liste mit Laufzeit-Agenten für das Callcenter
+	 * @see #buildAgentsList(List, CallcenterModelCallcenter, CallcenterModel)
+	 */
 	private static void addAgentGroupToRunList(final CallcenterModelAgent agentList, final int groupNr, final CallcenterModelCallcenter callcenter, final CallcenterModel model, final List<CallcenterRunModelAgent> runList) {
 		if (agentList.count>=0) {
 			/* Agentengruppe mit vorgegebenen Arbeitszeiten anlegen */

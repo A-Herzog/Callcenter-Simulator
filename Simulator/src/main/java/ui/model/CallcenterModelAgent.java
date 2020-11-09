@@ -286,6 +286,15 @@ public final class CallcenterModelAgent implements Cloneable {
 		return true;
 	}
 
+	/**
+	 * Legt einen Agenten mit festen Arbeitszeiten an
+	 * @param begin	Startintervall
+	 * @param end	Endintervall
+	 * @param intervalLength	Intervalllänge
+	 * @param openEnd	Arbeiten bis open-end?
+	 * @return	Neu erstellter Agent
+	 * @see #calcAgentShiftsInt(int, int, boolean, CallcenterModelCallcenter, CallcenterModel, boolean)
+	 */
 	private CallcenterModelAgent createAgent(final int begin, final int end, final int intervalLength, final boolean openEnd) {
 		CallcenterModelAgent agent=new CallcenterModelAgent();
 		agent.count=1;
@@ -413,6 +422,16 @@ public final class CallcenterModelAgent implements Cloneable {
 		return model.additionPerInterval;
 	}
 
+	/**
+	 * Berechnet Agenten mit festen Arbeitszeiten (=Schichtplan) auf Basis der hinterlegten Daten
+	 * @param preferredShiftLength	Gewünschte Schichtplänge
+	 * @param minimumShiftLength	Minimale Schichtpläne
+	 * @param lastIntervalOpenEnd	Ist das letzte Halbstundenintervall "open end"
+	 * @param callcenter	Zugehöriges Callcenter
+	 * @param model	Gesamtes Callcenter-Modell
+	 * @param useProductivity	Sollen die Angaben zur Effizienz verwendet werden (d.h. die Agentenanzahl auf Netto-Agenten umgerechnet werden)
+	 * @return	Array mit Agenten mit festen Arbeitszeiten
+	 */
 	private ArrayList<CallcenterModelAgent> calcAgentShiftsInt(int preferredShiftLength, int minimumShiftLength, final boolean lastIntervalOpenEnd, final CallcenterModelCallcenter callcenter, final CallcenterModel model, final boolean useProductivity) {
 		ArrayList<CallcenterModelAgent> list=new ArrayList<CallcenterModelAgent>();
 

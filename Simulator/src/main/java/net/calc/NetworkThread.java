@@ -76,6 +76,11 @@ public class NetworkThread extends Thread {
 		return socket.getLocalAddress().getHostAddress();
 	}
 
+	/**
+	 * Komprimiert Daten vor dem Senden.
+	 * @param data	Zu sendende Daten
+	 * @return	Komprimierte Daten zum Senden
+	 */
 	private final ByteArrayOutputStream compress(ByteArrayOutputStream data) {
 		ByteArrayOutputStream result=new ByteArrayOutputStream();
 
@@ -88,6 +93,11 @@ public class NetworkThread extends Thread {
 		return result;
 	}
 
+	/**
+	 * Dekomprimiert geladene Daten.
+	 * @param data	Geladene Daten
+	 * @return	Dekomprimierte geladene Daten
+	 */
 	private final ByteArrayInputStream decompress(ByteArrayInputStream data) {
 		ByteArrayOutputStream bufferStream;
 		byte[] buf=new byte[32768];

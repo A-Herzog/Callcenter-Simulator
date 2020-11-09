@@ -52,13 +52,24 @@ public class EfficiencyEditDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 2212952612583896614L;
 
+	/** Betriebsart (Produktivität oder krankheitsbedingter Zuschlag) */
 	private final Mode mode;
+	/** Verteilung für die Produktivität oder den krankheitsbedingten Zuschlag */
 	private DataDistributionImpl efficiency;
+	/** Gibt an, ob Werte für die Produktivität hinterlegt werden müssen (<code>true</code>) oder ob auf ein übergeordnetes Element verwiesen werden kann (<code>false</code>) */
 	private final boolean global;
 
+	/** Option: Globale Einstellungen verwenden */
 	private JCheckBox useGlobal;
-	private JRadioButton efficiencyMode1, efficiencyMode2, efficiencyMode3;
+	/** Option: Wert nicht änder */
+	private JRadioButton efficiencyMode1;
+	/** Option: Konstante Veränderung */
+	private JRadioButton efficiencyMode2;
+	/** Option: Veränderung über Verteilung */
+	private JRadioButton efficiencyMode3;
+	/** Eingabefeld für die konstante Produktivität bzw. den konstanten Zuschlag ({@link #efficiencyMode2}) */
 	private JTextField constantEfficiency;
+	/** Verteilungseditor für die Produktivität oder krankheitsbedingter Zuschlag ({@link #efficiencyMode3}) */
 	private JDataDistributionEditPanel intervalEfficiency;
 
 	/**
@@ -89,7 +100,12 @@ public class EfficiencyEditDialog extends BaseEditDialog {
 		createSimpleGUI(750,550,null,null);
 	}
 
-	private static String getTitle(Mode mode) {
+	/**
+	 * Liefert den Dialogtitel in Abhängigkeit von der gewählten Betriebsart.
+	 * @param mode	Betriebsart (Produktivität oder krankheitsbedingter Zuschlag)
+	 * @return	Dialogtitel
+	 */
+	private static String getTitle(final Mode mode) {
 		switch (mode) {
 		case MODE_EFFICIENCY: return Language.tr("Editor.Productivity.Productivity");
 		case MODE_ADDITION: return Language.tr("Editor.Productivity.DiseaseRelatedSurcharge");
@@ -239,6 +255,12 @@ public class EfficiencyEditDialog extends BaseEditDialog {
 		return efficiency;
 	}
 
+	/**
+	 * Aktiviert oder deaktiviert in Abhängigkeit von
+	 * {@link #useGlobal} den Rest der Einstellungen
+	 * @param enabled	Individuelle Einstellungen aktivieren?
+	 * @see #useGlobal
+	 */
 	private final void enableGUI(boolean enabled) {
 		efficiencyMode1.setEnabled(enabled);
 		efficiencyMode2.setEnabled(enabled);
@@ -247,6 +269,9 @@ public class EfficiencyEditDialog extends BaseEditDialog {
 		intervalEfficiency.setEditable(enabled);
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen und Tasteneingaben in dem Dialog.
+	 */
 	private final class ButtonListener implements ActionListener, KeyListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -255,6 +280,13 @@ public class EfficiencyEditDialog extends BaseEditDialog {
 			if (e.getSource()==intervalEfficiency) {efficiencyMode3.setSelected(true); return;}
 		}
 
+		/**
+		 * Reagiert auf ein Tastenereignis
+		 * @param e	Tastenereignis
+		 * @see #keyTyped(KeyEvent)
+		 * @see #keyPressed(KeyEvent)
+		 * @see #keyReleased(KeyEvent)
+		 */
 		private void keyEvent(KeyEvent e) {
 			NumberTools.getExtProbability(constantEfficiency,true);
 			if (e.getSource()==constantEfficiency) efficiencyMode2.setSelected(true);

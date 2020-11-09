@@ -54,16 +54,26 @@ public class CallerEditPanelRecaller extends CallerEditPanel {
 	 */
 	private static final long serialVersionUID = 8881145422082171403L;
 
+	/** Liste der Kundentypen für Wiederanrufe */
 	private final List<String> recallTypeSkillType;
+	/** Liste der Raten für die Kundentypen bei Wiederanrufen */
 	private final List<Double> recallTypeSkillTypeProbability;
+	/** Skill-Level-Namen für die Agententyp-abhängigen Wiederanrufe */
 	private final List<List<String>> recallTypeSkillTypeName;
+	/** Raten für die Agententyp-abhängigen Wiederanrufe */
 	private final List<List<Double>> recallTypeSkillTypeRate;
 
+	/** Eingabefeld für die allgemeine Wiederanrufwahrscheinlichkeit */
 	private final JTextField recallProbability;
+	/** Beschriftung für die Wahrscheinlichkeiten von Wiederanrufen zum aktuellen Kundentyp (um so direkt auf Änderungen des Namens des aktuellen Typs reagieren zu können) */
 	private JLabel recallToThisType;
+	/** Eingabefelder für die Wiederanrufwahrscheinlichkeiten zu den einzelnen Kundentypen */
 	private final JTextField[] recallToType;
-	private JLabel recallSpecialLabel;
+	/** Schaltfläche "Agententyp-abhängige Wiederanrufe" */
 	private JButton recallSpecialButton;
+	/** Zeigt an, ob Agententyp-abhängige Wiederanrufe vorhanden sind */
+	private JLabel recallSpecialLabel;
+
 
 	/**
 	 * Konstruktor der Klasse
@@ -202,6 +212,10 @@ public class CallerEditPanelRecaller extends CallerEditPanel {
 		if (recallToThisType!=null) recallToThisType.setText(newName);
 	}
 
+	/**
+	 * Konfiguriert die Informationsanzeige, ob Agententyp-abhängige Wiederanrufe vorliegen.
+	 * @see #recallSpecialLabel
+	 */
 	private void setRecallSpecialLabel() {
 		recallSpecialLabel.setText(
 				(recallTypeSkillType.size()>0)?Language.tr("Editor.Caller.RecallProbability.AgentSpecific.Active"):Language.tr("Editor.Caller.RecallProbability.AgentSpecific.NotActive")

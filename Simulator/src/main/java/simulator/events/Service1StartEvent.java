@@ -25,8 +25,8 @@ import simulator.LogTools;
 import simulator.RunData;
 import simulator.RunData.AgentRecord;
 import simulator.RunData.CallerRecord;
-import simulator.Statistics.KundenDaten;
 import simulator.SimulationData;
+import simulator.Statistics.KundenDaten;
 import ui.model.CallcenterRunModelSkillLevel;
 
 /**
@@ -45,6 +45,13 @@ public final class Service1StartEvent extends Event {
 	 */
 	public AgentRecord agent;
 
+	/**
+	 * Erfasst den Start einer Bedienung
+	 * @param data	Simulationsdatenobjekt
+	 * @param serviceLevelSeconds	Service-Level-Sekunden für die Wartezeit vor der Bedienung
+	 * @param wartezeit1000stelSekundenBasis	Bediendauer für diesen Anruf
+	 * @param verweilzeit1000stelSekundenBasis	Verweildauer für diesen Anruf
+	 */
 	private void logServiceStarts(final SimulationData data, final int serviceLevelSeconds, final long wartezeit1000stelSekundenBasis, long verweilzeit1000stelSekundenBasis) {
 		final KundenDaten statisticGlobal=data.statisticSimData.kundenGlobal;
 		/* KundenDaten statisticClient=caller.statisticClient; brauchen wir hier gar nicht (Daten auf Kundenbasis) */

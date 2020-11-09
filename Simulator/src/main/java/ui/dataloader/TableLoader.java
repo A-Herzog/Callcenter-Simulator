@@ -125,7 +125,7 @@ public abstract class TableLoader {
 	}
 
 	/**
-	 * Trägt die Ergebnisse der Verarbeitung in eine Tabelle ein
+	 * Trägt die Ergebnisse der Verarbeitung in eine Tabelle ein.
 	 * @param results	Tabelle in die die Ergebnisse eingetragen werden sollen
 	 * @return	Gibt <code>true</code> zurück, wenn die Ergebnisse erfolgreich in die Tabelle eingetragen werden konnten
 	 */

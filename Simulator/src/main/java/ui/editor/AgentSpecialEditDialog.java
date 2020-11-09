@@ -62,9 +62,26 @@ public class AgentSpecialEditDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = -5377606879040445878L;
 
+	/**
+	 * Liste der Kundentypen
+	 */
 	private final CallcenterModelCaller[] caller;
+
+	/**
+	 * Mittlere Bediendauer für einen Kunden aus {@link #caller}
+	 */
 	private final Double[] callerTime;
+
+	/**
+	 * Eingabefelder dafür wie viele der Kunden in den jeweiligen
+	 * Gruppen durch Agenten dieser Gruppe bedient werden sollen
+	 */
 	private JTextField[] callerTextField;
+
+	/**
+	 * Anzahl an Agenten*Intervalle die für diese Gruppe vorgesehen werden sollen
+	 * @see #getResult()
+	 */
 	private int result=-1;
 
 	/**

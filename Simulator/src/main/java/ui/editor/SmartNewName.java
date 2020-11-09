@@ -24,6 +24,11 @@ import java.util.List;
  * @version 1.0
  */
 public class SmartNewName {
+	/**
+	 * Liste der bereits reservierten Namen
+	 * @see #addReservedName(String)
+	 * @see #getUniqueNewName(String)
+	 */
 	private final List<String> reservedNames;
 
 	/**

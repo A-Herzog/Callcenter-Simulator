@@ -147,6 +147,9 @@ public abstract class CallerEditPanel extends JPanel {
 	 */
 	protected void processDialogEvents(ActionEvent e) {}
 
+	/**
+	 * Reagiert auf Eingabe und auf Klicks auf die Steuerelement im Dialog
+	 */
 	private class DialogElementListener implements ActionListener, KeyListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -214,7 +217,7 @@ public abstract class CallerEditPanel extends JPanel {
 	 * @param initialValue	Anfänglicher Wert für das Textfeld
 	 * @param buttonName	Beschriftung der Schaltfläche
 	 * @param buttonIcon	URL zu dem Icon, dass auf der Schaltfläche angezeigt werden soll (wird hier <code>null</code> übergeben, so wird kein Icon angezeigt)
-	 * @return	Array aus drei Elementen: Referenz auf das neu erzeugte Textfeld, Rerferenz auf das neu erzeugte Button und Referenz auf das neu erzeugte Label rechts neben dem Button
+	 * @return	Array aus drei Elementen: Referenz auf das neu erzeugte Textfeld, Referenz auf das neu erzeugte Button und Referenz auf das neu erzeugte Label rechts neben dem Button
 	 */
 	protected final JComponent[] addPercentInputLineWithButton(JPanel p, String name, double initialValue, String buttonName, URL buttonIcon) {
 		return parent.addPercentInputLineWithButton(p,name,initialValue,buttonName,buttonIcon);

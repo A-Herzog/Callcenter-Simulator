@@ -42,16 +42,26 @@ public class CopyDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 8727888932261919490L;
 
+	/** Text im Label für den Namen des neuen Objektes (wird <code>null</code> übergeben, so wird kein Feld zu Änderung des Namens angezeigt) */
 	private final String nameLabel;
+	/** Initialer Wert für den Name des neuen Objektes */
 	private final String nameValue;
+	/** Text, der auf dem Info-Label angezeigt wird und angibt, welchem Wert die angegeben Prozentzahl entspricht. Dieser String wird angezeigt, wenn der Wert "1" angezeigt werden soll. (wird <code>null</code> übergeben, so wird kein Feld zu Änderung des Prozentwertes angezeigt) */
 	private final String intensityLabelSingle;
+	/** Text, der auf dem Info-Label angezeigt wird und angibt, welchem Wert die angegeben Prozentzahl entspricht. Dieser String wird angezeigt, wenn ein Wert ungleich "1" angezeigt werden soll; er muss "%d" enthalten. */
 	private final String intensityLabelMulti;
+	/** Gibt an, welcher Wert 100% entsprechen soll. */
 	private final int count;
+	/** Bezeichner der Werte */
 	private final String[] countNames;
+	/** Gibt an, welche Werte 100% entsprechen sollen. */
 	private final int[] countValues;
 
+	/** Eingabefeld für den Namen */
 	private JTextField name=null;
+	/** Eingabefeld für den Prozentwert */
 	private JTextField percent=null;
+	/** Infoausgabe zu der Umrechnung des Prozentwertes */
 	private JLabel info;
 
 	/**
@@ -208,6 +218,13 @@ public class CopyDialog extends BaseEditDialog {
 	@Override
 	protected void storeData() {}
 
+	/**
+	 * Aktualisiert die Infoausgabe {@link #info},
+	 * wenn sich die Eingaben in {@link #percent}
+	 * geändert haben.
+	 * @see #percent
+	 * @see #info
+	 */
 	private void updateCount() {
 		Double d=NumberTools.getExtProbability(percent,true);
 		if (d==null) {info.setText(""); return;}
@@ -230,6 +247,10 @@ public class CopyDialog extends BaseEditDialog {
 		info.setText(sb.toString());
 	}
 
+	/**
+	 * Reagiert auf Eingaben in {@link CopyDialog#percent}
+	 * @see CopyDialog#percent
+	 */
 	private class PercentListener implements KeyListener {
 		@Override
 		public void keyTyped(KeyEvent e) {if (e.getSource()==percent) updateCount();}

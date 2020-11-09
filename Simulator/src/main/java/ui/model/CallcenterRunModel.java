@@ -155,6 +155,13 @@ public final class CallcenterRunModel {
 		return days;
 	}
 
+	/**
+	 * Prüfen, ob bei der Bestimmung der Agenten gemäß den Kundenankünften alle Typen korrekt existieren
+	 * @param agent	Zu prüfende Agentengruppe
+	 * @param caller	Liste der Anrufergruppen
+	 * @param strict	Gibt an, ob eine strenge Prüfung erfolgen soll.
+	 * @return Gibt <code>null</code> zurück, wenn die Initialisierung erfolgreich war, andernfalls wird eine Fehlermeldung als String zurückgegeben,
+	 */
 	private String checkAgentByCaller(CallcenterModelAgent agent, List<CallcenterModelCaller> caller, boolean strict) {
 		if (agent.byCallers.size()==0) return Language.tr("Model.Check.NoClientTypeForAgentsDistribution");
 		if (agent.byCallersAvailableHalfhours<=0) return Language.tr("Model.Check.InvalidAgentsCountForDistribution");
@@ -293,8 +300,12 @@ public final class CallcenterRunModel {
 		return null;
 	}
 
+	/**
+	 * Führt eine Plausibilitätsprüfung der Modellparameter durch.
+	 * @return	Ergebnisse der Plausibilitätsprüfung (leerer String bedeutet keine Probleme)
+	 */
 	private String checkPlausibility() {
-		StringBuilder sb=new StringBuilder();
+		final StringBuilder sb=new StringBuilder();
 
 		/* Kundenanzahl bestimmen */
 		int callerCount=0;

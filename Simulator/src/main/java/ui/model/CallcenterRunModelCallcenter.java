@@ -54,6 +54,7 @@ public final class CallcenterRunModelCallcenter {
 	/** Liste der kundenspezifischen Mindestwartezeiten */
 	public List<Integer> callerMinWaitingTimeMilliSecond;
 
+	/** Liste der Namen für die kundenspezifischen Mindestwartezeiten */
 	private final List<String> callerMinWaitingTimeName;
 
 	/**

@@ -70,7 +70,9 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 	private JComboBox<String> minimumShiftLength;
 	/** Eingabefeld für den Service-Level */
 	private JTextField serviceLevel;
+	/** Schaltfläche "Produktivität der Agentengruppen" */
 	private JButton efficiency;
+	/** Schaltfläche "Krankheitsbedingter Zuschlag" */
 	private JButton addition;
 
 	/** Callcenter-Modell für das die Einstellungen bearbeitet werden sollen */
@@ -97,13 +99,27 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 		serviceLevel.setText(""+model.serviceLevelSeconds);
 	}
 
-	private void addLabel(JPanel p, String name) {
+	/**
+	 * Erzeugt eine Zeile mit einem Text
+	 * @param p	Übergeordnetes Element
+	 * @param name	Text der in der neuen Zeile angezeigt werden soll
+	 */
+	private void addLabel(final JPanel p, final String name) {
 		JPanel subPanel;
 		p.add(subPanel=new JPanel(new FlowLayout(FlowLayout.LEFT,0,0)));
 		subPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		subPanel.add(new JLabel(name));
 	}
 
+	/**
+	 * Erzeugt eine Eingabezeile
+	 * @param p	Übergeordnetes Element
+	 * @param name	Beschriftung des Eingabefeldes
+	 * @param initialValue Anfänglich anzuzeigender Wert
+	 * @param width	Breite des Eingabefeldes
+	 * @param additionalInfo	Optionaler hinter dem Eingabefeld anzuzeigender Text (kann <code>null</code> sein)
+	 * @return	Liefert das neue Eingabefeld zurück (welches bereits in das übergeordnete Panel eingefügt ist)
+	 */
 	private JTextField addInputLine(JPanel p, String name, String initialValue, int width, String additionalInfo) {
 		JPanel subPanel,p2;
 
@@ -237,6 +253,11 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 		return model;
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen
+	 * @see CallcenterModelGlobalDialog#efficiency
+	 * @see CallcenterModelGlobalDialog#addition
+	 */
 	private final class ButtonActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -257,7 +278,18 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Tastendrücke in den verschiedenen
+	 * Eingabefeldern des Dialogs
+	 */
 	private class DialogElementListener implements KeyListener {
+		/**
+		 * Reagiert auf ein Tastenereignis
+		 * @param e	Tastenereignis
+		 * @see #keyTyped(KeyEvent)
+		 * @see #keyPressed(KeyEvent)
+		 * @see #keyReleased(KeyEvent)
+		 */
 		private void keyEvent(KeyEvent e) {
 			MathParser parser=new CalcSystem(maxQueueLength.getText(),new String[]{"a"});
 			boolean ok=(parser.parse()==-1);

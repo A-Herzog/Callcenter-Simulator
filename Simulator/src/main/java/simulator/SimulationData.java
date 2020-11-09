@@ -95,8 +95,17 @@ public final class SimulationData extends SimData {
 		statisticSimData=new Statistics(null,model,threadCount,simDays);
 	}
 
+	/**
+	 * Cache der Liste der initialen Anrufer
+	 */
 	private List<CallEvent> initCallsList=null;
 
+	/**
+	 * Einstellen der initialen Anrufer
+	 * @param firstDay	Erster Tag der Simulation?
+	 * @param dayGlobal	Nummer des Tages (global über alle Threads)
+	 * @param backgroundMode	Läuft die Simulation momentan im Hintergrund?
+	 */
 	private void initCalls(final boolean firstDay, final long dayGlobal, boolean backgroundMode) {
 		dynamicSimData.cacheAllCallerRecords();
 
@@ -189,6 +198,11 @@ public final class SimulationData extends SimData {
 		eventManager.addInitialEvents(initCallsList);
 	}
 
+	/**
+	 * Einstellen der Agenten
+	 * @param firstDay	Erster Tag der Simulation?
+	 * @param backgroundMode	Läuft die Simulation momentan im Hintergrund?
+	 */
 	private void initAgents(final boolean firstDay, boolean backgroundMode) {
 		int count=0;
 

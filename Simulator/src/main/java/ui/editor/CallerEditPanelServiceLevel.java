@@ -45,8 +45,11 @@ public class CallerEditPanelServiceLevel extends CallerEditPanel {
 	 */
 	private static final long serialVersionUID = 2648513300864319341L;
 
+	/** Option: Globale Service-Level Vorgabe verwenden */
 	private JRadioButton serviceLevelGlobal;
+	/** Option: Service-Level lokal für diesen Kundentyp einstellen */
 	private JRadioButton serviceLevelLocal;
+	/** Eingabefeld für den lokalen Service-Level */
 	private final JTextField serviceLevelEdit;
 
 	/**
