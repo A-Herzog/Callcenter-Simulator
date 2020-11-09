@@ -49,27 +49,45 @@ public class CallerEditPanelRetryProbability extends CallerEditPanel {
 	 */
 	private static final long serialVersionUID = -4361383032129176751L;
 
+	/** Namen der Kundentypen für Wiederholungen */
 	private final List<String> retryCallerTypeChangeNames;
+	/** Wiederholwahrscheinlichkeiten im erster Anlauf nach "besetzt" */
 	private final List<Double> retryCallerTypeChangeRatesAfterBlockedFirstRetry;
+	/** Wiederholwahrscheinlichkeiten bei weiteren Versuchen nach "besetzt" */
 	private final List<Double> retryCallerTypeChangeRatesAfterBlocked;
+	/** Wiederholwahrscheinlichkeiten im erster Anlauf nach Warteabbruch */
 	private final List<Double> retryCallerTypeChangeRatesAfterGiveUpFirstRetry;
+	/** Wiederholwahrscheinlichkeiten bei weiteren Versuchen nach Warteabbruch */
 	private final List<Double> retryCallerTypeChangeRatesAfterGiveUp;
 
+	/** Option: Kunden dieses Typs belegen Telefonleitungen (wenn nein, kann der Fall "besetzt" nicht auftreten) */
 	private JCheckBox blocksLine;
 
+	/** Eingabefeld für die Wiederholwahrscheinlichkeit im erster Anlauf nach "besetzt" */
 	private final JTextField retryProbabiltyAfterBlockedFirstRetry;
+	/** Eingabefeld für die Wiederholwahrscheinlichkeit bei weiteren Versuchen nach "besetzt" */
 	private final JTextField retryProbabiltyAfterBlocked;
+	/** Eingabefeld für die Wiederholwahrscheinlichkeit im erster Anlauf nach Warteabbruch */
 	private final JTextField retryProbabiltyAfterGiveUpFirstRetry;
+	/** Eingabefeld für die Wiederholwahrscheinlichkeit bei weiteren Versuchen nach Warteabbruch */
 	private final JTextField retryProbabiltyAfterGiveUp;
 
+	/** Schaltfläche "Kundentypänderung bei Wahlwiederholung" (erster Anlauf nach "besetzt") */
 	private final JButton retryProbabiltyAfterBlockedFirstRetryButton;
+	/** Schaltfläche "Kundentypänderung bei Wahlwiederholung" (weitere Versuche nach "besetzt") */
 	private final JButton retryProbabiltyAfterBlockedButton;
+	/** Schaltfläche "Kundentypänderung bei Wahlwiederholung" (erster Anlauf nach Warteabbruch) */
 	private final JButton retryProbabiltyAfterGiveUpFirstRetryButton;
+	/** Schaltfläche "Kundentypänderung bei Wahlwiederholung" (weitere Versuche nach Warteabbruch) */
 	private final JButton retryProbabiltyAfterGiveUpButton;
 
+	/** Info zu "Kundentypänderung bei Wahlwiederholung" (erster Anlauf nach "besetzt") */
 	private final JLabel retryProbabiltyAfterBlockedFirstRetryLabel;
+	/** Info zu "Kundentypänderung bei Wahlwiederholung" (weitere Versuche nach "besetzt") */
 	private final JLabel retryProbabiltyAfterBlockedLabel;
+	/** Info zu "Kundentypänderung bei Wahlwiederholung" (erster Anlauf nach Warteabbruch) */
 	private final JLabel retryProbabiltyAfterGiveUpFirstRetryLabel;
+	/** Info zu "Kundentypänderung bei Wahlwiederholung" (weitere Versuche nach Warteabbruch) */
 	private final JLabel retryProbabiltyAfterGiveUpLabel;
 
 	/**
@@ -118,10 +136,10 @@ public class CallerEditPanelRetryProbability extends CallerEditPanel {
 
 		setLayout(new BorderLayout());
 
-		add(blocksLine=new JCheckBox(Language.tr("Editor.Caller.RetryProbability.CallerBlocksLine"),caller.blocksLine));
+		add(blocksLine=new JCheckBox(Language.tr("Editor.Caller.RetryProbability.CallerBlocksLine"),caller.blocksLine),BorderLayout.NORTH);
 
 		JComponent[] c;
-		add(p2=new JPanel(new GridLayout(8,1)));
+		add(p2=new JPanel(new GridLayout(8,1)),BorderLayout.CENTER);
 
 		c=addPercentInputLineWithButton(p2,Language.tr("Editor.Caller.RetryProbability.AfterBlockedFirst")+":",caller.retryProbabiltyAfterBlockedFirstRetry);
 		retryProbabiltyAfterBlockedFirstRetry=(JTextField)c[0];
@@ -158,6 +176,13 @@ public class CallerEditPanelRetryProbability extends CallerEditPanel {
 		setRetrySpecialLabels();
 	}
 
+	/**
+	 * Aktualisiert die Texte in den Info-Labels.
+	 * @see #retryProbabiltyAfterBlockedFirstRetryLabel
+	 * @see #retryProbabiltyAfterBlockedLabel
+	 * @see #retryProbabiltyAfterGiveUpFirstRetryLabel
+	 * @see #retryProbabiltyAfterGiveUpLabel
+	 */
 	private void setRetrySpecialLabels() {
 		double d;
 
@@ -178,6 +203,14 @@ public class CallerEditPanelRetryProbability extends CallerEditPanel {
 		retryProbabiltyAfterGiveUpLabel.setText((d>0)?Language.tr("Editor.Caller.RetryProbability.ClientTypeChange.Active"):Language.tr("Editor.Caller.RetryProbability.ClientTypeChange.NotActive"));
 	}
 
+	/**
+	 * Diese Funktion fügt ein Textfeld inkl. Beschreibung, nachfolgendem Button und Label hinter dem Button zu einem Panel hinzu.
+	 * Das Panel sollte dabei den Layout-Typ GridLayout(2n,1) besitzen.
+	 * @param p	Panel, in das das Eingabefeld eingefügt werden soll
+	 * @param name	Beschriftung für das Textfeld
+	 * @param initialValue	Anfänglicher Wert für das Textfeld
+	 * @return	Array aus drei Elementen: Referenz auf das neu erzeugte Textfeld, Referenz auf das neu erzeugte Button und Referenz auf das neu erzeugte Label rechts neben dem Button
+	 */
 	private JComponent[] addPercentInputLineWithButton(JPanel p, String name, double initialValue) {
 		return addPercentInputLineWithButton(p,name,initialValue,Language.tr("Editor.Caller.RetryProbability.ClientTypeChange"),Images.EDITOR_CALLER.getURL());
 	}
