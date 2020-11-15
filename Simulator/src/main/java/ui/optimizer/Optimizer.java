@@ -56,14 +56,18 @@ public final class Optimizer {
 
 	/** Wie viele Zwischenschritte sollen bei der Statistik-Speicherung übersprungen werden (1=keine überspringen) */
 	private int memorySavingLevel=1;
+	/** Letztes abgeschlossenes Intervall in Bezug auf Veränderungen in die erste Richtung */
 	private int lastOKInterval=-1;
+	/** Letztes abgeschlossenes Intervall in Bezug auf Veränderungen in die zweite Richtung */
 	private int lastOKInterval2=-1;
+	/** Handelt es sich um den letzten Lauf? */
 	private boolean thisIsLastRun=false;
 	/** Wurde die Optimierung abgebrochen? ({@link #isCanceled()}) */
 	private boolean canceled=false;
 
 	/** Gesamtzahl der Simulationsläufe */
 	private int runNr=0;
+	/** Anzahl an Intervallen */
 	private final int steps;
 	/** Aktuelle Anzahl an Agenten pro Intervall */
 	private DataDistributionImpl agents;
@@ -71,9 +75,13 @@ public final class Optimizer {
 	private DataDistributionImpl agentsChangedLast;
 	/** Veränderung der Anzahl an Agenten seit Start der Optimierung */
 	private DataDistributionImpl agentsChanged;
+	/** Notwendige Veränderung pro Intervall */
 	private final DataDistributionImpl intervalNeedsChange;
+	/** Grenzen für die Veränderungen pro Intervall */
 	private final Map<String,DataDistributionImpl> intervalChangeAllowed;
+	/** Prozentuale Veränderung pro Intervall */
 	private final DataDistributionImpl intervalPercent;
+	/** Absolute Veränderung pro Intervall */
 	private final DataDistributionImpl intervalAbsoluteAdd;
 
 	/** Startzeitpunkt der ersten Simulation */
@@ -130,7 +138,12 @@ public final class Optimizer {
 		intervalAbsoluteAdd=new DataDistributionImpl(steps,steps);
 	}
 
-	private boolean checkAgentGroups(String[] names) {
+	/**
+	 * Prüft die Liste der anzupassenden Agentengruppen.
+	 * @param names	Liste der anzupassenden Agentengruppen
+	 * @return	Liefert <code>true</code>, wenn die Liste der anzupassenden Agentengruppen gültig ist.
+	 */
+	private boolean checkAgentGroups(final String[] names) {
 		String[] callcenterNames;
 		int[] groupNumbers;
 		Object[] obj=OptimizeSetup.splitCallcenterAgentGroupData(names);
@@ -146,7 +159,12 @@ public final class Optimizer {
 		return count>0;
 	}
 
-	private boolean checkCallerGroups(String[] names) {
+	/**
+	 * Prüft die Liste der auszuwertenden Anrufergruppen.
+	 * @param names	Liste der auszuwertenden Anrufergruppen
+	 * @return	Liefert <code>true</code>, wenn die Liste der auszuwertenden Anrufergruppen gültig ist.
+	 */
+	private boolean checkCallerGroups(final String[] names) {
 		int count=0;
 		for (int i=0;i<initialEditModel.caller.size();i++) {
 			String s=initialEditModel.caller.get(i).name;
@@ -256,11 +274,21 @@ public final class Optimizer {
 		return null;
 	}
 
+	/**
+	 * Wurden Intervalle für die Optimierung ausgewählt?
+	 * @return	Liefert <code>true</code>, wenn Intervalle für die Optimierung ausgewählt wurden
+	 * @see OptimizeSetup#optimizeIntervals
+	 */
 	private boolean allIntervals() {
 		return (setup.optimizeIntervals.getMin()>0.1);
 	}
 
-	private DataDistributionImpl[] getRestrictions(String agentsGroupName) {
+	/**
+	 * Liefert den gültigen Bereich pro Intervall für eine Agentengruppe
+	 * @param agentsGroupName	Agentengruppe
+	 * @return	Array aus den Verteilungen der minimalen und der maximalen Werte pro Intervall
+	 */
+	private DataDistributionImpl[] getRestrictions(final String agentsGroupName) {
 		int index=setup.groupRestrictionName.indexOf(agentsGroupName);
 		DataDistributionImpl min, max;
 		if (index<0) {
@@ -286,7 +314,12 @@ public final class Optimizer {
 		return new DataDistributionImpl[]{min,max};
 	}
 
-	private boolean intervalChangeAllowed(int interval) {
+	/**
+	 * Dürfen in einem Intervall Veränderungen vorgenommen werden?
+	 * @param interval	Intervall
+	 * @return	Liefert <code>true</code>, wenn in dem Intervall Veränderungen vorgenommen werden dürfen
+	 */
+	private boolean intervalChangeAllowed(final int interval) {
 		for (CallcenterModelCallcenter callcenter :	initialEditModel.callcenter) for (int i=0;i<callcenter.agents.size();i++) {
 			DataDistributionImpl changeAllowed=intervalChangeAllowed.get(""+(i+1)+"-"+callcenter.name);
 			if (changeAllowed==null) return true;
@@ -295,7 +328,13 @@ public final class Optimizer {
 		return false;
 	}
 
-	private void changeAgents(CallcenterModelAgent agent, boolean firstRun, String agentsGroupName) {
+	/**
+	 * Ändert die Anzahl an Agenten in einer Gruppe.
+	 * @param agent	Agentengruppe
+	 * @param firstRun	Erster Optimierungslauf?
+	 * @param agentsGroupName	Name der Agentengruppe
+	 */
+	private void changeAgents(final CallcenterModelAgent agent, final boolean firstRun, final String agentsGroupName) {
 		if (agent.count==-2) {
 			if ((setup.optimizeByInterval==OptimizeSetup.OptimizeInterval.OPTIMIZE_BY_INTERVAL_NO && allIntervals()) || firstRun) {
 				/* Gesamte Verteilung hochsetzen */
@@ -358,7 +397,12 @@ public final class Optimizer {
 		}
 	}
 
-	private CallcenterModel changeModel(int changeModelDirection) {
+	/**
+	 * Verändert das Modell.
+	 * @param changeModelDirection	Richtung in die die Agentengruppe verändert werden soll.
+	 * @return	Neues Modell
+	 */
+	private CallcenterModel changeModel(final int changeModelDirection) {
 		CallcenterModel model=null;
 
 		int changeSignum=(changeModelDirection>=0)?1:-1;
@@ -465,7 +509,12 @@ public final class Optimizer {
 		return model;
 	}
 
-	private Object addUebertrag(CallcenterModel model) {
+	/**
+	 * Fügt einen Übertrag vom Vortag zu dem Callcenter-Modell hinzu.
+	 * @param model	Callcenter-Modell
+	 * @return	Liefert im Erfolgsfall ein {@link CallcenterRunModel}, sonst eine Fehlermeldung
+	 */
+	private Object addUebertrag(final CallcenterModel model) {
 		Statistics statistic=null;
 
 		if (setup.uebertragFile!=null && !setup.uebertragFile.isEmpty()) {
@@ -523,7 +572,12 @@ public final class Optimizer {
 		return null;
 	}
 
-	private Object[] calcClientResultValues(KundenDaten kunden) {
+	/**
+	 * Berechnet die Ergebniswerte für eine Kundengruppe.
+	 * @param kunden	Kundengruppe
+	 * @return	Array mit Wert, Verteilung (für die Gruppe), Gesamt-Verteilung
+	 */
+	private Object[] calcClientResultValues(final KundenDaten kunden) {
 		DataDistributionImpl dist=null;
 		DataDistributionImpl distAll=null;
 		double value=0;
@@ -590,7 +644,12 @@ public final class Optimizer {
 		return obj;
 	}
 
-	private Object[] calcClientResultValues(Statistics statistics) {
+	/**
+	 * Berechnet die Ergebniswerte für eine Kundengruppe.
+	 * @param statistics	Statistikdaten
+	 * @return	Array mit Wert, Verteilung (für die Gruppe), Gesamt-Verteilung
+	 */
+	private Object[] calcClientResultValues(final Statistics statistics) {
 		DataDistributionImpl dist=null;
 		DataDistributionImpl distAll=null;
 		double value=0;
@@ -662,7 +721,12 @@ public final class Optimizer {
 		return obj;
 	}
 
-	private final Object[] calcAgentsResultValues(AgentenDaten agenten) {
+	/**
+	 * Berechnet die Ergebniswerte für eine Agentengruppe.
+	 * @param agenten	Agentengruppe
+	 * @return	Array mit Wert, Verteilung (für die Gruppe), Gesamt-Verteilung
+	 */
+	private final Object[] calcAgentsResultValues(final AgentenDaten agenten) {
 		DataDistributionImpl dist=null;
 		DataDistributionImpl distAll=null;
 		double value=0;
@@ -680,7 +744,12 @@ public final class Optimizer {
 		return obj;
 	}
 
-	private final Object[] calcAgentResultValues(Statistics statistics) {
+	/**
+	 * Berechnet die Ergebniswerte für eine Agentengruppe.
+	 * @param statistics	Statistikdaten
+	 * @return	Array mit Wert, Verteilung (für die Gruppe), Gesamt-Verteilung
+	 */
+	private final Object[] calcAgentResultValues(final Statistics statistics) {
 		DataDistributionImpl dist=null;
 		DataDistributionImpl distAll=null;
 		double value=0;
@@ -731,14 +800,24 @@ public final class Optimizer {
 		return obj;
 	}
 
-	private final void setNeedsChange(int interval48, boolean b) {
+	/**
+	 * Stellt ein, dass in einem Intervall Veränderung bzw. keine Veränderungen notwendig sind.
+	 * @param interval48	Intervallnummer (bezogen auf Halbstundenintervalle)
+	 * @param b	Veränderungen nötig?
+	 */
+	private final void setNeedsChange(final int interval48, final boolean b) {
 		int l=intervalNeedsChange.densityData.length;
 		if (l==24) intervalNeedsChange.densityData[interval48/2]=b?1:-1;
 		if (l==48) intervalNeedsChange.densityData[interval48]=b?1:-1;
 		if (l==96) {intervalNeedsChange.densityData[interval48*2]=b?1:-1; intervalNeedsChange.densityData[interval48*2+1]=b?1:-1;}
 	}
 
-	private final int calcResultValues(Statistics statistics) {
+	/**
+	 * Berechnet die Ergebniswerte eines Optimierungslaufs.
+	 * @param statistics	Ergebnisse des	Optimierungslaufs
+	 * @return	Gibt <code>0</code> zurück, wenn das Optimierungsergebnis erreicht wurde. Werte &gt;0 bedeuten, dass Agenten hinzugefügt werden sollen; Werte &lt;0 bedeuten, dass Agenten entfernt werden sollen.
+	 */
+	private final int calcResultValues(final Statistics statistics) {
 		/* Kenngröße berechnen */
 		Object[] obj;
 		if (setup.optimizeProperty==OptimizeSetup.OptimizeProperty.OPTIMIZE_PROPERTY_WORK_LOAD) obj=calcAgentResultValues(statistics); else obj=calcClientResultValues(statistics);

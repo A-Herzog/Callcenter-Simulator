@@ -165,6 +165,12 @@ public final class ImporterRecord implements Cloneable {
 		return true;
 	}
 
+	/**
+	 * Teilt einen Zellenbezeichner, der evtl. einen Tabellennamen
+	 * enthalten kann, entsprechend auf.
+	 * @param name	Zellenbezeichner mit optionalem Tabellennamen
+	 * @return	2-elementiges Array aus Tabellennamen (kann leer sein) und Zellenbezeichner
+	 */
 	private String[] splitCellName(String name) {
 		int index=name.lastIndexOf('!');
 		if (index<0) return new String[]{"",name}; /* Kein Tabellenname */

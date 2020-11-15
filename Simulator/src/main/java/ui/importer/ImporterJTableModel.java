@@ -57,7 +57,9 @@ public class ImporterJTableModel extends JTableExtAbstractTableModel {
 
 	/** Callcenter-Modell in das Datenwerte geladen werden sollen */
 	private CallcenterModel model;
+	/** Arbeitskopie der Datenmodells */
 	private final ImporterData data;
+	/** Zuletzt geladenes oder gespeichertes Datenmodell (um prüfen zu können, ob die aktuellen Daten ohne Warnung verworfen werden dürfen) */
 	private ImporterData dataSaved;
 
 	/**
@@ -91,7 +93,12 @@ public class ImporterJTableModel extends JTableExtAbstractTableModel {
 		return 5;
 	}
 
-	private final JPanel getToolsCellValue(int rowIndex) {
+	/**
+	 * Liefert das Panel mit Tools-Schaltflächen für eine Tabellenzeile
+	 * @param rowIndex	Tabellenzeile
+	 * @return	Panel mit Tools-Schaltflächen
+	 */
+	private final JPanel getToolsCellValue(final int rowIndex) {
 		if (rowIndex==data.records.size()) {
 			return makeButtonPanel(
 					new String[]{Language.tr("Dialog.Button.Add")},
@@ -108,6 +115,11 @@ public class ImporterJTableModel extends JTableExtAbstractTableModel {
 				);
 	}
 
+	/**
+	 * Liefert eine Auswahlbox zur Auswahl des Typs für eine Tabellenzeile
+	 * @param rowIndex	Tabellenzeile
+	 * @return	Auswahlbox zur Auswahl des Typs
+	 */
 	private final JComboBox<String> getTypeSelect(int rowIndex) {
 		List<ImporterProcessor> processors=ImporterRecord.getImporterProcessors();
 		String[] list=new String[processors.size()];
@@ -125,6 +137,11 @@ public class ImporterJTableModel extends JTableExtAbstractTableModel {
 		return box;
 	}
 
+	/**
+	 * Liefert eine Auswahlbox zur Auswahl des Modus für eine Tabellenzeile
+	 * @param rowIndex	Tabellenzeile
+	 * @return	Auswahlbox zur Auswahl des Modus
+	 */
 	private final JComboBox<String> getParameterSelect(int rowIndex) {
 		ImporterProcessor selProcessor=data.records.get(rowIndex).getProcessor();
 		String parameter=data.records.get(rowIndex).parameter;
@@ -320,16 +337,34 @@ public class ImporterJTableModel extends JTableExtAbstractTableModel {
 		return b;
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen in der Tabelle
+	 */
 	private final class TableButtonListener implements ActionListener {
-		private final int row, nr;
+		/** Tabellenzeile */
+		private final int row;
+		/** Auszuführende Aktion (0: nach oben, 1: nach unten, 2: löschen, 3: neu, ...) */
+		private final int nr;
+		/** Combobox auf dessen aktuellen Eintrag ist sich Aktion (im Modus 11) beziehen soll */
 		private final JComboBox<String> object;
 
-		public TableButtonListener(int row, int nr, JComboBox<String> object) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param row	Tabellenzeile
+		 * @param nr	Auszuführende Aktion (0: nach oben, 1: nach unten, 2: löschen, 3: neu, ...)
+		 * @param object	Combobox auf dessen aktuellen Eintrag ist sich Aktion (im Modus 11) beziehen soll
+		 */
+		public TableButtonListener(final int row, final int nr, final JComboBox<String> object) {
 			this.row=row;
 			this.nr=nr;
 			this.object=object;
 		}
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param row	Tabellenzeile
+		 * @param nr	Auszuführende Aktion (0: nach oben, 1: nach unten, 2: löschen, 3: neu, ...)
+		 */
 		public TableButtonListener(int row, int nr) {
 			this(row,nr,null);
 		}

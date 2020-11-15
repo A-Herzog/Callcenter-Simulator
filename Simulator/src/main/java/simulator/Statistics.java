@@ -194,11 +194,21 @@ public final class Statistics extends StatisticsBase {
 		for (int i=0;i<48;i++) density[i]/=simulationData.runRepeatCount;
 	}
 
+	/**
+	 * Berechnet die Agenten-Statistik am Ende der Simulation für eine Verteilung innerhalb einer Agentengruppe.
+	 * @param dist	Verteilung innerhalb der Agentengruppe
+	 * @see #finalAgentTimesCalcSingle(AgentenDaten)
+	 */
 	private void finalAgentTimesCalcSingleDistribution(final DataDistributionImpl dist) {
 		final double[] data=dist.densityData;
 		for (int i=0;i<data.length;i++) data[i]/=1000;
 	}
 
+	/**
+	 * Berechnet die Agenten-Statistik am Ende der Simulation für eine Agentengruppe.
+	 * @param agent	Agentengruppe
+	 * @see #finalAgentTimesCalc()
+	 */
 	private void finalAgentTimesCalcSingle(final AgentenDaten agent) {
 		agent.leerlaufGesamt/=1000;
 		agent.technischerLeerlaufGesamt/=1000;
@@ -244,8 +254,14 @@ public final class Statistics extends StatisticsBase {
 		kundenGlobal.costCancel=d3;
 	}
 
-	private KundenDaten[] getWarningClientGroup(CallcenterModelWarnings.WarningRecord record) {
-		List<KundenDaten> list=new ArrayList<KundenDaten>();
+	/**
+	 * Liefert die für die Berechnung von Schwellenwert-Warnungen relevanten Kundengruppen.
+	 * @param record	Schwellenwert-Warnungsdatensatz
+	 * @return	Kundengruppen
+	 * @see #calcWarningValue(ui.model.CallcenterModelWarnings.WarningRecord)
+	 */
+	private KundenDaten[] getWarningClientGroup(final CallcenterModelWarnings.WarningRecord record) {
+		final List<KundenDaten> list=new ArrayList<KundenDaten>();
 
 		if (record.modeGroup==CallcenterModelWarnings.WarningMode.WARNING_MODE_AVERAGE) {
 			list.add(kundenGlobal);
@@ -264,8 +280,14 @@ public final class Statistics extends StatisticsBase {
 		return list.toArray(new KundenDaten[0]);
 	}
 
-	private AgentenDaten[] getWarningAgentsGroup(CallcenterModelWarnings.WarningRecord record) {
-		List<AgentenDaten> list=new ArrayList<AgentenDaten>();
+	/**
+	 * Liefert die für die Berechnung von Schwellenwert-Warnungen relevanten Agentengruppen.
+	 * @param record	Schwellenwert-Warnungsdatensatz
+	 * @return	Agentengruppen
+	 * @see #calcWarningValue(ui.model.CallcenterModelWarnings.WarningRecord)
+	 */
+	private AgentenDaten[] getWarningAgentsGroup(final CallcenterModelWarnings.WarningRecord record) {
+		final List<AgentenDaten> list=new ArrayList<AgentenDaten>();
 
 		if (record.modeGroup==CallcenterModelWarnings.WarningMode.WARNING_MODE_AVERAGE) {
 			list.add(agentenGlobal);
@@ -284,7 +306,15 @@ public final class Statistics extends StatisticsBase {
 		return list.toArray(new AgentenDaten[0]);
 	}
 
-	private double calcWarningValueAverage(CallcenterModelWarnings.WarningType type, KundenDaten[] groupsKunden, AgentenDaten[] groupsAgenten) {
+	/**
+	 * Berechnet den Mittelwert zum Vergleich mit dem Schwellenwert
+	 * @param type	 Typ der Schwellenwert-Überschreitungs-Warnung
+	 * @param groupsKunden	Kundengruppen
+	 * @param groupsAgenten	Agentengruppen
+	 * @return	Mittelwert
+	 * @see #calcWarningValue(ui.model.CallcenterModelWarnings.WarningRecord)
+	 */
+	private double calcWarningValueAverage(final CallcenterModelWarnings.WarningType type, final KundenDaten[] groupsKunden, final AgentenDaten[] groupsAgenten) {
 		double d;
 
 		if (type==CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CALL || type==CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CLIENT || type==CallcenterModelWarnings.WarningType.WARNING_TYPE_RESIDENCETIME_CALL || type==CallcenterModelWarnings.WarningType.WARNING_TYPE_RESIDENCETIME_CLIENT) {
@@ -336,7 +366,16 @@ public final class Statistics extends StatisticsBase {
 		return d;
 	}
 
-	private double calcWarningValueIntervals(CallcenterModelWarnings.WarningType type, KundenDaten[] groupsKunden, AgentenDaten[] groupsAgenten, DataDistributionImpl intervals) {
+	/**
+	 * Berechnet den Wert zum Vergleich mit dem Schwellenwert
+	 * @param type	 Typ der Schwellenwert-Überschreitungs-Warnung
+	 * @param groupsKunden	Kundengruppen
+	 * @param groupsAgenten	Agentengruppen
+	 * @param intervals	Zu berücksichtigende Intervalle
+	 * @return	Wert
+	 * @see #calcWarningValue(ui.model.CallcenterModelWarnings.WarningRecord)
+	 */
+	private double calcWarningValueIntervals(final CallcenterModelWarnings.WarningType type, final KundenDaten[] groupsKunden, final AgentenDaten[] groupsAgenten, final DataDistributionImpl intervals) {
 		double d;
 
 		if (type==CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CALL || type==CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CLIENT || type==CallcenterModelWarnings.WarningType.WARNING_TYPE_RESIDENCETIME_CALL || type==CallcenterModelWarnings.WarningType.WARNING_TYPE_RESIDENCETIME_CLIENT) {
@@ -390,7 +429,12 @@ public final class Statistics extends StatisticsBase {
 		return d;
 	}
 
-	private double calcWarningValue(CallcenterModelWarnings.WarningRecord record) {
+	/**
+	 * Berechnet den Wert zum Vergleich mit dem Schwellenwert
+	 * @param record	Typ der Schwellenwert-Überschreitungs-Warnung
+	 * @return	Wert
+	 */
+	private double calcWarningValue(final CallcenterModelWarnings.WarningRecord record) {
 		/* Gruppen auswählen */
 		KundenDaten[] groupsKunden=null;
 		AgentenDaten[] groupsAgenten=null;
@@ -579,8 +623,14 @@ public final class Statistics extends StatisticsBase {
 		return null;
 	}
 
-	private final void saveQueueSummary(Element parent, int intFrom, int intTo) {
-		Document doc=parent.getOwnerDocument();
+	/**
+	 * Speichert die Warteschlangenlängen-Statistik-Zusammenfassung
+	 * @param parent	Übergeordnetes XML-Element
+	 * @param intFrom	Erstes zu berücksichtigendes Intervall (0..47)
+	 * @param intTo	Letztes zu berücksichtigendes Intervall (0..47)
+	 */
+	private final void saveQueueSummary(final Element parent, int intFrom, int intTo) {
+		final Document doc=parent.getOwnerDocument();
 		Element node;
 
 		parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Queue.Summary")));
@@ -597,7 +647,13 @@ public final class Statistics extends StatisticsBase {
 	}
 
 
-	private final void saveErlangCData(Element node, StatisticViewerErlangCTools erlangCData, boolean isWithRetry) {
+	/**
+	 * Speichert die Erlang-Vergleichs-Daten
+	 * @param node	XML-Element in dem die Daten als Attribute gespeichert werden sollen
+	 * @param erlangCData	Erlang-Vergleichsdaten
+	 * @param isWithRetry	Sind Wiederholer in dem Modell enthalten?
+	 */
+	private final void saveErlangCData(final Element node, final StatisticViewerErlangCTools erlangCData, final boolean isWithRetry) {
 		DataDistributionImpl dist;
 
 		dist=new DataDistributionImpl(86400,erlangCData.getAgents());
@@ -1027,12 +1083,53 @@ public final class Statistics extends StatisticsBase {
 			kundenNextDayUebertragRestWaitingToleranceProSimDay.addAll(data.kundenNextDayUebertragRestWaitingToleranceProSimDay);
 		}
 
+		/**
+		 * Wird in {@link #updateInterDayData()} verwendet, um Überträge zwischen
+		 * mehreren Tagen verwalten zu können.
+		 * @see #updateInterDayData()
+		 */
 		private int lastDayAnrufe;
+
+		/**
+		 * Wird in {@link #updateInterDayData()} verwendet, um Überträge zwischen
+		 * mehreren Tagen verwalten zu können.
+		 * @see #updateInterDayData()
+		 */
 		private int lastDayAnrufeErfolg;
+
+		/**
+		 * Wird in {@link #updateInterDayData()} verwendet, um Überträge zwischen
+		 * mehreren Tagen verwalten zu können.
+		 * @see #updateInterDayData()
+		 */
 		private int lastDayKunden;
+
+		/**
+		 * Wird in {@link #updateInterDayData()} verwendet, um Überträge zwischen
+		 * mehreren Tagen verwalten zu können.
+		 * @see #updateInterDayData()
+		 */
 		private int lastDayKundenErfolg;
+
+		/**
+		 * Wird in {@link #updateInterDayData()} verwendet, um Überträge zwischen
+		 * mehreren Tagen verwalten zu können.
+		 * @see #updateInterDayData()
+		 */
 		private long lastDayAnrufeWartezeitSum;
+
+		/**
+		 * Wird in {@link #updateInterDayData()} verwendet, um Überträge zwischen
+		 * mehreren Tagen verwalten zu können.
+		 * @see #updateInterDayData()
+		 */
 		private int lastDayAnrufeServicelevel;
+
+		/**
+		 * Wird in {@link #updateInterDayData()} verwendet, um Überträge zwischen
+		 * mehreren Tagen verwalten zu können.
+		 * @see #updateInterDayData()
+		 */
 		private int lastDayKundenServicelevel;
 
 		/**
@@ -1087,6 +1184,11 @@ public final class Statistics extends StatisticsBase {
 			kundenNextDayUebertragRestWaitingToleranceThisDay=new ArrayList<Long>();
 		}
 
+		/**
+		 * Versucht einen Kunden-Datensatz aus dem übergebenen XML-Node zu laden
+		 * @param node	XML-Knoten, der die Kunden-Daten enthält
+		 * @return	Tritt ein Fehler auf, so wird die Fehlermeldung als String zurückgegeben. Im Erfolgsfall wird <code>null</code> zurückgegeben.
+		 */
 		private final String loadFromXML(final Element node) {
 			name=Language.trAllAttribute("XML.Statistic.GeneralAttributes.Name",node);
 
@@ -1674,7 +1776,13 @@ public final class Statistics extends StatisticsBase {
 			return interval;
 		}
 
-		private final void saveKonfidencePercentValue(Element node2, double sum, double sum2) {
+		/**
+		 * Speichert Konfidenzintervall-Daten für eine Kenngröße.
+		 * @param node2	XML-Element in dem die Daten als Attribute gespeichert werden sollen
+		 * @param sum	Summe der Werte für die Kenngröße
+		 * @param sum2	Summe der quadrierten Werte für die Kenngröße
+		 */
+		private final void saveConfidencePercentValue(final Element node2, final double sum, final double sum2) {
 			double[] c;
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Sum"),NumberTools.formatSystemNumber(sum));
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.SquaresSum"),NumberTools.formatSystemNumber(sum2));
@@ -1686,7 +1794,13 @@ public final class Statistics extends StatisticsBase {
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Confidence95Max"),NumberTools.formatSystemNumber(c[1]*100,5)+"%");
 		}
 
-		private final void saveSummary(Element parent, int intFrom, int intTo) {
+		/**
+		 * Speichert die Zusammenfassungsdaten
+		 * @param parent	Übergeordnetes XML-Element
+		 * @param intFrom	Erstes zu berücksichtigendes Intervall (0..47)
+		 * @param intTo	Letztes zu berücksichtigendes Intervall (0..47)
+		 */
+		private final void saveSummary(final Element parent, int intFrom, int intTo) {
 			Document doc=parent.getOwnerDocument();
 			Element node;
 
@@ -1855,8 +1969,12 @@ public final class Statistics extends StatisticsBase {
 			node.setAttribute(Language.trPrimary("XML.Statistic.Clients.Summary.CallsServiceLevelAll"),NumberTools.formatSystemNumber(result*100)+"%");
 		}
 
-		private final void saveDataToXML(Element parent) {
-			Document doc=parent.getOwnerDocument();
+		/**
+		 * Versucht einen Kunden-Datensatz in einem XML-Knoten zu speichern
+		 * @param parent Übergeordneter XML-Knoten
+		 */
+		private final void saveDataToXML(final Element parent) {
+			final Document doc=parent.getOwnerDocument();
 			Element node, node2;
 
 			parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Clients.Count")));
@@ -2017,10 +2135,10 @@ public final class Statistics extends StatisticsBase {
 			parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Confidence")));
 
 			node.appendChild(node2=doc.createElement(Language.trPrimary("XML.Statistic.Confidence.Accessibility.Calls")));
-			saveKonfidencePercentValue(node2,interDaySuccessCallsSum,interDaySuccessCallsSum2);
+			saveConfidencePercentValue(node2,interDaySuccessCallsSum,interDaySuccessCallsSum2);
 
 			node.appendChild(node2=doc.createElement(Language.trPrimary("XML.Statistic.Confidence.Accessibility.Clients")));
-			saveKonfidencePercentValue(node2,interDaySuccessClientsSum,interDaySuccessClientsSum2);
+			saveConfidencePercentValue(node2,interDaySuccessClientsSum,interDaySuccessClientsSum2);
 
 			node.appendChild(node2=doc.createElement(Language.trPrimary("XML.Statistic.Confidence.WaitingTime")));
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Sum"),NumberTools.formatSystemNumber(interDayWartezeitSum));
@@ -2033,16 +2151,16 @@ public final class Statistics extends StatisticsBase {
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Confidence95Max"),TimeTools.formatExactSystemTime(c[1]));
 
 			node.appendChild(node2=doc.createElement(Language.trPrimary("XML.Statistic.Confidence.ServiceLevel.CallsSuccess")));
-			saveKonfidencePercentValue(node2,interDayServiceLevelCallsSuccessSum,interDayServiceLevelCallsSuccessSum2);
+			saveConfidencePercentValue(node2,interDayServiceLevelCallsSuccessSum,interDayServiceLevelCallsSuccessSum2);
 
 			node.appendChild(node2=doc.createElement(Language.trPrimary("XML.Statistic.Confidence.ServiceLevel.CallsAll")));
-			saveKonfidencePercentValue(node2,interDayServiceLevelCallsAllSum,interDayServiceLevelCallsAllSum2);
+			saveConfidencePercentValue(node2,interDayServiceLevelCallsAllSum,interDayServiceLevelCallsAllSum2);
 
 			node.appendChild(node2=doc.createElement(Language.trPrimary("XML.Statistic.Confidence.ServiceLevel.ClientsSuccess")));
-			saveKonfidencePercentValue(node2,interDayServiceLevelClientsSuccessSum,interDayServiceLevelClientsSuccessSum2);
+			saveConfidencePercentValue(node2,interDayServiceLevelClientsSuccessSum,interDayServiceLevelClientsSuccessSum2);
 
 			node.appendChild(node2=doc.createElement(Language.trPrimary("XML.Statistic.Confidence.ServiceLevel.ClientsAll")));
-			saveKonfidencePercentValue(node2,interDayServiceLevelClientsAllSum,interDayServiceLevelClientsAllSum2);
+			saveConfidencePercentValue(node2,interDayServiceLevelClientsAllSum,interDayServiceLevelClientsAllSum2);
 
 			parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Costs")));
 			node.setAttribute(Language.trPrimary("XML.Statistic.Costs.Yield"),NumberTools.formatSystemNumber(revenue));
@@ -2050,7 +2168,11 @@ public final class Statistics extends StatisticsBase {
 			node.setAttribute(Language.trPrimary("XML.Statistic.Costs.Cancelations"),NumberTools.formatSystemNumber(costCancel));
 		}
 
-		private final void saveToXML(Element parent) {
+		/**
+		 * Speichert die Daten in einem XML-Element
+		 * @param parent	Übergeordnetes Element für das neue XML-Element
+		 */
+		private final void saveToXML(final Element parent) {
 			Document doc=parent.getOwnerDocument();
 			Element node; parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Clients")));
 
@@ -2123,6 +2245,12 @@ public final class Statistics extends StatisticsBase {
 		/** Kosten durch die Gesprächszeiten */
 		public double costProcessTime;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param type	Skill-Level
+		 * @param name	Name der Agentengruppe
+		 * @param caller	Zugehörige Anrufer-Datensätze
+		 */
 		private AgentenDaten(final String type, final String name, final CallcenterRunModelCaller[] caller) {
 			this.type=type;
 			this.name=name;
@@ -2147,10 +2275,19 @@ public final class Statistics extends StatisticsBase {
 			}
 		}
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param type	Skill-Level
+		 * @param caller	Zugehörige Anrufer-Datensätze
+		 */
 		private AgentenDaten(final String type, final CallcenterRunModelCaller[] caller) {
 			this(type,"",caller);
 		}
 
+		/**
+		 * Fügt Daten eines weiteren Agenten-Datensatzes zu diesem hinzu.
+		 * @param data	Weiterer Agenten-Datensatz
+		 */
 		private final void addData(final AgentenDaten data) {
 			anzahlAgenten=data.anzahlAgenten; /* kein += hier */
 			leerlaufGesamt+=data.leerlaufGesamt;
@@ -2181,7 +2318,12 @@ public final class Statistics extends StatisticsBase {
 			costProcessTime+=data.costProcessTime;
 		}
 
-		private final String loadClientDataFromXML(Element node) {
+		/**
+		 * Lädt die kundenspezifischen Agenten-Daten aus einem XML-Element
+		 * @param node	XML-Element aus dem die Daten geladen werden sollen
+		 * @return	Liefert im Erfolgsfall <code>null</code> sonst eine Fehlermeldung
+		 */
+		private final String loadClientDataFromXML(final Element node) {
 			Long K;
 			String s;
 
@@ -2238,7 +2380,12 @@ public final class Statistics extends StatisticsBase {
 			return null;
 		}
 
-		private final String loadFromXML(Element node) {
+		/**
+		 * Versucht einen Agenten-Datensatz aus dem übergebenen XML-Node zu laden
+		 * @param node	XML-Knoten, der die Agenten-Daten enthält
+		 * @return	Tritt ein Fehler auf, so wird die Fehlermeldung als String zurückgegeben. Im Erfolgsfall wird <code>null</code> zurückgegeben.
+		 */
+		private final String loadFromXML(final Element node) {
 			dataByCaller=new String[0];
 			dataByCallerTechnial=new long[0];
 			dataByCallerService=new long[0];
@@ -2370,8 +2517,12 @@ public final class Statistics extends StatisticsBase {
 			return time;
 		}
 
-		private final void saveDataToXML(Element parent) {
-			Document doc=parent.getOwnerDocument();
+		/**
+		 * Versucht einen Agenten-Datensatz in einem XML-Knoten zu speichern
+		 * @param parent Übergeordneter XML-Knoten
+		 */
+		private final void saveDataToXML(final Element parent) {
+			final Document doc=parent.getOwnerDocument();
 			Element node;
 
 			parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Agents.Summary")));
@@ -2421,9 +2572,14 @@ public final class Statistics extends StatisticsBase {
 			node.setAttribute(Language.trPrimary("XML.Statistic.Agents.Costs.CallTimes"),NumberTools.formatNumberMax(costProcessTime));
 		}
 
-		private final void saveToXML(Element parent) {
+		/**
+		 * Speichert die Daten in einem XML-Element
+		 * @param parent	Übergeordnetes Element für das neue XML-Element
+		 */
+		private final void saveToXML(final Element parent) {
 			Document doc=parent.getOwnerDocument();
-			Element node; parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Agents")));
+			Element node;
+			parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Agents")));
 
 			if (!type.isEmpty()) {
 				node.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Type"),type);
@@ -2434,7 +2590,12 @@ public final class Statistics extends StatisticsBase {
 		}
 	}
 
-	private final AgentModelData[] buildAgentModelData(CallcenterModel model) {
+	/**
+	 * Erstellt aus Basis eines Callcenter-Modells die Modell-Agenten
+	 * @param model	Callcenter-Modell
+	 * @return	Modell-Agenten
+	 */
+	private final AgentModelData[] buildAgentModelData(final CallcenterModel model) {
 		List<AgentModelData> list=new ArrayList<AgentModelData>();
 
 		for (int i=0;i<model.callcenter.size();i++) {
@@ -2484,10 +2645,21 @@ public final class Statistics extends StatisticsBase {
 		/** Agentenzahlen gemäß Modell (Agenten inkl. Zuschlag) */
 		public DataDistributionImpl fullAgents=new DataDistributionImpl(48,48);
 
+		/**
+		 * Konstruktor der Klasse
+		 */
 		private AgentModelData() {
 			this(null,null,null,null,null);
 		}
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param name	Name der Agentengruppe
+		 * @param type	Skill-Level
+		 * @param simAgents	Agentenzahlen gemäß Modell (Agenten für die Simulation)
+		 * @param modelAgents	Agentenzahlen gemäß Modell (Agenten aus dem Modell)
+		 * @param fullAgents	Agentenzahlen gemäß Modell (Agenten inkl. Zuschlag)
+		 */
 		private AgentModelData(String name, String type, DataDistributionImpl simAgents, DataDistributionImpl modelAgents, DataDistributionImpl fullAgents) {
 			this.name=(name!=null)?name:"";
 			this.type=(type!=null)?type:"";
@@ -2497,6 +2669,14 @@ public final class Statistics extends StatisticsBase {
 			if (fullAgents!=null) this.fullAgents=fullAgents.clone();
 		}
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param callcenterName	Name des Callcenters in dem die Agentengruppe zum Einsatz kommt
+		 * @param simpleAgentGroups	Agenten in der Gruppe
+		 * @param groupNr	Index der Agentengruppe in dem Callcenter
+		 * @param callcenter	Callcenter in dem die Agentengruppe zum Einsatz kommt
+		 * @param model	Callcenter-Modell
+		 */
 		private AgentModelData(final String callcenterName, final CallcenterModelAgent[] simpleAgentGroups, final int groupNr, final CallcenterModelCallcenter callcenter, final CallcenterModel model) {
 			name=getAgentModelDataGroupName(callcenterName,groupNr);
 			type=simpleAgentGroups[0].skillLevel;
@@ -2519,6 +2699,11 @@ public final class Statistics extends StatisticsBase {
 			}
 		}
 
+		/**
+		 * Konstruktor der Klasse<br>
+		 * Überträge Daten aus mehreren anderen Objekten in dieses
+		 * @param agents	Quell-Objekte aus denen die Agenten-Daten in dieses Objekt übernommen werden sollen
+		 */
 		private AgentModelData(final AgentModelData[] agents) {
 			name="";
 			type="";
@@ -2530,7 +2715,12 @@ public final class Statistics extends StatisticsBase {
 			}
 		}
 
-		private final String loadFromXML(Element node) {
+		/**
+		 * Lädt die Daten aus einem XML-Element
+		 * @param node	XML-Element aus dem die Daten geladen werden sollen
+		 * @return	Liefert im Erfolgsfall <code>null</code> sonst eine Fehlermeldung
+		 */
+		private final String loadFromXML(final Element node) {
 			name=Language.trAllAttribute("XML.Statistic.GeneralAttributes.Name",node);
 			if (!name.isEmpty()) type=Language.trAllAttribute("XML.Statistic.GeneralAttributes.Type",node);
 
@@ -2564,8 +2754,12 @@ public final class Statistics extends StatisticsBase {
 			return null;
 		}
 
-		private final void saveDataToXML(Element parent) {
-			Document doc=parent.getOwnerDocument();
+		/**
+		 * Versucht einen Modell-Agenten-Datensatz in einem XML-Knoten zu speichern
+		 * @param parent Übergeordneter XML-Knoten
+		 */
+		private final void saveDataToXML(final Element parent) {
+			final Document doc=parent.getOwnerDocument();
 			Element node, child;
 
 			parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.ModelAgents")));

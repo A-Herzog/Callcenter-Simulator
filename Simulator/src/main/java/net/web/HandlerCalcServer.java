@@ -66,6 +66,13 @@ public class HandlerCalcServer implements WebServerDataHandler {
 		this.jarData=jarData;
 	}
 
+	/**
+	 * Liefert das Haupt-HTML-Dokument für den Webserver
+	 * @param portHtml	Server-Port
+	 * @param serverHost	Server-URL
+	 * @param language	Sprache
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
+	 */
 	private Object[] getRootDocument(int portHtml, String serverHost, Locale language) {
 		String hostName=serverHost;
 		String hostNameWithSlash=hostName;
@@ -90,6 +97,10 @@ public class HandlerCalcServer implements WebServerDataHandler {
 		return WebServerTools.buildHTMLResponse(sb.toString(),true);
 	}
 
+	/**
+	 * Liefert, wenn verfügbar, das Applet aus.
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type) oder <code>null</code>, wenn das Applet nicht zur Verfügung steht
+	 */
 	private Object[] getApplet() {
 		if (jarData==null) {
 			try {

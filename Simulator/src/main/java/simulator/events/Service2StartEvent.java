@@ -159,7 +159,14 @@ public final class Service2StartEvent extends Event {
 		}
 	}
 
-	private static void scheduleRecall(SimulationData data, long time, CallcenterRunModelCaller oldType, CallcenterRunModelCaller newType) {
+	/**
+	 * Plant einen Wiederanruf ein.
+	 * @param data	Simulationsdatenobjekt
+	 * @param time	Zeitpunkt des Wiederanrufs
+	 * @param oldType	Alter Kundentyp
+	 * @param newType	Neuer Kundentyp
+	 */
+	private static void scheduleRecall(final SimulationData data, final long time, final CallcenterRunModelCaller oldType, final CallcenterRunModelCaller newType) {
 		final long recallCallTime=time+Math.round(DistributionRandomNumber.randomNonNegative(oldType.recallTimeDist)*1000);
 
 		final CallerRecord record=data.dynamicSimData.getNewCallerRecord();

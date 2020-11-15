@@ -50,10 +50,34 @@ public final class SpecialProcessingDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 3919074252992633185L;
 
+	/**
+	 * Liste der konkreten Verarbeitungs-Objekte.
+	 * @see #registerProcessingClasses()
+	 */
 	private final List<AbstractSpecialProcessing> handlers=new ArrayList<AbstractSpecialProcessing>();
+
+	/**
+	 * Auflistung der Verarbeitungs-Möglichkeiten.
+	 * @see #handlers
+	 */
 	private JList<String> list;
+
+	/**
+	 * Info-Zeile zur Anzeige einer Überschrift über
+	 * den Einstellungen zu dem gewählten Handler.
+	 */
 	private JLabel toplabel;
+
+	/**
+	 * Panel im dem die Einstellungen des gewählten
+	 * Handlers angezeigt werden sollen.
+	 */
 	private JPanel main;
+
+	/**
+	 * Neues Callcenter-Modell
+	 * @see #getModel()
+	 */
 	private CallcenterModel model=null;
 
 	/**
@@ -99,6 +123,12 @@ public final class SpecialProcessingDialog extends BaseEditDialog {
 		list.setSelectedIndex(0);
 	}
 
+	/**
+	 * Registriert die verschiedenen zur Verfügung stehenden
+	 * Import-Handler.
+	 * @see #handlers
+	 * @see AbstractSpecialProcessing
+	 */
 	private void registerProcessingClasses() {
 		handlers.add(new SimpleModelProcessing(owner));
 		handlers.add(new XMLPreprocessing(owner));
@@ -134,6 +164,10 @@ public final class SpecialProcessingDialog extends BaseEditDialog {
 		return model;
 	}
 
+	/**
+	 * Reagiert auf eine Veränderte Auswahl in {@link SpecialProcessingDialog#list}
+	 * @see SpecialProcessingDialog#list
+	 */
 	private final class ListSelection implements ListSelectionListener {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {

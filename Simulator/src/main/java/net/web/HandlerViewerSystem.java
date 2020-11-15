@@ -58,6 +58,11 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 		this.filterFolder=filterFolder;
 	}
 
+	/**
+	 * Liefert ein Bild über den Webserver aus
+	 * @param imageFileName	Dateiname des Bildes (wird im Ressourcen-Ordner gesucht)
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
+	 */
 	private Object[] getImage(final String imageFileName) {
 		if (imageFileName.contains("/") || imageFileName.contains("\\") || imageFileName.contains("..")) return null;
 		String[] parts=imageFileName.split("\\.");
@@ -76,12 +81,22 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 		}
 	}
 
+	/**
+	 * Prüft, ob die angegebene Bilddatei existiert und liefert diese im Erfolgsfall aus.
+	 * @param url	Bilddatei
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type) oder im Fehlerfall <code>null</code>
+	 */
 	private Object[] testAndGetImage(final String url) {
 		String urlImages=WebServerTools.testURLSegment(url,"images");
 		if (urlImages!=null && urlImages.length()>1) return getImage(urlImages.substring(1));
 		return null;
 	}
 
+	/**
+	 * Liefert ein Beispielmodell aus.
+	 * @param fileName	Beispielmodell
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type) oder im Fehlerfall <code>null</code>
+	 */
 	private Object[] getExample(final String fileName) {
 		if (fileName.contains("/") || fileName.contains("\\") || fileName.contains("..")) return null;
 		try (InputStream stream=HandlerViewerSystem.class.getResourceAsStream("res/viewer/examples/"+fileName)) {
@@ -91,22 +106,44 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 		}
 	}
 
+	/**
+	 * Prüft, ob ein Beispielmodell existiert und liefert dieses im Erfolgsfall aus.
+	 * @param url	Name	Beispielmodell
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type) oder im Fehlerfall <code>null</code>
+	 */
 	private Object[] testAndGetExample(final String url) {
 		String exampleUrl=WebServerTools.testURLSegment(url,"examples");
 		if (exampleUrl!=null && exampleUrl.length()>1) return getExample(exampleUrl.substring(1));
 		return null;
 	}
 
-	private Object[] getServerList(int index) {
+	/**
+	 * Liefert eine Liste mit allen Statistik-Dateien in einem Verzeichnis als html-Datei
+	 * @param index	Index des Verzeichnisses mit den Statistikdateien in {@link #serverFolder}
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
+	 */
+	private Object[] getServerList(final int index) {
 		String data=HandlerViewerSystemTools.getServerFileList(serverFolder[index].listFiles(),index,false);
 		return WebServerTools.buildHTMLResponse(WebServerTools.getWebPageFrame(Language.tr("Server.WebMenu.ViewerList.Title"),data,Language.tr("Server.WebMenu.ViewerList.Title")),true);
 	}
 
-	private Object[] getServerDateList(int index) {
+	/**
+	 * Liefert eine Liste mit allen Statistik-Dateien nach Datum sortiert in einem Verzeichnis als html-Datei
+	 * @param index	Index des Verzeichnisses mit den Statistikdateien in {@link #serverFolder}
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
+	 */
+	private Object[] getServerDateList(final int index) {
 		String data=HandlerViewerSystemTools.getServerDateFileList(serverFolder[index],index);
 		return WebServerTools.buildHTMLResponse(WebServerTools.getWebPageFrame(Language.tr("Server.WebMenu.ViewerList.Title"),data,Language.tr("Server.WebMenu.ViewerList.Title")),true);
 	}
 
+	/**
+	 * Liefert Statistikdaten als Viewer aus
+	 * @param index	Index des Verzeichnisses mit den Statistikdateien in {@link #serverFolder}
+	 * @param xmlFile	Statistik-Datei
+	 * @param serverHost	Server-Name
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type) oder im Fehlerfall <code>null</code>
+	 */
 	private Object[] directViewer(int index, String xmlFile, String serverHost) {
 		Statistics statistic=serverFolder[index].getStatisticFromFile(xmlFile);
 		if (statistic==null) return null;
@@ -117,6 +154,12 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 		return WebServerTools.buildHTMLResponse(html,true);
 	}
 
+	/**
+	 * Liefert Statistikdaten als Viewer aus
+	 * @param index	Index des Verzeichnisses mit den Statistikdateien in {@link #serverFolder}
+	 * @param xmlFile	Statistik-Datei
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type) oder im Fehlerfall <code>null</code>
+	 */
 	private Object[] dataViewer(int index, String xmlFile) {
 		Statistics statistic=serverFolder[index].getStatisticFromFile(xmlFile);
 		if (statistic==null) return null;
@@ -127,7 +170,13 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 		return WebServerTools.buildHTMLResponse(WebServerTools.getWebPageFrame(Language.tr("Server.WebMenu.ViewerData.Title"),content,Language.tr("Server.WebMenu.ViewerData.Title")),true);
 	}
 
-	private Object[] dataFilter(int index, String xmlFile) {
+	/**
+	 * Liefert ein Filter-Skript aus.
+	 * @param index	Index des Verzeichnisses mit den Statistikdateien in {@link #serverFolder}
+	 * @param xmlFile	Statistik-Datei
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type) oder im Fehlerfall <code>null</code>
+	 */
+	private Object[] dataFilter(final int index, final String xmlFile) {
 		if (xmlFile==null) return null;
 		String[] parts=xmlFile.split("\\?");
 		if (parts==null || parts.length!=2) return null;
@@ -142,7 +191,13 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 		return WebServerTools.buildTXTResponse(result,true,"Filter.txt");
 	}
 
-	private Object[] downloadModel(int index, String xmlFile) {
+	/**
+	 * Liefert das Modell als Download.
+	 * @param index	Index des Verzeichnisses mit den Statistikdateien in {@link #serverFolder}
+	 * @param xmlFile	Statistik-Datei
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type) oder im Fehlerfall <code>null</code>
+	 */
+	private Object[] downloadModel(final int index, final String xmlFile) {
 		Statistics statistic=serverFolder[index].getStatisticFromFile(xmlFile);
 		if (statistic==null) return null;
 
@@ -152,7 +207,13 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 		} catch (IOException e) {return null;}
 	}
 
-	private Object[] downloadStatistic(int index, String xmlFile) {
+	/**
+	 * Liefert die Statistikdaten als Download.
+	 * @param index	Index des Verzeichnisses mit den Statistikdateien in {@link #serverFolder}
+	 * @param xmlFile	Statistik-Datei
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type) oder im Fehlerfall <code>null</code>
+	 */
+	private Object[] downloadStatistic(final int index, final String xmlFile) {
 		Statistics statistic=serverFolder[index].getStatisticFromFile(xmlFile);
 		if (statistic==null) return null;
 
@@ -162,7 +223,13 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 		} catch (IOException e) {return null;}
 	}
 
-	private String viewerRoot(Locale language, String serverHost) {
+	/**
+	 * Liefert die Hauptdatei aus.
+	 * @param language	Sprache
+	 * @param serverHost	Server-Name
+	 * @return	html-Code der Hauptdatei
+	 */
+	private String viewerRoot(final Locale language, final String serverHost) {
 		try (InputStream stream=language.equals(Locale.GERMAN)?HandlerViewerSystem.class.getResourceAsStream("res/viewer_nonlocal/index_de.php"):HandlerViewerSystem.class.getResourceAsStream("res/viewer_nonlocal/index_en.php")) {
 			String html=WebServerTools.getTextFile(stream);
 			if (html!=null) html=html.replace(UpdateSystem.shortHomeURL,serverHost);

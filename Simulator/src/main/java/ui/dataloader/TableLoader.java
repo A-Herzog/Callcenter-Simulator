@@ -35,8 +35,22 @@ import mathtools.distribution.swing.CommonVariables;
  * @author Alexander Herzog
  */
 public abstract class TableLoader {
+	/**
+	 * Zu verarbeitende Tabelle
+	 */
 	private final Table table;
+
+	/**
+	 * Zuletzt aufgetretenen Fehler
+	 * @see #getLastError()
+	 * @see #setLastError(String)
+	 */
 	private String lastError=null;
+
+	/**
+	 * Namen der zu verarbeitenden Spalten
+	 * @see #setColNamesToProcess(String[])
+	 */
 	private String[] colNamesToProcess;
 
 	/**
@@ -73,6 +87,11 @@ public abstract class TableLoader {
 		lastError=error;
 	}
 
+	/**
+	 * Liefert eine Reihe von Spalten aus {@link #table}.
+	 * @param colNames	Namen der Spalten
+	 * @return	Teiltabelle die nur noch die angegebenen Spalen enthält
+	 */
 	private final String[][] getCols(final String[] colNames) {
 		String[][] cols=new String[colNames.length][];
 		Table colTable=table.transpose();

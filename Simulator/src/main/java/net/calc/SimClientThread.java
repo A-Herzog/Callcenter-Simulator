@@ -31,16 +31,50 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public final class SimClientThread extends NetworkThread {
-	/** Netzwerkname des Servers */
+	/**
+	 * Netzwerkname des Servers
+	 */
 	private final String serverName;
-	/** Objekt vom Typ <code>CallcenterModel</code>, welches simuliert werden soll */
+
+	/**
+	 * Objekt vom Typ {@link CallcenterModel}, welches simuliert werden soll
+	 */
 	private final CallcenterModel editModel;
+
+	/**
+	 * Im Erfolgsfall das Statistik-Objekt mit dem Ergebnissen
+	 * @see #getStatistics()
+	 */
 	private Statistics statistics;
+
+	/**
+	 * Im Falle eines Fehlers die Fehlermeldung
+	 * @see #getErrorMessage()
+	 */
 	private String errorMessage;
+
+	/**
+	 * Priorität, die der Server für die Simulation verwenden soll (1: niedrig, 2: normal)
+	 * @see #setPriority(int)
+	 */
 	private int setPriority;
 
+	/**
+	 * Anzahl an simulierten Ereignissen
+	 * @see #getEventCount()
+	 */
 	private long eventCount=0;
+
+	/**
+	 * Pro Sekunde simulierte Ereignisse
+	 * @see #getEventsPerSecond()
+	 */
 	private int eventsPerSecond=0;
+
+	/**
+	 * Gerade in Arbeit befindlicher Tag
+	 * @see #getSimDayCount()
+	 */
 	private int simDayCount=0;
 
 	/**
@@ -58,7 +92,7 @@ public final class SimClientThread extends NetworkThread {
 
 	/**
 	 * Gibt nach Ende des Threads im Erfolgsfall ein Statistik-Objekt zurück
-	 * @return	Im Erfolgsfall das Statistik-Objekt mit dem Ergebnisen, sonst <code>null</code>
+	 * @return	Im Erfolgsfall das Statistik-Objekt mit dem Ergebnissen, sonst <code>null</code>
 	 */
 	public Statistics getStatistics() {
 		return statistics;
@@ -72,8 +106,13 @@ public final class SimClientThread extends NetworkThread {
 		return errorMessage;
 	}
 
+	/**
+	 * Sender ein einzelnes Byte an den Server
+	 * @param b	Zu sendendes Byte
+	 * @see #run()
+	 */
 	@SuppressWarnings("resource")
-	private void sendByte(int b) {
+	private void sendByte(final int b) {
 		try {socket.getOutputStream().write(b);} catch (IOException e) {}
 	}
 

@@ -117,7 +117,13 @@ public final class ImporterProcessorCallerSingleValue extends ImporterProcessorS
 		return ParameterType.PARAMETER_TYPE_CALLER;
 	}
 
-	private String processInt2(CallcenterModelCaller caller, double data) {
+	/**
+	 * Lädt Daten in ein (über {@link #mode} definiertes) Feld für einen Kundentyp
+	 * @param caller	Kundentyp
+	 * @param data	Zu ladende Daten
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 */
+	private String processInt2(final CallcenterModelCaller caller, final double data) {
 		switch (mode) {
 		case CALLER_VALUE_COUNT:
 			if (Math.round(data)!=data) return String.format(Language.tr("Importer.Error.NonNegativeIntegerNeeded"),NumberTools.formatNumberMax(data));

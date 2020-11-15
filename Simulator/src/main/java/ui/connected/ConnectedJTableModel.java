@@ -59,12 +59,31 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 	/** Callback das aufgerufen wird, wenn die Tabelle aktualisiert werden soll */
 	private final Runnable tableUpdateCallback;
 
+	/**
+	 * Modell für für einen verbundenen Simulationslauf
+	 * @see #getModel()
+	 */
 	private final ConnectedModel model=new ConnectedModel();
+
+	/**
+	 * Kopie von {@link #model}, um prüfen zu können,
+	 * ob das Modell seit dem letzten Speichern verändert wurde.
+	 */
 	private ConnectedModel modelSaved=new ConnectedModel();
 
+	/**
+	 * Popupmenü für die Modellauswahl
+	 */
 	private final JPopupMenu popupModel;
+
+	/**
+	 * Popupmenü zur Konfiguration der Statistik
+	 */
 	private final JPopupMenu popupStatistic;
 
+	/**
+	 * Zeile, auf die sich das jeweils aktuelle Popupmenü beziehen soll
+	 */
 	private int popupRow=-1;
 
 	/**
@@ -150,6 +169,11 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		return 4;
 	}
 
+	/**
+	 * Liefert die Zelle zur Anzeige/Auswahl des Modells für eine Tabellenzeile.
+	 * @param rowIndex	Tabellenzeile
+	 * @return	Zelle zur Anzeige/Auswahl des Modells
+	 */
 	private JPanel getModelCellValue(final int rowIndex) {
 		String title=model.models.get(rowIndex);
 		if (title.isEmpty()) {
@@ -161,6 +185,11 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		return makeEditPanel(title,Images.GENERAL_SELECT_FILE.getURL(),new TableButtonListener(rowIndex,4));
 	}
 
+	/**
+	 * Liefert die Zelle zur Anzeige/Auswahl der Statistikeinstellungen für eine Tabellenzeile.
+	 * @param rowIndex	Tabellenzeile
+	 * @return	Zelle zur Anzeige/Auswahl der Statistikeinstellungen
+	 */
 	private JPanel getStatisticCellValue(final int rowIndex) {
 		String title=model.statistics.get(rowIndex);
 		if (title.isEmpty()) {
@@ -173,6 +202,11 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		return makeEditPanel(title,Images.GENERAL_SELECT_FILE.getURL(),new TableButtonListener(rowIndex,5));
 	}
 
+	/**
+	 * Liefert die Zelle zur Anzeige/Auswahl des Übertrags für eine Tabellenzeile.
+	 * @param rowIndex	Tabellenzeile
+	 * @return	Zelle zur Anzeige/Auswahl des Übertrags
+	 */
 	private JPanel getUebertragCellValue(final int rowIndex) {
 		StringBuilder title=new StringBuilder();
 
@@ -195,6 +229,11 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		return makeEditPanel("<html><body>"+title.toString()+"</body></html>",Images.SIMULATION_CONNECTED_CARRY_OVER.getURL(),new TableButtonListener(rowIndex,6));
 	}
 
+	/**
+	 * Liefert die Zelle mit den Tools-Schaltflächen für eine Tabellenzeile.
+	 * @param rowIndex	Tabellenzeile
+	 * @return	Zelle mit den Tools-Schaltflächen
+	 */
 	private JPanel getToolsCellValue(final int rowIndex) {
 		if (rowIndex==model.models.size()) {
 			return makeButtonPanel(
@@ -232,6 +271,10 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		return rowIndex<model.models.size() || columnIndex==3;
 	}
 
+	/**
+	 * Darf das aktuelle Modell verworfen werden? (Ggf. Nutzer fragen)
+	 * @return	Liefert <code>true</code>, wenn das aktuelle Modell verworfen werden darf.
+	 */
 	private boolean discardOk() {
 		if (model.equalsConnectedModel(modelSaved)) return true;
 
@@ -257,11 +300,22 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		return true;
 	}
 
+	/**
+	 * Zeigt ein Popupmenü für eine bestimmte Tabellenzeile an.
+	 * @param parent	Übergeordnetes Element zum Ausrichten des Menüs
+	 * @param popup	Anzuzeigendes Popupmenü
+	 * @param row	Tabellenzeile auf die sich das Menü bezieht
+	 * @see #popupRow
+	 */
 	private void showPopup(final JButton parent, final JPopupMenu popup, final int row) {
 		popupRow=row;
 		popup.show(parent,0,parent.getBounds().height);
 	}
 
+	/**
+	 * Zeigt den Dialog zur Auswahl einer Statistikdatei für eine Tabellenzeile an.
+	 * @param row	Tabellenzeile
+	 */
 	private void selectStatisticFile(final int row) {
 		if (row<0 || row>=model.models.size()) return;
 
@@ -281,6 +335,10 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		updateTable();
 	}
 
+	/**
+	 * Zeigt den Dialog zur Auswahl einer Modelldatei für eine Tabellenzeile an.
+	 * @param row	Tabellenzeile
+	 */
 	private void selectModelFile(final int row) {
 		if (row<0 || row>=model.models.size()) return;
 
@@ -301,6 +359,12 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		updateTable();
 	}
 
+	/**
+	 * Wandelt einen möglicher Weise relativen Pfad
+	 * in eine absolute Dateiangabe um.
+	 * @param name	Relativer oder absoluter Pfad zu Datei
+	 * @return	Dateiobjekt
+	 */
 	private File getFileFromName(final String name) {
 		if (name.isEmpty()) return null;
 		File file=null;
@@ -316,6 +380,10 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		return file.exists()?file:null;
 	}
 
+	/**
+	 * Bearbeitet die Übertrags-Einstellungen für eine bestimmte Tabellenzeile.
+	 * @param row	Tabellenzeile
+	 */
 	private void editUebertrag(final int row) {
 		if (row<0) return;
 
@@ -345,11 +413,21 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		updateTable();
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltfläche in der Tabelle
+	 */
 	private final class TableButtonListener implements ActionListener {
+		/** Tabellenzeile */
 		private final int row;
+		/** Auszuführende Aktion (0: nach oben, 1: nach unten, 2: löschen, 3: hinzufügen, ...) */
 		private final int nr;
 
-		public TableButtonListener(int row, int nr) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param row	Tabellenzeile
+		 * @param nr	Auszuführende Aktion (0: nach oben, 1: nach unten, 2: löschen, 3: hinzufügen, ...)
+		 */
+		public TableButtonListener(final int row, final int nr) {
 			this.row=row;
 			this.nr=nr;
 		}

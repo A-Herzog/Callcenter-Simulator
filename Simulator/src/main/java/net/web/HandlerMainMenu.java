@@ -55,6 +55,11 @@ public class HandlerMainMenu implements WebServerDataHandler {
 		if (showServerViewer==null) this.showServerViewer=null; else this.showServerViewer=showServerViewer.toArray(new StatisticFolder[0]);
 	}
 
+	/**
+	 * Liefert ein Bild über den Webserver aus
+	 * @param imageFileName	Dateiname des Bildes (wird im Ressourcen-Ordner gesucht)
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
+	 */
 	private Object[] getImage(final String imageFileName) {
 		if (imageFileName.contains("/") || imageFileName.contains("\\") || imageFileName.contains("..")) return null;
 		String[] parts=imageFileName.split("\\.");
@@ -74,6 +79,15 @@ public class HandlerMainMenu implements WebServerDataHandler {
 		}
 	}
 
+	/**
+	 * Liefert einen Eintrag für eine html-Liste
+	 * @param link	Linkziel
+	 * @param title	Titel des Eintrag
+	 * @param icon	Icon für den Eintrag (kann <code>null</code> oder leer sein)
+	 * @param isFirst	Ist dies der erste Eintrag?
+	 * @return	Eintrag für html-Liste
+	 * @see #getMenu()
+	 */
 	private String getLi(final String link, final String title, final String icon, final boolean isFirst) {
 		String first=isFirst?" border-top: 1px solid #333;":"";
 		String iconHtml="";
@@ -81,8 +95,13 @@ public class HandlerMainMenu implements WebServerDataHandler {
 		return "  <li style=\"border-bottom: 1px solid #333;"+first+"\"><a style=\"display: block; padding: 10px 10px;\" href=\""+link+"\" target=\"_blank\">"+iconHtml+title+"</a></li>\n";
 	}
 
+	/**
+	 * Erstellt das Hauptmenü.
+	 * @return	Hauptmenü
+	 * @see #process(WebServerThread, String, String, String, Locale)
+	 */
 	private String getMenu() {
-		StringBuilder sb=new StringBuilder();
+		final StringBuilder sb=new StringBuilder();
 
 		sb.append("<ul style=\"list-style-type: none; padding-left: 0;\">\n");
 		sb.append(getLi("./viewer/",Language.tr("Server.WebMenu.Viewer.Local"),"icon_package_open.gif",true));

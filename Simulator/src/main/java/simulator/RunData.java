@@ -47,10 +47,40 @@ public final class RunData {
 	 */
 	public AgentRecord[] agentRecord;
 
+	/**
+	 * Cache für die aktuell genutzten Anrufer-Datensätze
+	 * @see #getNewCallerRecord()
+	 */
 	private CallerRecord[] callerRecordCache=null;
+
+	/**
+	 * Cache für die aktuell nicht genutzten Anrufer-Datensätze
+	 * @see #getNewCallerRecord()
+	 * @see #cacheSingleRecord(CallerRecord)
+	 */
 	private CallerRecord[] callerRecordTempCache=null;
+
+	/**
+	 * Wird von {@link #getNewCallerRecord()} zur
+	 * Steuerung von {@link #callerRecordCache}
+	 * genutzt.
+	 * @see #getNewCallerRecord()
+	 */
 	private int callerRecordCacheUsed=0;
+
+	/**
+	 * Wird von {@link #getNewCallerRecord()} zur
+	 * Steuerung von {@link #callerRecordCache}
+	 * genutzt.
+	 * @see #getNewCallerRecord()
+	 */
 	private int callerRecordCacheFill=0;
+
+	/**
+	 * Anzahl der belegten Einträge in {@link #callerRecordTempCacheCount}
+	 * @see #getNewCallerRecord()
+	 * @see #cacheSingleRecord(CallerRecord)
+	 */
 	private int callerRecordTempCacheCount=0;
 
 	/**
@@ -228,6 +258,16 @@ public final class RunData {
 		externalQueueByType[callerRecord.callerType.index].remove(callerRecord);
 	}
 
+	/**
+	 * Kombiniert einen Anrufer und einen Agenten.
+	 * @param now	Aktueller Zeitpunkt
+	 * @param caller	Kundendatensatz
+	 * @param agent	Agentendatensatz
+	 * @param removeAgentFromFreeAgentsList	Soll der Agent aus der Liste der freien Agenten entfernt werden?
+	 * @param freeAgentIndex	Index des Agenten in {@link #freeAgents}; wird ein Wert &lt;0 angegeben, so wird der Agent in der Liste gesucht
+	 * @param data	Simulationsdatenobjekt
+	 * @param callerIsInQueue	Befindet sich der Anrufer in der Warteschlange?
+	 */
 	private void matchCallerAgent(final long now, final CallerRecord caller, final AgentRecord agent, final boolean removeAgentFromFreeAgentsList, final int freeAgentIndex, final SimData data, final boolean callerIsInQueue) {
 		/* Agent ist nicht mehr frei */
 		if (removeAgentFromFreeAgentsList) {
@@ -239,7 +279,7 @@ public final class RunData {
 		}
 
 		/* Anrufer aus Warteschlange entfernen */
-		assert (callerIsInQueue==(queueByType[caller.callerType.index].indexOf(caller)>=0));
+		assert(callerIsInQueue==(queueByType[caller.callerType.index].indexOf(caller)>=0));
 		if (callerIsInQueue) {
 			removeCallerFromQueue(caller,now,((SimulationData)data).statisticSimData);
 		}
@@ -321,17 +361,6 @@ public final class RunData {
 	}
 
 	/**
-	 * Sucht einen passenden freien Agenten für einen Anrufer
-	 * @param now	Aktuelle Simulationszeit
-	 * @param callerRecord	Kundendatensatz für den ein Agent gefunden werden soll
-	 * @param data	Simulationsdatenobjekt
-	 * @param callerIsInQueue	Befindet sich der Kunde momentan in der Warteschlange? (Entfernt ihn dann ggf. bei Erfolg)
-	 * @return	Passender Agenten-Datensatz oder <code>null</code>, wenn kein passender Agent gefunde wurde
-	 */
-
-
-
-	/**
 	 * Sucht einen passenden wartenden Kunden für einen Agenten
 	 * @param now	Aktuelle Simulationszeit
 	 * @param agentRecord	Agentendatzsatz für den ein Kunde gefunden werden soll
@@ -394,6 +423,13 @@ public final class RunData {
 	 */
 	private final double factor=1.0/1800.0/1000.0;
 
+	/**
+	 * Erfasst einen Wert einer Kenngröße in einem bestimmten Zeitintervall.
+	 * @param dist	Verteilung
+	 * @param timeFrom	Startzeitpunkt
+	 * @param timeTo	Endzeitpunkt
+	 * @param multiply	Zu erfassender Wert
+	 */
 	private void addIntervalParts(final DataDistributionImpl dist, final int timeFrom, final int timeTo, final int multiply) {
 		if (timeFrom==timeTo) return;
 		final double[] data=dist.densityData;
@@ -409,6 +445,14 @@ public final class RunData {
 		}
 	}
 
+	/**
+	 * Erfasst einen Wert einer Kenngröße in einem bestimmten Zeitintervall.
+	 * @param data	Verteilung
+	 * @param intervals	Werte in den Intervallen
+	 * @param timeFrom	Startzeitpunkt
+	 * @param timeTo	Endzeitpunkt
+	 * @return	Liefert <code>true</code>, wenn es sich um eine Zeitspanne größer als 0 handelt
+	 */
 	private boolean getIntervalPartsWithoutDiv(final double[] data, final int[] intervals, final int timeFrom, final int timeTo) {
 		if (timeFrom==timeTo) {
 			intervals[0]=0; intervals[1]=-1;
@@ -444,7 +488,7 @@ public final class RunData {
 	 * Überträgt einen Kundendatensatz in den Cache
 	 * @param record	Nicht mehr benötigter Datensatz für den Cache
 	 */
-	public void cacheSingleRecord(CallerRecord record) {
+	public void cacheSingleRecord(final CallerRecord record) {
 		if (callerRecordTempCacheCount==callerRecordTempCache.length) return;
 		callerRecordTempCache[callerRecordTempCacheCount]=record;
 		callerRecordTempCacheCount++;
@@ -574,7 +618,14 @@ public final class RunData {
 	 */
 	public static final byte AGENT_NACH_DIENST=5;
 
+	/**
+	 * Cache für Intervall-Daten (um erneute Array-Erzeugungen zu vermeiden)
+	 */
 	private final double[] tempData=new double[48];
+
+	/**
+	 * Cache für Antwort-Daten (um erneute Array-Erzeugungen zu vermeiden)
+	 */
 	private final int[] tempDataIntervals=new int[2];
 
 	/**
@@ -602,14 +653,22 @@ public final class RunData {
 		/** Skill-Level-spezifisches Agentenstatistikobjekt */
 		public Statistics.AgentenDaten statisticProSkilllevel;
 
+		/** Gesamter entstandener Leerlauf (an einem Tag) */
 		private int leerlaufGesamt; /* Daten pro Tag, daher sollte ein Int reichen */
+		/** Gesamte entstandene technische Bereitzeit (an einem Tag) */
 		private int technischerLeerlaufGesamt;
+		/** Gesamte entstandene Bedienzeit (an einem Tag) */
 		private int arbeitGesamt;
+		/** Gesamte entstandene Nachbearbeitungszeit (an einem Tag) */
 		private int postProcessingGesamt;
+		/** Gesamte Anzahl an Anrufen (an einem Tag) */
 		private short anzahlAnrufeGesamt;
 
+		/** Gesamte entstandene technische Bereitzeit pro Anrufergruppe (an einem Tag) */
 		private final int[] dataByCallerTechnial; /* Daten pro Tag, daher sollte ein Int reichen */
+		/** Gesamte entstandene Bedienzeit pro Anrufergruppe (an einem Tag) */
 		private final int[] dataByCallerService;
+		/** Gesamte entstandene Nachbearbeitungszeit pro Anrufergruppe (an einem Tag) */
 		private final int[] dataByCallerPostProcessing;
 
 		/**
@@ -711,6 +770,20 @@ public final class RunData {
 			}
 		}
 
+		/**
+		 * Erfasst die kundenspezifischen Daten bei einer Status-Änderung
+		 * @param time1	Zeitpunkt der letzten Status-Änderung
+		 * @param time2	Aktueller Zeitpunkt
+		 * @param data	Simulationsdsatenobjekt
+		 * @param dataProIntervall1a	Daten pro Anrufergruppe
+		 * @param dataProIntervall1b	Daten pro Anrufergruppe pro Intervall
+		 * @param dataProIntervall1c	Daten pro Anrufergruppe pro Skill-Level pro Intervall
+		 * @param dataProIntervall2a	Globale Verteilung
+		 * @param dataProIntervall2b	Daten pro Callcenter pro Intervall
+		 * @param dataProIntervall2c	Daten pro Skill-Level pro Intervall
+		 * @param isService	Handelt es sich um Bedienzeiten?
+		 * @see #logStatusChange(long, int, int, CallerRecord)
+		 */
 		private final void logClientSpecificData(final long time1, final long time2, final int[] data, final DataDistributionImpl[] dataProIntervall1a, final DataDistributionImpl[] dataProIntervall1b, final DataDistributionImpl[] dataProIntervall1c, final DataDistributionImpl dataProIntervall2a, final DataDistributionImpl dataProIntervall2b, final DataDistributionImpl dataProIntervall2c, boolean isService) {
 			final int i=callerType.index;
 			if (i<0) {
@@ -842,6 +915,10 @@ public final class RunData {
 			if (statusNew==AGENT_NACH_DIENST) workingAgentsCount--;
 		}
 
+		/**
+		 * Liefert den Leerlaufanteil des Agenten.
+		 * @return	Leerlaufanteil des Agenten
+		 */
 		private final double getFreeTimePart() {
 			final long free=leerlaufGesamt+technischerLeerlaufGesamt;
 			if (free==0) return 0.0;
@@ -850,6 +927,11 @@ public final class RunData {
 			return (sum>0)?(((double)free)/sum):0.0;
 		}
 
+		/**
+		 * Liefert die Leerlaufzeit seit dem letzten Anruf.
+		 * @param now	Aktueller Zeitpunkt
+		 * @return	Leerlaufzeit seit dem letzten Anruf.
+		 */
 		private final long getFreeTimeSinceLastCall(final long now) {
 			if (status!=AGENT_LEERLAUF) return 0; else return now-lastStatusChange;
 		}

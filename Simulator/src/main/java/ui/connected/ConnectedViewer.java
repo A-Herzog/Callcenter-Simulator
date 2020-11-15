@@ -54,6 +54,7 @@ public class ConnectedViewer extends ViewerWithLoadModelCallback {
 
 	/** Liste mit den anzuzeigenden Statistikdaten */
 	private final Statistics[] data;
+	/** Panel zur Anzeige der Statistikdaten */
 	private final ConnectedStatisticPanel statistic;
 
 	/** Hilfe-Link */
@@ -87,6 +88,11 @@ public class ConnectedViewer extends ViewerWithLoadModelCallback {
 		button.setIcon(Images.STATISTICS.getIcon());
 	}
 
+	/**
+	 * Fügt die Einträge zu den Simulationsergebnissen zu der Baumstruktur in
+	 * der Statistikansicht hinzu.
+	 * @param root	Wurzelelement für die Baumstruktur
+	 */
 	private final void addNodes(StatisticNode root) {
 		StatisticNode node, node2;
 
@@ -176,10 +182,20 @@ public class ConnectedViewer extends ViewerWithLoadModelCallback {
 		root.addChild(new StatisticNode(Language.tr("ConnectedResults.AllResults"),new StatisticViewerConnectedTable(data,StatisticViewerConnectedTable.Mode.DATA_TYPE_SUMMARY)));
 	}
 
+	/**
+	 * Reagiert darauf, wenn der Viewer {@link ConnectedViewer#statistic}
+	 * geschlossen werden möchte.
+	 * @see ConnectedViewer#statistic
+	 */
 	private final class ModelViewerClosed implements Runnable {
+		/** Viewer der geschlossen werden möchte (um ggf. weitere Wünsche auslesen zu können) */
 		private final CallcenterModelEditorPanelDialog modelViewer;
 
-		public ModelViewerClosed(CallcenterModelEditorPanelDialog modelViewer) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param modelViewer	Viewer auf dessen Schließen-Wunsch reagiert werden soll
+		 */
+		public ModelViewerClosed(final CallcenterModelEditorPanelDialog modelViewer) {
 			this.modelViewer=modelViewer;
 		}
 
@@ -193,15 +209,20 @@ public class ConnectedViewer extends ViewerWithLoadModelCallback {
 		}
 	}
 
+	/**
+	 * Zeigt einen Auswahldialog für einen Simulationslauf an und
+	 * zeigt dann die Ergebnisse dieses einzelnen Laufs an.
+	 * @see OptimizeSelectResult
+	 */
 	private final void showSingleRun() {
-		OptimizeSelectResult select=new OptimizeSelectResult(owner,data,helpLink.pageConnectedViewerModal);
+		final OptimizeSelectResult select=new OptimizeSelectResult(owner,data,helpLink.pageConnectedViewerModal);
 		select.setVisible(true);
 		if (select.getClosedBy()!=BaseEditDialog.CLOSED_BY_OK) return;
 
-		Statistics statistic=data[select.getSelectedResult()];
+		final Statistics statistic=data[select.getSelectedResult()];
 		CallcenterModel model=statistic.editModel;
 
-		CallcenterModelEditorPanelDialog viewer=new CallcenterModelEditorPanelDialog(owner,model,statistic,true,helpLink);
+		final CallcenterModelEditorPanelDialog viewer=new CallcenterModelEditorPanelDialog(owner,model,statistic,true,helpLink);
 		viewer.setCloseNotify(new ModelViewerClosed(viewer));
 
 		setEnableGUI(this,false);
@@ -215,6 +236,10 @@ public class ConnectedViewer extends ViewerWithLoadModelCallback {
 		}
 	}
 
+	/**
+	 * Panel zur Anzeige der eigentlichen Statistikdaten
+	 * @see ConnectedViewer#statistic
+	 */
 	private final class ConnectedStatisticPanel extends StatisticBasePanel {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -222,8 +247,17 @@ public class ConnectedViewer extends ViewerWithLoadModelCallback {
 		 */
 		private static final long serialVersionUID = 5350416436702759598L;
 
-		public ConnectedStatisticPanel(String title, URL icon, boolean filterTree, HelpLink helpLink, Runnable startSilmulation, Runnable loadStatistics) {
-			super(title, icon, null, null, true, filterTree, helpLink.pageConnectedViewerModal, helpLink, startSilmulation, loadStatistics, false);
+		/**
+		 * Konstruktor der Klasse
+		 * @param title	Titel, der über der Baumstruktur angezeigt wird
+		 * @param icon	Icon, das neben dem Titel über der Baumstruktur angezeigt wird (kann <code>null</code> sein, wenn kein Icon angezeigt werden soll)
+		 * @param filterTree	Option zur Filterung der Daten im Statistikbaum anzeigen
+		 * @param helpLink	Hilfe-Objekt, welches alle Hilfe-Links enthält
+		 * @param startSimulation	Callback zum Starten einer Simulation
+		 * @param loadStatistics	Callback zum Laden von Statistikdaten
+		 */
+		public ConnectedStatisticPanel(String title, URL icon, boolean filterTree, HelpLink helpLink, Runnable startSimulation, Runnable loadStatistics) {
+			super(title,icon,null,null,true,filterTree,helpLink.pageConnectedViewerModal,helpLink,startSimulation,loadStatistics,false);
 		}
 
 		@Override

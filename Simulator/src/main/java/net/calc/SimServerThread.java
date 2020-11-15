@@ -43,12 +43,40 @@ public final class SimServerThread extends NetworkThread {
 	/** Zulässige Client-IP-Adressen (oder <code>null</code>, wenn keine IP-Filterung erfolgen soll) */
 	private final String[] permittedIPs;
 
+	/**
+	 * Wurde die Verarbeitung bereits gestartet?
+	 * @see #isWorkStarted()
+	 */
 	private boolean workStarted=false;
+
+	/**
+	 * Fehlermeldung oder <code>null</code>, wenn kein Fehler aufgetreten ist.
+	 * @see #getResult()
+	 */
 	private String runResult=null;
+
+	/**
+	 * IP-Adresse des Clienten dessen Anfrage
+	 * bearbeitet wird (für Logging-Ausgaben).
+	 * @see #getClientIP()
+	 */
 	private String clientIP="";
+
+	/**
+	 * Ist ein Fehler aufgetreten, der zum Abbruch führte?
+	 * @see #isFatalError()
+	 */
 	private boolean fatalError=false;
+
+	/**
+	 * Eingabe-Stream aus dem Daten vom Clienten
+	 * empfangen werden sollen.
+	 */
 	private InputStream inputStream;
 
+	/**
+	 * Soll sich der Server beenden?
+	 */
 	private boolean pleaseQuit=false;
 
 	/**
@@ -98,12 +126,21 @@ public final class SimServerThread extends NetworkThread {
 		return clientIP;
 	}
 
+	/**
+	 * Signalisiert, das ein neuer Rechenthread gestartet wurde.
+	 * @see #threadBusy
+	 */
 	private synchronized void threadBusyNow() {
 		workStarted=true;
 		if (threadBusy!=null) threadBusy.run();
 	}
 
-	private boolean isCanceled(Simulator simulator) {
+	/**
+	 * Wurde eine Simulation abgebrochen?
+	 * @param simulator	Simulator-Objekt
+	 * @return	Simulation abgebrochen?
+	 */
+	private boolean isCanceled(final Simulator simulator) {
 		try {
 			if (inputStream.available()==0) return false;
 			switch (inputStream.read()) {
@@ -117,7 +154,12 @@ public final class SimServerThread extends NetworkThread {
 		}
 	}
 
-	private Object runSimulation(CallcenterModel editModel) {
+	/**
+	 * Führt eine Simulation durch.
+	 * @param editModel	Zu simulierendes Modell
+	 * @return	Liefert im Erfolgsfall die Statistikdaten, sonst eine Fehlermeldung
+	 */
+	private Object runSimulation(final CallcenterModel editModel) {
 		/* Modell vorbereiten */
 		if (ui.VersionConst.isNewerVersion(editModel.version)) return Language.tr("Server.Error.NewerServerVersionNeeded");
 		if (ui.VersionConst.isOlderVersion(editModel.version)) return Language.tr("Server.Error.NewerClientVersionNeeded");
@@ -159,6 +201,11 @@ public final class SimServerThread extends NetworkThread {
 		return statistics;
 	}
 
+	/**
+	 * Prüft, ob die Clienten-IP-Adresse zulässig ist.
+	 * @return	Client ist zulässig
+	 * @see #clientIP
+	 */
 	private boolean checkIPpermitted() {
 		if (permittedIPs==null || permittedIPs.length==0) return true;
 		for (String range : permittedIPs) {

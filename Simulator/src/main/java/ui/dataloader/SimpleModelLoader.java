@@ -40,13 +40,15 @@ import ui.model.CallcenterModelSkillLevel;
  * @version 1.0
  */
 public final class SimpleModelLoader extends SimpleModelBaseLoader {
+	/** Tabelle die die Anruferdaten enthält */
 	private Table callerTable;
+	/** Tabelle die die Agentendaten enthält */
 	private Table agentsTable;
 
 	/**
 	 * Legt die Tabelle mit den Anruferzahlen fest.
 	 * @param file	Dateiname der Tabelle mit den Anruferzahlen.
-	 * @param table	abelle in der Arbeitsmappe (kann <code>null</code> oder leer sein, dann wird die erste Tabelle verwendet)
+	 * @param table	Tabelle in der Arbeitsmappe (kann <code>null</code> oder leer sein, dann wird die erste Tabelle verwendet)
 	 * @param startCol	Startspalte (kann <code>null</code> oder leer sein, dann wird "A" angenommen, d.h. es werden dann keine Spalten entfernt)
 	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
 	 */

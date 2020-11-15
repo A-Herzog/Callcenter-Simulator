@@ -43,17 +43,43 @@ public class RemoteAndLocalComplexCallcenterSimulator extends MultiComplexCallce
 		super(buildSimulators(editModel,allowMaxCore,serverParts,serverNames,serverPorts,serverPasswords));
 	}
 
-	private static CallcenterSimulatorInterface getLocal(CallcenterModel model, int allowMaxCore) {
+	/**
+	 * Startet eine lokale Simulation.
+	 * @param model	Zu simulierendes Modell
+	 * @param allowMaxCore	Maximale (lokale) Thread-Anzahl
+	 * @return	Simulatorobjekte
+	 * @see #buildSimulators(CallcenterModel, int, double[], String[], int[], String[])
+	 */
+	private static CallcenterSimulatorInterface getLocal(final CallcenterModel model, final int allowMaxCore) {
 		CallcenterRunModel runModel=new CallcenterRunModel(model);
 		runModel.checkAndInit(false,false,SetupData.getSetup().strictCheck);
 		return new Simulator(allowMaxCore,runModel);
 	}
 
-	private static CallcenterSimulatorInterface getRemote(CallcenterModel model, String serverName, int serverPort, String serverPassword) {
+	/**
+	 * Startet eine entfernte Simulation.
+	 * @param model	Zu simulierendes Modell
+	 * @param serverName	Netzwerknamen der Server
+	 * @param serverPort	Ports der Server
+	 * @param serverPassword	Passwörter für die Server
+	 * @return	Simulatorobjekte
+	 * @see #buildSimulators(CallcenterModel, int, double[], String[], int[], String[])
+	 */
+	private static CallcenterSimulatorInterface getRemote(final CallcenterModel model, final String serverName, final int serverPort, final String serverPassword) {
 		return new RemoteComplexCallcenterSimulator(serverName,serverPort,serverPassword,model);
 	}
 
-	private static CallcenterSimulatorInterface[] buildSimulators(CallcenterModel editModel, int allowMaxCore, double[] serverParts, String[] serverNames, int[] serverPorts, String[] serverPasswords) {
+	/**
+	 * Startet lokale und entfernte Simulatoren.
+	 * @param editModel	Zu simulierendes Modell
+	 * @param allowMaxCore	Maximale (lokale) Thread-Anzahl
+	 * @param serverParts	Anteile die auf die Server verteilt werden sollen
+	 * @param serverNames	Netzwerknamen der Server
+	 * @param serverPorts	Ports der Server
+	 * @param serverPasswords	Passwörter für die Server
+	 * @return	Simulatorobjekte
+	 */
+	private static CallcenterSimulatorInterface[] buildSimulators(final CallcenterModel editModel, final int allowMaxCore, final double[] serverParts, final String[] serverNames, final int[] serverPorts, final String[] serverPasswords) {
 		/* Modelle mit verschiedenen Anzahlen an Tagen zusammenstellen (Modell für lokal ganz am Ende) */
 		CallcenterModel[] model=new CallcenterModel[serverParts.length+1];
 		int remaining=editModel.days;

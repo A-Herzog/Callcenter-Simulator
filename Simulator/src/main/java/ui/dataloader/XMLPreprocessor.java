@@ -39,8 +39,11 @@ public class XMLPreprocessor {
 	private final File xmlFile;
 	/** Zusätzliche, in das Modell aufzunehmende Tabellendaten */
 	private final File tableFile;
+	/** Datenzeilen aus {@link #xmlFile} */
 	private final List<String> xmlLines;
+	/** Zusätzliche, in das Modell aufzunehmende Tabellendaten */
 	private final MultiTable multiTable;
+	/** Verarbeitete Datenzeilen */
 	private final List<String> processedLines;
 
 	/**
@@ -74,6 +77,12 @@ public class XMLPreprocessor {
 		return null;
 	}
 
+	/**
+	 * Verarbeitet einen Befehl.
+	 * @param command	Zeile
+	 * @return	Liefert ein Array aus zwei Einträgen: Neue Zeile und Fehlermeldung (einer der Einträge ist immer <code>null</code>)
+	 * @see #processLine(String)
+	 */
 	private String[] processCommand(final String command) {
 		String[] parts=command.split("!");
 		String tableName="";
@@ -106,6 +115,12 @@ public class XMLPreprocessor {
 		return new String[]{data.storeToLocalString(),null};
 	}
 
+	/**
+	 * Verarbeitet eine Zeile
+	 * @param line	Zu verarbeitende Zeile
+	 * @return	Liefert ein Array aus zwei Einträgen: Neue Zeile und Fehlermeldung (einer der Einträge ist immer <code>null</code>)
+	 * @see #process()
+	 */
 	private String[] processLine(String line) {
 		StringBuilder processed=new StringBuilder();
 

@@ -42,14 +42,22 @@ import ui.model.CallcenterRunModel;
  * @see ConnectedModel
  */
 public final class ConnectedSimulation {
+	/** Simulationsmodelle für die einzelnen Tage */
 	private final List<File> models=new ArrayList<File>();
+	/** Statistikergebnisse der einzelnen Tage */
 	private final List<File> statistics=new ArrayList<File>();
+	/** Übertrag gemäß Modell */
 	private final List<HashMap<String,ConnectedModelUebertrag>> uebertrag=new ArrayList<HashMap<String,ConnectedModelUebertrag>>();
+	/** Manueller Übertrag pro Tag: Liste der Kundengruppen */
 	private final List<List<String>> uebertragCaller=new ArrayList<List<String>>();
+	/** Manueller Übertrag pro Tag: Liste der Anrufer pro Gruppe */
 	private final List<List<Integer>> uebertragCount=new ArrayList<List<Integer>>();
+	/** Statistikergebnisse, die sich im letzten Simulationslauf ergeben haben */
 	private Statistics lastStatistics;
 
+	/** Nummer der laufenden Simulation (1-basierend) ({@link #getSimNr()}) */
 	private int simNr=-1;
+	/** Simulator der die eigentliche Arbeit ausführt */
 	private CallcenterSimulatorInterface simulator;
 
 	/**
@@ -227,6 +235,15 @@ public final class ConnectedSimulation {
 		}
 	}
 
+	/**
+	 * Passt das Modell in Bezug auf einen Kundentyp gemäß dem Übertrag an.
+	 * @param days	Anzahl an Wiederholungen der Simulation des Tags
+	 * @param client	Kundengruppen
+	 * @param connect	Übertrags-Modell
+	 * @param name	Name der betrachteten Kundengruppe
+	 * @param add	Zuschlag pro simuliertem Tag
+	 * @see #getModifyData(Statistics, HashMap, CallcenterModel, List, List, List, List, List, List)
+	 */
 	private static void getModifyCallerDataAddCanceledCaller(int days, KundenDaten[] client, HashMap<String,ConnectedModelUebertrag> connect, String name, int[] add) {
 		Iterator<String> it=connect.keySet().iterator();
 
@@ -267,6 +284,20 @@ public final class ConnectedSimulation {
 		}
 	}
 
+	/**
+	 * Passt das Modell gemäß dem Übertrag an.
+	 * @param lastStatistics	Statistikergebnisse der letzten Simulation
+	 * @param connect	Übertrags-Modell
+	 * @param model	Ausgangsmodell
+	 * @param add	Zusätzliche Anrufer
+	 * @param retry	Übertrag von Warteabbrechern
+	 * @param uebertragWaiting	Wartezeiten der Kunden im System
+	 * @param uebertragTolerance	Wartezeittoleranzen der Kunden im System
+	 * @param uebertragCaller	Namen der Anrufergruppen
+	 * @param uebertragCount	Anzahlen pro Anrufergruppe
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 * @see #buildConnectedRunModel(Statistics, HashMap, List, List, CallcenterModel)
+	 */
 	private static String getModifyData(Statistics lastStatistics, HashMap<String,ConnectedModelUebertrag> connect, CallcenterModel model, List<int[]> add, List<long[][]> retry, List<long[][]> uebertragWaiting, List<long[][]> uebertragTolerance, List<String> uebertragCaller, List<Integer> uebertragCount) {
 		add.clear();
 		retry.clear();

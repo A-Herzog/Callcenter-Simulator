@@ -59,10 +59,24 @@ public final class ImporterPanel extends JWorkPanel {
 	/** Verändertes Modell */
 	private CallcenterModel changedModel=null;
 
+	/**
+	 * Eingabefeld für die Tabellendatei
+	 */
 	private final JTextField tableField;
+
+	/**
+	 * Schaltfläche zur Auswahl einer Tabellendatei für {@link #tableField}
+	 */
 	private final JButton tableButton;
 
+	/**
+	 * Datenmodell für die Importdatentabelle {@link #table}
+	 */
 	private final ImporterJTableModel tableModel;
+
+	/**
+	 * Importdatentabelle
+	 */
 	private final JTableExt table;
 
 	/**
@@ -189,6 +203,10 @@ public final class ImporterPanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf {@link ImporterPanel#tableButton}
+	 * @see ImporterPanel#tableButton
+	 */
 	private final class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

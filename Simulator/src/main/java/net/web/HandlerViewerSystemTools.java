@@ -50,7 +50,14 @@ public class HandlerViewerSystemTools {
 	 */
 	private HandlerViewerSystemTools() {}
 
-	private static String getServerListEntry(int index, final File xmlFile) {
+	/**
+	 * Liefert einen Eintrag für die Liste mit allen Statistik-Dateien in einem Verzeichnis als html-Datei
+	 * @param index	Index des Verzeichnisses in der Zählung des Webservers (zur Generierung der URLs zu den einzelnen Modellen)
+	 * @param xmlFile	Datei, die in die Liste aufgenommen werden soll
+	 * @return	html-Code, der die List enthält
+	 * @see #getServerFileList(File[], int, boolean)
+	 */
+	private static String getServerListEntry(final int index, final File xmlFile) {
 		Statistics statistic=new Statistics(null,null,0,0);
 		String error=statistic.loadFromFile(xmlFile);
 		if (error!=null) return null;
@@ -89,7 +96,7 @@ public class HandlerViewerSystemTools {
 	 * @param fileNames	Liste der Dateien, die aufgelistet werden sollen
 	 * @param index	Index des Verzeichnisses in der Zählung des Webservers (zur Generierung der URLs zu den einzelnen Modellen)
 	 * @param returnNullOnEmpryList	Gibt an, ob <code>null</code> (<code>true</code>) oder eine Meldung (<code>false</code>) im Falle einer leeren Liste zurückgeliefert werden soll.
-	 * @return	html-Code, der die List enthält
+	 * @return	html-Code, der die Liste enthält
 	 */
 	public static String getServerFileList(File[] fileNames, int index, boolean returnNullOnEmpryList) {
 		StringBuilder content=new StringBuilder();
@@ -127,7 +134,15 @@ public class HandlerViewerSystemTools {
 		return content.toString();
 	}
 
-	private static File getFileForDate(int month, File[] files, Date[] dates, int day) {
+	/**
+	 * Liefert eine Datei für ein bestimmtes Modelldatum
+	 * @param month	Modellmonat
+	 * @param files	Dateien
+	 * @param dates	Modelldatumsangaben der Dateien
+	 * @param day	Modelldatum
+	 * @return	Datei für ein bestimmtes Modelldatum (oder <code>null</code>, wenn keine passende Datei existiert)
+	 */
+	private static File getFileForDate(final int month, final File[] files, final Date[] dates, final int day) {
 		Calendar cal=new GregorianCalendar();
 
 		for (int i=0;i<dates.length;i++) if (dates[i]!=null) {
@@ -138,7 +153,12 @@ public class HandlerViewerSystemTools {
 		return null;
 	}
 
-	private static int firstWeekDayOfMonth(int month) {
+	/**
+	 * Berechnet den Wochentag des ersten Tages in einem Monat
+	 * @param month	Monat
+	 * @return	Wochentag (Montag=0)
+	 */
+	private static int firstWeekDayOfMonth(final int month) {
 		Calendar cal=new GregorianCalendar();
 		cal.set(month/12,month%12,1);
 		int week=0;
@@ -154,13 +174,26 @@ public class HandlerViewerSystemTools {
 		return week;
 	}
 
-	private static int getDaysInMonth(int month) {
-		Calendar cal=new GregorianCalendar();
+	/**
+	 * Liefert die Anzahl an Tagen in einem Monat.
+	 * @param month	Monat
+	 * @return	Anzahl an Tagen.
+	 */
+	private static int getDaysInMonth(final int month) {
+		final Calendar cal=new GregorianCalendar();
 		cal.set(month/12,month%12,1);
 		return cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 
-	private static String getServerDateFileListMonthEntry(int month, File[] files, Date[] dates, int index) {
+	/**
+	 * Liefert eine Liste mit allen Statistikdateien in einem Verzeichnis für einen bestimmten Modelldatumsmonat sortiert nach Modelldatum.
+	 * @param month	Zu betrachtender Monat (bezogen auf Modelldatumsangaben)
+	 * @param files	Dateien
+	 * @param dates	Modelldatumsangaben zu den Dateien
+	 * @param index	Index des Verzeichnisses in der Zählung des Webservers (zur Generierung der URLs zu den einzelnen Modellen)
+	 * @return	Liste mit den Statistikdateien
+	 */
+	private static String getServerDateFileListMonthEntry(final int month, final File[] files, final Date[] dates, final int index) {
 		StringBuilder content=new StringBuilder();
 
 		content.append("<style type=\"text/css\">\n");
@@ -262,7 +295,12 @@ public class HandlerViewerSystemTools {
 		return content.toString();
 	}
 
-	private static boolean callerTypeMayChangeOnRetry(CallcenterModelCaller caller) {
+	/**
+	 * Kann sich der Typ eines Kunden bei einer Wiederholung ändern?
+	 * @param caller	Kundentyp
+	 * @return	Liefert <code>true</code>, wenn sich der Kundentyp ändern kann
+	 */
+	private static boolean callerTypeMayChangeOnRetry(final CallcenterModelCaller caller) {
 		for (int i=0;i<caller.retryCallerTypeRateAfterBlockedFirstRetry.size();i++) if (caller.retryCallerTypeRateAfterBlockedFirstRetry.get(i)>0) return true;
 		for (int i=0;i<caller.retryCallerTypeRateAfterBlocked.size();i++) if (caller.retryCallerTypeRateAfterBlocked.get(i)>0) return true;
 		for (int i=0;i<caller.retryCallerTypeRateAfterGiveUpFirstRetry.size();i++) if (caller.retryCallerTypeRateAfterGiveUpFirstRetry.get(i)>0) return true;
@@ -270,7 +308,14 @@ public class HandlerViewerSystemTools {
 		return false;
 	}
 
-	private static String getModelAgentsData(Statistics statistic, String callcenter, int group) {
+	/**
+	 * Liefert Daten zu einer Agentengruppe
+	 * @param statistic	Statistikdaten
+	 * @param callcenter	Nummer des Callcenters
+	 * @param group	Nummer der Agentengruppe in dem Callcenter
+	 * @return	Daten zu der Agentengruppe
+	 */
+	private static String getModelAgentsData(final Statistics statistic, final String callcenter, final int group) {
 		StringBuilder sb=new StringBuilder();
 		String groupName=Statistics.getAgentModelDataGroupName(callcenter,group);
 

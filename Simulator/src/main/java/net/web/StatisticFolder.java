@@ -29,6 +29,11 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public class StatisticFolder {
+	/**
+	 * Nach wie vielen Sekunden wird die Liste bei einem {@link #update(boolean)}
+	 * Aufruf auch ohne <code>force=true</code> aktualisiert?
+	 * @see #update(boolean)
+	 */
 	private static final long UPDATE_SECONDS=2;
 
 	/**
@@ -41,8 +46,11 @@ public class StatisticFolder {
 	 */
 	public final String name;
 
+	/** Liste der xml-Dateien in {@link #folder} */
 	private File[] fileNames;
+	/** Datum des abgebildeten Modelltags zu den Modellen in {@link #fileNames} */
 	private Date[] fileDates;
+	/** Letzte Aktualisierung der Liste ({@link #update(boolean)}) in System-Millisekunden */
 	private long lastUpdate;
 
 	/**
@@ -103,6 +111,11 @@ public class StatisticFolder {
 		for (int i=0;i<fileNames.length;i++) fileDates[i]=getModelDate(fileNames[i]);
 	}
 
+	/**
+	 * Liefert eine Liste der xml-Dateien in {@link #folder}
+	 * @return	Liste der xml-Dateien in {@link #folder}
+	 * @see #fileNames
+	 */
 	private File[] readFileList() {
 		File[] files=folder.listFiles();
 		List<File> result=new ArrayList<File>();
@@ -115,6 +128,12 @@ public class StatisticFolder {
 		return result.toArray(new File[0]);
 	}
 
+	/**
+	 * Liefert das Datum des in einer Modelldatei abgebildeten Modelltags.
+	 * @param modelFile	Modelldatei
+	 * @return	Datum des abgebildeten Modelltags
+	 * @see #fileDates
+	 */
 	private Date getModelDate(final File modelFile) {
 		Statistics statistic=new Statistics(null,null,0,0);
 		if (statistic.loadFromFile(modelFile)!=null) return null;

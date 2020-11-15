@@ -93,6 +93,16 @@ public final class TechnionLoader extends CallerTableLoader {
 		return true;
 	}
 
+	/**
+	 * Fügt einen Skill zu einem Skill-Level hinzu.
+	 * @param name	Kundentypname (neuer Skill)
+	 * @param freshCalls	Anzahl der erfolgreichen Anrufe (zur Berechnung der Bedienzeiten)
+	 * @param cancelCount	Anzahl der Warteabbrecher (zur Berechnung der Bedienzeiten)
+	 * @param waitingTime	Wartezeiten (zur Berechnung der Bedienzeiten)
+	 * @param serviceTime	Bedienzeiten (zur Berechnung der Bedienzeiten)
+	 * @param model	Callcenter-Modell
+	 * @param skill	Skill-Level
+	 */
 	private void addSkill(String name, HashMap<String,DataDistributionImpl> freshCalls, HashMap<String,DataDistributionImpl> cancelCount, HashMap<String,DataDistributionImpl> waitingTime, HashMap<String,DataDistributionImpl> serviceTime, CallcenterModel model, CallcenterModelSkillLevel skill) {
 		skill.callerTypeName.add(name);
 

@@ -35,7 +35,11 @@ import ui.model.CallcenterRunModelCaller;
  * @version 1.0
  */
 public class StopTestEvent extends Event {
-
+	/**
+	 * Entfernt einen Kunden, der nicht mehr bedient werden kann, aus der Warteschlange.
+	 * @param data	Simulationsdatenobjekt
+	 * @param caller	Anrufer
+	 */
 	private static final void cancelCall(final SimulationData data, final CallerRecord caller) {
 		/* In Statistik speichern, dass dieser Kunde eigentlich noch im System ist und eine Restwartezeittoleranz hat */
 		final long alreadyWaited=data.currentTime-caller.startWaitingTime;
@@ -62,6 +66,11 @@ public class StopTestEvent extends Event {
 		if (data.loggingActive) LogTools.log(data,Language.tr("Simulation.Log.StopTest.NoMatchingAgentAnymore1"),caller,null,null);
 	}
 
+	/**
+	 * Entfernt einen extern wartenden Kunden, der nicht mehr bedient werden kann.
+	 * @param data	Simulationsdatenobjekt
+	 * @param caller	Anrufer
+	 */
 	private static final void cancelExternalCall(final SimulationData data, final CallerRecord caller) {
 		/* Kunde wartet ab sofort nicht mehr extern */
 		data.dynamicSimData.removeCallerFromExternalQueue(caller);

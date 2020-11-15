@@ -75,21 +75,38 @@ public final class ConnectedPanel extends JWorkPanel {
 	/** Verknüpfung mit der Online-Hilfe */
 	private final HelpLink helpLink;
 
-	private final JTextField folderField, day0statisticsField;
-	private final JButton folderButton, day0statisticsButton, additionalDay0Caller;
+	/** Eingabefeld für das Basisverzeichnis */
+	private final JTextField folderField;
+	/** Eingabefeld für eine Statistikübertragdatei zu Tag 1 */
+	private final JTextField day0statisticsField;
+	/** Schaltfläche zur Auswahl eines Verzeichnisses für {@link #folderField} */
+	private final JButton folderButton;
+	/** Schaltfläche zur Auswahl einer Datei für {@link #day0statisticsField} */
+	private final JButton day0statisticsButton;
+	/** Schaltfläche zur Konfiguration des zusätzlichen manuellen Übertrags in Tag 1 hinein */
+	private final JButton additionalDay0Caller;
+	/** Erlaubt Drag&amp;drop-Aktionen auf {@link #folderField} */
 	private final FileDropper drop1;
-
+	/** Erlaubt Drag&amp;drop-Aktionen auf {@link #day0statisticsField} */
 	private final FileDropper drop2;
 
+	/** Popupmenü für die "Tools"-Schaltfläche in der Panel-Symbolleiste */
 	private final JPopupMenu toolsPopup;
+	/** Popupmenü ({@link #toolsPopup}) Eintrag "Simulation in Logdatei aufzeichnen" */
 	private final JMenuItem toolsLog;
+	/** Datenmodell für die Tabelle zur Konfiguration der einzelnen Tage ({@link #table}) */
 	private final ConnectedJTableModel tableModel;
+	/** Tabelle zur Konfiguration der einzelnen Tage */
 	private final JTableExt table;
+	/** Statuszeile */
 	private final JLabel statusLabel;
+	/** Simulations-Fortschrittsanzeige in der Statuszeile */
 	private final JProgressBar statusProgress;
 
+	/** Ausführung der verbundenen Simulation */
 	private final ConnectedSimulation simulation=new ConnectedSimulation();
 
+	/** Optionale Logdatei */
 	private File logFile=null;
 
 	/** Timer um regelmäßig den Fortschritt der Simulation in der GUI anzeigen zu können */
@@ -208,6 +225,10 @@ public final class ConnectedPanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Zeigt einen Dialog zur Auswahl des Basisverzeichnisses an.
+	 * @see #folderField
+	 */
 	private void selectFolder() {
 		JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
@@ -220,10 +241,21 @@ public final class ConnectedPanel extends JWorkPanel {
 		tableModel.setDefaultFolder(folderField.getText());
 	}
 
+	/**
+	 * Liefert das Standard-Basisverzeichnis, welches beim Aufruf des
+	 * Panels zunächst in {@link #folderField} eingetragen wird.
+	 * @return	Standard-Basisverzeichnis
+	 * @see #folderField
+	 */
 	private String getDefaultFolder() {
 		return FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
 	}
 
+	/**
+	 * Zeigt einen Dialog zur Auswahl der Statistikdatei, die als
+	 * Übertrag in Tag 1 hinein verwendet werden soll, an.
+	 * @see #day0statisticsField
+	 */
 	private void selectDay0Statistics() {
 		ConnectedModel model=tableModel.getModel();
 
@@ -242,6 +274,12 @@ public final class ConnectedPanel extends JWorkPanel {
 		day0statisticsField.setText(s);
 	}
 
+	/**
+	 * Zeigt einen Dialog zur manuellen Konfiguration eines Übertrags
+	 * in Tag 1 hinein an.
+	 * @see #additionalDay0Caller
+	 * @see AdditionalCallerSetupDialog
+	 */
 	private void selectAdditionalDay0Caller() {
 		ConnectedModel connected=tableModel.getModel();
 		if (connected.models.size()==0 || connected.models.get(0).isEmpty()) {
@@ -263,7 +301,7 @@ public final class ConnectedPanel extends JWorkPanel {
 			return;
 		}
 
-		AdditionalCallerSetupDialog dialog=new AdditionalCallerSetupDialog(owner,helpLink.pageConnectedModal,model,connected.additionalDay0CallerNames,connected.additionalDay0CallerCount);
+		final AdditionalCallerSetupDialog dialog=new AdditionalCallerSetupDialog(owner,helpLink.pageConnectedModal,model,connected.additionalDay0CallerNames,connected.additionalDay0CallerCount);
 		dialog.setVisible(true);
 		if (dialog.getClosedBy()==BaseEditDialog.CLOSED_BY_OK) tableModel.setAddditionalDay0Caller(dialog.getCallerNames(),dialog.getCallerCount());
 	}
@@ -373,8 +411,15 @@ public final class ConnectedPanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Zeigt einen Dialog zur Auswahl einer Logdatei an und
+	 * startet dann die eigentliche Simulation.
+	 * @see #toolsLog
+	 * @see #logFile
+	 * @see #run()
+	 */
 	private void runLog() {
-		JFileChooser fc=new JFileChooser();
+		final JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
 		fc.setDialogTitle(Language.tr("Connected.LogRun.Title"));
 		FileFilter txt=new FileNameExtensionFilter(Language.tr("FileType.Text")+" (*.txt)","txt");
@@ -414,18 +459,35 @@ public final class ConnectedPanel extends JWorkPanel {
 		return tableModel.loadFromFile(file)==null;
 	}
 
+	/**
+	 * Reagiert auf Tastendrücke in {@link ConnectedPanel#folderField}
+	 * @see ConnectedPanel#folderField
+	 */
 	private final class FolderFieldKeyListener implements KeyListener {
 		@Override public void keyTyped(KeyEvent e) {tableModel.setDefaultFolder(folderField.getText());}
 		@Override public void keyPressed(KeyEvent e) {tableModel.setDefaultFolder(folderField.getText());}
 		@Override public void keyReleased(KeyEvent e) {tableModel.setDefaultFolder(folderField.getText());}
 	}
 
+	/**
+	 * Reagiert auf Tastendrücke in {@link ConnectedPanel#day0statisticsField}
+	 * @see ConnectedPanel#day0statisticsField
+	 */
 	private final class FileFieldKeyListener implements KeyListener {
 		@Override public void keyTyped(KeyEvent e) {tableModel.setDay0Statistics(day0statisticsField.getText());}
 		@Override public void keyPressed(KeyEvent e) {tableModel.setDay0Statistics(day0statisticsField.getText());}
 		@Override public void keyReleased(KeyEvent e) {tableModel.setDay0Statistics(day0statisticsField.getText());}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen in diesem Panel.
+	 * @see ConnectedPanel#folderButton
+	 * @see ConnectedPanel#day0statisticsButton
+	 * @see ConnectedPanel#toolsLog
+	 * @see ConnectedPanel#additionalDay0Caller
+	 * @see ConnectedPanel#drop1
+	 * @see ConnectedPanel#drop2
+	 */
 	private final class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

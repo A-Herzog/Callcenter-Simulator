@@ -229,7 +229,13 @@ public final class ConnectedModel implements Cloneable {
 		return true;
 	}
 
-	private String loadFromXML(Element root) {
+	/**
+	 * Versucht ein verbundenes Modell aus einem xml-Element zu laden.
+	 * @param root	xml-Element
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 * @see #loadFromFile(File)
+	 */
+	private String loadFromXML(final Element root) {
 		int dayCount=0;
 
 		final List<String> modelsNew=new ArrayList<String>();
@@ -317,7 +323,7 @@ public final class ConnectedModel implements Cloneable {
 	}
 
 	/**
-	 * Versucht ein verbundenen Modell aus einer Datei zu laden.
+	 * Versucht ein verbundenes Modell aus einer Datei zu laden.
 	 * @param file	Eingabedatei
 	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
 	 */
@@ -329,6 +335,11 @@ public final class ConnectedModel implements Cloneable {
 		return loadFromXML(root);
 	}
 
+	/**
+	 * Speichert das verbundene Modell in einem xml-Element.
+	 * @param root	xml-Element
+	 * @see #saveToFile(File)
+	 */
 	private void addDataToXML(final Element root) {
 		Document doc=root.getOwnerDocument();
 		Element e,e2;

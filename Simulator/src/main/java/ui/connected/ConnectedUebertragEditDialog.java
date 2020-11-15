@@ -59,14 +59,25 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 1382291382514142930L;
 
+	/** Konfiguration der Überträge von Warteabbrechern von einem Tag zum nächsten */
 	private final HashMap<String,ConnectedModelUebertrag> uebertrag;
+	/** Liste aller vorhandenen Kundengruppen */
 	private final String[] caller;
+	/** Konfiguration der Überträge von Warteabbrechern von einem Tag zum nächsten */
 	private final ConnectedModelUebertrag[] callerRetry;
 
-	private JRadioButton radioNo, radioGlobal, radioByType;
+	/** Option: Kein Übertrag der Abbrecher */
+	private JRadioButton radioNo;
+	/** Option: Warteabbrecher pauschal übertragen */
+	private JRadioButton radioGlobal;
+	/** Option: Warteabbrecher gemäß Kundentyp übertragen */
+	private JRadioButton radioByType;
 
+	/** Eingabefeld für den Anteil der zu übertragenden Warteabbrecher im Fall {@link #radioGlobal} */
 	private JTextField retryGlobal;
+	/** Datenmodell für die Wiederholwahrscheinlichkeitentabelle {@link #retryTable} */
 	private UebertragTableModel retryData;
+	/** Wiederholwahrscheinlichkeitentabelle */
 	private JTableExt retryTable;
 
 	/**
@@ -88,7 +99,7 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 		if (caller==null) {callerRetry=null;} else {
 			callerRetry=new ConnectedModelUebertrag[caller.length];
 			for (int i=0;i<caller.length;i++) {
-				ConnectedModelUebertrag u=uebertrag.get(caller[i]);
+				final ConnectedModelUebertrag u=uebertrag.get(caller[i]);
 				callerRetry[i]=(u==null)?(new ConnectedModelUebertrag(0)):(u.cloneUebertrag());
 			}
 		}
@@ -125,14 +136,28 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 		pack();
 	}
 
-	private String[] getCallerNames(CallcenterModel model, File statisticFile) {
+	/**
+	 * Liefert eine Liste aller vorhandenen Kundengruppen.
+	 * @param model	Modell (darf <code>null</code> sein)
+	 * @param statisticFile	Statistikdatei (wird nur verwendet, wenn als Modelldatei <code>null</code> übergeben wurde)
+	 * @return	Liste aller vorhandenen Kundengruppen
+	 * @see #caller
+	 */
+	private String[] getCallerNames(final CallcenterModel model, final File statisticFile) {
 		String[] names=getCallerNamesFromModel(model);
 		if (names!=null) return names;
 
 		return getCallerNamesFromStatistic(statisticFile);
 	}
 
-	private String[] getCallerNames(File modelFile, File statisticFile) {
+	/**
+	 * Liefert eine Liste aller vorhandenen Kundengruppen.
+	 * @param modelFile	Modelldatei	(darf <code>null</code> sein)
+	 * @param statisticFile	Statistikdatei (wird nur verwendet, wenn als Modelldatei <code>null</code> übergeben wurde)
+	 * @return	Liste aller vorhandenen Kundengruppen
+	 * @see #caller
+	 */
+	private String[] getCallerNames(final File modelFile, final File statisticFile) {
 		if (modelFile!=null) {
 			CallcenterModel model=new CallcenterModel();
 			if (model.loadFromFile(modelFile)!=null) model=null;
@@ -143,6 +168,12 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 		return getCallerNamesFromStatistic(statisticFile);
 	}
 
+	/**
+	 * Liefert eine Liste aller vorhandenen Kundengruppen.
+	 * @param model	Modell
+	 * @return	Liste aller vorhandenen Kundengruppen
+	 * @see #caller
+	 */
 	private String[] getCallerNamesFromModel(CallcenterModel model) {
 		if (model!=null && model.caller.size()==0) model=null;
 		if (model!=null) {
@@ -154,6 +185,12 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 		return null;
 	}
 
+	/**
+	 * Liefert eine Liste aller vorhandenen Kundengruppen.
+	 * @param statisticFile	Statistikdatei
+	 * @return	Liste aller vorhandenen Kundengruppen
+	 * @see #caller
+	 */
 	private String[] getCallerNamesFromStatistic(File statisticFile) {
 		if (caller==null && statisticFile!=null) {
 			Statistics statistic=new Statistics(null,null,0,0);
@@ -264,6 +301,11 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Datenmodell für die Wiederholwahrscheinlichkeitentabelle
+	 * @see ConnectedUebertragEditDialog#retryData
+	 * @see ConnectedUebertragEditDialog#retryTable
+	 */
 	private final class UebertragTableModel extends JTableExtAbstractTableModel {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -320,15 +362,28 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 		}
 	}
 
+	/**
+	 * Reagiert auf Tastendrücke auf {@link ConnectedUebertragEditDialog#retryGlobal}
+	 * @see ConnectedUebertragEditDialog#retryGlobal
+	 */
 	private final class RetryGlobalKeyListener implements KeyListener {
 		@Override public void keyTyped(KeyEvent e) {radioGlobal.setSelected(true);}
 		@Override public void keyPressed(KeyEvent e) {radioGlobal.setSelected(true);}
 		@Override public void keyReleased(KeyEvent e) {radioGlobal.setSelected(true);}
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltfläche in der Tabelle
+	 * @see ConnectedUebertragEditDialog#retryTable
+	 */
 	private final class ButtonListener implements ActionListener {
+		/** Tabellenzeile */
 		private final int index;
 
+		/**
+		 * Konstruktor der Klasse
+		 * @param index	Tabellenzeile
+		 */
 		public ButtonListener(int index) {
 			this.index=index;
 		}

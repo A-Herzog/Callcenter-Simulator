@@ -49,6 +49,7 @@ import systemtools.statistics.StatisticViewerJFreeChart;
 import systemtools.statistics.StatisticViewerLineChart;
 import ui.HelpLink;
 import ui.commandline.AbstractReportCommandConnect;
+import ui.statistic.StatisticPanel;
 
 /**
  * Diese Klasse stellt ein <code>JPanel</code> zur Verfügung, welche Statistikdaten gemäß einer
@@ -154,7 +155,7 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 	}
 
 	/**
-	 * Konstruktor der Klasse <code>StatisticPanel</code>
+	 * Konstruktor der Klasse {@link StatisticPanel}
 	 * @param title	Titel, der über der Baumstruktur angezeigt wird
 	 * @param icon	Icon, das neben dem Titel über der Baumstruktur angezeigt wird (kann <code>null</code> sein, wenn kein Icon angezeigt werden soll)
 	 * @param commandLineCommand	Kommandozeilenbefehl, über den einzelne Statistikergebnisse abgerufen werden können (zur Anzeige eines Kontextmenüs, welche den jeweiligen Befehl benennt; wird hier <code>null</code> übergeben, so erhält die Baumansicht kein Kontextmenü)

@@ -112,14 +112,24 @@ public class NetworkThread extends Thread {
 		return new ByteArrayInputStream(bufferStream.toByteArray());
 	}
 
-	private final byte[] getSize(ByteArrayOutputStream data) {
+	/**
+	 * Liefert die Größe der auszugebenden Daten
+	 * @param data	Auszugebende Daten
+	 * @return	Anzahl an Bytes (als 4-Byte-Array)
+	 */
+	private final byte[] getSize(final ByteArrayOutputStream data) {
 		byte[] b=new byte[4];
 		int s=data.size();
 		for (int i=0;i<3;i++) {b[i]=(byte)(s%256); s/=256;}
 		return b;
 	}
 
-	private final int getSize(byte[] data) {
+	/**
+	 * Wandelt ein 4-Byte-Array mit der Größe der Daten in eine Zahl um
+	 * @param data	4-Byte-Array mit der Größe der Daten
+	 * @return	Größe der Daten als Zahl
+	 */
+	private final int getSize(final byte[] data) {
 		int value=(0xFF & data[3])<<24;
 		value|=(0xFF & data[2])<<16;
 		value|=(0xFF & data[1])<<8;
@@ -127,7 +137,15 @@ public class NetworkThread extends Thread {
 		return value;
 	}
 
-	private final boolean sendDataIntern(byte type, ByteArrayOutputStream data) {
+	/**
+	 * Sendet Daten an die Gegenstelle.
+	 * @param type	Typ der Daten
+	 * @param data	Daten
+	 * @return	Liefert <code>true</code>, wenn die Daten gesendet werden konnten
+	 * @see #receiveDataIntern(int)
+	 * @see #receiveDataIntern(int, int)
+	 */
+	private final boolean sendDataIntern(final byte type, final ByteArrayOutputStream data) {
 		try {
 			@SuppressWarnings("resource")
 			OutputStream out=socket.getOutputStream();
@@ -140,7 +158,7 @@ public class NetworkThread extends Thread {
 	}
 
 	/**
-	 * Sendet einen Stream
+	 * Sendet einen Stream.
 	 * @param type		Benutzerdefinierbarer Type, der dem Empfänger angibt, was in dem Stream steht (es muss <code>type</code>>=0 gelten)
 	 * @param output	Zu sendender Stream
 	 * @return			Gibt true zurück, wenn die Daten erfolgreich abgesendet werden konnten
@@ -160,7 +178,7 @@ public class NetworkThread extends Thread {
 	}
 
 	/**
-	 * Sendet eine Zeichenkette
+	 * Sendet eine Zeichenkette.
 	 * @param s	Zu sendende Zeichenkette
 	 * @return	Gibt true zurück, wenn die Daten erfolgreich abgesendet werden konnten
 	 */
@@ -180,7 +198,14 @@ public class NetworkThread extends Thread {
 		return sendDataIntern((byte)-1,data2);
 	}
 
-	private final ByteArrayOutputStream receiveDataIntern(int expectedSize, int timeOut) {
+	/**
+	 * Empfängt Daten von der Gegenstelle.
+	 * @param expectedSize	Anzahl an zu lesenden Bytes
+	 * @param timeOut	Time-out in Millisekunden
+	 * @return	Liefert im Erfolgsfall das Datenobjekt, sonst <code>null</code>
+	 * @see #sendDataIntern(byte, ByteArrayOutputStream)
+	 */
+	private final ByteArrayOutputStream receiveDataIntern(final int expectedSize, final int timeOut) {
 		byte[] b=new byte[expectedSize];
 		int count=0;
 
@@ -207,7 +232,13 @@ public class NetworkThread extends Thread {
 		return null;
 	}
 
-	private final ByteArrayOutputStream receiveDataIntern(int expectedSize) {
+	/**
+	 * Empfängt Daten von der Gegenstelle.
+	 * @param expectedSize	Anzahl an zu lesenden Bytes
+	 * @return	Liefert im Erfolgsfall das Datenobjekt, sonst <code>null</code>
+	 * @see #sendDataIntern(byte, ByteArrayOutputStream)
+	 */
+	private final ByteArrayOutputStream receiveDataIntern(final int expectedSize) {
 		return receiveDataIntern(expectedSize,0);
 	}
 

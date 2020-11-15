@@ -35,8 +35,21 @@ import language.Language;
  * @version 1.0
  */
 public class WebServerThread extends Thread {
+	/**
+	 * Soll sich der Server beenden?
+	 */
 	private boolean pleaseQuit=false;
+
+	/**
+	 * HTTP-Server
+	 */
 	private NanoHTTPD server;
+
+	/**
+	 * Liste der Handler für die Antworten auf verschiedene
+	 * angefragt URLs
+	 * @see #registerHandler(WebServerDataHandler)
+	 */
 	private final List<WebServerDataHandler> handlers;
 
 	/**
@@ -131,6 +144,14 @@ public class WebServerThread extends Thread {
 	 */
 	public void showInfo(String sender, String info, boolean screenMessage) {}
 
+	/**
+	 * Verarbeitet eine Anfrage.
+	 * @param url	Angefragt URL
+	 * @param remoteHost	Hostname des entfernten Clients
+	 * @param serverHost	Hostname dieses Servers
+	 * @param language	Sprache für die Ausgabe
+	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
+	 */
 	private Object[] processRequest(String url, String remoteHost, String serverHost, Locale language) {
 		for (WebServerDataHandler handler : handlers) {
 			Object[] result=handler.process(this,url,remoteHost,serverHost,language);
@@ -139,12 +160,24 @@ public class WebServerThread extends Thread {
 		return null;
 	}
 
+	/**
+	 * Liefert eine 404-Fehler-Antwort
+	 * @return	404-Fehler-Antwort
+	 */
 	private Response getErrorResponse() {
 		final NanoHTTPD.Response nanoResponse=NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.NOT_FOUND,"text/plain; charset=utf-8",null,0);
 		nanoResponse.addHeader("Cache-Control","no-cache, no-store, must-revalidate");
 		return nanoResponse;
 	}
 
+	/**
+	 * Erstellt ein Daten-Antwortobjekt
+	 * @param data	Auszugebende Daten
+	 * @param mime	Mime-Typ der Daten
+	 * @param allowCaching	Darf der Client die Antwort cachen?
+	 * @param additionalHeaders	Optionale zusätzliche Header-Felder (kann <code>null</code> sein)
+	 * @return	Daten-Antwortobjekt
+	 */
 	private Response getDataResponse(final byte[] data, final String mime, boolean allowCaching, final String[] additionalHeaders) {
 
 		final NanoHTTPD.Response nanoResponse=NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK,mime,new ByteArrayInputStream(data),data.length);
@@ -166,6 +199,11 @@ public class WebServerThread extends Thread {
 		return nanoResponse;
 	}
 
+	/**
+	 * Verarbeitet eine http-Anfrage
+	 * @param session	http-Anfrage
+	 * @return	Antwortobjekt
+	 */
 	private Response processRequest(final IHTTPSession session) {
 		/* Anfrage von zulässiger IP? */
 		if (permittedIPs!=null && permittedIPs.length>0) {

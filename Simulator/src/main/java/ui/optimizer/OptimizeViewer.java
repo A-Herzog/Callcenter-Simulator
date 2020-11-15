@@ -351,10 +351,20 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		return false;
 	}
 
+	/**
+	 * Reagiert darauf, wenn der Modell-Viewer {@link OptimizeViewer#statistic}
+	 * geschlossen werden möchte.
+	 * @see OptimizeViewer#statistic
+	 */
 	private final class ModelViewerClosed implements Runnable {
+		/** Viewer der geschlossen werden möchte (um ggf. weitere Wünsche auslesen zu können) */
 		private final CallcenterModelEditorPanelDialog modelViewer;
 
-		public ModelViewerClosed(CallcenterModelEditorPanelDialog modelViewer) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param modelViewer	Viewer auf dessen Schließen-Wunsch reagiert werden soll
+		 */
+		public ModelViewerClosed(final CallcenterModelEditorPanelDialog modelViewer) {
 			this.modelViewer=modelViewer;
 		}
 
@@ -369,10 +379,20 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		}
 	}
 
+	/**
+	 * Reagiert darauf, wenn der Vergleichs-Viewer {@link OptimizeViewer#statistic}
+	 * geschlossen werden möchte.
+	 * @see OptimizeViewer#statistic
+	 */
 	private final class CompareViewerClosed implements Runnable {
+		/** Viewer der geschlossen werden möchte (um ggf. weitere Wünsche auslesen zu können) */
 		private final ComparePanelDialog compareViewer;
 
-		public CompareViewerClosed(ComparePanelDialog compareViewer) {
+		/**
+		 * Konstruktor der Klasse
+		 * @param compareViewer	Viewer auf dessen Schließen-Wunsch reagiert werden soll
+		 */
+		public CompareViewerClosed(final ComparePanelDialog compareViewer) {
 			this.compareViewer=compareViewer;
 		}
 
@@ -387,6 +407,12 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		}
 	}
 
+	/**
+	 * Zeigt einen Auswahldialog für einen Simulationslauf an und
+	 * zeigt dann die Ergebnisse dieses einzelnen Laufs an.
+	 * @param	showSelectDialog Auswahldialog anzeigen (<code>true</code>) oder Daten von letztem Lauf direkt ausgeben (<code>false</code>)
+	 * @see OptimizeSelectResult
+	 */
 	private void showSingleRun(boolean showSelectDialog) {
 		Statistics statistic;
 		if (showSelectDialog) {
@@ -405,11 +431,14 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		viewer.setVisible(true);
 	}
 
+	/**
+	 * Zeigt einen Viewer zum Vergleich des ersten und des letzten Modells an.
+	 */
 	private void compareFirstLast() {
-		Statistics statistic1=results.data.get(0);
-		Statistics statistic2=results.data.get(results.data.size()-1);
+		final Statistics statistic1=results.data.get(0);
+		final Statistics statistic2=results.data.get(results.data.size()-1);
 
-		ComparePanelDialog comparePanelDialog=new ComparePanelDialog(owner,
+		final ComparePanelDialog comparePanelDialog=new ComparePanelDialog(owner,
 				new Statistics[]{statistic1,statistic2},new String[]{Language.tr("OptimizeResults.Model.Base"),Language.tr("OptimizeResults.Model.Optimized")},
 				true,true,helpLink,helpLink.pageOptimizeViewer,helpLink.pageOptimizeViewerModal
 				);
@@ -428,6 +457,10 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		}
 	}
 
+	/**
+	 * Panel zur Anzeige der eigentlichen Statistikdaten
+	 * @see OptimizeViewer#statistic
+	 */
 	private final class OptimizerStatisticPanel extends StatisticBasePanel {
 		/**
 		 * Serialisierungs-ID der Klasse
@@ -435,8 +468,18 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		 */
 		private static final long serialVersionUID = 5350416436702759598L;
 
-		public OptimizerStatisticPanel(String title, URL icon, boolean filterTree, Runnable helpModal, HelpLink helpLink, Runnable startSilmulation, Runnable loadStatistics) {
-			super(title, icon, null, null, true, true, helpModal, helpLink, startSilmulation, loadStatistics, false);
+		/**
+		 * Konstruktor der Klasse
+		 * @param title	Titel, der über der Baumstruktur angezeigt wird
+		 * @param icon	Icon, das neben dem Titel über der Baumstruktur angezeigt wird (kann <code>null</code> sein, wenn kein Icon angezeigt werden soll)
+		 * @param filterTree	Option zur Filterung der Daten im Statistikbaum anzeigen
+		 * @param helpModal	Hilfe-Callback für den Aufruf der Hilfeseite für die Statistik
+		 * @param helpLink	Hilfe-Objekt, welches alle Hilfe-Links enthält
+		 * @param startSimulation	Callback zum Starten einer Simulation
+		 * @param loadStatistics	Callback zum Laden von Statistikdaten
+		 */
+		public OptimizerStatisticPanel(String title, URL icon, boolean filterTree, Runnable helpModal, HelpLink helpLink, Runnable startSimulation, Runnable loadStatistics) {
+			super(title, icon, null, null, true, true, helpModal, helpLink, startSimulation, loadStatistics, false);
 		}
 
 		@Override

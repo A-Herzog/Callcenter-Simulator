@@ -115,7 +115,13 @@ public final class ImporterProcessorCallerDistribution extends ImporterProcessor
 		return ParameterType.PARAMETER_TYPE_CALLER;
 	}
 
-	private String processInt(CallcenterModelCaller caller, double[] data) {
+	/**
+	 * Lädt Daten in eine (über {@link #mode} definierte) Verteilung für einen Kundentyp
+	 * @param caller	Kundentyp
+	 * @param data	Zu ladende Daten
+	 * @return	Liefert im Erfolgsfall <code>null</code>, sonst eine Fehlermeldung
+	 */
+	private String processInt(final CallcenterModelCaller caller, final double[] data) {
 		double[] data2;
 		switch (mode) {
 		case CALLER_DIST_FRESH_CALLS:

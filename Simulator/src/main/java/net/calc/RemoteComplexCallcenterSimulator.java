@@ -27,7 +27,9 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public final class RemoteComplexCallcenterSimulator implements CallcenterSimulatorInterface {
+	/** Client-System zur Verbindung mit einem entfernten Simulationsserver */
 	private final SimClientThread thread;
+	/** Wurde die Simulation gestartet? */
 	private boolean started;
 
 	/**

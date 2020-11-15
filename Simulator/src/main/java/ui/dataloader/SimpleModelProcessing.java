@@ -39,17 +39,29 @@ import ui.model.CallcenterModel;
  * @see SimpleModelLoader
  */
 public class SimpleModelProcessing extends AbstractSpecialProcessing {
+	/** Eingabefeld für die Anrufer-Datei */
 	private JTextField fileCallerInput;
+	/** Schaltfläche zur Auswahl einer Anrufer-Datei für {@link #fileCallerInput} */
 	private JButton fileCallerInputButton;
+	/** Eingabefeld für den optionalen Tabellennamen in der Anrufer-Arbeitsmappe */
 	private JTextField fileCallerTableNameInput;
+	/** Eingabefeld für die erste zu verwendende Spalte in der Anrufer-Tabelle */
 	private JTextField fileCallerColumnInput;
+	/** Eingabefeld für die Agenten-Datei */
 	private JTextField fileAgentsInput;
+	/** Schaltfläche zur Auswahl einer Agenten-Datei für {@link #fileAgentsInput} */
 	private JButton fileAgentsInputButton;
+	/** Eingabefeld für den optionalen Tabellennamen in der Agenten-Arbeitsmappe */
 	private JTextField fileAgentsTableNameInput;
+	/** Eingabefeld für die erste zu verwendende Spalte in der Agenten-Tabelle */
 	private JTextField fileAgentsColumnInput;
+	/** Eingabefeld für die Ausgabedatei */
 	private JTextField fileOutput;
+	/** Schaltfläche zur Auswahl einer Ausgabe-Datei für {@link #fileOutput} */
 	private JButton fileOutputButton;
+	/** Objekt, welches den eigentlichen Lade-Vorgang durchführt */
 	private SimpleModelLoader loader;
+	/** Neues Callcenter-Modell */
 	private CallcenterModel model;
 
 	/**
@@ -137,6 +149,9 @@ public class SimpleModelProcessing extends AbstractSpecialProcessing {
 		return model;
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen in dem Panel.
+	 */
 	private final class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

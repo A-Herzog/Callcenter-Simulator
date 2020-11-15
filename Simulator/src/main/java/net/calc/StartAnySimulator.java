@@ -38,10 +38,15 @@ public final class StartAnySimulator {
 	/** Optionale Logdatei (kann <code>null</code> sein) */
 	private final File logFile;
 
+	/** Anteile die auf die Server verteilt werden sollen */
 	private double[] networkParts=null;
+	/** Netzwerknamen der Server */
 	private String[] networkServers=null;
+	/** Ports der Server */
 	private int[] networkPorts=null;
+	/** Passwörter für die Server */
 	private String[] networkPasswords=null;
+	/** Zu dem Editor-Modell erstelltes zugehöriges Laufzeitmodell */
 	private CallcenterRunModel runModel;
 
 	/**
@@ -54,7 +59,6 @@ public final class StartAnySimulator {
 		this.logFile=logFile;
 	}
 
-
 	/**
 	 * Konstruktor der Klasse
 	 * @param editModel	Zu prüfendes und zu simulierendes Modell
@@ -63,6 +67,10 @@ public final class StartAnySimulator {
 		this(editModel,null);
 	}
 
+	/**
+	 * Überprüft die Einstellungen zu den Netzwerkservern.
+	 * @return	Liefert <code>true</code>, wenn die Einstellungen in Ordnung sind.
+	 */
 	private String checkNetwork() {
 		final SetupData setup=SetupData.getSetup();
 
@@ -118,7 +126,7 @@ public final class StartAnySimulator {
 	/**
 	 * Prüft, ob das angegebene Modell simuliert werden kann.
 	 * @param checkedRunModel	Zu prüfendes Modell (wird <code>null</code> übergeben, so wird das im Konstruktor übergebene Modell geprüft)
-	 * @return	Gibt im Erfolgfall <code>null</code> zurück, sonst eine Fehlermeldung
+	 * @return	Gibt im Erfolgsfall <code>null</code> zurück, sonst eine Fehlermeldung
 	 */
 	public String check(final CallcenterRunModel checkedRunModel) {
 		final SetupData setup=SetupData.getSetup();

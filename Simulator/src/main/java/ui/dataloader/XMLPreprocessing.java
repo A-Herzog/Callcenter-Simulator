@@ -39,12 +39,19 @@ import ui.model.CallcenterModel;
  * @see AbstractSpecialProcessing
  */
 public class XMLPreprocessing extends AbstractSpecialProcessing {
+	/** Eingabefeld für den Dateinamen des Eingabemodells */
 	private JTextField xmlFileInput;
+	/** Schaltfläche zur Auswahl des Dateinamens des Eingabemodells für {@link #xmlFileInput} */
 	private JButton xmlFileInputButton;
+	/** Eingabefeld für den Dateinamen der Eingabetabelle */
 	private JTextField tableFileInput;
+	/** Schaltfläche zur Auswahl des Dateinamens der Eingabetabelle für {@link #tableFileInput} */
 	private JButton tableFileInputButton;
+	/** Eingabefeld für den Dateinamen der Ausgabedatei */
 	private JTextField xmlFileOutput;
+	/** Schaltfläche zur Auswahl des Dateinamens der Ausgabedatei für {@link #xmlFileOutput} */
 	private JButton xmlFileOutputButton;
+	/** In den Editor zu ladendes Callcenter-Modell */
 	private CallcenterModel model;
 
 	/**
@@ -126,6 +133,9 @@ public class XMLPreprocessing extends AbstractSpecialProcessing {
 		return model;
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen in dem Panel.
+	 */
 	private class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

@@ -32,7 +32,13 @@ import ui.model.CallcenterModel;
  * @version 1.0
  */
 public abstract class SimpleModelBaseLoader {
-	private final Object loadTable(File file, String table) {
+	/**
+	 * Lädt eine Tabelle aus einer Datei.
+	 * @param file	Tabellendatei
+	 * @param table	Optional Name der Tabelle in der Arbeitsmappe
+	 * @return	Liefert im Erfolgsfall ein {@link Table}-Objekt, sonst eine Fehlermeldung
+	 */
+	private final Object loadTable(final File file, final String table) {
 		/* Datei vorhanden und ladbar? */
 		if (!file.exists()) return String.format(Language.tr("Loader.ProcessError.FileDoesNotExist"),file.toString());
 		MultiTable multi=new MultiTable();
@@ -48,7 +54,13 @@ public abstract class SimpleModelBaseLoader {
 		return String.format(Language.tr("Loader.ProcessError.Load"),file.toString());
 	}
 
-	private final Object removeColumns(Table table, String startCol) {
+	/**
+	 * Entfernt aus einer Tabelle alle Spalten vor einer Startspalte.
+	 * @param table	Tabelle
+	 * @param startCol	Startspalte
+	 * @return	Tabelle bei der die Spalten vor der Startspalte entfernt wurde (oder im Fehlerfall eine Fehlermeldung)
+	 */
+	private final Object removeColumns(final Table table, final String startCol) {
 		if (startCol==null || startCol.trim().isEmpty()) return table;
 
 		int col=Table.numberFromColumnName(startCol);

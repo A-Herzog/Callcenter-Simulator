@@ -42,10 +42,14 @@ public final class ConnectedUebertragTypeEditDialog extends BaseEditDialog {
 	 */
 	private static final long serialVersionUID = 1732595764749627708L;
 
+	/** Liste mit Namen der verfügbaren Kundentypen */
 	private final String[] caller;
+	/** Raten mit denen Kunden ihren Typ zu dem angegebenen Kundentyp ändern (Originalobjekt, wird in {@link #storeData()} aktualisiert) */
 	private final ConnectedModelUebertrag callerRetryOrig;
+	/** Temporäre Arbeitskopie der Raten mit denen Kunden ihren Typ zu dem angegebenen Kundentyp ändern */
 	private final ConnectedModelUebertrag callerRetry;
 
+	/** Datenmodell für die Tabelle zur Steuerung der Kundentypänderungen */
 	private UebertragChangeTableModel changeData;
 
 	/**
@@ -92,6 +96,9 @@ public final class ConnectedUebertragTypeEditDialog extends BaseEditDialog {
 		callerRetryOrig.changeRates=callerRetry.changeRates;
 	}
 
+	/**
+	 * Datenmodell für die Tabelle zur Steuerung der Kundentypänderungen
+	 */
 	private final class UebertragChangeTableModel extends AbstractTableModel {
 		/**
 		 * Serialisierungs-ID der Klasse

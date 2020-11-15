@@ -26,12 +26,19 @@ import language.Language;
  * @version 1.0
  */
 public abstract class SimServerManager {
+	/** Nummer des aktiveren Threads */
 	private int taskNr=0;
+	/** Port, auf dem auf eingehende Verbindungen gewartet werden soll. */
 	private final int port;
+	/** Zu verwendendes Passwort für die verschlüsselte Datenübertragung (leer oder <code>null</code> für unverschlüsselte Übertragung) */
 	private final String password;
+	/** Gibt die Maximalanzahl an zu verwendenden Threads an. (&le;0 um ohne Begrenzung zu arbeiten) */
 	private final int maxThreads;
+	/** Gibt eine Liste von IP-Adressen (oder auch Anfängen von Adressen) an, die berechtigt sind, den Server zu nutzen. Wird <code>null</code> oder eine leere Liste übergeben, so werden alle Adressen akzeptiert. */
 	private final String[] permittedIPs;
+	/** Rechen-Threads für die einzelnen Anfragen */
 	private final List<SimServerThread> threads;
+	/** Soll der Server geordnet herunterfahren? Dann keine neuen Aufträge mehr annehmen. */
 	private boolean shutdown=false;
 
 	/**
@@ -97,6 +104,9 @@ public abstract class SimServerManager {
 	 */
 	protected abstract void showInfo(String sender, String info, boolean screenMessage);
 
+	/**
+	 * Startet einen neuen Rechenthread.
+	 */
 	private final void startNewThread() {
 		if (shutdown) return;
 		ThreadStartWork notify=new ThreadStartWork();
@@ -109,7 +119,15 @@ public abstract class SimServerManager {
 		threads.add(thread);
 	}
 
+	/**
+	 * Callback das benachrichtigt werden soll, wenn
+	 * der zugehörige Simulations-Thread zu arbeiten beginnt.
+	 * @see SimServerThread
+	 */
 	private final class ThreadStartWork implements Runnable {
+		/**
+		 * Rechen-Thread auf den sich dieses Benachrichtigungs-Objekt bezieht
+		 */
 		public SimServerThread thread;
 
 		@Override
@@ -119,7 +137,12 @@ public abstract class SimServerManager {
 		}
 	}
 
-	private final boolean removeCheck(SimServerThread thread) {
+	/**
+	 * Entfernt einen abgeschlossenen Thread aus der Liste der überwachten Threads.
+	 * @param thread	Zu entfernendes Thread-Objekt
+	 * @return	Gibt an, ob der Thread entfernt werden konnte
+	 */
+	private final boolean removeCheck(final SimServerThread thread) {
 		if (thread.isAlive()) {
 			if (!thread.isWorkStarted() && shutdown) thread.quit();
 			return false;

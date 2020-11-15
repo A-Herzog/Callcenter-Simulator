@@ -54,19 +54,61 @@ import xml.XMLTools;
  * @version 1.0
  */
 public abstract class WebServerSystem {
-	/** Array mit zulässigen IPs (leere Liste, wenn keine Einschränkung erfolgen soll) */
+	/**
+	 * Array mit zulässigen IPs (leere Liste, wenn keine Einschränkung erfolgen soll)
+	 */
 	private final String[] permittedIPs;
+
+	/**
+	 * Ist der aktuelle Logging-Eintrag der erste in der Liste?
+	 */
 	private boolean firstNews=true;
+
+	/**
+	 * Ausgabedatei für Logging-Meldungen
+	 */
 	private File logFile;
+
+	/**
+	 * Signal-System zur Erkennung von Beenden-Anfragen
+	 */
 	private final CloseRequestSignal quitSignal;
+
+	/**
+	 * Soll sich der Server beenden?
+	 */
 	private boolean quitVariable=false;
+
+	/**
+	 * Lokaler Demo-Modus?
+	 * @see #setupDemo()
+	 */
 	private boolean demoMode=false;
+
+	/**
+	 * Wurde die Initialisierung abgeschlossen?
+	 * @see #initData()
+	 */
 	private boolean initMode=false;
 
+	/**
+	 * Statistik-Verzeichnisse
+	 */
 	private final List<StatisticFolder> webServerStatisticFolder=new ArrayList<StatisticFolder>();
+
+	/**
+	 * Optionales Filter-Skript
+	 */
 	private String webServerFilterFolder=null;
 
+	/**
+	 * Rechen-Server-System
+	 */
 	private SimServerManager calcServer;
+
+	/**
+	 * Web-Server-System
+	 */
 	private WebServerThread webServer;
 
 	/**
@@ -108,6 +150,10 @@ public abstract class WebServerSystem {
 		return setupFromConfigXML(root);
 	}
 
+	/**
+	 * Liefert, wenn verfügbar, das SaaS-Applet aus.
+	 * @return	SaaS-Applet
+	 */
 	private byte[] downloadApplet() {
 		URL home;
 		try {home=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.wwwHomeURL+"Java/CallcenterSimulatorApplet.jar");} catch (MalformedURLException e) {return null;}
@@ -450,9 +496,15 @@ public abstract class WebServerSystem {
 		}
 	}
 
-	private void log(String sender, String info, boolean screenMessage) {
-		Calendar cal=Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat(Language.tr("Simulation.FullDateFormat"));
+	/**
+	 * Gibt eine Logging-Meldung aus.
+	 * @param sender	Absender der Meldung
+	 * @param info	Meldung
+	 * @param screenMessage	Soll die Meldung auch im Falle der Verwendung einer Logdatei auf dem Bildschirm ausgegeben werden?
+	 */
+	private void log(final String sender, final String info, final boolean screenMessage) {
+		final Calendar cal=Calendar.getInstance();
+		final SimpleDateFormat sdf=new SimpleDateFormat(Language.tr("Simulation.FullDateFormat"));
 		String date=sdf.format(cal.getTime());
 		if (logFile==null) {
 			writeConsoleOutput(date+" "+sender+": "+info+"\n");

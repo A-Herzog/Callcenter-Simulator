@@ -67,19 +67,35 @@ public final class SimServerPanel extends JWorkPanel {
 	/** Übergeordnetes Fenster */
 	private final Window owner;
 
+	/** Option: Rechenserver */
 	private final JCheckBox serverSimulation;
+	/** Eingabefeld für den Rechenserver-Port */
 	private final JTextField portSimulation;
+	/** Eingabefeld für ein Passwort für den Rechenserver */
 	private final JTextField passwordSimulation;
+	/** Ausgabebereich für Statusmeldungen des Rechenservers */
 	private final JTextArea statusField;
+	/** Option: Webserver */
 	private final JCheckBox serverSaaS;
+	/** Eingabefeld für den Webserver-Port */
 	private final JTextField portSaaS;
+	/** Option: Statistikverzeichnis */
 	private final JCheckBox serverSaaSStatistic;
+	/** Eingabefeld für das Statistikverzeichnis */
 	private final JTextField folderSaaSStatistic;
+	/** Schaltfläche zur Auswahl eines Verzeichnisses für {@link #folderSaaSStatistic} */
 	private final JButton folderSaaSStatisticButton;
+	/** Option: Applet über den Webserver anbieten */
 	private final JCheckBox serverSaaSApplet;
+	/** Eingabefeld für den Pfad zu dem Applet */
 	private final JTextField fileSaaSApplet;
+	/** Schaltfläche zur Auswahl einer Applet-Datei für {@link #fileSaaSApplet} */
 	private final JButton fileSaaSAppletButton;
-	private final FileDropper drop1, drop2;
+
+	/** Reagiert auf Drag&amp;drop-Operationen auf {@link #folderSaaSStatistic} */
+	private final FileDropper drop1;
+	/** Reagiert auf Drag&amp;drop-Operationen auf {@link #fileSaaSApplet} */
+	private final FileDropper drop2;
 
 	/**
 	 * Konstruktor der Klasse
@@ -180,6 +196,11 @@ public final class SimServerPanel extends JWorkPanel {
 		} catch (IOException | URISyntaxException e) {}
 	}
 
+	/**
+	 * Prüft die Eingabe in dem Panel.
+	 * @param showErrorMessages	Soll im Fehlerfall eine Fehlermeldung ausgegeben werden?
+	 * @return	Liefert <code>true</code>, wenn alle Eingabe korrekt sind.
+	 */
 	private boolean check(boolean showErrorMessages) {
 		boolean ok=true;
 		SetupData setup=SetupData.getSetup();
@@ -291,7 +312,13 @@ public final class SimServerPanel extends JWorkPanel {
 		}.start();
 	}
 
+	/**
+	 * Verbindet das Webserver-System mit diesem Panel.
+	 */
 	private final class WebServerSystemPanel extends WebServerSystem {
+		/**
+		 * Konstruktor der Klasse
+		 */
 		public WebServerSystemPanel() {
 			super(SetupData.getSetup().networkPermittedIPs,false,null);
 		}
@@ -307,8 +334,14 @@ public final class SimServerPanel extends JWorkPanel {
 		}
 	}
 
+	/**
+	 * Zeigt einen Verzeichnisauswahldialog für {@link SimServerPanel#folderSaaSStatistic}
+	 * @return	Liefert im Erfolgsfall das neue Verzeichnis
+	 * @see SimServerPanel#folderSaaSStatistic
+	 * @see SimServerPanel#folderSaaSStatisticButton
+	 */
 	private final String selectFolder() {
-		JFileChooser fc=new JFileChooser();
+		final JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
 		fc.setDialogTitle(Language.tr("Server.StatisticFolder.Button"));
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -318,8 +351,14 @@ public final class SimServerPanel extends JWorkPanel {
 		return file.toString();
 	}
 
+	/**
+	 * Zeigt einen Dateiauswahldialog für {@link SimServerPanel#fileSaaSApplet}
+	 * @return	Liefert im Erfolgsfall das neue Verzeichnis
+	 * @see SimServerPanel#fileSaaSApplet
+	 * @see SimServerPanel#fileSaaSAppletButton
+	 */
 	private final String selectFile() {
-		JFileChooser fc=new JFileChooser();
+		final JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
 		fc.setDialogTitle(Language.tr("Server.OfferApplet.Button"));
 		FileFilter jar=new FileNameExtensionFilter(Language.tr("FileType.jar")+" (*.jar)","jar");
@@ -331,6 +370,9 @@ public final class SimServerPanel extends JWorkPanel {
 		return file.toString();
 	}
 
+	/**
+	 * Reagiert auf Klicks auf die Schaltflächen in diesem Panel.
+	 */
 	private final class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
