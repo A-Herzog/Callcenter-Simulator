@@ -150,6 +150,8 @@ public class SetupDialog extends BaseEditDialog {
 	private JCheckBox openExcel;
 	/** Option "Tabellen mit OpenOffice/LibreOffice öffnen" */
 	private JCheckBox openODS;
+	/** Anbieten, Statistik-Ergebnisse als PDF zu öffnen? */
+	private JCheckBox openPDF;
 
 	/* Dialogseite "Updates" */
 
@@ -406,6 +408,9 @@ public class SetupDialog extends BaseEditDialog {
 		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(openODS=new JCheckBox(Language.tr("SettingsDialog.Tabs.Statistics.OpenODS")));
 
+		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
+		p.add(openPDF=new JCheckBox(Language.tr("SettingsDialog.Tabs.Statistics.OpenPDF")));
+
 		/* Dialogseite "Updates" */
 		tabs.addTab(Language.tr("SettingsDialog.Tabs.Updates"),tab=new JPanel(new FlowLayout(FlowLayout.LEFT))); tab.add(mainarea=new JPanel());
 		mainarea.setLayout(new BoxLayout(mainarea,BoxLayout.Y_AXIS));
@@ -520,6 +525,7 @@ public class SetupDialog extends BaseEditDialog {
 		openODT.setSelected(setup.openODT);
 		openExcel.setSelected(setup.openExcel);
 		openODS.setSelected(setup.openODS);
+		openPDF.setSelected(setup.openPDF);
 
 		autoUpdate.setSelected(setup.updateAutomatic);
 		loadDataAutoUpdate();
@@ -630,6 +636,7 @@ public class SetupDialog extends BaseEditDialog {
 		setup.openODT=openODT.isSelected();
 		setup.openExcel=openExcel.isSelected();
 		setup.openODS=openODS.isSelected();
+		setup.openPDF=openPDF.isSelected();
 
 		if (autoUpdate.isEnabled()) setup.updateAutomatic=autoUpdate.isSelected();
 

@@ -5234,6 +5234,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12853] = "Callcenter";
     t[12854] = "XML.Statistic.Agents";
     t[12855] = "StatistikAgenten;Agenten";
+    t[12856] = "SettingsDialog.Tabs.Statistics.OpenPDF";
+    t[12857] = "Ergebnisse als pdf \u00f6ffnen";
     t[12860] = "LoadCalculator.ExpAssumption";
     t[12861] = "Annahme: Wartezeittoleranz ist exp-verteilt";
     t[12866] = "XML.Statistic.ErlangC.ModeComplex";
@@ -6020,14 +6022,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14795] = "Die angegebene Weiterleitungswahrscheinlichkeit %s ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Zahl (optional ein Prozentwert) sein.";
     t[14796] = "Optimizer.CarryOver.SelectStatisticTitle";
     t[14797] = "Statistik-Datei f\u00fcr \u00dcbertrag";
-    t[14802] = "SimStatistic.Shift.PreferredLength";
-    t[14803] = "Gew\u00fcnschte Schichtl\u00e4nge";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14802] = "SimStatistic.Shift.PreferredLength";
+    t[14803] = "Gew\u00fcnschte Schichtl\u00e4nge";
     t[14812] = "Optimizer.Error.StatisticFileInvalid";
     t[14813] = "Beim Laden der Statistikdatei %s ist der folgende Fehler aufgetreten";
     t[14816] = "Loader.Info.Technion.CallerOnly.Description";

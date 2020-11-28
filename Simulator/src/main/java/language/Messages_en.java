@@ -5234,6 +5234,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12853] = "call centers";
     t[12854] = "XML.Statistic.Agents";
     t[12855] = "StatisticAgents";
+    t[12856] = "SettingsDialog.Tabs.Statistics.OpenPDF";
+    t[12857] = "Open results as pdf files";
     t[12860] = "LoadCalculator.ExpAssumption";
     t[12861] = "Assumption: waiting time tolerance is exp distributed";
     t[12866] = "XML.Statistic.ErlangC.ModeComplex";
@@ -6020,14 +6022,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14795] = "The specified forwarding probability %s is invalid.\nThe value has to be a non-negative number (a percentage value optional).";
     t[14796] = "Optimizer.CarryOver.SelectStatisticTitle";
     t[14797] = "Statistic file for carrying over caller";
-    t[14802] = "SimStatistic.Shift.PreferredLength";
-    t[14803] = "Preferred shift length";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14802] = "SimStatistic.Shift.PreferredLength";
+    t[14803] = "Preferred shift length";
     t[14812] = "Optimizer.Error.StatisticFileInvalid";
     t[14813] = "The following error occured while trying to load the statistic file %s";
     t[14816] = "Loader.Info.Technion.CallerOnly.Description";
