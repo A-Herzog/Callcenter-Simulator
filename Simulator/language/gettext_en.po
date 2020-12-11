@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-28 20:40+0100\n"
+"POT-Creation-Date: 2020-12-11 19:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -926,6 +926,24 @@ msgstr "Processing the input rule was successfully finished."
 
 msgid "CommandLine.Import.Name"
 msgstr "Import"
+
+msgid "CommandLine.Interactive.Description.Long"
+msgstr "This command expects no additional parameters."
+
+msgid "CommandLine.Interactive.Description.Short"
+msgstr "Starts the interactive mode."
+
+msgid "CommandLine.Interactive.Name"
+msgstr "Interactive"
+
+msgid "CommandLine.Interactive.Ready"
+msgstr "Ready."
+
+msgid "CommandLine.Interactive.Start"
+msgstr "Interactive mode started. To exit, type \"exit\"."
+
+msgid "CommandLine.Interactive.Stop"
+msgstr "Interactive mode is terminated."
 
 msgid "CommandLine.Language.Description.Long"
 msgstr "This command expects as parameter the desired program language: \"English\" or \"German\"."
