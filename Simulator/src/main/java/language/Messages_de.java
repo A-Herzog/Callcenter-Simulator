@@ -140,6 +140,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[337] = "Bei \u00dcberschreitung dieser Erreichbarkeit Agentenzahl reduzieren";
     t[348] = "Optimizer.Error.TargetAccessibility.Title";
     t[349] = "Die Ziel-Erreichbarkeit ist ung\u00fcltig";
+    t[350] = "Statistic.Viewer.DiagramSettings.Font.Italic";
+    t[351] = "kursiv";
     t[352] = "Editor.Callcenter.Score.AgentsFreeTimePart";
     t[353] = "Faktor f\u00fcr die Agentenscore zur Ber\u00fccksichtigung des Leerlaufanteils";
     t[354] = "Editor.Overview.SimpleErlangCModel.AverageWaitingTime";
@@ -552,6 +554,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1391] = "(Die Gro\u00df- und Kleinschreibung der als <Befehl> angegebenen Betriebsart wird nicht ber\u00fccksichtigt.)\n\nDie im Bereich <Parameter> anzugebenen zus\u00e4tzlichen Parameter h\u00e4ngen vom <Befehl> ab:";
     t[1392] = "LicenseViewer.Part.Components.SimSystem";
     t[1393] = "Lizenzen der von Simulationskern genutzten Komponenten";
+    t[1394] = "Statistic.Viewer.DiagramSettings.Axis";
+    t[1395] = "Achsenbeschriftung";
     t[1396] = "Connected.Columns.ModelFile";
     t[1397] = "Modelldatei";
     t[1398] = "Statistic.Units.IntervalHour";
@@ -590,6 +594,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1475] = "Es ist ein Fehler beim Verarbeiten der Datei\n%s\naufgetreten.";
     t[1490] = "Editor.AgentsGroup.Error.RateForClientType.Info";
     t[1491] = "Die Rate mit der die Kundengruppe \"%s\" in die Berechnung der Agentenverteilung einflie\u00dfen soll %s ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Zahl sein.";
+    t[1494] = "Statistic.Viewer.DiagramSettings.Outline.Width";
+    t[1495] = "Rahmenbreite";
     t[1496] = "JDistributionEditor.CumulativeProbability.Label";
     t[1497] = "Verteilung";
     t[1508] = "FitDalog.UseDistribution.NoTargetErrorTitle";
@@ -780,6 +786,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1967] = "Allgemeine Modellinformationen";
     t[1972] = "Editor.Productivity.Productivity.Off";
     t[1973] = "Die angegebene Agentananzahl entspricht der verf\u00fcgbaren Bedienleistung.";
+    t[1974] = "Statistic.Viewer.DiagramSettings.Defaults.Hint";
+    t[1975] = "Standardeinstellungen wiederherstellen";
     t[1976] = "AutoSave.Setup.SaveFiltered.Output.Select.Tooltip";
     t[1977] = "Textdatei f\u00fcr die Filter-Skript-Ausgabe w\u00e4hlen";
     t[1978] = "XML.Statistic.GeneralAttributes.Type";
@@ -800,6 +808,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2021] = "W\u00e4hlt das Verzeichnis dessen Statistikdateien \u00fcber den Webserver angeboten werden sollen.";
     t[2022] = "FitDalog.PostProcessingTimeDistribution";
     t[2023] = "Nachbearbeitungszeitverteilung";
+    t[2024] = "Statistic.Viewer.DiagramSettings.DiagramTitle";
+    t[2025] = "Diagrammtitel";
     t[2028] = "XML.Model.ClientType.WaitingTimeTolerance.Estimation.WaitingTime.Error";
     t[2029] = "Die angegebene mittlere Wartezeit f\u00fcr die Wartezeittoleranz-Sch\u00e4tzung %s ist ung\u00fcltig.";
     t[2036] = "Editor.Callcenter.Tabs.Agents";
@@ -1066,6 +1076,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2675] = "Modell vereinfachen (Kundentypen und Skill-Level zusammenfassen)";
     t[2686] = "Editor.SkillLevel.Score";
     t[2687] = "Score f\u00fcr den Kundentyp";
+    t[2688] = "Statistic.Viewer.DiagramSettings.Axis.ValuesFont";
+    t[2689] = "Achsenwerte";
     t[2692] = "XML.Statistic.ErlangC.FreshCalls";
     t[2693] = "Erstanrufer";
     t[2696] = "XML.Connected.Model.Error";
@@ -1352,6 +1364,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3493] = "Der Kundentyp muss einen Namen besitzen.";
     t[3494] = "Model.Check.ClientType.RecallCheck.UnknownClientType";
     t[3495] = "Kunden des Typs \"%s\" k\u00f6nnen bei einem Wiederanruf den Kundentyp \"$name\" annehmen, den es jedoch nicht gibt.";
+    t[3504] = "Statistic.Viewer.DiagramSettings.Font.Size";
+    t[3505] = "Schriftgr\u00f6\u00dfe";
     t[3510] = "FileType.SQLite";
     t[3511] = "SQLite-Datenbanken";
     t[3512] = "Editor.AgentsGroup.Shift.LastIsOpenEnd";
@@ -1546,6 +1560,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3883] = "Zeigt die Ergebnisse einer Optimierung an";
     t[3884] = "Editor.Caller.WaitingTimeTolerance.Estimation.CancelRate";
     t[3885] = "Abbruchrate";
+    t[3886] = "Statistic.Viewer.DiagramSettings.Defaults";
+    t[3887] = "Standardwerte";
     t[3890] = "Loader.Priorized";
     t[3891] = "priorisiert";
     t[3892] = "Editor.AgentsGroup.Costs.WorkingHour";
@@ -1660,6 +1676,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4163] = "Ausgabedatei f\u00fcr Filter-Ergebnisse:";
     t[4166] = "Statistic.FastAccess.Template";
     t[4167] = "Vorlagen";
+    t[4170] = "Statistic.Viewer.DiagramSettings.Defaults.AllPages";
+    t[4171] = "Alle Dialogseiten";
     t[4172] = "Calibrate.TargetAccessibility";
     t[4173] = "Ziel-Erreichbarkeit (auf Anrufbasis)";
     t[4178] = "Model.Plausibility.MinimumShiftLength";
@@ -1992,6 +2010,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4849] = "Texte mit Word \u00f6ffnen";
     t[4850] = "Generator.Error.MultipleColumnsAsSourceForOneSkillLevel.Title";
     t[4851] = "Mehrere Spalten f\u00fcr einen Skill-Level als Quelle gew\u00e4hlt";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4858] = "Calibrate.SaveModel.ErrorInfo";
     t[4859] = "Beim Speichern des Modells in der Datei\n%s\nist ein Fehler aufgetreten.";
     t[4866] = "XML.Model.ClientType.Retry.ClientType.NewClientType.Error";
@@ -2010,12 +2034,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4903] = "Pause";
     t[4908] = "Optimizer.SetupDiagrams.ListValue.OptimizeValue.Info";
     t[4909] = "Vorgabe f\u00fcr das linke Diagramm";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4914] = "MainMenu.Simulation.OptimizerResults.Short";
     t[4915] = "Ergebnisse";
     t[4916] = "Server.ThreadDoneError";
@@ -2162,8 +2180,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[5207] = "Kunde verl\u00e4sst das System erfolgreich bedient";
     t[5208] = "JDistributionEditor.Save.Graphics.Info";
     t[5209] = "Speichert die Grafik als Bilddatei";
-    t[5212] = "XML.OptimizerSetup.Property.ServiceLevelCallsSuccess";
-    t[5213] = "ServiceLevel(Anrufbasis);ServiceLevel";
+    t[5212] = "Statistic.Viewer.DiagramSettings.Surface";
+    t[5213] = "Zeichenfl\u00e4che";
     t[5224] = "XML.SaaS.Error";
     t[5225] = "Das Basiselement hei\u00dft nicht \"%s\", d.h. es handelt sich nicht um eine SaaS-Server-Konfigurationsdatei.";
     t[5226] = "Batch.Parameter.XMLTag.NotAbleToLoad";
@@ -2174,6 +2192,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[5239] = "Basisdaten";
     t[5240] = "Editor.Caller.RetryProbability.ClientTypeChange";
     t[5241] = "Kundentyp\u00e4nderung bei Wahlwiederholung";
+    t[5242] = "Statistic.Viewer.DiagramSettings.Font.Bold";
+    t[5243] = "fett";
     t[5250] = "XML.OptimizerSetup.Property.AccessibilityCalls";
     t[5251] = "Erreichbarkeit(Anrufbasis);Erreichbarkeit";
     t[5252] = "Loader.SimpleModel.InvalidAgentsData";
@@ -3104,6 +3124,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7419] = "Exponentialverteilung";
     t[7422] = "Editor.Caller.DeleteGroup.Yes.Info";
     t[7423] = "Die Anrufer-Gruppe wird unwiderruflich gel\u00f6scht.";
+    t[7434] = "Statistic.Viewer.DiagramSettings.Background.Gradient";
+    t[7435] = "Hintergrundfarbverlauf";
     t[7436] = "Optimizer.OptimizeProperty.TargetMaxForLabel.ServiceLevel";
     t[7437] = "Bei \u00dcberschreitung dieses Service-Levels Agentenzahl reduzieren";
     t[7440] = "LoadCalculator.SystemLoad";
@@ -3204,6 +3226,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7671] = "Eingabedatei f\u00fcr die Agenten";
     t[7694] = "Editor.Callcenter.Apply.ThisPage";
     t[7695] = "Inhalt dieser Seite \u00fcbernehmen";
+    t[7702] = "Statistic.Viewer.DiagramSettings.Title";
+    t[7703] = "Diagrammeinstellungen";
     t[7706] = "FileType.SYLK";
     t[7707] = "Symbolic Link Dateien";
     t[7710] = "InfoDialog.Title";
@@ -3212,6 +3236,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7713] = "Statistik";
     t[7714] = "XML.Model.ClientType.Recall.IntervalDistribution";
     t[7715] = "WiederanrufAbstaendeVerteilung";
+    t[7718] = "Statistic.Viewer.DiagramSettings.LegendFont";
+    t[7719] = "Legende";
     t[7720] = "Optimizer.Error.ChangeRate.Title";
     t[7721] = "\u00c4nderungsrate f\u00fcr die Agentenanzahl ung\u00fcltig";
     t[7722] = "XML.Model.ClientType.ClientsScore.PerWaitingSecond";
@@ -3288,6 +3314,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7901] = "Konfiguration zur\u00fccksetzen.";
     t[7908] = "Editor.Callcenter.SkillLevel";
     t[7909] = "Skill-Level";
+    t[7912] = "Statistic.Viewer.DiagramSettings.Defaults.ThisPage";
+    t[7913] = "Diese Dialogseite";
     t[7914] = "Connected.ProgressLog";
     t[7915] = "Verkettete Simulation - Tag %d";
     t[7916] = "CommandLine.Language.Description.Short";
@@ -3646,6 +3674,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[8767] = "Modell speichern";
     t[8770] = "Dialog.Overwrite.Yes";
     t[8771] = "Datei \u00fcberschreiben";
+    t[8782] = "Statistic.Viewer.DiagramSettings.Background.Gradient.Active";
+    t[8783] = "Farbverlauf aktiv?";
     t[8788] = "Editor.SkillLevel.Add";
     t[8789] = "Skill hinzuf\u00fcgen";
     t[8796] = "XML.General.BoolTrue";
@@ -3986,6 +4016,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9605] = "Ergebnisse anzeigen";
     t[9606] = "XML.Statistic.Clients.CancelTime.Calls.ErrorSum";
     t[9607] = "Die Summe der Abbruchzeiten der Anrufe %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9608] = "Editor.GeneralData.ThresholdValues.warningRed";
     t[9609] = "Schellenwert f\u00fcr rote Warnung";
     t[9610] = "Rearranger.MoveCalls.NotPossible";
@@ -4016,12 +4052,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9663] = "unbekannte Verteilung";
     t[9664] = "SimStatistic.CostStructure.AgentMinute";
     t[9665] = "Kosten pro Gespr\u00e4chsminute mit einem Kunden des Typs \"%s\"";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9680] = "SettingsDialog.Tabs.Statistics.OpenExcel";
     t[9681] = "Tabellen mit Excel \u00f6ffnen";
     t[9684] = "XML.Model.BaseElement";
@@ -4304,6 +4334,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[10423] = "Simulationsergebnisse";
     t[10424] = "Editor.Caller.Tabs.WaitingTimeTolerance";
     t[10425] = "Wartezeittoleranz";
+    t[10428] = "Statistic.Viewer.DiagramSettings.Background.Color";
+    t[10429] = "Hintergrundfarbe";
     t[10430] = "CommandLine.Rearrange.ModeCalls";
     t[10431] = "Kunden";
     t[10436] = "XML.Model.ClientType.CostPerCaller.WaitingSecond";
@@ -5000,6 +5032,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12217] = "Die Konfiguration konnte nicht in\n%s\ngespeichert werden.\nDie ge\u00e4nderten Einstellungen gehen beim Programmende verloren.";
     t[12228] = "SimStatistic.AverageQueueLength.OverTheDay";
     t[12229] = "\u00dcber den gesamten Tag";
+    t[12232] = "Statistic.Viewer.DiagramSettings.Axis.LabelsFont";
+    t[12233] = "Achsennamen";
     t[12236] = "Connected.Error.Internal";
     t[12237] = "Interner Fehler";
     t[12238] = "Statistic.Viewer.Toolbar.Excel.Prefix";
@@ -5810,6 +5844,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14237] = "Die Dateiformat-Beschreibungsdatei\n%s\nexistiert nicht.";
     t[14242] = "XML.OptimizerSetup.InitialInventory.ClientType.Name";
     t[14243] = "Name";
+    t[14248] = "Statistic.Viewer.DiagramSettings.Outline.Color";
+    t[14249] = "Rahmen";
     t[14252] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMax";
     t[14253] = "Konstanten Maximalwert vorgeben";
     t[14258] = "Optimizer.ChangedNumberOfAgents";
@@ -5986,6 +6022,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14655] = "Die Datei %s konnte nicht geladen werden.";
     t[14668] = "Editor.SkillLevel.Delete";
     t[14669] = "Skill entfernen";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14670] = "Optimizer.OptimizeProperty.TargetMaxForLabel.Accessibility.Tooltip";
     t[14671] = "Dieser Wert gibt die maximale gew\u00fcnschte Erreichbarkeit an, nicht die wie viele Agenten eingesetzt werden sollen.";
     t[14672] = "SimStatistic.IdleTimeOverTheDay";
@@ -6022,12 +6064,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14767] = "Die angegebene Anzahl an Wiederholungen muss eine positive Zahl sein.";
     t[14768] = "Server.WebMenu.ViewerList.MonthNames";
     t[14769] = "Januar;Februar;M\u00e4rz;April;Mai;Juni;Juli;August;September;Oktober;November;Dezember";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14772] = "Statistic.Viewer.Toolbar.Settings";
     t[14773] = "Einstellungen";
     t[14786] = "Model.Plausibility.ManyAgentHalfHourIntervals";
@@ -6464,6 +6500,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[16013] = "Wartezeittoleranzverteilung";
     t[16014] = "CommandLine.Connected.Error.Simulation.Initialization";
     t[16015] = "Bei der Initialisierung des Modells ist folgender Fehler aufgetreten";
+    t[16022] = "XML.OptimizerSetup.Property.ServiceLevelCallsSuccess";
+    t[16023] = "ServiceLevel(Anrufbasis);ServiceLevel";
     t[16028] = "Window.SaveStatisticsError.Info";
     t[16029] = "Beim Speichern der Statistikdaten in der Datei\n%s\nist ein Fehler aufgetreten.";
     t[16030] = "XML.Statistic.Agents.Summary.PostProcessingTimePart";

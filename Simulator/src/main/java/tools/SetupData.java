@@ -910,18 +910,20 @@ public class SetupData extends SetupBase {
 
 	@Override
 	protected void saveSetupToXML(final Document doc, final Element root) {
+		boolean englishKeys=WRITE_ENGLISH_KEYS; // XXX
+
 		Element node, node2;
 
-		root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"Language":"Sprache"));
+		root.appendChild(node=doc.createElement(englishKeys?"Language":"Sprache"));
 		node.setTextContent(language.toLowerCase());
 
 		if (startSizeMode!=StartMode.START_MODE_DEFAULT) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"Fullscreen":"Vollbild"));
+			root.appendChild(node=doc.createElement(englishKeys?"Fullscreen":"Vollbild"));
 			if (startSizeMode==StartMode.START_MODE_FULLSCREEN) node.setTextContent("1");
 			if (startSizeMode==StartMode.START_MODE_LASTSIZE) node.setTextContent("2");
 		}
 		if (!startWelcomePage) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"WelcomePage":"Willkommensseite"));
+			root.appendChild(node=doc.createElement(englishKeys?"WelcomePage":"Willkommensseite"));
 			node.setTextContent("0");
 		}
 		if (!testJavaVersion) {
@@ -939,17 +941,17 @@ public class SetupData extends SetupBase {
 		}
 
 		if (scaleGUI!=1) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"Scale":"Skalierung"));
+			root.appendChild(node=doc.createElement(englishKeys?"Scale":"Skalierung"));
 			node.setTextContent(NumberTools.localNumberToSystemNumber(NumberTools.formatNumber(scaleGUI)));
 		}
 
 		if (startSizeMode==StartMode.START_MODE_LASTSIZE) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"LastWindowSize":"LetzteFenstergroesse"));
+			root.appendChild(node=doc.createElement(englishKeys?"LastWindowSize":"LetzteFenstergroesse"));
 			node.setAttribute("Modus",""+lastSizeMode);
 			node.setAttribute("X",""+lastPosition.x);
 			node.setAttribute("Y",""+lastPosition.y);
-			node.setAttribute(WRITE_ENGLISH_KEYS?"Width":"Breite",""+lastSize.width);
-			node.setAttribute(WRITE_ENGLISH_KEYS?"Height":"Hoehe",""+lastSize.height);
+			node.setAttribute(englishKeys?"Width":"Breite",""+lastSize.width);
+			node.setAttribute(englishKeys?"Height":"Hoehe",""+lastSize.height);
 		}
 
 		if (lookAndFeel!=null && !lookAndFeel.trim().isEmpty()) {
@@ -958,51 +960,51 @@ public class SetupData extends SetupBase {
 		}
 
 		if (imageSize!=1000 || !imagesInline) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"Images":"Bilder"));
+			root.appendChild(node=doc.createElement(englishKeys?"Images":"Bilder"));
 			node.setTextContent(""+imageSize);
 			if (!imagesInline) node.setAttribute("Inline","0");
 		}
 
 		if (!strictCheck) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"StrictCheck":"StrengePruefung"));
+			root.appendChild(node=doc.createElement(englishKeys?"StrictCheck":"StrengePruefung"));
 			node.setTextContent("0");
 		}
 
 		if (!backgroundSim || backgroundSimInNetworkMode) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"BackgroundSimulation":"HintergrundSimulation"));
+			root.appendChild(node=doc.createElement(englishKeys?"BackgroundSimulation":"HintergrundSimulation"));
 			node.setTextContent(backgroundSim?"1":"0");
-			if (backgroundSimInNetworkMode) node.setAttribute(WRITE_ENGLISH_KEYS?"InNetworkMode":"AuchImNetzwerk","1");
+			if (backgroundSimInNetworkMode) node.setAttribute(englishKeys?"InNetworkMode":"AuchImNetzwerk","1");
 		}
 
 		if (maxNumberOfThreads!=0) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"MaximumNumberOfThreads":"MaximaleThreadAnzahl"));
+			root.appendChild(node=doc.createElement(englishKeys?"MaximumNumberOfThreads":"MaximaleThreadAnzahl"));
 			node.setTextContent(""+maxNumberOfThreads);
 		}
 
 		if (moreThreads) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"MoreThreadsThanCPUCores":"MehrThreadsAlsCPUKerne"));
+			root.appendChild(node=doc.createElement(englishKeys?"MoreThreadsThanCPUCores":"MehrThreadsAlsCPUKerne"));
 			node.setTextContent("1");
 		}
 
 		if (!increaseNumberOfDays) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"IncreaseNumberOfDays":"AnzahlAnTagenErhoehen"));
+			root.appendChild(node=doc.createElement(englishKeys?"IncreaseNumberOfDays":"AnzahlAnTagenErhoehen"));
 			node.setTextContent("0");
 		}
 
 		if (networkUse || !networkServer.isEmpty() || !networkPort.equals("6783") || !networkServerPort.equals("6783") || !networkServerPortWeb.equals("80") || !networkPassword.isEmpty() || !networkServerPassword.isEmpty() || networkMaxThreads!=0 || !networkPart.equals("1")) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"Network":"Netzwerk"));
-			node.setAttribute(WRITE_ENGLISH_KEYS?"use":"verwenden",networkUse?"1":"0");
+			root.appendChild(node=doc.createElement(englishKeys?"Network":"Netzwerk"));
+			node.setAttribute(englishKeys?"use":"verwenden",networkUse?"1":"0");
 			if (!networkServer.isEmpty()) node.setAttribute("Server",networkServer);
 			if (!networkPort.equals("6783")) node.setAttribute("Port",""+networkPort);
 			if (!networkServerPort.equals("6783")) node.setAttribute("ServerPort",""+networkServerPort);
 			if (!networkServerPortWeb.equals("80")) node.setAttribute("WebServerPort",""+networkServerPortWeb);
-			if (!networkPassword.isEmpty()) node.setAttribute(WRITE_ENGLISH_KEYS?"Password":"Passwort",""+networkPassword);
-			if (!networkServerPassword.isEmpty()) node.setAttribute(WRITE_ENGLISH_KEYS?"ServerPassword":"ServerPasswort",""+networkServerPassword);
+			if (!networkPassword.isEmpty()) node.setAttribute(englishKeys?"Password":"Passwort",""+networkPassword);
+			if (!networkServerPassword.isEmpty()) node.setAttribute(englishKeys?"ServerPassword":"ServerPasswort",""+networkServerPassword);
 			if (networkMaxThreads!=0) node.setAttribute("MaxThreads",""+networkMaxThreads);
-			if (!networkPart.isEmpty() && !networkPart.equals("1")) node.setAttribute(WRITE_ENGLISH_KEYS?"ServerPart":"ServerAnteil",networkPart);
+			if (!networkPart.isEmpty() && !networkPart.equals("1")) node.setAttribute(englishKeys?"ServerPart":"ServerAnteil",networkPart);
 		}
 		if (networkPermittedIPs!=null) for (int i=0;i<networkPermittedIPs.length;i++) if (!networkPermittedIPs[i].isEmpty()) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"NetworkIPFilter":"NetzwerkIPFilter")); node.setTextContent(networkPermittedIPs[i]);
+			root.appendChild(node=doc.createElement(englishKeys?"NetworkIPFilter":"NetzwerkIPFilter")); node.setTextContent(networkPermittedIPs[i]);
 		}
 
 		if (filter!=null) for (int i=0;i<filter.length;i++) if (filter[i]!=null && !filter[i].isEmpty()) {
@@ -1013,13 +1015,13 @@ public class SetupData extends SetupBase {
 		}
 
 		if (autoSaveStatistic || !autoSaveStatisticFolder.isEmpty() || autoSaveFilter || !autoSaveFilterScript.isEmpty() || !autoSaveFilterOutput.isEmpty()) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"AutoSave":"AutomatischSpeichern"));
+			root.appendChild(node=doc.createElement(englishKeys?"AutoSave":"AutomatischSpeichern"));
 			if (autoSaveStatistic) {
-				node.appendChild(node2=doc.createElement(WRITE_ENGLISH_KEYS?"Statistic":"Statistik"));
+				node.appendChild(node2=doc.createElement(englishKeys?"Statistic":"Statistik"));
 				node2.setTextContent("1");
 			}
 			if (!autoSaveStatisticFolder.isEmpty()) {
-				node.appendChild(node2=doc.createElement(WRITE_ENGLISH_KEYS?"StatisticFolder":"StatistikOrdner"));
+				node.appendChild(node2=doc.createElement(englishKeys?"StatisticFolder":"StatistikOrdner"));
 				node2.setTextContent(autoSaveStatisticFolder);
 			}
 			if (autoSaveFilter) {
@@ -1031,13 +1033,13 @@ public class SetupData extends SetupBase {
 				node2.setTextContent(autoSaveFilterScript);
 			}
 			if (!autoSaveFilterOutput.isEmpty()) {
-				node.appendChild(node2=doc.createElement(WRITE_ENGLISH_KEYS?"FilterFolder":"FilterOrdner"));
+				node.appendChild(node2=doc.createElement(englishKeys?"FilterFolder":"FilterOrdner"));
 				node2.setTextContent(autoSaveFilterOutput);
 			}
 		}
 
 		if (batchSaveFilter || !batchSaveFilterScript.isEmpty() || !batchSaveFilterOutput.isEmpty() || !batchFolder.isEmpty() || !batchXMLFolder.isEmpty() || !batchXMLElement.isEmpty() || batchXMLElementType>=0 || !batchXMLElementFrom.isEmpty() || !batchXMLElementTo.isEmpty() || !batchXMLElementStepSize.isEmpty()) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"BatchProcessing":"Stapelverarbeitung"));
+			root.appendChild(node=doc.createElement(englishKeys?"BatchProcessing":"Stapelverarbeitung"));
 			if (batchSaveFilter) {
 				node.appendChild(node2=doc.createElement("Filter"));
 				node2.setTextContent("1");
@@ -1047,7 +1049,7 @@ public class SetupData extends SetupBase {
 				node2.setTextContent(batchSaveFilterScript);
 			}
 			if (!batchSaveFilterOutput.isEmpty()) {
-				node.appendChild(node2=doc.createElement(WRITE_ENGLISH_KEYS?"FilterFolder":"FilterOrdner"));
+				node.appendChild(node2=doc.createElement(englishKeys?"FilterFolder":"FilterOrdner"));
 				node2.setTextContent(batchSaveFilterOutput);
 			}
 			if (!batchFolder.isEmpty()) {
@@ -1081,7 +1083,7 @@ public class SetupData extends SetupBase {
 		}
 
 		if (varianzAnalyseNumber!=20) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"AnalysisOfVariance":"Varianzanalyse"));
+			root.appendChild(node=doc.createElement(englishKeys?"AnalysisOfVariance":"Varianzanalyse"));
 			node.setTextContent(""+varianzAnalyseNumber);
 		}
 
@@ -1094,11 +1096,11 @@ public class SetupData extends SetupBase {
 			node.setTextContent(updateLastCheck);
 		}
 		if (statisticTreeFilter!=null && !statisticTreeFilter.isEmpty()) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"StatisticTree":"StatistikBaum"));
+			root.appendChild(node=doc.createElement(englishKeys?"StatisticTree":"StatistikBaum"));
 			node.setTextContent(statisticTreeFilter);
 		}
 		if (optimizerTreeFilter!=null && !optimizerTreeFilter.isEmpty()) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"OptimizerStatisticTree":"OptimiererStatistikBaum"));
+			root.appendChild(node=doc.createElement(englishKeys?"OptimizerStatisticTree":"OptimiererStatistikBaum"));
 			node.setTextContent(optimizerTreeFilter);
 		}
 		if (simReportTreeFilter!=null && !simReportTreeFilter.isEmpty()) {
@@ -1106,11 +1108,11 @@ public class SetupData extends SetupBase {
 			node.setTextContent(simReportTreeFilter);
 		}
 		if (modelReportTreeFilter!=null && !modelReportTreeFilter.isEmpty()) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"ModelReportFilter":"ModellReportFilter"));
+			root.appendChild(node=doc.createElement(englishKeys?"ModelReportFilter":"ModellReportFilter"));
 			node.setTextContent(modelReportTreeFilter);
 		}
 		if (optimizeReportTreeFilter!=null && !optimizeReportTreeFilter.isEmpty()) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"OptimizerReportFilter":"OptimiererReportFilter"));
+			root.appendChild(node=doc.createElement(englishKeys?"OptimizerReportFilter":"OptimiererReportFilter"));
 			node.setTextContent(optimizeReportTreeFilter);
 		}
 		if (connectedReportTreeFilter!=null && !connectedReportTreeFilter.isEmpty()) {
@@ -1139,11 +1141,11 @@ public class SetupData extends SetupBase {
 			node.setTextContent(viewerURL);
 		}
 		if (lastFiles!=null && lastFiles.length>0) for (int i=0;i<lastFiles.length;i++) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"LastFiles":"LetzteDateien"));
+			root.appendChild(node=doc.createElement(englishKeys?"LastFiles":"LetzteDateien"));
 			node.setTextContent(lastFiles[i]);
 		}
 		if (lastFilterIndex!=0) {
-			root.appendChild(node=doc.createElement(WRITE_ENGLISH_KEYS?"LastFastAccessSelection":"LetzteSchnellzugriffsauswahl"));
+			root.appendChild(node=doc.createElement(englishKeys?"LastFastAccessSelection":"LetzteSchnellzugriffsauswahl"));
 			node.setTextContent(""+(lastFilterIndex+1));
 		}
 

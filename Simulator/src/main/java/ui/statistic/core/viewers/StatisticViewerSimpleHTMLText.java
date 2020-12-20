@@ -27,8 +27,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 import java.util.function.IntSupplier;
+import java.util.function.Supplier;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -51,6 +53,7 @@ import mathtools.NumberTools;
 import mathtools.Table;
 import mathtools.distribution.swing.CommonVariables;
 import systemtools.MsgBox;
+import systemtools.statistics.ChartSetup;
 import systemtools.statistics.PDFWriter;
 import systemtools.statistics.StatisticViewer;
 import systemtools.statistics.StatisticsBasePanel;
@@ -310,4 +313,10 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 	public boolean hasOwnFileDropListener() {
 		return false;
 	}
+
+	@Override
+	public void setRequestChartSetup(Supplier<ChartSetup> getChartSetup) {}
+
+	@Override
+	public void setUpdateChartSetup(Consumer<ChartSetup> setChartSetup) {}
 }
