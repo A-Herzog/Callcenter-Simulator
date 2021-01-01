@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -235,9 +236,9 @@ public class StatisticTreePanel extends JPanel {
 			}
 		}
 
-		URL icon=null;
+		Image icon=null;
 		if (treeNode!=null) {
-			icon=new StatisticTreeCellRenderer().getIconURL(treeNode);
+			icon=new StatisticTreeCellRenderer().getIcon(treeNode);
 		}
 		updateViewer(node,viewer,info,icon);
 	}
@@ -249,7 +250,7 @@ public class StatisticTreePanel extends JPanel {
 	 * @param info	Name des Viewers
 	 * @param icon	Icon zur Anzeige links neben dem Namen
 	 */
-	protected void updateViewer(final StatisticNode node, final StatisticViewer[] viewer, final String info, final URL icon) {}
+	protected void updateViewer(final StatisticNode node, final StatisticViewer[] viewer, final String info, final Image icon) {}
 
 	/**
 	 * Selektiert den "Zusammenfassung erstellen"-Eintrag in der Baumstruktur.

@@ -22,14 +22,12 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -231,17 +229,17 @@ public class JWorkPanel extends JCloseablePanel {
 	 * Fügt eine weitere Schaltfläche zur Fußzeile hinzu. Die neue Schaltfläche wird mit den anderen beim Umschalen in
 	 * den Run-Modus ausgeblendet.
 	 * @param title	Beschriftung der Schaltfläche
-	 * @param iconURL URL des Icons, das neben der Schaltfläche angezeigt werden soll
+	 * @param icon	Icon das neben der Schaltfläche angezeigt werden soll
 	 * @return	Neue Schaltfläche
 	 * @see #userButtonClick(int, JButton)
 	 * @see #addFooter(String, Icon, String)
 	 */
-	protected final JButton addFooterButton(String title, URL iconURL) {
+	protected final JButton addFooterButton(String title, Icon icon) {
 		JButton newButton;
-		if (iconURL==null) {
+		if (icon==null) {
 			newButton=new JButton(title);
 		} else {
-			newButton=new JButton(title,new ImageIcon(iconURL));
+			newButton=new JButton(title,icon);
 		}
 		newButton.addActionListener(new WorkButtonListener());
 		userButtons.add(newButton);
@@ -289,7 +287,7 @@ public class JWorkPanel extends JCloseablePanel {
 	 * @param index	0-basierender Index des Buttons
 	 * @param button	angeklichtes <code>JButton</code>
 	 * @see #addFooterButton(String)
-	 * @see #addFooterButton(String, URL)
+	 * @see #addFooterButton(String, Icon)
 	 */
 	protected void userButtonClick(int index, JButton button) {}
 

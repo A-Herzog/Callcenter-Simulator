@@ -23,6 +23,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -43,6 +44,7 @@ import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -54,6 +56,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
@@ -239,6 +242,10 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	public static String viewersToolbarCopy="Kopieren";
 	/** Bezeichner für den Tooltip für das Toolbar-Button "Kopieren" */
 	public static String viewersToolbarCopyHint="Kopiert die Ergebnisse von dieser Seite in die Zwischenablage.";
+	/** Popupmenü Bezeichner für Kopieren in Standardgröße */
+	public static String viewersToolbarCopyDefaultSize="In Standardgröße (%dx%d Pixel) kopieren";
+	/** Popupmenü Bezeichner für Kopieren in Fenstergröße */
+	public static String viewersToolbarCopyWindowSize="In Fenstergröße (%dx%d Pixel) kopieren";
 	/** Bezeichner für das Toolbar-Button "Drucken" */
 	public static String viewersToolbarPrint="Drucken";
 	/** Bezeichner für den Tooltip für das Toolbar-Button "Kopieren" */
@@ -247,6 +254,10 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	public static String viewersToolbarSave="Speichern";
 	/** Bezeichner für den Tooltip für das Toolbar-Button "Speichern" */
 	public static String viewersToolbarSaveHint="Speichert die auf dieser Seite angezeigten Ergebnisse in einer Datei.";
+	/** Popupmenü Bezeichner für Speichern in Standardgröße */
+	public static String viewersToolbarSaveDefaultSize="In Standardgröße (%dx%d Pixel) speichern";
+	/** Popupmenü Bezeichner für Speichern in Fenstergröße */
+	public static String viewersToolbarSaveWindowSize="In Fenstergröße (%dx%d Pixel) speichern";
 	/** Bezeichner für das Toolbar-Button "Suchen" */
 	public static String viewersToolbarSearch="Suchen";
 	/** Bezeichner für den Tooltip für das Toolbar-Button "Suchen" */
@@ -293,7 +304,20 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	public static String viewersToolbarExcelSaveErrorTitle="Speichern fehlgeschlagen";
 	/** Bezeichner für Infotext für Fehlermeldung für Excel-Speicherung */
 	public static String viewersToolbarExcelSaveErrorInfo="Die Tabelle konnte nicht gespeichert werden.";
-
+	/** Bezeichner für das Toolbar-Button "Fenster" */
+	public static String viewersToolbarNewWindow="Fenster";
+	/** Bezeichner für den Tooltip für das Toolbar-Button "Fenster" */
+	public static String viewersToolbarNewWindowHint="Zeigt die Daten in einem neuen Fenster an.";
+	/** Titel des Statistikdaten-Dialogs */
+	public static String viewersToolbarNewWindowTitle="Statistikdaten";
+	/** Bezeichner für das Toolbar-Button "Fenstergröße" */
+	public static String viewersToolbarWindowSize="Fenstergröße";
+	/** Bezeichner für den Tooltip für das Toolbar-Button "Fenstergröße" */
+	public static String viewersToolbarWindowSizeHint="Verändert die Fenstergröße.";
+	/** Kontextmenüeintrag "Vollbild" */
+	public static String viewersToolbarFullscreen="Vollbild";
+	/** Bezeichner für den Tooltip für den Kontextmenüeintrag "Vollbild" */
+	public static String viewersToolbarFullscreenHint="Vergrößert den Dialog, so dass er den Bildschirm ausfüllt.";
 	/** Bezeichner für das Report-Toolbar-Button "Alle" */
 	public static String viewersToolbarSelectAll="Alle";
 	/** Bezeichner für den Tooltip für das Report-Toolbar-Button "Alle" */
@@ -306,7 +330,6 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	public static String viewersToolbarSaveTables="Tabellen speichern";
 	/** Bezeichner für den Tooltip für das Report-Toolbar-Button "Tabellen speichern" */
 	public static String viewersToolbarSaveTablesHint="Speichert nur die ausgewählten Tabellen in einer gemeinsamen Arbeitsmappe.";
-
 	/** Bezeichner für den Kontextmenü-Eintrag "Spaltenbreite - diese Spalte" */
 	public static String contextColWidthThis="Spaltenbreite - diese Spalte";
 	/** Bezeichner für den Kontextmenü-Eintrag "Spaltenbreite - alle Spalten" */
@@ -487,6 +510,9 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	/** Menüpunkte für die Einstellungen-Menüs bei den Viewern */
 	private final JMenuItem[] settingsItem;
 
+	/** "Neues Fenster"-Schaltflächen über den einzelnen Viewern */
+	private final JButton[] newWindow;
+
 	/** Statistikdaten für die einzelnen Viewer */
 	private final XMLData[] statisticsXml;
 
@@ -556,8 +582,8 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 		/* Baumstruktur initialisieren */
 
 		obj=addTopInfoArea(treePanel,title,icon);
-		JToolBar treeToolBar=(JToolBar)obj[3];
-		JScrollPane sp=new JScrollPane(tree=new StatisticTree(commandLineCommand,null){
+		final JToolBar treeToolBar=(JToolBar)obj[3];
+		final JScrollPane sp=new JScrollPane(tree=new StatisticTree(commandLineCommand,null){
 			/**
 			 * Serialisierungs-ID der Klasse
 			 * @see Serializable
@@ -615,6 +641,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 		saveTables=new JButton[dataToolBar.length];
 		settingsMenu=new JPopupMenu[dataToolBar.length];
 		settingsItem=new JMenuItem[dataToolBar.length];
+		newWindow=new JButton[dataToolBar.length];
 		for (int i=0;i<dataToolBar.length;i++) {
 			zoom[i]=new JButton(viewersToolbarZoom);
 			zoom[i].setToolTipText(viewersToolbarZoomHint);
@@ -661,6 +688,12 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 			saveTables[i].addActionListener(new ButtonListener());
 			saveTables[i].setIcon(SimToolsImages.SAVE_TABLE.getIcon());
 			dataToolBar[i].add(saveTables[i]);
+			newWindow[i]=new JButton(viewersToolbarNewWindow);
+			newWindow[i].setToolTipText(viewersToolbarNewWindowHint);
+			newWindow[i].addActionListener(new ButtonListener());
+			newWindow[i].setIcon(SimToolsImages.FULLSCREEN.getIcon());
+			dataToolBar[i].add(newWindow[i]);
+
 			settingsMenu[i]=new JPopupMenu();
 			settingsMenu[i].add(settingsItem[i]=new JMenuItem());
 			settingsItem[i].addActionListener(new ButtonListener());
@@ -668,8 +701,13 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 
 		/* Copy-Hotkey erkennen */
 
-		getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_DOWN_MASK),"CopyViewer");
-		getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_INSERT,InputEvent.CTRL_DOWN_MASK),"CopyViewer");
+		SwingUtilities.invokeLater(()->{
+			final KeyStroke keyCtrlC=KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_DOWN_MASK,true); /* true=Beim Loslassen erkennen; muss gesetzt sein, da die Subviewer die anderen Hotkeys teilweise aufhalten */
+			final KeyStroke keyCtrlIns=KeyStroke.getKeyStroke(KeyEvent.VK_INSERT,InputEvent.CTRL_DOWN_MASK,true);  /* true=Beim Loslassen erkennen; muss gesetzt sein, da die Subviewer die anderen Hotkeys teilweise aufhalten */
+			getInputMap(WHEN_IN_FOCUSED_WINDOW).put(keyCtrlC,"CopyViewer");
+			getInputMap(WHEN_IN_FOCUSED_WINDOW).put(keyCtrlIns,"CopyViewer");
+		});
+
 		getActionMap().put("CopyViewer",new AbstractAction() {
 			private static final long serialVersionUID = 6834309003536671412L;
 			@Override
@@ -1068,9 +1106,10 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 			}
 		}
 
-		URL icon=null;
+		Icon icon=null;
 		if (treeNode!=null) {
-			icon=new StatisticTreeCellRenderer().getIconURL(treeNode);
+			final Image image=new StatisticTreeCellRenderer().getIcon(treeNode);
+			if (image!=null) icon=new ImageIcon(image);
 		}
 		updateViewer(viewer,lastViewer,info,icon);
 	}
@@ -1215,7 +1254,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	 * Es wird dabei ein neuer Viewer angelegt.
 	 * @param currentViewer	Viewer für die aktuellen Werte
 	 * @param additionalViewer	Viewer für die Vorgänger-Werte
-	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, URL)
+	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, Icon)
 	 */
 	private void addSubViewer(final StatisticViewer currentViewer, final StatisticViewer additionalViewer) {
 		final Container viewerComponent=currentViewer.getViewer(false);
@@ -1235,7 +1274,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	/**
 	 * Setzt einen Viewer zurück und blendet ihn ein.
 	 * @param currentViewer	Viewer für die aktuellen Werte
-	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, URL)
+	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, Icon)
 	 */
 	private void resetSubViewer(final StatisticViewer currentViewer) {
 		final Container viewerComponent=currentViewer.getViewer(false).getParent();
@@ -1254,7 +1293,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	 * @param icon	Icon für den Viewer
 	 * @see #updateDataPanel(StatisticNode, DefaultMutableTreeNode)
 	 */
-	private final void updateViewer(final StatisticViewer[] viewer, final StatisticViewer[] lastViewer, final String title, final URL icon) {
+	private final void updateViewer(final StatisticViewer[] viewer, final StatisticViewer[] lastViewer, final String title, final Icon icon) {
 		for (int i=0;i<dataPanel.length;i++) {
 			Container container=null;
 			StatisticViewer view=null;
@@ -1311,6 +1350,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 			selectAll[i].setVisible(container!=null && (viewer[i] instanceof StatisticViewerReport));
 			selectNone[i].setVisible(container!=null && (viewer[i] instanceof StatisticViewerReport));
 			saveTables[i].setVisible(container!=null && (viewer[i] instanceof StatisticViewerReport));
+			newWindow[i].setVisible(container!=null && !(viewer[i] instanceof StatisticViewerReport) && viewer[i].getCanDo(StatisticViewer.CanDoAction.CAN_DO_COPY));
 		}
 
 		if (viewer[0]!=null) {
@@ -1330,7 +1370,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	 * @param viewer	Viewer in denen nach {@link JFreeChart}-Komponenten gesucht werden soll
 	 * @param chartClass	Viewer-Klasse die berücksichtigt werden soll
 	 * @return	Array mit allen {@link JFreeChart}-Komponenten; kann auch <code>null</code> sein, wenn die Viewer nicht vom passenden Klassentyp sind.
-	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, URL)
+	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, Icon)
 	 * @see #adjustLineCharts(JFreeChart[])
 	 * @see #adjustBarCharts(JFreeChart[])
 	 */
@@ -1349,7 +1389,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	 * Passt Viewer-übergreifend bei mehreren Liniendiagrammen den
 	 * y-Achsenbereich an, so dass alle Diagramme denselben Bereich verwenden.
 	 * @param chart	Anzupassende Diagramme
-	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, URL)
+	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, Icon)
 	 * @see #getCharts(StatisticViewer[], Class)
 	 */
 	private final void adjustLineCharts(JFreeChart[] chart) {
@@ -1371,7 +1411,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	 * Passt Viewer-übergreifend bei mehreren Balkendiagrammen den
 	 * y-Achsenbereich an, so dass alle Diagramme denselben Bereich verwenden.
 	 * @param chart	Anzupassende Diagramme
-	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, URL)
+	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, Icon)
 	 * @see #getCharts(StatisticViewer[], Class)
 	 */
 	private final void adjustBarCharts(final JFreeChart[] chart) {
@@ -1397,9 +1437,9 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	 * @param icon	Icon (kann <code>null</code> sein)
 	 * @param component	Anzuzeigende Komponente im Viewer
 	 * @param viewer	Viewer
-	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, URL)
+	 * @see #updateViewer(StatisticViewer[], StatisticViewer[], String, Icon)
 	 */
-	private final void updateViewer(final int index, final String supTitle, final String title, final URL icon, final Component component, final StatisticViewer viewer) {
+	private final void updateViewer(final int index, final String supTitle, final String title, final Icon icon, final Component component, final StatisticViewer viewer) {
 		if (index<0 || index>=dataLabel.length) return;
 
 		dataLabel[index].setText(title);
@@ -1421,7 +1461,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 			dataLabel[index].doLayout();
 		}
 
-		dataLabel[index].setIcon((icon==null)?null:new ImageIcon(icon));
+		dataLabel[index].setIcon(icon);
 
 		if (dataContent[index]!=null) {
 			Component c=dataContent[index];
@@ -1503,6 +1543,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 				if (sender==selectAll[i] && dataViewer[i] instanceof StatisticViewerReport) ((StatisticViewerReport)dataViewer[i]).selectAll();
 				if (sender==selectNone[i] && dataViewer[i] instanceof StatisticViewerReport) ((StatisticViewerReport)dataViewer[i]).selectNone();
 				if (sender==saveTables[i] && dataViewer[i] instanceof StatisticViewerReport) ((StatisticViewerReport)dataViewer[i]).saveTablesToWorkbook(StatisticsBasePanel.this);
+				if (sender==newWindow[i] && !(dataViewer[i] instanceof StatisticViewerReport)) showViewerWindow(dataViewer[i]);
 			}
 		}
 	}
@@ -1648,5 +1689,14 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 		final Object obj=((DefaultMutableTreeNode)child).getUserObject();
 		if (!(obj instanceof StatisticNode)) return null;
 		return ((StatisticNode)obj).getParent();
+	}
+
+	/**
+	 * Zeigt den aktuellen Viewer exklusiv in einem neuen Dialog an.
+	 * @param viewer	Anzuzeigender Viewer
+	 */
+	private void showViewerWindow(final StatisticViewer viewer) {
+		new StatisticViewerDialog(this,viewer,getImageSize(),i->setImageSize(i));
+		tree.fireNodeSelected();
 	}
 }

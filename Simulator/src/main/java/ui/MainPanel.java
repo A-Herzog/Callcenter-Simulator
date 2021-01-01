@@ -914,12 +914,12 @@ public final class MainPanel extends MainPanelBase {
 			updateLastFilesList();
 		}
 
-		button=tab.addBigButtonURLIcon(Language.tr("MainMenu.File.LoadModel.Short"),Language.tr("MainMenu.File.LoadModel.Tooltip"),Images.MODEL_LOAD_BIG.getURL());
+		button=tab.addBigButton(Language.tr("MainMenu.File.LoadModel.Short"),Language.tr("MainMenu.File.LoadModel.Tooltip"),Images.MODEL_LOAD_BIG.getIcon());
 		setDropDownMenu(button,menuRecentlyUsed);
 
 		tab.addRow();
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.File.NewModel.Short"),Language.tr("MainMenu.File.NewModel.Tooltip"),Images.MODEL_NEW.getURL());
+		button=tab.addButton(Language.tr("MainMenu.File.NewModel.Short"),Language.tr("MainMenu.File.NewModel.Tooltip"),Images.MODEL_NEW.getIcon());
 		JMenu sub=new JMenu();
 		JMenuItem item;
 		item=createMenuItemCtrl(sub,Language.tr("MainMenu.File.NewModel"),Images.MODEL_NEW.getIcon(),Language.tr("MainMenu.File.NewModel.EmptyModel.Mnemonic"),KeyEvent.VK_N,"FileNew");
@@ -927,10 +927,10 @@ public final class MainPanel extends MainPanelBase {
 		item=createMenuItemCtrlShift(sub,Language.tr("MainMenu.File.NewModel.CreateWithWizard"),Images.MODEL_WIZARD.getIcon(),Language.tr("MainMenu.File.NewModel.CreateWithWizard.Mnemonic"),KeyEvent.VK_N,"FileNewWizard");
 		addHotkey(item,null);
 		setDropDownMenu(button,sub);
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.File.SaveModel.Short"),Language.tr("MainMenu.File.SaveModel.Tooltip"),Images.MODEL_SAVE.getURL());
+		button=tab.addButton(Language.tr("MainMenu.File.SaveModel.Short"),Language.tr("MainMenu.File.SaveModel.Tooltip"),Images.MODEL_SAVE.getIcon());
 		registerAction(button,"FileSave");
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_DOWN_MASK));
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.File.SaveModelAs.Short"),Language.tr("MainMenu.File.SaveModelAs.Tooltip"),Images.MODEL_SAVE_PLUS.getURL());
+		button=tab.addButton(Language.tr("MainMenu.File.SaveModelAs.Short"),Language.tr("MainMenu.File.SaveModelAs.Tooltip"),Images.MODEL_SAVE_PLUS.getIcon());
 		registerAction(button,"FileSaveAs");
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_U,InputEvent.CTRL_DOWN_MASK));
 	}
@@ -948,7 +948,7 @@ public final class MainPanel extends MainPanelBase {
 
 		tab.addSection(Language.tr("MainMenu.Data"));
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Data.LoadTable.Short"),Language.tr("MainMenu.Data.LoadTable.Tooltip"),Images.DATA_LOAD_BY_TEMPLATE.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Data.LoadTable.Short"),Language.tr("MainMenu.Data.LoadTable.Tooltip"),Images.DATA_LOAD_BY_TEMPLATE.getIcon());
 		menu=new JMenu();
 
 		item=createMenuItemCtrl(menu,Language.tr("MainMenu.Data.LoadViaTemplate"),Images.DATA_LOAD_BY_TEMPLATE.getIcon(),'\0',KeyEvent.VK_I,"DataAll");
@@ -977,9 +977,9 @@ public final class MainPanel extends MainPanelBase {
 
 		setDropDownMenu(button,menu);
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Data.LoadExampleData.Short"),Language.tr("MainMenu.Data.LoadExampleData.Tooltip"),Images.MODEL_LOAD.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Data.LoadExampleData.Short"),Language.tr("MainMenu.Data.LoadExampleData.Tooltip"),Images.MODEL_LOAD.getIcon());
 		registerAction(button,"DataSpecialLoader");
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Data.SimplifyModel.Short"),Language.tr("MainMenu.Data.SimplifyModel.Tooltip"),Images.MODEL_SIMPLIFY.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Data.SimplifyModel.Short"),Language.tr("MainMenu.Data.SimplifyModel.Tooltip"),Images.MODEL_SIMPLIFY.getIcon());
 		registerAction(button,"DataSimplify");
 	}
 
@@ -994,15 +994,15 @@ public final class MainPanel extends MainPanelBase {
 
 		tab.addSection(Language.tr("MainMenu.Simulation"));
 
-		button=tab.addBigButtonURLIcon(Language.tr("MainMenu.Simulation.Run.Short"),Language.tr("MainMenu.Simulation.Run.Tooltip"),Images.SIMULATION_BIG.getURL());
+		button=tab.addBigButton(Language.tr("MainMenu.Simulation.Run.Short"),Language.tr("MainMenu.Simulation.Run.Tooltip"),Images.SIMULATION_BIG.getIcon());
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_F5,0));
 		registerAction(button,"SimulationRun");
 
 		tab.addRow();
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Simulation.Check"),Language.tr("MainMenu.Simulation.Check.Tooltip"),Images.SIMULATION_CHECK.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Simulation.Check"),Language.tr("MainMenu.Simulation.Check.Tooltip"),Images.SIMULATION_CHECK.getIcon());
 		registerAction(button,"SimulationCheck");
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Simulation.SimulationAndSave"),Language.tr("MainMenu.Simulation.SimulationAndSave.Tooltip"),Images.SIMULATION_AND_SAVE.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Simulation.SimulationAndSave"),Language.tr("MainMenu.Simulation.SimulationAndSave.Tooltip"),Images.SIMULATION_AND_SAVE.getIcon());
 		menu=new JMenu();
 		addHotkey(createMenuItemShift(menu,Language.tr("MainMenu.Simulation.RunAndSave"),Language.tr("MainMenu.Simulation.RunAndSave.Mnemonic"),KeyEvent.VK_F5,"SimulationRunAndSave"),null);
 		createMenuItem(menu,Language.tr("MainMenu.Simulation.RunAndSaveSetup"),Language.tr("MainMenu.Simulation.RunAndSaveSetup.Mnemonic"),"SimulationRunAndSaveSetup");
@@ -1010,7 +1010,7 @@ public final class MainPanel extends MainPanelBase {
 		createMenuItem(menu,Language.tr("MainMenu.Tools.LogRun"),Images.SIMULATION_LOG.getIcon(),Language.tr("MainMenu.Tools.LogRun.Mnemonic"),"ToolsLogRun");
 		setDropDownMenu(button,menu);
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Simulation.Multiple"),Language.tr("MainMenu.Simulation.Multiple.Tooltip"),Images.SIMULATION_MULTI.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Simulation.Multiple"),Language.tr("MainMenu.Simulation.Multiple.Tooltip"),Images.SIMULATION_MULTI.getIcon());
 		menu=new JMenu();
 		addHotkey(createMenuItem(menu,Language.tr("MainMenu.Simulation.BatchProcesscing"),Images.SIMULATION_BATCH.getIcon(),Language.tr("MainMenu.Simulation.BatchProcesscing.Mnemonic"),KeyEvent.VK_F7,"SimulationBatch"),null);
 		createMenuItem(menu,Language.tr("MainMenu.Simulation.Calibration"),Language.tr("MainMenu.Simulation.Calibration.Mnemonic"),"SimulationCalibrate");
@@ -1030,11 +1030,11 @@ public final class MainPanel extends MainPanelBase {
 
 		tab.addSection(Language.tr("MainMenu.Compare"));
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Tools.CompareResults.Short"),Language.tr("MainMenu.Tools.CompareResults.Tooltip"),Images.MODEL_COMPARE.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Tools.CompareResults.Short"),Language.tr("MainMenu.Tools.CompareResults.Tooltip"),Images.MODEL_COMPARE.getIcon());
 		registerAction(button,"ToolsCompare");
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Tools.KeepModel.Short"),Language.tr("MainMenu.Tools.KeepModel.Tooltip"),Images.MODEL_COMPARE_KEEP.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Tools.KeepModel.Short"),Language.tr("MainMenu.Tools.KeepModel.Tooltip"),Images.MODEL_COMPARE_KEEP.getIcon());
 		registerAction(button,"ToolsKeepModel");
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Tools.CompareKeptModel.Short"),Language.tr("MainMenu.Tools.CompareKeptModel.Tooltip"),Images.MODEL_COMPARE_COMPARE.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Tools.CompareKeptModel.Short"),Language.tr("MainMenu.Tools.CompareKeptModel.Tooltip"),Images.MODEL_COMPARE_COMPARE.getIcon());
 		button.setEnabled(false); /* Erst freischalten, wenn ein Modell festgehalten wurde. */
 		registerAction(button,"ToolsCompareKeptModel");
 		menuToolsCompareKeptModel.add(button);
@@ -1051,20 +1051,20 @@ public final class MainPanel extends MainPanelBase {
 
 		tab.addSection(Language.tr("MainMenu.Optimization"));
 
-		button=tab.addBigButtonURLIcon(Language.tr("MainMenu.Simulation.Optimizer"),Language.tr("MainMenu.Simulation.Optimizer.Tooltip"),Images.OPTIMIZER_BIG.getURL());
+		button=tab.addBigButton(Language.tr("MainMenu.Simulation.Optimizer"),Language.tr("MainMenu.Simulation.Optimizer.Tooltip"),Images.OPTIMIZER_BIG.getIcon());
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_F8,0));
 		registerAction(button,"SimulationOptimize");
 
 		tab.addRow();
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Simulation.OptimizerResults.Short"),Language.tr("MainMenu.Simulation.OptimizerResults.Tooltip"),Images.STATISTICS.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Simulation.OptimizerResults.Short"),Language.tr("MainMenu.Simulation.OptimizerResults.Tooltip"),Images.STATISTICS.getIcon());
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_F8, InputEvent.CTRL_DOWN_MASK));
 		registerAction(button,"SimulationOptimizeViewer");
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Simulation.HeuristicRevenueOptimizer.Short"),Language.tr("MainMenu.Simulation.HeuristicRevenueOptimizer.Tooltip"),Images.REVENUSE_OPTIMIZER.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Simulation.HeuristicRevenueOptimizer.Short"),Language.tr("MainMenu.Simulation.HeuristicRevenueOptimizer.Tooltip"),Images.REVENUSE_OPTIMIZER.getIcon());
 		registerAction(button,"SimulationHeuristicRevenueOptimizer");
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Simulation.MoreOptimization"),Language.tr("MainMenu.Simulation.MoreOptimization.Tooltip"),Images.OPTIMIZER.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Simulation.MoreOptimization"),Language.tr("MainMenu.Simulation.MoreOptimization.Tooltip"),Images.OPTIMIZER.getIcon());
 		menu=new JMenu();
 		createMenuItem(menu,Language.tr("MainMenu.Simulation.Preplanning"),Language.tr("MainMenu.Simulation.Preplanning.Mnemonic"),"SimulationPreplanning");
 		createMenuItem(menu,Language.tr("MainMenu.Simulation.Rearrange"),Images.REARRANGE.getIcon(),'\0',"SimulationRearrange");
@@ -1082,16 +1082,16 @@ public final class MainPanel extends MainPanelBase {
 
 		tab.addSection(Language.tr("MainMenu.Tools"));
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Tools.Calculations"),Language.tr("MainMenu.Tools.Calculations.Tooltip"),Images.EXTRAS_CALCULATOR.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Tools.Calculations"),Language.tr("MainMenu.Tools.Calculations.Tooltip"),Images.EXTRAS_CALCULATOR.getIcon());
 		menu=new JMenu();
 		createMenuItem(menu,Language.tr("MainMenu.Tools.Calculator"),Images.EXTRAS_CALCULATOR.getIcon(),Language.tr("MainMenu.Tools.Calculator.Mnemonic"),"ToolsRechner");
 		createMenuItem(menu,Language.tr("MainMenu.Tools.UtilizationCalculator"),Language.tr("MainMenu.Tools.UtilizationCalculator.Mnemonic"),"ToolsAuslastungsrechner");
 		createMenuItem(menu,Language.tr("MainMenu.Tools.SimpleSimulation"),Language.tr("MainMenu.Tools.SimpleSimulation.Mnemonic"),"ToolsSimpleSimulation");
 		setDropDownMenu(button,menu);
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Tools.VarianceAnalysis.Short"),Language.tr("MainMenu.Tools.VarianceAnalysis.Tooltip"),Images.VARIANCE_ANALYSIS.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Tools.VarianceAnalysis.Short"),Language.tr("MainMenu.Tools.VarianceAnalysis.Tooltip"),Images.VARIANCE_ANALYSIS.getIcon());
 		registerAction(button,"ToolsVarianzanalyse");
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Tools.FitDistribution.Short"),Language.tr("MainMenu.Tools.FitDistribution.Tooltip"),Images.EXTRAS_FIT_DISTRIBUTION.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Tools.FitDistribution.Short"),Language.tr("MainMenu.Tools.FitDistribution.Tooltip"),Images.EXTRAS_FIT_DISTRIBUTION.getIcon());
 		registerAction(button,"ToolsFitting");
 	}
 
@@ -1105,17 +1105,17 @@ public final class MainPanel extends MainPanelBase {
 
 		tab.addSection(Language.tr("Editor.System"));
 
-		button=tab.addBigButtonURLIcon(Language.tr("MainMenu.File.Setup.Short"),Language.tr("MainMenu.Setup.Tooltip"),Images.GENERAL_SETUP_BIG.getURL());
+		button=tab.addBigButton(Language.tr("MainMenu.File.Setup.Short"),Language.tr("MainMenu.Setup.Tooltip"),Images.GENERAL_SETUP_BIG.getIcon());
 		registerAction(button,"FileSetup");
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_P,InputEvent.CTRL_DOWN_MASK));
 
 		tab.addRow();
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Tools.ExecuteCommand.Short"),Language.tr("MainMenu.Tools.ExecuteCommand.Tooltip"),Images.EXTRAS_COMMANDLINE.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Tools.ExecuteCommand.Short"),Language.tr("MainMenu.Tools.ExecuteCommand.Tooltip"),Images.EXTRAS_COMMANDLINE.getIcon());
 		registerAction(button,"ToolsExecuteCommand");
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Tools.RunServer.Short"),Language.tr("MainMenu.Tools.RunServer.Tooltip"),Images.SERVER_CALC.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Tools.RunServer.Short"),Language.tr("MainMenu.Tools.RunServer.Tooltip"),Images.SERVER_CALC.getIcon());
 		registerAction(button,"ToolsServer");
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.ProgramInformation.Short"),Language.tr("MainMenu.Help.ProgramInformation.Tooltip"),Images.GENERAL_INFO.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Help.ProgramInformation.Short"),Language.tr("MainMenu.Help.ProgramInformation.Tooltip"),Images.GENERAL_INFO.getIcon());
 		registerAction(button,"HelpInfo");
 	}
 
@@ -1129,22 +1129,22 @@ public final class MainPanel extends MainPanelBase {
 
 		tab.addSection(Language.tr("MainMenu.File.Statistic"));
 
-		button=tab.addBigButtonURLIcon(Language.tr("MainToolbar.ShowModel.Short"),Language.tr("MainToolbar.ShowModel.Tooltip"),Images.MODEL_BIG.getURL());
+		button=tab.addBigButton(Language.tr("MainToolbar.ShowModel.Short"),Language.tr("MainToolbar.ShowModel.Tooltip"),Images.MODEL_BIG.getIcon());
 		registerAction(button,"SimulationShowModel");
 		menuSimulationShowModel.add(button);
 
 		tab.addRow();
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.File.LoadStatistics.Short"),Language.tr("MainMenu.File.LoadStatistics.Tooltip"),Images.STATISTICS_LOAD.getURL());
+		button=tab.addButton(Language.tr("MainMenu.File.LoadStatistics.Short"),Language.tr("MainMenu.File.LoadStatistics.Tooltip"),Images.STATISTICS_LOAD.getIcon());
 		registerAction(button,"FileStatisticsLoad");
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_L,InputEvent.CTRL_DOWN_MASK + InputEvent.SHIFT_DOWN_MASK));
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.File.SaveStatistics.Short"),Language.tr("MainMenu.File.SaveStatistics.Tooltip"),Images.STATISTICS_SAVE.getURL());
+		button=tab.addButton(Language.tr("MainMenu.File.SaveStatistics.Short"),Language.tr("MainMenu.File.SaveStatistics.Tooltip"),Images.STATISTICS_SAVE.getIcon());
 		registerAction(button,"FileStatisticsSave");
 		menuSaveStatistics.add(button);
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_DOWN_MASK + InputEvent.SHIFT_DOWN_MASK));
-		/* menuToolsReport.add(button=tab.addButtonURLIcon(Language.tr("MainMenu.Tools.CreateReport.Short"),Language.tr("MainMenu.Tools.CreateReport.Tooltip"),Images.STATISTICS_REPORT.getURL())); */
+		/* menuToolsReport.add(button=tab.addButton(Language.tr("MainMenu.Tools.CreateReport.Short"),Language.tr("MainMenu.Tools.CreateReport.Tooltip"),Images.STATISTICS_REPORT.getIcon())); */
 		/* addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK)); */
-		button=tab.addButtonURLIcon(Language.tr("MainToolbar.ShowWebViewer"),Language.tr("MainToolbar.ShowWebViewer.Tooltip"),Images.STATISTICS_SHOW_WEBVIEWER.getURL());
+		button=tab.addButton(Language.tr("MainToolbar.ShowWebViewer"),Language.tr("MainToolbar.ShowWebViewer.Tooltip"),Images.STATISTICS_SHOW_WEBVIEWER.getIcon());
 		registerAction(button,"SimulationShowWebViewer");
 		menuSimulationShowWebViewer.add(button);
 	}
@@ -1159,32 +1159,32 @@ public final class MainPanel extends MainPanelBase {
 
 		tab.addSection(Language.tr("MainMenu.Help"));
 
-		button=tab.addBigButtonURLIcon(Language.tr("MainMenu.Help.Help"),Language.tr("MainMenu.Help.Help.Tooltip"),Images.HELP_BIG.getURL());
+		button=tab.addBigButton(Language.tr("MainMenu.Help.Help"),Language.tr("MainMenu.Help.Help.Tooltip"),Images.HELP_BIG.getIcon());
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_F1,0));
 		registerAction(button,"HelpHelp");
 
 		tab.addRow();
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.HelpContent.Short"),Language.tr("MainMenu.Help.HelpContent.Tooltip"),Images.HELP_CONTENT.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Help.HelpContent.Short"),Language.tr("MainMenu.Help.HelpContent.Tooltip"),Images.HELP_CONTENT.getIcon());
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_F1, InputEvent.SHIFT_DOWN_MASK));
 		registerAction(button,"HelpContent");
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.ShowModel.Short"),Language.tr("MainMenu.Help.ShowModel.Tooltip"),Images.HELP_PDF.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Help.ShowModel.Short"),Language.tr("MainMenu.Help.ShowModel.Tooltip"),Images.HELP_PDF.getIcon());
 		addHotkey(button,KeyStroke.getKeyStroke(KeyEvent.VK_F1, InputEvent.CTRL_DOWN_MASK));
 		registerAction(button,"HelpModel");
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.ShowGlossary.Short"),Language.tr("MainMenu.Help.ShowGlossary.Tooltip"),Images.HELP_PDF.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Help.ShowGlossary.Short"),Language.tr("MainMenu.Help.ShowGlossary.Tooltip"),Images.HELP_PDF.getIcon());
 		registerAction(button,"HelpGlossary");
 
 		tab.addRow();
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.Book.Short"),Language.tr("MainMenu.Help.Book.Tooltip"),Images.HELP_BOOK.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Help.Book.Short"),Language.tr("MainMenu.Help.Book.Tooltip"),Images.HELP_BOOK.getIcon());
 		registerAction(button,"HelpBook");
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.Homepage"),Language.tr("MainMenu.Help.Homepage.Tooltip"),Images.HELP_HOMEPAGE.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Help.Homepage"),Language.tr("MainMenu.Help.Homepage.Tooltip"),Images.HELP_HOMEPAGE.getIcon());
 		registerAction(button,"HelpHomepage");
 
-		button=tab.addButtonURLIcon(Language.tr("MainMenu.Help.Updates"),Language.tr("MainMenu.Help.Updates.Tooltip"),Images.SETUP_UPDATE_SEARCH.getURL());
+		button=tab.addButton(Language.tr("MainMenu.Help.Updates"),Language.tr("MainMenu.Help.Updates.Tooltip"),Images.SETUP_UPDATE_SEARCH.getIcon());
 		registerAction(button,"HelpUpdates");
 	}
 
@@ -1203,7 +1203,7 @@ public final class MainPanel extends MainPanelBase {
 		addHotkey(new Runnable() {@Override	public void run() {setGUIMode((short)1);}},KeyStroke.getKeyStroke(KeyEvent.VK_F4,0));
 
 		/* Willkommen */
-		tab=ribbonBar.addRibbonURLIcon(Language.tr("MainMenu.View.Welcome.Short"),Language.tr("MainMenu.View.Welcome.Short.Tooltip")+" (F2)",Images.GENERAL_INFO.getURL());
+		tab=ribbonBar.addRibbon(Language.tr("MainMenu.View.Welcome.Short"),Language.tr("MainMenu.View.Welcome.Short.Tooltip")+" (F2)",Images.GENERAL_INFO.getIcon());
 		addRibbonSectionModel(tab);
 		addRibbonSectionSimulation(tab);
 		addRibbonSectionOptimization(tab);
@@ -1212,7 +1212,7 @@ public final class MainPanel extends MainPanelBase {
 		addRibbonSectionHelp(tab);
 
 		/* Allgemeine Daten */
-		tab=ribbonBar.addRibbonURLIcon(Language.tr("Editor.GeneralData"),Language.tr("Editor.GeneralData.Tooltip")+" (F3)",Images.EDITOR_GENERAL.getURL());
+		tab=ribbonBar.addRibbon(Language.tr("Editor.GeneralData"),Language.tr("Editor.GeneralData.Tooltip")+" (F3)",Images.EDITOR_GENERAL.getIcon());
 		addRibbonSectionModel(tab);
 		addRibbonSectionData(tab,0);
 		addRibbonSectionSimulation(tab);
@@ -1222,7 +1222,7 @@ public final class MainPanel extends MainPanelBase {
 		addRibbonSectionHelp(tab);
 
 		/* Anrufergruppen */
-		tab=ribbonBar.addRibbonURLIcon(Language.tr("Editor.CallerGroups"),Language.tr("Editor.CallerGroups.Tooltips"),Images.EDITOR_CALLER.getURL());
+		tab=ribbonBar.addRibbon(Language.tr("Editor.CallerGroups"),Language.tr("Editor.CallerGroups.Tooltips"),Images.EDITOR_CALLER.getIcon());
 		addRibbonSectionModel(tab);
 		addRibbonSectionData(tab,1);
 		addRibbonSectionSimulation(tab);
@@ -1232,7 +1232,7 @@ public final class MainPanel extends MainPanelBase {
 		addRibbonSectionHelp(tab);
 
 		/* Callcenter und Agenten */
-		tab=ribbonBar.addRibbonURLIcon(Language.tr("Editor.CallcenterAndAgents"),Language.tr("Editor.CallcenterAndAgents.Tooltips"),Images.EDITOR_CALLCENTER.getURL());
+		tab=ribbonBar.addRibbon(Language.tr("Editor.CallcenterAndAgents"),Language.tr("Editor.CallcenterAndAgents.Tooltips"),Images.EDITOR_CALLCENTER.getIcon());
 		addRibbonSectionModel(tab);
 		addRibbonSectionData(tab,2);
 		addRibbonSectionSimulation(tab);
@@ -1242,7 +1242,7 @@ public final class MainPanel extends MainPanelBase {
 		addRibbonSectionHelp(tab);
 
 		/* Callcenter und Agenten */
-		tab=ribbonBar.addRibbonURLIcon(Language.tr("Editor.SkillLevelOfTheAgents"),Language.tr("Editor.SkillLevelOfTheAgents.Tooltips"),Images.EDITOR_SKILLLEVEL.getURL());
+		tab=ribbonBar.addRibbon(Language.tr("Editor.SkillLevelOfTheAgents"),Language.tr("Editor.SkillLevelOfTheAgents.Tooltips"),Images.EDITOR_SKILLLEVEL.getIcon());
 		addRibbonSectionModel(tab);
 		addRibbonSectionData(tab,3);
 		addRibbonSectionSimulation(tab);
@@ -1252,7 +1252,7 @@ public final class MainPanel extends MainPanelBase {
 		addRibbonSectionHelp(tab);
 
 		/* Modellüberblick */
-		tab=ribbonBar.addRibbonURLIcon(Language.tr("Editor.ModelOverview"),Language.tr("Editor.ModelOverview.Tooltips"),Images.EDITOR_MODELINFO.getURL());
+		tab=ribbonBar.addRibbon(Language.tr("Editor.ModelOverview"),Language.tr("Editor.ModelOverview.Tooltips"),Images.EDITOR_MODELINFO.getIcon());
 		addRibbonSectionModel(tab);
 		addRibbonSectionData(tab,0);
 		addRibbonSectionSimulation(tab);
@@ -1262,7 +1262,7 @@ public final class MainPanel extends MainPanelBase {
 		addRibbonSectionHelp(tab);
 
 		/* Simulationsergebnisse */
-		tab=ribbonBar.addRibbonURLIcon(Language.tr("MainMenu.View.Statistics"),Language.tr("MainMenu.View.Statistics.Tooltip")+" (F4)",Images.STATISTICS.getURL());
+		tab=ribbonBar.addRibbon(Language.tr("MainMenu.View.Statistics"),Language.tr("MainMenu.View.Statistics.Tooltip")+" (F4)",Images.STATISTICS.getIcon());
 		addRibbonSectionStatistic(tab);
 		addRibbonSectionOptimization(tab);
 		addRibbonSectionTools(tab);

@@ -147,8 +147,8 @@ public class RearrangePanel extends JWorkPanel {
 		tabs.setIconAt(1,Images.REARRANGE_PAGE_AGENTS.getIcon());
 
 		addFooter(null,null,null);
-		addFooterButton(Language.tr("Rearranger.Button.Load"),Images.REARRANGE_LOAD.getURL());
-		addFooterButton(Language.tr("Rearranger.Button.SimulateAndCompare"),Images.REARRANGE_RUN.getURL());
+		addFooterButton(Language.tr("Rearranger.Button.Load"),Images.REARRANGE_LOAD.getIcon());
+		addFooterButton(Language.tr("Rearranger.Button.SimulateAndCompare"),Images.REARRANGE_RUN.getIcon());
 	}
 
 	/**

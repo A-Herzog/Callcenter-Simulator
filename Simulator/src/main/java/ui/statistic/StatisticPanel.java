@@ -17,7 +17,6 @@ package ui.statistic;
 
 import java.io.File;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -78,7 +77,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 * @param numberOfViewers	Anzahl der nebeneinander anzuzeigenden Ergebnisse
 	 */
 	public StatisticPanel(boolean nebeneinander, HelpLink helpLink, Runnable helpModal, Runnable startSilmulation, Runnable loadStatistics, int numberOfViewers) {
-		super(Language.tr("MainMenu.View.Statistics"),Images.STATISTICS_DARK.getURL(),Language.tr("CommandLine.Report.Name"),null,nebeneinander,true,helpModal,helpLink,startSilmulation,loadStatistics,numberOfViewers,true);
+		super(Language.tr("MainMenu.View.Statistics"),Images.STATISTICS_DARK.getURLs()[0],Language.tr("CommandLine.Report.Name"),null,nebeneinander,true,helpModal,helpLink,startSilmulation,loadStatistics,numberOfViewers,true);
 		statisticData=new Statistics[numberOfViewers];
 		Arrays.fill(statisticData,null);
 		setStatistic(statisticData);
@@ -683,9 +682,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 		String fileName=file.getName().toUpperCase();
 
 		if (fileName.endsWith(".HTML") || fileName.endsWith(".HTM")) {
-			URL iconWebApp=Images.STATISTICS_SHOW_WEBVIEWER.getURL();
-			URL iconStatic=Images.STATISTICS_SAVE.getURL();
-			switch (StatisticWebAppWriter.showSelectDialog(getParent(),iconWebApp,iconStatic)) {
+			switch (StatisticWebAppWriter.showSelectDialog(getParent())) {
 			case 0:
 				StatisticWebAppWriter writer=new StatisticWebAppWriter(statisticData[0]);
 				return writer.saveToFile(file)?null:ERROR_MESSAGE;

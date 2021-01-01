@@ -29,12 +29,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.Serializable;
-import java.net.URL;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -123,24 +122,24 @@ public class BaseEditDialog extends JDialog {
 
 	/**
 	 * Beschriftungen für die benutzerdefinierten Schaltflächen
-	 * @see #addUserButtons(String[], URL[], Runnable[])
-	 * @see #addUserButtons(String[], String[], URL[], Runnable[])
+	 * @see #addUserButtons(String[], Icon[], Runnable[])
+	 * @see #addUserButtons(String[], String[], Icon[], Runnable[])
 	 */
 	private String[] userButtonCaptions=null;
 
 	/**
 	 * Tooltips für die benutzerdefinierten Schaltflächen
-	 * @see #addUserButtons(String[], URL[], Runnable[])
-	 * @see #addUserButtons(String[], String[], URL[], Runnable[])
+	 * @see #addUserButtons(String[], Icon[], Runnable[])
+	 * @see #addUserButtons(String[], String[], Icon[], Runnable[])
 	 */
 	private String[] userButtonTooltips=null;
 
 	/**
 	 * Icons für die benutzerdefinierten Schaltflächen
-	 * @see #addUserButtons(String[], URL[], Runnable[])
-	 * @see #addUserButtons(String[], String[], URL[], Runnable[])
+	 * @see #addUserButtons(String[], Icon[], Runnable[])
+	 * @see #addUserButtons(String[], String[], Icon[], Runnable[])
 	 */
-	private URL[] userButtonIcons=null;
+	private Icon[] userButtonIcons=null;
 
 	/**
 	 * Listener, der beim Anklicken einer benutzerdefinierten Schaltfläche aktiviert wird.
@@ -150,8 +149,8 @@ public class BaseEditDialog extends JDialog {
 
 	/**
 	 * Benutzerdefinierte Schaltflächen
-	 * @see #addUserButtons(String[], URL[], Runnable[])
-	 * @see #addUserButtons(String[], String[], URL[], Runnable[])
+	 * @see #addUserButtons(String[], Icon[], Runnable[])
+	 * @see #addUserButtons(String[], String[], Icon[], Runnable[])
 	 */
 	private JButton[] userButtons;
 
@@ -380,7 +379,7 @@ public class BaseEditDialog extends JDialog {
 	 * @param handlers	Array mit den aufzurufenden Handlern für die Buttons
 	 * @see #getUserButton(int)
 	 */
-	protected final void addUserButtons(String[] captions, URL[] icons, Runnable[] handlers) {
+	protected final void addUserButtons(String[] captions, Icon[] icons, Runnable[] handlers) {
 		userButtonCaptions=captions;
 		userButtonIcons=icons;
 		userButtonHandlers=handlers;
@@ -395,7 +394,7 @@ public class BaseEditDialog extends JDialog {
 	 * @param handlers	Array mit den aufzurufenden Handlern für die Buttons
 	 * @see #getUserButton(int)
 	 */
-	protected final void addUserButtons(String[] captions, String[] tooltips, URL[] icons, Runnable[] handlers) {
+	protected final void addUserButtons(String[] captions, String[] tooltips, Icon[] icons, Runnable[] handlers) {
 		userButtonCaptions=captions;
 		userButtonTooltips=tooltips;
 		userButtonIcons=icons;
@@ -492,7 +491,7 @@ public class BaseEditDialog extends JDialog {
 			for (int i=0;i<userButtonCaptions.length;i++) {
 				p.add(userButtons[i]=new JButton(userButtonCaptions[i]));
 				if (userButtonTooltips!=null && userButtonTooltips.length>i && userButtonTooltips[i]!=null) userButtons[i].setToolTipText(userButtonTooltips[i]);
-				if (userButtonIcons!=null && userButtonIcons.length>i && userButtonIcons[i]!=null) userButtons[i].setIcon(new ImageIcon(userButtonIcons[i]));
+				if (userButtonIcons!=null && userButtonIcons.length>i && userButtonIcons[i]!=null) userButtons[i].setIcon(userButtonIcons[i]);
 				if (userButtonHandlers!=null && userButtonHandlers.length>i && userButtonHandlers[i]!=null) userButtons[i].addActionListener(new UserButtonListener());
 			}
 		}
@@ -541,10 +540,10 @@ public class BaseEditDialog extends JDialog {
 	 * @param name	Beschriftung für das Textfeld
 	 * @param initialValue	Anfänglicher Wert für das Textfeld
 	 * @param buttonName	Beschriftung der Schaltfläche
-	 * @param buttonIcon	URL zu dem Icon, dass auf der Schaltfläche angezeigt werden soll (wird hier <code>null</code> übergeben, so wird kein Icon angezeigt)
+	 * @param buttonIcon	Icon das auf der Schaltfläche angezeigt werden soll (wird hier <code>null</code> übergeben, so wird kein Icon angezeigt)
 	 * @return	Array aus drei Elementen: Referenz auf das neu erzeugte Textfeld, Rerferenz auf das neu erzeugte Button und Referenz auf das neu erzeugte Label rechts neben dem Button
 	 */
-	protected final JComponent[] addPercentInputLineWithButton(JPanel p, String name, double initialValue, String buttonName, URL buttonIcon) {
+	protected final JComponent[] addPercentInputLineWithButton(JPanel p, String name, double initialValue, String buttonName, Icon buttonIcon) {
 		/* Initialwert für Textfeld vorbereiten */
 		String s;
 		if (initialValue>=0 && initialValue<=1)
@@ -568,7 +567,7 @@ public class BaseEditDialog extends JDialog {
 
 		subPanel.add(Box.createHorizontalStrut(10));
 		subPanel.add(button=new JButton(buttonName));
-		if (buttonIcon!=null) button.setIcon(new ImageIcon(buttonIcon));
+		if (buttonIcon!=null) button.setIcon(buttonIcon);
 
 		/* Label anlegen */
 		JLabel label;
@@ -774,8 +773,8 @@ public class BaseEditDialog extends JDialog {
 	 * Liefert eines der per <code>addUserButtons</code> angelegten Nutzer-Schaltflächen zurück
 	 * @param index	Index der Schaltfläche innerhalb der Nutzer-Schaltflächen
 	 * @return	Schaltflächen-Objekt oder <code>null</code>, wenn der Index außerhalb des zulässigen Bereichs liegt.
-	 * @see #addUserButtons(String[], URL[], Runnable[])
-	 * @see #addUserButtons(String[], String[], URL[], Runnable[])
+	 * @see #addUserButtons(String[], Icon[], Runnable[])
+	 * @see #addUserButtons(String[], String[], Icon[], Runnable[])
 	 */
 	protected JButton getUserButton(int index) {
 		if (userButtons==null || index<0 || index>=userButtons.length) return null;

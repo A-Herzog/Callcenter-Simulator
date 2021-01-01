@@ -30,7 +30,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -237,7 +236,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 			addUserButtons(
 					new String[]{""},
 					new String[]{Language.tr("Editor.Callcenter.Apply.Info")},
-					new URL[]{Images.GENERAL_TOOLS.getURL()},
+					new Icon[]{Images.GENERAL_TOOLS.getIcon()},
 					new Runnable[]{()->{final JButton b=getUserButton(0); popupMenu2.show(b,0,b.getHeight());}}
 					);
 		}

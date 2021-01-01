@@ -74,7 +74,7 @@ public class ConnectedViewer extends ViewerWithLoadModelCallback {
 
 		/* Statistik */
 		setLayout(new BorderLayout());
-		add(statistic=new ConnectedStatisticPanel(Language.tr("ConnectedResults.Title"),Images.SIMULATION_CONNECTED_VIEWER.getURL(),true,helpLink,null,null),BorderLayout.CENTER);
+		add(statistic=new ConnectedStatisticPanel(Language.tr("ConnectedResults.Title"),Images.SIMULATION_CONNECTED_VIEWER.getURLs()[0],true,helpLink,null,null),BorderLayout.CENTER);
 		StatisticNode root=new StatisticNode();
 		addNodes(root);
 		statistic.setStatisticData(root);

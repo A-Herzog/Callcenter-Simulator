@@ -21,7 +21,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,6 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -100,7 +98,6 @@ public class CallerEditPanelRecaller extends CallerEditPanel {
 			for (int j=0;j<list1.size();j++) list2.add(list1.get(j));
 		}
 
-		URL imgURL;
 		JPanel p2, p3, p4;
 
 		setLayout(new BorderLayout());
@@ -116,8 +113,8 @@ public class CallerEditPanelRecaller extends CallerEditPanel {
 		recallToType=new JTextField[callerTypeNames.length];
 		for (int i=0;i<callerTypeNames.length;i++) {
 			JLabel l=new JLabel(callerTypeNames[i]);
-			imgURL=(i==callerTypeIndexForThisType)?Images.EDITOR_CALLER_RED.getURL():Images.EDITOR_CALLER.getURL();
-			if (imgURL!=null) l.setIcon(new ImageIcon(imgURL));
+			final Icon icon=(i==callerTypeIndexForThisType)?Images.EDITOR_CALLER_RED.getIcon():Images.EDITOR_CALLER.getIcon();
+			if (icon!=null) l.setIcon(icon);
 			if (i==callerTypeIndexForThisType) recallToThisType=l;
 			p4=new JPanel(new FlowLayout(FlowLayout.LEFT));
 			p4.add(l);

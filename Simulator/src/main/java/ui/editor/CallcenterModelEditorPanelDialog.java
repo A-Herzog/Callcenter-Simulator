@@ -17,7 +17,6 @@ package ui.editor;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -108,7 +107,7 @@ public class CallcenterModelEditorPanelDialog extends JFrame {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {@Override public void windowClosing(WindowEvent event) {doClose();}});
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Images.MODEL.getURL()));
+		setIconImage(Images.MODEL.getImage());
 
 		getContentPane().setLayout(new BorderLayout());
 

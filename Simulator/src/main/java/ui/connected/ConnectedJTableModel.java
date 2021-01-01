@@ -20,10 +20,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -182,7 +182,7 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 			title="<tt>"+title+"</tt>";
 		}
 		title="<html><body><b>"+Language.tr("Connected.Day")+" "+(rowIndex+1)+":</b><br>"+title+"</body></html>";
-		return makeEditPanel(title,Images.GENERAL_SELECT_FILE.getURL(),new TableButtonListener(rowIndex,4));
+		return makeEditPanel(title,Images.GENERAL_SELECT_FILE.getIcon(),new TableButtonListener(rowIndex,4));
 	}
 
 	/**
@@ -199,7 +199,7 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 			title="<tt>"+title+"</tt>";
 		}
 		title="<html><body>"+title+"</body></html>";
-		return makeEditPanel(title,Images.GENERAL_SELECT_FILE.getURL(),new TableButtonListener(rowIndex,5));
+		return makeEditPanel(title,Images.GENERAL_SELECT_FILE.getIcon(),new TableButtonListener(rowIndex,5));
 	}
 
 	/**
@@ -226,7 +226,7 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 			}
 		}
 		if (title.length()==0) title.append("<font color=\"orange\">("+Language.tr("Connected.NoCarryOver")+")</font>"); else title=new StringBuilder("<font size=\"2\">"+title.toString()+"</font>");
-		return makeEditPanel("<html><body>"+title.toString()+"</body></html>",Images.SIMULATION_CONNECTED_CARRY_OVER.getURL(),new TableButtonListener(rowIndex,6));
+		return makeEditPanel("<html><body>"+title.toString()+"</body></html>",Images.SIMULATION_CONNECTED_CARRY_OVER.getIcon(),new TableButtonListener(rowIndex,6));
 	}
 
 	/**
@@ -239,7 +239,7 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 			return makeButtonPanel(
 					new String[]{Language.tr("Dialog.Button.Add")},
 					new String[]{Language.tr("Connected.Button.Add.Info")},
-					new URL[]{Images.EDIT_ADD.getURL()},
+					new Icon[]{Images.EDIT_ADD.getIcon()},
 					new ActionListener[]{new TableButtonListener(rowIndex,3)}
 					);
 		}
@@ -250,7 +250,7 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 						Language.tr("Connected.Button.Down.Info"),
 						Language.tr("Connected.Button.Delete.Info")
 				},
-				new URL[]{Images.ARROW_UP.getURL(),Images.ARROW_DOWN.getURL(),Images.EDIT_DELETE.getURL()},
+				new Icon[]{Images.ARROW_UP.getIcon(),Images.ARROW_DOWN.getIcon(),Images.EDIT_DELETE.getIcon()},
 				new ActionListener[]{new TableButtonListener(rowIndex,0),new TableButtonListener(rowIndex,1),new TableButtonListener(rowIndex,2)}
 				);
 	}

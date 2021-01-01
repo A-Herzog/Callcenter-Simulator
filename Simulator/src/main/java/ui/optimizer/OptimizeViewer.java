@@ -90,7 +90,7 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 
 		/* Statistik */
 		setLayout(new BorderLayout());
-		add(statistic=new OptimizerStatisticPanel(Language.tr("OptimizeResults.Title"),Images.OPTIMIZER_RESULTS_STATISTICS.getURL(),true,helpLink.pageOptimizeViewerModal,helpLink,null,null),BorderLayout.CENTER);
+		add(statistic=new OptimizerStatisticPanel(Language.tr("OptimizeResults.Title"),Images.OPTIMIZER_RESULTS_STATISTICS.getURLs()[0],true,helpLink.pageOptimizeViewerModal,helpLink,null,null),BorderLayout.CENTER);
 
 		/* Fuﬂzeile */
 		addFooter(null,null,null);

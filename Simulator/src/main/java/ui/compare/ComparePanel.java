@@ -89,7 +89,7 @@ public class ComparePanel extends JWorkPanel {
 		add(statisticPanel);
 
 		addFooter(null,null,null);
-		showModelButton=addFooterButton(Language.tr("MainToolbar.ShowModelAndStatistic"),Images.MODEL.getURL());
+		showModelButton=addFooterButton(Language.tr("MainToolbar.ShowModelAndStatistic"),Images.MODEL.getIcon());
 	}
 
 	/* (non-Javadoc)

@@ -181,7 +181,7 @@ public final class SimServerPanel extends JWorkPanel {
 		/* Bottom line */
 		addFooter(Language.tr("Server.Button.StartServer"),Images.SERVER_CALC_RUN.getIcon(),Language.tr("Server.Button.StopServer"));
 
-		addFooterButton(Language.tr("Server.Button.ShowInBrowser"),Images.STATISTICS_SHOW_WEBVIEWER.getURL());
+		addFooterButton(Language.tr("Server.Button.ShowInBrowser"),Images.STATISTICS_SHOW_WEBVIEWER.getIcon());
 		getFooterButton(0).setVisible(false);
 		getFooterButton(0).setToolTipText(Language.tr("Server.Button.ShowInBrowser.Info"));
 	}

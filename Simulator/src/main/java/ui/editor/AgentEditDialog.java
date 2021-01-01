@@ -25,7 +25,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -239,7 +238,7 @@ public class AgentEditDialog extends BaseEditDialog {
 			addUserButtons(
 					new String[]{""},
 					new String[]{Language.tr("Editor.AgentsGroup.Apply.Info")},
-					new URL[]{Images.GENERAL_TOOLS.getURL()},
+					new Icon[]{Images.GENERAL_TOOLS.getIcon()},
 					new Runnable[]{()->{final JButton b=getUserButton(0); popupMenu.show(b,0,b.getHeight());}}
 					);
 		}

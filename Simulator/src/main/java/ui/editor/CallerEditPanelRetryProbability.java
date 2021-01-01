@@ -212,7 +212,7 @@ public class CallerEditPanelRetryProbability extends CallerEditPanel {
 	 * @return	Array aus drei Elementen: Referenz auf das neu erzeugte Textfeld, Referenz auf das neu erzeugte Button und Referenz auf das neu erzeugte Label rechts neben dem Button
 	 */
 	private JComponent[] addPercentInputLineWithButton(JPanel p, String name, double initialValue) {
-		return addPercentInputLineWithButton(p,name,initialValue,Language.tr("Editor.Caller.RetryProbability.ClientTypeChange"),Images.EDITOR_CALLER.getURL());
+		return addPercentInputLineWithButton(p,name,initialValue,Language.tr("Editor.Caller.RetryProbability.ClientTypeChange"),Images.EDITOR_CALLER.getIcon());
 	}
 
 	@Override

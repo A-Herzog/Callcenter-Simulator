@@ -22,7 +22,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +79,7 @@ public class NewModelDialog extends BaseEditDialog {
 		addUserButtons(
 				new String[]{Language.tr("MainMenu.File.NewModel.CreateWithWizard")},
 				new String[]{Language.tr("MainMenu.File.NewModel.CreateWithWizard.Tooltip")},
-				new URL[]{Images.MODEL_WIZARD.getURL()},
+				new Icon[]{Images.MODEL_WIZARD.getIcon()},
 				new Runnable[] {new Runnable() {@Override public void run() {openWizard=true; closeDialog(CLOSED_BY_OK);}}}
 				);
 		createSimpleGUI(750,550,null,null);

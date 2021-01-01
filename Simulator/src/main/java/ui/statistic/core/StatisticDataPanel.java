@@ -21,10 +21,10 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +52,7 @@ import ui.statistic.core.viewers.StatisticViewerSpecialHTMLText;
  * Dieses Panel stellt den Rahmen zur Darstellung
  * der {@link StatisticViewer}-Elemente dar.
  * @author Alexander Herzog
- * @see #setViewer(StatisticViewer, StatisticViewer, String, String, URL)
+ * @see #setViewer(StatisticViewer, StatisticViewer, String, String, Image)
  */
 public class StatisticDataPanel extends JPanel {
 	/**
@@ -216,7 +216,7 @@ public class StatisticDataPanel extends JPanel {
 	 * @param icon	Icon vor der Namensanzeige
 	 * @return	Container der die eigentlich Inhalte des Viewers enthält
 	 */
-	public final Container setViewer(final StatisticViewer viewer, final StatisticViewer lastViewer, final String superTitle, String info, final URL icon) {
+	public final Container setViewer(final StatisticViewer viewer, final StatisticViewer lastViewer, final String superTitle, String info, final Image icon) {
 		if (this.viewer==viewer) return viewerContainer;
 		this.viewer=viewer;
 		this.lastViewer=lastViewer;

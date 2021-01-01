@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-20 15:26+0100\n"
+"POT-Creation-Date: 2020-12-30 22:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9439,8 +9439,14 @@ msgstr "<p>Please select a <b>sub category</b> in the tree structure so display 
 msgid "Statistic.Viewer.Toolbar.Copy"
 msgstr "Copy"
 
+msgid "Statistic.Viewer.Toolbar.Copy.DefaultSize"
+msgstr "Copy using default size (%dx%d pixels)"
+
 msgid "Statistic.Viewer.Toolbar.Copy.Hint"
 msgstr "Copies the results from this page to the clipboard."
+
+msgid "Statistic.Viewer.Toolbar.Copy.WindowSize"
+msgstr "Copy using window size (%dx%d pixels)"
 
 msgid "Statistic.Viewer.Toolbar.Excel"
 msgstr "Excel"
@@ -9455,7 +9461,28 @@ msgid "Statistic.Viewer.Toolbar.Excel.Hint"
 msgstr "Show table in Excel"
 
 msgid "Statistic.Viewer.Toolbar.Excel.Prefix"
-msgstr "CS_Temp"
+msgstr "QS_Temp"
+
+msgid "Statistic.Viewer.Toolbar.NewWindow"
+msgstr "Window"
+
+msgid "Statistic.Viewer.Toolbar.NewWindow.Fullscreen"
+msgstr "Fullscreen"
+
+msgid "Statistic.Viewer.Toolbar.NewWindow.Fullscreen.Hint"
+msgstr "Increases the size of the dialog so that it fills the screen."
+
+msgid "Statistic.Viewer.Toolbar.NewWindow.Hint"
+msgstr "Shows the data in a new window."
+
+msgid "Statistic.Viewer.Toolbar.NewWindow.Size"
+msgstr "Window size"
+
+msgid "Statistic.Viewer.Toolbar.NewWindow.Size.Hint"
+msgstr "Changes the window size."
+
+msgid "Statistic.Viewer.Toolbar.NewWindow.Title"
+msgstr "Statistic data"
 
 msgid "Statistic.Viewer.Toolbar.OpenODS"
 msgstr "OpenOffice/LibreOffice"
@@ -9468,6 +9495,12 @@ msgstr "OpenOffice/LibreOffice"
 
 msgid "Statistic.Viewer.Toolbar.OpenODT.Hint"
 msgstr "Show text in OpenOffice/LibreOffice"
+
+msgid "Statistic.Viewer.Toolbar.OpenPDF"
+msgstr "PDF"
+
+msgid "Statistic.Viewer.Toolbar.OpenPDF.Hint"
+msgstr "Show as PDF"
 
 msgid "Statistic.Viewer.Toolbar.OpenTable"
 msgstr "Open"
@@ -9496,8 +9529,14 @@ msgstr "Prints the results from this page"
 msgid "Statistic.Viewer.Toolbar.Save"
 msgstr "Save"
 
+msgid "Statistic.Viewer.Toolbar.Save.DefaultSize"
+msgstr "Save using default size (%dx%d pixels)"
+
 msgid "Statistic.Viewer.Toolbar.Save.Hint"
 msgstr "Save the results from this page as a file."
+
+msgid "Statistic.Viewer.Toolbar.Save.WindowSize"
+msgstr "Save using window size (%dx%d pixels)"
 
 msgid "Statistic.Viewer.Toolbar.SaveTables"
 msgstr "Save tables"

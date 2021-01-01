@@ -20,6 +20,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -119,7 +120,7 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 
 		splitPane.setLeftComponent(tree=new StatisticTreePanel(title, icon, commandLineCommand, commandLineDataFileName, filterTree, helpModal, helpLink, startSimulation, loadStatistics){
 			private static final long serialVersionUID = 5439163871614142476L;
-			@Override protected void updateViewer(final StatisticNode node, final StatisticViewer viewer[], final String info, final URL icon) {setViewer(node,viewer,info,icon);}
+			@Override protected void updateViewer(final StatisticNode node, final StatisticViewer viewer[], final String info, final Image icon) {setViewer(node,viewer,info,icon);}
 			@Override protected void saveFilterSettings() {saveFilterDialogSettings();}
 			@Override protected void loadFilterSettings() {loadFilterDialogSettings();}
 			@Override protected String getReportSelectSettings() {return getReportSettings();}
@@ -140,8 +141,8 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 
 		/* Copy-Hotkey erkennen */
 
-		getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_DOWN_MASK),"CopyViewer");
-		getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_INSERT,InputEvent.CTRL_DOWN_MASK),"CopyViewer");
+		getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_DOWN_MASK,true),"CopyViewer");
+		getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_INSERT,InputEvent.CTRL_DOWN_MASK,true),"CopyViewer");
 		getActionMap().put("CopyViewer",new AbstractAction() {
 			private static final long serialVersionUID = 6834309003536671412L;
 			@Override
@@ -227,7 +228,7 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 	 * @param info	Infotext übern den Viewern
 	 * @param icon	Icon über den Viewern
 	 */
-	private final void setViewer(final StatisticNode node, final StatisticViewer viewer[], final String info, final URL icon) {
+	private final void setViewer(final StatisticNode node, final StatisticViewer viewer[], final String info, final Image icon) {
 		final StatisticViewer[] lastViewer=getLastViewer(node);
 
 		for (int i=0;i<data.length;i++) {

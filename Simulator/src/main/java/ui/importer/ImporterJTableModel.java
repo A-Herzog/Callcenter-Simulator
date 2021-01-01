@@ -20,10 +20,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 
+import javax.swing.Icon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -103,14 +103,14 @@ public class ImporterJTableModel extends JTableExtAbstractTableModel {
 			return makeButtonPanel(
 					new String[]{Language.tr("Dialog.Button.Add")},
 					new String[]{Language.tr("Importer.Buttons.Add.Info")},
-					new URL[]{Images.EDIT_ADD.getURL()},
+					new Icon[]{Images.EDIT_ADD.getIcon()},
 					new ActionListener[]{new TableButtonListener(rowIndex,3)}
 					);
 		}
 		return makeButtonPanel(
 				new String[]{"","",""},
 				new String[]{Language.tr("Importer.Buttons.Up.Info"),Language.tr("Importer.Buttons.Down.Info"),Language.tr("Importer.Buttons.Del.Info")},
-				new URL[] {Images.ARROW_UP.getURL(),Images.ARROW_DOWN.getURL(),Images.EDIT_DELETE.getURL()},
+				new Icon[] {Images.ARROW_UP.getIcon(),Images.ARROW_DOWN.getIcon(),Images.EDIT_DELETE.getIcon()},
 				new ActionListener[]{new TableButtonListener(rowIndex,0),new TableButtonListener(rowIndex,1),new TableButtonListener(rowIndex,2)}
 				);
 	}

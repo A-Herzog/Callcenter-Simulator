@@ -23,12 +23,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.HashMap;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -345,7 +345,7 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 			case 1: return NumberTools.formatNumberMax(callerRetry[rowIndex].probability*100)+"%";
 			case 2: return makeButtonPanel(
 					new String[]{Language.tr("Connected.ClientTypes")},
-					new URL[]{Images.EDITOR_CALLER.getURL()},
+					new Icon[]{Images.EDITOR_CALLER.getIcon()},
 					new ActionListener[]{new ButtonListener(rowIndex)}
 					);
 			default: return null;

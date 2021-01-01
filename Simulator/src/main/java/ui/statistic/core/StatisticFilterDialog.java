@@ -17,11 +17,11 @@ package ui.statistic.core;
 
 import java.awt.Window;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.Icon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -71,7 +71,7 @@ public final class StatisticFilterDialog extends BaseEditDialog {
 		select=new boolean[ids.length];
 		for (int i=0;i<ids.length;i++) select[i]=!this.hiddenIDs.contains(ids[i]);
 
-		addUserButtons(new String[]{Language.tr("Dialog.Select.All"),Language.tr("Dialog.Select.Nothing")},new URL[]{Images.EDIT_ADD.getURL(),Images.EDIT_DELETE.getURL()},new Runnable[]{
+		addUserButtons(new String[]{Language.tr("Dialog.Select.All"),Language.tr("Dialog.Select.Nothing")},new Icon[]{Images.EDIT_ADD.getIcon(),Images.EDIT_DELETE.getIcon()},new Runnable[]{
 				new Runnable() {@Override public void run() {table.selectAll();}},
 				new Runnable() {@Override public void run() {table.selectNone();}}
 		});

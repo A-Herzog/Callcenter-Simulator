@@ -910,7 +910,7 @@ public class SetupData extends SetupBase {
 
 	@Override
 	protected void saveSetupToXML(final Document doc, final Element root) {
-		boolean englishKeys=WRITE_ENGLISH_KEYS; // XXX
+		boolean englishKeys=WRITE_ENGLISH_KEYS;
 
 		Element node, node2;
 

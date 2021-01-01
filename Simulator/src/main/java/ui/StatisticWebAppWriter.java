@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 
 import org.w3c.dom.Document;
 
@@ -214,11 +213,9 @@ public class StatisticWebAppWriter {
 	 * ob die Statistikdaten als statischer Report oder als
 	 * interaktiver Web-Viewer exportiert werden sollen.
 	 * @param parentComponent	Übergeordnetes Element
-	 * @param iconWebApp	Icon für den Web-Viewer
-	 * @param iconStatic	Icon für statische Daten
 	 * @return	Liefert im Falle der Wahl des Web-Viewers 0, im Falle des statische Reports 1 und im Falle eines Abbruchs -1
 	 */
-	public static int showSelectDialog(Component parentComponent, URL iconWebApp, URL iconStatic) {
+	public static int showSelectDialog(Component parentComponent) {
 		final String[] optionTexts=new String[]{Language.tr("ViewerWebApp.Dialog.OptionWebApp"),Language.tr("ViewerWebApp.Dialog.OptionReport")};
 		final String[] optionSubs=new String[]{Language.tr("ViewerWebApp.Dialog.OptionWebApp.Info"),Language.tr("ViewerWebApp.Dialog.OptionReport.Info")};
 		return MsgBox.options(parentComponent,Language.tr("ViewerWebApp.Dialog.Title"),Language.tr("ViewerWebApp.Dialog.Label"),optionTexts,optionSubs);

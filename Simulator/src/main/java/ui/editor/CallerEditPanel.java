@@ -20,7 +20,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.Serializable;
-import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.JComponent;
@@ -219,7 +218,7 @@ public abstract class CallerEditPanel extends JPanel {
 	 * @param buttonIcon	URL zu dem Icon, dass auf der Schaltfläche angezeigt werden soll (wird hier <code>null</code> übergeben, so wird kein Icon angezeigt)
 	 * @return	Array aus drei Elementen: Referenz auf das neu erzeugte Textfeld, Referenz auf das neu erzeugte Button und Referenz auf das neu erzeugte Label rechts neben dem Button
 	 */
-	protected final JComponent[] addPercentInputLineWithButton(JPanel p, String name, double initialValue, String buttonName, URL buttonIcon) {
+	protected final JComponent[] addPercentInputLineWithButton(JPanel p, String name, double initialValue, String buttonName, Icon buttonIcon) {
 		return parent.addPercentInputLineWithButton(p,name,initialValue,buttonName,buttonIcon);
 	}
 

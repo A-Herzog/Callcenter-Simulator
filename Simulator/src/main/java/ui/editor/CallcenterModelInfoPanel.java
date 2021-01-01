@@ -42,7 +42,7 @@ public class CallcenterModelInfoPanel extends StatisticBasePanel {
 	 * @param helpLink	Hilfe-Link
 	 */
 	public CallcenterModelInfoPanel(final HelpLink helpLink) {
-		super(Language.tr("Editor.ModelOverview"),Images.EDITOR_MODELINFO.getURL(),Language.tr("CommandLine.ModelInfo.Name"),null,true,true,helpLink.pageModelInformationModal,helpLink,null,null,false);
+		super(Language.tr("Editor.ModelOverview"),Images.EDITOR_MODELINFO.getURLs()[0],Language.tr("CommandLine.ModelInfo.Name"),null,true,true,helpLink.pageModelInformationModal,helpLink,null,null,false);
 	}
 
 	@Override
