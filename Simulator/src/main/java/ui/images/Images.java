@@ -116,7 +116,7 @@ public enum Images {
 	/* Bearbeiten */
 
 	/** Symbol "Bearbeiten - Kopieren" */
-	EDIT_COPY("copy.gif"),
+	EDIT_COPY("page_copy.png"),
 
 	/** Symbol "Bearbeiten - Einfügen" */
 	EDIT_PASTE("paste_plain.png"),
