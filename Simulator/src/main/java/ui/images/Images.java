@@ -789,6 +789,7 @@ public enum Images {
 	 * @return	Bild für die erste URL
 	 */
 	private Image getDefaultImage(final URL[] urls) {
+		if (urls==null || urls.length==0) return null;
 		try {
 			return ImageIO.read(urls[0]);
 		} catch (IOException e) {
