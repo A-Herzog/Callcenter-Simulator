@@ -65,7 +65,7 @@ import systemtools.images.SimToolsImages;
  * @see #connectToFrame(Runnable, Runnable, Runnable, Runnable, DropTargetRegister)
  * @see MainFrameBase
  * @author Alexander Herzog
- * @version 1.9
+ * @version 2.0
  */
 public abstract class MainPanelBase extends JPanel {
 	/**
@@ -171,7 +171,6 @@ public abstract class MainPanelBase extends JPanel {
 	 * @param programName	Name des Programms
 	 */
 	public MainPanelBase(final Window ownerWindow, final String programName) {
-		super();
 		this.ownerWindow=ownerWindow;
 		this.programName=programName;
 
@@ -211,7 +210,7 @@ public abstract class MainPanelBase extends JPanel {
 	 * Liefert das übergeordnete Fenster zurück (z.B. für die Anzeige von Dialogen von Bedeutung)
 	 * @return	Übergeordnetes Fenster des Panels
 	 */
-	protected final Window getOwnerWindow() {
+	public final Window getOwnerWindow() {
 		Container c=getParent();
 		while (c!=null) {
 			if (c instanceof Window) return (Window)c;
@@ -239,9 +238,12 @@ public abstract class MainPanelBase extends JPanel {
 		this.closeRequest=closeRequest;
 
 		if (dropTargetRegister!=null) {
-			dropTargetRegister.registerJComponent(toolBar);
-			dropTargetRegister.registerJComponent(mainPanel);
-			registerDropTargets(dropTargetRegister);
+			/* Erst später registieren, da es sonst Probleme mit initialen Drag-Over-Ereignissen geben kann. */
+			SwingUtilities.invokeLater(()->{
+				dropTargetRegister.registerJComponent(toolBar);
+				dropTargetRegister.registerJComponent(mainPanel);
+				registerDropTargets(dropTargetRegister);
+			});
 		}
 
 		if (titleChanged!=null) SwingUtilities.invokeLater(titleChanged);

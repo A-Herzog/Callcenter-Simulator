@@ -30,6 +30,7 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -41,6 +42,7 @@ import javax.swing.JToolBar;
 
 import language.Language;
 import systemtools.images.SimToolsImages;
+import systemtools.statistics.ChartSetup;
 import systemtools.statistics.StatisticViewer;
 import systemtools.statistics.StatisticViewer.CanDoAction;
 import systemtools.statistics.StatisticViewerReport;
@@ -61,7 +63,7 @@ public class StatisticDataPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -5311723790827549382L;
 
-	/** Optionales Callback, welches aufgerufen wird, wenn alle Viewer aktualisiert werden sollen (dies passiert nach dem Schließen von {@link StatisticViewer#ownSettings(JPanel)}) */
+	/** Optionales Callback, welches aufgerufen wird, wenn alle Viewer aktualisiert werden sollen (dies passiert nach dem Schließen von {@link StatisticViewer#ownSettings(systemtools.statistics.StatisticsBasePanel, int)}) */
 	private final Runnable updateAllViewerCallback;
 
 	/** Feld zur Anzeige des Titels */
@@ -117,7 +119,7 @@ public class StatisticDataPanel extends JPanel {
 
 	/**
 	 * Konstruktor der Klasse
-	 * @param updateAllViewerCallback	Optionales Callback, welches aufgerufen wird, wenn alle Viewer aktualisiert werden sollen (dies passiert nach dem Schließen von {@link StatisticViewer#ownSettings(JPanel)})
+	 * @param updateAllViewerCallback	Optionales Callback, welches aufgerufen wird, wenn alle Viewer aktualisiert werden sollen (dies passiert nach dem Schließen von {@link StatisticViewer#ownSettings(systemtools.statistics.StatisticsBasePanel, int)})
 	 */
 	public StatisticDataPanel(Runnable updateAllViewerCallback) {
 		super(new BorderLayout());
@@ -253,11 +255,14 @@ public class StatisticDataPanel extends JPanel {
 					copy.setVisible(true);
 					print.setVisible(true);
 					save.setVisible(true);
-					boolean b=(viewer.ownSettingsName()!=null);
-					settings.setVisible(b);
-					if (b) {
-						settingsCustomSettings.setText(viewer.ownSettingsName());
-						settingsCustomSettings.setIcon(viewer.ownSettingsIcon());
+					final String[] names=viewer.ownSettingsName();
+					final Icon[] icons=viewer.ownSettingsIcon();
+					if (names!=null && names.length>0 && icons!=null && icons.length>0) {
+						settings.setVisible(true);
+						settingsCustomSettings.setText(names[0]);
+						settingsCustomSettings.setIcon(icons[0]);
+					} else {
+						settings.setVisible(false);
 					}
 				}
 				selectAll.setVisible(false);
@@ -397,10 +402,23 @@ public class StatisticDataPanel extends JPanel {
 	/**
 	 * Zeigt den Dialog mit zusätzlichen Einstellungen zu dem Viewer an.
 	 * @return	Liefert <code>true</code>, wenn der Dialog per "Ok" geschlossen wurde.
-	 * @see StatisticViewer#ownSettings(JPanel)
+	 * @see StatisticViewer#ownSettings(systemtools.statistics.StatisticsBasePanel, int)
 	 */
 	private boolean showCustomDialog() {
-		final boolean b=viewer.ownSettings(this);
+		final systemtools.statistics.StatisticsBasePanel parent=new systemtools.statistics.StatisticsBasePanel(1,"",null,"",false) {
+			/**
+			 * Serialisierungs-ID der Klasse
+			 * @see Serializable
+			 */
+			private static final long serialVersionUID=-7224217977098743079L;
+			@Override protected int getImageSize() {return 0;}
+			@Override protected void setImageSize(int newSize) {}
+			@Override protected ChartSetup getChartSetup() {return null;}
+		};
+
+		add(parent);
+		final boolean b=viewer.ownSettings(parent,0);
+		remove(parent);
 		if (b) {
 			updateViewerContainer(true);
 			if (updateAllViewerCallback!=null) updateAllViewerCallback.run();

@@ -155,6 +155,11 @@ public abstract class StatisticViewerJFreeChart implements StatisticViewer {
 		return viewer=descriptionPane.getSplitPanel(chartPanel);
 	}
 
+	@Override
+	public boolean isViewerGenerated() {
+		return viewer!=null;
+	}
+
 	/**
 	 * Initialisierung des <code>JFreeChart</code>-Objektes.
 	 * @param chart	Konkretes <code>JFreeChart</code>-Objekt, welches angezeigt werden soll.
@@ -324,7 +329,6 @@ public abstract class StatisticViewerJFreeChart implements StatisticViewer {
 		 * @param file	Ausgabedatei
 		 */
 		public SaveImageThread(File file) {
-			super();
 			this.file=file;
 			start();
 		}
@@ -404,8 +408,8 @@ public abstract class StatisticViewerJFreeChart implements StatisticViewer {
 		final BufferedImage image=ImageTools.drawToImage(chart,imageSize,imageSize);
 
 		try (ByteArrayOutputStream streamOut=new ByteArrayOutputStream()) {
-			try {if (!ImageIO.write(image,"jpg",streamOut)) return false;} catch (IOException e) {return false;}
-			if (!XWPFDocumentPictureTools.addPicture(doc,streamOut,Document.PICTURE_TYPE_JPEG,image.getWidth(),image.getHeight())) return false;
+			try {if (!ImageIO.write(image,"png",streamOut)) return false;} catch (IOException e) {return false;}
+			if (!XWPFDocumentPictureTools.addPicture(doc,streamOut,Document.PICTURE_TYPE_PNG,image.getWidth(),image.getHeight())) return false;
 		} catch (IOException e) {return false;}
 
 		return true;
@@ -486,6 +490,15 @@ public abstract class StatisticViewerJFreeChart implements StatisticViewer {
 	}
 
 	/**
+	 * Wird aufgerufen, um eine externe Datei (mit dem Standardprogramm) zu öffnen.
+	 * @param file	Zu öffnende Datei
+	 * @throws IOException	Kann ausgelöst werden, wenn die Datei nicht geöffnet werden konnte
+	 */
+	protected void openExternalFile(final File file) throws IOException {
+		Desktop.getDesktop().open(file);
+	}
+
+	/**
 	 * Öffnet das Diagramm (über eine temporäre Datei) mit Excel
 	 */
 	private void openExcel() {
@@ -493,7 +506,7 @@ public abstract class StatisticViewerJFreeChart implements StatisticViewer {
 			final File file=File.createTempFile(StatisticsBasePanel.viewersToolbarExcelPrefix+"_",".xlsx");
 			if (ImageTools.storeExcelFile(chart,()->getTableChartFromChart(),file)) {
 				file.deleteOnExit();
-				Desktop.getDesktop().open(file);
+				openExternalFile(file);
 			}
 		} catch (IOException e1) {
 			MsgBox.error(getViewer(false),StatisticsBasePanel.viewersToolbarExcelSaveErrorTitle,StatisticsBasePanel.viewersToolbarExcelSaveErrorInfo);
@@ -514,31 +527,31 @@ public abstract class StatisticViewerJFreeChart implements StatisticViewer {
 			if (!pdf.save(file)) return;
 
 			file.deleteOnExit();
-			Desktop.getDesktop().open(file);
+			openExternalFile(file);
 		} catch (IOException e1) {
 			MsgBox.error(getViewer(false),StatisticsBasePanel.viewersToolbarExcelSaveErrorTitle,StatisticsBasePanel.viewersToolbarExcelSaveErrorInfo);
 		}
 	}
 
 	@Override
-	public String ownSettingsName() {
+	public String[] ownSettingsName() {
 		ChartSetup chartSetup=null;
 		if (getChartSetupCallback!=null) chartSetup=getChartSetupCallback.get();
 		if (chartSetup==null) {
-			return StatisticsBasePanel.viewersSaveImageSizePrompt;
+			return new String[] {StatisticsBasePanel.viewersSaveImageSizePrompt};
 		} else {
-			return StatisticsBasePanel.viewersChartSetupTitle;
+			return new String[] {StatisticsBasePanel.viewersChartSetupTitle};
 		}
 	}
 
 	@Override
-	public Icon ownSettingsIcon() {
+	public Icon[] ownSettingsIcon() {
 		ChartSetup chartSetup=null;
 		if (getChartSetupCallback!=null) chartSetup=getChartSetupCallback.get();
 		if (chartSetup==null) {
-			return SimToolsImages.STATISTICS_DIAGRAM_PICTURE.getIcon();
+			return new Icon[] {SimToolsImages.STATISTICS_DIAGRAM_PICTURE.getIcon()};
 		} else {
-			return new ImageIcon(StatisticTreeCellRenderer.getImageViewerIcon(getImageType()));
+			return new Icon[] {new ImageIcon(StatisticTreeCellRenderer.getImageViewerIcon(getImageType()))};
 		}
 	}
 
@@ -588,7 +601,7 @@ public abstract class StatisticViewerJFreeChart implements StatisticViewer {
 	}
 
 	@Override
-	public boolean ownSettings(final JPanel owner) {
+	public boolean ownSettings(final StatisticsBasePanel owner, final int nr) {
 		ChartSetup chartSetup=null;
 		if (getChartSetupCallback!=null) chartSetup=getChartSetupCallback.get();
 		if (chartSetup==null) {

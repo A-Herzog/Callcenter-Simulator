@@ -35,7 +35,6 @@ import java.util.function.Supplier;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
@@ -219,23 +218,14 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see complexcallcenter.statistic.core.viewers.StatisticViewer#ownSettingsName()
-	 */
 	@Override
-	public String ownSettingsName() {return null;}
+	public String[] ownSettingsName() {return null;}
 
-	/* (non-Javadoc)
-	 * @see complexcallcenter.statistic.core.viewers.StatisticViewer#ownSettingsIcon()
-	 */
 	@Override
-	public Icon ownSettingsIcon() {return null;}
+	public Icon[] ownSettingsIcon() {return null;}
 
-	/* (non-Javadoc)
-	 * @see complexcallcenter.statistic.core.viewers.StatisticViewer#ownSettings()
-	 */
 	@Override
-	public boolean ownSettings(JPanel owner) {return false;}
+	public boolean ownSettings(systemtools.statistics.StatisticsBasePanel owner, final int nr) {return false;}
 
 	/**
 	 * Reagiert auf Interaktionen mit den Links in
@@ -319,4 +309,9 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 
 	@Override
 	public void setUpdateChartSetup(Consumer<ChartSetup> setChartSetup) {}
+
+	@Override
+	public boolean isViewerGenerated() {
+		return textPane!=null;
+	}
 }

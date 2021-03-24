@@ -256,11 +256,8 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		return DataFilterBase.saveText(results.getText(),file,false);
 	}
 
-	/* (non-Javadoc)
-	 * @see complexcallcenter.statistic.core.viewers.StatisticViewer#ownSettings()
-	 */
 	@Override
-	public String ownSettingsName() {return null;}
+	public String[] ownSettingsName() {return null;}
 
 	/**
 	 * Speichert ein Skript in einer Datei
@@ -506,6 +503,11 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 	 */
 	@Override
 	public boolean hasOwnFileDropListener() {
+		return false;
+	}
+
+	@Override
+	public boolean isViewerGenerated() {
 		return false;
 	}
 }

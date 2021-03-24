@@ -50,7 +50,7 @@ public class SpeedUpJFreeChart extends Thread {
 		Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
 		try {Thread.sleep(2500);} catch (InterruptedException e) {}
 
-		DefaultPieDataset pieData=new DefaultPieDataset();
+		DefaultPieDataset<String> pieData=new DefaultPieDataset<>();
 		ChartFactory.createPieChart("",pieData,true,true,false);
 
 		XYSeriesCollection lineData=new XYSeriesCollection();

@@ -3846,6 +3846,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9203] = "Die angegebene Portnummer %s f\u00fcr den %s. Netzwerkserver ist ung\u00fcltig.\nDer Wert muss eine positive Ganzzahl sein.";
     t[9218] = "Editor.Caller.RecallProbability.ClientTypeChange";
     t[9219] = "\u00c4nderung des Kundentyps bei einem Wiederanruf";
+    t[9222] = "Dialog.OpenURL.CopyURL";
+    t[9223] = "Adresse kopieren";
     t[9224] = "Statistic.Viewer.Toolbar.OpenWord";
     t[9225] = "Word";
     t[9234] = "XML.Statistic.ModelAgents";
@@ -4014,14 +4016,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9589] = "Krankheitsaufschlag auf Agentenanzahl laden";
     t[9590] = "Optimizer.Message.FinishedTray.Info";
     t[9591] = "Die Optimierung ist abgeschlossen.";
-    t[9592] = "Editor.Caller.Special.RuleForSkillLevel";
-    t[9593] = "Sonderregeln f\u00fcr dieses Skill-Level aktivieren";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9592] = "Editor.Caller.Special.RuleForSkillLevel";
+    t[9593] = "Sonderregeln f\u00fcr dieses Skill-Level aktivieren";
     t[9594] = "SettingsDialog.NetworkSimulation.ServerPart.Setup";
     t[9595] = "Automatisch einstellen";
     t[9598] = "SettingsDialog.SimulationServer.IPFilter.Info";
@@ -5010,6 +5012,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12117] = "Der angegeben Ziel-Wert f\u00fcr die zu optimierende Eigenschaft %s ist ung\u00fcltig.";
     t[12118] = "MainToolbar.ShowModel.Tooltip";
     t[12119] = "Zeigt das Modell an, dessen Simulation zu den aktuellen Ergebnissen f\u00fchrte";
+    t[12124] = "Dialog.OpenURL.CopyURLInfo";
+    t[12125] = "Adresse nur in Zwischenablage kopieren, Webseite nicht aufrufen.";
     t[12132] = "Editor.AgentsGroup.Move.ViewPrevious";
     t[12133] = "Vorherige";
     t[12136] = "XML.Model.Warnings";
@@ -6018,16 +6022,16 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14595] = "Bei der Verarbeitung von Zeile %d.";
     t[14598] = "XML.Model.ClientType.Forwarding.SkillLevel";
     t[14599] = "SkillLevel";
-    t[14606] = "Dialog.Button.Delete";
-    t[14607] = "L\u00f6schen";
-    t[14608] = "Calibrate.WaitingTimeToleranceCV";
-    t[14609] = "Variationskoeffizient der Wartezeittoleranzen";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14606] = "Dialog.Button.Delete";
+    t[14607] = "L\u00f6schen";
+    t[14608] = "Calibrate.WaitingTimeToleranceCV";
+    t[14609] = "Variationskoeffizient der Wartezeittoleranzen";
     t[14614] = "SimStatistic.ScoreValues";
     t[14615] = "Scorewerte";
     t[14618] = "MainMenu.Tools.ExecuteCommand.Short";

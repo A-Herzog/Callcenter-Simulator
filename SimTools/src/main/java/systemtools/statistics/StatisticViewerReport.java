@@ -216,10 +216,24 @@ public class StatisticViewerReport extends StatisticViewerSpecialBase {
 	}
 
 	@Override
+	public boolean isViewerGenerated() {
+		return false;
+	}
+
+	@Override
 	public void copyToClipboard(Clipboard clipboard) {
 		final StringWriter st=new StringWriter();
 		writeReportToBufferedWriter(st,null,FileFormat.FORMAT_HTML_INLINE,false);
 		clipboard.setContents(new StringSelection(st.toString()),null);
+	}
+
+	/**
+	 * Wird aufgerufen, um eine externe Datei (mit dem Standardprogramm) zu öffnen.
+	 * @param file	Zu öffnende Datei
+	 * @throws IOException	Kann ausgelöst werden, wenn die Datei nicht geöffnet werden konnte
+	 */
+	protected void openExternalFile(final File file) throws IOException {
+		Desktop.getDesktop().open(file);
 	}
 
 	@Override
@@ -233,7 +247,7 @@ public class StatisticViewerReport extends StatisticViewerSpecialBase {
 			Desktop.getDesktop().print(file);
 		} catch (IOException e) {
 			MsgBox.error(null,StatisticsBasePanel.viewersNoHTMLApplicationTitle,StatisticsBasePanel.viewersNoHTMLApplicationInfo);
-			try {Desktop.getDesktop().open(file);} catch (IOException e1) {return false;}
+			try {openExternalFile(file);} catch (IOException e1) {return false;}
 			return false;
 		}
 		return true;

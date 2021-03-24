@@ -22,7 +22,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.Icon;
-import javax.swing.JPanel;
 
 import language.Language;
 import simulator.Statistics;
@@ -235,17 +234,11 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see complexcallcenter.statistic.core.viewers.StatisticViewer#ownSettingsName()
-	 */
 	@Override
-	public String ownSettingsName() {return (dataType==Mode.DATA_TYPE_COUNT || dataType==Mode.DATA_TYPE_WAITINGTIME)?Language.tr("Statistic.Filter.Title"):null;}
+	public String[] ownSettingsName() {return (dataType==Mode.DATA_TYPE_COUNT || dataType==Mode.DATA_TYPE_WAITINGTIME)?new String[] {Language.tr("Statistic.Filter.Title")}:null;}
 
-	/* (non-Javadoc)
-	 * @see complexcallcenter.statistic.core.viewers.StatisticViewer#ownSettingsIcon()
-	 */
 	@Override
-	public Icon ownSettingsIcon() {return (dataType==Mode.DATA_TYPE_COUNT || dataType==Mode.DATA_TYPE_WAITINGTIME)?Images.STATISTICS_FILTER.getIcon():null;}
+	public Icon[] ownSettingsIcon() {return (dataType==Mode.DATA_TYPE_COUNT || dataType==Mode.DATA_TYPE_WAITINGTIME)?new Icon[] {Images.STATISTICS_FILTER.getIcon()}:null;}
 
 	/** Filter-ID für Sichtbarkeit von Erstanrufern */
 	private final static int FILTER_COUNT_FRESHCALLS=0;
@@ -326,11 +319,8 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 		return ids;
 	}
 
-	/* (non-Javadoc)
-	 * @see complexcallcenter.statistic.core.viewers.StatisticViewer#ownSettings()
-	 */
 	@Override
-	public boolean ownSettings(JPanel owner) {
+	public boolean ownSettings(systemtools.statistics.StatisticsBasePanel owner, final int nr) {
 		Container c=owner; while (!(c instanceof Window) && c!=null) c=c.getParent();
 
 		SetupData setup;

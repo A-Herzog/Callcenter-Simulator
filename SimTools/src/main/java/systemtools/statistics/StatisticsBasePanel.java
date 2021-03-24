@@ -72,6 +72,7 @@ import mathtools.distribution.tools.FileDropperData;
 import systemtools.commandline.AbstractReportCommandConnect;
 import systemtools.images.SimToolsImages;
 import systemtools.statistics.StatisticViewer.CanDoAction;
+import systemtools.statistics.StatisticViewer.ViewerType;
 import systemtools.statistics.StatisticViewerReport.FileFormat;
 import systemtools.statistics.StatisticViewerSpecialText.SpecialMode;
 import xml.XMLData;
@@ -417,6 +418,8 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	public static String fileTypePNG="png-Dateien";
 	/** Bezeichner für Dateiformat bmp(im Dateiauswahldialog) */
 	public static String fileTypeBMP="bmp-Dateien";
+	/** Bezeichner für Dateiformat tiff (im Dateiauswahldialog) */
+	public static String fileTypeTIFF="tiff-Dateien";
 	/** Bezeichner für Dateiformat docx(+Bild) (im Dateiauswahldialog) */
 	public static String fileTypeWordWithImage="Word-Text mit eingebettetem Bild";
 	/** Bezeichner für Dateiformat SciLab-Skript */
@@ -504,9 +507,6 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 
 	/** Popup-Menüs für die Einstellungen-Menüs bei den Viewern */
 	private final JPopupMenu[] settingsMenu;
-
-	/** Menüpunkte für die Einstellungen-Menüs bei den Viewern */
-	private final JMenuItem[] settingsItem;
 
 	/** "Neues Fenster"-Schaltflächen über den einzelnen Viewern */
 	private final JButton[] newWindow;
@@ -638,7 +638,6 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 		selectNone=new JButton[dataToolBar.length];
 		saveTables=new JButton[dataToolBar.length];
 		settingsMenu=new JPopupMenu[dataToolBar.length];
-		settingsItem=new JMenuItem[dataToolBar.length];
 		newWindow=new JButton[dataToolBar.length];
 		for (int i=0;i<dataToolBar.length;i++) {
 			zoom[i]=new JButton(viewersToolbarZoom);
@@ -693,8 +692,6 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 			dataToolBar[i].add(newWindow[i]);
 
 			settingsMenu[i]=new JPopupMenu();
-			settingsMenu[i].add(settingsItem[i]=new JMenuItem());
-			settingsItem[i].addActionListener(new ButtonListener());
 		}
 
 		/* Copy-Hotkey erkennen */
@@ -713,6 +710,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 				if (dataViewer==null  || dataViewer.length!=1 || dataViewer[0]==null) return;
 				if (!(dataViewer[0] instanceof StatisticViewer)) return;
 				final StatisticViewer viewer=dataViewer[0];
+				if (viewer.getType()==ViewerType.TYPE_TEXT || viewer.getType()==ViewerType.TYPE_SPECIAL) return; /* Die verwenden eigene Kopierroutinen (für Teile des Textes). Hier immer alles zu kopieren, würde erheblich stören. */
 				if (!viewer.getCanDo(StatisticViewer.CanDoAction.CAN_DO_COPY)) return;
 				viewer.copyToClipboard(Toolkit.getDefaultToolkit().getSystemClipboard());
 			}
@@ -856,6 +854,46 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	private void updateChartSetupInViewers(final StatisticNode node, final ChartSetup chartSetup) {
 		for (StatisticViewer viewer: node.viewer) if (viewer instanceof StatisticViewerJFreeChart) ((StatisticViewerJFreeChart)viewer).setChartSetup(chartSetup);
 		for (int i=0;i<node.getChildCount();i++) updateChartSetupInViewers(node.getChild(i),chartSetup);
+	}
+
+	/**
+	 * Erstellt alle (schon vorhandenen Viewer) neu.
+	 */
+	public void recreateViewers() {
+		if (currentRoot==null) {
+			final Object root=tree.getModel().getRoot();
+			if (root instanceof DefaultMutableTreeNode) {
+				final DefaultMutableTreeNode rootNode=(DefaultMutableTreeNode)root;
+				for (int i=0;i<rootNode.getChildCount();i++) {
+					final TreeNode node=rootNode.getChildAt(i);
+					if (node instanceof DefaultMutableTreeNode && ((DefaultMutableTreeNode)node).getUserObject() instanceof StatisticNode) {
+						recreateViewers((StatisticNode)((DefaultMutableTreeNode)node).getUserObject());
+					}
+				}
+			}
+		} else {
+			recreateViewers(currentRoot);
+		}
+		if (lastRoot!=null) recreateViewers(lastRoot);
+
+		final Object node=tree.getLastSelectedPathComponent();
+		if (node instanceof DefaultMutableTreeNode) {
+			final DefaultMutableTreeNode treeNode=(DefaultMutableTreeNode)node;
+			final Object userObject=treeNode.getUserObject();
+			if (userObject instanceof StatisticNode) updateDataPanel((StatisticNode)userObject,treeNode);
+		}
+	}
+
+
+	/**
+	 * Erstellt alle (schon vorhandenen Viewer) in einem Zweig des Statistikbaums neu.
+	 * @param node	Ausgangspunkt des Zweigs im Statistikbaum
+	 */
+	public void recreateViewers(final StatisticNode node) {
+		for (StatisticViewer viewer: node.viewer) {
+			if (viewer.isViewerGenerated()) viewer.getViewer(true);
+		}
+		for (int i=0;i<node.getChildCount();i++) recreateViewers(node.getChild(i));
 	}
 
 	/**
@@ -1082,7 +1120,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	private StatisticViewer[] getLastViewer(final StatisticNode currentNode) {
 		if (lastRoot==null) return null;
 
-		final List<Integer> path=currentNode.getPath();
+		final String[] path=currentNode.getFullName();
 		if (path==null) return null;
 
 		final StatisticNode lastNode=lastRoot.getChildByPath(path);
@@ -1295,6 +1333,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 		parent.remove(viewerComponent);
 
 		final JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+		split.setContinuousLayout(true);
 		split.setLeftComponent(viewerComponent);
 		split.setRightComponent(additionalViewer.getViewer(true));
 		split.setBorder(BorderFactory.createEmptyBorder());
@@ -1371,12 +1410,22 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 				userToolbarButtons[i].add(showLast);
 			}
 
-			if (container!=null && viewer[i].ownSettingsName()!=null) {
-				settings[i].setVisible(true);
-				settingsItem[i].setText(viewer[i].ownSettingsName());
-				settingsItem[i].setIcon(viewer[i].ownSettingsIcon());
-			} else {
-				settings[i].setVisible(false);
+			settings[i].setVisible(false);
+			settingsMenu[i].removeAll();
+			if (container!=null) {
+				final String[] settingsNames=viewer[i].ownSettingsName();
+				final Icon[] settingsIcons=viewer[i].ownSettingsIcon();
+				if (settingsNames!=null) for (int j=0;j<settingsNames.length;j++) {
+					final String settingsName=settingsNames[j];
+					if (settingsName==null) continue;
+					final Icon settingsIcon=(settingsIcons==null || settingsIcons.length<=j)?null:settingsIcons[j];
+					settings[i].setVisible(true);
+					final JMenuItem item=new JMenuItem(settingsName,settingsIcon);
+					settingsMenu[i].add(item);
+					final StatisticViewer v=viewer[i];
+					final int nr=j;
+					item.addActionListener(e->v.ownSettings(this,nr));
+				}
 			}
 
 			selectAll[i].setVisible(container!=null && (viewer[i] instanceof StatisticViewerReport));
@@ -1571,7 +1620,6 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 				if (sender==save[i]) dataViewer[i].save(getOwnerWindow());
 				if (sender==search[i]) dataViewer[i].search(getOwnerWindow());
 				if (sender==settings[i]) settingsMenu[i].show(settings[i],0,settings[i].getHeight());
-				if (sender==settingsItem[i]) dataViewer[i].ownSettings(StatisticsBasePanel.this);
 				if (sender==selectAll[i] && dataViewer[i] instanceof StatisticViewerReport) ((StatisticViewerReport)dataViewer[i]).selectAll();
 				if (sender==selectNone[i] && dataViewer[i] instanceof StatisticViewerReport) ((StatisticViewerReport)dataViewer[i]).selectNone();
 				if (sender==saveTables[i] && dataViewer[i] instanceof StatisticViewerReport) ((StatisticViewerReport)dataViewer[i]).saveTablesToWorkbook(StatisticsBasePanel.this);

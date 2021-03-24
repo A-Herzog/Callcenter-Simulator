@@ -3846,6 +3846,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9203] = "The specified port number %s for network server %s is invalid.\nThe value has to be a positive integer number.";
     t[9218] = "Editor.Caller.RecallProbability.ClientTypeChange";
     t[9219] = "Client type change on recalling";
+    t[9222] = "Dialog.OpenURL.CopyURL";
+    t[9223] = "Copy address";
     t[9224] = "Statistic.Viewer.Toolbar.OpenWord";
     t[9225] = "Word";
     t[9234] = "XML.Statistic.ModelAgents";
@@ -4014,14 +4016,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9589] = "Load disease surcharge for agents groups";
     t[9590] = "Optimizer.Message.FinishedTray.Info";
     t[9591] = "Optimization is finished.";
-    t[9592] = "Editor.Caller.Special.RuleForSkillLevel";
-    t[9593] = "Activate rules for this skill level";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9592] = "Editor.Caller.Special.RuleForSkillLevel";
+    t[9593] = "Activate rules for this skill level";
     t[9594] = "SettingsDialog.NetworkSimulation.ServerPart.Setup";
     t[9595] = "Setup automatically";
     t[9598] = "SettingsDialog.SimulationServer.IPFilter.Info";
@@ -5010,6 +5012,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12117] = "The target value for the property to be optimized %s is invalid.";
     t[12118] = "MainToolbar.ShowModel.Tooltip";
     t[12119] = "Shows the call center model for which the simulation results are shown";
+    t[12124] = "Dialog.OpenURL.CopyURLInfo";
+    t[12125] = "Copy address to clipboard only, do not open web page.";
     t[12132] = "Editor.AgentsGroup.Move.ViewPrevious";
     t[12133] = "Previous";
     t[12136] = "XML.Model.Warnings";
@@ -6018,16 +6022,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14595] = "While processing line %d.";
     t[14598] = "XML.Model.ClientType.Forwarding.SkillLevel";
     t[14599] = "SkillLevel";
-    t[14606] = "Dialog.Button.Delete";
-    t[14607] = "Delete";
-    t[14608] = "Calibrate.WaitingTimeToleranceCV";
-    t[14609] = "Coefficient of variation of the waiting time tolerance";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14606] = "Dialog.Button.Delete";
+    t[14607] = "Delete";
+    t[14608] = "Calibrate.WaitingTimeToleranceCV";
+    t[14609] = "Coefficient of variation of the waiting time tolerance";
     t[14614] = "SimStatistic.ScoreValues";
     t[14615] = "Score values";
     t[14618] = "MainMenu.Tools.ExecuteCommand.Short";

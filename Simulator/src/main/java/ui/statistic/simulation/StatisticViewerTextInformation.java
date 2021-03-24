@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.Icon;
-import javax.swing.JPanel;
 
 import org.apache.commons.math3.distribution.AbstractRealDistribution;
 
@@ -691,20 +690,14 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see complexcallcenter.statistic.core.viewers.StatisticViewer#ownSettingsName()
-	 */
 	@Override
-	public String ownSettingsName() {
-		return (mode==Mode.MODE_BASE_INFORMATION || mode==Mode.MODE_CONFIDENCE_INFORMATION)?Language.tr("Statistic.Filter.Title"):null;
+	public String[] ownSettingsName() {
+		return (mode==Mode.MODE_BASE_INFORMATION || mode==Mode.MODE_CONFIDENCE_INFORMATION)?new String[] {Language.tr("Statistic.Filter.Title")}:null;
 	}
 
-	/* (non-Javadoc)
-	 * @see complexcallcenter.statistic.core.viewers.StatisticViewer#ownSettingsIcon()
-	 */
 	@Override
-	public Icon ownSettingsIcon() {
-		return (mode==Mode.MODE_BASE_INFORMATION || mode==Mode.MODE_CONFIDENCE_INFORMATION)?Images.STATISTICS_FILTER.getIcon():null;
+	public Icon[] ownSettingsIcon() {
+		return (mode==Mode.MODE_BASE_INFORMATION || mode==Mode.MODE_CONFIDENCE_INFORMATION)?new Icon[] {Images.STATISTICS_FILTER.getIcon()}:null;
 	}
 
 	/** Filter-ID für Sichtbarkeit von Erstanrufern */
@@ -816,11 +809,8 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		return ids;
 	}
 
-	/* (non-Javadoc)
-	 * @see complexcallcenter.statistic.core.viewers.StatisticViewer#ownSettings()
-	 */
 	@Override
-	public boolean ownSettings(JPanel owner) {
+	public boolean ownSettings(systemtools.statistics.StatisticsBasePanel owner, final int nr) {
 		Container c=owner; while (!(c instanceof Window) && c!=null) c=c.getParent();
 
 		SetupData setup;
