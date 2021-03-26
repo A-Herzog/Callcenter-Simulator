@@ -288,7 +288,7 @@ public abstract class AbstractSpecialProcessing {
 		 * @param field	Eingabefeld auf das die Datei gezogen wurde
 		 * @return	Liefert <code>true</code>, wenn die Datei existiert und ihr Name in das Eingabefeld eingetragen werden konnte
 		 */
-		private final boolean dropFile(File file, JTextField field) {
+		private boolean dropFile(File file, JTextField field) {
 			if (!file.exists()) return false;
 			field.setText(file.toString());
 			return true;

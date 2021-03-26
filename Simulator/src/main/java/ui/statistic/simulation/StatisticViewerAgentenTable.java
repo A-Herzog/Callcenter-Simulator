@@ -97,14 +97,14 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 	 * @return	Namen für die Zeilen
 	 */
 	private String[] getRowNames(final Statistics statistic) {
-		List<String> list=new ArrayList<String>(Arrays.asList(new String[]{
+		List<String> list=new ArrayList<String>(Arrays.asList(
 				Language.tr("SimStatistic.Number"),
 				Language.tr("SimStatistic.NumberOfConversations"),
 				Language.tr("SimStatistic.IdleTime"),Language.tr("SimStatistic.IdleTime"),
 				Language.tr("SimStatistic.TechnicalFreeTime"),Language.tr("SimStatistic.TechnicalFreeTime"),
 				Language.tr("SimStatistic.HoldingTime"),Language.tr("SimStatistic.HoldingTime"),
-				Language.tr("SimStatistic.PostProcessingTime"),Language.tr("SimStatistic.PostProcessingTime"),
-		}));
+				Language.tr("SimStatistic.PostProcessingTime"),Language.tr("SimStatistic.PostProcessingTime")
+				));
 
 		for (int i=0;i<statistic.agentenGlobal.dataByCaller.length;i++) {
 			String s=statistic.agentenGlobal.dataByCaller[i];

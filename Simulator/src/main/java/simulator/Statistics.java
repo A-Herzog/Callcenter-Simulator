@@ -154,7 +154,7 @@ public final class Statistics extends StatisticsBase {
 	 * Muss aufgerufen werden, wenn ein neues Editor-Modell zugewiesen wurde.
 	 * @see #editModel
 	 */
-	public final void calcModelAgents() {
+	public void calcModelAgents() {
 		if (editModel==null) {
 			agentenModellProGruppe=new AgentModelData[]{new AgentModelData()};
 			agentenModellGlobal=new AgentModelData();
@@ -629,7 +629,7 @@ public final class Statistics extends StatisticsBase {
 	 * @param intFrom	Erstes zu berücksichtigendes Intervall (0..47)
 	 * @param intTo	Letztes zu berücksichtigendes Intervall (0..47)
 	 */
-	private final void saveQueueSummary(final Element parent, int intFrom, int intTo) {
+	private void saveQueueSummary(final Element parent, int intFrom, int intTo) {
 		final Document doc=parent.getOwnerDocument();
 		Element node;
 
@@ -653,7 +653,7 @@ public final class Statistics extends StatisticsBase {
 	 * @param erlangCData	Erlang-Vergleichsdaten
 	 * @param isWithRetry	Sind Wiederholer in dem Modell enthalten?
 	 */
-	private final void saveErlangCData(final Element node, final StatisticViewerErlangCTools erlangCData, final boolean isWithRetry) {
+	private void saveErlangCData(final Element node, final StatisticViewerErlangCTools erlangCData, final boolean isWithRetry) {
 		DataDistributionImpl dist;
 
 		dist=new DataDistributionImpl(86400,erlangCData.getAgents());
@@ -986,7 +986,7 @@ public final class Statistics extends StatisticsBase {
 		 * Fügt Daten eines weiteren Kunden-Datensatzes zu diesem Datensatz hinzu.
 		 * @param data	Weitere Daten die zu diesem Datensatz hinzugefügt werden sollen
 		 */
-		private final void addData(final KundenDaten data) {
+		private void addData(final KundenDaten data) {
 			kunden+=data.kunden;
 			kundenErfolg+=data.kundenErfolg;
 			kundenBlocked+=data.kundenBlocked;
@@ -1135,7 +1135,7 @@ public final class Statistics extends StatisticsBase {
 		/**
 		 * Aktualisiert die Daten für die Konfidenzinervall-Berechnung nach jeweils einem Simulationstag.
 		 */
-		public final void updateInterDayData() {
+		public void updateInterDayData() {
 			/* Daten für die Konfidenzintervalle */
 			double wartezeit=(double)(anrufeWartezeitSum-lastDayAnrufeWartezeitSum)/Math.max(1,anrufeErfolg-lastDayAnrufeErfolg);
 			interDayWartezeitSum+=wartezeit;
@@ -1189,7 +1189,7 @@ public final class Statistics extends StatisticsBase {
 		 * @param node	XML-Knoten, der die Kunden-Daten enthält
 		 * @return	Tritt ein Fehler auf, so wird die Fehlermeldung als String zurückgegeben. Im Erfolgsfall wird <code>null</code> zurückgegeben.
 		 */
-		private final String loadFromXML(final Element node) {
+		private String loadFromXML(final Element node) {
 			name=Language.trAllAttribute("XML.Statistic.GeneralAttributes.Name",node);
 
 			NodeList l=node.getChildNodes();
@@ -1782,7 +1782,7 @@ public final class Statistics extends StatisticsBase {
 		 * @param sum	Summe der Werte für die Kenngröße
 		 * @param sum2	Summe der quadrierten Werte für die Kenngröße
 		 */
-		private final void saveConfidencePercentValue(final Element node2, final double sum, final double sum2) {
+		private void saveConfidencePercentValue(final Element node2, final double sum, final double sum2) {
 			double[] c;
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.Sum"),NumberTools.formatSystemNumber(sum));
 			node2.setAttribute(Language.trPrimary("XML.Statistic.GeneralAttributes.SquaresSum"),NumberTools.formatSystemNumber(sum2));
@@ -1800,7 +1800,7 @@ public final class Statistics extends StatisticsBase {
 		 * @param intFrom	Erstes zu berücksichtigendes Intervall (0..47)
 		 * @param intTo	Letztes zu berücksichtigendes Intervall (0..47)
 		 */
-		private final void saveSummary(final Element parent, int intFrom, int intTo) {
+		private void saveSummary(final Element parent, int intFrom, int intTo) {
 			Document doc=parent.getOwnerDocument();
 			Element node;
 
@@ -1973,7 +1973,7 @@ public final class Statistics extends StatisticsBase {
 		 * Versucht einen Kunden-Datensatz in einem XML-Knoten zu speichern
 		 * @param parent Übergeordneter XML-Knoten
 		 */
-		private final void saveDataToXML(final Element parent) {
+		private void saveDataToXML(final Element parent) {
 			final Document doc=parent.getOwnerDocument();
 			Element node, node2;
 
@@ -2172,7 +2172,7 @@ public final class Statistics extends StatisticsBase {
 		 * Speichert die Daten in einem XML-Element
 		 * @param parent	Übergeordnetes Element für das neue XML-Element
 		 */
-		private final void saveToXML(final Element parent) {
+		private void saveToXML(final Element parent) {
 			Document doc=parent.getOwnerDocument();
 			Element node; parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Clients")));
 
@@ -2288,7 +2288,7 @@ public final class Statistics extends StatisticsBase {
 		 * Fügt Daten eines weiteren Agenten-Datensatzes zu diesem hinzu.
 		 * @param data	Weiterer Agenten-Datensatz
 		 */
-		private final void addData(final AgentenDaten data) {
+		private void addData(final AgentenDaten data) {
 			anzahlAgenten=data.anzahlAgenten; /* kein += hier */
 			leerlaufGesamt+=data.leerlaufGesamt;
 			technischerLeerlaufGesamt+=data.technischerLeerlaufGesamt;
@@ -2323,7 +2323,7 @@ public final class Statistics extends StatisticsBase {
 		 * @param node	XML-Element aus dem die Daten geladen werden sollen
 		 * @return	Liefert im Erfolgsfall <code>null</code> sonst eine Fehlermeldung
 		 */
-		private final String loadClientDataFromXML(final Element node) {
+		private String loadClientDataFromXML(final Element node) {
 			Long K;
 			String s;
 
@@ -2385,7 +2385,7 @@ public final class Statistics extends StatisticsBase {
 		 * @param node	XML-Knoten, der die Agenten-Daten enthält
 		 * @return	Tritt ein Fehler auf, so wird die Fehlermeldung als String zurückgegeben. Im Erfolgsfall wird <code>null</code> zurückgegeben.
 		 */
-		private final String loadFromXML(final Element node) {
+		private String loadFromXML(final Element node) {
 			dataByCaller=new String[0];
 			dataByCallerTechnial=new long[0];
 			dataByCallerService=new long[0];
@@ -2521,7 +2521,7 @@ public final class Statistics extends StatisticsBase {
 		 * Versucht einen Agenten-Datensatz in einem XML-Knoten zu speichern
 		 * @param parent Übergeordneter XML-Knoten
 		 */
-		private final void saveDataToXML(final Element parent) {
+		private void saveDataToXML(final Element parent) {
 			final Document doc=parent.getOwnerDocument();
 			Element node;
 
@@ -2576,7 +2576,7 @@ public final class Statistics extends StatisticsBase {
 		 * Speichert die Daten in einem XML-Element
 		 * @param parent	Übergeordnetes Element für das neue XML-Element
 		 */
-		private final void saveToXML(final Element parent) {
+		private void saveToXML(final Element parent) {
 			Document doc=parent.getOwnerDocument();
 			Element node;
 			parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Agents")));
@@ -2595,7 +2595,7 @@ public final class Statistics extends StatisticsBase {
 	 * @param model	Callcenter-Modell
 	 * @return	Modell-Agenten
 	 */
-	private final AgentModelData[] buildAgentModelData(final CallcenterModel model) {
+	private AgentModelData[] buildAgentModelData(final CallcenterModel model) {
 		List<AgentModelData> list=new ArrayList<AgentModelData>();
 
 		for (int i=0;i<model.callcenter.size();i++) {
@@ -2720,7 +2720,7 @@ public final class Statistics extends StatisticsBase {
 		 * @param node	XML-Element aus dem die Daten geladen werden sollen
 		 * @return	Liefert im Erfolgsfall <code>null</code> sonst eine Fehlermeldung
 		 */
-		private final String loadFromXML(final Element node) {
+		private String loadFromXML(final Element node) {
 			name=Language.trAllAttribute("XML.Statistic.GeneralAttributes.Name",node);
 			if (!name.isEmpty()) type=Language.trAllAttribute("XML.Statistic.GeneralAttributes.Type",node);
 
@@ -2758,7 +2758,7 @@ public final class Statistics extends StatisticsBase {
 		 * Versucht einen Modell-Agenten-Datensatz in einem XML-Knoten zu speichern
 		 * @param parent Übergeordneter XML-Knoten
 		 */
-		private final void saveDataToXML(final Element parent) {
+		private void saveDataToXML(final Element parent) {
 			final Document doc=parent.getOwnerDocument();
 			Element node, child;
 

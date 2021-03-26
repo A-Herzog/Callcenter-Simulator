@@ -109,6 +109,6 @@ public class SimpleSimulationInput {
 	@Override
 	public int hashCode() {
 		assert false : "hashCode not designed";
-	return 0;
+		return 0;
 	}
 }

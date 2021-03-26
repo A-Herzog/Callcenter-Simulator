@@ -589,12 +589,12 @@ public final class StatisticPanel extends StatisticBasePanel {
 	}
 
 	@Override
-	protected final void loadFilterDialogSettings() {
+	protected void loadFilterDialogSettings() {
 		setHiddenIDsFromSetupString(SetupData.getSetup().statisticTreeFilter);
 	}
 
 	@Override
-	protected final void saveFilterDialogSettings() {
+	protected void saveFilterDialogSettings() {
 		SetupData setup=SetupData.getSetup();
 		setup.statisticTreeFilter=getHiddenIDsSetupString();
 		setup.saveSetupWithWarning(this);
@@ -617,7 +617,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 * @param statistic	Neues, anzuzeigendes Statistik-Objekt
 	 * @return	Gibt im Erfolgsfall <code>null</code> zurück, sonst eine Fehlermeldung.
 	 */
-	public final String loadStatistic(Statistics statistic) {
+	public String loadStatistic(Statistics statistic) {
 		if (statistic.editModel!=null && VersionConst.isNewerVersion(statistic.editModel.version)) {
 			MsgBox.warning(this,Language.tr("Statistic.NewVersionWarning.Title"),Language.tr("Statistic.NewVersionWarning.Info"));
 		}
@@ -632,7 +632,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 * @param file	Datei, aus der die Statistikdaten geladen werden sollen. Wird hier <code>null</code> übergeben, so wird ein Dateiauswahl-Dialog angezeigt.
 	 * @return	Gibt im Erfolgsfall <code>null</code> zurück, sonst eine Fehlermeldung.
 	 */
-	public final String loadStatistic(File file) {
+	public String loadStatistic(File file) {
 		if (statisticData!=null && statisticData.length!=1) return null;
 
 		if (file==null) {
@@ -651,7 +651,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 * @param root	XML-Wurzelelement, aus dem die Statistikdaten geladen werden sollen.
 	 * @return	Gibt im Erfolgsfall <code>null</code> zurück, sonst eine Fehlermeldung.
 	 */
-	public final String loadStatistic(final Element root) {
+	public String loadStatistic(final Element root) {
 		if (statisticData!=null && statisticData.length!=1) return null;
 
 		Statistics newData=new Statistics(null,null,0,0);
@@ -665,7 +665,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 * @param file	Datei, in die die Statistikdaten geschrieben werden sollen. Wird hier <code>null</code> übergeben, so wird ein Dateiauswahl-Dialog angezeigt.
 	 * @return	Gibt im Erfolgsfall <code>null</code> zurück, sonst eine Fehlermeldung.
 	 */
-	public final String saveStatistic(File file) {
+	public String saveStatistic(File file) {
 		if (statisticData==null || statisticData.length==0 || statisticData[0]==null) return null;
 
 		if (file==null) {

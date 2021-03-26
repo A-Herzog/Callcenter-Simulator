@@ -569,7 +569,7 @@ public final class RunData {
 		 * (Die Objekte werden nicht immer wieder angelegt und
 		 * abgebaut, sondern wiederverwendet.)
 		 */
-		private final void reinit() {
+		private void reinit() {
 			retryCount=0;
 			callContinued=false;
 			callCancelEvent=null;
@@ -784,7 +784,7 @@ public final class RunData {
 		 * @param isService	Handelt es sich um Bedienzeiten?
 		 * @see #logStatusChange(long, int, int, CallerRecord)
 		 */
-		private final void logClientSpecificData(final long time1, final long time2, final int[] data, final DataDistributionImpl[] dataProIntervall1a, final DataDistributionImpl[] dataProIntervall1b, final DataDistributionImpl[] dataProIntervall1c, final DataDistributionImpl dataProIntervall2a, final DataDistributionImpl dataProIntervall2b, final DataDistributionImpl dataProIntervall2c, boolean isService) {
+		private void logClientSpecificData(final long time1, final long time2, final int[] data, final DataDistributionImpl[] dataProIntervall1a, final DataDistributionImpl[] dataProIntervall1b, final DataDistributionImpl[] dataProIntervall1c, final DataDistributionImpl dataProIntervall2a, final DataDistributionImpl dataProIntervall2b, final DataDistributionImpl dataProIntervall2c, boolean isService) {
 			final int i=callerType.index;
 			if (i<0) {
 				assert(i>=0);
@@ -831,7 +831,7 @@ public final class RunData {
 		 * @param statusNew	Neuer Status
 		 * @param caller	Zugehöriger Kunde (wird verwendet, wenn der neue Status {@link RunData#AGENT_TECHNISCHER_LEERLAUF} oder {@link RunData#AGENT_BEDIENUNG} ist
 		 */
-		public final void logStatusChange(long time, final int statusOld, final int statusNew, final CallerRecord caller) {
+		public void logStatusChange(long time, final int statusOld, final int statusNew, final CallerRecord caller) {
 			if (statusNew==AGENT_TECHNISCHER_LEERLAUF || statusNew==AGENT_BEDIENUNG) callerType=caller.callerType;
 
 			switch (statusOld) {
@@ -919,7 +919,7 @@ public final class RunData {
 		 * Liefert den Leerlaufanteil des Agenten.
 		 * @return	Leerlaufanteil des Agenten
 		 */
-		private final double getFreeTimePart() {
+		private double getFreeTimePart() {
 			final long free=leerlaufGesamt+technischerLeerlaufGesamt;
 			if (free==0) return 0.0;
 			final long work=arbeitGesamt+postProcessingGesamt;
@@ -932,7 +932,7 @@ public final class RunData {
 		 * @param now	Aktueller Zeitpunkt
 		 * @return	Leerlaufzeit seit dem letzten Anruf.
 		 */
-		private final long getFreeTimeSinceLastCall(final long now) {
+		private long getFreeTimeSinceLastCall(final long now) {
 			if (status!=AGENT_LEERLAUF) return 0; else return now-lastStatusChange;
 		}
 	}

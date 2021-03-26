@@ -483,13 +483,13 @@ public final class OptimizeViewer extends ViewerWithLoadModelCallback {
 		}
 
 		@Override
-		protected final void loadFilterDialogSettings() {
+		protected void loadFilterDialogSettings() {
 			setHiddenIDsFromSetupString(SetupData.getSetup().optimizerTreeFilter);
 		}
 
 
 		@Override
-		protected final void saveFilterDialogSettings() {
+		protected void saveFilterDialogSettings() {
 			SetupData setup=SetupData.getSetup();
 			setup.optimizerTreeFilter=getHiddenIDsSetupString();
 			setup.saveSetupWithWarning(this);

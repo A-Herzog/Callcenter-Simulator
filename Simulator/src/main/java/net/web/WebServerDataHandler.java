@@ -34,5 +34,5 @@ public interface WebServerDataHandler {
 	 * @return	Antwort auf die Anfrage, siehe z.B. {@link WebServerTools#buildHTMLResponse(String, boolean)}
 	 * @see WebServerTools
 	 */
-	public Object[] process(WebServerThread server, String url, String remoteHost, String serverHost, Locale language);
+	Object[] process(WebServerThread server, String url, String remoteHost, String serverHost, Locale language);
 }

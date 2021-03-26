@@ -726,7 +726,7 @@ public final class Optimizer {
 	 * @param agenten	Agentengruppe
 	 * @return	Array mit Wert, Verteilung (für die Gruppe), Gesamt-Verteilung
 	 */
-	private final Object[] calcAgentsResultValues(final AgentenDaten agenten) {
+	private Object[] calcAgentsResultValues(final AgentenDaten agenten) {
 		DataDistributionImpl dist=null;
 		DataDistributionImpl distAll=null;
 		double value=0;
@@ -749,7 +749,7 @@ public final class Optimizer {
 	 * @param statistics	Statistikdaten
 	 * @return	Array mit Wert, Verteilung (für die Gruppe), Gesamt-Verteilung
 	 */
-	private final Object[] calcAgentResultValues(final Statistics statistics) {
+	private Object[] calcAgentResultValues(final Statistics statistics) {
 		DataDistributionImpl dist=null;
 		DataDistributionImpl distAll=null;
 		double value=0;
@@ -805,7 +805,7 @@ public final class Optimizer {
 	 * @param interval48	Intervallnummer (bezogen auf Halbstundenintervalle)
 	 * @param b	Veränderungen nötig?
 	 */
-	private final void setNeedsChange(final int interval48, final boolean b) {
+	private void setNeedsChange(final int interval48, final boolean b) {
 		int l=intervalNeedsChange.densityData.length;
 		if (l==24) intervalNeedsChange.densityData[interval48/2]=b?1:-1;
 		if (l==48) intervalNeedsChange.densityData[interval48]=b?1:-1;
@@ -817,7 +817,7 @@ public final class Optimizer {
 	 * @param statistics	Ergebnisse des	Optimierungslaufs
 	 * @return	Gibt <code>0</code> zurück, wenn das Optimierungsergebnis erreicht wurde. Werte &gt;0 bedeuten, dass Agenten hinzugefügt werden sollen; Werte &lt;0 bedeuten, dass Agenten entfernt werden sollen.
 	 */
-	private final int calcResultValues(final Statistics statistics) {
+	private int calcResultValues(final Statistics statistics) {
 		/* Kenngröße berechnen */
 		Object[] obj;
 		if (setup.optimizeProperty==OptimizeSetup.OptimizeProperty.OPTIMIZE_PROPERTY_WORK_LOAD) obj=calcAgentResultValues(statistics); else obj=calcClientResultValues(statistics);
@@ -985,7 +985,7 @@ public final class Optimizer {
 	 * @param statistics	Neue Statistikergebnisse
 	 * @param isFinalRun	Ist dies der letzten bzw. finale Lauf gewesen?
 	 */
-	private final void storeResults(final Statistics statistics, final boolean isFinalRun) {
+	private void storeResults(final Statistics statistics, final boolean isFinalRun) {
 		/* Neue Ergebnisse in Liste aufnehmen */
 		if (isFinalRun) {results.data.add(statistics); return;}
 		if (memorySavingLevel==1 || runNr%memorySavingLevel==1) results.data.add(statistics);
@@ -1006,7 +1006,7 @@ public final class Optimizer {
 	 * ob weitere Läufe zur Erreichung des Ziels notwendig sind.
 	 * @return	Gibt <code>0</code> zurück, wenn das Optimierungsergebnis erreicht wurde. Werte &gt;0 bedeuten, dass Agenten hinzugefügt werden sollen; Werte &lt;0 bedeuten, dass Agenten entfernt werden sollen.
 	 */
-	public final int simulationDone() {
+	public int simulationDone() {
 		/* Ergebnisse aus Simulator auslesen */
 		String errorMessage=simulator.finalizeRun();
 		/* Vom Server gesandte Meldungen ausgeben */
@@ -1042,7 +1042,7 @@ public final class Optimizer {
 	 * Liefert das aktuelle Setup für den Optimierer zurück.
 	 * @return	Aktuelle Optimierer-Setup.
 	 */
-	public final OptimizeSetup getOptimizeSetup() {
+	public OptimizeSetup getOptimizeSetup() {
 		return setup;
 	}
 
@@ -1050,7 +1050,7 @@ public final class Optimizer {
 	 * Liefert die Nummer des aktuellen Simulationslaufes
 	 * @return	1-basierende Nummer des aktuellen Simulationslaufes
 	 */
-	public final int getCurrentRunNr() {
+	public int getCurrentRunNr() {
 		return runNr;
 	}
 
@@ -1058,7 +1058,7 @@ public final class Optimizer {
 	 * Gibt zurück, ob die Optimierung (erfolglos) abgebrochen wurde.
 	 * @return	true, wenn die Optimierung abgebrochen wurde.
 	 */
-	public final boolean isCanceled() {
+	public boolean isCanceled() {
 		return canceled;
 	}
 
@@ -1066,7 +1066,7 @@ public final class Optimizer {
 	 * Liefert das für den aktuellen Simulationslauf zuständige <code>ComplexCallcenterSimulator</code>-Objekt
 	 * @return	Aktuelles Simulator-Objekt
 	 */
-	public final CallcenterSimulatorInterface getSimulator() {
+	public CallcenterSimulatorInterface getSimulator() {
 		return simulator;
 	}
 
@@ -1075,7 +1075,7 @@ public final class Optimizer {
 	 * Es werden dabei nur die Agenten betrachtet, die laut Optimierungs-Setup angepasst werden sollen.
 	 * @return	Array aus drei Einträgen: Erste Eintrag Original-Agentenzahlen, zweiter Eintrag angepasste Agentenzahlen, dritter Eintrag angepasste Agentenzahlen vom letzten Lauf
 	 */
-	public final DataDistributionImpl[] getAgentsCounts() {
+	public DataDistributionImpl[] getAgentsCounts() {
 		DataDistributionImpl[] data=new DataDistributionImpl[3];
 		data[0]=agents;
 		data[1]=agentsChanged;
@@ -1087,7 +1087,7 @@ public final class Optimizer {
 	 * Liefert die Werte der Kenngröße vom aktuellen und vom letzten Lauf zurück (48 Werte).
 	 * @return	Array aus zwei Einträgen: Erste Eintrag alte Werte, zweiter Eintrag aktuelle Werte
 	 */
-	public final DataDistributionImpl[] getOptimizeValue() {
+	public DataDistributionImpl[] getOptimizeValue() {
 		DataDistributionImpl[] data=new DataDistributionImpl[2];
 		data[0]=resultLast;
 		data[1]=resultCurrent;
@@ -1098,7 +1098,7 @@ public final class Optimizer {
 	 * Liefert die Ergebnisse der Optimierung
 	 * @return	Objekt vom Typ <code>OptimizeData</code>
 	 */
-	public final OptimizeData getResults() {
+	public OptimizeData getResults() {
 		return (results.data.size()>0)?results:null;
 	}
 }

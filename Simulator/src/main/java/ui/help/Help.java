@@ -98,7 +98,7 @@ public class Help extends HelpBase {
 		 * Wird aufgerufen, wenn ein Link zu einem besonderen, internen Ziel angeklickt wurde
 		 * @param href	Linkziel des angeklickten Links
 		 */
-		public void specialLinkClicked(final String href);
+		void specialLinkClicked(final String href);
 	}
 
 	@Override

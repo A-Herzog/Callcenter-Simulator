@@ -340,7 +340,7 @@ public final class SimServerPanel extends JWorkPanel {
 	 * @see SimServerPanel#folderSaaSStatistic
 	 * @see SimServerPanel#folderSaaSStatisticButton
 	 */
-	private final String selectFolder() {
+	private String selectFolder() {
 		final JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
 		fc.setDialogTitle(Language.tr("Server.StatisticFolder.Button"));
@@ -357,7 +357,7 @@ public final class SimServerPanel extends JWorkPanel {
 	 * @see SimServerPanel#fileSaaSApplet
 	 * @see SimServerPanel#fileSaaSAppletButton
 	 */
-	private final String selectFile() {
+	private String selectFile() {
 		final JFileChooser fc=new JFileChooser();
 		CommonVariables.initialDirectoryToJFileChooser(fc);
 		fc.setDialogTitle(Language.tr("Server.OfferApplet.Button"));

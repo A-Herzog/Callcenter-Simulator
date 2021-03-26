@@ -896,7 +896,7 @@ public final class CallcenterModelCaller implements Cloneable {
 	 * Erstellt unterhalb des übergebenen XML-Knotens einen neuen Knoten, der die gesamten Kundentyp-Daten enthält.
 	 * @param parent	Eltern-XML-Knoten
 	 */
-	public final void saveToXML(Element parent) {
+	public void saveToXML(Element parent) {
 		Document doc=parent.getOwnerDocument();
 		Element node=doc.createElement(Language.trPrimary("XML.Model.ClientType")); parent.appendChild(node);
 		if (!active) node.setAttribute(Language.trPrimary("XML.Model.GeneralAttributes.Active"),Language.trPrimary("XML.General.BoolFalse"));

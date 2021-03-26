@@ -520,7 +520,7 @@ public final class OptimizeEditPanel extends JTabbedPane {
 	 * Abfrage der Optimierer-Konfiguration
 	 * @return	Liefert im Erfolgsfall ein Objekt vom Typ <code>OptimizeSetup</code>; andernfalls liefert die Funktion <code>null</code>
 	 */
-	public final OptimizeSetup getOptimizeSetup() {
+	public OptimizeSetup getOptimizeSetup() {
 		OptimizeSetup setup=new OptimizeSetup();
 
 		switch (optProperty.getSelectedIndex()) {
@@ -706,7 +706,7 @@ public final class OptimizeEditPanel extends JTabbedPane {
 	 * Zeigt einen Dateiauswahldialog an und lädt dann die gewählte Optimierereinstellungendatei.
 	 * @return	Wurde der Auswahldialog abgebrochen oder ist das Laden fehlgeschlagen, so wird <code>false</code> geliefert, sonst <code>true</code>
 	 */
-	public final boolean loadOptimizeSetup() {
+	public boolean loadOptimizeSetup() {
 		final File file=XMLTools.showLoadDialog(getParent(),Language.tr("Optimizer.LoadSetup.Title"));
 		if (file==null) return false;
 		return loadOptimizeSetup(file);
@@ -717,7 +717,7 @@ public final class OptimizeEditPanel extends JTabbedPane {
 	 * @param file	Zu ladende Datei
 	 * @return	Gibt an, ob das Laden erfolgreich war.
 	 */
-	public final boolean loadOptimizeSetup(File file) {
+	public boolean loadOptimizeSetup(File file) {
 		final OptimizeSetup setup=new OptimizeSetup();
 		String s=setup.loadFromFile(file);
 		if (s!=null) {
@@ -733,7 +733,7 @@ public final class OptimizeEditPanel extends JTabbedPane {
 	 * Zeigt einen Dateiauswahldialog an und speichert dann die aktuellen Optimierereinstellungen in der gewählten Datei.
 	 * @return	Wurde der Auswahldialog abgebrochen oder ist das Speichern fehlgeschlagen, so wird <code>false</code> geliefert, sonst <code>true</code>
 	 */
-	public final boolean saveOptimizeSetup() {
+	public boolean saveOptimizeSetup() {
 		final OptimizeSetup setup=getOptimizeSetup();
 		if (setup==null) return false;
 
@@ -794,7 +794,7 @@ public final class OptimizeEditPanel extends JTabbedPane {
 	 * @see #day0statisticsField
 	 * @see #day0statisticsButton
 	 */
-	private final void selectDay0Statistics() {
+	private void selectDay0Statistics() {
 		File file=XMLTools.showLoadDialog(this,Language.tr("Optimizer.LoadStatistic"));
 		if (file==null) return;
 

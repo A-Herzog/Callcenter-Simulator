@@ -493,7 +493,7 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 	 * @param file	Datei aus der dasverbundenen Modells geladen werden soll
 	 * @return	Gibt an, ob das Laden erfolgreich war
 	 */
-	public final String loadFromFile(final File file) {
+	public String loadFromFile(final File file) {
 		String s=model.loadFromFile(file);
 		if (s==null) {
 			modelSaved=model.clone();
@@ -506,7 +506,7 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 	 * Fragt nach einer zu ladenden Datei und lädt dann das verbundene Modell aus der angegegebenen Datei.
 	 * @return	Wurde der Auswahldialog abgebrochen oder ist das Laden fehlgeschlagen, so wird <code>false</code> geliefert, sonst <code>true</code>.
 	 */
-	public final boolean loadFromFile() {
+	public boolean loadFromFile() {
 		if (!discardOk()) return false;
 
 		File file=XMLTools.showLoadDialog(owner,Language.tr("Connected.LoadConnectedModel"),new File(model.defaultFolder));
