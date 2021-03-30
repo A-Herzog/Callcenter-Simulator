@@ -43,6 +43,7 @@
             <arg value="Launcher.nsi" />
         </exec>
         <move file="${BuildTools.location}/CallcenterSimulator.exe" tofile="${Release.location}/CallcenterSimulator.exe" />
+		<copy file="${BuildTools.location}/CallcenterSimulator.sh" tofile="${Release.location}/CallcenterSimulator.sh" />
 
         <echo message="Generate installer" />
         <exec executable="${NSIS.location}\makensis.exe" dir="${BuildTools.location}">
@@ -58,11 +59,12 @@
     	                
         <echo message="Generate zip package" />
         <zip destfile="${Release.location}/CallcenterSimulator.zip">
-            <zipfileset dir="${Release.location}" includes="CallcenterSimulator.jar,CallcenterSimulator.exe,docs/**,libs/**"/>
+            <zipfileset dir="${Release.location}" includes="CallcenterSimulator.jar,CallcenterSimulator.exe,CallcenterSimulator.sh,docs/**,libs/**"/>
         </zip>
 
         <echo message="Clean up" />
         <delete file="${Release.location}/CallcenterSimulator.exe" />
+    	    <delete file="${Release.location}/CallcenterSimulator.sh" />
         <delete file="${Release.location}/CallcenterSimulator.jar" />
         <delete dir="${Release.location}/docs" />
         <delete dir="${Release.location}/libs" />

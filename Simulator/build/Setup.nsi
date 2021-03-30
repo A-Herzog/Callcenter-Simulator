@@ -184,6 +184,7 @@ Section "Install" Inst
   
   File "..\..\Release\CallcenterSimulator.jar"
   File "..\..\Release\CallcenterSimulator.exe"
+  File "..\..\Release\CallcenterSimulator.sh"
   WriteUninstaller "Uninstall.exe"
   
   SetOutPath "$INSTDIR\docs"
@@ -225,6 +226,7 @@ Section "un.Uninstall" uninst
   RmDir /r $INSTDIR\jre
   RmDir /r $INSTDIR\jdk
 
+  Delete "$INSTDIR\CallcenterSimulator.sh"
   Delete "$INSTDIR\CallcenterSimulator.exe"
   Delete "$INSTDIR\CallcenterSimulator.old"
   Delete "$INSTDIR\CallcenterSimulator.new"
