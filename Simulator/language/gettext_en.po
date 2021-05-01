@@ -9359,7 +9359,7 @@ msgid "Statistic.Viewer.Report"
 msgstr "Generate report"
 
 msgid "Statistic.Viewer.Report.HTMLApp.Info"
-msgstr "Please select the category to be displayed from the tree structure on the left."
+msgstr "Please select the category to be displayed from the tree structure."
 
 msgid "Statistic.Viewer.Report.HTMLApp.JSError"
 msgstr "Javascript is needed for displaying this interactive statistics."

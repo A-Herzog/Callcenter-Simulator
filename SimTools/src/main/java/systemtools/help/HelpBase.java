@@ -16,14 +16,18 @@
 package systemtools.help;
 
 import java.awt.Container;
+import java.awt.Frame;
 import java.awt.Window;
 import java.io.Serializable;
 import java.net.URL;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+
 /**
  * Basisklasse für die html-basierte Online-Hilfe
  * @author Alexander Herzog
- * @version 1.2
+ * @version 1.3
  */
 public abstract class HelpBase {
 	/** Titel des Hilfefensters */
@@ -87,7 +91,7 @@ public abstract class HelpBase {
 	/**
 	 * Übergeordnetes Element
 	 */
-	private final Container parent;
+	protected final Container parent;
 
 	/** Modaler Hilfe-Dialog */
 	private HTMLDialog helpDialog;
@@ -179,6 +183,7 @@ public abstract class HelpBase {
 				return HelpBase.this.getHTMLBrowser();
 			}
 		};
+		setupDialog(helpDialog);
 		helpDialog.setVisible(true);
 	}
 
@@ -205,14 +210,30 @@ public abstract class HelpBase {
 					return HelpBase.this.getHTMLBrowser();
 				}
 			};
+			setupWindow(helpFrame);
 			newWindow=true;
 		}
 
 		helpFrame.showPage(topic);
 		if (!newWindow) {
+			if ((helpFrame.getExtendedState() & Frame.ICONIFIED)!=0) helpFrame.setState(Frame.NORMAL);
 			helpFrame.toFront();
 			helpFrame.repaint();
 		}
+	}
+
+	/**
+	 * Ermöglicht es, den Hilfe-Dialog zu konfigurieren, bevor er angezeigt wird.
+	 * @param dialog	Neuer Hilfe-Dialog
+	 */
+	protected void setupDialog(final JDialog dialog) {
+	}
+
+	/**
+	 * Ermöglicht es, das Hilfe-Fenster zu konfigurieren, bevor es angezeigt wird.
+	 * @param frame	Neues Hilfe-Fenster
+	 */
+	protected void setupWindow(final JFrame frame) {
 	}
 
 	/**
