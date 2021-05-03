@@ -25,11 +25,13 @@ import language.Language;
 import language.LanguageStaticLoader;
 import language.Messages_Java11;
 import mathtools.Table;
+import systemtools.BaseDialog;
 import systemtools.GUITools;
 import systemtools.MsgBox;
 import systemtools.MsgBoxBackendTaskDialog;
 import systemtools.statistics.PDFWriter;
 import tools.SetupData;
+import ui.FlatLaFHelper;
 import ui.MainFrame;
 import ui.UpdateSystem;
 import ui.VersionConst;
@@ -127,8 +129,13 @@ public final class Main {
 		@Override
 		public void run() {
 			SetupData setup=SetupData.getSetup();
+			FlatLaFHelper.init();
+			FlatLaFHelper.setCombinedMenuBar(setup.lookAndFeelCombinedMenu);
 			GUITools.setupUI(setup.lookAndFeel);
-			GUITools.setupFontSize(setup.scaleGUI);
+			FlatLaFHelper.setup();
+			final double scaling=setup.scaleGUI;
+			GUITools.setupFontSize(scaling);
+			BaseDialog.windowScaling=scaling;
 			MsgBox.setBackend(new MsgBoxBackendTaskDialog());
 			new MainFrame(VersionConst.version,loadFile);
 			new SpeedUpJFreeChart();

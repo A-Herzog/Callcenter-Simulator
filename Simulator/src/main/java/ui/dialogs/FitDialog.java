@@ -56,6 +56,7 @@ import mathtools.distribution.tools.FileDropperData;
 import systemtools.MsgBox;
 import tools.SelectableTreeSystem;
 import tools.SelectableTreeSystem.SelectableTreeNode;
+import ui.FlatLaFHelper;
 import ui.HelpLink;
 import ui.editor.BaseEditDialog;
 import ui.images.Images;
@@ -72,7 +73,7 @@ public class FitDialog extends BaseEditDialog {
 	 * Serialisierungs-ID der Klasse
 	 * @see Serializable
 	 */
-	private static final long serialVersionUID = 8263152374892311273L;
+	private static final long serialVersionUID=8263152374892311273L;
 
 	/**
 	 * HTML-Kopf für die Ausgabe in {@link #inputValues} und {@link #outputText}
@@ -80,21 +81,42 @@ public class FitDialog extends BaseEditDialog {
 	 * @see #outputText
 	 * @see #htmlFoot
 	 */
-	private static final String htmlHead=
-			"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n"+
-					"<html>\n"+
-					"<head>\n"+
-					"  <style type=\"text/css\">\n"+
-					"  body {font-family: Verdana, Lucida, sans-serif; background-color: #FFFFF3; margin: 2px;}\n"+
-					"  ul.big li {margin-bottom: 5px;}\n"+
-					"  ol.big li {margin-bottom: 5px;}\n"+
-					"  a {text-decoration: none;}\n"+
-					"  a.box {margin-top: 10px; margin-botton: 10px; border: 1px solid black; background-color: #DDDDDD; padding: 5px;}\n"+
-					"  h2 {margin-bottom: 0px;}\n"+
-					"  p.red {color: red;}\n"+
-					"  </style>\n"+
-					"</head>\n"+
-					"<body>\n";
+	private static final String htmlHead="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n"+
+			"<html>\n"+
+			"<head>\n"+
+			"  <style type=\"text/css\">\n"+
+			"  body {font-family: Verdana, Lucida, sans-serif; background-color: #FFFFF3; margin: 2px;}\n"+
+			"  ul.big li {margin-bottom: 5px;}\n"+
+			"  ol.big li {margin-bottom: 5px;}\n"+
+			"  a {text-decoration: none;}\n"+
+			"  a.box {margin-top: 10px; margin-botton: 10px; border: 1px solid black; background-color: #DDDDDD; padding: 5px;}\n"+
+			"  h2 {margin-bottom: 0px;}\n"+
+			"  p.red {color: red;}\n"+
+			"  </style>\n"+
+			"</head>\n"+
+			"<body>\n";
+
+	/**
+	 * HTML-Kopf für die Ausgabe in {@link #inputValues} und {@link #outputText} (im dunklen Modus)
+	 * @see #inputValues
+	 * @see #outputText
+	 * @see #htmlHead
+	 * @see #htmlFoot
+	 */
+	private static final String htmlHeadDark="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n"+
+			"<html>\n"+
+			"<head>\n"+
+			"  <style type=\"text/css\">\n"+
+			"  body {font-family: Verdana, Lucida, sans-serif; background-color: #404040; margin: 2px; color: silver;}\n"+
+			"  ul.big li {margin-bottom: 5px;}\n"+
+			"  ol.big li {margin-bottom: 5px;}\n"+
+			"  a {text-decoration: none;}\n"+
+			"  a.box {margin-top: 10px; margin-botton: 10px; border: 1px solid black; background-color: #DDDDDD; padding: 5px;}\n"+
+			"  h2 {margin-bottom: 0px;}\n"+
+			"  p.red {color: red;}\n"+
+			"  </style>\n"+
+			"</head>\n"+
+			"<body>\n";
 
 	/**
 	 * HTML-Fußbereich für die Ausgabe in {@link #inputValues} und {@link #outputText}
@@ -144,9 +166,9 @@ public class FitDialog extends BaseEditDialog {
 
 	/**
 	 * Konstruktor der Klasse
-	 * @param owner	Übergeordnetes Fenster
-	 * @param model	Callcenter-Modell in das ggf. Verteilungen eingetragen werden
-	 * @param helpLink	Hilfe-Link
+	 * @param owner Übergeordnetes Fenster
+	 * @param model Callcenter-Modell in das ggf. Verteilungen eingetragen werden
+	 * @param helpLink Hilfe-Link
 	 */
 	public FitDialog(final Window owner, final CallcenterModel model, final HelpLink helpLink) {
 		super(owner,Language.tr("FitDialog.Title"),null,false,helpLink.dialogFitDistribution);
@@ -159,7 +181,7 @@ public class FitDialog extends BaseEditDialog {
 
 	@Override
 	protected void createTabs(JTabbedPane tabs) {
-		JPanel p,p2,p3;
+		JPanel p, p2, p3;
 		JToolBar toolbar;
 		JButton b;
 		JScrollPane sp;
@@ -183,7 +205,7 @@ public class FitDialog extends BaseEditDialog {
 		sp.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		inputValues.setEditable(false);
 		inputValues.setContentType("text/html");
-		inputValues.setText(htmlHead+Language.tr("FitDialog.PasteOrLoadValues")+htmlFoot);
+		inputValues.setText((FlatLaFHelper.isDark()?htmlHeadDark:htmlHead)+Language.tr("FitDialog.PasteOrLoadValues")+htmlFoot);
 
 		/* Dialogseite "Empirische Verteilung" */
 		tabs.addTab(Language.tr("FitDialog.Tab.EmpiricalDistribution"),p=new JPanel(new BorderLayout()));
@@ -205,7 +227,7 @@ public class FitDialog extends BaseEditDialog {
 		sp.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		outputText.setEditable(false);
 		outputText.setContentType("text/html");
-		outputText.setText(htmlHead+htmlFoot);
+		outputText.setText((FlatLaFHelper.isDark()?htmlHeadDark:htmlHead)+htmlFoot);
 
 		/* Dialogseite "Angepasste Verteilung" */
 		tabs.addTab(Language.tr("FitDalog.Tab.FittedDistribution"),p=new JPanel(new BorderLayout()));
@@ -244,9 +266,14 @@ public class FitDialog extends BaseEditDialog {
 		tabs.setIconAt(4,Images.MODEL.getIcon());
 	}
 
+	@Override
+	protected boolean checkData() {
+		return true;
+	}
 
-	@Override protected boolean checkData() {return true;}
-	@Override protected void storeData() {}
+	@Override
+	protected void storeData() {
+	}
 
 	/**
 	 * Baut die Baumstruktur {@link #tree} auf, um eine Auswahl, wie die
@@ -290,7 +317,7 @@ public class FitDialog extends BaseEditDialog {
 
 		/**
 		 * Konstruktor der Klasse
-		 * @param buttonNr	Index der Schaltfläche
+		 * @param buttonNr Index der Schaltfläche
 		 */
 		public ButtonListener(final int buttonNr) {
 			this.buttonNr=buttonNr;
@@ -298,8 +325,8 @@ public class FitDialog extends BaseEditDialog {
 
 		/**
 		 * Lädt die Werte aus einem Array
-		 * @param newValues	Zu ladende Werte
-		 * @return	Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
+		 * @param newValues Zu ladende Werte
+		 * @return Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
 		 */
 		private boolean loadValuesFromArray(double newValues[][]) {
 			if (newValues==null || newValues.length==0 || newValues[0]==null || newValues[0].length==0) return false;
@@ -311,7 +338,8 @@ public class FitDialog extends BaseEditDialog {
 			sb.append("<h2>"+Language.tr("FitDalog.Loaded.List")+"</h2>");
 			sb.append("<p>");
 			for (int i=0;i<newValues[0].length;i++) {
-				if (newValues.length==1) sb.append(NumberTools.formatNumber(newValues[0][i],2)+"<br>"); else sb.append(NumberTools.formatNumber(newValues[0][i],0)+": "+NumberTools.formatNumber(newValues[1][i],2)+"<br>");
+				if (newValues.length==1) sb.append(NumberTools.formatNumber(newValues[0][i],2)+"<br>");
+				else sb.append(NumberTools.formatNumber(newValues[0][i],0)+": "+NumberTools.formatNumber(newValues[1][i],2)+"<br>");
 			}
 			sb.append("</p>");
 
@@ -322,7 +350,7 @@ public class FitDialog extends BaseEditDialog {
 			inputValuesMax=((DataDistributionImpl)obj[0]).densityData.length;
 			hasFloat=(Boolean)obj[1];
 
-			inputValues.setText(htmlHead+sb.toString()+htmlFoot);
+			inputValues.setText((FlatLaFHelper.isDark()?htmlHeadDark:htmlHead)+sb.toString()+htmlFoot);
 			inputValues.setSelectionStart(0);
 			inputValues.setSelectionEnd(0);
 
@@ -331,13 +359,17 @@ public class FitDialog extends BaseEditDialog {
 
 		/**
 		 * Lädt die Werte aus der Zwischenablage.
-		 * @return	Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
+		 * @return Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
 		 */
 		private boolean loadValuesFromClipboard() {
 			Transferable cont=getToolkit().getSystemClipboard().getContents(this);
 			if (cont==null) return false;
 			String s=null;
-			try {s=(String)cont.getTransferData(DataFlavor.stringFlavor);} catch (Exception ex) {return false;}
+			try {
+				s=(String)cont.getTransferData(DataFlavor.stringFlavor);
+			} catch (Exception ex) {
+				return false;
+			}
 			if (s==null) return false;
 
 			return loadValuesFromArray(JDataLoader.loadNumbersTwoRowsFromString(FitDialog.this,s,1,Integer.MAX_VALUE));
@@ -345,7 +377,7 @@ public class FitDialog extends BaseEditDialog {
 
 		/**
 		 * Lädt die Werte aus einer Datei.
-		 * @return	Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
+		 * @return Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
 		 */
 		private boolean loadValuesFromFile() {
 			return loadValuesFromArray(JDataLoader.loadNumbersTwoRows(FitDialog.this,Language.tr("FitDialog.LoadValues"),1,Integer.MAX_VALUE));
@@ -361,12 +393,12 @@ public class FitDialog extends BaseEditDialog {
 			outputReportHTML=fitter.getResult(true);
 			String info="";
 			if (hasFloat) info="<h2>"+Language.tr("Dialog.Title.Information")+"</h2><p>"+Language.tr("FitDialog.InfoValuesRounded")+"</p>";
-			outputText.setText(htmlHead+"<h2>"+Language.tr("FitDalog.FittedDistribution")+"</h2>"+outputReportHTML+info+htmlFoot);
+			outputText.setText((FlatLaFHelper.isDark()?htmlHeadDark:htmlHead)+"<h2>"+Language.tr("FitDalog.FittedDistribution")+"</h2>"+outputReportHTML+info+htmlFoot);
 			outputDistribution.setDistribution(fitter.getFitDistribution());
 			outputDistribution.setMaxXValue(inputValuesMax);
 			ouputSelectInsert.setEnabled(true);
 			List<String> list=fitter.getResultList();
-			for (int i=0;i<list.size();i++)	ouputSelectInsert.addItem(list.get(i));
+			for (int i=0;i<list.size();i++) ouputSelectInsert.addItem(list.get(i));
 			outputSelectDist=fitter.getResultListDist();
 			ouputSelectButton.setEnabled(true);
 		}
@@ -380,8 +412,8 @@ public class FitDialog extends BaseEditDialog {
 
 		/**
 		 * Lädt die Werte per Drag&amp;drop aus einer Datei.
-		 * @param dropper	Drag&amp;drop-Objekt
-		 * @return	Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
+		 * @param dropper Drag&amp;drop-Objekt
+		 * @return Liefert <code>true</code>, wenn die Daten verarbeitet werden konnten.
 		 */
 		private boolean fileDrop(FileDropperData dropper) {
 			final boolean ok=loadValuesFromArray(JDataLoader.loadNumbersTwoRowsFromFile(FitDialog.this,dropper.getFile(),1,Integer.MAX_VALUE));
@@ -391,8 +423,8 @@ public class FitDialog extends BaseEditDialog {
 
 		/**
 		 * Verteilung in Modell übernehmen.
-		 * @param id	Stelle an der die Verteilung verwendet werden soll
-		 * @param dist	Zu verwendende Verteilung
+		 * @param id Stelle an der die Verteilung verwendet werden soll
+		 * @param dist Zu verwendende Verteilung
 		 * @see #insertInfoModel()
 		 */
 		private void insertInfoProperty(int id, AbstractRealDistribution dist) {
@@ -400,10 +432,20 @@ public class FitDialog extends BaseEditDialog {
 				/* Kundentyp */
 				CallcenterModelCaller caller=model.caller.get(id/10);
 				switch (id%10) {
-				case 0: caller.waitingTimeDist=DistributionTools.cloneDistribution(dist); caller.waitingTimeMode=CallcenterModelCaller.WAITING_TIME_MODE_SHORT; break;
-				case 1: caller.waitingTimeDistLong=DistributionTools.cloneDistribution(dist); caller.waitingTimeMode=CallcenterModelCaller.WAITING_TIME_MODE_LONG; break;
-				case 2: caller.retryTimeDist=DistributionTools.cloneDistribution(dist); break;
-				case 3: caller.recallTimeDist=DistributionTools.cloneDistribution(dist); break;
+				case 0:
+					caller.waitingTimeDist=DistributionTools.cloneDistribution(dist);
+					caller.waitingTimeMode=CallcenterModelCaller.WAITING_TIME_MODE_SHORT;
+					break;
+				case 1:
+					caller.waitingTimeDistLong=DistributionTools.cloneDistribution(dist);
+					caller.waitingTimeMode=CallcenterModelCaller.WAITING_TIME_MODE_LONG;
+					break;
+				case 2:
+					caller.retryTimeDist=DistributionTools.cloneDistribution(dist);
+					break;
+				case 3:
+					caller.recallTimeDist=DistributionTools.cloneDistribution(dist);
+					break;
 				}
 			} else {
 				/* Skill-Level */
@@ -436,7 +478,7 @@ public class FitDialog extends BaseEditDialog {
 			if (count==0) {
 				MsgBox.error(FitDialog.this,Language.tr("FitDalog.UseDistribution.NoTargetErrorTitle"),Language.tr("FitDalog.UseDistribution.NoTargetErrorInfo"));
 			} else {
-				MsgBox.info(FitDialog.this,Language.tr("FitDalog.UseDistribution.Title"), (count==1)?Language.tr("FitDalog.UseDistribution.InfoSingle"):String.format(Language.tr("FitDalog.UseDistribution.InfoMultiple"),count));
+				MsgBox.info(FitDialog.this,Language.tr("FitDalog.UseDistribution.Title"),(count==1)?Language.tr("FitDalog.UseDistribution.InfoSingle"):String.format(Language.tr("FitDalog.UseDistribution.InfoMultiple"),count));
 			}
 		}
 
@@ -444,14 +486,29 @@ public class FitDialog extends BaseEditDialog {
 		public void actionPerformed(ActionEvent e) {
 			switch (buttonNr) {
 			case 0:
-				if (loadValuesFromClipboard()) {tabs.setSelectedIndex(2); calcFit();} else MsgBox.error(FitDialog.this,Language.tr("FitDalog.InvalidDataTitle"),Language.tr("FitDalog.InvalidDataClipboard"));
+				if (loadValuesFromClipboard()) {
+					tabs.setSelectedIndex(2);
+					calcFit();
+				} else MsgBox.error(FitDialog.this,Language.tr("FitDalog.InvalidDataTitle"),Language.tr("FitDalog.InvalidDataClipboard"));
 				break;
 			case 1:
-				if (loadValuesFromFile()) {tabs.setSelectedIndex(2); calcFit();} else MsgBox.error(FitDialog.this,Language.tr("FitDalog.InvalidDataTitle"),Language.tr("FitDalog.InvalidDataFile"));
+				if (loadValuesFromFile()) {
+					tabs.setSelectedIndex(2);
+					calcFit();
+				} else MsgBox.error(FitDialog.this,Language.tr("FitDalog.InvalidDataTitle"),Language.tr("FitDalog.InvalidDataFile"));
 				break;
-			case 2: copyResults(); break;
-			case 3: if (fileDrop((FileDropperData)(e.getSource()))) {tabs.setSelectedIndex(2); calcFit();} break;
-			case 4: insertInfoModel(); break;
+			case 2:
+				copyResults();
+				break;
+			case 3:
+				if (fileDrop((FileDropperData)(e.getSource()))) {
+					tabs.setSelectedIndex(2);
+					calcFit();
+				}
+				break;
+			case 4:
+				insertInfoModel();
+				break;
 			}
 		}
 	}

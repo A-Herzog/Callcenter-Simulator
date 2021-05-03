@@ -87,6 +87,8 @@ public class SetupDialog extends BaseEditDialog {
 	private JComboBox<String> fontSizes;
 	/** Auswahlfeld "Thema" */
 	private JComboBox<String> lookAndFeel;
+	/** Menü in Titelzeile kombinieren? (Für Flat-Look&amp;Feels unter Windows) */
+	private JCheckBox lookAndFeelCombinedMenu;
 	/** Auswahlfeld "Fenstergröße beim Programmstart" */
 	private JComboBox<String> programStartWindow;
 	/** Auswahlfeld "Modell beim Programmstart laden" */
@@ -239,7 +241,9 @@ public class SetupDialog extends BaseEditDialog {
 		lookAndFeels.add(Language.tr("SettingsDialog.Theme.System"));
 		lookAndFeels.addAll(Arrays.asList(GUITools.listLookAndFeels()));
 		p.add(lookAndFeel=new JComboBox<String>(lookAndFeels.toArray(new String[0])));
-		label.setLabelFor(programStartWindow);
+		label.setLabelFor(lookAndFeel);
+		p.add(lookAndFeelCombinedMenu=new JCheckBox(Language.tr("SettingsDialog.LookAndFeel.MenuInWindowTitle")));
+		lookAndFeelCombinedMenu.setToolTipText(Language.tr("SettingsDialog.LookAndFeel.MenuInWindowTitle.Tooltip"));
 
 		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(new JLabel("<html>("+Language.tr("SettingsDialog.FontSizes.Info")+")</html>"));
@@ -495,6 +499,7 @@ public class SetupDialog extends BaseEditDialog {
 			lookAndFeel.setSelectedIndex(i+1);
 			break;
 		}
+		lookAndFeelCombinedMenu.setSelected(setup.lookAndFeelCombinedMenu);
 
 		if (setup.language==null || setup.language.isEmpty() || setup.language.equalsIgnoreCase("de")) languages.setSelectedIndex(1); else languages.setSelectedIndex(0);
 
@@ -609,6 +614,7 @@ public class SetupDialog extends BaseEditDialog {
 		case 4: setup.scaleGUI=1.5; break;
 		}
 		if (lookAndFeel.getSelectedIndex()==0) setup.lookAndFeel=""; else setup.lookAndFeel=(String)lookAndFeel.getSelectedItem();
+		setup.lookAndFeelCombinedMenu=lookAndFeelCombinedMenu.isSelected();
 		setup.language=(languages.getSelectedIndex()==1)?"de":"en";
 
 		setup.strictCheck=strictCheck.isSelected();

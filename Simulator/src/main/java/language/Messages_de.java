@@ -323,7 +323,7 @@ public class Messages_de extends java.util.ResourceBundle {
     t[824] = "XML.Model.ClientType.Recall.SkillLevelDepending";
     t[825] = "WiederanrufSkillLevelSpezifisch";
     t[828] = "Statistic.Viewer.Report.HTMLApp.Info";
-    t[829] = "W\u00e4hlen Sie in der Baumstruktur links die anzuzeigende Rubrik aus.";
+    t[829] = "W\u00e4hlen Sie in der Baumstruktur die anzuzeigende Rubrik aus.";
     t[832] = "SettingsDialog.Title";
     t[833] = "Einstellungen";
     t[836] = "MainMenu.Simulation.RunAndSaveSetup";
@@ -460,6 +460,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1139] = "Alle Kategorien ausklappen";
     t[1140] = "Optimizer.Message.Finished";
     t[1141] = "Die Optimierung wurde nach %d Simulationsl\u00e4ufen erfolgreich abgeschlossen.";
+    t[1146] = "SettingsDialog.LookAndFeel.MenuInWindowTitle.Tooltip";
+    t[1147] = "Nur f\u00fcr die Flat-Themen und nur unter Windows verf\u00fcgbar";
     t[1150] = "SimStatistic.CostStructure.WorkingHour";
     t[1151] = "Kosten pro Arbeitsstunde (unabh\u00e4ngig von der Auslastung)";
     t[1160] = "Compare.TooFewModels.InfoTwo";
@@ -1240,6 +1242,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3071] = "unendlich";
     t[3086] = "Loader.Technion.Model.ModelName";
     t[3087] = "Technion-Beispieldaten-Modell";
+    t[3088] = "SettingsDialog.LookAndFeel.MenuInWindowTitle";
+    t[3089] = "Men\u00fc in Titelzeile";
     t[3090] = "JDistributionEditor.Load.Info";
     t[3091] = "L\u00e4dt die Z\u00e4hldichte aus einer Datei";
     t[3110] = "LoadCalculator.RetryTime";
@@ -2006,16 +2010,16 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4821] = "Kunden sind nur bereit, begrenzt lange zu warten";
     t[4824] = "XML.Connected.LoadStatistic.ErrorNoStatisticFile";
     t[4825] = "F\u00fcr den %d. Tag wurde keine Statistikdatei angegeben und folglich wurden f\u00fcr diesen Tag keine Statistikdaten erfasst.";
-    t[4836] = "Window.Viewer.CloseWindow";
-    t[4837] = "Fenster schlie\u00dfen";
-    t[4842] = "Connected.SelectModel.State.SameAsLastDay";
-    t[4843] = "wie Vortag";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4836] = "Window.Viewer.CloseWindow";
+    t[4837] = "Fenster schlie\u00dfen";
+    t[4842] = "Connected.SelectModel.State.SameAsLastDay";
+    t[4843] = "wie Vortag";
     t[4844] = "FitDalog.Tab.FittedDistribution";
     t[4845] = "Angepasste Verteilung";
     t[4848] = "SettingsDialog.Tabs.Statistics.OpenWord";
@@ -4012,16 +4016,16 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9577] = "Diese Funktion erm\u00f6glicht es, reale Callcenter-Beispieldaten von<br>\n<a href=\"http://ie.technion.ac.il/serveng/callcenterdata/index.html\">http://ie.technion.ac.il/serveng/callcenterdata/index.html</a><br>\nzu laden.";
     t[9580] = "CommandLine.Count.ThenN";
     t[9581] = "m\u00fcssen genau %d weitere Parameter folgen";
-    t[9588] = "Generator.LoadAgentsSurcharge";
-    t[9589] = "Krankheitsaufschlag auf Agentenanzahl laden";
-    t[9590] = "Optimizer.Message.FinishedTray.Info";
-    t[9591] = "Die Optimierung ist abgeschlossen.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9588] = "Generator.LoadAgentsSurcharge";
+    t[9589] = "Krankheitsaufschlag auf Agentenanzahl laden";
+    t[9590] = "Optimizer.Message.FinishedTray.Info";
+    t[9591] = "Die Optimierung ist abgeschlossen.";
     t[9592] = "Editor.Caller.Special.RuleForSkillLevel";
     t[9593] = "Sonderregeln f\u00fcr dieses Skill-Level aktivieren";
     t[9594] = "SettingsDialog.NetworkSimulation.ServerPart.Setup";
@@ -6018,16 +6022,16 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14587] = "Es wurden jedoch %d weitere Parameter \u00fcbergeben.";
     t[14590] = "Batch.LoadWarningNewerVersion";
     t[14591] = "  Das Modell wurde mit einer neueren Version des Callcenter Simulators erstellt.\n  M\u00f6glicherweise kann diese Version nicht alle Eigenschaften des Modells abbilden.";
-    t[14594] = "Loader.ProcessError.WhileProcessingLineInfo";
-    t[14595] = "Bei der Verarbeitung von Zeile %d.";
-    t[14598] = "XML.Model.ClientType.Forwarding.SkillLevel";
-    t[14599] = "SkillLevel";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14594] = "Loader.ProcessError.WhileProcessingLineInfo";
+    t[14595] = "Bei der Verarbeitung von Zeile %d.";
+    t[14598] = "XML.Model.ClientType.Forwarding.SkillLevel";
+    t[14599] = "SkillLevel";
     t[14606] = "Dialog.Button.Delete";
     t[14607] = "L\u00f6schen";
     t[14608] = "Calibrate.WaitingTimeToleranceCV";

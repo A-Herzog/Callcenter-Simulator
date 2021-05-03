@@ -20,6 +20,13 @@ This file lists the third-party components used by "Simulator" project and their
 - License URL: https://opensource.org/licenses/BSD-2-Clause
 - Homepage: https://github.com/atlassian/commonmark-java
 
+### Flat Look and Feel
+
+- Repository: https://mvnrepository.com/artifact/com.formdev/flatlaf
+- License: Apache 2.0
+- License URL: https://opensource.org/licenses/Apache-2.0
+- Homepage: https://github.com/JFormDesigner/FlatLaf
+
 ### Gettext Commons
 
 - Repository: https://mvnrepository.com/artifact/com.googlecode.gettext-commons/gettext-commons

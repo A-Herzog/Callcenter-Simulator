@@ -48,7 +48,7 @@ public class CommandReport extends AbstractReportCommand {
 		Statistics statistic=new Statistics(null,null,0,0);
 		String s=statistic.loadFromFile(input); if (s!=null) return s;
 
-		StatisticPanel panel=new StatisticPanel(false,new HelpLink(null,null),null,null,null,1);
+		StatisticPanel panel=new StatisticPanel(false,new HelpLink(null,null,null),null,null,null,1);
 
 		s=panel.loadStatistic(statistic); if (s!=null) return s;
 

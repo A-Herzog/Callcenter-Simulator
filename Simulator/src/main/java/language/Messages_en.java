@@ -323,7 +323,7 @@ public class Messages_en extends java.util.ResourceBundle {
     t[824] = "XML.Model.ClientType.Recall.SkillLevelDepending";
     t[825] = "RecallSkillLevelDepending";
     t[828] = "Statistic.Viewer.Report.HTMLApp.Info";
-    t[829] = "Please select the category to be displayed from the tree structure on the left.";
+    t[829] = "Please select the category to be displayed from the tree structure.";
     t[832] = "SettingsDialog.Title";
     t[833] = "Settings";
     t[836] = "MainMenu.Simulation.RunAndSaveSetup";
@@ -460,6 +460,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[1139] = "Open all categories";
     t[1140] = "Optimizer.Message.Finished";
     t[1141] = "Optimization was finished after %d simulation runs.";
+    t[1146] = "SettingsDialog.LookAndFeel.MenuInWindowTitle.Tooltip";
+    t[1147] = "Only available when using a flat theme and using Windows";
     t[1150] = "SimStatistic.CostStructure.WorkingHour";
     t[1151] = "Cost per hour of work (regardless of the work load)";
     t[1160] = "Compare.TooFewModels.InfoTwo";
@@ -1240,6 +1242,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[3071] = "infinite";
     t[3086] = "Loader.Technion.Model.ModelName";
     t[3087] = "Technion example data model";
+    t[3088] = "SettingsDialog.LookAndFeel.MenuInWindowTitle";
+    t[3089] = "Menu in window title";
     t[3090] = "JDistributionEditor.Load.Info";
     t[3091] = "Loads the probability distribution vector from a file";
     t[3110] = "LoadCalculator.RetryTime";
@@ -2006,16 +2010,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4821] = "Clients are only willing to wait for a limited time span";
     t[4824] = "XML.Connected.LoadStatistic.ErrorNoStatisticFile";
     t[4825] = "For day %d no statistic file was specified. Therefore no statistic data has be recorded for this day.";
-    t[4836] = "Window.Viewer.CloseWindow";
-    t[4837] = "Close window";
-    t[4842] = "Connected.SelectModel.State.SameAsLastDay";
-    t[4843] = "same as last day";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4836] = "Window.Viewer.CloseWindow";
+    t[4837] = "Close window";
+    t[4842] = "Connected.SelectModel.State.SameAsLastDay";
+    t[4843] = "same as last day";
     t[4844] = "FitDalog.Tab.FittedDistribution";
     t[4845] = "Fitted distribution";
     t[4848] = "SettingsDialog.Tabs.Statistics.OpenWord";
@@ -4012,16 +4016,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9577] = "This functions offers to load real call center exmaple data from<br>\n<a href=\"http://ie.technion.ac.il/serveng/callcenterdata/index.html\">http://ie.technion.ac.il/serveng/callcenterdata/index.html</a>.<br>";
     t[9580] = "CommandLine.Count.ThenN";
     t[9581] = "exactly %d additional parameters have to be entered";
-    t[9588] = "Generator.LoadAgentsSurcharge";
-    t[9589] = "Load disease surcharge for agents groups";
-    t[9590] = "Optimizer.Message.FinishedTray.Info";
-    t[9591] = "Optimization is finished.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9588] = "Generator.LoadAgentsSurcharge";
+    t[9589] = "Load disease surcharge for agents groups";
+    t[9590] = "Optimizer.Message.FinishedTray.Info";
+    t[9591] = "Optimization is finished.";
     t[9592] = "Editor.Caller.Special.RuleForSkillLevel";
     t[9593] = "Activate rules for this skill level";
     t[9594] = "SettingsDialog.NetworkSimulation.ServerPart.Setup";
@@ -6018,16 +6022,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14587] = "But %d additional parameters were passed.";
     t[14590] = "Batch.LoadWarningNewerVersion";
     t[14591] = "  The model was created using a newer Version of the Callcenter Simulator.\n  Maybe this version is not able to process all properties of the model.";
-    t[14594] = "Loader.ProcessError.WhileProcessingLineInfo";
-    t[14595] = "While processing line %d.";
-    t[14598] = "XML.Model.ClientType.Forwarding.SkillLevel";
-    t[14599] = "SkillLevel";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14594] = "Loader.ProcessError.WhileProcessingLineInfo";
+    t[14595] = "While processing line %d.";
+    t[14598] = "XML.Model.ClientType.Forwarding.SkillLevel";
+    t[14599] = "SkillLevel";
     t[14606] = "Dialog.Button.Delete";
     t[14607] = "Delete";
     t[14608] = "Calibrate.WaitingTimeToleranceCV";

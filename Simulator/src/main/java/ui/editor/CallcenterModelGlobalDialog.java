@@ -18,7 +18,6 @@ package ui.editor;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.SystemColor;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -294,7 +293,7 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 			MathParser parser=new CalcSystem(maxQueueLength.getText(),new String[]{"a"});
 			boolean ok=(parser.parse()==-1);
 			if (ok) try {parser.calc(new double[]{1.0});} catch (MathCalcError ex) {ok=false;}
-			if (ok) maxQueueLength.setBackground(SystemColor.text); else maxQueueLength.setBackground(Color.red);
+			if (ok) maxQueueLength.setBackground(NumberTools.getTextFieldDefaultBackground()); else maxQueueLength.setBackground(Color.red);
 			NumberTools.getNotNegativeInteger(days,true);
 			NumberTools.getNotNegativeInteger(serviceLevel,true);
 		}

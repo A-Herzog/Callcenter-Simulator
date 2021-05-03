@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-11 20:20+0100\n"
+"POT-Creation-Date: 2021-05-02 00:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7493,6 +7493,12 @@ msgstr "Die Einstellungen werden angewendet, wenn dieser Dialog mit Ok geschloss
 
 msgid "SettingsDialog.LoadModelOnProgramStart"
 msgstr "Modell beim Programmstart laden"
+
+msgid "SettingsDialog.LookAndFeel.MenuInWindowTitle"
+msgstr "Menü in Titelzeile"
+
+msgid "SettingsDialog.LookAndFeel.MenuInWindowTitle.Tooltip"
+msgstr "Nur für die Flat-Themen und nur unter Windows verfügbar"
 
 msgid "SettingsDialog.ManualUpdateDownload"
 msgstr "Update manuell herunterladen"

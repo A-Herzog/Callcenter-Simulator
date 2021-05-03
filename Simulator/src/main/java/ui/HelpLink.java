@@ -15,6 +15,11 @@
  */
 package ui;
 
+import java.awt.Container;
+import java.awt.Dialog;
+import java.awt.Window;
+import java.util.function.Consumer;
+
 import javax.swing.SwingUtilities;
 
 /**
@@ -201,19 +206,26 @@ public class HelpLink {
 	private String topic="";
 
 	/** Runnable, das aufgerufen werden soll, wenn die Hilfe nicht-modal aufgerufen werden soll. */
-	private final Runnable openHelpNonModalCallback;
+	private final Consumer<HelpLink> openHelpNonModalCallback;
 
 	/** Runnable, das aufgerufen werden soll, wenn die Hilfe modal aufgerufen werden soll. */
-	private final Runnable openHelpModalCallback;
+	private final Consumer<HelpLink> openHelpModalCallback;
+
+	/**
+	 * Hauptfenster
+	 */
+	private final Window mainForm;
 
 	/**
 	 * Erstellt ein Objekt, welches konkrete Hilfeseiten (als Topic-Texte) mit Runnable verknüpft.
 	 * @param openHelpNonModalCallback	Runnable, das aufgerufen werden soll, wenn die Hilfe nicht-modal aufgerufen werden soll.
 	 * @param openHelpModalCallback	Runnable, das aufgerufen werden soll, wenn die Hilfe modal aufgerufen werden soll.
+	 * @param mainForm	Hauptfenster
 	 */
-	public HelpLink(Runnable openHelpNonModalCallback, Runnable openHelpModalCallback) {
+	public HelpLink(final Consumer<HelpLink> openHelpNonModalCallback, final Consumer<HelpLink> openHelpModalCallback, final Window mainForm) {
 		this.openHelpNonModalCallback=openHelpNonModalCallback;
 		this.openHelpModalCallback=openHelpModalCallback;
+		this.mainForm=mainForm;
 
 		pageGeneral=new HelpCallback("EditorAllgemeineDaten",false);
 		pageGeneralModal=new HelpCallback("EditorAllgemeineDaten",true);
@@ -285,6 +297,48 @@ public class HelpLink {
 	}
 
 	/**
+	 * Liefert den modalen Kind-Dialog zu einem Fenster
+	 * @param parent	Übergeordnetes Fenster
+	 * @return	Modaler Kind-Dialog oder <code>null</code>, wenn keinen solchen gibt
+	 */
+	private Dialog getModalChildDialog(final Window parent) {
+		final Window[] windows=Window.getWindows();
+		if (windows==null) return null;
+
+		for(Window window: windows) {
+			if (!window.isShowing()) continue;
+			if (!(window instanceof Dialog)) continue;
+			final Dialog dialog=(Dialog)window;
+			if (!dialog.isModal()) continue;
+
+			Container c=dialog.getParent();
+			while (c!=null) {
+				if (c==parent) return dialog;
+				c=c.getParent();
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Liefert das übergeordnete Element für den zu öffnenden Hilfe-Dialog
+	 * @return	Übergeordnetes Element für den zu öffnenden Hilfe-Dialog
+	 */
+	public Container getParent() {
+		Dialog dialog=getModalChildDialog(mainForm);
+		if (dialog==null) return mainForm;
+
+		Dialog dialog2=dialog;
+		while (dialog2!=null) {
+			dialog=dialog2;
+			dialog2=getModalChildDialog(dialog);
+		}
+
+		return dialog;
+	}
+
+	/**
 	 * Zeigt eine bestimmte Hilfeseite an.
 	 * @param modal	Hilfe-Fenster modal anzeigen?
 	 * @param topic	Anzuzeigende Hilfeseite
@@ -292,9 +346,9 @@ public class HelpLink {
 	private void showHelp(boolean modal, String topic) {
 		this.topic=topic;
 		if (modal) {
-			if (openHelpModalCallback!=null) SwingUtilities.invokeLater(openHelpModalCallback); }
-		else {
-			if (openHelpNonModalCallback!=null) SwingUtilities.invokeLater(openHelpNonModalCallback);
+			if (openHelpModalCallback!=null) SwingUtilities.invokeLater(()->openHelpModalCallback.accept(this));
+		} else {
+			if (openHelpNonModalCallback!=null) SwingUtilities.invokeLater(()->openHelpNonModalCallback.accept(this));
 		}
 	}
 

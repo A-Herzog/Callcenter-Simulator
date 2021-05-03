@@ -40,6 +40,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
+import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -114,6 +115,11 @@ public class StatisticTreePanel extends JPanel {
 	private final DefaultMutableTreeNode noDataSelected=new DefaultMutableTreeNode("("+Language.tr("Statistic.NoDataSelected")+")");
 
 	/**
+	 * Erfolgt die Darstellung im Dark-Modus?
+	 */
+	public final boolean isDark;
+
+	/**
 	 * Konstruktor der Klasse <code>StatisticPanel</code>
 	 * @param title	Titel, der über der Baumstruktur angezeigt wird
 	 * @param icon	Icon, das neben dem Titel über der Baumstruktur angezeigt wird (kann <code>null</code> sein, wenn kein Icon angezeigt werden soll)
@@ -132,6 +138,9 @@ public class StatisticTreePanel extends JPanel {
 		this.helpLink=helpLink;
 		this.startSimulation=startSimulation;
 		this.loadStatistics=loadStatistics;
+
+		final Color treeBackground=UIManager.getColor("Tree.background");
+		isDark=(treeBackground!=null && !treeBackground.equals(Color.WHITE));
 
 		JPanel leftTopPanel;
 		JToolBar buttonPanelLeft;
@@ -177,7 +186,7 @@ public class StatisticTreePanel extends JPanel {
 
 		add(sp,BorderLayout.CENTER);
 
-		tree.setBackground(new Color(0xFF,0xFF,0xF8));
+		if (!isDark) tree.setBackground(new Color(0xFF,0xFF,0xF8));
 	}
 
 	/**

@@ -19,7 +19,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Point;
-import java.awt.SystemColor;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -1308,7 +1307,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 			NumberTools.getNotNegativeInteger(score,true);
 			NumberTools.getNotNegativeDouble(agentScoreFreeTimeSinceLastCall,true);
 			NumberTools.getNotNegativeDouble(agentScoreFreeTimePart,true);
-			for (int i=0;i<waitingTimeByType.length;i++) if (waitingTimeByType[i].getText().trim().isEmpty()) waitingTimeByType[i].setBackground(SystemColor.text); else NumberTools.getNotNegativeInteger(waitingTimeByType[i],true);
+			for (int i=0;i<waitingTimeByType.length;i++) if (waitingTimeByType[i].getText().trim().isEmpty()) waitingTimeByType[i].setBackground(NumberTools.getTextFieldDefaultBackground()); else NumberTools.getNotNegativeInteger(waitingTimeByType[i],true);
 		}
 
 		@Override

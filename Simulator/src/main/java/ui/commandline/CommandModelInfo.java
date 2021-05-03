@@ -51,7 +51,7 @@ public class CommandModelInfo extends AbstractReportCommand {
 		CallcenterModel model=new CallcenterModel();
 		String s=model.loadFromFile(input); if (s!=null) return s;
 
-		CallcenterModelEditorPanel panel=new CallcenterModelEditorPanel(null,true,model,true,new HelpLink(null,null),null,null,null,null,null,null,null,null,null);
+		CallcenterModelEditorPanel panel=new CallcenterModelEditorPanel(null,true,model,true,new HelpLink(null,null,null),null,null,null,null,null,null,null,null,null);
 
 		return panel;
 	}

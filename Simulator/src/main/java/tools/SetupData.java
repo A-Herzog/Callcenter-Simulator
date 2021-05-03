@@ -129,6 +129,11 @@ public class SetupData extends SetupBase {
 	public String lookAndFeel;
 
 	/**
+	 * Soll die Menüzeile wenn möglich in die Titelzeile integriert werden?
+	 */
+	public boolean lookAndFeelCombinedMenu;
+
+	/**
 	 * Ist startSizeMode=START_MODE_LASTSIZE gewählt, so wird hier die letzte Position des Fensters gespeichert
 	 */
 	public int imageSize=1000;
@@ -366,6 +371,7 @@ public class SetupData extends SetupBase {
 		lastPosition=new Point(0,0);
 		lastSize=new Dimension(0,0);
 		lookAndFeel="";
+		lookAndFeelCombinedMenu=true;
 
 		imageSize=1000;
 		imagesInline=true;
@@ -625,6 +631,7 @@ public class SetupData extends SetupBase {
 
 			if (s.equalsIgnoreCase("LookAndFeel")) {
 				lookAndFeel=e.getTextContent();
+				lookAndFeelCombinedMenu=loadBoolean(e.getAttribute("combinedMenu"),true);
 				continue;
 			}
 
@@ -954,9 +961,10 @@ public class SetupData extends SetupBase {
 			node.setAttribute(englishKeys?"Height":"Hoehe",""+lastSize.height);
 		}
 
-		if (lookAndFeel!=null && !lookAndFeel.trim().isEmpty()) {
+		if ((lookAndFeel!=null && !lookAndFeel.trim().isEmpty()) || !lookAndFeelCombinedMenu) {
 			root.appendChild(node=doc.createElement("LookAndFeel"));
-			node.setTextContent(lookAndFeel);
+			if (lookAndFeel!=null) node.setTextContent(lookAndFeel);
+			if (!lookAndFeelCombinedMenu) node.setAttribute("combinedMenu","0");
 		}
 
 		if (imageSize!=1000 || !imagesInline) {

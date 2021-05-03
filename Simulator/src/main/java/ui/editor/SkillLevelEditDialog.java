@@ -21,7 +21,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.SystemColor;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -488,7 +487,7 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		postprocessingTime.setDistribution((dist!=null)?dist:tempSkill.callerTypePostProcessingTime.get(lastSelected));
 
 		score.setText(""+tempSkill.callerTypeScore.get(lastSelected));
-		score.setBackground(SystemColor.text);
+		score.setBackground(NumberTools.getTextFieldDefaultBackground());
 	}
 
 	/**
@@ -701,7 +700,7 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		private void keyEvent(KeyEvent e) {
 			NumberTools.getNotNegativeInteger(score,true);
 			MathParser calc=new CalcSystem(workingTimeAddOn.getText(),new String[]{"w"});
-			if (calc.parse()>=0) workingTimeAddOn.setBackground(Color.red); else workingTimeAddOn.setBackground(SystemColor.text);
+			if (calc.parse()>=0) workingTimeAddOn.setBackground(Color.red); else workingTimeAddOn.setBackground(NumberTools.getTextFieldDefaultBackground());
 		}
 
 		@Override
