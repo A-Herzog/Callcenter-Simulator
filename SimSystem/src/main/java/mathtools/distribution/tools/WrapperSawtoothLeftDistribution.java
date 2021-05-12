@@ -16,106 +16,108 @@
 package mathtools.distribution.tools;
 
 import org.apache.commons.math3.distribution.AbstractRealDistribution;
-import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 import mathtools.NumberTools;
+import mathtools.distribution.SawtoothLeftDistribution;
 
 /**
- * Zusätzliche Daten für ein Objekt vom Typ {@link ExponentialDistribution}
+ * Zusätzliche Daten für ein Objekt vom Typ {@link SawtoothLeftDistribution}
  * @author Alexander Herzog
- * @see ExponentialDistribution
+ * @see SawtoothLeftDistribution
  * @see DistributionTools
  */
-public class WrapperExponentialDistribution extends AbstractDistributionWrapper {
+public class WrapperSawtoothLeftDistribution extends AbstractDistributionWrapper {
 	/**
 	 * Konstruktor der Klasse
 	 */
-	public WrapperExponentialDistribution() {
-		super(ExponentialDistribution.class,true,true);
+	public WrapperSawtoothLeftDistribution() {
+		super(SawtoothLeftDistribution.class,true,true);
 	}
 
 	@Override
 	protected String[] getNames() {
-		return DistributionTools.DistExp;
+		return DistributionTools.DistSawtoothLeft;
 	}
 
 	@Override
 	protected String getThumbnailImageName() {
-		return "exp.png";
+		return "sawtooth_left.png";
 	}
 
 	@Override
 	protected DistributionWrapperInfo getInfoInt(AbstractRealDistribution distribution) {
-		return new DistributionWrapperInfo(distribution);
+		final double A=((SawtoothLeftDistribution)distribution).a;
+		final double B=((SawtoothLeftDistribution)distribution).b;
+		final String info=DistributionTools.DistRange+"=["+NumberTools.formatNumber(A,3)+";"+NumberTools.formatNumber(B,3)+"]";
+		return new DistributionWrapperInfo(distribution,info,null);
 	}
 
 	@Override
 	public AbstractRealDistribution getDistribution(double mean, double sd) {
-		return new ExponentialDistribution(null,Math.max(mean,0.0001),ExponentialDistribution.DEFAULT_INVERSE_ABSOLUTE_ACCURACY);
+		if (sd<=0) return null;
+		final double a=mean-Math.sqrt(2)*sd;
+		final double b=mean+2*Math.sqrt(2)*sd;
+		return new SawtoothLeftDistribution(a,b);
 	}
 
 	@Override
 	public AbstractRealDistribution getDefaultDistribution() {
-		return getDistribution(100,100);
+		return new SawtoothLeftDistribution(5,10);
 	}
 
 	@Override
 	public AbstractRealDistribution getDistributionForFit(final double mean, final double sd, final double min, final double max) {
-		if (mean<=0) return null;
-		return super.getDistributionForFit(mean,sd,min,max);
-	}
-
-	@Override
-	public double getMean(final AbstractRealDistribution distribution) {
-		return ((ExponentialDistribution)distribution).getMean();
+		if (sd<=0) return null;
+		if (min>=max) return null;
+		return new SawtoothLeftDistribution(min,max);
 	}
 
 	@Override
 	protected AbstractRealDistribution setMeanInt(AbstractRealDistribution distribution, double mean) {
-		return new ExponentialDistribution(null,mean,ExponentialDistribution.DEFAULT_INVERSE_ABSOLUTE_ACCURACY);
-	}
-
-	@Override
-	public double getStandardDeviation(final AbstractRealDistribution distribution) {
-		return ((ExponentialDistribution)distribution).getMean(); /* E=Std */
+		return getDistribution(mean,Math.sqrt(((SawtoothLeftDistribution)distribution).getNumericalVariance()));
 	}
 
 	@Override
 	protected AbstractRealDistribution setStandardDeviationInt(AbstractRealDistribution distribution, double sd) {
-		return new ExponentialDistribution(null,sd,ExponentialDistribution.DEFAULT_INVERSE_ABSOLUTE_ACCURACY); /* E=Std */
+		return getDistribution(((SawtoothLeftDistribution)distribution).getNumericalMean(),sd);
 	}
 
 	@Override
 	protected double getParameterInt(AbstractRealDistribution distribution, int nr) {
-		if (nr==1) return ((ExponentialDistribution)distribution).getMean();
+		if (nr==1) return ((SawtoothLeftDistribution)distribution).a;
+		if (nr==2) return ((SawtoothLeftDistribution)distribution).b;
 		return 0.0;
 	}
 
 	@Override
 	protected AbstractRealDistribution setParameterInt(AbstractRealDistribution distribution, int nr, double value) {
-		if (nr==1) return new ExponentialDistribution(null,value,ExponentialDistribution.DEFAULT_INVERSE_ABSOLUTE_ACCURACY);
+		final SawtoothLeftDistribution dist=(SawtoothLeftDistribution)distribution;
+		if (nr==1) return new SawtoothLeftDistribution(value,dist.b);
+		if (nr==2) return new SawtoothLeftDistribution(dist.a,value);
 		return null;
 	}
 
 	@Override
 	protected String getToStringData(AbstractRealDistribution distribution) {
-		return NumberTools.formatSystemNumber(((ExponentialDistribution)distribution).getMean());
+		return NumberTools.formatSystemNumber(((SawtoothLeftDistribution)distribution).a)+";"+NumberTools.formatSystemNumber(((SawtoothLeftDistribution)distribution).b);
 	}
 
 	@Override
 	public AbstractRealDistribution fromString(String data, double maxXValue) {
 		final double[] values=getDoubleArray(data);
-		if (values.length!=1) return null;
-		return new ExponentialDistribution(null,values[0],ExponentialDistribution.DEFAULT_INVERSE_ABSOLUTE_ACCURACY);
+		if (values.length!=2) return null;
+		return new SawtoothLeftDistribution(values[0],values[1]);
 	}
 
 	@Override
 	protected AbstractRealDistribution cloneInt(AbstractRealDistribution distribution) {
-		return new ExponentialDistribution(null,((ExponentialDistribution)distribution).getMean(),ExponentialDistribution.DEFAULT_INVERSE_ABSOLUTE_ACCURACY);
+		return ((SawtoothLeftDistribution)distribution).clone();
 	}
 
 	@Override
 	protected boolean compareInt(AbstractRealDistribution distribution1, AbstractRealDistribution distribution2) {
-		return Math.abs(((ExponentialDistribution)distribution1).getMean()-((ExponentialDistribution)distribution2).getMean())<=DistributionTools.MAX_ERROR;
+		if (Math.abs(((SawtoothLeftDistribution)distribution1).a-((SawtoothLeftDistribution)distribution2).a)>DistributionTools.MAX_ERROR) return false;
+		if (Math.abs(((SawtoothLeftDistribution)distribution1).b-((SawtoothLeftDistribution)distribution2).b)>DistributionTools.MAX_ERROR) return false;
+		return true;
 	}
 }

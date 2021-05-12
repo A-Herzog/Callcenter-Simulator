@@ -5380,6 +5380,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13025] = "Clears the filter input field";
     t[13032] = "Editor.SkillLevelOfTheAgents.Show.Info";
     t[13033] = "Opens a dialog to show the properties of the selected skill level";
+    t[13034] = "Distribution.SawtoothRight";
+    t[13035] = "Right sawtooth distribution";
     t[13038] = "Statistic.Type.NoData";
     t[13039] = "no data selected";
     t[13048] = "CommandLine.ReportBase.Error.Output";
@@ -6020,14 +6022,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14585] = "The calibration is completed, even if the target accessibility has not been reached exactly.";
     t[14586] = "CommandLine.Count.ButN";
     t[14587] = "But %d additional parameters were passed.";
-    t[14590] = "Batch.LoadWarningNewerVersion";
-    t[14591] = "  The model was created using a newer Version of the Callcenter Simulator.\n  Maybe this version is not able to process all properties of the model.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14590] = "Batch.LoadWarningNewerVersion";
+    t[14591] = "  The model was created using a newer Version of the Callcenter Simulator.\n  Maybe this version is not able to process all properties of the model.";
     t[14594] = "Loader.ProcessError.WhileProcessingLineInfo";
     t[14595] = "While processing line %d.";
     t[14598] = "XML.Model.ClientType.Forwarding.SkillLevel";
@@ -7082,6 +7084,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17315] = "Service level per caller type";
     t[17324] = "Editor.Caller.Error.ScoreForward.Title";
     t[17325] = "Score on forwarding is invalid";
+    t[17332] = "Distribution.SawtoothLeft";
+    t[17333] = "Left sawtooth distribution";
     t[17334] = "MainMenu.File.SaveModel.Tooltip";
     t[17335] = "Save the model using the current file name";
     t[17340] = "Editor.CopyDialog.ErrorNoNameTitle";
