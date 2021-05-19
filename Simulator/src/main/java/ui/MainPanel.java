@@ -18,6 +18,7 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.Point;
 import java.awt.Window;
@@ -147,13 +148,13 @@ public final class MainPanel extends MainPanelBase {
 	public static final String AUTHOR="Alexander Herzog";
 
 	/** Aktuelle Unterversionsnummer in der Java 8 Versionsreihe */
-	private static final int JAVA8_SECURE_MIN_VERSION=282;
+	private static final int JAVA8_SECURE_MIN_VERSION=292;
 	/** Aktuelle Unterversionsnummer in der Java 9 Versionsreihe */
 	private static final int JAVA9_SECURE_MIN_VERSION=4;
 	/** Aktuelle Unterversionsnummer in der Java 10 Versionsreihe */
 	private static final int JAVA10_SECURE_MIN_VERSION=2;
 	/** Aktuelle Unterversionsnummer in der Java 11 Versionsreihe */
-	private static final int JAVA11_SECURE_MIN_VERSION=10;
+	private static final int JAVA11_SECURE_MIN_VERSION=11;
 	/** Aktuelle Unterversionsnummer in der Java 12 Versionsreihe */
 	private static final int JAVA12_SECURE_MIN_VERSION=2;
 	/** Aktuelle Unterversionsnummer in der Java 13 Versionsreihe */
@@ -163,7 +164,7 @@ public final class MainPanel extends MainPanelBase {
 	/** Aktuelle Unterversionsnummer in der Java 15 Versionsreihe */
 	private static final int JAVA15_SECURE_MIN_VERSION=2;
 	/** Aktuelle Unterversionsnummer in der Java 16 Versionsreihe */
-	private static final int JAVA16_SECURE_MIN_VERSION=0;
+	private static final int JAVA16_SECURE_MIN_VERSION=1;
 
 	/**
 	 * Bezeichnung für "ungespeichertes Modell" in der Titelzeile für ein neues Modell, welches noch keinen Namen besitzt
@@ -320,8 +321,9 @@ public final class MainPanel extends MainPanelBase {
 		SetupData setup=SetupData.getSetup();
 
 		helpLink=new HelpLink(
-				new Runnable() {@Override public void run() {commandHelp(helpLink.getTopic());}},
-				new Runnable() {@Override public void run() {showModalHelp(helpLink.getTopic());}}
+				link->commandHelp(link.getTopic()),
+				link->showModalHelp(link.getTopic(),link.getParent()),
+				ownerWindow
 				);
 		Help.globalSpecialLinkListener=href->processSpecialLink(href);
 
@@ -2235,9 +2237,10 @@ public final class MainPanel extends MainPanelBase {
 	/**
 	 * Zeigt eine Hilfe-Seite als modalen Dialog an.
 	 * @param topic	Anzuzeigende Hilfeseite
+	 * @param parent	Übergeordnetes Fenster
 	 */
-	private void showModalHelp(String topic) {
-		Help.topicModal(this,topic);
+	private void showModalHelp(final String topic, final Container parent) {
+		Help.topicModal(parent,topic);
 	}
 
 	/**
