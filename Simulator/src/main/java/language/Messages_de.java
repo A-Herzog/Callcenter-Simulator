@@ -656,6 +656,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1681] = "Die angegebene maximale Warteschlangenl\u00e4nge %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
     t[1696] = "Editor.Caller.Score.Base";
     t[1697] = "Basis-Score der Kundenklasse";
+    t[1700] = "Importer.RetryIntervalsDistribution";
+    t[1701] = "Wiederholabst\u00e4ndeverteilung";
     t[1706] = "Editor.Productivity.DiseaseRelatedSurcharge.Info";
     t[1707] = "Der Planungsaufschlag wird nicht in der Simulation verwendet, sondern lediglich in der Statistik in Form der Planungsagentenanzahl ausgewiesen.";
     t[1708] = "XML.Statistic.Clients.Forwarding.Clients.ErrorSumPerInterval";
@@ -2008,14 +2010,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4819] = "Skill-Level %s";
     t[4820] = "LoadCalculator.LimitedWaitingTimeTolerance";
     t[4821] = "Kunden sind nur bereit, begrenzt lange zu warten";
-    t[4824] = "XML.Connected.LoadStatistic.ErrorNoStatisticFile";
-    t[4825] = "F\u00fcr den %d. Tag wurde keine Statistikdatei angegeben und folglich wurden f\u00fcr diesen Tag keine Statistikdaten erfasst.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4824] = "XML.Connected.LoadStatistic.ErrorNoStatisticFile";
+    t[4825] = "F\u00fcr den %d. Tag wurde keine Statistikdatei angegeben und folglich wurden f\u00fcr diesen Tag keine Statistikdaten erfasst.";
     t[4836] = "Window.Viewer.CloseWindow";
     t[4837] = "Fenster schlie\u00dfen";
     t[4842] = "Connected.SelectModel.State.SameAsLastDay";
@@ -2066,6 +2068,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4945] = "Simulation im Hintergrund starten";
     t[4946] = "Statistic.Viewer.Toolbar.Save.Hint";
     t[4947] = "Speichert die auf dieser Seite angezeigten Ergebnisse in einer Datei.";
+    t[4958] = "Help.Search.NoHitSelected";
+    t[4959] = "Es wurde kein Suchtreffer ausgew\u00e4hlt.";
     t[4960] = "Model.Check.InvalidMaximumQueueLength";
     t[4961] = "Die maximale Warteschlangenl\u00e4nge darf nicht negativ sein. (Momentan ist %s eingestellt.)";
     t[4964] = "Editor.Overview.General.Description";
@@ -3834,6 +3838,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9159] = "Format verarbeiten";
     t[9162] = "Numbers.Language";
     t[9163] = "de";
+    t[9168] = "Help.Search.ResultOnPage";
+    t[9169] = "auf Seite \"%s\" gefunden";
     t[9170] = "LoadCalculator.ProbabilityOfBlocking";
     t[9171] = "Blockierwahrscheinlichkeit";
     t[9176] = "Editor.GeneralData.ThresholdValues.Type.WaitingTimeClients";
@@ -4010,18 +4016,18 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9571] = "Interaktiv";
     t[9572] = "CommandLine.Count.ThenMaximum1";
     t[9573] = "darf maximal ein weiterer Parameter folgen";
-    t[9574] = "XML.Statistic.ErlangC.Success";
-    t[9575] = "Erfolg";
-    t[9576] = "Loader.Info.Technion";
-    t[9577] = "Diese Funktion erm\u00f6glicht es, reale Callcenter-Beispieldaten von<br>\n<a href=\"http://ie.technion.ac.il/serveng/callcenterdata/index.html\">http://ie.technion.ac.il/serveng/callcenterdata/index.html</a><br>\nzu laden.";
-    t[9580] = "CommandLine.Count.ThenN";
-    t[9581] = "m\u00fcssen genau %d weitere Parameter folgen";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9574] = "XML.Statistic.ErlangC.Success";
+    t[9575] = "Erfolg";
+    t[9576] = "Loader.Info.Technion";
+    t[9577] = "Diese Funktion erm\u00f6glicht es, reale Callcenter-Beispieldaten von<br>\n<a href=\"http://ie.technion.ac.il/serveng/callcenterdata/index.html\">http://ie.technion.ac.il/serveng/callcenterdata/index.html</a><br>\nzu laden.";
+    t[9580] = "CommandLine.Count.ThenN";
+    t[9581] = "m\u00fcssen genau %d weitere Parameter folgen";
     t[9588] = "Generator.LoadAgentsSurcharge";
     t[9589] = "Krankheitsaufschlag auf Agentenanzahl laden";
     t[9590] = "Optimizer.Message.FinishedTray.Info";
@@ -4084,6 +4090,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9717] = "Die Einstellungen werden angewendet, wenn dieser Dialog mit Ok geschlossen wird.";
     t[9718] = "XML.Model.SkillLevel.ClientType";
     t[9719] = "SkillLevelKundentyp;SkillKundentyp";
+    t[9720] = "Help.Search.Info";
+    t[9721] = "Erm\u00f6glicht die Suche in der gesamten Hilfe";
     t[9726] = "Model.Check.Callcenter.DoubleName";
     t[9727] = "Es gibt mehrere Skill-Level mit dem Namen \"%s\".";
     t[9728] = "XML.Statistic.Info.Threads";
@@ -4148,6 +4156,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9891] = "Startet den interaktiven Modus.";
     t[9896] = "SettingsDialog.Update.ReadyForManualInstall";
     t[9897] = "Version %s f\u00fcr die manuelle Installation heruntergeladen.";
+    t[9898] = "Help.Search";
+    t[9899] = "Suchen";
     t[9902] = "Editor.Caller.Error.WaitingTimeCalcAdd.Title";
     t[9903] = "Korrekturwert ist ung\u00fcltig";
     t[9904] = "CommandLine.Update.Description.Long";
@@ -4916,6 +4926,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11845] = "Der Wert in dem Element \"%s\" muss eine nicht-negative Ganzzahl sein, ist aber \"%s\".";
     t[11850] = "XML.Statistic.Clients.CancelTime.Clients";
     t[11851] = "StatistikKundenAbbruchzeit;KundenAbbruchzeit";
+    t[11852] = "Help.Search.ResultSelect";
+    t[11853] = "Passende Seiten zu dem Suchtreffer:";
     t[11854] = "XML.ErrorCreatingZipStream";
     t[11855] = "Es ist ein Fehler beim Anlegen einer Datei innerhalb des Zip-Datenstroms aufgetreten.";
     t[11858] = "Statistic.Viewer.Toolbar.NewWindow.Title";
@@ -5026,6 +5038,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12139] = "Mindestens sechs weitere Parameter:\n1. Name des anzupassenden Skill-Levels\n2. Eingabe-Modell-Datei\n3. Tabellen-Eingabe-Datei\n4. Ausgabe-Modell-Datei\nDie Eingabedateien m\u00fcssen existieren, die Ausgabedatei darf nicht existieren.\nDen ersten vier Parametern k\u00f6nnen beliebig viele Zweierp\u00e4rchen der folgenden\nArt folgen:\n- Erste Tabellenzelle (in der Form A1), ab der die zu ladenden Daten in einer Spalte stehen\n- Names des Kundentyps mit einem Vorangestellten \\\"B\\\" f\u00fcr Bedienzeit oder \\\"N\\\" f\u00fcr Nachbearbeitungszeit";
     t[12140] = "XML.Model.AgentsGroup.WorkingTimeEnd";
     t[12141] = "AgentengruppeArbeitszeitende;Arbeitszeitende";
+    t[12142] = "Help.Search.Type.Index";
+    t[12143] = "Seiteninhalt";
     t[12144] = "CommandLine.Count.ThenAtLeast1";
     t[12145] = "muss mindestens ein weiterer Parameter folgen";
     t[12148] = "Connected.LoadConnectedModel";
@@ -6008,6 +6022,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14565] = "KundenWeiterleitungen;Weiterleitungen";
     t[14566] = "XML.Statistic.ErlangC.Agents";
     t[14567] = "AnzahlAnAgenten";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14568] = "SimStatistic.AgentsWorkLoad";
     t[14569] = "Auslastung der Agenten";
     t[14570] = "CommandLine.Preplanning.Mode.WaitingTime.Simple.PreSimplify";
@@ -6022,12 +6042,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14585] = "Die Kalibrierung wird beendet, auch wenn die Ziel-Erreichbarkeit noch nicht exakt erreicht wurde.";
     t[14586] = "CommandLine.Count.ButN";
     t[14587] = "Es wurden jedoch %d weitere Parameter \u00fcbergeben.";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14590] = "Batch.LoadWarningNewerVersion";
     t[14591] = "  Das Modell wurde mit einer neueren Version des Callcenter Simulators erstellt.\n  M\u00f6glicherweise kann diese Version nicht alle Eigenschaften des Modells abbilden.";
     t[14594] = "Loader.ProcessError.WhileProcessingLineInfo";
@@ -6392,6 +6406,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15567] = "Erreichbarkeit";
     t[15572] = "CommandLine.Interactive.Stop";
     t[15573] = "Interaktiver Modus wird beendet.";
+    t[15574] = "Help.Search.SearchString";
+    t[15575] = "Suchbegriff";
     t[15578] = "XML.ErrorClosingFile";
     t[15579] = "Es ist ein Fehler beim Schlie\u00dfen der Datei\n%s\naufgetreten.";
     t[15582] = "CommandLine.Connected.Error.Simulation.Done";
@@ -6500,6 +6516,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15887] = "StatistikKunden;Kunden";
     t[15894] = "Batch.Folder.ErrorNoInputFolder";
     t[15895] = "Es wurde kein Eingabeverzeichnis angegeben.";
+    t[15896] = "Help.Search.ResultCountPlural";
+    t[15897] = "auf %d Seiten gefunden";
     t[15908] = "Editor.ToolsPopup.Agents96";
     t[15909] = "Arbeitszeiten mehrerer Agentengruppen auf 15-Minuten-Basis f\u00fcr ein Callcenter global laden";
     t[15910] = "FitDialog.PasteValues.Tooltip";
@@ -6674,6 +6692,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[16381] = "Warnung";
     t[16384] = "XML.Statistic.GeneralAttributes.SquaresSum";
     t[16385] = "QuadrateSumme";
+    t[16390] = "Help.Search.Type.Page";
+    t[16391] = "Seite";
     t[16392] = "SimStatistic.Costs.Total.Short";
     t[16393] = "Gesamtkosten";
     t[16394] = "XML.Statistic.Clients.ClientsCallsCount.CountPerInterval.ErrorCalls";
@@ -7028,8 +7048,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17205] = "Anteil";
     t[17212] = "XML.Statistic.Clients.ClientsCallsCount.BlockedPerInterval.ErrorCalls";
     t[17213] = "Die Anzahl an blockierten Anrufen pro Intervall ist ung\u00fcltig.";
-    t[17214] = "Importer.RetryIntervalsDistribution";
-    t[17215] = "Wiederholabst\u00e4ndeverteilung";
+    t[17214] = "Help.Search.ResultCountSingular";
+    t[17215] = "auf %d Seite gefunden";
     t[17216] = "Editor.Caller.Error.WaitingTimeCalcCancelProbability.Info";
     t[17217] = "Der angegeben Wert f\u00fcr die Abbruchwahrscheinlichkeit zur Sch\u00e4tzung der Wartezeittoleranz %s ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Zahl (optional ein Prozentwert) sein.";
     t[17218] = "XML.Statistic.Clients.WaitingTimeDistribution.Clients.Error";

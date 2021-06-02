@@ -74,6 +74,7 @@ import systemtools.MainPanelBase;
 import systemtools.MsgBox;
 import systemtools.commandline.CommandLineDialog;
 import systemtools.help.HelpBase;
+import systemtools.help.IndexSystem;
 import systemtools.statistics.StatisticsBasePanel;
 import tools.SetupData;
 import ui.calculator.CalculatorDialog;
@@ -382,8 +383,18 @@ public final class MainPanel extends MainPanelBase {
 			if (infoPanel==null || s!=null) setMessagePanel(null,s,MessagePanelIcon.WARNING);
 		});
 
-		/* Java-Prüfung */
-		SwingUtilities.invokeLater(()->javaVersionCheck());
+		/* Verzögerte Ausführung */
+		SwingUtilities.invokeLater(()->{
+			/* Java-Prüfung */
+			javaVersionCheck();
+
+			/* Hilfe-Index aufbauen */
+			final IndexSystem indexSystem=IndexSystem.getInstance();
+			indexSystem.addLanguage("de","pages_de");
+			indexSystem.addLanguage("en","pages_en");
+			indexSystem.init(Help.class);
+			IndexSystem.getInstance().setLanguage(Language.getCurrentLanguage());
+		});
 	}
 
 	@Override
