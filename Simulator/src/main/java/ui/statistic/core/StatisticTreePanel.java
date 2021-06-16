@@ -247,7 +247,7 @@ public class StatisticTreePanel extends JPanel {
 
 		Image icon=null;
 		if (treeNode!=null) {
-			icon=new StatisticTreeCellRenderer().getIcon(treeNode);
+			icon=StatisticTreeCellRenderer.getIcon(treeNode);
 		}
 		updateViewer(node,viewer,info,icon);
 	}

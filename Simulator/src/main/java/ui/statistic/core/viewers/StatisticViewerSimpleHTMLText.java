@@ -22,6 +22,7 @@ import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.print.PrinterException;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -168,6 +169,11 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 		textPane.setSelectionStart(0);
 		textPane.setSelectionEnd(0);
 		return c;
+	}
+
+	@Override
+	public Transferable getTransferable() {
+		return new StringSelection(head+infoText+foot);
 	}
 
 	@Override

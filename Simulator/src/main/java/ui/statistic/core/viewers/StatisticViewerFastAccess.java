@@ -21,6 +21,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -227,6 +228,11 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		split.setResizeWeight(1);
 		split.setDividerLocation(split.getSize().height-200);
 		return split;
+	}
+
+	@Override
+	public Transferable getTransferable() {
+		return new StringSelection(results.getText());
 	}
 
 	@Override
