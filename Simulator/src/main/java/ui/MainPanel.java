@@ -33,6 +33,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -392,6 +393,7 @@ public final class MainPanel extends MainPanelBase {
 			final IndexSystem indexSystem=IndexSystem.getInstance();
 			indexSystem.addLanguage("de","pages_de");
 			indexSystem.addLanguage("en","pages_en");
+			indexSystem.setCharset(StandardCharsets.ISO_8859_1);
 			indexSystem.init(Help.class);
 			IndexSystem.getInstance().setLanguage(Language.getCurrentLanguage());
 		});
