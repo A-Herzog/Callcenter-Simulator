@@ -19,7 +19,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -691,7 +690,7 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 	 * Zwischenablagen-Datenobjekt für ein Bild
 	 * @see JDistributionPanel#copyImageToClipboard(Clipboard, int)
 	 */
-	private class TransferableImage implements Transferable{
+	private static class TransferableImage implements Transferable{
 		/**
 		 * Auszugebendes Bild
 		 */
@@ -844,15 +843,7 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 	 * @see #wiki
 	 */
 	private void actionWiki() {
-		if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-			try {
-				URI uri=getDistributionWikipediaURI();
-				if (uri!=null) {
-					if (JOptionPane.showConfirmDialog(JDistributionPanel.this,String.format(GraphicsOpenURLWarning,uri.toString()),GraphicsOpenURLWarningTitle,JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION) return;
-					Desktop.getDesktop().browse(uri);
-				}
-			} catch (Exception e) {}
-		}
+		JOpenURL.open(this,getDistributionWikipediaURI());
 	}
 
 	/**
