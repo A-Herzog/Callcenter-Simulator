@@ -42,7 +42,7 @@ public class CallcenterModelWarnings implements Cloneable {
 	 * Liste mit den in diesem Objekt enthaltenen Warnungsdatensätzen
 	 * @see CallcenterModelWarnings.WarningRecord
 	 */
-	public final List<WarningRecord> records=new ArrayList<WarningRecord>();
+	public final List<WarningRecord> records=new ArrayList<>();
 
 	/**
 	 * Konstruktor der Klasse
@@ -65,7 +65,7 @@ public class CallcenterModelWarnings implements Cloneable {
 	 * @return	Liefert <code>true</code>, wenn die beiden Listen inhaltlich identisch sind
 	 */
 	public boolean equalsCallcenterModelWarnings(final CallcenterModelWarnings warnings) {
-		List<WarningRecord> list=new ArrayList<WarningRecord>(records);
+		List<WarningRecord> list=new ArrayList<>(records);
 
 		for (WarningRecord record: warnings.records) {
 			boolean ok=false;

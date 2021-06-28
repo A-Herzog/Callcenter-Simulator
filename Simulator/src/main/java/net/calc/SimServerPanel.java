@@ -76,21 +76,21 @@ public final class SimServerPanel extends JWorkPanel {
 	/** Ausgabebereich für Statusmeldungen des Rechenservers */
 	private final JTextArea statusField;
 	/** Option: Webserver */
-	private final JCheckBox serverSaaS;
+	private JCheckBox serverSaaS;
 	/** Eingabefeld für den Webserver-Port */
 	private final JTextField portSaaS;
 	/** Option: Statistikverzeichnis */
-	private final JCheckBox serverSaaSStatistic;
+	private JCheckBox serverSaaSStatistic;
 	/** Eingabefeld für das Statistikverzeichnis */
-	private final JTextField folderSaaSStatistic;
+	private JTextField folderSaaSStatistic;
 	/** Schaltfläche zur Auswahl eines Verzeichnisses für {@link #folderSaaSStatistic} */
-	private final JButton folderSaaSStatisticButton;
+	private JButton folderSaaSStatisticButton;
 	/** Option: Applet über den Webserver anbieten */
-	private final JCheckBox serverSaaSApplet;
+	private JCheckBox serverSaaSApplet;
 	/** Eingabefeld für den Pfad zu dem Applet */
-	private final JTextField fileSaaSApplet;
+	private JTextField fileSaaSApplet;
 	/** Schaltfläche zur Auswahl einer Applet-Datei für {@link #fileSaaSApplet} */
-	private final JButton fileSaaSAppletButton;
+	private JButton fileSaaSAppletButton;
 
 	/** Reagiert auf Drag&amp;drop-Operationen auf {@link #folderSaaSStatistic} */
 	private final FileDropper drop1;
@@ -119,13 +119,10 @@ public final class SimServerPanel extends JWorkPanel {
 
 		config.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(serverSimulation=new JCheckBox(Language.tr("Server.Type.Calc"),true));
-		serverSimulation.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				fileSaaSApplet.setEditable(serverSaaS.isSelected() && serverSimulation.isSelected());
-				fileSaaSAppletButton.setEnabled(serverSaaS.isSelected() && serverSimulation.isSelected());
-				serverSaaSApplet.setEnabled(serverSimulation.isSelected());
-			}
+		serverSimulation.addActionListener(e-> {
+			fileSaaSApplet.setEditable(serverSaaS.isSelected() && serverSimulation.isSelected());
+			fileSaaSAppletButton.setEnabled(serverSaaS.isSelected() && serverSimulation.isSelected());
+			serverSaaSApplet.setEnabled(serverSimulation.isSelected());
 		});
 		p.add(new JLabel(Language.tr("Server.Port")+":"));
 		p.add(portSimulation=new JTextField(5));
@@ -136,16 +133,13 @@ public final class SimServerPanel extends JWorkPanel {
 
 		config.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(serverSaaS=new JCheckBox(Language.tr("Server.Type.Web"),true));
-		serverSaaS.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				serverSaaSStatistic.setEnabled(serverSaaS.isSelected());
-				folderSaaSStatistic.setEditable(serverSaaS.isSelected());
-				folderSaaSStatisticButton.setEnabled(serverSaaS.isSelected());
-				serverSaaSApplet.setEnabled(serverSaaS.isSelected());
-				fileSaaSApplet.setEditable(serverSaaS.isSelected() && serverSimulation.isSelected());
-				fileSaaSAppletButton.setEnabled(serverSaaS.isSelected() && serverSimulation.isSelected());
-			}
+		serverSaaS.addActionListener(e-> {
+			serverSaaSStatistic.setEnabled(serverSaaS.isSelected());
+			folderSaaSStatistic.setEditable(serverSaaS.isSelected());
+			folderSaaSStatisticButton.setEnabled(serverSaaS.isSelected());
+			serverSaaSApplet.setEnabled(serverSaaS.isSelected());
+			fileSaaSApplet.setEditable(serverSaaS.isSelected() && serverSimulation.isSelected());
+			fileSaaSAppletButton.setEnabled(serverSaaS.isSelected() && serverSimulation.isSelected());
 		});
 		p.add(new JLabel(Language.tr("Server.Port")+":"));
 		p.add(portSaaS=new JTextField(5));

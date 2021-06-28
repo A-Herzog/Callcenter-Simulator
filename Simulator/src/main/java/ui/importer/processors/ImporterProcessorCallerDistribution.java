@@ -72,7 +72,7 @@ public final class ImporterProcessorCallerDistribution extends ImporterProcessor
 
 	@Override
 	public String[] getNames() {
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		switch (mode) {
 		case CALLER_DIST_FRESH_CALLS:
 			list.add(Language.tr("Importer.FreshCallsDistribution"));

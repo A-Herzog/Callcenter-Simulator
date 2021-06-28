@@ -54,7 +54,7 @@ public abstract class SimServerManager {
 		this.password=password;
 		this.maxThreads=maxThreads;
 		this.permittedIPs=permittedIPs;
-		threads=new ArrayList<SimServerThread>();
+		threads=new ArrayList<>();
 	}
 
 	/**

@@ -198,13 +198,10 @@ public class UpdateSystem {
 		}
 
 		final String cmd=updateInstallerRun.getAbsolutePath()+" /S /D="+System.getProperty("user.dir");
-		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Runtime.getRuntime().exec(cmd);
-				} catch (IOException e) {}
-			}
+		Runtime.getRuntime().addShutdownHook(new Thread((Runnable)()-> {
+			try {
+				Runtime.getRuntime().exec(cmd);
+			} catch (IOException e) {}
 		},"RunUpdateThread"));
 		System.exit(0);
 		return true;
@@ -397,15 +394,12 @@ public class UpdateSystem {
 		setup.updateLastCheck=date;
 		setup.saveSetup();
 
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				String s=checkUpdateAvailable();
-				if (!VersionConst.isNewerVersionFull(s)) {newVersion=""; return;}
-				newVersion=s;
-				if (!active && folderForManualInstallation==null) return;
-				downloadUpdate(folderForManualInstallation);
-			}
+		new Thread((Runnable)()-> {
+			String s=checkUpdateAvailable();
+			if (!VersionConst.isNewerVersionFull(s)) {newVersion=""; return;}
+			newVersion=s;
+			if (!active && folderForManualInstallation==null) return;
+			downloadUpdate(folderForManualInstallation);
 		},"UpdateDownloader").start();
 	}
 

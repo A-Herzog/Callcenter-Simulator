@@ -74,7 +74,7 @@ public final class ImporterProcessorCallerSingleValue extends ImporterProcessorS
 	 */
 	@Override
 	public String[] getNames() {
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		switch (mode) {
 		case CALLER_VALUE_COUNT:
 			list.add(Language.tr("Importer.NumberOfFreshCallsSingleValue"));

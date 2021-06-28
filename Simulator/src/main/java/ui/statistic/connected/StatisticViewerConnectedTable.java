@@ -155,7 +155,7 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 	 * @return	Spaltennamen
 	 */
 	private	List<String> getColParts(String extraCaption) {
-		final ArrayList<String> cols=new ArrayList<String>(Arrays.asList(getColNames()));
+		final ArrayList<String> cols=new ArrayList<>(Arrays.asList(getColNames()));
 		cols.remove(0);
 		for (int i=0;i<cols.size();i++) cols.set(i,extraCaption+" "+cols.get(i));
 		return cols;
@@ -166,7 +166,7 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 	 * @return	Liste der Agentengruppen-Namen
 	 */
 	private List<String> getModelAgentsGroups() {
-		List<String> groupNames=new ArrayList<String>();
+		List<String> groupNames=new ArrayList<>();
 		for (AgentModelData group: results[0].agentenModellProGruppe) groupNames.add(group.name);
 		for (int i=1;i<results.length;i++) for (AgentModelData group: results[i].agentenModellProGruppe) if (groupNames.indexOf(group.name)<0) groupNames.add(group.name);
 		return groupNames;
@@ -288,7 +288,7 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 			cols[cols.length-1]=Language.tr("SimStatistic.AllSkillLevel");
 			break;
 		case DATA_TYPE_SUMMARY:
-			List<String> tempCol=new ArrayList<String>(Arrays.asList(cols));
+			List<String> tempCol=new ArrayList<>(Arrays.asList(cols));
 			dataType=Mode.DATA_TYPE_CALLERS; tempCol.addAll(getColParts(Language.tr("SimStatistic.NumberOfCallers")));
 			dataType=Mode.DATA_TYPE_SUCCESS; tempCol.addAll(getColParts(Language.tr("SimStatistic.Accessibility")));
 			dataType=Mode.DATA_TYPE_CANCEL; tempCol.addAll(getColParts(Language.tr("SimStatistic.NumberOfCancelations")));
@@ -455,7 +455,7 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 			for (int i=0;i<results.length;i++) {
 				AgentModelData[] data=results[i].agentenModellProGruppe;
 				for (int j=0;j<48;j++) {
-					List<String> line=new ArrayList<String>();
+					List<String> line=new ArrayList<>();
 					line.add(getDayName(i)+", "+TimeTools.formatTime(j*1800)+"-"+TimeTools.formatTime((j+1)*1800-1));
 					int sum=0;
 					for (String name : groupNames) {
@@ -473,7 +473,7 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 			for (int i=0;i<results.length;i++) {
 				AgentModelData[] data=results[i].agentenModellProGruppe;
 				for (int j=0;j<48;j++) {
-					List<String> line=new ArrayList<String>();
+					List<String> line=new ArrayList<>();
 					line.add(getDayName(i)+", "+TimeTools.formatTime(j*1800)+"-"+TimeTools.formatTime((j+1)*1800-1));
 					int sum=0;
 					for (String name : groupNames) {
@@ -491,7 +491,7 @@ public class StatisticViewerConnectedTable extends StatisticViewerTable {
 			for (int i=0;i<results.length;i++) {
 				AgentModelData[] data=results[i].agentenModellProGruppe;
 				for (int j=0;j<48;j++) {
-					List<String> line=new ArrayList<String>();
+					List<String> line=new ArrayList<>();
 					line.add(getDayName(i)+", "+TimeTools.formatTime(j*1800)+"-"+TimeTools.formatTime((j+1)*1800-1));
 					int sum=0;
 					for (String name : groupNames) {

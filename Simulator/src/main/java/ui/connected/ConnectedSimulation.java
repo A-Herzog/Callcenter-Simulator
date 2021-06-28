@@ -43,15 +43,15 @@ import ui.model.CallcenterRunModel;
  */
 public final class ConnectedSimulation {
 	/** Simulationsmodelle für die einzelnen Tage */
-	private final List<File> models=new ArrayList<File>();
+	private final List<File> models=new ArrayList<>();
 	/** Statistikergebnisse der einzelnen Tage */
-	private final List<File> statistics=new ArrayList<File>();
+	private final List<File> statistics=new ArrayList<>();
 	/** Übertrag gemäß Modell */
-	private final List<HashMap<String,ConnectedModelUebertrag>> uebertrag=new ArrayList<HashMap<String,ConnectedModelUebertrag>>();
+	private final List<HashMap<String,ConnectedModelUebertrag>> uebertrag=new ArrayList<>();
 	/** Manueller Übertrag pro Tag: Liste der Kundengruppen */
-	private final List<List<String>> uebertragCaller=new ArrayList<List<String>>();
+	private final List<List<String>> uebertragCaller=new ArrayList<>();
 	/** Manueller Übertrag pro Tag: Liste der Anrufer pro Gruppe */
-	private final List<List<Integer>> uebertragCount=new ArrayList<List<Integer>>();
+	private final List<List<Integer>> uebertragCount=new ArrayList<>();
 	/** Statistikergebnisse, die sich im letzten Simulationslauf ergeben haben */
 	private Statistics lastStatistics;
 
@@ -360,10 +360,10 @@ public final class ConnectedSimulation {
 	 * @return	Liefert im Erfolgsfall ein Laufzeitmodell ({@link CallcenterRunModel}) sonst einen String mit einer Fehlermeldung
 	 */
 	public static Object buildConnectedRunModel(final Statistics lastStatistics, final HashMap<String,ConnectedModelUebertrag> connect, final List<String> uebertragCaller, final List<Integer> uebertragCount, final CallcenterModel editModel) {
-		List<int[]> add=new ArrayList<int[]>();
-		List<long[][]> retry=new ArrayList<long[][]>();
-		List<long[][]> uebertragWaiting=new ArrayList<long[][]>();
-		List<long[][]> uebertragTolerance=new ArrayList<long[][]>();
+		List<int[]> add=new ArrayList<>();
+		List<long[][]> retry=new ArrayList<>();
+		List<long[][]> uebertragWaiting=new ArrayList<>();
+		List<long[][]> uebertragTolerance=new ArrayList<>();
 		String s=getModifyData(lastStatistics,connect,editModel,add,retry,uebertragWaiting,uebertragTolerance,uebertragCaller,uebertragCount);
 		if (s!=null) return Language.tr("Connected.Error.Initialization.Info")+"\n"+s;
 		CallcenterRunModel runModel=new CallcenterRunModel(editModel,add,retry,uebertragWaiting,uebertragTolerance);

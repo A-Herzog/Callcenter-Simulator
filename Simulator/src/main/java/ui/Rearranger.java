@@ -123,7 +123,7 @@ public class Rearranger {
 
 		/* Bedienleistung pro Gruppe und Intervall bestimmen */
 		DataDistributionImpl[] workForce=new DataDistributionImpl[editModel.caller.size()];
-		List<Integer> workForceDiv=new ArrayList<Integer>();
+		List<Integer> workForceDiv=new ArrayList<>();
 		for (int i=0;i<workForce.length;i++) workForce[i]=new DataDistributionImpl(86399,96);
 		for (int i=0;i<96;i++) {
 			for (CallcenterModelCallcenter callcenter : editModel.callcenter) if (callcenter.active) {

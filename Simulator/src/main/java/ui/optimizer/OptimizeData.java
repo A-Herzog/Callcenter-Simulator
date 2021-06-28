@@ -37,7 +37,7 @@ public final class OptimizeData {
 	/**
 	 * Liste der Simulationsläufe innerhalb des Optimierungsprozesses
 	 */
-	public List<Statistics> data=new ArrayList<Statistics>();
+	public List<Statistics> data=new ArrayList<>();
 
 	/**
 	 * Optimierer-Einstellungen, die für den Optimierungsprozess verwendet wurden

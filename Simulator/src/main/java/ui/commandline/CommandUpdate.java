@@ -22,18 +22,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
 
 import language.Language;
 import systemtools.commandline.AbstractCommand;
@@ -52,7 +48,7 @@ public class CommandUpdate extends AbstractCommand {
 
 	@Override
 	public String[] getKeys() {
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		list.add(Language.tr("CommandLine.Update.Name"));
 		for (String s: Language.trOther("CommandLine.Update.Name")) if (!list.contains(s)) list.add(s);
 		return list.toArray(new String[0]);
@@ -107,12 +103,7 @@ public class CommandUpdate extends AbstractCommand {
 			URLConnection connection=home1.openConnection();
 			if (!(connection instanceof HttpURLConnection)) return false;
 			if (connection instanceof HttpsURLConnection) {
-				((HttpsURLConnection )connection).setHostnameVerifier(new HostnameVerifier() {
-					@Override
-					public boolean verify(String hostname, SSLSession session) {
-						return hostname.equalsIgnoreCase(UpdateSystem.updateServer);
-					}
-				});
+				((HttpsURLConnection )connection).setHostnameVerifier((hostname, session)->hostname.equalsIgnoreCase(UpdateSystem.updateServer));
 			}
 			int bytes=0;
 			try (BufferedInputStream in=new BufferedInputStream(connection.getInputStream())) {
@@ -134,12 +125,7 @@ public class CommandUpdate extends AbstractCommand {
 			connection=home2.openConnection();
 			if (!(connection instanceof HttpURLConnection)) {return false;}
 			if (connection instanceof HttpsURLConnection) {
-				((HttpsURLConnection )connection).setHostnameVerifier(new HostnameVerifier() {
-					@Override
-					public boolean verify(String hostname, SSLSession session) {
-						return hostname.equalsIgnoreCase(UpdateSystem.homeURL);
-					}
-				});
+				((HttpsURLConnection )connection).setHostnameVerifier((hostname, session)->hostname.equalsIgnoreCase(UpdateSystem.homeURL));
 			}
 			try (BufferedInputStream in=new BufferedInputStream(connection.getInputStream())) {
 				int size=in.read(data,0,data.length);
@@ -156,7 +142,7 @@ public class CommandUpdate extends AbstractCommand {
 					return false;
 				}
 			}
-		} catch (UnsupportedEncodingException | MalformedURLException e) {return false;} catch (IOException e) {return false;}
+		} catch (IOException e) {return false;}
 
 		return true;
 	}

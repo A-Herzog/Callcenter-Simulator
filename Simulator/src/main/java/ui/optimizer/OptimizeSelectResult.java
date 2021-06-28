@@ -84,7 +84,7 @@ public final class OptimizeSelectResult extends BaseEditDialog  {
 	protected void createSimpleContent(JPanel content) {
 		content.setLayout(new BorderLayout());
 
-		final Vector<String> list=new Vector<String>();
+		final Vector<String> list=new Vector<>();
 		if (results==null) {
 			for (int i=0;i<resultsDirect.length;i++) list.add(String.format(Language.tr("Optimizer.SimulatedDay"),i+1));
 		} else {
@@ -96,7 +96,7 @@ public final class OptimizeSelectResult extends BaseEditDialog  {
 				for (int i=1;i<results.data.size();i++) list.add(Language.tr("Optimizer.SimulationRun")+" "+(i+1));
 			}
 		}
-		content.add(comboBox=new JComboBox<String>(list),BorderLayout.NORTH);
+		content.add(comboBox=new JComboBox<>(list),BorderLayout.NORTH);
 		comboBox.addActionListener(new ComboBoxListener());
 
 		content.add(new JScrollPane(text=new JTextPane()),BorderLayout.CENTER);

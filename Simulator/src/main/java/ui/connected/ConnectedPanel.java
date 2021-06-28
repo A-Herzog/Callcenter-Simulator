@@ -97,7 +97,7 @@ public final class ConnectedPanel extends JWorkPanel {
 	/** Datenmodell für die Tabelle zur Konfiguration der einzelnen Tage ({@link #table}) */
 	private final ConnectedJTableModel tableModel;
 	/** Tabelle zur Konfiguration der einzelnen Tage */
-	private final JTableExt table;
+	private JTableExt table;
 	/** Statuszeile */
 	private final JLabel statusLabel;
 	/** Simulations-Fortschrittsanzeige in der Statuszeile */
@@ -190,7 +190,7 @@ public final class ConnectedPanel extends JWorkPanel {
 
 		main.add(p=new JPanel(new BorderLayout()),BorderLayout.CENTER);
 		p.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-		tableModel=new ConnectedJTableModel(owner,helpLink.pageConnectedModal,new Runnable() {@Override public void run() {table.editingStopped(null);}});
+		tableModel=new ConnectedJTableModel(owner,helpLink.pageConnectedModal,()->table.editingStopped(null));
 		tableModel.setDefaultFolder(folderField.getText());
 		p.add(new JScrollPane(table=new JTableExt(tableModel)));
 		table.setIsPanelCellTable();

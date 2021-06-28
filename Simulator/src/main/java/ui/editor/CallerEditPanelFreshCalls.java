@@ -108,7 +108,7 @@ public class CallerEditPanelFreshCalls extends CallerEditPanel {
 		tools.setEnabled(!readOnly);
 		tools.addActionListener(dialogElementListener);
 		tools.setIcon(Images.GENERAL_SETUP.getIcon());
-		p2.add(freshCallsType=new JComboBox<String>(new String[]{
+		p2.add(freshCallsType=new JComboBox<>(new String[]{
 				Language.tr("Editor.Caller.FreshCalls.Distribution.60Minutes"),
 				Language.tr("Editor.Caller.FreshCalls.Distribution.30Minutes"),
 				Language.tr("Editor.Caller.FreshCalls.Distribution.15Minutes")

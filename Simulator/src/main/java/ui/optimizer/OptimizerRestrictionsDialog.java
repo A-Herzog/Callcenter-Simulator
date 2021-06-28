@@ -111,11 +111,11 @@ public class OptimizerRestrictionsDialog extends BaseEditDialog {
 	public OptimizerRestrictionsDialog(final Window owner, final Runnable helpCallbackModal, final CallcenterModel editModel, final List<String> names, final List<DataDistributionImpl> min, final List<DataDistributionImpl> max) {
 		super(owner,Language.tr("Optimizer.ControlVariable.Restrictions.Dialog.Title"),false,helpCallbackModal);
 		this.editModel=editModel;
-		this.names=new ArrayList<String>();
+		this.names=new ArrayList<>();
 		this.names.addAll(names);
-		this.min=new ArrayList<DataDistributionImpl>();
+		this.min=new ArrayList<>();
 		for (int i=0;i<min.size();i++) this.min.add(min.get(i).clone());
-		this.max=new ArrayList<DataDistributionImpl>();
+		this.max=new ArrayList<>();
 		for (int i=0;i<max.size();i++) this.max.add(max.get(i).clone());
 
 		lastSelected=null;
@@ -199,7 +199,7 @@ public class OptimizerRestrictionsDialog extends BaseEditDialog {
 	 * dargestellte Gruppe.
 	 * @see OptimizerRestrictionsDialog#tree
 	 */
-	private class InfoObject {
+	private static class InfoObject {
 		/** Callcenter */
 		public final String callcenter;
 		/** Nummer der Agentengruppe in dem Callcenter */

@@ -358,14 +358,14 @@ public final class CallcenterRunModelCaller {
 		retryCallerTypeAfterGiveUp=null;
 		retryCallerTypeRateAfterGiveUp=null;
 
-		tempRetryCallerTypeAfterBlockedFirstRetry=new ArrayList<String>(editModel.retryCallerTypeAfterBlockedFirstRetry);
-		tempRetryCallerTypeAfterBlockedFirstRetryProbability=new ArrayList<Double>(editModel.retryCallerTypeRateAfterBlockedFirstRetry);
-		tempRetryCallerTypeAfterBlocked=new ArrayList<String>(editModel.retryCallerTypeAfterBlocked);
-		tempRetryCallerTypeAfterBlockedProbability=new ArrayList<Double>(editModel.retryCallerTypeRateAfterBlocked);
-		tempRetryCallerTypeAfterGiveUpFirstRetry=new ArrayList<String>(editModel.retryCallerTypeAfterGiveUpFirstRetry);
-		tempRetryCallerTypeAfterGiveUpFirstRetryProbability=new ArrayList<Double>(editModel.retryCallerTypeRateAfterGiveUpFirstRetry);
-		tempRetryCallerTypeAfterGiveUp=new ArrayList<String>(editModel.retryCallerTypeAfterGiveUp);
-		tempRetryCallerTypeAfterGiveUpProbability=new ArrayList<Double>(editModel.retryCallerTypeRateAfterGiveUp);
+		tempRetryCallerTypeAfterBlockedFirstRetry=new ArrayList<>(editModel.retryCallerTypeAfterBlockedFirstRetry);
+		tempRetryCallerTypeAfterBlockedFirstRetryProbability=new ArrayList<>(editModel.retryCallerTypeRateAfterBlockedFirstRetry);
+		tempRetryCallerTypeAfterBlocked=new ArrayList<>(editModel.retryCallerTypeAfterBlocked);
+		tempRetryCallerTypeAfterBlockedProbability=new ArrayList<>(editModel.retryCallerTypeRateAfterBlocked);
+		tempRetryCallerTypeAfterGiveUpFirstRetry=new ArrayList<>(editModel.retryCallerTypeAfterGiveUpFirstRetry);
+		tempRetryCallerTypeAfterGiveUpFirstRetryProbability=new ArrayList<>(editModel.retryCallerTypeRateAfterGiveUpFirstRetry);
+		tempRetryCallerTypeAfterGiveUp=new ArrayList<>(editModel.retryCallerTypeAfterGiveUp);
+		tempRetryCallerTypeAfterGiveUpProbability=new ArrayList<>(editModel.retryCallerTypeRateAfterGiveUp);
 
 		/* Weiterleitungen */
 
@@ -373,17 +373,17 @@ public final class CallcenterRunModelCaller {
 		continueType=null;
 		continueTypeProbability=null;
 
-		continueSkillLevel=new ArrayList<CallcenterRunModelSkillLevel>();
-		continueSkillLevelProbability=new ArrayList<Double>(editModel.continueTypeSkillTypeProbability);
-		continueSkillLevelType=new ArrayList<List<CallcenterRunModelCaller>>();
-		continueSkillLevelProbabilities=new ArrayList<List<Double>>();
+		continueSkillLevel=new ArrayList<>();
+		continueSkillLevelProbability=new ArrayList<>(editModel.continueTypeSkillTypeProbability);
+		continueSkillLevelType=new ArrayList<>();
+		continueSkillLevelProbabilities=new ArrayList<>();
 		for (int i=0;i<editModel.continueTypeSkillTypeRate.size();i++) {
 			List<Double> list1=editModel.continueTypeSkillTypeRate.get(i);
-			List<Double> list2=new ArrayList<Double>(list1); continueSkillLevelProbabilities.add(list2);
+			List<Double> list2=new ArrayList<>(list1); continueSkillLevelProbabilities.add(list2);
 		}
 
-		tempContinueTypeName=new ArrayList<String>(editModel.continueTypeName);
-		tempContinueTypeProbability=new ArrayList<Double>(editModel.continueTypeRate);
+		tempContinueTypeName=new ArrayList<>(editModel.continueTypeName);
+		tempContinueTypeProbability=new ArrayList<>(editModel.continueTypeRate);
 		tempContinueTypeSkillType=editModel.continueTypeSkillType;
 		tempContinueTypeSkillTypeName=editModel.continueTypeSkillTypeName;
 
@@ -394,17 +394,17 @@ public final class CallcenterRunModelCaller {
 		recallType=null;
 		recallTypeProbability=null;
 
-		recallSkillLevel=new ArrayList<CallcenterRunModelSkillLevel>();
-		recallSkillLevelProbability=new ArrayList<Double>(editModel.recallTypeSkillTypeProbability);
-		recallSkillLevelType=new ArrayList<List<CallcenterRunModelCaller>>();
-		recallSkillLevelProbabilities=new ArrayList<List<Double>>();
+		recallSkillLevel=new ArrayList<>();
+		recallSkillLevelProbability=new ArrayList<>(editModel.recallTypeSkillTypeProbability);
+		recallSkillLevelType=new ArrayList<>();
+		recallSkillLevelProbabilities=new ArrayList<>();
 		for (int i=0;i<editModel.recallTypeSkillTypeRate.size();i++) {
 			List<Double> list1=editModel.recallTypeSkillTypeRate.get(i);
-			List<Double> list2=new ArrayList<Double>(list1); recallSkillLevelProbabilities.add(list2);
+			List<Double> list2=new ArrayList<>(list1); recallSkillLevelProbabilities.add(list2);
 		}
 
-		tempRecallTypeName=new ArrayList<String>(editModel.recallTypeName);
-		tempRecallTypeProbability=new ArrayList<Double>(editModel.recallTypeRate);
+		tempRecallTypeName=new ArrayList<>(editModel.recallTypeName);
+		tempRecallTypeProbability=new ArrayList<>(editModel.recallTypeRate);
 		tempRecallTypeSkillType=editModel.recallTypeSkillType;
 		tempRecallTypeSkillTypeName=editModel.recallTypeSkillTypeName;
 	}
@@ -503,7 +503,7 @@ public final class CallcenterRunModelCaller {
 			retryProbabiltyAfterGiveUp=0;
 		}
 
-		final List<CallcenterRunModelCaller> retryCallerTypeAfterBlockedFirstRetryList=new ArrayList<CallcenterRunModelCaller>();
+		final List<CallcenterRunModelCaller> retryCallerTypeAfterBlockedFirstRetryList=new ArrayList<>();
 		t=Language.tr("Model.Check.ClientType.RetryCheck.BlockedFirst");
 		s=calcProbabilities(
 				caller,strict,
@@ -518,7 +518,7 @@ public final class CallcenterRunModelCaller {
 		retryCallerTypeAfterBlockedFirstRetry=retryCallerTypeAfterBlockedFirstRetryList.toArray(new CallcenterRunModelCaller[0]);
 
 
-		final List<CallcenterRunModelCaller> retryCallerTypeAfterBlockedList=new ArrayList<CallcenterRunModelCaller>();
+		final List<CallcenterRunModelCaller> retryCallerTypeAfterBlockedList=new ArrayList<>();
 		t=Language.tr("Model.Check.ClientType.RetryCheck.Blocked");
 		s=calcProbabilities(
 				caller,strict,
@@ -532,7 +532,7 @@ public final class CallcenterRunModelCaller {
 		retryCallerTypeRateAfterBlocked=doubleArrayFromDoubleList(tempRetryCallerTypeAfterBlockedProbability);
 		retryCallerTypeAfterBlocked=retryCallerTypeAfterBlockedList.toArray(new CallcenterRunModelCaller[0]);
 
-		final List<CallcenterRunModelCaller> retryCallerTypeAfterGiveUpFirstRetryList=new ArrayList<CallcenterRunModelCaller>();
+		final List<CallcenterRunModelCaller> retryCallerTypeAfterGiveUpFirstRetryList=new ArrayList<>();
 		t=Language.tr("Model.Check.ClientType.RetryCheck.CanceledFirst");
 		s=calcProbabilities(
 				caller,strict,
@@ -546,7 +546,7 @@ public final class CallcenterRunModelCaller {
 		retryCallerTypeRateAfterGiveUpFirstRetry=doubleArrayFromDoubleList(tempRetryCallerTypeAfterGiveUpFirstRetryProbability);
 		retryCallerTypeAfterGiveUpFirstRetry=retryCallerTypeAfterGiveUpFirstRetryList.toArray(new CallcenterRunModelCaller[0]);
 
-		final List<CallcenterRunModelCaller> retryCallerTypeAfterGiveUpList=new ArrayList<CallcenterRunModelCaller>();
+		final List<CallcenterRunModelCaller> retryCallerTypeAfterGiveUpList=new ArrayList<>();
 		t=Language.tr("Model.Check.ClientType.RetryCheck.Canceled");
 		s=calcProbabilities(
 				caller,strict,
@@ -567,7 +567,7 @@ public final class CallcenterRunModelCaller {
 			continueProbability=0;
 		}
 
-		final List<CallcenterRunModelCaller> continueTypeList=new ArrayList<CallcenterRunModelCaller>();
+		final List<CallcenterRunModelCaller> continueTypeList=new ArrayList<>();
 		s=calcProbabilities(
 				caller,strict,
 				tempContinueTypeProbability,tempContinueTypeName,continueTypeList,
@@ -595,7 +595,7 @@ public final class CallcenterRunModelCaller {
 			/* Kundentyp finden */
 			double continueProbabilitiesSum=0;
 			List<String> edit=tempContinueTypeSkillTypeName.get(i);
-			List<CallcenterRunModelCaller> run=new ArrayList<CallcenterRunModelCaller>(); continueSkillLevelType.add(run);
+			List<CallcenterRunModelCaller> run=new ArrayList<>(); continueSkillLevelType.add(run);
 			int index=0;
 			while (index<edit.size()) {
 				s=edit.get(index);
@@ -626,7 +626,7 @@ public final class CallcenterRunModelCaller {
 			recallProbability=0;
 		}
 
-		final List<CallcenterRunModelCaller> recallTypeList=new ArrayList<CallcenterRunModelCaller>();
+		final List<CallcenterRunModelCaller> recallTypeList=new ArrayList<>();
 		s=calcProbabilities(
 				caller,strict,
 				tempRecallTypeProbability,tempRecallTypeName,recallTypeList,
@@ -654,7 +654,7 @@ public final class CallcenterRunModelCaller {
 			/* Kundentyp finden */
 			double recallProbabilitiesSum=0;
 			List<String> edit=tempRecallTypeSkillTypeName.get(i);
-			List<CallcenterRunModelCaller> run=new ArrayList<CallcenterRunModelCaller>(); recallSkillLevelType.add(run);
+			List<CallcenterRunModelCaller> run=new ArrayList<>(); recallSkillLevelType.add(run);
 			int index=0;
 			while (index<edit.size()) {
 				s=edit.get(index);

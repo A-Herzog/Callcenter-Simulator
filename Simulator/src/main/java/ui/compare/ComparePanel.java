@@ -16,8 +16,6 @@
 package ui.compare;
 
 import java.awt.Window;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -122,15 +120,12 @@ public class ComparePanel extends JWorkPanel {
 				final Statistics statisticData=statistic[i];
 				if (statisticData==null || statisticData.editModel==null) continue;
 				JMenuItem item=new JMenuItem(statisticData.editModel.name);
-				item.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						final CallcenterModelEditorPanelDialog modelViewer=new CallcenterModelEditorPanelDialog(owner,statisticData.editModel,statisticData,allowLoadToEditor,helpLink);
-						modelViewer.setCloseNotify(new ModelViewerClosed(modelViewer));
-						JWorkPanel.setEnableGUI(ComparePanel.this,false);
-						modelViewer.setVisible(true);
+				item.addActionListener(e-> {
+					final CallcenterModelEditorPanelDialog modelViewer=new CallcenterModelEditorPanelDialog(owner,statisticData.editModel,statisticData,allowLoadToEditor,helpLink);
+					modelViewer.setCloseNotify(new ModelViewerClosed(modelViewer));
+					JWorkPanel.setEnableGUI(ComparePanel.this,false);
+					modelViewer.setVisible(true);
 
-					}
 				});
 				popupMenu.add(item);
 			}

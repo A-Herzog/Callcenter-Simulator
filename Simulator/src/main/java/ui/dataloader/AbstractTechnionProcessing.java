@@ -53,7 +53,7 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 	/** Auswahlbox für den Tag */
 	private JComboBox<String> tagSelect;
 	/** Verfügbare Tage */
-	private final Vector<String> tagList=new Vector<String>();
+	private final Vector<String> tagList=new Vector<>();
 	/** Eingabefeld für die Ausgabedatei */
 	private JTextField fileOutput=null;
 	/** Dateiauswahl-Schaltfläche für die Ausgabedatei */
@@ -100,7 +100,7 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 		fileInput=addFileInputLine(top,Language.tr("Loader.InputFile"),"",fileInputButton);
 		fileInput.addKeyListener(new FileInputListener());
 
-		tagSelect=new JComboBox<String>();
+		tagSelect=new JComboBox<>();
 		addControlWithButton(top,Language.tr("Loader.InputFile.SelectDay"),tagSelect,null);
 
 		if (showOutputSelect) {
@@ -202,7 +202,7 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 		for (int i=0;i<row.size();i++) if (row.get(i).equalsIgnoreCase("date")) {nr=i; break;}
 		if (nr<0) return null;
 
-		List<String> col=new Vector<String>();
+		List<String> col=new Vector<>();
 		for (int i=1;i<table.getSize(0);i++) {
 			String value=table.getValue(i,nr);
 			if (!col.contains(value)) col.add(value);
@@ -219,7 +219,7 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 		String selectedTag=(tagSelect.getModel().getSelectedItem()==null)?null:tagSelect.getModel().getSelectedItem().toString();
 		tagList.clear();
 		List<String> days=getDays(fileInput.getText().trim()); if (days!=null) tagList.addAll(days);
-		tagSelect.setModel(new DefaultComboBoxModel<String>(tagList));
+		tagSelect.setModel(new DefaultComboBoxModel<>(tagList));
 		if (tagList.size()>0) tagSelect.setSelectedIndex(Math.max(0,tagList.indexOf(selectedTag)));
 	}
 

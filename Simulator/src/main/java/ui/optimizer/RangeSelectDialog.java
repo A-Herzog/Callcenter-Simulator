@@ -105,14 +105,14 @@ public class RangeSelectDialog extends BaseEditDialog {
 		default: s="";
 		}
 		content.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT))); p.add(new JLabel(s));
-		content.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT))); p.add(comboMin=new JComboBox<String>(list));
+		content.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT))); p.add(comboMin=new JComboBox<>(list));
 		switch (mode) {
 		case MODE_OPTIMIZE: s=Language.tr("Optimizer.Tabs.UseIntervals.RangeDialog.Max"); break;
 		case MODE_THRESHOLD: s=Language.tr("Editor.GeneralData.ThresholdValues.Intervals.RangeDialog.Max"); break;
 		default: s="";
 		}
 		content.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT))); p.add(new JLabel(s));
-		content.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT))); p.add(comboMax=new JComboBox<String>(list));
+		content.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT))); p.add(comboMax=new JComboBox<>(list));
 		comboMin.setSelectedIndex(16);
 		comboMax.setSelectedIndex(35);
 	}

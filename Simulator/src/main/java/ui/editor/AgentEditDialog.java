@@ -213,10 +213,10 @@ public class AgentEditDialog extends BaseEditDialog {
 		this.model=model;
 		this.helpLink=helpLink;
 		this.showNumberOfAgentsTab=showNumberOfAgentsTab;
-		listener=new ArrayList<RenameListener>();
+		listener=new ArrayList<>();
 
 		indexOfGroup=-1;
-		List<String> temp=new ArrayList<String>();
+		List<String> temp=new ArrayList<>();
 		for (CallcenterModelCallcenter c : model.callcenter) {
 			if (c==callcenter) {
 				for (int i=0;i<callcenterAgents.size();i++) {
@@ -309,7 +309,7 @@ public class AgentEditDialog extends BaseEditDialog {
 		content.setLayout(new BorderLayout());
 
 		content.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.NORTH);
-		p.add(comboBox=new JComboBox<String>());
+		p.add(comboBox=new JComboBox<>());
 		comboBox.addItem(Language.tr("Editor.AgentsGroup.Mode.Fixed"));
 		comboBox.addItem(Language.tr("Editor.AgentsGroup.Mode.Distribution"));
 		comboBox.addItem(Language.tr("Editor.AgentsGroup.Mode.ByClients"));
@@ -349,7 +349,7 @@ public class AgentEditDialog extends BaseEditDialog {
 		p3.setLayout(new BoxLayout(p3,BoxLayout.Y_AXIS));
 
 		p3.add(p2=new JPanel(new FlowLayout(FlowLayout.LEFT)));
-		p2.add(countComboBox=new JComboBox<String>());
+		p2.add(countComboBox=new JComboBox<>());
 		countComboBox.addItem(Language.tr("Editor.AgentsGroup.Values24"));
 		countComboBox.addItem(Language.tr("Editor.AgentsGroup.Values48"));
 		countComboBox.addItem(Language.tr("Editor.AgentsGroup.Values96"));
@@ -367,14 +367,14 @@ public class AgentEditDialog extends BaseEditDialog {
 		t[0]=Language.tr("Editor.AgentsGroup.Shift.MinimumShiftLength.Global")+" ("+u+")";
 		t[1]=Language.tr("Editor.GeneralData.GlobalParameters.MinimumShiftLength.NoRestrictions");
 		for (int i=2;i<t.length;i++) t[i]=TimeTools.formatTime(1800*i);
-		p2.add(minimumShiftLength1=new JComboBox<String>(t));
+		p2.add(minimumShiftLength1=new JComboBox<>(t));
 		minimumShiftLength1.setSelectedIndex(Math.max(0,agent.minimumShiftLength));
 		minimumShiftLength1.setEnabled(!readOnly);
 		p2.add(new JLabel(Language.tr("Editor.AgentsGroup.Shift.PreferredShiftLength")+":"));
 		t=new String[49];
 		t[0]=Language.tr("Editor.AgentsGroup.Shift.PreferredShiftLength.Global")+" ("+TimeTools.formatTime(1800*model.preferredShiftLength)+")";
 		for (int i=1;i<t.length;i++) t[i]=TimeTools.formatTime(1800*i);
-		p2.add(preferredShiftLength1=new JComboBox<String>(t));
+		p2.add(preferredShiftLength1=new JComboBox<>(t));
 		preferredShiftLength1.setSelectedIndex(Math.max(0,agent.preferredShiftLength));
 		preferredShiftLength1.setEnabled(!readOnly);
 
@@ -435,14 +435,14 @@ public class AgentEditDialog extends BaseEditDialog {
 		t[0]=Language.tr("Editor.AgentsGroup.Shift.MinimumShiftLength.Global")+" ("+u+")";
 		t[1]=Language.tr("Editor.GeneralData.GlobalParameters.MinimumShiftLength.NoRestrictions");
 		for (int i=2;i<t.length;i++) t[i]=TimeTools.formatTime(1800*i);
-		p2.add(minimumShiftLength2=new JComboBox<String>(t));
+		p2.add(minimumShiftLength2=new JComboBox<>(t));
 		minimumShiftLength2.setSelectedIndex(Math.max(0,agent.minimumShiftLength));
 		minimumShiftLength2.setEnabled(!readOnly);
 		p2.add(new JLabel(Language.tr("Editor.AgentsGroup.Shift.PreferredShiftLength")+":"));
 		t=new String[49];
 		t[0]=Language.tr("Editor.AgentsGroup.Shift.PreferredShiftLength.Global")+" ("+TimeTools.formatTime(1800*model.preferredShiftLength)+")";
 		for (int i=1;i<t.length;i++) t[i]=TimeTools.formatTime(1800*i);
-		p2.add(preferredShiftLength2=new JComboBox<String>(t));
+		p2.add(preferredShiftLength2=new JComboBox<>(t));
 		preferredShiftLength2.setSelectedIndex(Math.max(0,agent.preferredShiftLength));
 		preferredShiftLength2.setEnabled(!readOnly);
 

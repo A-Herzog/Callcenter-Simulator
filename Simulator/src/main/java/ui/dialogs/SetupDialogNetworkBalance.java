@@ -83,7 +83,7 @@ public class SetupDialogNetworkBalance extends JDialog {
 
 		String[] s=port.split(";");
 		if (s.length<this.server.length) {
-			List<String> list=new ArrayList<String>(Arrays.asList(s));
+			List<String> list=new ArrayList<>(Arrays.asList(s));
 			while (list.size()<this.server.length) list.add("6783");
 			s=list.toArray(new String[0]);
 		}
@@ -95,7 +95,7 @@ public class SetupDialogNetworkBalance extends JDialog {
 
 		s=password.split(";");
 		if (s.length<this.server.length) {
-			List<String> list=new ArrayList<String>(Arrays.asList(s));
+			List<String> list=new ArrayList<>(Arrays.asList(s));
 			while (list.size()<this.server.length) list.add("");
 			s=list.toArray(new String[0]);
 		}
@@ -115,7 +115,7 @@ public class SetupDialogNetworkBalance extends JDialog {
 		setModal(true);
 		setLocationRelativeTo(owner);
 
-		SwingUtilities.invokeLater(new Runnable(){@Override public void run() {new WorkThread().start();}});
+		SwingUtilities.invokeLater(()->new WorkThread().start());
 		setVisible(true);
 	}
 

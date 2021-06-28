@@ -54,7 +54,7 @@ public final class SpecialProcessingDialog extends BaseEditDialog {
 	 * Liste der konkreten Verarbeitungs-Objekte.
 	 * @see #registerProcessingClasses()
 	 */
-	private final List<AbstractSpecialProcessing> handlers=new ArrayList<AbstractSpecialProcessing>();
+	private final List<AbstractSpecialProcessing> handlers=new ArrayList<>();
 
 	/**
 	 * Auflistung der Verarbeitungs-Möglichkeiten.
@@ -99,7 +99,7 @@ public final class SpecialProcessingDialog extends BaseEditDialog {
 		/* Liste */
 		String[] names=new String[handlers.size()];
 		for (int i=0;i<names.length;i++) names[i]=handlers.get(i).getName();
-		JScrollPane sp=new JScrollPane(list=new JList<String>(names));
+		JScrollPane sp=new JScrollPane(list=new JList<>(names));
 		sp.setBorder(BorderFactory.createLineBorder(Color.WHITE,2));
 		content.add(sp,BorderLayout.WEST);
 		list.addListSelectionListener(new ListSelection());

@@ -160,8 +160,8 @@ public abstract class AbstractGeneratorCommand extends AbstractSimulationCommand
 		modelFile=new File(additionalArguments[0+nameArgumentCount]);
 		tableFile=new File(additionalArguments[1+nameArgumentCount]);
 		modelFileOut=new File(additionalArguments[2+nameArgumentCount]);
-		generatorColumn=new ArrayList<String>();
-		generatorType=new ArrayList<String>();
+		generatorColumn=new ArrayList<>();
+		generatorType=new ArrayList<>();
 		if (!modelFile.isFile()) return String.format(Language.tr("CommandLine.Error.File.InputDoesNotExist"),modelFile.toString());
 		if (!isModelFile(modelFile)) return String.format(Language.tr("CommandLine.Error.File.InputNoValidCallCenterModel"),modelFile.toString());
 		if (!tableFile.isFile()) return String.format(Language.tr("CommandLine.Error.File.TableDoesNotExist"),tableFile.toString());

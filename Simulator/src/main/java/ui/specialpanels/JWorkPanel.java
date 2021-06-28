@@ -72,7 +72,7 @@ public class JWorkPanel extends JCloseablePanel {
 	/** Schaltfläche "Hilfe" */
 	private JButton helpButton;
 	/** Weitere benutzerdefinierte Schaltflächen ({@link #addFooterButton(String)}) */
-	private final List<JButton> userButtons=new ArrayList<JButton>();
+	private final List<JButton> userButtons=new ArrayList<>();
 	/** Wird hier ein Wert ungleich <code>null</code> übergeben, so wird eine "Hilfe"-Schaltfläche angezeigt und die <code>Run</code>-Methode dieses Objekts beim Klicken auf diese Schaltfläche aufgerufen */
 	private final Runnable helpCallback;
 

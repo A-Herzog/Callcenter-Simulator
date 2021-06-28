@@ -32,7 +32,7 @@ import ui.model.CallcenterModelAgent;
 public class ImporterProcessorAgentEfficiency extends ImporterProcessor {
 	@Override
 	public String[] getNames() {
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		list.add(Language.tr("Importer.AgentsProductivity.Title"));
 		for (String s: Language.trOther("Importer.AgentsProductivity.Title")) if (!list.contains(s)) list.add(s);
 		return list.toArray(new String[0]);

@@ -98,11 +98,11 @@ public class CallerEditPanelRetryProbability extends CallerEditPanel {
 	public CallerEditPanelRetryProbability(final InitData initData) {
 		super(initData);
 
-		retryCallerTypeChangeNames=new ArrayList<String>(Arrays.asList(callerTypeNames));
-		retryCallerTypeChangeRatesAfterBlockedFirstRetry=new ArrayList<Double>();
-		retryCallerTypeChangeRatesAfterBlocked=new ArrayList<Double>();
-		retryCallerTypeChangeRatesAfterGiveUpFirstRetry=new ArrayList<Double>();
-		retryCallerTypeChangeRatesAfterGiveUp=new ArrayList<Double>();
+		retryCallerTypeChangeNames=new ArrayList<>(Arrays.asList(callerTypeNames));
+		retryCallerTypeChangeRatesAfterBlockedFirstRetry=new ArrayList<>();
+		retryCallerTypeChangeRatesAfterBlocked=new ArrayList<>();
+		retryCallerTypeChangeRatesAfterGiveUpFirstRetry=new ArrayList<>();
+		retryCallerTypeChangeRatesAfterGiveUp=new ArrayList<>();
 		for (int i=0;i<retryCallerTypeChangeNames.size();i++) {
 			String name=retryCallerTypeChangeNames.get(i);
 			int nr;

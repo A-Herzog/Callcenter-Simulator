@@ -108,7 +108,7 @@ public class StatisticViewerAgentsDiagram extends StatisticViewerLineChart {
 	 */
 	private static DataDistributionImpl buildDistribution(CallcenterModel model, List<CallcenterModelCallcenter> callcenter, List<CallcenterModelAgent> agents, Mode viewType, String viewValue) {
 		/* Relevante Agenten bestimmen und ggf. Schichtplan erstellen */
-		List<CallcenterModelAgent> translatedAgents=new ArrayList<CallcenterModelAgent>();
+		List<CallcenterModelAgent> translatedAgents=new ArrayList<>();
 		for (int i=0;i<agents.size();i++) {
 			CallcenterModelAgent a=agents.get(i);
 

@@ -81,7 +81,7 @@ public class StatisticViewerSpecialHTMLText extends	StatisticViewerSimpleHTMLTex
 	 * @return	Callbacks zum Start einer Simulation und zum Laden von Statistikdaten
 	 */
 	private static final Runnable[] buildSpecialLinkListener(Runnable startSimulation, Runnable loadStatistics) {
-		List<Runnable> runner=new ArrayList<Runnable>();
+		List<Runnable> runner=new ArrayList<>();
 		if (startSimulation!=null) runner.add(startSimulation);
 		if (loadStatistics!=null) runner.add(loadStatistics);
 		return runner.toArray(new Runnable[0]);

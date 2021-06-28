@@ -68,14 +68,14 @@ public final class CallcenterModelSkillLevel implements Cloneable {
 	 */
 	public CallcenterModelSkillLevel(final String name) {
 		this.name=name;
-		callerTypeName=new ArrayList<String>();
-		callerTypeWorkingTimeAddOn=new ArrayList<String>();
-		callerTypeWorkingTime=new ArrayList<AbstractRealDistribution>();
-		callerTypePostProcessingTime=new ArrayList<AbstractRealDistribution>();
-		callerTypeIntervalWorkingTimeAddOn=new ArrayList<String[]>();
-		callerTypeIntervalWorkingTime=new ArrayList<AbstractRealDistribution[]>();
-		callerTypeIntervalPostProcessingTime=new ArrayList<AbstractRealDistribution[]>();
-		callerTypeScore=new ArrayList<Integer>();
+		callerTypeName=new ArrayList<>();
+		callerTypeWorkingTimeAddOn=new ArrayList<>();
+		callerTypeWorkingTime=new ArrayList<>();
+		callerTypePostProcessingTime=new ArrayList<>();
+		callerTypeIntervalWorkingTimeAddOn=new ArrayList<>();
+		callerTypeIntervalWorkingTime=new ArrayList<>();
+		callerTypeIntervalPostProcessingTime=new ArrayList<>();
+		callerTypeScore=new ArrayList<>();
 	}
 
 	/**

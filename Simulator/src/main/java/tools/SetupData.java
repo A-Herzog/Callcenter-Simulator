@@ -590,8 +590,8 @@ public class SetupData extends SetupBase {
 			filter[i]="";
 			filterKeyNames[i]=(i==0)?"Filter":("Filter"+(i+1));
 		}
-		final List<String> ips=new ArrayList<String>();
-		final List<String> files=new ArrayList<String>();
+		final List<String> ips=new ArrayList<>();
+		final List<String> files=new ArrayList<>();
 
 		NodeList l=root.getChildNodes();
 		for (int i=0; i<l.getLength();i++) {

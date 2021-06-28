@@ -76,7 +76,7 @@ public final class ImporterRecord implements Cloneable {
 	 * @see #getImporterProcessors()
 	 */
 	private static List<ImporterProcessor> getImporterProcessorsInt() {
-		List<ImporterProcessor> list=new ArrayList<ImporterProcessor>();
+		List<ImporterProcessor> list=new ArrayList<>();
 		list.add(new ImporterProcessorCallerSingleValue(ImporterProcessorCallerSingleValue.CallerValue.CALLER_VALUE_COUNT));
 		list.add(new ImporterProcessorCallerSingleValue(ImporterProcessorCallerSingleValue.CallerValue.CALLER_VALUE_STD));
 		list.add(new ImporterProcessorCallerDistribution(ImporterProcessorCallerDistribution.CallerDist.CALLER_DIST_FRESH_CALLS));

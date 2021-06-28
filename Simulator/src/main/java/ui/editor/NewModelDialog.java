@@ -80,7 +80,7 @@ public class NewModelDialog extends BaseEditDialog {
 				new String[]{Language.tr("MainMenu.File.NewModel.CreateWithWizard")},
 				new String[]{Language.tr("MainMenu.File.NewModel.CreateWithWizard.Tooltip")},
 				new Icon[]{Images.MODEL_WIZARD.getIcon()},
-				new Runnable[] {new Runnable() {@Override public void run() {openWizard=true; closeDialog(CLOSED_BY_OK);}}}
+				new Runnable[] {()-> {openWizard=true; closeDialog(CLOSED_BY_OK);}}
 				);
 		createSimpleGUI(750,550,null,null);
 	}
@@ -92,11 +92,11 @@ public class NewModelDialog extends BaseEditDialog {
 
 		List<CallcenterModel> models;
 
-		models=new ArrayList<CallcenterModel>();
+		models=new ArrayList<>();
 		models.add(CallcenterModelExamples.getEmpty());
 		if (models.size()>0) tabs.addTab(Language.tr("MainMenu.File.NewModel.Tab.Empty"),empty=new JModelSelection(models));
 
-		models=new ArrayList<CallcenterModel>();
+		models=new ArrayList<>();
 		models.add(CallcenterModelExamples.getExampleSmall());
 		models.add(CallcenterModelExamples.getExampleMedium());
 		models.add(CallcenterModelExamples.getExampleLarge());
@@ -115,7 +115,7 @@ public class NewModelDialog extends BaseEditDialog {
 	 * @return	Liste der Modelle in dem Verzeichnis (Liste kann leer sein, ist aber nie <code>null</code>)
 	 */
 	private List<CallcenterModel> getModelsFromFolder(final File folder) {
-		final List<CallcenterModel> models=new ArrayList<CallcenterModel>();
+		final List<CallcenterModel> models=new ArrayList<>();
 		if (folder !=null && folder.isDirectory()) {
 			File[] list=folder.listFiles();
 			if (list!=null)	for (File file : list) {
@@ -206,10 +206,10 @@ public class NewModelDialog extends BaseEditDialog {
 			add(splitPane,BorderLayout.CENTER);
 			splitPane.setContinuousLayout(true);
 
-			DefaultListModel<CallcenterModel> listData=new DefaultListModel<CallcenterModel>();
+			DefaultListModel<CallcenterModel> listData=new DefaultListModel<>();
 			for (CallcenterModel model: models) listData.addElement(model);
 			JScrollPane listScroll;
-			splitPane.setLeftComponent(listScroll=new JScrollPane(list=new JList<CallcenterModel>(listData)));
+			splitPane.setLeftComponent(listScroll=new JScrollPane(list=new JList<>(listData)));
 			list.setCellRenderer(new ModelListRenderer());
 			list.addListSelectionListener(new ModelSelectionListener());
 			list.addMouseListener(new ModelSelectionListener());

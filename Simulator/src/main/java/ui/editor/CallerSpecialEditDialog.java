@@ -182,7 +182,7 @@ public class CallerSpecialEditDialog extends BaseEditDialog {
 		content.setLayout(new BorderLayout());
 
 		/* Liste */
-		content.add(list=new JList<String>(listData=new DefaultListModel<String>()),BorderLayout.WEST);
+		content.add(list=new JList<>(listData=new DefaultListModel<>()),BorderLayout.WEST);
 		list.addListSelectionListener(new ListListener());
 		list.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		for (int i=0;i<skills.length;i++) listData.addElement(skills[i]);
@@ -246,8 +246,8 @@ public class CallerSpecialEditDialog extends BaseEditDialog {
 		for (int i=0;i<active.length;i++) if (active[i]) {
 			continueTypeSkillType.add(skills[i]);
 			continueTypeSkillTypeProbability.add(probability[i]);
-			List<String> names=new ArrayList<String>(); continueTypeSkillTypeName.add(names);
-			List<Double> rates=new ArrayList<Double>(); continueTypeSkillTypeRate.add(rates);
+			List<String> names=new ArrayList<>(); continueTypeSkillTypeName.add(names);
+			List<Double> rates=new ArrayList<>(); continueTypeSkillTypeRate.add(rates);
 			for (int j=0;j<callerTypeNames.length;j++) {
 				names.add(callerTypeNames[j]);
 				rates.add(rate[i][j]);

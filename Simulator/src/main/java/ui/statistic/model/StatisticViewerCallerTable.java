@@ -57,7 +57,7 @@ public class StatisticViewerCallerTable extends StatisticViewerTable {
 
 		for (int i=0;i<48;i++) {
 			long intervalSum=0;
-			data.add(col=new ArrayList<String>());
+			data.add(col=new ArrayList<>());
 			col.add(TimeTools.formatTime(i*1800)+"-"+TimeTools.formatTime((i+1)*1800));
 			int nr=0;
 			for (int j=0;j<model.caller.size();j++) if (model.caller.get(j).active) {
@@ -68,7 +68,7 @@ public class StatisticViewerCallerTable extends StatisticViewerTable {
 			}
 			col.add(""+intervalSum);
 		}
-		data.add(col=new ArrayList<String>());
+		data.add(col=new ArrayList<>());
 		col.add(Language.tr("Statistic.WholeDay"));
 		int s=0;
 		for (int i=0;i<model.caller.size();i++) if (model.caller.get(i).active) {col.add(""+model.caller.get(i).freshCallsCountMean); s+=model.caller.get(i).freshCallsCountMean;}

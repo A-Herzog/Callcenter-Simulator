@@ -382,7 +382,7 @@ public class CalibratePanel extends JWorkPanel {
 	protected final void run() {
 		cancelWork=false;
 		allDone=false;
-		lastChanges=new ArrayList<Double>();
+		lastChanges=new ArrayList<>();
 
 		String s=initModel();
 		if (s!=null) {MsgBox.error(this,Language.tr("Calibrate.ErrorTitle"),s); return;}

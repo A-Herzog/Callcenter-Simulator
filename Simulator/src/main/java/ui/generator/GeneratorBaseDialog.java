@@ -234,7 +234,7 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 		rows=getCommonNumberArea(table,neededRows);
 
 		/* Gibt es überhaupt gültige Spalten? */
-		colIndex=new ArrayList<Integer>();
+		colIndex=new ArrayList<>();
 		for (int i=0;i<rows[0].length;i++) if (rows[0][i]>=0) colIndex.add(i);
 		if (colIndex.size()==0) return false;
 
@@ -299,8 +299,8 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 	 * @return	Array aus zwei Einträgen: Der erste Eintrag ist ein Array aus den Startzeilennummern und der zweite Eintrag ein Array aus den Endzeilnnummern ("-1" bedeutet, dass es in der Spalte keine Zahlen gab)
 	 */
 	private static final Integer[][] getNumberArea(Table table) {
-		List<Integer> indexStart=new ArrayList<Integer>();
-		List<Integer> indexEnd=new ArrayList<Integer>();
+		List<Integer> indexStart=new ArrayList<>();
+		List<Integer> indexEnd=new ArrayList<>();
 
 		for (int i=0;i<table.getSize(0);i++) {
 			int lastStart=-1, lastEnd=-1, currentStart=-1;
@@ -356,8 +356,8 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 		if (minEnd-maxStart+1>rows) minEnd=maxStart+rows-1;
 
 		/* Neue Bereichsvektoren mit minimalem gemeinsamem Bereich anlegen */
-		List<Integer> indexStart=new ArrayList<Integer>();
-		List<Integer> indexEnd=new ArrayList<Integer>();
+		List<Integer> indexStart=new ArrayList<>();
+		List<Integer> indexEnd=new ArrayList<>();
 		for (int i=0;i<numberArea[0].length;i++) {
 			indexStart.add((numberArea[0][i]>=0)?maxStart:-1);
 			indexEnd.add((numberArea[0][i]>=0)?minEnd:-1);
@@ -383,8 +383,8 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 		}
 
 		/* Neue Bereichsvektoren mit minimalem gemeinsamem Bereich anlegen */
-		List<Integer> indexStart=new ArrayList<Integer>();
-		List<Integer> indexEnd=new ArrayList<Integer>();
+		List<Integer> indexStart=new ArrayList<>();
+		List<Integer> indexEnd=new ArrayList<>();
 		for (int i=0;i<numberArea[0].length;i++) {
 			indexStart.add((numberArea[0][i]>=0)?maxStart:-1);
 			indexEnd.add((numberArea[0][i]>=0)?minEnd:-1);
@@ -411,7 +411,7 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 	 * @return	Array mit den Überschriften der Spalten
 	 */
 	private static final String[] getHeadings(Table table, Integer[][] commonNumberArea) {
-		List<String> headings=new ArrayList<String>();
+		List<String> headings=new ArrayList<>();
 
 		/* Zeilennummern festlegen, in denen gesucht werden soll */
 		int end=1;

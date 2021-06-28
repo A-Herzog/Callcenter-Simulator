@@ -67,7 +67,7 @@ public final class Main {
 		if (cfgFile.isDirectory()) return args;
 
 		SetupData.userConfigFile=cfgFile;
-		List<String> argsList=new ArrayList<String>(Arrays.asList(args));
+		List<String> argsList=new ArrayList<>(Arrays.asList(args));
 		argsList.remove(0);
 		args=argsList.toArray(new String[0]);
 		return args;

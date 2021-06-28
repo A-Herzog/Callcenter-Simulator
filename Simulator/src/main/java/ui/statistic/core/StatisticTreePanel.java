@@ -99,7 +99,7 @@ public class StatisticTreePanel extends JPanel {
 	 * @see #setHiddenIDs(String[])
 	 * @see #setHiddenIDsFromSetupString(String)
 	 */
-	private final Set<String> hiddenIDs=new LinkedHashSet <String>();
+	private final Set<String> hiddenIDs=new LinkedHashSet <>();
 
 	/** Schaltfläche zum Filtern der Baumstruktur */
 	private final JButton filter;
@@ -303,7 +303,7 @@ public class StatisticTreePanel extends JPanel {
 		if (statisticData!=null) addToTree(statisticData,rootNode);
 		reportNode=null;
 		if (statisticData!=null && statisticData.getChildCount()>0) {
-			List<StatisticViewer> list=new ArrayList<StatisticViewer>();
+			List<StatisticViewer> list=new ArrayList<>();
 			for (int i=0;i<numberOfViewers;i++) list.add(new StatisticViewerReport(statisticData,null,"",i,()->Help.topic(StatisticTreePanel.this,"Statististik")){
 				@Override
 				protected String getSelectSettings() {return getReportSelectSettings();}
@@ -342,7 +342,7 @@ public class StatisticTreePanel extends JPanel {
 	 */
 	protected final String[] getIDs() {
 		if (statisticData==null) return new String[0];
-		Set<String> ids=new LinkedHashSet<String>();
+		Set<String> ids=new LinkedHashSet<>();
 		statisticData.getIDs(ids);
 		return ids.toArray(new String[0]);
 	}
@@ -522,9 +522,9 @@ public class StatisticTreePanel extends JPanel {
 		if (!(tree.getModel().getRoot() instanceof DefaultMutableTreeNode)) return false;
 		final DefaultMutableTreeNode node=(DefaultMutableTreeNode)(tree.getModel().getRoot());
 
-		final List<StatisticViewer> viewers=new ArrayList<StatisticViewer>();
-		final List<String> types=new ArrayList<String>();
-		final List<String> names=new ArrayList<String>();
+		final List<StatisticViewer> viewers=new ArrayList<>();
+		final List<String> types=new ArrayList<>();
+		final List<String> names=new ArrayList<>();
 		getViewersAndNames("",node,viewers,types,names);
 
 		final StringBuilder reportNames=new StringBuilder();
@@ -542,9 +542,9 @@ public class StatisticTreePanel extends JPanel {
 		if (!(tree.getModel().getRoot() instanceof DefaultMutableTreeNode)) return false;
 		DefaultMutableTreeNode node=(DefaultMutableTreeNode)(tree.getModel().getRoot());
 
-		List<StatisticViewer> viewers=new ArrayList<StatisticViewer>();
-		List<String> types=new ArrayList<String>();
-		List<String> names=new ArrayList<String>();
+		List<StatisticViewer> viewers=new ArrayList<>();
+		List<String> types=new ArrayList<>();
+		List<String> names=new ArrayList<>();
 		getViewersAndNames("",node,viewers,types,names);
 
 		int index=-1;

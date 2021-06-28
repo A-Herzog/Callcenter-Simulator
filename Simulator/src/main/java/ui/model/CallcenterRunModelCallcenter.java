@@ -75,8 +75,8 @@ public final class CallcenterRunModelCallcenter {
 		agentScoreFreeTimeSinceLastCall=editModelCallcenter.agentScoreFreeTimeSinceLastCall;
 		agentScoreFreeTimePart=editModelCallcenter.agentScoreFreeTimePart;
 
-		callerMinWaitingTimeClass=new ArrayList<CallcenterRunModelCaller>();
-		callerMinWaitingTimeMilliSecond=new ArrayList<Integer>();
+		callerMinWaitingTimeClass=new ArrayList<>();
+		callerMinWaitingTimeMilliSecond=new ArrayList<>();
 		for (int i=0;i<editModelCallcenter.callerMinWaitingTime.size();i++) callerMinWaitingTimeMilliSecond.add(editModelCallcenter.callerMinWaitingTime.get(i)*1000);
 		callerMinWaitingTimeName=editModelCallcenter.callerMinWaitingTimeName;
 	}

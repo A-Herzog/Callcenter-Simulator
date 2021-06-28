@@ -142,7 +142,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 * @see StatisticPanel#agentCallcenterTypes(Statistics[])
 	 * @see StatisticPanel#agentSkillLevelTypes(Statistics[])
 	 */
-	private class MultiNumbers {
+	private static class MultiNumbers {
 		/** Name des Datenobjekts */
 		public final String name;
 		/** Anzahlwerte */
@@ -166,7 +166,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 * @see MultiNumbers
 	 */
 	private MultiNumbers[] callerTypes(Statistics data[]) {
-		List<MultiNumbers> list=new ArrayList<MultiNumbers>();
+		List<MultiNumbers> list=new ArrayList<>();
 		if (data.length>0 && data[0]!=null) for (int i=0;i<data[0].kundenProTyp.length;i++) {
 			String name=data[0].kundenProTyp[i].name;
 			MultiNumbers rec=new MultiNumbers(name,data.length); rec.nr[0]=i;
@@ -188,7 +188,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 * @see MultiNumbers
 	 */
 	private MultiNumbers[] agentCallcenterTypes(Statistics data[]) {
-		List<MultiNumbers> list=new ArrayList<MultiNumbers>();
+		List<MultiNumbers> list=new ArrayList<>();
 		if (data.length>0 && data[0]!=null) for (int i=0;i<data[0].agentenProCallcenter.length;i++) {
 			String name=data[0].agentenProCallcenter[i].name;
 			MultiNumbers rec=new MultiNumbers(name,data.length); rec.nr[0]=i;
@@ -210,7 +210,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 * @see MultiNumbers
 	 */
 	private MultiNumbers[] agentSkillLevelTypes(Statistics data[]) {
-		List<MultiNumbers> list=new ArrayList<MultiNumbers>();
+		List<MultiNumbers> list=new ArrayList<>();
 		if (data.length>0 && data[0]!=null) for (int i=0;i<data[0].agentenProSkilllevel.length;i++) {
 			String name=data[0].agentenProSkilllevel[i].name;
 			MultiNumbers rec=new MultiNumbers(name,data.length); rec.nr[0]=i;
@@ -232,7 +232,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 	 */
 	private void addStatisticToTree(StatisticNode root, Statistics data[]) {
 		StatisticNode node, node2, node3;
-		List<StatisticViewer> list=new ArrayList<StatisticViewer>();
+		List<StatisticViewer> list=new ArrayList<>();
 
 		MultiNumbers[] caller=callerTypes(data);
 		MultiNumbers[] agentsCallcenter=agentCallcenterTypes(data);

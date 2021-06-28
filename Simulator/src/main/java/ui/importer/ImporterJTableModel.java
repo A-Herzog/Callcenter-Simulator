@@ -131,7 +131,7 @@ public class ImporterJTableModel extends JTableExtAbstractTableModel {
 			if (processors.get(i)==selProcessor) sel=i;
 		}
 
-		JComboBox<String> box=new JComboBox<String>(list);
+		JComboBox<String> box=new JComboBox<>(list);
 		box.setSelectedIndex(sel);
 		box.addActionListener(new TableButtonListener(rowIndex,10,box));
 		return box;
@@ -145,7 +145,7 @@ public class ImporterJTableModel extends JTableExtAbstractTableModel {
 	private final JComboBox<String> getParameterSelect(int rowIndex) {
 		ImporterProcessor selProcessor=data.records.get(rowIndex).getProcessor();
 		String parameter=data.records.get(rowIndex).parameter;
-		Vector<String> list=new Vector<String>();
+		Vector<String> list=new Vector<>();
 
 		if (selProcessor.getParameterType()==ImporterProcessor.ParameterType.PARAMETER_TYPE_CALLER) for (int i=0;i<model.caller.size();i++) {
 			list.add(model.caller.get(i).name);
@@ -166,7 +166,7 @@ public class ImporterJTableModel extends JTableExtAbstractTableModel {
 		int sel=-1;
 		for (int i=0;i<list.size();i++) if (list.get(i).equals(parameter)) {sel=i; break;}
 
-		JComboBox<String> box=new JComboBox<String>(list);
+		JComboBox<String> box=new JComboBox<>(list);
 		box.setSelectedIndex(Math.max(0,sel));
 		box.addActionListener(new TableButtonListener(rowIndex,11,box));
 		if (sel<0) new TableButtonListener(rowIndex,11,box).actionPerformed(null);

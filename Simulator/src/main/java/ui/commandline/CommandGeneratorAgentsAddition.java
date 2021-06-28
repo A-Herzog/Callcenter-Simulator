@@ -43,7 +43,7 @@ public class CommandGeneratorAgentsAddition extends AbstractGeneratorCommand {
 
 	@Override
 	public final String[] getKeys() {
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		list.add(Language.tr("CommandLine.GeneratorAgentsAddition.Name"));
 		for (String s: Language.trOther("CommandLine.GeneratorAgentsAddition.Name")) if (!list.contains(s)) list.add(s);
 		return list.toArray(new String[0]);

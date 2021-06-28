@@ -50,7 +50,7 @@ public final class ConnectedModel implements Cloneable {
 	 * Die Dateinamen können mit oder ohne Pfad angegeben werden. Dateinamen ohne Pfad werden als relativ zu <code>defaultFolder</code> angenommen.
 	 * @see #defaultFolder
 	 */
-	public List<String> models=new ArrayList<String>();
+	public List<String> models=new ArrayList<>();
 
 	/**
 	 * Dateinamen der Statistikdateien, in denen die Simulationsergebnisse gespeichert werden sollen.
@@ -58,12 +58,12 @@ public final class ConnectedModel implements Cloneable {
 	 * Die Dateinamen können mit oder ohne Pfad angegeben werden. Dateinamen ohne Pfad werden als relativ zu <code>defaultFolder</code> angenommen.
 	 * @see #defaultFolder
 	 */
-	public List<String> statistics=new ArrayList<String>();
+	public List<String> statistics=new ArrayList<>();
 
 	/**
 	 * Gibt an, wie viele am Vortag endgültig abgebrochene Kunden am aktuellen Tag einen erneuten Anlauf starten.
 	 */
-	public List<HashMap<String,ConnectedModelUebertrag>> uebertrag=new ArrayList<HashMap<String,ConnectedModelUebertrag>>();
+	public List<HashMap<String,ConnectedModelUebertrag>> uebertrag=new ArrayList<>();
 
 	/**
 	 * Statistikdatei für den Übertrag hin zum ersten Tag.
@@ -77,13 +77,13 @@ public final class ConnectedModel implements Cloneable {
 	/**
 	 * Kundentypen der zusätzlichen Anrufer, die in Tag 1 zusätzlich eingespielt werden sollen.
 	 */
-	public List<String> additionalDay0CallerNames=new ArrayList<String>();
+	public List<String> additionalDay0CallerNames=new ArrayList<>();
 
 
 	/**
 	 * Anruferanzahlen nach Kundentypen, die in Tag 1 zusätzlich eingespielt werden sollen.
 	 */
-	public List<Integer> additionalDay0CallerCount=new ArrayList<Integer>();
+	public List<Integer> additionalDay0CallerCount=new ArrayList<>();
 
 	/**
 	 * Mögliche Namen des Basiselement von Connected-XML-Dateien (zur Erkennung von Dateien dieses Typs.)
@@ -238,11 +238,11 @@ public final class ConnectedModel implements Cloneable {
 	private String loadFromXML(final Element root) {
 		int dayCount=0;
 
-		final List<String> modelsNew=new ArrayList<String>();
-		final List<String> statisticsNew=new ArrayList<String>();
-		final List<HashMap<String,ConnectedModelUebertrag>> uebertragNew=new ArrayList<HashMap<String,ConnectedModelUebertrag>>();
-		final List<String> additionalCallerNew=new ArrayList<String>();
-		final List<Integer> additionalCountNew=new ArrayList<Integer>();
+		final List<String> modelsNew=new ArrayList<>();
+		final List<String> statisticsNew=new ArrayList<>();
+		final List<HashMap<String,ConnectedModelUebertrag>> uebertragNew=new ArrayList<>();
+		final List<String> additionalCallerNew=new ArrayList<>();
+		final List<Integer> additionalCountNew=new ArrayList<>();
 
 		if (!Language.trAll("XML.Connected",root.getNodeName())) return String.format(Language.tr("XML.Connected.Error"),Language.trPrimary("XML.Connected"));
 
@@ -277,7 +277,7 @@ public final class ConnectedModel implements Cloneable {
 
 					if (Language.trAll("XML.Connected.CarryOver",t)) {
 						if (uebertragNew.size()!=dayCount-1) return String.format(Language.tr("XML.Connected.CarryOver.Single.Error"),dayCount);
-						HashMap<String,ConnectedModelUebertrag> h=new HashMap<String, ConnectedModelUebertrag>();
+						HashMap<String,ConnectedModelUebertrag> h=new HashMap<>();
 
 						NodeList l3=e2.getChildNodes();
 						for (int k=0; k<l3.getLength();k++) {

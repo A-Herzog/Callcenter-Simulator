@@ -94,7 +94,7 @@ public class RemoteAndLocalComplexCallcenterSimulator extends MultiComplexCallce
 		model[serverParts.length]=editModel.clone(); model[serverParts.length].days=remaining;
 
 		/* Simulator-Objekte anlegen */
-		List<CallcenterSimulatorInterface> simulators=new ArrayList<CallcenterSimulatorInterface>();
+		List<CallcenterSimulatorInterface> simulators=new ArrayList<>();
 		for (int i=0;i<model.length;i++) if (model[i].days>0) {
 			if (i==model.length-1) {
 				/* lokal */

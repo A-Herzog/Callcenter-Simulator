@@ -90,7 +90,7 @@ public class StatisticViewerIntervalTable extends StatisticViewerTable {
 	 * @see #buildIntervalTable(Statistics, String[], String)
 	 */
 	private String[] getTableHeading(String[] colNames) {
-		List<String> list=new ArrayList<String>(Arrays.asList(colNames));
+		List<String> list=new ArrayList<>(Arrays.asList(colNames));
 		list.add(0,Language.tr("Statistic.Interval"));
 		return list.toArray(new String[0]);
 	}

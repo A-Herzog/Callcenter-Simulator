@@ -66,8 +66,8 @@ public class AdditionalCallerSetupDialog extends BaseEditDialog {
 	 */
 	public AdditionalCallerSetupDialog(Window owner, Runnable helpCallback, CallcenterModel model, List<String> callerNames, List<Integer> callerCount) {
 		super(owner,Language.tr("Connected.Additional.Title"),getCallerNames(model),false,helpCallback);
-		this.callerNames=new ArrayList<String>(callerNames);
-		this.callerCount=new ArrayList<Integer>(callerCount);
+		this.callerNames=new ArrayList<>(callerNames);
+		this.callerCount=new ArrayList<>(callerCount);
 		createSimpleGUI(400,500,null,null);
 	}
 
@@ -77,7 +77,7 @@ public class AdditionalCallerSetupDialog extends BaseEditDialog {
 	 * @return	Namen der Anrufergruppen
 	 */
 	private static String[] getCallerNames(CallcenterModel model) {
-		List<String> names=new ArrayList<String>();
+		List<String> names=new ArrayList<>();
 		for (int i=0;i<model.caller.size();i++) names.add(model.caller.get(i).name);
 		return names.toArray(new String[0]);
 	}

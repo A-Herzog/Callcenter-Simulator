@@ -184,7 +184,7 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 	 * @return	Spaltennamen
 	 */
 	private	List<String> getColParts(String extraCaption) {
-		List<String> cols=new ArrayList<String>(Arrays.asList(getColNames()));
+		List<String> cols=new ArrayList<>(Arrays.asList(getColNames()));
 		cols.remove(0);
 		for (int i=0;i<cols.size();i++) cols.set(i,extraCaption+" "+cols.get(i));
 		return cols;
@@ -330,7 +330,7 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 			cols[3]=Language.tr("Statistic.Total");
 			break;
 		case DATA_TYPE_SUMMARY:
-			List<String> tempCol=new ArrayList<String>(Arrays.asList(cols));
+			List<String> tempCol=new ArrayList<>(Arrays.asList(cols));
 			dataType=Mode.DATA_TYPE_CALLERS;	tempCol.addAll(getColParts(Language.tr("SimStatistic.NumberOfCallers")));
 			dataType=Mode.DATA_TYPE_SUCCESS; tempCol.addAll(getColParts(Language.tr("SimStatistic.Accessibility")));
 			dataType=Mode.DATA_TYPE_CANCEL; tempCol.addAll(getColParts(Language.tr("SimStatistic.NumberOfCancelations")));

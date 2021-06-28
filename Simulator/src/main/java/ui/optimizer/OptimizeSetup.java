@@ -155,19 +155,19 @@ public final class OptimizeSetup {
 	 * Einschränkungen in Bezug auf die Agentenanzahl für bestimmte Gruppen
 	 * Namen der Gruppen
 	 */
-	public List<String> groupRestrictionName=new ArrayList<String>();
+	public List<String> groupRestrictionName=new ArrayList<>();
 
 	/**
 	 * Einschränkungen in Bezug auf die Agentenanzahl für bestimmte Gruppen
 	 * Minimalanzahlen an Agenten pro Halbstundenintervall
 	 */
-	public List<DataDistributionImpl> groupRestrictionMin=new ArrayList<DataDistributionImpl>();
+	public List<DataDistributionImpl> groupRestrictionMin=new ArrayList<>();
 
 	/**
 	 * Einschränkungen in Bezug auf die Agentenanzahl für bestimmte Gruppen
 	 * Maximalanzahlen an Agenten pro Halbstundenintervall
 	 */
-	public List<DataDistributionImpl> groupRestrictionMax=new ArrayList<DataDistributionImpl>();
+	public List<DataDistributionImpl> groupRestrictionMax=new ArrayList<>();
 
 	/**
 	 * Agentenarbeitszeiterhöhung pro Optimierungsschritt
@@ -196,19 +196,19 @@ public final class OptimizeSetup {
 	 * Gibt an, wie viele am Vortag endgültig abgebrochene Kunden am aktuellen Tag einen erneuten Anlauf starten.
 	 * @see #uebertragFile
 	 */
-	public HashMap<String,ConnectedModelUebertrag> uebertrag=new HashMap<String,ConnectedModelUebertrag>();
+	public HashMap<String,ConnectedModelUebertrag> uebertrag=new HashMap<>();
 
 	/**
 	 * Gibt an, Kunden welcher Typen zusätzlich zu Beginn als Erstanrufer dem Modell hinzugefügt werden sollen.
 	 * @see #uebertragAdditionalCount
 	 */
-	public List<String> uebertragAdditionalCaller=new ArrayList<String>();
+	public List<String> uebertragAdditionalCaller=new ArrayList<>();
 
 	/**
 	 * Gibt an, wie viele Kunden der einzelnen Typen zu Beginn als Erstanrufer dem Modell hinzugefügt werden sollen.
 	 * @see #uebertragAdditionalCaller
 	 */
-	public List<Integer> uebertragAdditionalCount=new ArrayList<Integer>();
+	public List<Integer> uebertragAdditionalCount=new ArrayList<>();
 
 	/**
 	 * Konstruktor der Klasse <code>OptimizeSetup</code>
@@ -505,7 +505,7 @@ public final class OptimizeSetup {
 
 			if (Language.trAll("XML.OptimizerSetup.Group",s)) {
 				List<String> list;
-				if (optimizeGroupNames==null || optimizeGroupNames.length==0) list=new ArrayList<String>(); else list=new ArrayList<String>(Arrays.asList(optimizeGroupNames));
+				if (optimizeGroupNames==null || optimizeGroupNames.length==0) list=new ArrayList<>(); else list=new ArrayList<>(Arrays.asList(optimizeGroupNames));
 				list.add(e.getTextContent());
 				optimizeGroupNames=list.toArray(new String[0]);
 				continue;
@@ -529,7 +529,7 @@ public final class OptimizeSetup {
 
 			if (Language.trAll("XML.OptimizerSetup.ModificationGroup",s)) {
 				List<String> list;
-				if (changeGroups==null || changeGroups.length==0) list=new ArrayList<String>(); else list=new ArrayList<String>(Arrays.asList(changeGroups));
+				if (changeGroups==null || changeGroups.length==0) list=new ArrayList<>(); else list=new ArrayList<>(Arrays.asList(changeGroups));
 				list.add(e.getTextContent());
 				changeGroups=list.toArray(new String[0]);
 				continue;
@@ -539,7 +539,7 @@ public final class OptimizeSetup {
 			if (Language.trAll("XML.OptimizerSetup.CarryOver",s)) {
 				uebertragFile=Language.trAllAttribute("XML.OptimizerSetup.CarryOver.StatisticFile",e);
 
-				HashMap<String,ConnectedModelUebertrag> h=new HashMap<String, ConnectedModelUebertrag>();
+				HashMap<String,ConnectedModelUebertrag> h=new HashMap<>();
 				NodeList l3=e.getChildNodes();
 				for (int k=0; k<l3.getLength();k++) {
 					if (!(l3.item(k) instanceof Element)) continue;
@@ -658,7 +658,7 @@ public final class OptimizeSetup {
 	 * @return	Kopierte Übertrags-HashMap
 	 */
 	public static HashMap<String,ConnectedModelUebertrag> cloneUebertrag(HashMap<String,ConnectedModelUebertrag> map) {
-		HashMap<String,ConnectedModelUebertrag> result=new HashMap<String,ConnectedModelUebertrag>();
+		HashMap<String,ConnectedModelUebertrag> result=new HashMap<>();
 
 		Iterator<String> it=map.keySet().iterator();
 		while (it.hasNext()) {

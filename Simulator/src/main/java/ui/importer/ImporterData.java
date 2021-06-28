@@ -58,7 +58,7 @@ public final class ImporterData implements Cloneable {
 	 * @param records	Liste mit Schabloneneinträgen, die in diese Klasse kopiert werden sollen.
 	 */
 	public ImporterData(List<ImporterRecord> records) {
-		this.records=new ArrayList<ImporterRecord>();
+		this.records=new ArrayList<>();
 		if (records!=null) for (int i=0;i<records.size();i++) this.records.add(records.get(i).clone());
 	}
 

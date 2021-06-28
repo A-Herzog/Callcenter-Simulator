@@ -77,7 +77,7 @@ public final class ImporterPanel extends JWorkPanel {
 	/**
 	 * Importdatentabelle
 	 */
-	private final JTableExt table;
+	private JTableExt table;
 
 	/**
 	 * Konstruktor der Klasse
@@ -118,7 +118,7 @@ public final class ImporterPanel extends JWorkPanel {
 
 		main.add(p=new JPanel(new BorderLayout()),BorderLayout.CENTER);
 		p.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-		tableModel=new ImporterJTableModel(owner,model,()->new Runnable() {@Override public void run() {table.editingStopped(null);}});
+		tableModel=new ImporterJTableModel(owner,model,()->table.editingStopped(null));
 		p.add(new JScrollPane(table=new JTableExt(tableModel)));
 		table.setIsPanelCellTable(0);
 		table.setIsPanelCellTable(1);

@@ -70,7 +70,7 @@ public class ImporterProcessorSkillTimes extends ImporterProcessor {
 		String s=Language.tr("SimStatistic.Global.lower");
 		if (interval>=0) s=TimeTools.formatTime(interval*1800)+"-"+TimeTools.formatTime((interval+1)*1800-1);
 		if (!s.isEmpty()) s=" ("+s+")";
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		switch (mode) {
 		case SKILL_WORKING_TIME:
 			list.add(Language.tr("Importer.HoldingTimeDistribution")+s);

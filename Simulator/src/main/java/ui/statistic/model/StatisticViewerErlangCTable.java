@@ -65,7 +65,7 @@ public class StatisticViewerErlangCTable extends StatisticViewerTable {
 		double[] serviceLevel=erlangCData.getServiceLevel();
 
 		for (int i=0;i<48;i++) {
-			List<String> row=new ArrayList<String>();
+			List<String> row=new ArrayList<>();
 			data.add(row);
 			row.add(TimeTools.formatTime(i*1800)+"-"+TimeTools.formatTime((i+1)*1800));
 			row.add(NumberTools.formatNumber(agents[i]));
@@ -75,7 +75,7 @@ public class StatisticViewerErlangCTable extends StatisticViewerTable {
 			row.add(NumberTools.formatNumber(meanWaitingTime[i]));
 			row.add(NumberTools.formatNumber(serviceLevel[i]*100)+"%");
 		}
-		List<String> col=new ArrayList<String>();
+		List<String> col=new ArrayList<>();
 		data.add(col);
 		col.add(Language.tr("Statistic.Sum"));
 		col.add("");

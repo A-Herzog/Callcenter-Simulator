@@ -280,7 +280,7 @@ public class StatisticViewerErlangCTools {
 		}
 
 		/* Liste aller Agenten aufstellen */
-		List<CallcenterModelAgent> translatedAgents=new ArrayList<CallcenterModelAgent>();
+		List<CallcenterModelAgent> translatedAgents=new ArrayList<>();
 		for (int i=0;i<model.callcenter.size();i++) if (model.callcenter.get(i).active) {
 			CallcenterModelCallcenter c=model.callcenter.get(i);
 			for (int j=0;j<c.agents.size();j++) if (c.agents.get(j).active) {

@@ -61,10 +61,10 @@ public class CallerEditDialog extends BaseEditDialog {
 	private final CallerEditPanel.InitData initData;
 
 	/** Liste der Tabs in dem Dialogs */
-	private final List<CallerEditPanel> panels=new ArrayList<CallerEditPanel>();
+	private final List<CallerEditPanel> panels=new ArrayList<>();
 
 	/** Listener die benachrichtigt werden sollen, wenn in dem Dialog ein Kundentyp umbenannt wird */
-	private final List<RenameListener> listener=new ArrayList<RenameListener>();
+	private final List<RenameListener> listener=new ArrayList<>();
 
 	/** Popupmenü für die Kosten-Dialogseite */
 	private final JPopupMenu popupMenu;

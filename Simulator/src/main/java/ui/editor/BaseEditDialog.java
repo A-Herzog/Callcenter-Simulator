@@ -699,7 +699,7 @@ public class BaseEditDialog extends JDialog {
 		p.add(subPanel=new JPanel(new FlowLayout(FlowLayout.LEFT,0,0)));
 
 		subPanel.setBorder(BorderFactory.createEmptyBorder(0,0,5,0));
-		subPanel.add(box=new JComboBox<String>(values));
+		subPanel.add(box=new JComboBox<>(values));
 		return box;
 	}
 

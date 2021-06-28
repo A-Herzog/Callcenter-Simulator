@@ -109,7 +109,7 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 
 		for (int i=0;i<48;i++) {
 			int activeSum=0;
-			ArrayList<String> col=new ArrayList<String>();
+			ArrayList<String> col=new ArrayList<>();
 			data.add(col);
 			col.add(TimeTools.formatTime(i*1800)+"-"+TimeTools.formatTime((i+1)*1800));
 			for (int j=0;j<translatedAgents.size();j++) {
@@ -134,11 +134,11 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 		columnNames.add(Language.tr("Statistic.Total"));
 
 		/* Bei Bedarf Schichtpläne erstellen */
-		List<ArrayList<CallcenterModelAgent>> translatedAgents=new ArrayList<ArrayList<CallcenterModelAgent>>();
+		List<ArrayList<CallcenterModelAgent>> translatedAgents=new ArrayList<>();
 		for (int i=0;i<model.callcenter.size();i++) if (model.callcenter.get(i).active) {
 			CallcenterModelCallcenter c=model.callcenter.get(i);
 			if (!c.active) continue;
-			ArrayList<CallcenterModelAgent> list=new ArrayList<CallcenterModelAgent>();
+			ArrayList<CallcenterModelAgent> list=new ArrayList<>();
 			translatedAgents.add(list);
 			for (int j=0;j<c.agents.size();j++) {
 				CallcenterModelAgent a=c.agents.get(j);
@@ -162,10 +162,10 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 		columnNames.add(Language.tr("Statistic.Total"));
 
 		/* Bei Bedarf Schichtpläne erstellen */
-		ArrayList<ArrayList<CallcenterModelAgent>> agents=new ArrayList<ArrayList<CallcenterModelAgent>>();
+		ArrayList<ArrayList<CallcenterModelAgent>> agents=new ArrayList<>();
 		for (int i=0;i<model.skills.size();i++) {
 			String skillLevelName=model.skills.get(i).name;
-			ArrayList<CallcenterModelAgent> list=new ArrayList<CallcenterModelAgent>();
+			ArrayList<CallcenterModelAgent> list=new ArrayList<>();
 			agents.add(list);
 			for (int j=0;j<model.callcenter.size();j++) {
 				CallcenterModelCallcenter c=model.callcenter.get(j);
@@ -189,17 +189,17 @@ public class StatisticViewerAgentsTable extends StatisticViewerTable {
 		for (int i=0;i<model.caller.size();i++)	if (model.caller.get(i).active) columnNames.add(model.caller.get(i).name);
 
 		/* Bei Bedarf Schichtpläne erstellen */
-		ArrayList<ArrayList<CallcenterModelAgent>> agents=new ArrayList<ArrayList<CallcenterModelAgent>>();
+		ArrayList<ArrayList<CallcenterModelAgent>> agents=new ArrayList<>();
 		for (int i=0;i<model.caller.size();i++) if (model.caller.get(i).active) {
 			String callerName=model.caller.get(i).name;
 			/* Skill-Level-Namen bestimmen, die den gewählten Kundentyp bedienen können */
-			ArrayList<String> st=new ArrayList<String>();
+			ArrayList<String> st=new ArrayList<>();
 			for (int j=0;j<model.skills.size();j++) {
 				List<String> l=model.skills.get(j).callerTypeName;
 				for (int k=0;k<l.size();k++) if (l.get(k).equalsIgnoreCase(callerName)) {st.add(model.skills.get(j).name); break;}
 			}
 
-			ArrayList<CallcenterModelAgent> list=new ArrayList<CallcenterModelAgent>();
+			ArrayList<CallcenterModelAgent> list=new ArrayList<>();
 			agents.add(list);
 			for (int j=0;j<model.callcenter.size();j++) if (model.callcenter.get(j).active) {
 				CallcenterModelCallcenter c=model.callcenter.get(j);

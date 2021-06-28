@@ -46,14 +46,14 @@ public class CommandGeneratorLoadSimpleModel extends AbstractCommand {
 	 */
 	public CommandGeneratorLoadSimpleModel() {
 		super();
-		tableFile=new ArrayList<File>();
-		tableName=new ArrayList<String>();
-		tableColumn=new ArrayList<String>();
+		tableFile=new ArrayList<>();
+		tableName=new ArrayList<>();
+		tableColumn=new ArrayList<>();
 	}
 
 	@Override
 	public String[] getKeys() {
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		list.add(Language.tr("CommandLine.GeneratorLoadSimpleModel.Name"));
 		for (String s: Language.trOther("CommandLine.GeneratorLoadSimpleModel.Name")) if (!list.contains(s)) list.add(s);
 		return list.toArray(new String[0]);
@@ -76,7 +76,7 @@ public class CommandGeneratorLoadSimpleModel extends AbstractCommand {
 	 * @return	Teiltexte
 	 */
 	private List<String> split(String text, char separator) {
-		List<String> results=new ArrayList<String>();
+		List<String> results=new ArrayList<>();
 		StringBuilder sb=new StringBuilder();
 		String sub="";
 

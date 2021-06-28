@@ -292,7 +292,7 @@ public final class OptimizePanel extends JWorkPanel {
 		final Statistics statistic=results[dialog.getSelectedResult()];
 
 		final CallcenterModelEditorPanelDialog viewer=new CallcenterModelEditorPanelDialog(owner,statistic.editModel,statistic,false,helpLink);
-		viewer.setCloseNotify(new Runnable() {@Override public void run() {setEnableGUI(owner,true);}});
+		viewer.setCloseNotify(()->setEnableGUI(owner,true));
 		setEnableGUI(owner,false);
 		viewer.setVisible(true);
 	}

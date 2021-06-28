@@ -108,7 +108,7 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 			buttonDelete.addActionListener(new DialogElementListener());
 		}
 
-		content.add(new JScrollPane(list=new JList<CallcenterModelWarnings.WarningRecord>(listData=new DefaultListModel<CallcenterModelWarnings.WarningRecord>())),BorderLayout.CENTER);
+		content.add(new JScrollPane(list=new JList<>(listData=new DefaultListModel<>())),BorderLayout.CENTER);
 		list.setCellRenderer(new WarningsListRenderer());
 		list.addKeyListener(new DialogElementListener());
 		list.addMouseListener(new DialogElementListener());
@@ -218,7 +218,7 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 	 * Renderer für die Einträge in {@link CallcenterThresholdValuesDialog#list()}
 	 * @see CallcenterThresholdValuesDialog#list
 	 */
-	private class WarningsListRenderer extends AdvancedListCellRenderer {
+	private static class WarningsListRenderer extends AdvancedListCellRenderer {
 		/**
 		 * Serialisierungs-ID der Klasse
 		 * @see Serializable

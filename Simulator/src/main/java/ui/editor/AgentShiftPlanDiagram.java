@@ -145,7 +145,7 @@ public class AgentShiftPlanDiagram extends JPanel implements mathtools.distribut
 	 * @see AgentShiftPlanDiagram#copyToClipboard(int)
 	 *
 	 */
-	private class TransferableImage implements Transferable{
+	private static class TransferableImage implements Transferable{
 		/**
 		 * Auszugebendes Bild
 		 */

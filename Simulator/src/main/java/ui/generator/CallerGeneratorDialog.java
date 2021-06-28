@@ -61,7 +61,7 @@ public final class CallerGeneratorDialog extends GeneratorBaseDialog {
 	public CallerGeneratorDialog(final Window owner, final Runnable helpCallback, final CallcenterModel model, final int intervals) {
 		super(owner,Language.tr("Generator.LoadClients"),helpCallback,model,intervals);
 
-		callerNames=new ArrayList<String>();
+		callerNames=new ArrayList<>();
 		for (int i=0;i<model.caller.size();i++) callerNames.add(model.caller.get(i).name);
 	}
 
@@ -72,7 +72,7 @@ public final class CallerGeneratorDialog extends GeneratorBaseDialog {
 	 * @return	Liefert die neu erstellte Combobox zurück
 	 */
 	protected static JComboBox<String> createComboBox(String label, List<String> values) {
-		JComboBox<String> comboBox=new JComboBox<String>();
+		JComboBox<String> comboBox=new JComboBox<>();
 
 		/* Combobox befüllen */
 		comboBox.addItem(Language.tr("Generator.DoNotUseColumn"));
@@ -88,7 +88,7 @@ public final class CallerGeneratorDialog extends GeneratorBaseDialog {
 		}
 
 		for (int i=0;i<labels.length;i++) {
-			List<Integer> match=new ArrayList<Integer>();
+			List<Integer> match=new ArrayList<>();
 			String s=labels[i].toUpperCase();
 
 			for (int j=0;j<values.size();j++) {
@@ -110,7 +110,7 @@ public final class CallerGeneratorDialog extends GeneratorBaseDialog {
 		JPanel tab=new JPanel(); data.add(tab);
 		tab.setLayout(new GridLayout(colIndex.size()+1,2));
 
-		select=new ArrayList<JComboBox<String>>();
+		select=new ArrayList<>();
 
 		tab.add(createHeadingLabel(Language.tr("Generator.TableColumn")));
 		tab.add(createHeadingLabel(Language.tr("Generator.ClientType")));

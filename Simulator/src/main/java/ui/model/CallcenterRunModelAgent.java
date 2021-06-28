@@ -133,7 +133,7 @@ public final class CallcenterRunModelAgent {
 	 * @return	Liste mit Laufzeit-Agenten für ein Callcenter
 	 */
 	public static List<CallcenterRunModelAgent> buildAgentsList(final List<CallcenterModelAgent> editAgents, final CallcenterModelCallcenter callcenter, final CallcenterModel model) {
-		final List<CallcenterRunModelAgent> runList=new ArrayList<CallcenterRunModelAgent>();
+		final List<CallcenterRunModelAgent> runList=new ArrayList<>();
 		for (int i=0;i<editAgents.size();i++) if (editAgents.get(i).active)
 			addAgentGroupToRunList(editAgents.get(i),i,callcenter,model,runList);
 		return runList;

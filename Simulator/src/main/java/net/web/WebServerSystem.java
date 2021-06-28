@@ -34,9 +34,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -94,7 +92,7 @@ public abstract class WebServerSystem {
 	/**
 	 * Statistik-Verzeichnisse
 	 */
-	private final List<StatisticFolder> webServerStatisticFolder=new ArrayList<StatisticFolder>();
+	private final List<StatisticFolder> webServerStatisticFolder=new ArrayList<>();
 
 	/**
 	 * Optionales Filter-Skript
@@ -162,12 +160,7 @@ public abstract class WebServerSystem {
 		try {connection=home.openConnection();} catch (IOException e) {return null;}
 		if (!(connection instanceof HttpURLConnection)) return null;
 		if (connection instanceof HttpsURLConnection) {
-			((HttpsURLConnection )connection).setHostnameVerifier(new HostnameVerifier() {
-				@Override
-				public boolean verify(String hostname, SSLSession session) {
-					return hostname.equalsIgnoreCase(UpdateSystem.wwwHomeURL);
-				}
-			});
+			((HttpsURLConnection )connection).setHostnameVerifier((hostname, session)->hostname.equalsIgnoreCase(UpdateSystem.wwwHomeURL));
 		}
 		try (BufferedInputStream in=new BufferedInputStream(connection.getInputStream())) {
 			byte[] data=new byte[32768];
@@ -297,7 +290,7 @@ public abstract class WebServerSystem {
 		}
 
 		if (useWebServer) {
-			List<WebServerDataHandler> handlers=new ArrayList<WebServerDataHandler>();
+			List<WebServerDataHandler> handlers=new ArrayList<>();
 			if (useSimServer) {
 				if (webServerAppletJarFile==null) {
 					log(Language.tr("Server.WebServerSystem"),Language.tr("Server.DownloadingApplet.NoLocalPathToAppletTryingToDownload"),false);
@@ -330,7 +323,7 @@ public abstract class WebServerSystem {
 
 		setupCalcServer(6783,null,0);
 
-		List<WebServerDataHandler> handlers=new ArrayList<WebServerDataHandler>();
+		List<WebServerDataHandler> handlers=new ArrayList<>();
 		File webServerAppletJarFile=new File("CallcenterSimulatorApplet.jar").getAbsoluteFile();
 		if (webServerAppletJarFile.isFile()) {
 			handlers.add(new HandlerCalcServer(6783,null,webServerAppletJarFile));
@@ -446,7 +439,7 @@ public abstract class WebServerSystem {
 		boolean useApplet=false;
 		StatisticFolder serverViewer=null;
 
-		List<WebServerDataHandler> handlers=new ArrayList<WebServerDataHandler>();
+		List<WebServerDataHandler> handlers=new ArrayList<>();
 
 		if (portCalc>0) {
 			useApplet=true;

@@ -35,7 +35,7 @@ public class SmartNewName {
 	 * Konstruktor der Klasse
 	 */
 	public SmartNewName() {
-		reservedNames=new ArrayList<String>();
+		reservedNames=new ArrayList<>();
 	}
 
 	/**

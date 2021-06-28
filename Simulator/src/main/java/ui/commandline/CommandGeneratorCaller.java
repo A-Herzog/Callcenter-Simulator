@@ -34,7 +34,7 @@ import ui.model.CallcenterModelCaller;
 public final class CommandGeneratorCaller extends AbstractGeneratorCommand {
 	@Override
 	public String[] getKeys() {
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		list.add(Language.tr("CommandLine.GeneratorClients.Name"));
 		for (String s: Language.trOther("CommandLine.GeneratorClients.Name")) if (!list.contains(s)) list.add(s);
 		return list.toArray(new String[0]);

@@ -171,7 +171,7 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		/* Toolbar */
 		toolbar.setFloatable(false);
 
-		toolbar.add(toolbarFilter=new JComboBox<ComboBoxItem>());
+		toolbar.add(toolbarFilter=new JComboBox<>());
 		for (int i=0;i<setup.filter.length;i++)  {
 			String s=DataFilter.getTitleFromCommand(setup.filter[i]);
 			if (!s.isEmpty()) s=": "+s;
@@ -469,7 +469,7 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 	 * Einträge für {@link StatisticViewerFastAccess#toolbarFilter}
 	 * @see StatisticViewerFastAccess#toolbarFilter
 	 */
-	private class ComboBoxItem {
+	private static class ComboBoxItem {
 		/** Anzuzeigender Text */
 		private String value;
 

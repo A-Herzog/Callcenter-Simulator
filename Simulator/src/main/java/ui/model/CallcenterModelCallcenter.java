@@ -78,15 +78,15 @@ public final class CallcenterModelCallcenter implements Cloneable {
 
 		active=true;
 
-		agents=new ArrayList<CallcenterModelAgent>();
+		agents=new ArrayList<>();
 		technicalFreeTime=0;
 		technicalFreeTimeIsWaitingTime=true;
 		score=1;
 		agentScoreFreeTimeSinceLastCall=1;
 		agentScoreFreeTimePart=0;
 
-		callerMinWaitingTimeName=new ArrayList<String>();
-		callerMinWaitingTime=new ArrayList<Integer>();
+		callerMinWaitingTimeName=new ArrayList<>();
+		callerMinWaitingTime=new ArrayList<>();
 
 		efficiencyPerInterval=null;
 		additionPerInterval=null;

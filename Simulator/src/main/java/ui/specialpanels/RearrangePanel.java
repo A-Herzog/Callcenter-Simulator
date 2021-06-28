@@ -189,7 +189,7 @@ public class RearrangePanel extends JWorkPanel {
 		slider.setMajorTickSpacing(2);
 		slider.setMinorTickSpacing(1);
 		slider.setPaintTicks(true);
-		Hashtable<Integer,JLabel> callerLabelTable=new Hashtable<Integer,JLabel>();
+		Hashtable<Integer,JLabel> callerLabelTable=new Hashtable<>();
 		callerLabelTable.put(0,new JLabel("<html>"+minLabel+"</html>"));
 		for (int i=1;i<=9;i++) callerLabelTable.put(i*2,new JLabel(""+(i*10)+"%"));
 		callerLabelTable.put(20,new JLabel("<html>"+maxLabel+"</html>"));

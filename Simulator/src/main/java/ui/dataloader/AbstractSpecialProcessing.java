@@ -90,7 +90,7 @@ public abstract class AbstractSpecialProcessing {
 	 */
 	protected AbstractSpecialProcessing(Window owner) {
 		this.owner=owner;
-		drop=new ArrayList<FileDropper>();
+		drop=new ArrayList<>();
 	}
 
 	/**
@@ -259,7 +259,7 @@ public abstract class AbstractSpecialProcessing {
 				if (url!=null) try {
 					if (!MsgBox.confirmOpenURL(panel,url)) return;
 					Desktop.getDesktop().browse(url.toURI());
-				} catch (IOException e1) {} catch (URISyntaxException e1) {}
+				} catch (IOException | URISyntaxException e1) {}
 
 			}
 		}

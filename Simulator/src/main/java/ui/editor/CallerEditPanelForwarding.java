@@ -80,20 +80,20 @@ public class CallerEditPanelForwarding extends CallerEditPanel {
 	public CallerEditPanelForwarding(final InitData initData) {
 		super(initData);
 
-		continueTypeSkillType=new ArrayList<String>();
+		continueTypeSkillType=new ArrayList<>();
 		for (int i=0;i<caller.continueTypeSkillType.size();i++) continueTypeSkillType.add(caller.continueTypeSkillType.get(i));
-		continueTypeSkillTypeProbability=new ArrayList<Double>();
+		continueTypeSkillTypeProbability=new ArrayList<>();
 		for (int i=0;i<caller.continueTypeSkillTypeProbability.size();i++) continueTypeSkillTypeProbability.add(caller.continueTypeSkillTypeProbability.get(i));
-		continueTypeSkillTypeName=new ArrayList<List<String>>();
+		continueTypeSkillTypeName=new ArrayList<>();
 		for (int i=0;i<caller.continueTypeSkillTypeName.size();i++) {
 			List<String> list1=caller.continueTypeSkillTypeName.get(i);
-			List<String> list2=new ArrayList<String>(); continueTypeSkillTypeName.add(list2);
+			List<String> list2=new ArrayList<>(); continueTypeSkillTypeName.add(list2);
 			for (int j=0;j<list1.size();j++) list2.add(list1.get(j));
 		}
-		continueTypeSkillTypeRate=new ArrayList<List<Double>>();
+		continueTypeSkillTypeRate=new ArrayList<>();
 		for (int i=0;i<caller.continueTypeSkillTypeRate.size();i++) {
 			List<Double> list1=caller.continueTypeSkillTypeRate.get(i);
-			List<Double> list2=new ArrayList<Double>(); continueTypeSkillTypeRate.add(list2);
+			List<Double> list2=new ArrayList<>(); continueTypeSkillTypeRate.add(list2);
 			for (int j=0;j<list1.size();j++) list2.add(list1.get(j));
 		}
 
@@ -182,13 +182,13 @@ public class CallerEditPanelForwarding extends CallerEditPanel {
 		newCaller.continueTypeSkillTypeName.clear();
 		for (int i=0;i<continueTypeSkillTypeName.size();i++) {
 			List<String> list1=continueTypeSkillTypeName.get(i);
-			List<String> list2=new ArrayList<String>(); newCaller.continueTypeSkillTypeName.add(list2);
+			List<String> list2=new ArrayList<>(); newCaller.continueTypeSkillTypeName.add(list2);
 			for (int j=0;j<list1.size();j++) list2.add(list1.get(j));
 		}
 		newCaller.continueTypeSkillTypeRate.clear();
 		for (int i=0;i<continueTypeSkillTypeRate.size();i++) {
 			List<Double> list1=continueTypeSkillTypeRate.get(i);
-			List<Double> list2=new ArrayList<Double>(); newCaller.continueTypeSkillTypeRate.add(list2);
+			List<Double> list2=new ArrayList<>(); newCaller.continueTypeSkillTypeRate.add(list2);
 			for (int j=0;j<list1.size();j++) list2.add(list1.get(j));
 		}
 	}

@@ -73,9 +73,7 @@ public class SimpleSimulationDialog extends BaseEditDialog {
 		inputPanel.setMinimumSize(new Dimension(300,100));
 		resultsPanel.setMinimumSize(new Dimension(300,100));
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override public void run() {split.setDividerLocation(0.35);}
-		});
+		SwingUtilities.invokeLater(()->split.setDividerLocation(0.35));
 	}
 
 	/**
@@ -90,9 +88,7 @@ public class SimpleSimulationDialog extends BaseEditDialog {
 			}
 			lastInput=input;
 			final SimpleSimulation simulator=new SimpleSimulation(inputPanel.getInputData());
-			simulator.start(new Runnable() {
-				@Override public void run() {resultsPanel.setResults(simulator);}
-			});
+			simulator.start(()->resultsPanel.setResults(simulator));
 		}
 	}
 }

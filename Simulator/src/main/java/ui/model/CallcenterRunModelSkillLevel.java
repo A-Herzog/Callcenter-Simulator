@@ -75,7 +75,7 @@ public final class CallcenterRunModelSkillLevel {
 		name=editModel.name;
 		callerTypeNameList=editModel.callerTypeName;
 
-		callerTypeWorkingTimeAddOnList=new ArrayList<String[]>();
+		callerTypeWorkingTimeAddOnList=new ArrayList<>();
 		for (int i=0;i<editModel.callerTypeWorkingTimeAddOn.size();i++) {
 			String s=editModel.callerTypeWorkingTimeAddOn.get(i); if (s.trim().isEmpty()) s=null;
 			String[] sArray=new String[48];
@@ -84,7 +84,7 @@ public final class CallcenterRunModelSkillLevel {
 			callerTypeWorkingTimeAddOnList.add(sArray);
 		}
 
-		callerTypeWorkingTimeList=new ArrayList<AbstractRealDistribution[]>();
+		callerTypeWorkingTimeList=new ArrayList<>();
 		for (int i=0;i<editModel.callerTypeWorkingTime.size();i++) {
 			AbstractRealDistribution d=DistributionTools.normalizeDistribution(editModel.callerTypeWorkingTime.get(i));
 			AbstractRealDistribution[] dArray=new AbstractRealDistribution[48];
@@ -93,7 +93,7 @@ public final class CallcenterRunModelSkillLevel {
 			callerTypeWorkingTimeList.add(dArray);
 		}
 
-		callerTypePostProcessingTimeList=new ArrayList<AbstractRealDistribution[]>();
+		callerTypePostProcessingTimeList=new ArrayList<>();
 		for (int i=0;i<editModel.callerTypePostProcessingTime.size();i++) {
 			AbstractRealDistribution d=DistributionTools.normalizeDistribution(editModel.callerTypePostProcessingTime.get(i));
 			AbstractRealDistribution[] dArray=new AbstractRealDistribution[48];
@@ -120,7 +120,7 @@ public final class CallcenterRunModelSkillLevel {
 		callerTypeByIndex=new short[maxIndex+1];
 		Arrays.fill(callerTypeByIndex,(short)(-1));
 
-		List<CallcenterRunModelCaller> callerTypeList=new ArrayList<CallcenterRunModelCaller>();
+		List<CallcenterRunModelCaller> callerTypeList=new ArrayList<>();
 		int i=0;
 		while (i<callerTypeNameList.size()) {
 			CallcenterRunModelCaller c=null;

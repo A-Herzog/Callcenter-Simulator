@@ -103,9 +103,9 @@ public final class CallcenterModel implements Cloneable {
 		preferredShiftLength=16;
 		minimumShiftLength=1;
 		serviceLevelSeconds=20;
-		caller=new ArrayList<CallcenterModelCaller>();
-		callcenter=new ArrayList<CallcenterModelCallcenter>();
-		skills=new ArrayList<CallcenterModelSkillLevel>();
+		caller=new ArrayList<>();
+		callcenter=new ArrayList<>();
+		skills=new ArrayList<>();
 		efficiencyPerInterval=new DataDistributionImpl(CallcenterModelAgent.countPerIntervalMaxX,48);
 		efficiencyPerInterval.setToValue(1);
 		additionPerInterval=new DataDistributionImpl(CallcenterModelAgent.countPerIntervalMaxX,48);
@@ -547,7 +547,7 @@ public final class CallcenterModel implements Cloneable {
 			sb.append(":\n");
 			int groupCount=0; for (CallcenterModelAgent a : c.agents) if (a.active) groupCount++;
 			sb.append("    "+groupCount+" "+((groupCount==1)?Language.tr("Model.GenerateDescription.AgentGroup.Single"):Language.tr("Model.GenerateDescription.AgentGroupMultiple"))+"\n    (");
-			List<String> types=new ArrayList<String>();
+			List<String> types=new ArrayList<>();
 			for (CallcenterModelAgent a : c.agents) if (a.active) {
 
 				if (agentType==-3) {

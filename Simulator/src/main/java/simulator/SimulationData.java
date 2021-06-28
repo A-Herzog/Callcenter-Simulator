@@ -112,7 +112,7 @@ public final class SimulationData extends SimData {
 		if (initCallsList==null) {
 			int sum=0;
 			for (CallcenterRunModelCaller group: model.caller) sum+=group.freshCallsCountMean;
-			initCallsList=new ArrayList<CallEvent>(sum*11/10);
+			initCallsList=new ArrayList<>(sum*11/10);
 		} else {
 			initCallsList.clear();
 		}
@@ -206,10 +206,10 @@ public final class SimulationData extends SimData {
 	private void initAgents(final boolean firstDay, boolean backgroundMode) {
 		int count=0;
 
-		final List<AgentReadyEvent> agents=new ArrayList<AgentReadyEvent>(firstDay?2000:dynamicSimData.agentRecord.length);
+		final List<AgentReadyEvent> agents=new ArrayList<>(firstDay?2000:dynamicSimData.agentRecord.length);
 
 		List<AgentRecord> firstDayList=null;
-		if (firstDay) firstDayList=new ArrayList<AgentRecord>();
+		if (firstDay) firstDayList=new ArrayList<>();
 
 		/* Liste mit allen Agenten anlegen */
 		CallcenterRunModelCallcenter callcenter;

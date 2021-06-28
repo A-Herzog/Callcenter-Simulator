@@ -167,7 +167,7 @@ public class CheckBoxTree {
 	 * @return	Namen der ausgewählten Eintrag
 	 */
 	public String[] getSelected(boolean agentsList) {
-		List<String> l=new ArrayList<String>();
+		List<String> l=new ArrayList<>();
 
 		if (agentsList) {
 			/* Agenten */
@@ -338,7 +338,7 @@ public class CheckBoxTree {
 	 * Reagiert auf Änderungen der Einstellungen der Checkboxen
 	 * in {@link CheckBoxTree#tree}
 	 */
-	private final class CheckBoxItemListener implements ItemListener {
+	private static final class CheckBoxItemListener implements ItemListener {
 		/**
 		 * Editor für den Eintrag
 		 */
@@ -441,7 +441,7 @@ public class CheckBoxTree {
 	/**
 	 * Renderer für die Einträge in {@link CheckBoxTree#tree}
 	 */
-	private final class CheckBoxNodeRenderer implements TreeCellRenderer {
+	private static final class CheckBoxNodeRenderer implements TreeCellRenderer {
 		/**
 		 * Basis-Element
 		 */

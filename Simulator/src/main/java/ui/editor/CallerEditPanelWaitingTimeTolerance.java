@@ -112,7 +112,7 @@ public class CallerEditPanelWaitingTimeTolerance extends CallerEditPanel {
 		p3.add(waitingTimeDistActive=new JCheckBox(Language.tr("Editor.Caller.WaitingTimeTolerance.Finite"),caller.waitingTimeMode!=CallcenterModelCaller.WAITING_TIME_MODE_OFF));
 		waitingTimeDistActive.setEnabled(!readOnly);
 		p3.add(Box.createHorizontalStrut(20));
-		p3.add(waitingTimeCalc=new JComboBox<String>(new String[]{
+		p3.add(waitingTimeCalc=new JComboBox<>(new String[]{
 				Language.tr("Editor.Caller.WaitingTimeTolerance.Mode.Distribution"),
 				Language.tr("Editor.Caller.WaitingTimeTolerance.Mode.DistributionLong"),
 				Language.tr("Editor.Caller.WaitingTimeTolerance.Mode.Estimation")

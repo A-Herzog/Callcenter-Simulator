@@ -177,7 +177,7 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 			indexForThisSkillLevel=i; break;
 		}
 
-		listener=new ArrayList<RenameListener>();
+		listener=new ArrayList<>();
 
 		/* Kundentypen aus der Skill-Liste entfernen, die es nicht in callerTypeNames gibt */
 		int i=0;
@@ -261,18 +261,18 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 		toolsButton.setIcon(Images.GENERAL_SETUP.getIcon());
 
 		content.add(p=new JPanel(new BorderLayout()),BorderLayout.CENTER);
-		p.add(new JScrollPane(list=new JList<String>(listData=new DefaultListModel<String>())),BorderLayout.WEST);
+		p.add(new JScrollPane(list=new JList<>(listData=new DefaultListModel<>())),BorderLayout.WEST);
 		list.setPreferredSize(new Dimension(150,200));
 		list.addListSelectionListener(new ListListener());
 		list.addKeyListener(new ListListener());
 		for (int i=0;i<tempSkill.callerTypeName.size();i++) listData.addElement(tempSkill.callerTypeName.get(i));
 		list.setCellRenderer(new ClientTypeListRenderer());
 
-		List<String> intervalNames=new ArrayList<String>();
+		List<String> intervalNames=new ArrayList<>();
 		intervalNames.add(Language.tr("Editor.SkillLevel.Distribution.Global"));
 		for (int i=0;i<48;i++) intervalNames.add(Language.tr("Editor.SkillLevel.Distribution.Specific")+" "+TimeTools.formatTime(i*1800)+"-"+TimeTools.formatTime((i+1)*1800-1));
 
-		List<String> intervalNames2=new ArrayList<String>();
+		List<String> intervalNames2=new ArrayList<>();
 		intervalNames2.add(Language.tr("Editor.SkillLevel.Value.Global"));
 		for (int i=0;i<48;i++) intervalNames2.add(Language.tr("Editor.SkillLevel.Value.Specific")+" "+TimeTools.formatTime(i*1800)+"-"+TimeTools.formatTime((i+1)*1800-1));
 
@@ -281,8 +281,8 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 
 		tabs.addTab(Language.tr("Editor.SkillLevel.Distribution.HoldingTime"),p2=new JPanel(new BorderLayout()));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.NORTH);
-		p3.add(workingTimeComboBox=new JComboBox<String>(intervalNames.toArray(new String[0])));
-		workingTimeComboBox.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {listSelectionChanged();}});
+		p3.add(workingTimeComboBox=new JComboBox<>(intervalNames.toArray(new String[0])));
+		workingTimeComboBox.addActionListener(e->listSelectionChanged());
 		p3.add(workingTimeCheckBox=new JCheckBox(Language.tr("Editor.SkillLevel.Distribution.UseGlobal")));
 		workingTime=new JDistributionPanel(new ExponentialDistribution(600),CallcenterModelSkillLevel.callerTypeWorkingTimeMaxX,true) {
 			/**
@@ -303,8 +303,8 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 
 		tabs.addTab(Language.tr("Editor.SkillLevel.Distribution.HoldingTimeAddOn"),p2=new JPanel(new BorderLayout()));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.NORTH);
-		p3.add(workingTimeAddOnComboBox=new JComboBox<String>(intervalNames2.toArray(new String[0])));
-		workingTimeAddOnComboBox.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {listSelectionChanged();}});
+		p3.add(workingTimeAddOnComboBox=new JComboBox<>(intervalNames2.toArray(new String[0])));
+		workingTimeAddOnComboBox.addActionListener(e->listSelectionChanged());
 		p3.add(workingTimeAddOnCheckBox=new JCheckBox(Language.tr("Editor.SkillLevel.Value.UseGlobal")));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.CENTER);
 		p3.add(p4=new JPanel());
@@ -323,8 +323,8 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 
 		tabs.addTab(Language.tr("Editor.SkillLevel.Distribution.PostProcessingTime"),p2=new JPanel(new BorderLayout()));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.NORTH);
-		p3.add(postprocessingTimeComboBox=new JComboBox<String>(intervalNames.toArray(new String[0])));
-		postprocessingTimeComboBox.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {listSelectionChanged();}});
+		p3.add(postprocessingTimeComboBox=new JComboBox<>(intervalNames.toArray(new String[0])));
+		postprocessingTimeComboBox.addActionListener(e->listSelectionChanged());
 		p3.add(postprocessingTimeCheckBox=new JCheckBox(Language.tr("Editor.SkillLevel.Distribution.UseGlobal")));
 		postprocessingTime=new JDistributionPanel(new ExponentialDistribution(300),CallcenterModelSkillLevel.callerTypePostProcessingTimeMaxX,true) {
 			/**

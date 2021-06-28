@@ -481,7 +481,7 @@ public class StatisticViewerKundenAgentenLineChart extends StatisticViewerLineCh
 			if (index==nr) {editNr=i; break;}
 		}
 		CallcenterModelCallcenter callcenter=statistic.editModel.callcenter.get(editNr);
-		List<CallcenterModelAgent> translatedAgents=new ArrayList<CallcenterModelAgent>();
+		List<CallcenterModelAgent> translatedAgents=new ArrayList<>();
 		for (int i=0;i<callcenter.agents.size();i++) translatedAgents.addAll(callcenter.agents.get(i).calcAgentShifts(false,callcenter,statistic.editModel,true));
 
 		/* Zusammenzählen */

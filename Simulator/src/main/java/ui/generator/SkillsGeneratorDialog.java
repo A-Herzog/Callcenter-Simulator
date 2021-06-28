@@ -68,10 +68,10 @@ public final class SkillsGeneratorDialog extends GeneratorBaseDialog {
 	public SkillsGeneratorDialog(final Window owner, final Runnable helpCallback, final CallcenterModel model) {
 		super(owner,Language.tr("Generator.LoadSkillData"),helpCallback,model);
 
-		skillNr=new ArrayList<Integer>();
-		skillSubNr=new ArrayList<Integer>();
-		skillNames=new ArrayList<String>();
-		skillCallerNames=new ArrayList<String>();
+		skillNr=new ArrayList<>();
+		skillSubNr=new ArrayList<>();
+		skillNames=new ArrayList<>();
+		skillCallerNames=new ArrayList<>();
 		for (int i=0;i<model.skills.size();i++) for (int j=0;j<model.skills.get(i).callerTypeName.size();j++) {
 			skillNr.add(i);
 			skillSubNr.add(j);
@@ -88,7 +88,7 @@ public final class SkillsGeneratorDialog extends GeneratorBaseDialog {
 	 * @return	Liefert die neu erstellte Combobox zurück
 	 */
 	protected static JComboBox<String> createComboBox(String label, List<String> values1, List<String> values2) {
-		JComboBox<String> comboBox=new JComboBox<String>();
+		JComboBox<String> comboBox=new JComboBox<>();
 
 		/* Combobox befüllen */
 		comboBox.addItem(Language.tr("Generator.DoNotUseColumn"));
@@ -112,7 +112,7 @@ public final class SkillsGeneratorDialog extends GeneratorBaseDialog {
 		JPanel tab=new JPanel(); data.add(tab);
 		tab.setLayout(new GridLayout(colIndex.size()+1,2));
 
-		select=new ArrayList<JComboBox<String>>();
+		select=new ArrayList<>();
 
 		tab.add(createHeadingLabel(Language.tr("Generator.TableColumn")));
 		tab.add(createHeadingLabel(Language.tr("Generator.Distribution")));

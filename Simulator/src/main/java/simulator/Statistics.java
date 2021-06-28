@@ -261,7 +261,7 @@ public final class Statistics extends StatisticsBase {
 	 * @see #calcWarningValue(ui.model.CallcenterModelWarnings.WarningRecord)
 	 */
 	private KundenDaten[] getWarningClientGroup(final CallcenterModelWarnings.WarningRecord record) {
-		final List<KundenDaten> list=new ArrayList<KundenDaten>();
+		final List<KundenDaten> list=new ArrayList<>();
 
 		if (record.modeGroup==CallcenterModelWarnings.WarningMode.WARNING_MODE_AVERAGE) {
 			list.add(kundenGlobal);
@@ -287,7 +287,7 @@ public final class Statistics extends StatisticsBase {
 	 * @see #calcWarningValue(ui.model.CallcenterModelWarnings.WarningRecord)
 	 */
 	private AgentenDaten[] getWarningAgentsGroup(final CallcenterModelWarnings.WarningRecord record) {
-		final List<AgentenDaten> list=new ArrayList<AgentenDaten>();
+		final List<AgentenDaten> list=new ArrayList<>();
 
 		if (record.modeGroup==CallcenterModelWarnings.WarningMode.WARNING_MODE_AVERAGE) {
 			list.add(agentenGlobal);
@@ -946,25 +946,25 @@ public final class Statistics extends StatisticsBase {
 		public int kundenAbbruchThisDay;
 
 		/** Abbrecher pro Simulationstag (wird für die verkettete Simulation benötigt) */
-		public List<Integer> kundenAbbruchProSimDay=new ArrayList<Integer>();
+		public List<Integer> kundenAbbruchProSimDay=new ArrayList<>();
 
 		/** Wird zur Berechnung von kundenNextDayRetryProSimDay verwendet; wird nicht mitgespeichert oder gecloned, nur während der Simulation zu verwenden */
-		public List<Long> kundenNextDayRetryThisDay=new ArrayList<Long>();
+		public List<Long> kundenNextDayRetryThisDay=new ArrayList<>();
 
 		/** Wiederanrufer am nächsten Tag inkl. der Anrufzeitpunkte */
-		public List<List<Long>> kundenNextDayRetryProSimDay=new ArrayList<List<Long>>();
+		public List<List<Long>> kundenNextDayRetryProSimDay=new ArrayList<>();
 
 		/** Wird zur Berechnung von kundenNextDayUebertragWaitingTimeProSimDay verwendet; wird nicht mitgespeichert oder gecloned, nur während der Simulation zu verwenden */
-		public List<Long> kundenNextDayUebertragWaitingTimeThisDay=new ArrayList<Long>();
+		public List<Long> kundenNextDayUebertragWaitingTimeThisDay=new ArrayList<>();
 
 		/** Übertrag zum nächsten Tag (bisherige Wartezeiten der einzelnen Kunden) */
-		public List<List<Long>> kundenNextDayUebertragWaitingTimeProSimDay=new ArrayList<List<Long>>();
+		public List<List<Long>> kundenNextDayUebertragWaitingTimeProSimDay=new ArrayList<>();
 
 		/** Wird zur Berechnung von kundenNextDayUebertragRestWaitingToleranceProSimDay verwendet; wird nicht mitgespeichert oder gecloned, nur während der Simulation zu verwenden */
-		public List<Long> kundenNextDayUebertragRestWaitingToleranceThisDay=new ArrayList<Long>();
+		public List<Long> kundenNextDayUebertragRestWaitingToleranceThisDay=new ArrayList<>();
 
 		/** Übertrag zum nächsten Tag (Restwartezeiten der einzelnen Kunden) */
-		public List<List<Long>> kundenNextDayUebertragRestWaitingToleranceProSimDay=new ArrayList<List<Long>>();
+		public List<List<Long>> kundenNextDayUebertragRestWaitingToleranceProSimDay=new ArrayList<>();
 
 
 		/**
@@ -1175,13 +1175,13 @@ public final class Statistics extends StatisticsBase {
 			kundenAbbruchThisDay=0;
 
 			kundenNextDayRetryProSimDay.add(kundenNextDayRetryThisDay);
-			kundenNextDayRetryThisDay=new ArrayList<Long>();
+			kundenNextDayRetryThisDay=new ArrayList<>();
 
 			kundenNextDayUebertragWaitingTimeProSimDay.add(kundenNextDayUebertragWaitingTimeThisDay);
-			kundenNextDayUebertragWaitingTimeThisDay=new ArrayList<Long>();
+			kundenNextDayUebertragWaitingTimeThisDay=new ArrayList<>();
 
 			kundenNextDayUebertragRestWaitingToleranceProSimDay.add(kundenNextDayUebertragRestWaitingToleranceThisDay);
-			kundenNextDayUebertragRestWaitingToleranceThisDay=new ArrayList<Long>();
+			kundenNextDayUebertragRestWaitingToleranceThisDay=new ArrayList<>();
 		}
 
 		/**
@@ -1274,7 +1274,7 @@ public final class Statistics extends StatisticsBase {
 							String all=e2.getTextContent();
 							String[] data=all.split("\\|");
 							for (String part: data) {
-								List<Long> list=new ArrayList<Long>();
+								List<Long> list=new ArrayList<>();
 								for (String value: part.split(";")) if (!value.isEmpty()) {
 									Long L=NumberTools.getLong(value);
 									if (L==null) return Language.tr("XML.Statistic.Clients.CarryOver.RetryTimes.Error");
@@ -1290,8 +1290,8 @@ public final class Statistics extends StatisticsBase {
 							kundenNextDayUebertragWaitingTimeProSimDay.clear();
 							kundenNextDayUebertragRestWaitingToleranceProSimDay.clear();
 							for (String part: e2.getTextContent().split("\\|")) {
-								List<Long> list1=new ArrayList<Long>();
-								List<Long> list2=new ArrayList<Long>();
+								List<Long> list1=new ArrayList<>();
+								List<Long> list2=new ArrayList<>();
 								for (String value: part.split(";")) if (!value.isEmpty()) {
 									String[] lists=value.split("/");
 									if (lists.length==2) {
@@ -2493,7 +2493,7 @@ public final class Statistics extends StatisticsBase {
 			}
 
 			/* Bei Bedarf Schichtpläne erstellen */
-			List<CallcenterModelAgent> translatedAgents=new ArrayList<CallcenterModelAgent>();
+			List<CallcenterModelAgent> translatedAgents=new ArrayList<>();
 			for (int i=0;i<model.callcenter.size();i++) {
 				CallcenterModelCallcenter c=model.callcenter.get(i);
 				if (!c.active) continue;
@@ -2596,7 +2596,7 @@ public final class Statistics extends StatisticsBase {
 	 * @return	Modell-Agenten
 	 */
 	private AgentModelData[] buildAgentModelData(final CallcenterModel model) {
-		List<AgentModelData> list=new ArrayList<AgentModelData>();
+		List<AgentModelData> list=new ArrayList<>();
 
 		for (int i=0;i<model.callcenter.size();i++) {
 			CallcenterModelCallcenter callcenter=model.callcenter.get(i);
@@ -2632,7 +2632,7 @@ public final class Statistics extends StatisticsBase {
 	 * @see Statistics#agentenModellGlobal
 	 * @see Statistics#agentenModellProGruppe
 	 */
-	public final class AgentModelData {
+	public static final class AgentModelData {
 		/** Name der Agentengruppe */
 		public String name;
 		/** Skill-Level */

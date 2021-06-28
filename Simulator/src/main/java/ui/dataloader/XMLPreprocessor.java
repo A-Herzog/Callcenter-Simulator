@@ -54,8 +54,8 @@ public class XMLPreprocessor {
 	public XMLPreprocessor(final File xmlFile, final File tableFile) {
 		this.xmlFile=xmlFile;
 		this.tableFile=tableFile;
-		xmlLines=new ArrayList<String>();
-		processedLines=new ArrayList<String>();
+		xmlLines=new ArrayList<>();
+		processedLines=new ArrayList<>();
 		multiTable=new MultiTable();
 	}
 

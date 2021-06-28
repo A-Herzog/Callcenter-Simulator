@@ -119,16 +119,16 @@ public class PreplanningDialog extends BaseEditDialog {
 		content.add(p,BorderLayout.CENTER);
 
 		p.add(p2=new JPanel(new FlowLayout(FlowLayout.LEFT)));
-		p2.add(comboMode=new JComboBox<String>(new String[]{Language.tr("Editor.Preplanning.Mode.Fixed"),Language.tr("Editor.Preplanning.Mode.ErlangCSimple"),Language.tr("Editor.Preplanning.Mode.ErlangCComplex")}));
+		p2.add(comboMode=new JComboBox<>(new String[]{Language.tr("Editor.Preplanning.Mode.Fixed"),Language.tr("Editor.Preplanning.Mode.ErlangCSimple"),Language.tr("Editor.Preplanning.Mode.ErlangCComplex")}));
 		comboMode.setSelectedIndex(2);
 		comboMode.addActionListener(new ComboListener());
 
 		p.add(p2=new JPanel(new FlowLayout(FlowLayout.LEFT)));
-		p2.add(comboSimplify=new JComboBox<String>(new String[]{Language.tr("Editor.Preplanning.Simplify.No"),Language.tr("Editor.Preplanning.Simplify.MeanAHT"),Language.tr("Editor.Preplanning.Simplify.MaxAHT")}));
+		p2.add(comboSimplify=new JComboBox<>(new String[]{Language.tr("Editor.Preplanning.Simplify.No"),Language.tr("Editor.Preplanning.Simplify.MeanAHT"),Language.tr("Editor.Preplanning.Simplify.MaxAHT")}));
 		comboSimplify.setSelectedIndex(0);
 
 		p.add(p2=new JPanel(new FlowLayout(FlowLayout.LEFT)));
-		p2.add(comboValueType=new JComboBox<String>(new String[]{Language.tr("SimStatistic.Accessibility"),Language.tr("SimStatistic.WaitingTime"),Language.tr("SimStatistic.ServiceLevel")}));
+		p2.add(comboValueType=new JComboBox<>(new String[]{Language.tr("SimStatistic.Accessibility"),Language.tr("SimStatistic.WaitingTime"),Language.tr("SimStatistic.ServiceLevel")}));
 		comboValueType.setSelectedIndex(0);
 		comboValueType.addActionListener(new ComboListener());
 		p2.add(value=new JTextField("98%",5));
@@ -197,12 +197,7 @@ public class PreplanningDialog extends BaseEditDialog {
 
 		final boolean extended=(this.comboMode.getSelectedIndex()==2);
 
-		planningThread=new Thread(new Runnable() {
-			@Override
-			public void run() {
-				resultModel=preplanning.calc(mode,simplify,value,extended,Preplanning.DEFAULT_MULTI_SKILL_REDUCTION);
-			}
-		},"Erlang C global worker");
+		planningThread=new Thread((Runnable)()->resultModel=preplanning.calc(mode,simplify,value,extended,Preplanning.DEFAULT_MULTI_SKILL_REDUCTION),"Erlang C global worker");
 		planningThread.start();
 
 		if (preplanning.isMultiSkillModel && comboSimplify.getSelectedIndex()==0  && this.comboMode.getSelectedIndex()>0) {

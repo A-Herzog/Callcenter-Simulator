@@ -119,7 +119,7 @@ public class ModelShrinker {
 	 * @return	Neue Wahrscheinlichkeitsverteilung
 	 */
 	private static AbstractRealDistribution joinDistributions(final List<AbstractRealDistribution> distribution, final String fallbackDistributionName, final boolean useMax) {
-		List<Double> weight=new ArrayList<Double>();
+		List<Double> weight=new ArrayList<>();
 		for (int i=0;i<distribution.size();i++) weight.add(1.0);
 		return joinDistributions(distribution,weight,fallbackDistributionName,useMax);
 	}
@@ -235,8 +235,8 @@ public class ModelShrinker {
 		if (noWaitingTimeTolerance) {
 			caller.waitingTimeMode=CallcenterModelCaller.WAITING_TIME_MODE_OFF;
 		} else {
-			List<AbstractRealDistribution> dist=new ArrayList<AbstractRealDistribution>();
-			List<Double> weight=new ArrayList<Double>();
+			List<AbstractRealDistribution> dist=new ArrayList<>();
+			List<Double> weight=new ArrayList<>();
 			for (CallcenterModelCaller c : baseModel.caller) if (c.active) switch (c.waitingTimeMode) {
 			case CallcenterModelCaller.WAITING_TIME_MODE_OFF:
 				break;
@@ -272,8 +272,8 @@ public class ModelShrinker {
 		caller.retryProbabiltyAfterGiveUpFirstRetry=0;
 		caller.retryProbabiltyAfterGiveUp=0;
 		double retrySum=0;
-		List<AbstractRealDistribution> retryDistributions=new ArrayList<AbstractRealDistribution>();
-		List<Double> retryWeights=new ArrayList<Double>();
+		List<AbstractRealDistribution> retryDistributions=new ArrayList<>();
+		List<Double> retryWeights=new ArrayList<>();
 		for (CallcenterModelCaller c : baseModel.caller) if (c.active) {
 			retryDistributions.add(c.recallTimeDist);
 			retryWeights.add((double)c.freshCallsCountMean);
@@ -370,8 +370,8 @@ public class ModelShrinker {
 		}
 
 		/* Globale Werte */
-		List<AbstractRealDistribution> distWorkingTime=new ArrayList<AbstractRealDistribution>();
-		List<AbstractRealDistribution> distPostProcessingTime=new ArrayList<AbstractRealDistribution>();
+		List<AbstractRealDistribution> distWorkingTime=new ArrayList<>();
+		List<AbstractRealDistribution> distPostProcessingTime=new ArrayList<>();
 		for (CallcenterModelSkillLevel skill : baseModel.skills) for (int i=0;i<skill.callerTypeName.size();i++) {
 			distWorkingTime.add(skill.callerTypeWorkingTime.get(i));
 			distPostProcessingTime.add(skill.callerTypePostProcessingTime.get(i));
@@ -386,7 +386,7 @@ public class ModelShrinker {
 
 		for (int j=0;j<48;j++) {
 			if (intervalDataNeeded1[j]) {
-				List<AbstractRealDistribution> list=new ArrayList<AbstractRealDistribution>();
+				List<AbstractRealDistribution> list=new ArrayList<>();
 				for (CallcenterModelSkillLevel skill : baseModel.skills) for (int i=0;i<skill.callerTypeName.size();i++) {
 					AbstractRealDistribution d=null;
 					if (skill.callerTypeIntervalWorkingTime!=null && skill.callerTypeIntervalWorkingTime.get(i)!=null) d=skill.callerTypeIntervalWorkingTime.get(i)[j];
@@ -396,7 +396,7 @@ public class ModelShrinker {
 				workingTimeInterval[j]=joinDistributions(list,DistributionTools.DistLogNormal[0],useMaxAHT);
 			}
 			if (intervalDataNeeded2[j]) {
-				List<AbstractRealDistribution> list=new ArrayList<AbstractRealDistribution>();
+				List<AbstractRealDistribution> list=new ArrayList<>();
 				for (CallcenterModelSkillLevel skill : baseModel.skills) for (int i=0;i<skill.callerTypeName.size();i++) {
 					AbstractRealDistribution d=null;
 					if (skill.callerTypeIntervalPostProcessingTime!=null && skill.callerTypeIntervalPostProcessingTime.get(i)!=null) d=skill.callerTypeIntervalPostProcessingTime.get(i)[j];

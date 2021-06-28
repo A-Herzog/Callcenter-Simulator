@@ -66,7 +66,7 @@ public abstract class CallerTableLoader extends TableLoader {
 	protected CallerTableLoader(final File file, final int intervalCount) {
 		super(file);
 		this.intervalCount=intervalCount;
-		data=new HashMap<String,CallerData>();
+		data=new HashMap<>();
 	}
 
 	/**
@@ -181,7 +181,7 @@ public abstract class CallerTableLoader extends TableLoader {
 	 * @return	Verteilung der Erstanrufer pro Intervall pro Kundentyp
 	 */
 	protected final HashMap<String,DataDistributionImpl> getFreshCallsDistributions() {
-		HashMap<String,DataDistributionImpl> map=new HashMap<String, DataDistributionImpl>();
+		HashMap<String,DataDistributionImpl> map=new HashMap<>();
 
 		Iterator<String> it=data.keySet().iterator();
 		while (it.hasNext()) {
@@ -197,7 +197,7 @@ public abstract class CallerTableLoader extends TableLoader {
 	 * @return	Verteilung der Anzahl der Warteabbrecher pro Intervall pro Kundentyp
 	 */
 	protected final HashMap<String,DataDistributionImpl> getCancelCountDistributions() {
-		HashMap<String,DataDistributionImpl> map=new HashMap<String, DataDistributionImpl>();
+		HashMap<String,DataDistributionImpl> map=new HashMap<>();
 
 		Iterator<String> it=data.keySet().iterator();
 		while (it.hasNext()) {
@@ -213,7 +213,7 @@ public abstract class CallerTableLoader extends TableLoader {
 	 * @return	Verteilung der mittleren Wartezeiten pro Intervall pro Kundentyp
 	 */
 	protected final HashMap<String,DataDistributionImpl> getWaitingTimeDistributions() {
-		HashMap<String,DataDistributionImpl> map=new HashMap<String, DataDistributionImpl>();
+		HashMap<String,DataDistributionImpl> map=new HashMap<>();
 
 		Iterator<String> it=data.keySet().iterator();
 		while (it.hasNext()) {
@@ -229,7 +229,7 @@ public abstract class CallerTableLoader extends TableLoader {
 	 * @return	Verteilung der mittleren Bediendauern pro Intervall pro Kundentyp
 	 */
 	protected final HashMap<String,DataDistributionImpl> getServiceTimeDistributions() {
-		HashMap<String,DataDistributionImpl> map=new HashMap<String, DataDistributionImpl>();
+		HashMap<String,DataDistributionImpl> map=new HashMap<>();
 
 		Iterator<String> it=data.keySet().iterator();
 		while (it.hasNext()) {
@@ -245,7 +245,7 @@ public abstract class CallerTableLoader extends TableLoader {
 	 * @author Alexander Herzog
 	 * @see CallerTableLoader#getCallerDataForTypeName(String)
 	 */
-	protected final class CallerData {
+	protected static final class CallerData {
 		/** Name des Kundentyps */
 		public final String name;
 

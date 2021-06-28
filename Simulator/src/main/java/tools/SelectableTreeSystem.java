@@ -48,7 +48,7 @@ import javax.swing.tree.TreePath;
  */
 public class SelectableTreeSystem {
 	/** Knoten im Baum */
-	private final List<SelectableTreeNode> nodes=new ArrayList<SelectableTreeNode>();
+	private final List<SelectableTreeNode> nodes=new ArrayList<>();
 	/** Baumstruktur */
 	private final JTree tree;
 	/** Wurzelelement der Baumstruktur */
@@ -418,7 +418,7 @@ public class SelectableTreeSystem {
 	/**
 	 * Reagiert auf Klicks auf einen Baumeintrag
 	 */
-	private final class SelectableItemListener implements ItemListener {
+	private static final class SelectableItemListener implements ItemListener {
 		/** Zugehöriger Editor für den Eintrag */
 		private final SelectableNodeEditor editor;
 		/** Baumeintrag */

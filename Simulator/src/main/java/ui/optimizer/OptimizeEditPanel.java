@@ -180,13 +180,13 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		this.owner=owner;
 		this.helpLink=helpLink;
 
-		uebertrag=new HashMap<String,ConnectedModelUebertrag>();
-		uebertragAdditionalCaller=new ArrayList<String>();
-		uebertragAdditionalCount=new ArrayList<Integer>();
+		uebertrag=new HashMap<>();
+		uebertragAdditionalCaller=new ArrayList<>();
+		uebertragAdditionalCount=new ArrayList<>();
 
-		groupRestrictionName=new ArrayList<String>();
-		groupRestrictionMin=new ArrayList<DataDistributionImpl>();
-		groupRestrictionMax=new ArrayList<DataDistributionImpl>();
+		groupRestrictionName=new ArrayList<>();
+		groupRestrictionMin=new ArrayList<>();
+		groupRestrictionMax=new ArrayList<>();
 
 		JPanel tab;
 		JPanel p,p2,p3;
@@ -203,7 +203,7 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		p2.setLayout(new BoxLayout(p2,BoxLayout.Y_AXIS));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p3.add(new JLabel(Language.tr("Optimizer.Tabs.OptimizeProperty.Label")+":"));
-		p3.add(optProperty=new JComboBox<String>(new String[]{
+		p3.add(optProperty=new JComboBox<>(new String[]{
 				Language.tr("Optimizer.OptimizeProperty.Property.Accessibility")+" ("+Language.tr("Optimizer.OptimizeProperty.Property.OnCallBasis")+")",
 				Language.tr("Optimizer.OptimizeProperty.Property.Accessibility")+" ("+Language.tr("Optimizer.OptimizeProperty.Property.OnClientBasis")+")",
 				Language.tr("Optimizer.OptimizeProperty.Property.AverageWaitingTime")+" ("+Language.tr("Optimizer.OptimizeProperty.Property.OnCallBasis")+")",
@@ -227,14 +227,14 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		p3.add(optValueLabel3=new JLabel(""));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p3.add(new JLabel(Language.tr("Optimizer.OptimizeProperty.TargetValueFor")+":"));
-		p3.add(optInterval=new JComboBox<String>(new String[]{
+		p3.add(optInterval=new JComboBox<>(new String[]{
 				Language.tr("Optimizer.OptimizeProperty.TargetValueFor.Day"),
 				Language.tr("Optimizer.OptimizeProperty.TargetValueFor.Interval"),
 				Language.tr("Optimizer.OptimizeProperty.TargetValueFor.IntervalInOrder")
 		}));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p3.add(new JLabel(Language.tr("Optimizer.OptimizeProperty.TargetValueFor")+":"));
-		p3.add(optGroups=new JComboBox<String>(groupsCaller));
+		p3.add(optGroups=new JComboBox<>(groupsCaller));
 		optGroups.addActionListener(new DialogElementListener());
 
 		optGroupTree=new CheckBoxTree();
@@ -261,7 +261,7 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		p3.add(changeRestrictionsLabel=new JLabel(Language.tr("Optimizer.ControlVariable.Restrictions.Info.No")));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p3.add(new JLabel(Language.tr("Optimizer.ControlVariable.ChangeAgentGroups")+":"));
-		p3.add(changeGroups=new JComboBox<String>(new String[]{
+		p3.add(changeGroups=new JComboBox<>(new String[]{
 				Language.tr("Optimizer.ControlVariable.ChangeAgentGroups.All"),
 				Language.tr("Optimizer.ControlVariable.ChangeAgentGroups.Selected")
 		}));

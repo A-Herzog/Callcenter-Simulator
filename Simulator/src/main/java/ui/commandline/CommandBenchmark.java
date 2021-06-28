@@ -47,7 +47,7 @@ public final class CommandBenchmark extends AbstractSimulationCommand {
 	@Override
 	public String[] getKeys() {
 
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 
 		list.add(Language.tr("CommandLine.Benchmark.Name1"));
 		for (String s: Language.trOther("CommandLine.Benchmark.Name1")) if (!list.contains(s)) list.add(s);

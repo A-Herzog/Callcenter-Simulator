@@ -52,12 +52,7 @@ class JRibbonBar extends JTabbedPane {
 	public JRibbonBar(final ActionListener defaultActionListener) {
 		super();
 		this.defaultActionListener=defaultActionListener;
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				updateSizes();
-			}
-		});
+		SwingUtilities.invokeLater(()->updateSizes());
 	}
 
 	/**

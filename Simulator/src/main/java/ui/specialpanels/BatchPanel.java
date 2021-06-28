@@ -222,7 +222,7 @@ public class BatchPanel extends JWorkPanel {
 		xmlButton.setIcon(Images.GENERAL_SELECT_XML.getIcon());
 		p2=createDialogLine(tab,Language.tr("Batch.Parameter.ChangeType.Label")+":");
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.CENTER);
-		p3.add(xmlType=new JComboBox<String>());
+		p3.add(xmlType=new JComboBox<>());
 		xmlType.addItem(Language.tr("Batch.Parameter.ChangeType.Number"));
 		xmlType.addItem(Language.tr("Batch.Parameter.ChangeType.Mean"));
 		xmlType.addItem(Language.tr("Batch.Parameter.ChangeType.StdDev"));
@@ -401,7 +401,7 @@ public class BatchPanel extends JWorkPanel {
 
 		/* Attribut aus Parent zurückgeben */
 		if (!selectors.hasNext() && tag.isEmpty()) {
-			List<String> path=new ArrayList<String>(parentTags);
+			List<String> path=new ArrayList<>(parentTags);
 			path.add(attr);
 			String s=changeElementValue(parent.getAttribute(attr),newValue);
 			if (s==null) return String.format(Language.tr("Batch.Parameter.XMLTag.InvalidValue"),parent.getAttribute(attr));
@@ -426,7 +426,7 @@ public class BatchPanel extends JWorkPanel {
 
 		/* Elementinhalt zurückgeben */
 		if (!selectors.hasNext()) {
-			List<String> path=new ArrayList<String>(parentTags);
+			List<String> path=new ArrayList<>(parentTags);
 			path.add(tag);
 			if (attr.isEmpty() || !attrValue.isEmpty()) {
 				String s=changeElementValue(searchResult.getTextContent(),newValue);
@@ -443,7 +443,7 @@ public class BatchPanel extends JWorkPanel {
 		}
 
 		/* Suche fortsetzen */
-		List<String> tags=new ArrayList<String>(parentTags);
+		List<String> tags=new ArrayList<>(parentTags);
 		tags.add(tag);
 		return changeElement(selectors,searchResult,tags,newValue);
 	}
@@ -621,8 +621,8 @@ public class BatchPanel extends JWorkPanel {
 		if (!batchFolder.isDirectory()) {addStatusLine(Language.tr("Dialog.Title.Error").toUpperCase()+":\n  "+String.format(Language.tr("Batch.Folder.ErrorInputFolderDoesNotExist"),batchFolder)); return false;}
 
 		/* Iteration über die Dateien in dem angegebenen Verzeichnis */
-		inFiles=new ArrayList<File>();
-		outFiles=new ArrayList<File>();
+		inFiles=new ArrayList<>();
+		outFiles=new ArrayList<>();
 		File[] list=batchFolder.listFiles();
 		if (list!=null) for (int i=0;i<list.length;i++) if (list[i].isFile()) {
 			File inFile=list[i];
@@ -682,8 +682,8 @@ public class BatchPanel extends JWorkPanel {
 		inXMLType=xmlType.getSelectedIndex();
 
 		inXMLKey=xmlField.getText();
-		inValues=new ArrayList<Double>();
-		outFiles=new ArrayList<File>();
+		inValues=new ArrayList<>();
+		outFiles=new ArrayList<>();
 		double value=valueStart;
 
 		/* Liste an zu simulierenden Modellen zusammenstellen */

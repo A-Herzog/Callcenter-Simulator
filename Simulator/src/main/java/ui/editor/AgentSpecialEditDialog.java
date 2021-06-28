@@ -94,8 +94,8 @@ public class AgentSpecialEditDialog extends BaseEditDialog {
 	public AgentSpecialEditDialog(final Window owner, final List<CallcenterModelCaller> caller, final CallcenterModelSkillLevel skillLevel, final Runnable helpCallback) {
 		super(owner,Language.tr("Editor.AgentsGroup.CountFromCalculatedLoad.Title"),null,false,helpCallback);
 
-		List<CallcenterModelCaller> callerTempRecords=new ArrayList<CallcenterModelCaller>();
-		List<Double> callerTempTime=new ArrayList<Double>();
+		List<CallcenterModelCaller> callerTempRecords=new ArrayList<>();
+		List<Double> callerTempTime=new ArrayList<>();
 		for (int i=0;i<skillLevel.callerTypeName.size();i++) for (int j=0;j<caller.size();j++) if (caller.get(j).name.equalsIgnoreCase(skillLevel.callerTypeName.get(i))) {
 			callerTempRecords.add(caller.get(j));
 			double d=0;

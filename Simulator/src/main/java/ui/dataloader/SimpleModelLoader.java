@@ -106,7 +106,7 @@ public final class SimpleModelLoader extends SimpleModelBaseLoader {
 		CallcenterModel model=new CallcenterModel(Language.tr("Loader.SimpleModel.ModelName"));
 
 		/* Kunden */
-		List<List<Double>> forward=new ArrayList<List<Double>>();
+		List<List<Double>> forward=new ArrayList<>();
 		for (List<String> line : callerTable.transpose().getData()) {
 			if (line.size()<1+48+6) return Language.tr("Loader.SimpleModel.InvalidCallerData");
 			CallcenterModelCaller caller=new CallcenterModelCaller(line.get(0));
@@ -149,7 +149,7 @@ public final class SimpleModelLoader extends SimpleModelBaseLoader {
 			caller.retryTimeDist=new ExponentialDistribution(D);
 
 			/* Weiterleitungen */
-			List<Double> forwardCaller=new ArrayList<Double>(); forward.add(forwardCaller);
+			List<Double> forwardCaller=new ArrayList<>(); forward.add(forwardCaller);
 			for (int i=55;i<line.size();i++) {
 				String s=line.get(i).trim();
 				if (!s.isEmpty()) {
@@ -173,8 +173,8 @@ public final class SimpleModelLoader extends SimpleModelBaseLoader {
 			if (sum>1) return Language.tr("Loader.SimpleModel.InvalidCallerData");
 			if (sum>0) {
 				caller.continueProbability=sum;
-				caller.continueTypeName=new ArrayList<String>();
-				caller.continueTypeRate=new ArrayList<Double>();
+				caller.continueTypeName=new ArrayList<>();
+				caller.continueTypeRate=new ArrayList<>();
 				for (int j=0;j<model.caller.size();j++) {
 					caller.continueTypeName.add(model.caller.get(j).name);
 					caller.continueTypeRate.add(forwardCaller.get(j));

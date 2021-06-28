@@ -224,11 +224,11 @@ public class StatisticViewerOptimizerLineChart extends StatisticViewerLineChart 
 
 	@Override
 	protected void firstChartRequest() {
-		List<Double> dist1=new ArrayList<Double>();
-		List<Double> dist2=new ArrayList<Double>();
-		List<Double> dist3=new ArrayList<Double>();
-		List<Double> dist4=new ArrayList<Double>();
-		List<Double> dist5=new ArrayList<Double>();
+		List<Double> dist1=new ArrayList<>();
+		List<Double> dist2=new ArrayList<>();
+		List<Double> dist3=new ArrayList<>();
+		List<Double> dist4=new ArrayList<>();
+		List<Double> dist5=new ArrayList<>();
 		KundenDaten kunden=null;
 		AgentenDaten agenten=null;
 

@@ -42,7 +42,7 @@ public class CommandRevenueOptimizer extends AbstractSimulationCommand {
 
 	@Override
 	public String[] getKeys() {
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		list.add(Language.tr("CommandLine.RevenueOptimizer.Name"));
 		for (String s: Language.trOther("CommandLine.RevenueOptimizer.Name")) if (!list.contains(s)) list.add(s);
 		return list.toArray(new String[0]);

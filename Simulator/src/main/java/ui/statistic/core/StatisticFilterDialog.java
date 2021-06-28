@@ -67,13 +67,13 @@ public final class StatisticFilterDialog extends BaseEditDialog {
 		super(owner,title,false,helpModal);
 
 		this.ids=ids;
-		this.hiddenIDs=new ArrayList<String>(Arrays.asList(hiddenIDs));
+		this.hiddenIDs=new ArrayList<>(Arrays.asList(hiddenIDs));
 		select=new boolean[ids.length];
 		for (int i=0;i<ids.length;i++) select[i]=!this.hiddenIDs.contains(ids[i]);
 
 		addUserButtons(new String[]{Language.tr("Dialog.Select.All"),Language.tr("Dialog.Select.Nothing")},new Icon[]{Images.EDIT_ADD.getIcon(),Images.EDIT_DELETE.getIcon()},new Runnable[]{
-				new Runnable() {@Override public void run() {table.selectAll();}},
-				new Runnable() {@Override public void run() {table.selectNone();}}
+				()->table.selectAll(),
+				()->table.selectNone()
 		});
 
 		createSimpleGUI(300,500,null,null);

@@ -50,7 +50,7 @@ public final class ConnectedModelUebertrag {
 	 */
 	public ConnectedModelUebertrag(double probability) {
 		this.probability=probability;
-		changeRates=new HashMap<String, Double>();
+		changeRates=new HashMap<>();
 	}
 
 	/**
@@ -106,7 +106,7 @@ public final class ConnectedModelUebertrag {
 	 * @return	In den XML-Node ist als Attribut der Kundentypenname enthalten. Dieser wird nicht in dem <code>ConnectedModelUebertrag</code>-Element selbst gespeichert und daher hier zur weiteren Verwendung zurückgegeben.
 	 */
 	public String loadFromXML(Element node) {
-		final HashMap<String,Double> changeRatesNew=new HashMap<String,Double>();
+		final HashMap<String,Double> changeRatesNew=new HashMap<>();
 
 		/* Allgemeine Übertragsrate */
 		Double D=NumberTools.getSystemProbability(Language.trAllAttribute("XML.Connected.CarryOver.Value",node)); if (D==null) return null;

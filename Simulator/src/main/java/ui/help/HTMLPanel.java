@@ -141,8 +141,8 @@ public final class HTMLPanel extends JPanel {
 
 		contentPopup=new JPopupMenu();
 
-		listBack=new ArrayList<URL>();
-		listNext=new ArrayList<URL>();
+		listBack=new ArrayList<>();
+		listNext=new ArrayList<>();
 
 		InputMap inputMap=getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		KeyStroke stroke=KeyStroke.getKeyStroke("ESCAPE");

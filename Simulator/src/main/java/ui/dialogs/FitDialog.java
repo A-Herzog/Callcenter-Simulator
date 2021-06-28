@@ -240,7 +240,7 @@ public class FitDialog extends BaseEditDialog {
 		p2.setLayout(new BoxLayout(p2,BoxLayout.Y_AXIS));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p3.add(new JLabel(Language.tr("FitDalog.Distribution")+":"));
-		p3.add(ouputSelectInsert=new JComboBox<String>());
+		p3.add(ouputSelectInsert=new JComboBox<>());
 		ouputSelectInsert.setEnabled(false);
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p3.add(new JLabel(Language.tr("FitDalog.UseFor")+":"));

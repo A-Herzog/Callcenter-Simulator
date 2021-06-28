@@ -262,7 +262,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 				Images.EDITOR_CALLER_ADD.getIcon(),Images.EDITOR_CALLER_EDIT.getIcon(),Images.EDITOR_CALLER_DELETE.getIcon(),Images.EDITOR_CALLER_COPY.getIcon(),Images.ARROW_UP.getIcon(),Images.ARROW_DOWN.getIcon(),Images.GENERAL_SETUP.getIcon(),
 				Language.tr("Editor.CallerGroups.Add.Info"),Language.tr("Editor.CallerGroups.Show.Info"),Language.tr("Editor.CallerGroups.Edit.Info"),Language.tr("Editor.CallerGroups.Delete.Info"),Language.tr("Editor.CallerGroups.Copy.Info"),Language.tr("Editor.CallerGroups.Up.Info"),Language.tr("Editor.CallerGroups.Down.Info")
 				);
-		callerList=new JList<CallcenterModelCaller>(callerListData=new DefaultListModel<CallcenterModelCaller>());
+		callerList=new JList<>(callerListData=new DefaultListModel<>());
 		callerList.setCellRenderer(new CallerListRenderer());
 		addList(p,callerList,a);
 		updateCallerList();
@@ -277,7 +277,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 				Images.EDIT_ADD.getIcon(),Images.GENERAL_TOOLS.getIcon(),Images.EDIT_DELETE.getIcon(),Images.EDIT_COPY.getIcon(),Images.ARROW_UP.getIcon(),Images.ARROW_DOWN.getIcon(),Images.GENERAL_SETUP.getIcon(),
 				Language.tr("Editor.CallcenterAndAgents.Add.Info"),Language.tr("Editor.CallcenterAndAgents.Show.Info"),Language.tr("Editor.CallcenterAndAgents.Edit.Info"),Language.tr("Editor.CallcenterAndAgents.Delete.Info"),Language.tr("Editor.CallcenterAndAgents.Copy.Info"),Language.tr("Editor.CallcenterAndAgents.Up.Info"),Language.tr("Editor.CallcenterAndAgents.Down.Info")
 				);
-		callcenterList=new JList<CallcenterModelCallcenter>(callcenterListData=new DefaultListModel<CallcenterModelCallcenter>());
+		callcenterList=new JList<>(callcenterListData=new DefaultListModel<>());
 		callcenterList.setCellRenderer(new CallcenterListRenderer());
 		addList(p,callcenterList,a);
 		updateCallcenterList();
@@ -292,7 +292,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 				Images.EDIT_ADD.getIcon(),Images.GENERAL_TOOLS.getIcon(),Images.EDIT_DELETE.getIcon(),Images.EDIT_COPY.getIcon(),Images.ARROW_UP.getIcon(),Images.ARROW_DOWN.getIcon(),Images.GENERAL_SETUP.getIcon(),
 				Language.tr("Editor.SkillLevelOfTheAgents.Add.Info"),Language.tr("Editor.SkillLevelOfTheAgents.Show.Info"),Language.tr("Editor.SkillLevelOfTheAgents.Edit.Info"),Language.tr("Editor.SkillLevelOfTheAgents.Delete.Info"),Language.tr("Editor.SkillLevelOfTheAgents.Copy.Info"),Language.tr("Editor.SkillLevelOfTheAgents.Up.Info"),Language.tr("Editor.SkillLevelOfTheAgents.Down.Info")
 				);
-		skillLevelList=new JList<CallcenterModelSkillLevel>(skillLevelListData=new DefaultListModel<CallcenterModelSkillLevel>());
+		skillLevelList=new JList<>(skillLevelListData=new DefaultListModel<>());
 		skillLevelList.setCellRenderer(new SkillLevelListRenderer());
 		addList(p,skillLevelList,a);
 		updateSkillLevelList();
@@ -319,7 +319,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	 * Formatierung der Darstellung in {@link CallcenterModelEditorPanel#dateModel}
 	 * @see CallcenterModelEditorPanel#dateModel
 	 */
-	private class DateLabelFormatter extends AbstractFormatter {
+	private static class DateLabelFormatter extends AbstractFormatter {
 		/**
 		 * Serialisierungs-ID der Klasse
 		 * @see Serializable
@@ -1339,10 +1339,10 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		node.addChild(node2=new StatisticNode(Language.tr("Editor.Overview.Agents.PerCallcenter"),Language.tr("Editor.Overview.Category.AgentsPerCallcenter")));
 		node2.addChild(new StatisticNode(Language.tr("Editor.Overview.Overview"),new StatisticViewerAgentsText(model,StatisticViewerAgentsText.Mode.BY_CALLCENTER),Language.tr("Editor.Overview.Category.AgentsPerCallcenter")));
 		node2.addChild(new StatisticNode(Language.tr("Editor.Overview.Overview"),new StatisticViewerAgentsTable(model,StatisticViewerAgentsTable.Mode.BY_CALLCENTER),Language.tr("Editor.Overview.Category.AgentsPerCallcenter")));
-		List<CallcenterModelAgent> agentList=new ArrayList<CallcenterModelAgent>();
-		List<CallcenterModelCallcenter> callcenterList=new ArrayList<CallcenterModelCallcenter>();
+		List<CallcenterModelAgent> agentList=new ArrayList<>();
+		List<CallcenterModelCallcenter> callcenterList=new ArrayList<>();
 		for (int i=0;i<model.callcenter.size();i++) if (model.callcenter.get(i).active) {
-			List<CallcenterModelCallcenter> c=new ArrayList<CallcenterModelCallcenter>();
+			List<CallcenterModelCallcenter> c=new ArrayList<>();
 			for (int j=0;j<model.callcenter.get(i).agents.size();j++) c.add(model.callcenter.get(i));
 			node2.addChild(new StatisticNode(model.callcenter.get(i).name,new StatisticViewerAgentsDiagram(model,model.callcenter.get(i).agents,c,StatisticViewerAgentsDiagram.Mode.ADDBY_ALL,model.callcenter.get(i).name),Language.tr("Editor.Overview.Category.AgentsPerCallcenter")));
 			agentList.addAll(model.callcenter.get(i).agents);
@@ -1370,7 +1370,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 
 		/* Schichtplan */
 		node.addChild(node2=new StatisticNode(Language.tr("Editor.Overview.Agents.ShiftSchedulePerCallcenter"),Language.tr("Editor.Overview.Category.ShiftSchedulePerCallcenter")));
-		List<CallcenterModelAgent> fullList=new ArrayList<CallcenterModelAgent>();
+		List<CallcenterModelAgent> fullList=new ArrayList<>();
 		List<CallcenterModelAgent> translatedList;
 		for (int i=0;i<model.callcenter.size();i++) if (model.callcenter.get(i).active) {
 			translatedList=calcShiftPlan(model.callcenter.get(i).agents,model.callcenter.get(i));
@@ -1570,12 +1570,9 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 				final CallcenterModelCaller caller=model.caller.get(index);
 				name=Language.tr("Editor.CallerGroup")+" \""+caller.name+"\" "+Language.tr("Dialog.active.lower");
 				active=caller.active;
-				activateListener=new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						caller.active=!caller.active;
-						updateCallerList();
-					}
+				activateListener=e1-> {
+					caller.active=!caller.active;
+					updateCallerList();
 				};
 			}
 
@@ -1583,12 +1580,9 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 				final CallcenterModelCallcenter callcenter=model.callcenter.get(index);
 				name=Language.tr("Editor.Callcenter")+" \""+callcenter.name+"\" "+Language.tr("Dialog.active.lower");
 				active=callcenter.active;
-				activateListener=new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						callcenter.active=!callcenter.active;
-						updateCallcenterList();
-					}
+				activateListener=e1-> {
+					callcenter.active=!callcenter.active;
+					updateCallcenterList();
 				};
 			}
 
@@ -1899,7 +1893,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	 * @return	Liste der Schichtplan-Agenten
 	 */
 	private List<CallcenterModelAgent> calcShiftPlan(final List<CallcenterModelAgent> agents, final CallcenterModelCallcenter callcenter) {
-		List<CallcenterModelAgent> agentsList=new ArrayList<CallcenterModelAgent>();
+		List<CallcenterModelAgent> agentsList=new ArrayList<>();
 		for (int i=0;i<agents.size();i++) if (agents.get(i).active) {
 			if (agents.get(i).count>=0) agentsList.add(agents.get(i)); else agentsList.addAll(agents.get(i).calcAgentShifts(false,callcenter,model,true));
 		}
@@ -1910,7 +1904,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	 * Renderer für die Liste der Anrufergruppen
 	 * @see CallcenterModelEditorPanel#callerList
 	 */
-	private class CallerListRenderer extends AdvancedListCellRenderer {
+	private static class CallerListRenderer extends AdvancedListCellRenderer {
 		/**
 		 * Serialisierungs-ID der Klasse
 		 * @see Serializable
@@ -2001,7 +1995,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	 * Renderer für die Skill-Level-Liste
 	 * @see CallcenterModelEditorPanel#callcenterList
 	 */
-	private class CallcenterListRenderer extends AdvancedListCellRenderer {
+	private static class CallcenterListRenderer extends AdvancedListCellRenderer {
 		/**
 		 * Serialisierungs-ID der Klasse
 		 * @see Serializable
@@ -2049,7 +2043,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 
 			s.append(String.format(Language.tr("Editor.Callcenter.List.TechnicalFreeTime"),""+c.technicalFreeTime));
 			if (!c.technicalFreeTimeIsWaitingTime) s.append(" ("+Language.tr("Editor.Callcenter.List.TechnicalFreeTime.NoCancel")+")");
-			List<String> time=new ArrayList<String>();
+			List<String> time=new ArrayList<>();
 			for (int j=0;j<c.callerMinWaitingTimeName.size();j++) if (c.callerMinWaitingTime.get(j)>0) time.add(c.callerMinWaitingTimeName.get(j));
 			if (time.size()!=0) {addBr(s); s.append(Language.tr("Editor.Callcenter.List.MinimumWaitingTimeFor")+" "+time.get(0)); for (int j=1;j<time.size();j++) s.append(", "+time.get(j));}
 		}
@@ -2066,7 +2060,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	 * Renderer für die Skill-Level-Liste
 	 * @see CallcenterModelEditorPanel#skillLevelList
 	 */
-	private class SkillLevelListRenderer extends AdvancedListCellRenderer {
+	private static class SkillLevelListRenderer extends AdvancedListCellRenderer {
 		/**
 		 * Serialisierungs-ID der Klasse
 		 * @see Serializable

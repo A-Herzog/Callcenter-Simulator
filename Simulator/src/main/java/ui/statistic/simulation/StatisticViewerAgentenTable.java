@@ -75,7 +75,7 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 	 * @return	Namen für die Spaltenüberschriften
 	 */
 	private String[] getColNames(final Statistics statistic) {
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		list.add("");
 		switch (sortType) {
 		case SORT_BY_CALLCENTER:
@@ -97,7 +97,7 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 	 * @return	Namen für die Zeilen
 	 */
 	private String[] getRowNames(final Statistics statistic) {
-		List<String> list=new ArrayList<String>(Arrays.asList(
+		List<String> list=new ArrayList<>(Arrays.asList(
 				Language.tr("SimStatistic.Number"),
 				Language.tr("SimStatistic.NumberOfConversations"),
 				Language.tr("SimStatistic.IdleTime"),Language.tr("SimStatistic.IdleTime"),
@@ -142,7 +142,7 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 	 * @return	Ausgabeliste
 	 */
 	private List<String> getLine(final AgentenDaten agenten, final long days) {
-		List<String> line=new ArrayList<String>();
+		List<String> line=new ArrayList<>();
 
 		long sum=agenten.leerlaufGesamt+agenten.technischerLeerlaufGesamt+agenten.arbeitGesamt+agenten.postProcessingGesamt;
 

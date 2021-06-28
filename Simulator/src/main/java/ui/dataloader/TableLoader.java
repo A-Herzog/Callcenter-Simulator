@@ -100,7 +100,7 @@ public abstract class TableLoader {
 			int nr=-1;
 			for (int j=0;j<colTable.getSize(0);j++) if (colTable.getValue(j,0).equalsIgnoreCase(name)) {nr=j; break;}
 			if (nr<0) {lastError=String.format(Language.tr("Loader.ProcessError.NoColummnWithCaption"),name); return null;}
-			List<String> col=new ArrayList<String>(colTable.getLine(nr));
+			List<String> col=new ArrayList<>(colTable.getLine(nr));
 			col.remove(0);
 			cols[i]=col.toArray(new String[0]);
 		}

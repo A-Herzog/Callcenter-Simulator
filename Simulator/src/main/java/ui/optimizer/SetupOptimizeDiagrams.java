@@ -93,8 +93,8 @@ public class SetupOptimizeDiagrams extends BaseEditDialog {
 
 		String[] listValues=StatisticViewerOptimizerBarChart.getDiagramTypesList(model);
 
-		left.add(new JScrollPane(leftList=new JList<String>(listValues)),BorderLayout.CENTER);
-		right.add(new JScrollPane(rightList=new JList<String>(listValues)),BorderLayout.CENTER);
+		left.add(new JScrollPane(leftList=new JList<>(listValues)),BorderLayout.CENTER);
+		right.add(new JScrollPane(rightList=new JList<>(listValues)),BorderLayout.CENTER);
 
 		leftList.setSelectedIndex(StatisticViewerOptimizerBarChart.dataTypeToListIndex(model,dataTypeLeft,dataNrLeft));
 		rightList.setSelectedIndex(StatisticViewerOptimizerBarChart.dataTypeToListIndex(model,dataTypeRight,dataNrRight));

@@ -67,8 +67,8 @@ public class FastAccessFolder {
 	 * @return	2-elementiges Array aus: Skriptdateien und Skripttiteln
 	 */
 	public String[][] getScriptsList() {
-		List<String> scriptFiles=new ArrayList<String>();
-		List<String> scriptTitles=new ArrayList<String>();
+		List<String> scriptFiles=new ArrayList<>();
+		List<String> scriptTitles=new ArrayList<>();
 
 		if (folder!=null && folder.isDirectory()) {
 			File[] list=folder.listFiles();

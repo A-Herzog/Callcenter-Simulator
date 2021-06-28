@@ -281,7 +281,7 @@ public class HandlerViewerSystemTools {
 
 			for (int month=start;month<=stop;month++) content.append(getServerDateFileListMonthEntry(month,fileNames,fileDates,index));
 
-			List<File> filesWithoutDate=new ArrayList<File>();
+			List<File> filesWithoutDate=new ArrayList<>();
 			for (int i=0;i<fileDates.length;i++) if (fileDates[i]==null) filesWithoutDate.add(fileNames[i]);
 			if (filesWithoutDate.size()>0) {
 				String innercontent=getServerFileList(filesWithoutDate.toArray(new File[0]),index,true);

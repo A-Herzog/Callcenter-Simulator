@@ -232,34 +232,34 @@ public final class CallcenterModelCaller implements Cloneable {
 		retryProbabiltyAfterGiveUpFirstRetry=0.9;
 		retryProbabiltyAfterGiveUp=0.8;
 
-		retryCallerTypeAfterBlockedFirstRetry=new ArrayList<String>();
-		retryCallerTypeRateAfterBlockedFirstRetry=new ArrayList<Double>();
-		retryCallerTypeAfterBlocked=new ArrayList<String>();
-		retryCallerTypeRateAfterBlocked=new ArrayList<Double>();
-		retryCallerTypeAfterGiveUpFirstRetry=new ArrayList<String>();
-		retryCallerTypeRateAfterGiveUpFirstRetry=new ArrayList<Double>();
-		retryCallerTypeAfterGiveUp=new ArrayList<String>();
-		retryCallerTypeRateAfterGiveUp=new ArrayList<Double>();
+		retryCallerTypeAfterBlockedFirstRetry=new ArrayList<>();
+		retryCallerTypeRateAfterBlockedFirstRetry=new ArrayList<>();
+		retryCallerTypeAfterBlocked=new ArrayList<>();
+		retryCallerTypeRateAfterBlocked=new ArrayList<>();
+		retryCallerTypeAfterGiveUpFirstRetry=new ArrayList<>();
+		retryCallerTypeRateAfterGiveUpFirstRetry=new ArrayList<>();
+		retryCallerTypeAfterGiveUp=new ArrayList<>();
+		retryCallerTypeRateAfterGiveUp=new ArrayList<>();
 
 		continueProbability=0.2;
 
-		continueTypeName=new ArrayList<String>();
-		continueTypeRate=new ArrayList<Double>();
+		continueTypeName=new ArrayList<>();
+		continueTypeRate=new ArrayList<>();
 
-		continueTypeSkillType=new ArrayList<String>();
-		continueTypeSkillTypeProbability=new ArrayList<Double>();
-		continueTypeSkillTypeName=new ArrayList<List<String>>();
-		continueTypeSkillTypeRate=new ArrayList<List<Double>>();
+		continueTypeSkillType=new ArrayList<>();
+		continueTypeSkillTypeProbability=new ArrayList<>();
+		continueTypeSkillTypeName=new ArrayList<>();
+		continueTypeSkillTypeRate=new ArrayList<>();
 
 		recallProbability=0;
 		recallTimeDist=new ExponentialDistribution(null,1800,ExponentialDistribution.DEFAULT_INVERSE_ABSOLUTE_ACCURACY);
 
-		recallTypeName=new ArrayList<String>();
-		recallTypeRate=new ArrayList<Double>();
-		recallTypeSkillType=new ArrayList<String>();
-		recallTypeSkillTypeProbability=new ArrayList<Double>();
-		recallTypeSkillTypeName=new ArrayList<List<String>>();
-		recallTypeSkillTypeRate=new ArrayList<List<Double>>();
+		recallTypeName=new ArrayList<>();
+		recallTypeRate=new ArrayList<>();
+		recallTypeSkillType=new ArrayList<>();
+		recallTypeSkillTypeProbability=new ArrayList<>();
+		recallTypeSkillTypeName=new ArrayList<>();
+		recallTypeSkillTypeRate=new ArrayList<>();
 
 		revenuePerClient=0;
 		costPerCancel=0;
@@ -306,44 +306,44 @@ public final class CallcenterModelCaller implements Cloneable {
 		caller.retryProbabiltyAfterGiveUpFirstRetry=retryProbabiltyAfterGiveUpFirstRetry;
 		caller.retryProbabiltyAfterGiveUp=retryProbabiltyAfterGiveUp;
 
-		caller.retryCallerTypeAfterBlockedFirstRetry=new ArrayList<String>(retryCallerTypeAfterBlockedFirstRetry);
-		caller.retryCallerTypeRateAfterBlockedFirstRetry=new ArrayList<Double>(retryCallerTypeRateAfterBlockedFirstRetry);
-		caller.retryCallerTypeAfterBlocked=new ArrayList<String>(retryCallerTypeAfterBlocked);
-		caller.retryCallerTypeRateAfterBlocked=new ArrayList<Double>(retryCallerTypeRateAfterBlocked);
-		caller.retryCallerTypeAfterGiveUpFirstRetry=new ArrayList<String>(retryCallerTypeAfterGiveUpFirstRetry);
-		caller.retryCallerTypeRateAfterGiveUpFirstRetry=new ArrayList<Double>(retryCallerTypeRateAfterGiveUpFirstRetry);
-		caller.retryCallerTypeAfterGiveUp=new ArrayList<String>(retryCallerTypeAfterGiveUp);
-		caller.retryCallerTypeRateAfterGiveUp=new ArrayList<Double>(retryCallerTypeRateAfterGiveUp);
+		caller.retryCallerTypeAfterBlockedFirstRetry=new ArrayList<>(retryCallerTypeAfterBlockedFirstRetry);
+		caller.retryCallerTypeRateAfterBlockedFirstRetry=new ArrayList<>(retryCallerTypeRateAfterBlockedFirstRetry);
+		caller.retryCallerTypeAfterBlocked=new ArrayList<>(retryCallerTypeAfterBlocked);
+		caller.retryCallerTypeRateAfterBlocked=new ArrayList<>(retryCallerTypeRateAfterBlocked);
+		caller.retryCallerTypeAfterGiveUpFirstRetry=new ArrayList<>(retryCallerTypeAfterGiveUpFirstRetry);
+		caller.retryCallerTypeRateAfterGiveUpFirstRetry=new ArrayList<>(retryCallerTypeRateAfterGiveUpFirstRetry);
+		caller.retryCallerTypeAfterGiveUp=new ArrayList<>(retryCallerTypeAfterGiveUp);
+		caller.retryCallerTypeRateAfterGiveUp=new ArrayList<>(retryCallerTypeRateAfterGiveUp);
 
 		caller.continueProbability=continueProbability;
-		caller.continueTypeName=new ArrayList<String>(continueTypeName);
-		caller.continueTypeRate=new ArrayList<Double>(continueTypeRate);
+		caller.continueTypeName=new ArrayList<>(continueTypeName);
+		caller.continueTypeRate=new ArrayList<>(continueTypeRate);
 
-		caller.continueTypeSkillType=new ArrayList<String>(continueTypeSkillType);
-		caller.continueTypeSkillTypeProbability=new ArrayList<Double>(continueTypeSkillTypeProbability);
+		caller.continueTypeSkillType=new ArrayList<>(continueTypeSkillType);
+		caller.continueTypeSkillTypeProbability=new ArrayList<>(continueTypeSkillTypeProbability);
 		for (int i=0;i<continueTypeSkillTypeName.size();i++) {
-			List<String> list2=new ArrayList<String>(continueTypeSkillTypeName.get(i));
+			List<String> list2=new ArrayList<>(continueTypeSkillTypeName.get(i));
 			caller.continueTypeSkillTypeName.add(list2);
 		}
 		for (int i=0;i<continueTypeSkillTypeRate.size();i++) {
-			List<Double> list2=new ArrayList<Double>(continueTypeSkillTypeRate.get(i));
+			List<Double> list2=new ArrayList<>(continueTypeSkillTypeRate.get(i));
 			caller.continueTypeSkillTypeRate.add(list2);
 		}
 
 		caller.recallProbability=recallProbability;
 		caller.recallTimeDist=DistributionTools.cloneDistribution(recallTimeDist);
 
-		caller.recallTypeName=new ArrayList<String>(recallTypeName);
-		caller.recallTypeRate=new ArrayList<Double>(recallTypeRate);
+		caller.recallTypeName=new ArrayList<>(recallTypeName);
+		caller.recallTypeRate=new ArrayList<>(recallTypeRate);
 
-		caller.recallTypeSkillType=new ArrayList<String>(recallTypeSkillType);
-		caller.recallTypeSkillTypeProbability=new ArrayList<Double>(recallTypeSkillTypeProbability);
+		caller.recallTypeSkillType=new ArrayList<>(recallTypeSkillType);
+		caller.recallTypeSkillTypeProbability=new ArrayList<>(recallTypeSkillTypeProbability);
 		for (int i=0;i<recallTypeSkillTypeName.size();i++) {
-			List<String> list2=new ArrayList<String>(recallTypeSkillTypeName.get(i));
+			List<String> list2=new ArrayList<>(recallTypeSkillTypeName.get(i));
 			caller.recallTypeSkillTypeName.add(list2);
 		}
 		for (int i=0;i<recallTypeSkillTypeRate.size();i++) {
-			List<Double> list2=new ArrayList<Double>(recallTypeSkillTypeRate.get(i));
+			List<Double> list2=new ArrayList<>(recallTypeSkillTypeRate.get(i));
 			caller.recallTypeSkillTypeRate.add(list2);
 		}
 
@@ -791,8 +791,8 @@ public final class CallcenterModelCaller implements Cloneable {
 							if (D==null) return String.format(Language.tr("XML.Model.ClientType.Forwarding.Probability.Error"),u); else continueTypeSkillTypeProbability.add(D);
 						}
 
-						List<String> names=new ArrayList<String>(); continueTypeSkillTypeName.add(names);
-						List<Double> rates=new ArrayList<Double>(); continueTypeSkillTypeRate.add(rates);
+						List<String> names=new ArrayList<>(); continueTypeSkillTypeName.add(names);
+						List<Double> rates=new ArrayList<>(); continueTypeSkillTypeRate.add(rates);
 						NodeList l3=e2.getChildNodes();
 						for (int k=0; k<l3.getLength();k++) {
 							if (!(l3.item(k) instanceof Element)) continue;
@@ -848,8 +848,8 @@ public final class CallcenterModelCaller implements Cloneable {
 							if (D==null) return String.format(Language.tr("XML.Model.ClientType.Recall.Probability.Error"),u); else recallTypeSkillTypeProbability.add(D);
 						}
 
-						List<String> names=new ArrayList<String>(); recallTypeSkillTypeName.add(names);
-						List<Double> rates=new ArrayList<Double>(); recallTypeSkillTypeRate.add(rates);
+						List<String> names=new ArrayList<>(); recallTypeSkillTypeName.add(names);
+						List<Double> rates=new ArrayList<>(); recallTypeSkillTypeRate.add(rates);
 						NodeList l3=e2.getChildNodes();
 						for (int k=0; k<l3.getLength();k++) {
 							if (!(l3.item(k) instanceof Element)) continue;

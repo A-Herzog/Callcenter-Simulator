@@ -314,7 +314,7 @@ public class StatisticViewerFastAccessDialog extends BaseEditDialog {
 	 * @see StatisticViewerFastAccessDialog#contentTable
 	 * @see StatisticViewerFastAccessDialog#attributeTable
 	 */
-	private class DefaultReadOnlyTableModel extends DefaultTableModel {
+	private static class DefaultReadOnlyTableModel extends DefaultTableModel {
 		/**
 		 * Serialisierungs-ID der Klasse
 		 * @see Serializable
@@ -535,7 +535,7 @@ public class StatisticViewerFastAccessDialog extends BaseEditDialog {
 		 */
 		private String[] getPathList(String attribute) {
 			if (xmlNode==null) return new String[0];
-			List<String> list=new ArrayList<String>();
+			List<String> list=new ArrayList<>();
 			list.add(toXMLString());
 			Node path=xmlNode.getParentNode();
 			while (path!=null && path.getParentNode()!=null && path.getParentNode().getParentNode()!=null) {
@@ -559,7 +559,7 @@ public class StatisticViewerFastAccessDialog extends BaseEditDialog {
 		 * @return	Darstellung für einen Wert
 		 */
 		private String formatValue(String value, String attribute) {
-			List<String> path=new ArrayList<String>();
+			List<String> path=new ArrayList<>();
 			if (attribute!=null && !attribute.isEmpty()) path.add(attribute);
 			path.add(0,xmlNode.getNodeName());
 			Node parent=xmlNode.getParentNode();

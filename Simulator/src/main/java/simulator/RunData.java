@@ -142,12 +142,12 @@ public final class RunData {
 		queueCallerTypes=model.caller;
 
 		queueByType=new ArrayList[model.caller.length];
-		for (int i=0;i<model.caller.length;i++) queueByType[i]=new ArrayList<CallerRecord>();
+		for (int i=0;i<model.caller.length;i++) queueByType[i]=new ArrayList<>();
 
 		externalQueueByType=new ArrayList[model.caller.length];
-		for (int i=0;i<model.caller.length;i++) externalQueueByType[i]=new ArrayList<CallerRecord>();
+		for (int i=0;i<model.caller.length;i++) externalQueueByType[i]=new ArrayList<>();
 
-		freeAgents=new ArrayList<AgentRecord>(); /* SplitList bringt leider nichts */
+		freeAgents=new ArrayList<>(); /* SplitList bringt leider nichts */
 	}
 
 	/**
@@ -528,7 +528,7 @@ public final class RunData {
 	 * @see RunData#queueByType
 	 * @see RunData#externalQueueByType
 	 */
-	public final class CallerRecord {
+	public static final class CallerRecord {
 		/** Start der Wartezeit */
 		public long startWaitingTime;
 		/** Zählung der Wiederholungen */

@@ -133,7 +133,7 @@ public final class Optimizer {
 		agentsChangedLast=new DataDistributionImpl(steps,steps);
 		agentsChanged=new DataDistributionImpl(steps,steps);
 		intervalNeedsChange=new DataDistributionImpl(steps,steps);
-		intervalChangeAllowed=new HashMap<String,DataDistributionImpl>();
+		intervalChangeAllowed=new HashMap<>();
 		intervalPercent=new DataDistributionImpl(steps,steps);
 		intervalAbsoluteAdd=new DataDistributionImpl(steps,steps);
 	}

@@ -56,8 +56,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -617,21 +615,18 @@ public final class MainPanel extends MainPanelBase {
 	public JComponent createToolBar() {
 		if (SetupData.getSetup().ribbonMode) {
 			JRibbonBar ribbonBar=createRibbonBar();
-			ribbonBar.addChangeListener(new ChangeListener() {
-				@Override
-				public void stateChanged(ChangeEvent e) {
-					int index=ribbonBar.getSelectedIndex();
-					switch (index) {
-					case 0: setGUIMode((short)2); break;
-					case 1:
-					case 2:
-					case 3:
-					case 4:
-					case 5:	setGUIMode((short)0); modelPanel.setSelectedTabIndex(index-1); break;
-					case 6: setGUIMode((short)1); break;
-					}
-					if (ribbonBar.getSelectedIndex()!=index) ribbonBar.setSelectedIndex(index);
+			ribbonBar.addChangeListener(e-> {
+				int index=ribbonBar.getSelectedIndex();
+				switch (index) {
+				case 0: setGUIMode((short)2); break;
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:	setGUIMode((short)0); modelPanel.setSelectedTabIndex(index-1); break;
+				case 6: setGUIMode((short)1); break;
 				}
+				if (ribbonBar.getSelectedIndex()!=index) ribbonBar.setSelectedIndex(index);
 			});
 			this.ribbonBar=ribbonBar;
 			return ribbonBar;
@@ -816,12 +811,9 @@ public final class MainPanel extends MainPanelBase {
 		copy.setMnemonic(original.getMnemonic());
 		copy.setAccelerator(original.getAccelerator());
 		copy.setActionCommand(original.getActionCommand());
-		copy.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ActionEvent event=new ActionEvent(original,e.getID(),e.getActionCommand());
-				for (ActionListener listener : original.getActionListeners()) listener.actionPerformed(event);
-			}
+		copy.addActionListener(e-> {
+			ActionEvent event=new ActionEvent(original,e.getID(),e.getActionCommand());
+			for (ActionListener listener : original.getActionListeners()) listener.actionPerformed(event);
 		});
 		return copy;
 	}
@@ -834,16 +826,13 @@ public final class MainPanel extends MainPanelBase {
 	private void setDropDownMenu(final JButton button, final JMenu menu) {
 		for (ActionListener listener : button.getActionListeners()) button.removeActionListener(listener);
 
-		button.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				final JPopupMenu popup=new JPopupMenu();
-				for (Component element : menu.getMenuComponents()) {
-					if (element instanceof JPopupMenu.Separator) popup.addSeparator();
-					if (element instanceof JMenuItem) popup.add(cloneMenuItem((JMenuItem)element));
-				}
-				popup.show(button,0,button.getHeight());
+		button.addActionListener(e-> {
+			final JPopupMenu popup=new JPopupMenu();
+			for (Component element : menu.getMenuComponents()) {
+				if (element instanceof JPopupMenu.Separator) popup.addSeparator();
+				if (element instanceof JMenuItem) popup.add(cloneMenuItem((JMenuItem)element));
 			}
+			popup.show(button,0,button.getHeight());
 		});
 	}
 
@@ -1216,9 +1205,9 @@ public final class MainPanel extends MainPanelBase {
 		JRibbonTab tab;
 
 		/* Umschalter zwischen den Seiten (sonst per Menü-Hotkey verfügbar) */
-		addHotkey(new Runnable() {@Override	public void run() {setGUIMode((short)2);}},KeyStroke.getKeyStroke(KeyEvent.VK_F2,0));
-		addHotkey(new Runnable() {@Override	public void run() {setGUIMode((short)0);}},KeyStroke.getKeyStroke(KeyEvent.VK_F3,0));
-		addHotkey(new Runnable() {@Override	public void run() {setGUIMode((short)1);}},KeyStroke.getKeyStroke(KeyEvent.VK_F4,0));
+		addHotkey(()->setGUIMode((short)2),KeyStroke.getKeyStroke(KeyEvent.VK_F2,0));
+		addHotkey(()->setGUIMode((short)0),KeyStroke.getKeyStroke(KeyEvent.VK_F3,0));
+		addHotkey(()->setGUIMode((short)1),KeyStroke.getKeyStroke(KeyEvent.VK_F4,0));
 
 		/* Willkommen */
 		tab=ribbonBar.addRibbon(Language.tr("MainMenu.View.Welcome.Short"),Language.tr("MainMenu.View.Welcome.Short.Tooltip")+" (F2)",Images.GENERAL_INFO.getIcon());
@@ -1334,7 +1323,7 @@ public final class MainPanel extends MainPanelBase {
 	 */
 	private void addFileToRecentlyUsedList(String fileName) {
 		SetupData setup=SetupData.getSetup();
-		List<String> files=(setup.lastFiles==null)?new ArrayList<String>():new ArrayList<String>(Arrays.asList(setup.lastFiles));
+		List<String> files=(setup.lastFiles==null)?new ArrayList<>():new ArrayList<>(Arrays.asList(setup.lastFiles));
 
 		int index=files.indexOf(fileName);
 		if (index==0) return; /* Eintrag ist bereits ganz oben in der Liste, nichts zu tun */
@@ -2361,12 +2350,7 @@ public final class MainPanel extends MainPanelBase {
 			break;
 		case 2:
 			mainPanel.add(welcomePanel,BorderLayout.CENTER);
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					welcomePanel.loadPage(welcomePanel.languagePage(getWelcomePageName()+".html"));
-				}
-			});
+			SwingUtilities.invokeLater(()->welcomePanel.loadPage(welcomePanel.languagePage(getWelcomePageName()+".html")));
 			break;
 		}
 
@@ -2765,12 +2749,10 @@ public final class MainPanel extends MainPanelBase {
 					if (modelPanel!=null && backgroundSimulator.equalsCurrentModel(modelPanel.getModel(false))) return;
 					backgroundSimulator.setModel((modelPanel==null)?null:(modelPanel.getModel(true)));
 				} else {
-					SwingUtilities.invokeAndWait(new Runnable() {
-						@Override
-						public void run() {
-							if (modelPanel!=null && backgroundSimulator.equalsCurrentModel(modelPanel.getModel(false))) return;
-							backgroundSimulator.setModel((modelPanel==null)?null:(modelPanel.getModel(true)));
-						}});
+					SwingUtilities.invokeAndWait(()-> {
+						if (modelPanel!=null && backgroundSimulator.equalsCurrentModel(modelPanel.getModel(false))) return;
+						backgroundSimulator.setModel((modelPanel==null)?null:(modelPanel.getModel(true)));
+					});
 				}
 			} catch (InvocationTargetException | InterruptedException e) {}
 		}

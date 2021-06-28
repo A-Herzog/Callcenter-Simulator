@@ -71,7 +71,7 @@ public class WebServerThread extends Thread {
 		super();
 		this.port=port;
 		this.permittedIPs=permittedIPs;
-		handlers=new Vector<WebServerDataHandler>();
+		handlers=new Vector<>();
 	}
 
 	/**

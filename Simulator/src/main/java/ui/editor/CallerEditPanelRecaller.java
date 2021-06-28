@@ -81,20 +81,20 @@ public class CallerEditPanelRecaller extends CallerEditPanel {
 	public CallerEditPanelRecaller(final InitData initData) {
 		super(initData);
 
-		recallTypeSkillType=new ArrayList<String>();
+		recallTypeSkillType=new ArrayList<>();
 		for (int i=0;i<caller.recallTypeSkillType.size();i++) recallTypeSkillType.add(caller.recallTypeSkillType.get(i));
-		recallTypeSkillTypeProbability=new ArrayList<Double>();
+		recallTypeSkillTypeProbability=new ArrayList<>();
 		for (int i=0;i<caller.recallTypeSkillTypeProbability.size();i++) recallTypeSkillTypeProbability.add(caller.recallTypeSkillTypeProbability.get(i));
-		recallTypeSkillTypeName=new ArrayList<List<String>>();
+		recallTypeSkillTypeName=new ArrayList<>();
 		for (int i=0;i<caller.recallTypeSkillTypeName.size();i++) {
 			List<String> list1=caller.recallTypeSkillTypeName.get(i);
-			List<String> list2=new ArrayList<String>(); recallTypeSkillTypeName.add(list2);
+			List<String> list2=new ArrayList<>(); recallTypeSkillTypeName.add(list2);
 			for (int j=0;j<list1.size();j++) list2.add(list1.get(j));
 		}
-		recallTypeSkillTypeRate=new ArrayList<List<Double>>();
+		recallTypeSkillTypeRate=new ArrayList<>();
 		for (int i=0;i<caller.recallTypeSkillTypeRate.size();i++) {
 			List<Double> list1=caller.recallTypeSkillTypeRate.get(i);
-			List<Double> list2=new ArrayList<Double>(); recallTypeSkillTypeRate.add(list2);
+			List<Double> list2=new ArrayList<>(); recallTypeSkillTypeRate.add(list2);
 			for (int j=0;j<list1.size();j++) list2.add(list1.get(j));
 		}
 
@@ -183,13 +183,13 @@ public class CallerEditPanelRecaller extends CallerEditPanel {
 		newCaller.recallTypeSkillTypeName.clear();
 		for (int i=0;i<recallTypeSkillTypeName.size();i++) {
 			List<String> list1=recallTypeSkillTypeName.get(i);
-			List<String> list2=new ArrayList<String>(); newCaller.recallTypeSkillTypeName.add(list2);
+			List<String> list2=new ArrayList<>(); newCaller.recallTypeSkillTypeName.add(list2);
 			for (int j=0;j<list1.size();j++) list2.add(list1.get(j));
 		}
 		newCaller.recallTypeSkillTypeRate.clear();
 		for (int i=0;i<recallTypeSkillTypeRate.size();i++) {
 			List<Double> list1=recallTypeSkillTypeRate.get(i);
-			List<Double> list2=new ArrayList<Double>(); newCaller.recallTypeSkillTypeRate.add(list2);
+			List<Double> list2=new ArrayList<>(); newCaller.recallTypeSkillTypeRate.add(list2);
 			for (int j=0;j<list1.size();j++) list2.add(list1.get(j));
 		}
 	}

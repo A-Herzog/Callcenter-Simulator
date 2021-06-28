@@ -88,13 +88,13 @@ public class DataFilterBase {
 	 * @param readSimDays	Anzahl an zu simulierenden Tagen aus dem XML-Dokument mit auslesen
 	 */
 	public DataFilterBase(final Document xmlDoc, final boolean readSimDays) {
-		varNames=new ArrayList<String>();
-		varValues=new ArrayList<String>();
+		varNames=new ArrayList<>();
+		varValues=new ArrayList<>();
 		this.xmlDoc=xmlDoc;
 		results=new StringBuilder();
-		commandNames=new ArrayList<String>();
-		commandObjects=new ArrayList<DataFilterCommand>();
-		commandAllowEmptyParameters=new ArrayList<Boolean>();
+		commandNames=new ArrayList<>();
+		commandObjects=new ArrayList<>();
+		commandAllowEmptyParameters=new ArrayList<>();
 		if (readSimDays) simDays=readSimDays(xmlDoc);
 	}
 
@@ -349,7 +349,7 @@ public class DataFilterBase {
 
 		/* Attribut aus Parent zurückgeben */
 		if (!selectors.hasNext() && tag.isEmpty()) {
-			List<String> path=new ArrayList<String>(parentTags);
+			List<String> path=new ArrayList<>(parentTags);
 			path.add(attr);
 			return new String[]{null,formatNumber(parent.getAttribute(attr),path,simDays,systemNumbers,percent,time,distributionSeparator)};
 		}
@@ -377,7 +377,7 @@ public class DataFilterBase {
 
 		/* Elementinhalt zurückgeben */
 		if (!selectors.hasNext()) {
-			List<String> path=new ArrayList<String>(parentTags);
+			List<String> path=new ArrayList<>(parentTags);
 			path.add(tag);
 			if (attr.isEmpty() || !attrValue.isEmpty() || attrNr>0) {
 				return new String[]{null,formatNumber(searchResult.getTextContent(),path,simDays,systemNumbers,percent,time,distributionSeparator)};
@@ -388,7 +388,7 @@ public class DataFilterBase {
 		}
 
 		/* Suche fortsetzen */
-		List<String> tags=new ArrayList<String>(parentTags);
+		List<String> tags=new ArrayList<>(parentTags);
 		tags.add(tag);
 		return findElement(selectors,searchResult,tags,systemNumbers,percent,time,distributionSeparator);
 	}
@@ -417,7 +417,7 @@ public class DataFilterBase {
 	 * @return	Gibt ein String-Array aus zwei Elementen zurück. Im ersten Eintrag wird ein Fehler und im zweiten ein Wert zurückgegeben. Genau einer der beiden Einträge ist immer <code>null</code>.
 	 */
 	protected final String[] calc(String command) {
-		List<Double> varValuesNumber=new ArrayList<Double>();
+		List<Double> varValuesNumber=new ArrayList<>();
 		for (int i=0;i<varValues.size();i++) {
 			Double d=TimeTools.getExactTime(varValues.get(i));
 			if (d==null || d==0.0) {

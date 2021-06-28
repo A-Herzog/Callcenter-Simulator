@@ -116,16 +116,16 @@ public final class CallcenterModelAgent implements Cloneable {
 		countPerInterval96=null;
 		lastShiftIsOpenEnd=false;
 		byCallersAvailableHalfhours=0;
-		byCallers=new ArrayList<String>();
-		byCallersRate=new ArrayList<Double>();
+		byCallers=new ArrayList<>();
+		byCallersRate=new ArrayList<>();
 		workingTimeStart=0;
 		workingTimeEnd=86400;
 		workingNoEndTime=false;
 		this.skillLevel=skillLevel;
 		costPerWorkingHour=0;
-		costCallerTypes=new ArrayList<String>();
-		costPerCall=new ArrayList<Double>();
-		costPerCallMinute=new ArrayList<Double>();
+		costCallerTypes=new ArrayList<>();
+		costPerCall=new ArrayList<>();
+		costPerCallMinute=new ArrayList<>();
 		preferredShiftLength=-1;
 		minimumShiftLength=-1;
 		efficiencyPerInterval=null;
@@ -433,7 +433,7 @@ public final class CallcenterModelAgent implements Cloneable {
 	 * @return	Array mit Agenten mit festen Arbeitszeiten
 	 */
 	private ArrayList<CallcenterModelAgent> calcAgentShiftsInt(int preferredShiftLength, int minimumShiftLength, final boolean lastIntervalOpenEnd, final CallcenterModelCallcenter callcenter, final CallcenterModel model, final boolean useProductivity) {
-		ArrayList<CallcenterModelAgent> list=new ArrayList<CallcenterModelAgent>();
+		ArrayList<CallcenterModelAgent> list=new ArrayList<>();
 
 		if (this.preferredShiftLength>0) preferredShiftLength=this.preferredShiftLength;
 		if (this.minimumShiftLength>0) minimumShiftLength=this.minimumShiftLength;
@@ -441,7 +441,7 @@ public final class CallcenterModelAgent implements Cloneable {
 		/* Wenn die Arbeitszeiten bereits explizit gegeben sind, ist gar keine Schichtplanung nötig. */
 		if (count>=0) {list.add(clone()); return list;}
 
-		final ArrayList<Integer> workingAgents=new ArrayList<Integer>();
+		final ArrayList<Integer> workingAgents=new ArrayList<>();
 
 		DataDistributionImpl efficiencyPerInterval=getEfficiency(callcenter,model);
 
@@ -530,12 +530,12 @@ public final class CallcenterModelAgent implements Cloneable {
 		skillLevel="";
 
 		byCallersAvailableHalfhours=0;
-		byCallers=new ArrayList<String>();
-		byCallersRate=new ArrayList<Double>();
+		byCallers=new ArrayList<>();
+		byCallersRate=new ArrayList<>();
 		costPerWorkingHour=0;
-		costCallerTypes=new ArrayList<String>();
-		costPerCall=new ArrayList<Double>();
-		costPerCallMinute=new ArrayList<Double>();
+		costCallerTypes=new ArrayList<>();
+		costPerCall=new ArrayList<>();
+		costPerCallMinute=new ArrayList<>();
 		preferredShiftLength=-1;
 		minimumShiftLength=-1;
 		efficiencyPerInterval=null;
@@ -577,8 +577,8 @@ public final class CallcenterModelAgent implements Cloneable {
 				Integer I=NumberTools.getNotNegativeInteger(number);
 				if (I==null) return String.format(Language.tr("XML.Model.AgentsGroup.ByClients.AgentsHalfHours.Error"),number);
 				byCallersAvailableHalfhours=I;
-				newByCaller=new ArrayList<String>();
-				newByCallerRate=new ArrayList<Double>();
+				newByCaller=new ArrayList<>();
+				newByCallerRate=new ArrayList<>();
 				NodeList l2=e.getChildNodes();
 				for (int j=0; j<l2.getLength();j++) {
 					if (!(l2.item(j) instanceof Element)) continue;

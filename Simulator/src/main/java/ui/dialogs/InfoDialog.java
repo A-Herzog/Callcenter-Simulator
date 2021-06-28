@@ -22,7 +22,6 @@ import java.awt.Dialog;
 import java.awt.FlowLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -98,7 +97,7 @@ public class InfoDialog extends JDialog {
 	/**
 	 * Auswahlfeld zum Ändern der Programmsprache
 	 */
-	private final JComboBox<String> languages;
+	private JComboBox<String> languages;
 
 	/**
 	 * Dieses Feld wird auf <code>true</code> gesetzt, wenn der Dialog nicht über "Ok"
@@ -147,7 +146,7 @@ public class InfoDialog extends JDialog {
 		p2.setLayout(new BoxLayout(p2,BoxLayout.Y_AXIS));
 
 		/* Programm und Autor */
-		List<String> text=new ArrayList<String>();
+		List<String> text=new ArrayList<>();
 		text.add(MainFrame.PROGRAM_NAME+" "+version);
 		text.add("&copy; "+MainPanel.AUTHOR+" (<a href=\"mailto:"+UpdateSystem.mailURL+"\">"+UpdateSystem.mailURL+"</a>)");
 
@@ -185,7 +184,7 @@ public class InfoDialog extends JDialog {
 		add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.SOUTH);
 		/* Ok-Button */
 		p.add(okButton=new JButton("Ok"));
-		okButton.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {
+		okButton.addActionListener(e-> {
 			if (languages!=null) {
 				String lang=(languages.getSelectedIndex()==1)?"de":"en";
 				SetupData setup=SetupData.getSetup();
@@ -196,7 +195,7 @@ public class InfoDialog extends JDialog {
 			}
 			setVisible(false);
 			dispose();
-		}});
+		});
 		okButton.setIcon(Images.MSGBOX_OK.getIcon());
 		getRootPane().setDefaultButton(okButton);
 
@@ -215,7 +214,7 @@ public class InfoDialog extends JDialog {
 		/* Sprachschalter */
 		p.add(Box.createHorizontalStrut(5));
 		p.add(new JLabel(Language.tr("SettingsDialog.Languages")+":"));
-		p.add(languages=new JComboBox<String>(new String[]{Language.tr("SettingsDialog.Languages.English"),Language.tr("SettingsDialog.Languages.German")}));
+		p.add(languages=new JComboBox<>(new String[]{Language.tr("SettingsDialog.Languages.English"),Language.tr("SettingsDialog.Languages.German")}));
 		languages.setRenderer(new IconListCellRenderer(new Images[]{Images.LANGUAGE_EN,Images.LANGUAGE_DE}));
 		languages.setToolTipText(Language.tr("SettingsDialog.Languages.Info"));
 		SetupData setup=SetupData.getSetup();

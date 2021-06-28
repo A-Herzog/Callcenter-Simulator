@@ -23,8 +23,6 @@ import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.TrayIcon.MessageType;
 import java.awt.Window;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -65,7 +63,7 @@ public class TrayNotify {
 		Image image=Toolkit.getDefaultToolkit().getImage(MainFrame.ICON_URL);
 		final TrayIcon icon=new TrayIcon(image,caption);
 		icon.addMouseListener(new MouseInputAdapter() {@Override public void mouseClicked(MouseEvent e) {frame.setExtendedState(Frame.NORMAL);}});
-		icon.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {frame.setExtendedState(Frame.NORMAL);}});
+		icon.addActionListener(e->frame.setExtendedState(Frame.NORMAL));
 		try {SystemTray.getSystemTray().add(icon);} catch (AWTException e1) {}
 		icon.displayMessage(caption,message,MessageType.INFO);
 

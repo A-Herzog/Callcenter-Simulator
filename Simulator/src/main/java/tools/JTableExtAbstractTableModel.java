@@ -82,10 +82,10 @@ public abstract class JTableExtAbstractTableModel extends AbstractTableModel {
 		max=Math.max(max,icon.length);
 		max=Math.max(max,listener.length);
 		for (int i=1;i<=max;i++) {
-			if (title.length<i) {List<String> l=new ArrayList<String>(Arrays.asList(title)); l.add(null); title=l.toArray(new String[0]);}
-			if (tooltip.length<i) {List<String> l=new ArrayList<String>(Arrays.asList(tooltip)); l.add(null); tooltip=l.toArray(new String[0]);}
+			if (title.length<i) {List<String> l=new ArrayList<>(Arrays.asList(title)); l.add(null); title=l.toArray(new String[0]);}
+			if (tooltip.length<i) {List<String> l=new ArrayList<>(Arrays.asList(tooltip)); l.add(null); tooltip=l.toArray(new String[0]);}
 			if (icon.length<i) {List<Icon> l=new ArrayList<>(Arrays.asList(icon)); l.add(null); icon=l.toArray(new Icon[0]);}
-			if (listener.length<i) {List<ActionListener> l=new ArrayList<ActionListener>(Arrays.asList(listener)); l.add(null); listener=l.toArray(new ActionListener[0]);}
+			if (listener.length<i) {List<ActionListener> l=new ArrayList<>(Arrays.asList(listener)); l.add(null); listener=l.toArray(new ActionListener[0]);}
 		}
 
 		JPanel p=new JPanel(new BorderLayout());

@@ -118,7 +118,7 @@ public class StatisticFolder {
 	 */
 	private File[] readFileList() {
 		File[] files=folder.listFiles();
-		List<File> result=new ArrayList<File>();
+		List<File> result=new ArrayList<>();
 
 		if (files!=null) for (File file: files) if (file!=null && file.isFile()) {
 			String[] parts=file.toString().split("\\.");

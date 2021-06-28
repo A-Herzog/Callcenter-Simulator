@@ -117,7 +117,7 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 		p.setLayout(new GridLayout(2,1));
 		p.add(createHeadingLabel(Language.tr("Generator.Callcenter")));
 		int last=(callcenterSelect==null)?0:callcenterSelect.getSelectedIndex();
-		p.add(callcenterSelect=new JComboBox<String>());
+		p.add(callcenterSelect=new JComboBox<>());
 		for (int i=0;i<model.callcenter.size();i++) callcenterSelect.addItem(model.callcenter.get(i).name);
 
 		data.add(tab=new JPanel());
@@ -173,7 +173,7 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 	 * @return	Liefert die neu erstellte Combobox zurück
 	 */
 	protected static JComboBox<String> createComboBox(String label, List<String> valuesDisplay, List<String> valuesSelect) {
-		JComboBox<String> comboBox=new JComboBox<String>();
+		JComboBox<String> comboBox=new JComboBox<>();
 
 		/* Combobox befüllen */
 		comboBox.addItem(Language.tr("Generator.DoNotUseColumn"));
@@ -203,8 +203,8 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 		String callcenterName=model.callcenter.get(callcenterSelect.getSelectedIndex()).name;
 
 		/* Agentengruppenliste erstellen */
-		List<String> agentGroupsDisplay=new ArrayList<String>();
-		List<String> agentGroupsSelect=new ArrayList<String>();
+		List<String> agentGroupsDisplay=new ArrayList<>();
+		List<String> agentGroupsSelect=new ArrayList<>();
 		for (int i=0;i<agents.size();i++) {
 			StringBuilder s=new StringBuilder("<html><body><b>"+callcenterName+" - "+Language.tr("Generator.AgentGroup")+" "+(i+1)+"</b><br>");
 			StringBuilder t=new StringBuilder();
@@ -226,7 +226,7 @@ public final class AgentsGeneratorDialog extends GeneratorBaseDialog {
 		/* GUI erzeugen */
 		tab.setLayout(new GridLayout(colIndex.size()+1,2));
 
-		select=new ArrayList<JComboBox<String>>();
+		select=new ArrayList<>();
 
 		tab.add(createHeadingLabel(Language.tr("Generator.TableColumn")));
 		tab.add(createHeadingLabel(Language.tr("Generator.AgentGroup")));

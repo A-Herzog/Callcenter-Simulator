@@ -177,7 +177,7 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 	 */
 	public static double getAgentsTimes(CallcenterModel model, String callcenterName, String skillLevelName, boolean useProductivity) {
 		/* Bei Bedarf Schichtpläne erstellen */
-		List<CallcenterModelAgent> translatedAgents=new ArrayList<CallcenterModelAgent>();
+		List<CallcenterModelAgent> translatedAgents=new ArrayList<>();
 		for (int i=0;i<model.callcenter.size();i++) {
 			CallcenterModelCallcenter c=model.callcenter.get(i);
 			if (!c.active) continue;
@@ -489,7 +489,7 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 	 * @see #buildThresholdAndRecommendationsInformation()
 	 */
 	private void buildRecommendations(final boolean fullInformation) {
-		List <String> recommendations=new ArrayList<String>();
+		List <String> recommendations=new ArrayList<>();
 
 		/* Schlechte Erreichbarkeit */
 		double success=((double)statistic.kundenGlobal.anrufeErfolg)/Math.max(1,statistic.kundenGlobal.anrufe);
@@ -863,7 +863,7 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		if (setup==null) setup="";
 		while (setup.length()<ids.length) setup+="X";
 
-		final List<String> hiddenIDs=new ArrayList<String>();
+		final List<String> hiddenIDs=new ArrayList<>();
 		for (int i=0;i<ids.length;i++) if (setup.charAt(i)=='-') hiddenIDs.add(ids[i]);
 		return hiddenIDs.toArray(new String[0]);
 	}

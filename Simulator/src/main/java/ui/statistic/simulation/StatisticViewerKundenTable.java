@@ -260,7 +260,7 @@ public class StatisticViewerKundenTable extends StatisticViewerTable {
 	 * @return	Gibt die Tabellenspalte (ohne Überschrift) zurück
 	 */
 	private List<String> getLine(KundenDaten kunden, long days) {
-		List<String> line=new ArrayList<String>();
+		List<String> line=new ArrayList<>();
 
 		double[] d;
 		long l;

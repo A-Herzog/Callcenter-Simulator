@@ -52,8 +52,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -244,12 +242,12 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		if (previous) previousText=readOnly?Language.tr("Editor.Callcenter.Move.ViewPrevious"):Language.tr("Editor.Callcenter.Move.EditPrevious");
 		String nextText=null;
 		if (next) nextText=readOnly?Language.tr("Editor.Callcenter.Move.ViewNext"):Language.tr("Editor.Callcenter.Move.EditNext");
-		listener=new ArrayList<RenameListener>();
+		listener=new ArrayList<>();
 		createTabsGUI(Language.tr("Editor.Callcenter.Name")+":",callcenter.name,Language.tr("Editor.Callcenter.Active"),callcenter.active,775,500,previousText,nextText);
 
 		if (!readOnly && callcenterNames.length>1) {
 			getUserButton(0).setVisible(false);
-			tabs.addChangeListener(new ChangeListener() {@Override public void stateChanged(ChangeEvent e) {getUserButton(0).setVisible(tabs.getSelectedIndex()>0);}});
+			tabs.addChangeListener(e->getUserButton(0).setVisible(tabs.getSelectedIndex()>0));
 		}
 	}
 
@@ -367,9 +365,9 @@ public class CallcenterEditDialog extends BaseEditDialog {
 
 		/* Agenten */
 		tabs.addTab(Language.tr("Editor.Callcenter.Tabs.Agents"),p=new JPanel(new BorderLayout()));
-		agents=new ArrayList<CallcenterModelAgent>();
+		agents=new ArrayList<>();
 		for (int i=0;i<callcenter.agents.size();i++) agents.add(callcenter.agents.get(i).clone());
-		p.add(new JScrollPane(agentList=new JList<CallcenterModelAgent>(agentListData=new DefaultListModel<CallcenterModelAgent>())),BorderLayout.CENTER);
+		p.add(new JScrollPane(agentList=new JList<>(agentListData=new DefaultListModel<>())),BorderLayout.CENTER);
 		agentList.setCellRenderer(new AgentListRenderer());
 		agentList.addMouseListener(new ListListener());
 		agentList.addKeyListener(new ListListener());
@@ -830,9 +828,9 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	private int[][] loadFixedTimedAgentsFromTableSheet(final Table table) {
 		if (table.getSize(0)==0 || table.getSize(1)<2) return null;
 
-		List<Integer> count=new ArrayList<Integer>();
-		List<Integer> timeStart=new ArrayList<Integer>();
-		List<Integer> timeEnd=new ArrayList<Integer>();
+		List<Integer> count=new ArrayList<>();
+		List<Integer> timeStart=new ArrayList<>();
+		List<Integer> timeEnd=new ArrayList<>();
 
 		String[][] data=table.getDataArray();
 
@@ -1099,12 +1097,9 @@ public class CallcenterEditDialog extends BaseEditDialog {
 				final CallcenterModelAgent agent=agents.get(index);
 				name=String.format(Language.tr("Editor.Callcenter.AgentGroupNr"),index+1)+" "+Language.tr("Dialog.active.lower");
 				active=agent.active;
-				activateListener=new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						agent.active=!agent.active;
-						updateAgentsList();
-					}
+				activateListener=e1-> {
+					agent.active=!agent.active;
+					updateAgentsList();
 				};
 			}
 
@@ -1230,7 +1225,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	 * Renderer für {@link CallcenterEditDialog#agentList}
 	 * @see CallcenterEditDialog#agentList
 	 */
-	private class AgentListRenderer extends AdvancedListCellRenderer {
+	private static class AgentListRenderer extends AdvancedListCellRenderer {
 		/**
 		 * Serialisierungs-ID der Klasse
 		 * @see Serializable

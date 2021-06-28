@@ -373,7 +373,7 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 		if (setup==null) setup="";
 		while (setup.length()<ids.length) setup+="X";
 
-		final List<String> hiddenIDs=new ArrayList<String>();
+		final List<String> hiddenIDs=new ArrayList<>();
 		for (int i=0;i<ids.length;i++) if (setup.charAt(i)=='-') hiddenIDs.add(ids[i]);
 		return hiddenIDs.toArray(new String[0]);
 	}

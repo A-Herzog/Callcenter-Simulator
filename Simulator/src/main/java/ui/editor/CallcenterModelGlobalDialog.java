@@ -166,7 +166,7 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 		String[] s=new String[48];
 		s[0]=Language.tr("Editor.GeneralData.GlobalParameters.MinimumShiftLength.NoRestrictions");
 		for (int i=1;i<s.length;i++) s[i]=TimeTools.formatTime(1800*(i+1));
-		p2.add(minimumShiftLength=new JComboBox<String>(s));
+		p2.add(minimumShiftLength=new JComboBox<>(s));
 		p2.add(Box.createHorizontalStrut(10));
 		p2.add(new JLabel("("+Language.tr("Editor.GeneralData.GlobalParameters.PreferedShiftLength.Info")+")"));
 		minimumShiftLength.setSelectedIndex(Math.max(0,model.preferredShiftLength-1));
@@ -176,7 +176,7 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 		p.add(p2=new JPanel(new FlowLayout(FlowLayout.LEFT,0,0)));
 		p2.setBorder(BorderFactory.createEmptyBorder(0,0,5,0));
 		s[0]=TimeTools.formatTime(1800);
-		p2.add(preferredShiftLength=new JComboBox<String>(s));
+		p2.add(preferredShiftLength=new JComboBox<>(s));
 		p2.add(Box.createHorizontalStrut(10));
 		p2.add(new JLabel("("+Language.tr("Editor.GeneralData.GlobalParameters.PreferedShiftLength.Info")+")"));
 		preferredShiftLength.setSelectedIndex(Math.max(0,model.preferredShiftLength-1));

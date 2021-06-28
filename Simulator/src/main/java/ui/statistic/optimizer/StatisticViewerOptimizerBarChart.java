@@ -217,7 +217,7 @@ public class StatisticViewerOptimizerBarChart extends StatisticViewerBarChart {
 	 * @return	Liste der verfügbaren Diagrammtypen
 	 */
 	public static String[] getDiagramTypesList(CallcenterModel model) {
-		final List<String> list=new ArrayList<String>();
+		final List<String> list=new ArrayList<>();
 
 		addLineToList(list,Language.tr("Optimizer.SetupDiagrams.ListValue.OptimizeValue"),Language.tr("Optimizer.SetupDiagrams.ListValue.OptimizeValue.Info"));
 		addLineToList(list,Language.tr("Optimizer.SetupDiagrams.ListValue.ChangeValue"),Language.tr("Optimizer.SetupDiagrams.ListValue.ChangeValue.Info"));

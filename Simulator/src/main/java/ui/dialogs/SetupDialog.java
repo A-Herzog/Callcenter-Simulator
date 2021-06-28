@@ -209,13 +209,13 @@ public class SetupDialog extends BaseEditDialog {
 
 		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(new JLabel(Language.tr("SettingsDialog.Languages")+":"));
-		p.add(languages=new JComboBox<String>(new String[]{Language.tr("SettingsDialog.Languages.English"),Language.tr("SettingsDialog.Languages.German")}));
+		p.add(languages=new JComboBox<>(new String[]{Language.tr("SettingsDialog.Languages.English"),Language.tr("SettingsDialog.Languages.German")}));
 		languages.setRenderer(new IconListCellRenderer(new Images[]{Images.LANGUAGE_EN,Images.LANGUAGE_DE}));
 		languages.setToolTipText(Language.tr("SettingsDialog.Languages.Info"));
 
 		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(new JLabel(Language.tr("SettingsDialog.MenuMode")+":"));
-		p.add(programMenuMode=new JComboBox<String>(new String[]{
+		p.add(programMenuMode=new JComboBox<>(new String[]{
 				Language.tr("SettingsDialog.MenuMode.Ribbons"),
 				Language.tr("SettingsDialog.MenuMode.Classic"),
 		}));
@@ -226,7 +226,7 @@ public class SetupDialog extends BaseEditDialog {
 
 		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(new JLabel(Language.tr("SettingsDialog.FontSizes")+":"));
-		p.add(fontSizes=new JComboBox<String>(new String[]{Language.tr("SettingsDialog.FontSizes.Small")+" (90%)",Language.tr("SettingsDialog.FontSizes.Normal")+" (100%)",Language.tr("SettingsDialog.FontSizes.Larger")+" (110%)",Language.tr("SettingsDialog.FontSizes.VeryLarge")+" (125%)",Language.tr("SettingsDialog.FontSizes.Maximum")+" (150%)"}));
+		p.add(fontSizes=new JComboBox<>(new String[]{Language.tr("SettingsDialog.FontSizes.Small")+" (90%)",Language.tr("SettingsDialog.FontSizes.Normal")+" (100%)",Language.tr("SettingsDialog.FontSizes.Larger")+" (110%)",Language.tr("SettingsDialog.FontSizes.VeryLarge")+" (125%)",Language.tr("SettingsDialog.FontSizes.Maximum")+" (150%)"}));
 		fontSizes.setRenderer(new IconListCellRenderer(new Images[]{
 				Images.SETUP_FONT_SIZE1,
 				Images.SETUP_FONT_SIZE2,
@@ -240,7 +240,7 @@ public class SetupDialog extends BaseEditDialog {
 		final List<String> lookAndFeels=new ArrayList<>();
 		lookAndFeels.add(Language.tr("SettingsDialog.Theme.System"));
 		lookAndFeels.addAll(Arrays.asList(GUITools.listLookAndFeels()));
-		p.add(lookAndFeel=new JComboBox<String>(lookAndFeels.toArray(new String[0])));
+		p.add(lookAndFeel=new JComboBox<>(lookAndFeels.toArray(new String[0])));
 		label.setLabelFor(lookAndFeel);
 		p.add(lookAndFeelCombinedMenu=new JCheckBox(Language.tr("SettingsDialog.LookAndFeel.MenuInWindowTitle")));
 		lookAndFeelCombinedMenu.setToolTipText(Language.tr("SettingsDialog.LookAndFeel.MenuInWindowTitle.Tooltip"));
@@ -254,7 +254,7 @@ public class SetupDialog extends BaseEditDialog {
 
 		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(new JLabel(Language.tr("SettingsDialog.WindowSizeProgrmStart")+":"));
-		p.add(programStartWindow=new JComboBox<String>(new String[]{
+		p.add(programStartWindow=new JComboBox<>(new String[]{
 				Language.tr("SettingsDialog.WindowSizeProgrmStart.Normal"),
 				Language.tr("SettingsDialog.WindowSizeProgrmStart.FullScreen"),
 				Language.tr("SettingsDialog.WindowSizeProgrmStart.LastSize")
@@ -267,7 +267,7 @@ public class SetupDialog extends BaseEditDialog {
 
 		mainarea.add(p=new JPanel(new FlowLayout(FlowLayout.LEFT)));
 		p.add(new JLabel(Language.tr("SettingsDialog.LoadModelOnProgramStart")+":"));
-		p.add(programStartModel=new JComboBox<String>(new String[]{
+		p.add(programStartModel=new JComboBox<>(new String[]{
 				Language.tr("MainMenu.File.NewModel.EmptyModel"),
 				Language.tr("MainMenu.File.NewModel.SmallExampleModel"),
 				Language.tr("MainMenu.File.NewModel.MediumExampleModel"),
@@ -573,20 +573,17 @@ public class SetupDialog extends BaseEditDialog {
 		final String statusDone=isAutoUpdate?Language.tr("SettingsDialog.Update.UpdateOnRestart"):Language.tr("SettingsDialog.Update.ReadyForManualInstall");
 		final String statusFailed=Language.tr("SettingsDialog.Update.Failed");
 		final String statusProgress=Language.tr("SettingsDialog.Update.Progress");
-		downloadInfoTimer=new Timer(250,new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int progress=UpdateSystem.getUpdateSystem().getDownloadState();
-				String ver=UpdateSystem.getUpdateSystem().getNewVersion();
-				String s="";
-				if (progress>=100) {
-					s=String.format(statusDone,ver);
-				} else {
-					if (progress<0) s=String.format(statusFailed,ver); else s=String.format(statusProgress,NumberTools.formatPercent(progress/100.0),ver);
-				}
-				autoUpdateInfo.setText(s);
-				if (progress>=100 || progress<0) downloadInfoTimer.stop();
+		downloadInfoTimer=new Timer(250,e-> {
+			int progress=UpdateSystem.getUpdateSystem().getDownloadState();
+			String ver=UpdateSystem.getUpdateSystem().getNewVersion();
+			String s="";
+			if (progress>=100) {
+				s=String.format(statusDone,ver);
+			} else {
+				if (progress<0) s=String.format(statusFailed,ver); else s=String.format(statusProgress,NumberTools.formatPercent(progress/100.0),ver);
 			}
+			autoUpdateInfo.setText(s);
+			if (progress>=100 || progress<0) downloadInfoTimer.stop();
 		});
 		downloadInfoTimer.start();
 	}
@@ -632,7 +629,7 @@ public class SetupDialog extends BaseEditDialog {
 		setup.networkServerPortWeb=networkServerPortWeb.getText().trim();
 		setup.networkServerPassword=networkServerPasswort.getText().trim();
 		list=networkServerIPs.getText().split("\n");
-		k=new ArrayList<String>();	for (int i=0;i<list.length;i++) if (!list[i].isEmpty()) k.add(list[i]);
+		k=new ArrayList<>();	for (int i=0;i<list.length;i++) if (!list[i].isEmpty()) k.add(list[i]);
 		setup.networkPermittedIPs=k.toArray(new String[0]);
 
 		I=NumberTools.getInteger(imageSize,false);
