@@ -3002,6 +3002,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7097] = "The global productivity per interval is invalid.";
     t[7106] = "MainMenu.File.NewModel.CreateWithWizard";
     t[7107] = "New model with wizard...";
+    t[7108] = "Statistics.XML.RunThreads.DynamicBalanceData";
+    t[7109] = "DynamicThreadBalanceData";
     t[7110] = "SimStatistic.ConfidenceIntervals.Info";
     t[7111] = "The following data should help you to estimate\nhow many simulation runs are necessary of\nfor statistically stable results.";
     t[7112] = "Editor.AgentsGroup.Error.WorkingTimeEnd.Info";
@@ -4014,14 +4016,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9569] = "StatisticsModelWarning";
     t[9570] = "CommandLine.Interactive.Name";
     t[9571] = "Interactive";
-    t[9572] = "CommandLine.Count.ThenMaximum1";
-    t[9573] = "a maximum of one additional parameter can be entered";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9572] = "CommandLine.Count.ThenMaximum1";
+    t[9573] = "a maximum of one additional parameter can be entered";
     t[9574] = "XML.Statistic.ErlangC.Success";
     t[9575] = "Success";
     t[9576] = "Loader.Info.Technion";
@@ -6020,14 +6022,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14563] = "This is a complex example model. It consists of:\n- Four caller groups (30,000 fresh calls per day)\n\u00a0 - Clients (topic A)\n\u00a0 - Clients (topic B)\n\u00a0\u00a0- Prioritized clients (topic A)\n  - Prioritized clients (topic B)\n  - The prioritized clients have a higher base score and a higher score per waiting second.\n- Three call centers with a group of agents each\n  - Call center 1: Single skill for topic A\n  - Call center 2: Single skill for topic B\n  - Call center 3: Multi skill for all topics (A+B)\n- Because the multi skill agents will need longer for a customer, call center 1+2 will get prioritized.\n- The number of agents per interval is modeled fitting the number of fresh calls per interval.\n- The model contains forwarded calls and clients retrying after canceling due to a too long waiting time.";
     t[14564] = "XML.Model.ClientType.Forwarding";
     t[14565] = "ClientsForwarding";
-    t[14566] = "XML.Statistic.ErlangC.Agents";
-    t[14567] = "NumberOfAgents";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14566] = "XML.Statistic.ErlangC.Agents";
+    t[14567] = "NumberOfAgents";
     t[14568] = "SimStatistic.AgentsWorkLoad";
     t[14569] = "Agents work load";
     t[14570] = "CommandLine.Preplanning.Mode.WaitingTime.Simple.PreSimplify";
