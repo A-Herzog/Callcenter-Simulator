@@ -4882,6 +4882,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11697] = "Optimization results";
     t[11704] = "MainToolbar.Load";
     t[11705] = "Load model";
+    t[11714] = "InfoDialog.BuildDate";
+    t[11715] = "Build date";
     t[11716] = "Editor.Caller.Error.RetryProbabiltyAfterGiveUp.Info";
     t[11717] = "The specified probability for a retry after canceling waiting in any further retry %s is invalid.\nThe value has to be a non-negative number (a percentage value optional).";
     t[11718] = "Rearranger.MoveCalls.NoGroups.Info";
@@ -6020,14 +6022,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14561] = "Exports the whole report or a part of it.";
     t[14562] = "Example.Medium.Description";
     t[14563] = "This is a complex example model. It consists of:\n- Four caller groups (30,000 fresh calls per day)\n\u00a0 - Clients (topic A)\n\u00a0 - Clients (topic B)\n\u00a0\u00a0- Prioritized clients (topic A)\n  - Prioritized clients (topic B)\n  - The prioritized clients have a higher base score and a higher score per waiting second.\n- Three call centers with a group of agents each\n  - Call center 1: Single skill for topic A\n  - Call center 2: Single skill for topic B\n  - Call center 3: Multi skill for all topics (A+B)\n- Because the multi skill agents will need longer for a customer, call center 1+2 will get prioritized.\n- The number of agents per interval is modeled fitting the number of fresh calls per interval.\n- The model contains forwarded calls and clients retrying after canceling due to a too long waiting time.";
-    t[14564] = "XML.Model.ClientType.Forwarding";
-    t[14565] = "ClientsForwarding";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14564] = "XML.Model.ClientType.Forwarding";
+    t[14565] = "ClientsForwarding";
     t[14566] = "XML.Statistic.ErlangC.Agents";
     t[14567] = "NumberOfAgents";
     t[14568] = "SimStatistic.AgentsWorkLoad";

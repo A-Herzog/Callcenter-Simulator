@@ -4882,6 +4882,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11697] = "Optimierungsergebnisse";
     t[11704] = "MainToolbar.Load";
     t[11705] = "Modell laden";
+    t[11714] = "InfoDialog.BuildDate";
+    t[11715] = "Erstellungsdatum";
     t[11716] = "Editor.Caller.Error.RetryProbabiltyAfterGiveUp.Info";
     t[11717] = "Die Wahrscheinlichkeit f\u00fcr weitere Wiederversuche nach einem Warteabbruch %s ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Zahl (optional ein Prozentwert) sein.";
     t[11718] = "Rearranger.MoveCalls.NoGroups.Info";
@@ -6020,14 +6022,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14561] = "Exportiert einen Teil oder die gesamten Simulationsergebnisse f\u00fcr ein Modell.";
     t[14562] = "Example.Medium.Description";
     t[14563] = "Dies ist ein komplexes Beispielmodell. Es besteht aus:\n- Vier Anrufergruppen (insgesamt 30.000 Erstanrufer pro Tag)\n  - Normale Kunden (Thema A)\n  - Normale Kunden (Thema B)\n  - Priorisierte Kunden (Thema A)\n  - Priorisierte Kunden (Thema B)\n  - Die priorisierten Kunden haben eine h\u00f6here Basisscore und eine h\u00f6here Score pro Wartesekunde.\n- Drei Callcenter mit jeweils einer Agentengruppe\n  - Callcenter 1: Single-Skill f\u00fcr Thema A\n  - Callcenter 2: Single-Skill f\u00fcr Thema B\n  - Callcenter 3: Multi-Skill f\u00fcr alle Themen (A+B)\n- Da die Multi-Skill Agenten langsamer sind, werden Callcenter 1+2 priorisiert.\n- Mit der Agentenanzahl wird die Verteilung der Erstanrufer nach modelliert.\n- Weiterleitungen und Anrufwiederholungen nach Warteabbr\u00fcchen sind im Modell enthalten.";
-    t[14564] = "XML.Model.ClientType.Forwarding";
-    t[14565] = "KundenWeiterleitungen;Weiterleitungen";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14564] = "XML.Model.ClientType.Forwarding";
+    t[14565] = "KundenWeiterleitungen;Weiterleitungen";
     t[14566] = "XML.Statistic.ErlangC.Agents";
     t[14567] = "AnzahlAnAgenten";
     t[14568] = "SimStatistic.AgentsWorkLoad";

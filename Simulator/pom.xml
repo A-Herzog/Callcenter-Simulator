@@ -9,6 +9,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>WINDOWS-1252</project.build.sourceEncoding>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
   </properties>
   
   <dependencies>
@@ -84,6 +85,9 @@
                 <customClasspathLayout>libs/$${artifact.artifactId}.$${artifact.extension}</customClasspathLayout>
               <mainClass>start.Main</mainClass>
             </manifest>
+            <manifestEntries>
+                <Build-Time>${maven.build.timestamp}</Build-Time>
+            </manifestEntries>
           </archive>
         </configuration>
       </plugin>

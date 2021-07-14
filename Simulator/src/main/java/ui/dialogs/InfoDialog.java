@@ -25,17 +25,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.lang.management.ManagementFactory;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.jar.Manifest;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -116,6 +123,37 @@ public class InfoDialog extends JDialog {
 	public boolean showLicenses;
 
 	/**
+	 * Liefert - wenn vorhanden - das Build-Datum aus der Manifest-Datei (aus der jar-Datei).
+	 * @return	Erstellungsdatum, wenn der Simulator aus einer jar heraus gestartet wurde, sonst <code>null</code>
+	 */
+	private static Date getBuildDate() {
+		final Enumeration<URL> resources;
+		try {
+			resources=InfoDialog.class.getClassLoader().getResources("META-INF/MANIFEST.MF");
+		} catch (IOException e1) {
+			return null;
+		}
+		while (resources.hasMoreElements()) {
+			try {
+				final URL url=resources.nextElement();
+				if (!url.toString().endsWith("/CallcenterSimulator.jar!/META-INF/MANIFEST.MF")) continue;
+				try (InputStream stream=url.openStream()) {
+					final Manifest manifest=new Manifest(stream);
+					final String dateTimeString=manifest.getMainAttributes().getValue("Build-Time");
+					if (dateTimeString==null) return null;
+
+					final SimpleDateFormat dateTime=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					return dateTime.parse(dateTimeString);
+				}
+			} catch (IOException | ParseException e) {
+				return null;
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * Konstruktor der Klasse
 	 * @param owner	Übergeordnetes Fenster
 	 * @param version	Anzuzeigende Versionsnummer
@@ -151,6 +189,13 @@ public class InfoDialog extends JDialog {
 		text.add("&copy; "+MainPanel.AUTHOR+" (<a href=\"mailto:"+UpdateSystem.mailURL+"\">"+UpdateSystem.mailURL+"</a>)");
 
 		text.add("");
+
+		/* Erstellungsdatum */
+		final Date buildDate=getBuildDate();
+		if (buildDate!=null) {
+			DateFormat formatter=DateFormat.getDateInstance();
+			text.add(Language.tr("InfoDialog.BuildDate")+": "+formatter.format(buildDate));
+		}
 
 		/* Java-Version */
 		text.add(Language.tr("InfoDialog.JavaVersion")+": "+System.getProperty("java.version")+" ("+System.getProperty("java.vm.name")+")");
