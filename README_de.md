@@ -82,7 +82,7 @@ Viele Werkzeuge zur zur Personalbedarfsplanung setzen auf „historische Daten�
 "Callcenter – Analyse und Management" mit BibTeX zitieren:
 
     @book{herzog2017callcenter,
-      title={Callcenter--Analyse und Management},
+      title={Callcenter -- Analyse und Management},
       author={Herzog, Alexander},
       year={2017},
       publisher={Springer}

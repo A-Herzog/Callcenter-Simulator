@@ -83,7 +83,7 @@ Many tools for personnel requirements planning rely on "historical data" or work
 Citing "Callcenter – Analyse und Management" using BibTeX:
 
     @book{herzog2017callcenter,
-      title={Callcenter--Analyse und Management},
+      title={Callcenter -- Analyse und Management},
       author={Herzog, Alexander},
       year={2017},
       publisher={Springer}
