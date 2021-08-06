@@ -6110,6 +6110,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14753] = "Agents group";
     t[14754] = "XML.Statistic.Clients.Summary.CallsAverageResidenceTime";
     t[14755] = "CallsAverageResidenceTime";
+    t[14758] = "Statistic.Viewer.Toolbar.Zoom.HintPanel";
+    t[14759] = "Zoom frames can be drawn in the diagram by holding down the left mouse button. In addition, the mouse wheel can be used to zoom. If the ctrl key is held down, the area to be displayed can be moved by holding down the left mouse button.";
     t[14760] = "Calibrate.ErrorWaitingTimeToleranceEstimationActive";
     t[14761] = "The waiting time tolerance calibration can only be used if for all client types the mode \"Waiting time tolerance distribution specified\" is selected in the client type editor.";
     t[14766] = "VarianceAnalysis.InavlidRepetitionsNumber.Info";

@@ -6110,6 +6110,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14753] = "Agentengruppe";
     t[14754] = "XML.Statistic.Clients.Summary.CallsAverageResidenceTime";
     t[14755] = "AnrufeMittlereVerweilzeit";
+    t[14758] = "Statistic.Viewer.Toolbar.Zoom.HintPanel";
+    t[14759] = "In dem Diagramm k\u00f6nnen mit gedr\u00fcckter linker Maustaste Zoom-Rahmen aufgezogen werden. Au\u00dferdem kann mit dem Mausrad gezoomt werden. Wird die Strg-Taste gedr\u00fcckt gehalten, so kann der darzustellende Bereich mit gedr\u00fcckter linker Maustaste verschoben werden.";
     t[14760] = "Calibrate.ErrorWaitingTimeToleranceEstimationActive";
     t[14761] = "Die Wartezeittoleranz-Kalibrierung kann nur verwendet werden, wenn f\u00fcr alle Kundentypen der Modus \"Wartezeittoleranz-Verteilung vorgeben\" im Kndentyp-Editor gew\u00e4hlt ist.";
     t[14766] = "VarianceAnalysis.InavlidRepetitionsNumber.Info";
