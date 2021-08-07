@@ -1805,7 +1805,7 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4388] = "Editor.Caller.Error.RecallCallerType.Title";
     t[4389] = "Weiterleitungsrate zu Kundentyp bei Wiederanruf ist ung\u00fcltig";
     t[4390] = "SettingsDialog.JDK.Link";
-    t[4391] = "https://adoptopenjdk.net/";
+    t[4391] = "https://adoptium.net/";
     t[4394] = "Editor.Caller.Error.InvalidFreshCalls.Title";
     t[4395] = "Erstanruferanzahl ist ung\u00fcltig";
     t[4396] = "XML.Connected.CarryOver.Value";
@@ -7483,7 +7483,7 @@ public class Messages_de extends java.util.ResourceBundle {
     t[18242] = "Simulation.Log.Call.CarriedOver.LastDayWaitingTime";
     t[18243] = "Bereits am Vortrag verbrachte Wartezeit";
     t[18250] = "Window.JavaSecurityWarnung.Link";
-    t[18251] = "https://adoptopenjdk.net/";
+    t[18251] = "https://adoptium.net/";
     t[18252] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMax.Title";
     t[18253] = "Maximalwert f\u00fcr alle Intervalle vorgeben";
   }
