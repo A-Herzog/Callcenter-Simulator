@@ -135,7 +135,7 @@ public final class HTMLPanel extends JPanel {
 		if (showBackAndNext) add(toolBar,BorderLayout.NORTH);
 
 		textPane=new HTMLBrowserTextPane();
-		textPane.init(new LinkClickListener(),new PageLoadListener());
+		textPane.init(new LinkClickListener(),null,new PageLoadListener());
 
 		add(textPane.asScrollableJComponent(),BorderLayout.CENTER);
 

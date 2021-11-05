@@ -4023,7 +4023,7 @@ public class Messages_en extends java.util.ResourceBundle {
    */
   static void clinit_part_2 (java.lang.String[] t) {
     t[9570] = "CommandLine.Interactive.Name";
-    t[9571] = "Interactive";
+    t[9571] = "Interactive;Console";
     t[9572] = "CommandLine.Count.ThenMaximum1";
     t[9573] = "a maximum of one additional parameter can be entered";
     t[9574] = "XML.Statistic.ErlangC.Success";
