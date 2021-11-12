@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 package start;
+import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import language.Language;
@@ -78,10 +80,20 @@ public final class Main {
 	 * @param args	Kommandozeilen-Parameter
 	 */
 	public static void main(String[] args) {
-		args=processConfigFileParameter(args);
+		try {
+			args=processConfigFileParameter(args);
 
-		/* Cache-Ordner für PDFWriter einstellen */
-		PDFWriter.cacheFolder=SetupData.getSetupFolder();
+			/* Cache-Ordner für PDFWriter einstellen */
+			PDFWriter.cacheFolder=SetupData.getSetupFolder();
+		} catch (NoClassDefFoundError e) {
+			if (GraphicsEnvironment.isHeadless()) {
+				System.out.println("The required libraries in the \"libs\" subfolder are missing.");
+				System.out.println("Therefore, the program cannot be executed.");
+			} else {
+				JOptionPane.showMessageDialog(null,"The required libraries in the \"libs\" subfolder are missing.\nTherefore, the program cannot be executed.","Missing libraries",JOptionPane.ERROR_MESSAGE);
+			}
+			return;
+		}
 
 		/* Programmname für Tabellenexport */
 		Table.ExportTitle=MainFrame.PROGRAM_NAME;
