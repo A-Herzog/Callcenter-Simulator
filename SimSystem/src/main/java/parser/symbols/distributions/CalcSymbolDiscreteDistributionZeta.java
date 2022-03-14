@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Alexander Herzog
+ * Copyright 2022 Alexander Herzog
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,21 +15,18 @@
  */
 package parser.symbols.distributions;
 
-import org.apache.commons.math3.util.FastMath;
-
-import parser.symbols.CalcSymbolPreOperatorBinomial;
+import parser.symbols.CalcSymbolPreOperatorZeta;
 
 /**
- * Binomial-Verteilung
+ * Zeta-Verteilung
  * @author Alexander Herzog
- * @version 1.0
  */
-public class CalcSymbolDiscreteDistributionBinomial extends CalcSymbolDiscreteDistribution {
+public class CalcSymbolDiscreteDistributionZeta extends CalcSymbolDiscreteDistribution {
 	/**
 	 * Namen für das Symbol
 	 * @see #getNames()
 	 */
-	private static final String[] names=new String[]{"BinomialDistribution","BinomialDist","BinomDistribution","BinomDist","BinomialVerteilung"};
+	private static final String[] names=new String[]{"ZetaDistribution","ZetaDist","ZetaDistribution","ZetaDist","ZetaVerteilung"};
 
 	@Override
 	public String[] getNames() {
@@ -38,21 +35,35 @@ public class CalcSymbolDiscreteDistributionBinomial extends CalcSymbolDiscreteDi
 
 	@Override
 	protected int getParameterCount() {
-		return 2;
+		return 1;
 	}
+
+	/**
+	 * Argument s der letzten Berechnung von zeta(s)
+	 * @see #lastZetaS
+	 */
+	private double lastS=-1;
+
+	/**
+	 * Wert zeta(s) der letzten Berechnung
+	 * @see #lastS
+	 */
+	private double lastZetaS=-1;
 
 	@Override
 	protected double calcProbability(double[] parameters, int k) {
-		final int n=(int)FastMath.round(parameters[0]);
-		final double p=parameters[1];
+		final double s=parameters[0];
+		if (s<=1) return -1;
 
-		if (n<1) return -1;
-		if (p<0 || p>1) return -1;
+		if (k<=0) return 0;
 
-		try {
-			return CalcSymbolPreOperatorBinomial.binomialCoefficient(n,k)*Math.pow(p,k)*Math.pow(1-p,n-k);
-		} catch (Exception e) {
-			return -1;
+		synchronized(this) {
+			if (s!=lastS) {
+				lastS=s;
+				lastZetaS=CalcSymbolPreOperatorZeta.zeta(s);
+			}
 		}
+
+		return Math.pow(k,-s)/lastZetaS;
 	}
 }

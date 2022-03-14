@@ -17,6 +17,7 @@ package ui.help;
 
 import java.awt.Container;
 import java.net.URL;
+import java.util.function.Consumer;
 
 import javax.swing.JPanel;
 
@@ -64,26 +65,27 @@ public class Help extends HelpBase {
 
 	/**
 	 * Listener, der aufgerufen wird, wenn ein spezieller Link (beginnend mit "special:") angeklickt wird
-	 * @see #infoPanel(String, SpecialLinkListener)
+	 * @see #infoPanel(String, Consumer, boolean)
 	 */
-	private SpecialLinkListener specialLinkListener;
+	private Consumer<String> specialLinkListener;
 
 	/**
 	 * Listener, der beim Anklicken von "special:..."-Links aus der
 	 * globalen Hilfe heraus benachrichtigt werden soll.
 	 */
-	public static SpecialLinkListener globalSpecialLinkListener;
+	public static Consumer<String> globalSpecialLinkListener;
 
 	/**
 	 * Erstellt ein Panel, in dem eine bestimmte Hilfe-Seite angezeigt wird
 	 * @param topic	Anzuzeigendes Thema (Dateiname ohne ".html"-Endung).
 	 * @param listener	Listener, der aufgerufen wird, wenn ein spezieller Link (beginnend mit "special:") angeklickt wird
+	 * @param modalHelp	Handelt es sich um ein modales Hilfefenster?
 	 * @return	Panel, welches die HTML-Seite enthält
 	 */
-	public static JPanel infoPanel(final String topic, final SpecialLinkListener listener) {
+	public static JPanel infoPanel(final String topic, final Consumer<String> listener, final boolean modalHelp) {
 		final Help help=new Help(null,null,true);
 		help.specialLinkListener=listener;
-		return help.getHTMLPanel(topic);
+		return help.getHTMLPanel(topic,modalHelp);
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class Help extends HelpBase {
 	 * Die Methode des Interfaces wird aufgerufen, wenn in dem HTML-Panel ein
 	 * Link, dessen Adresse mit "special:" beginnt, angeklickt wird.
 	 * @author Alexander Herzog
-	 * @see #infoPanel(String, SpecialLinkListener)
+	 * @see #infoPanel(String, Consumer, boolean)
 	 */
 	public interface SpecialLinkListener {
 		/**
@@ -102,15 +104,15 @@ public class Help extends HelpBase {
 	}
 
 	@Override
-	protected void processSpecialLink(String href) {
+	protected void processSpecialLink(String href, final boolean modalHelp) {
 		final String key="special:";
 		if (!href.substring(0,Math.min(href.length(),key.length())).equalsIgnoreCase(key)) return;
 		href=href.substring(key.length());
 
 		if (specialLinkListener!=null) {
-			specialLinkListener.specialLinkClicked(href);
+			specialLinkListener.accept(href);
 		} else {
-			if (globalSpecialLinkListener!=null) globalSpecialLinkListener.specialLinkClicked(href);
+			if (globalSpecialLinkListener!=null) globalSpecialLinkListener.accept(href);
 		}
 	}
 }

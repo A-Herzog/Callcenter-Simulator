@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>simzentrum</groupId>
   <artifactId>simsystem</artifactId>
-  <version>20.3</version>
+  <version>22.1</version>
   <packaging>jar</packaging>
   
   <properties>
@@ -44,19 +44,25 @@
 	<dependency>
     		<groupId>org.apache.poi</groupId>
     		<artifactId>poi</artifactId>
-    		<version>5.1.0</version>
+    		<version>5.2.1</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 	<dependency>
     		<groupId>org.apache.poi</groupId>
     		<artifactId>poi-ooxml</artifactId>
-	    <version>5.1.0</version>
+	    <version>5.2.1</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-full -->
 	<dependency>
     		<groupId>org.apache.poi</groupId>
     		<artifactId>poi-ooxml-full</artifactId>
-    		<version>5.1.0</version>
+    		<version>5.2.1</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+	<dependency>
+    		<groupId>org.apache.logging.log4j</groupId>
+    		<artifactId>log4j-core</artifactId>
+    		<version>2.17.2</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
 	<dependency>
@@ -76,7 +82,13 @@
 	<dependency>
     		<groupId>org.odftoolkit</groupId>
     		<artifactId>simple-odf</artifactId>
-    		<version>0.9.0-RC1</version>
+    		<version>0.9.0</version>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-nop</artifactId>
+		<version>1.7.36</version>
 	</dependency>
   </dependencies>
   
@@ -93,17 +105,17 @@
 	  <plugin>
 		<groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.0</version>
+        <version>3.0.0-M5</version>
 	  </plugin>
 	  <plugin>
 		<groupId>org.apache.maven.plugins</groupId>
 		<artifactId>maven-failsafe-plugin</artifactId>
-		<version>2.22.0</version>
+		<version>3.0.0-M5</version>
 	  </plugin>
 	  <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.2.2</version>
         <configuration>
           <excludes><exclude>**/simtest/*</exclude></excludes>
         </configuration>
