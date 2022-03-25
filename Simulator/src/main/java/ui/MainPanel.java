@@ -148,13 +148,13 @@ public final class MainPanel extends MainPanelBase {
 	public static final String AUTHOR="Alexander Herzog";
 
 	/** Aktuelle Unterversionsnummer in der Java 8 Versionsreihe */
-	private static final int JAVA8_SECURE_MIN_VERSION=302;
+	private static final int JAVA8_SECURE_MIN_VERSION=322;
 	/** Aktuelle Unterversionsnummer in der Java 9 Versionsreihe */
 	private static final int JAVA9_SECURE_MIN_VERSION=4;
 	/** Aktuelle Unterversionsnummer in der Java 10 Versionsreihe */
 	private static final int JAVA10_SECURE_MIN_VERSION=2;
 	/** Aktuelle Unterversionsnummer in der Java 11 Versionsreihe */
-	private static final int JAVA11_SECURE_MIN_VERSION=12;
+	private static final int JAVA11_SECURE_MIN_VERSION=14;
 	/** Aktuelle Unterversionsnummer in der Java 12 Versionsreihe */
 	private static final int JAVA12_SECURE_MIN_VERSION=2;
 	/** Aktuelle Unterversionsnummer in der Java 13 Versionsreihe */
@@ -165,6 +165,10 @@ public final class MainPanel extends MainPanelBase {
 	private static final int JAVA15_SECURE_MIN_VERSION=2;
 	/** Aktuelle Unterversionsnummer in der Java 16 Versionsreihe */
 	private static final int JAVA16_SECURE_MIN_VERSION=2;
+	/** Aktuelle Unterversionsnummer in der Java 17 Versionsreihe */
+	private static final int JAVA17_SECURE_MIN_VERSION=2;
+	/** Aktuelle Unterversionsnummer in der Java 18 Versionsreihe */
+	private static final int JAVA18_SECURE_MIN_VERSION=0;
 
 	/**
 	 * Bezeichnung für "ungespeichertes Modell" in der Titelzeile für ein neues Modell, welches noch keinen Namen besitzt
@@ -492,6 +496,8 @@ public final class MainPanel extends MainPanelBase {
 			if (ver[0]==14 && ver[1]<JAVA14_SECURE_MIN_VERSION) ok=false;
 			if (ver[0]==15 && ver[1]<JAVA15_SECURE_MIN_VERSION) ok=false;
 			if (ver[0]==16 && ver[1]<JAVA16_SECURE_MIN_VERSION) ok=false;
+			if (ver[0]==17 && ver[1]<JAVA17_SECURE_MIN_VERSION) ok=false;
+			if (ver[0]==18 && ver[1]<JAVA18_SECURE_MIN_VERSION) ok=false;
 			if (ok) return;
 
 			infoPanel=setMessagePanel(Language.tr("Dialog.Title.Warning"),Language.tr("Window.JavaSecurityWarnung"),Language.tr("Window.JavaSecurityWarnung.Link"),MessagePanelIcon.WARNING);
