@@ -41,17 +41,17 @@
         <artifactId>nanohttpd</artifactId>
         <version>2.3.1</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.atlassian.commonmark/commonmark -->
+    <!-- https://mvnrepository.com/artifact/org.commonmark/commonmark -->
     <dependency>
-        <groupId>com.atlassian.commonmark</groupId>
-        <artifactId>commonmark</artifactId>
-        <version>0.14.0</version>
+            <groupId>org.commonmark</groupId>
+            <artifactId>commonmark</artifactId>
+            <version>0.18.1</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.atlassian.commonmark/commonmark-ext-autolink -->
+    <!-- https://mvnrepository.com/artifact/org.commonmark/commonmark-ext-autolink -->
     <dependency>
-        <groupId>com.atlassian.commonmark</groupId>
-        <artifactId>commonmark-ext-autolink</artifactId>
-        <version>0.14.0</version>
+            <groupId>org.commonmark</groupId>
+            <artifactId>commonmark-ext-autolink</artifactId>
+            <version>0.18.1</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.formdev/flatlaf -->
     <dependency>
