@@ -55,7 +55,7 @@ public class QueueingCalculatorTabErlangCExt extends QueueingCalculatorTabBase {
 		super(Language.tr("LoadCalculator.Tab.ErlangCext"),"P(W&le;t)=1-C<sub>K</sub>&pi;<sub>0</sub>-&pi;<sub>0</sub>&Sigma;<sub>n=c..K</sub>C<sub>n</sub> Q(n-c+1;(c&mu;+&nu;)t)");
 
 		/* Ankunftsrate (lambda) */
-		lambdaInput=getPanel(Language.tr("LoadCalculator.ArrivalRate"));
+		lambdaInput=getPanel(Language.tr("LoadCalculator.ArrivalRate"),true);
 		lambdaInput.addDefault("&lambda; ("+unitSecondsInv+")",QueueingCalculatorInputPanel.NumberMode.POSITIVE_DOUBLE,3.5/60,infoRate);
 		lambdaInput.addOption("&lambda; ("+unitMinutesInv+")",60,false,infoRate);
 		lambdaInput.addOption("&lambda; ("+unitHoursInv+")",3600,false,infoRate);
@@ -66,7 +66,7 @@ public class QueueingCalculatorTabErlangCExt extends QueueingCalculatorTabBase {
 		add(lambdaInput.get());
 
 		/* Bedienrate (mu) */
-		muInput=getPanel(Language.tr("LoadCalculator.AverageHoldingAndPostProcessingTime"));
+		muInput=getPanel(Language.tr("LoadCalculator.AverageHoldingAndPostProcessingTime"),true);
 		muInput.addDefault("&mu; ("+unitSecondsInv+")",QueueingCalculatorInputPanel.NumberMode.POSITIVE_DOUBLE,1.0/60/3,infoRate);
 		muInput.addOption("&mu; ("+unitMinutesInv+")",60,false,infoRate);
 		muInput.addOption("&mu; ("+unitHoursInv+")",3600,false,infoRate);
@@ -77,7 +77,7 @@ public class QueueingCalculatorTabErlangCExt extends QueueingCalculatorTabBase {
 		add(muInput.get());
 
 		/* Abbruchrate (nu) */
-		nuInput=getPanel(Language.tr("LoadCalculator.AverageWaitingTimeTolerance"));
+		nuInput=getPanel(Language.tr("LoadCalculator.AverageWaitingTimeTolerance"),true);
 		nuInput.addDefault("&nu; ("+unitSecondsInv+")",QueueingCalculatorInputPanel.NumberMode.POSITIVE_DOUBLE,1.0/60/5,infoRate);
 		nuInput.addOption("&nu; ("+unitMinutesInv+")",60,false,infoRate);
 		nuInput.addOption("&nu; ("+unitHoursInv+")",3600,false,infoRate);
@@ -88,12 +88,12 @@ public class QueueingCalculatorTabErlangCExt extends QueueingCalculatorTabBase {
 		add(nuInput.get());
 
 		/* Anzahl Bediener (c) */
-		cInput=getPanel(Language.tr("LoadCalculator.Agents"));
+		cInput=getPanel(Language.tr("LoadCalculator.Agents"),false);
 		cInput.addDefault("c=",QueueingCalculatorInputPanel.NumberMode.POSITIVE_LONG,13,null);
 		add(cInput.get());
 
 		/* Service-Level-Zeit (t) */
-		tInput=getPanel(Language.tr("LoadCalculator.WaitingTime"));
+		tInput=getPanel(Language.tr("LoadCalculator.WaitingTime"),false);
 		tInput.addDefault("t ("+unitSeconds+")",QueueingCalculatorInputPanel.NumberMode.POSITIVE_LONG,20,null);
 		tInput.addOption("t ("+unitMinutes+")",60,false,null);
 		tInput.addOption("t ("+unitHours+")",3600,false,null);
@@ -125,8 +125,7 @@ public class QueueingCalculatorTabErlangCExt extends QueueingCalculatorTabBase {
 		double Pt;
 		if (pi0==0) Pt=1; else Pt=1-Cn[K]*pi0;
 		for (int n=(int)c;n<=K-1;n++) {
-			Double g=0.0;
-			g=Gamma.regularizedGammaQ(n-c+1,(c*mu+nu)*t);
+			final Double g=Gamma.regularizedGammaQ(n-c+1,(c*mu+nu)*t);
 			Pt-=pi0*Cn[n]*g;
 		}
 		if (Double.isNaN(Pt) || Pt<0) Pt=0;
@@ -138,14 +137,16 @@ public class QueueingCalculatorTabErlangCExt extends QueueingCalculatorTabBase {
 
 		final StringBuilder result=new StringBuilder();
 
-		result.append(Language.tr("LoadCalculator.OfferedWorkLoad")+" a="+NumberTools.formatNumber(a,2)+"<br>");
-		result.append(Language.tr("LoadCalculator.WorkLoad")+" (rho) &rho;="+NumberTools.formatPercent((lambda-ENQ*nu)/mu/c,2)+"<br>");
-		result.append(Language.tr("LoadCalculator.AverageQueueLength")+" E[N<sub>Q</sub>]="+NumberTools.formatNumber(ENQ,2)+"<br>");
-		result.append(Language.tr("LoadCalculator.AverageNumberOfClientsInTheSystem")+" E[N]="+NumberTools.formatNumber(EN,2)+"<br>");
-		result.append(Language.tr("LoadCalculator.AverageWaitingTime")+" E[W]="+NumberTools.formatNumber(EW,2)+" ("+Language.tr("LoadCalculator.Units.InSeconds")+")<br>");
-		result.append(Language.tr("LoadCalculator.AverageResidenceTime")+" E[V]="+NumberTools.formatNumber(EV,2)+" ("+Language.tr("LoadCalculator.Units.InSeconds")+")<br>");
-		result.append(Language.tr("LoadCalculator.CancelRate")+" P(A)="+NumberTools.formatPercent(ENQ*nu/lambda,2)+"<br>");
-		result.append("<b>P(W&le;t)="+NumberTools.formatPercent(Pt,2)+"</b>");
+		if (!Double.isNaN(ENQ)) {
+			result.append(Language.tr("LoadCalculator.OfferedWorkLoad")+" a="+NumberTools.formatNumber(a,2)+"<br>");
+			result.append(Language.tr("LoadCalculator.WorkLoad")+" (rho) &rho;="+NumberTools.formatPercent((lambda-ENQ*nu)/mu/c,2)+"<br>");
+			result.append(Language.tr("LoadCalculator.AverageQueueLength")+" E[N<sub>Q</sub>]="+NumberTools.formatNumber(ENQ,2)+"<br>");
+			result.append(Language.tr("LoadCalculator.AverageNumberOfClientsInTheSystem")+" E[N]="+NumberTools.formatNumber(EN,2)+"<br>");
+			result.append(Language.tr("LoadCalculator.AverageWaitingTime")+" E[W]="+NumberTools.formatNumber(EW,2)+" ("+Language.tr("LoadCalculator.Units.InSeconds")+")<br>");
+			result.append(Language.tr("LoadCalculator.AverageResidenceTime")+" E[V]="+NumberTools.formatNumber(EV,2)+" ("+Language.tr("LoadCalculator.Units.InSeconds")+")<br>");
+			result.append(Language.tr("LoadCalculator.CancelRate")+" P(A)="+NumberTools.formatPercent(ENQ*nu/lambda,2)+"<br>");
+			result.append("<b>P(W&le;t)="+NumberTools.formatPercent(Pt,2)+"</b>");
+		}
 
 		setResult(result.toString());
 	}

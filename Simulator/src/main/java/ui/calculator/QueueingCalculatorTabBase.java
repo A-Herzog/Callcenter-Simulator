@@ -18,16 +18,12 @@ package ui.calculator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.io.Serializable;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
@@ -40,7 +36,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import language.Language;
-import systemtools.MsgBox;
+import mathtools.distribution.swing.JOpenURL;
 import ui.FlatLaFHelper;
 import ui.images.Images;
 
@@ -166,10 +162,11 @@ public abstract class QueueingCalculatorTabBase extends JPanel {
 	/**
 	 * Erstellt ein Multi-Eingabeelement, fügt es aber noch nicht in den Tab ein (kann nämlich auch in Unter-Containern verwendet werden)
 	 * @param title	Überschrift des Elements
+	 * @param isRate	Handelt es sich bei der Eingabegröße um eine Rate?
 	 * @return	Multi-Eingabeelement
 	 */
-	protected final QueueingCalculatorInputPanel getPanel(final String title) {
-		return new QueueingCalculatorInputPanel(title,()->calc());
+	protected final QueueingCalculatorInputPanel getPanel(final String title, final boolean isRate) {
+		return new QueueingCalculatorInputPanel(title,()->calc(),isRate);
 	}
 
 	/**
@@ -206,13 +203,7 @@ public abstract class QueueingCalculatorTabBase extends JPanel {
 		final JLabel info;
 		line.add(info=new JLabel("<html><body><a href=\"\">"+text+"</a></body></html>"));
 		info.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (!MsgBox.confirmOpenURL(QueueingCalculatorTabBase.this,link)) return;
-				try {Desktop.getDesktop().browse(new URI(link));} catch (IOException | URISyntaxException e1) {
-					MsgBox.error(QueueingCalculatorTabBase.this,Language.tr("Window.Info.NoInternetConnection"),String.format(Language.tr("Window.Info.NoInternetConnection.ModelOverview"),link));
-				}
-			}
+			@Override public void mouseClicked(MouseEvent e) {JOpenURL.open(QueueingCalculatorTabBase.this,link);}
 		});
 		info.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		info.setAlignmentX(0);
