@@ -126,12 +126,19 @@ public class LanguageStaticLoader {
 		DistributionTools.DistHyperbolicSecant=Language.trAll("Distribution.HyperbolicSecant");
 		DistributionTools.DistSawtoothLeft=Language.trAll("Distribution.SawtoothLeft");
 		DistributionTools.DistSawtoothRight=Language.trAll("Distribution.SawtoothRight");
+		DistributionTools.DistLevy=Language.trAll("Distribution.Levy");
+		DistributionTools.DistHyperGeom=Language.trAll("Distribution.HyperGeom");
+		DistributionTools.DistBinomial=Language.trAll("Distribution.Binomial");
+		DistributionTools.DistPoisson=Language.trAll("Distribution.Poisson");
+		DistributionTools.DistNegativeBinomial=Language.trAll("Distribution.NegativeBinomial");
+		DistributionTools.DistZeta=Language.trAll("Distribution.Zeta");
 		DistributionTools.DistUnknown=Language.tr("Distribution.Unknown");
 		DistributionTools.DistDataPoint=Language.tr("Distribution.DataPoint");
 		DistributionTools.DistDataPoints=Language.tr("Distribution.DataPoints");
 		DistributionTools.DistRange=Language.tr("Distribution.Range");
 		DistributionTools.DistLocation=Language.tr("Distribution.Location");
 		DistributionTools.DistScale=Language.tr("Distribution.Scale");
+		DistributionTools.DistMostLikely=Language.tr("Distribution.MostLikely");
 		DistributionTools.DistDegreesOfFreedom=Language.tr("Distribution.DegreesOfFreedom");
 		DistributionTools.DistMean=Language.tr("Distribution.Mean");
 		DistributionTools.DistStdDev=Language.tr("Distribution.StdDev");
@@ -214,6 +221,10 @@ public class LanguageStaticLoader {
 		JDistributionEditorPanel.DistDegreesOfFreedomDenominator=Language.tr("Distribution.DegreesOfFreedom.Denominator");
 		JDistributionEditorPanel.ChangeValueDown=Language.tr("JDistributionEditor.ValueDown");
 		JDistributionEditorPanel.ChangeValueUp=Language.tr("JDistributionEditor.ValueUp");
+		JDistributionEditorPanel.DistMostLikely=Language.tr("Distribution.MostLikely");
+		JDistributionEditorPanel.SetupListTitle=Language.tr("Distribution.SetupList.Title");
+		JDistributionEditorPanel.SetupListInfo=Language.tr("Distribution.SetupList.Info");
+		JDistributionEditorPanel.SetupListDivier=Language.tr("Distribution.SetupList.Divider");
 
 		/* JDataDistributionEditPanel */
 		JDataDistributionEditPanel.ButtonCopy=Language.tr("Dialog.Button.Copy");
@@ -337,6 +348,12 @@ public class LanguageStaticLoader {
 		StatisticsBasePanel.writeErrorInfo=Language.tr("Statistic.WriteError.Info");
 		StatisticsBasePanel.treeCopyParameter=Language.tr("Statistic.Tree.Parameter");
 		StatisticsBasePanel.treeCopyParameterHint=Language.tr("Statistic.Tree.Parameter.Hint");
+		StatisticsBasePanel.treeBookmarkSetOn=Language.tr("Statistic.Tree.Parameter.BookmarkOn");
+		StatisticsBasePanel.treeBookmarkSetOnHint=Language.tr("Statistic.Tree.Parameter.BookmarkOn.Hint");
+		StatisticsBasePanel.treeBookmarkSetOff=Language.tr("Statistic.Tree.Parameter.BookmarkOff");
+		StatisticsBasePanel.treeBookmarkSetOffHint=Language.tr("Statistic.Tree.Parameter.BookmarkOff.Hint");
+		StatisticsBasePanel.treeBookmarkJump=Language.tr("Statistic.Tree.Parameter.BookmarkJump");
+		StatisticsBasePanel.treeBookmarkJumpHint=Language.tr("Statistic.Tree.Parameter.BookmarkJump.Hint");
 		StatisticsBasePanel.viewersInformation=Language.tr("Statistic.Viewer.Information");
 		StatisticsBasePanel.viewersNoHTMLApplicationInfo=Language.tr("Statistic.Viewer.NoHTMLApplication.Info");
 		StatisticsBasePanel.viewersNoHTMLApplicationTitle=Language.tr("Statistic.Viewer.NoHTMLApplication.Title");

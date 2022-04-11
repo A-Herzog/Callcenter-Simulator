@@ -143,6 +143,11 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 
 		getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_DOWN_MASK,true),"CopyViewer");
 		getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_INSERT,InputEvent.CTRL_DOWN_MASK,true),"CopyViewer");
+		final KeyStroke keyCtrlB=KeyStroke.getKeyStroke(KeyEvent.VK_B,InputEvent.CTRL_DOWN_MASK);
+		final KeyStroke keyCtrlShiftB=KeyStroke.getKeyStroke(KeyEvent.VK_B,InputEvent.CTRL_DOWN_MASK+InputEvent.SHIFT_DOWN_MASK);
+		getInputMap(WHEN_IN_FOCUSED_WINDOW).put(keyCtrlB,"NextBookmark");
+		getInputMap(WHEN_IN_FOCUSED_WINDOW).put(keyCtrlShiftB,"ToggleBookmark");
+
 		getActionMap().put("CopyViewer",new AbstractAction() {
 			private static final long serialVersionUID = 6834309003536671412L;
 			@Override
@@ -151,6 +156,22 @@ public class StatisticBasePanel extends JPanel implements AbstractReportCommandC
 				if (!(data[0] instanceof StatisticDataPanel)) return;
 				final StatisticDataPanel viewer=data[0];
 				viewer.copyData();
+			}
+		});
+
+		getActionMap().put("NextBookmark",new AbstractAction() {
+			private static final long serialVersionUID=-6623702284938573232L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tree.jumpToNextBookmark();
+			}
+		});
+
+		getActionMap().put("ToggleBookmark",new AbstractAction() {
+			private static final long serialVersionUID=557799398052374471L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tree.toggleBookmark();
 			}
 		});
 	}

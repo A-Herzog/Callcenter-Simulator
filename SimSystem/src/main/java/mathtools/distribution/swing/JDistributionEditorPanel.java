@@ -16,12 +16,12 @@
 package mathtools.distribution.swing;
 
 import java.awt.AWTEvent;
-import java.awt.AWTPermission;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.datatransfer.DataFlavor;
@@ -34,7 +34,10 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -46,6 +49,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
+import javax.swing.SwingUtilities;
 
 import org.apache.commons.math3.distribution.AbstractRealDistribution;
 
@@ -133,6 +137,15 @@ public class JDistributionEditorPanel extends JPanel {
 	/** Bezeichner "Am wahrscheinlichsten" (für Dreiecksverteilung) */
 	public static String DistMostLikely="Am wahrscheinlichsten";
 
+	/** Dialogtitel "Liste der hervorgehobene Verteilungen bearbeiten" */
+	public static String SetupListTitle="Liste der hervorgehobene Verteilungen bearbeiten";
+
+	/** Infozeile oben im Dialog zum Bearbeiten der hervorgehobenen Verteilungen */
+	public static String SetupListInfo="<html><body>Die jeweils ausgewählte Verteilung kann per Strg+Hoch<br>und Strg+Runter verschoben werden.</body></html>";
+
+	/** Trenner zwischen den hervorgehobenen und den normalen Verteilungen */
+	public static String SetupListDivier="<html><body>Oben: hervorgehobene Verteilungen (angegebene Reihenfolge)<br>Unten: Normale Verteilungen (werden alphabetisch sortiert)</body></html>";
+
 	/**
 	 * Aktuelle Verteilung
 	 */
@@ -154,7 +167,7 @@ public class JDistributionEditorPanel extends JPanel {
 	private final JTextField[][] distributionFields;
 
 	/** Auswahl des Verteilungstyp */
-	private JComboBox<String> distributionType;
+	private JComboBox<JDistributionEditorPanelRecord> distributionType;
 
 	/** Panel zum Bearbeiten der jeweiligenVerteilungsparameter */
 	private JPanel editPanel;
@@ -185,7 +198,7 @@ public class JDistributionEditorPanel extends JPanel {
 	 * @see #editPanel
 	 * @see #distributionType
 	 */
-	private final List<JDistributionEditorPanelRecord> records=JDistributionEditorPanelRecord.getList();
+	private List<JDistributionEditorPanelRecord> records;
 
 	/**
 	 * Konstruktor der Klasse <code>DistributionEditorPanel</code>
@@ -194,56 +207,63 @@ public class JDistributionEditorPanel extends JPanel {
 	 * @param dataChangedNotify	Optionaler {@link ActionListener}, der ausgelöst werden soll, wenn der Benutzer die Verteilung ändert.
 	 * @param allowDistributionTypeChange	Gibt an, ob der Typ der Verteilung geändert werden darf.
 	 */
-	public JDistributionEditorPanel(AbstractRealDistribution distribution, double maxXValue, ActionListener dataChangedNotify, boolean allowDistributionTypeChange) {
+	public JDistributionEditorPanel(final AbstractRealDistribution distribution, final double maxXValue, final ActionListener dataChangedNotify, final boolean allowDistributionTypeChange) {
 		this.distribution=distribution;
 		this.maxXValue=maxXValue;
 		this.dataChangedNotify=dataChangedNotify;
 
+		if (filterGetter==null || filterGetter.get()==null) {
+			records=JDistributionEditorPanelRecord.getList(null,false,false);
+		} else {
+			records=JDistributionEditorPanelRecord.getList(Arrays.asList(filterGetter.get().trim().split("\\n")),true,false);
+		}
+
 		setLayout(new BorderLayout());
 		setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
-		add(distributionType=new JComboBox<>(),BorderLayout.NORTH);
-		for (JDistributionEditorPanelRecord record: records) distributionType.addItem(record.getName());
+		final JPanel line=new JPanel(new BorderLayout());
+		add(line,BorderLayout.NORTH);
+		line.add(distributionType=new JComboBox<>(),BorderLayout.CENTER);
+		for (JDistributionEditorPanelRecord record: records) distributionType.addItem(record);
 		distributionType.addItemListener(e->itemStateChanged());
-		DistributionComboBoxRenderer renderer=new DistributionComboBoxRenderer();
+		final DistributionComboBoxRenderer renderer=new DistributionComboBoxRenderer();
 		renderer.setPreferredSize(new Dimension(50,27));
 		distributionType.setRenderer(renderer);
+		if (filterGetter!=null && filterSetter!=null && allowDistributionTypeChange) {
+			final JButton editFilterButton=new JButton(SimSystemsSwingImages.SETUP.getIcon());
+			editFilterButton.setToolTipText(SetupListTitle);
+			editFilterButton.addActionListener(e->editFilterList());
+			final Dimension size=editFilterButton.getPreferredSize();
+			editFilterButton.setPreferredSize(new Dimension(size.height,size.height));
+			line.add(editFilterButton,BorderLayout.EAST);
+		}
 
 		add(editPanel=new JPanel(new CardLayout()));
 
 		JButton[] buttons;
 
-		if (isFullAccess()) {
-			buttonValueCopy=new JButton(ButtonCopyData);
-			buttonValueCopy.addActionListener(new ButtonListener());
-			buttonValueCopy.setIcon(SimSystemsSwingImages.COPY.getIcon());
+		buttonValueCopy=new JButton(ButtonCopyData);
+		buttonValueCopy.addActionListener(new ButtonListener());
+		buttonValueCopy.setIcon(SimSystemsSwingImages.COPY.getIcon());
 
-			buttonValuePaste=new JButton(ButtonPasteData);
-			buttonValuePaste.addActionListener(new ButtonListener());
-			buttonValuePaste.setIcon(SimSystemsSwingImages.PASTE.getIcon());
+		buttonValuePaste=new JButton(ButtonPasteData);
+		buttonValuePaste.addActionListener(new ButtonListener());
+		buttonValuePaste.setIcon(SimSystemsSwingImages.PASTE.getIcon());
 
-			buttonValuePasteNoScale=new JButton(ButtonPasteAndFillData);
-			buttonValuePasteNoScale.setToolTipText(ButtonPasteAndFillDataTooltip);
-			buttonValuePasteNoScale.addActionListener(new ButtonListener());
-			buttonValuePasteNoScale.setIcon(SimSystemsSwingImages.PASTE.getIcon());
+		buttonValuePasteNoScale=new JButton(ButtonPasteAndFillData);
+		buttonValuePasteNoScale.setToolTipText(ButtonPasteAndFillDataTooltip);
+		buttonValuePasteNoScale.addActionListener(new ButtonListener());
+		buttonValuePasteNoScale.setIcon(SimSystemsSwingImages.PASTE.getIcon());
 
-			buttonValueLoad=new JButton(ButtonLoadData);
-			buttonValueLoad.addActionListener(new ButtonListener());
-			buttonValueLoad.setIcon(SimSystemsSwingImages.LOAD.getIcon());
+		buttonValueLoad=new JButton(ButtonLoadData);
+		buttonValueLoad.addActionListener(new ButtonListener());
+		buttonValueLoad.setIcon(SimSystemsSwingImages.LOAD.getIcon());
 
-			buttonValueSave=new JButton(ButtonSaveData);
-			buttonValueSave.addActionListener(new ButtonListener());
-			buttonValueSave.setIcon(SimSystemsSwingImages.SAVE.getIcon());
+		buttonValueSave=new JButton(ButtonSaveData);
+		buttonValueSave.addActionListener(new ButtonListener());
+		buttonValueSave.setIcon(SimSystemsSwingImages.SAVE.getIcon());
 
-			buttons=new JButton[]{buttonValueCopy,buttonValuePaste,buttonValuePasteNoScale,buttonValueLoad,buttonValueSave};
-		} else {
-			buttonValueCopy=null;
-			buttonValuePaste=null;
-			buttonValuePasteNoScale=null;
-			buttonValueLoad=null;
-			buttonValueSave=null;
-			buttons=null;
-		}
+		buttons=new JButton[]{buttonValueCopy,buttonValuePaste,buttonValuePasteNoScale,buttonValueLoad,buttonValueSave};
 
 		distributionFields=new JTextField[records.size()][];
 
@@ -269,16 +289,35 @@ public class JDistributionEditorPanel extends JPanel {
 	}
 
 	/**
-	 * Ist ein Zugriff auf die Zwischenablage möglich?
-	 * @return	Zwischenablage verfügbar?
+	 * Callback zum Abruf der Liste der hervorzuheben darzustellenden Verteilungen<br>
+	 * (Ist das Callback <code>null</code>, so erfolgt keine Hervorhebung.)
+	 * @see #registerFilterGetter(Supplier)
 	 */
-	private boolean isFullAccess() {
-		SecurityManager security=System.getSecurityManager();
-		if (security!=null) try {
-			security.checkPermission(new AWTPermission("accessClipboard"));	/* ist gleichwertig zu "SecurityConstants.AWT.ACCESS_CLIPBOARD_PERMISSION", das aber aus dem privaten Paket sun.* ist */
-			security.checkPropertiesAccess();
-		} catch (SecurityException e) {return false;}
-		return true;
+	private static Supplier<String> filterGetter=null;
+
+	/**
+	 * Callback zum Speichern der Liste der hervorzuheben darzustellenden Verteilungen<br>
+	 * (Ist das Callback <code>null</code>, so wird der Editor nicht angeboten.)
+	 * @see #registerFilterSetter(Consumer)
+	 */
+	private static Consumer<String> filterSetter=null;
+
+	/**
+	 * Stellt das Callback zum Abruf der Liste der hervorzuheben darzustellenden Verteilungen ein.
+	 * @param filterGetter	Callback zum Abruf der Liste der hervorzuheben darzustellenden Verteilungen
+	 * @see #filterGetter
+	 */
+	public static void registerFilterGetter(final Supplier<String> filterGetter) {
+		JDistributionEditorPanel.filterGetter=filterGetter;
+	}
+
+	/**
+	 * Stellt das Callback zum Speichern der Liste der hervorzuheben darzustellenden Verteilungen ein.
+	 * @param filterSetter	Callback zum Speichern der Liste der hervorzuheben darzustellenden Verteilungen
+	 * @see #filterSetter
+	 */
+	public static void registerFilterSetter(final Consumer<String> filterSetter) {
+		JDistributionEditorPanel.filterSetter=filterSetter;
 	}
 
 	/**
@@ -468,16 +507,26 @@ public class JDistributionEditorPanel extends JPanel {
 	}
 
 	/**
+	 * Wird die Liste gerade extern aktualisiert?
+	 * (Dann soll {@link #itemStateChanged()} nicht ausgeführt werden.)
+	 * @see #itemStateChanged()
+	 */
+	private boolean listUpdating=false;
+
+	/**
 	 * Listener der aktiviert wird, wenn in {@link #distributionType} ein
 	 * neuer Verteilungstyp ausgewählt wird.
+	 * @see #listUpdating
+	 * @see #editFilterList()
 	 */
 	private void itemStateChanged() {
+		if (listUpdating) return;
 		if (distributionType.getSelectedIndex()==lastIndex) return;
 		lastIndex=distributionType.getSelectedIndex();
 		final double mean=NumberTools.reduceDigits(DistributionTools.getMean(distribution),10);
 		final double sd=NumberTools.reduceDigits(DistributionTools.getStandardDeviation(distribution),10);
 
-		((CardLayout)editPanel.getLayout()).show(editPanel,(String)distributionType.getSelectedItem());
+		((CardLayout)editPanel.getLayout()).show(editPanel,((JDistributionEditorPanelRecord)distributionType.getSelectedItem()).getName());
 
 		records.get(lastIndex).setValues(distributionFields[lastIndex],mean,sd);
 
@@ -510,6 +559,30 @@ public class JDistributionEditorPanel extends JPanel {
 		try {s=(String)cont.getTransferData(DataFlavor.stringFlavor);} catch (Exception ex) {return null;}
 		if (s==null) return null;
 		return JDataLoader.loadNumbersFromString(JDistributionEditorPanel.this,s,1,Integer.MAX_VALUE);
+	}
+
+	/**
+	 * Ruft den Dialog zum Bearbeiten der Liste der hervorzuhebenden Verteilungen auf.
+	 */
+	private void editFilterList() {
+		final JDistributionEditorPanelRecordDialog dialog=new JDistributionEditorPanelRecordDialog(SwingUtilities.getWindowAncestor(this),filterGetter.get());
+		dialog.setVisible(true);
+		final String filter=dialog.getFilter();
+		if (filter!=null) {
+			filterSetter.accept(filter);
+			final String selectedRecordName=((JDistributionEditorPanelRecord)distributionType.getSelectedItem()).getName();
+			listUpdating=true;
+			try {
+				distributionType.removeAllItems();
+				records=JDistributionEditorPanelRecord.getList(Arrays.asList(filterGetter.get().trim().split("\\n")),true,false);
+				for (JDistributionEditorPanelRecord record: records) distributionType.addItem(record);
+				lastIndex=0;
+				for (int i=0;i<records.size();i++) if (records.get(i).getName().equals(selectedRecordName)) {lastIndex=i; break;}
+				distributionType.setSelectedIndex(lastIndex);
+			} finally {
+				listUpdating=false;
+			}
+		}
 	}
 
 	/**
@@ -562,7 +635,6 @@ public class JDistributionEditorPanel extends JPanel {
 	/**
 	 * Listener für die Schaltflächen zum Verändern der Werte
 	 * in einem Zahleneingabefeld nach oben oder unten
-
 	 */
 	private final class ShiftButtonListener implements ActionListener {
 		/** Art des Buttons (0..3) */
@@ -601,7 +673,7 @@ public class JDistributionEditorPanel extends JPanel {
 	 * ComboBox-Renderer zur Anzeige von Verteilungs-Symbolen in der Liste
 	 * @see JDistributionEditorPanel#distributionType
 	 */
-	private final class DistributionComboBoxRenderer extends JLabel implements ListCellRenderer<String> {
+	public static final class DistributionComboBoxRenderer extends JLabel implements ListCellRenderer<JDistributionEditorPanelRecord> {
 		/**
 		 * Serialisierungs-ID der Klasse
 		 * @see Serializable
@@ -617,7 +689,7 @@ public class JDistributionEditorPanel extends JPanel {
 		}
 
 		@Override
-		public Component getListCellRendererComponent(JList<? extends String> list, String value, int index, boolean isSelected, boolean cellHasFocus) {
+		public Component getListCellRendererComponent(JList<? extends JDistributionEditorPanelRecord> list, JDistributionEditorPanelRecord value, int index, boolean isSelected, boolean cellHasFocus) {
 			if (isSelected && index>=0) {
 				setBackground(list.getSelectionBackground());
 				setForeground(list.getSelectionForeground());
@@ -628,10 +700,16 @@ public class JDistributionEditorPanel extends JPanel {
 				setOpaque(false);
 			}
 
-			ImageIcon image=DistributionTools.getThumbnailImageForDistributionName(value);
-			setIcon(image);
-			setText(((image==null)?" ":"")+value);
-
+			if (value.isSeparator()) {
+				setIcon(SimSystemsSwingImages.LIST_DIVIDER.getIcon());
+				setText(value.getName());
+				setFont(getFont().deriveFont(Font.ITALIC+Font.BOLD));
+			} else {
+				final ImageIcon image=DistributionTools.getThumbnailImageForDistributionName(value.getName());
+				setIcon(image);
+				setText(((image==null)?" ":"")+value.getName());
+				setFont(getFont().deriveFont(value.highlight?Font.BOLD:Font.PLAIN));
+			}
 			return this;
 		}
 	}

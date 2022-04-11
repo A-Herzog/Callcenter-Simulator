@@ -88,8 +88,10 @@ import parser.symbols.CalcSymbolPreOperatorTanh;
 import parser.symbols.CalcSymbolPreOperatorVariance;
 import parser.symbols.CalcSymbolPreOperatorZeta;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionBinomial;
+import parser.symbols.distributions.CalcSymbolDiscreteDistributionBinomialDirect;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionHyperGeom;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionNegativeBinomial;
+import parser.symbols.distributions.CalcSymbolDiscreteDistributionNegativeBinomialDirect;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionPoisson;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionZeta;
 import parser.symbols.distributions.CalcSymbolDistributionBeta;
@@ -108,6 +110,7 @@ import parser.symbols.distributions.CalcSymbolDistributionHyperbolicSecant;
 import parser.symbols.distributions.CalcSymbolDistributionInverseGaussian;
 import parser.symbols.distributions.CalcSymbolDistributionJohnsonSU;
 import parser.symbols.distributions.CalcSymbolDistributionLaplace;
+import parser.symbols.distributions.CalcSymbolDistributionLevy;
 import parser.symbols.distributions.CalcSymbolDistributionLogLogistic;
 import parser.symbols.distributions.CalcSymbolDistributionLogNormal;
 import parser.symbols.distributions.CalcSymbolDistributionLogistic;
@@ -241,9 +244,11 @@ public class CalcSymbolList {
 
 			addSymbol(new CalcSymbolDiscreteDistributionHyperGeom());
 			addSymbol(new CalcSymbolDiscreteDistributionBinomial());
+			addSymbol(new CalcSymbolDiscreteDistributionBinomialDirect());
 			addSymbol(new CalcSymbolDiscreteDistributionPoisson());
 			addSymbol(new CalcSymbolDiscreteDistributionZeta());
 			addSymbol(new CalcSymbolDiscreteDistributionNegativeBinomial());
+			addSymbol(new CalcSymbolDiscreteDistributionNegativeBinomialDirect());
 
 			addSymbol(new CalcSymbolDistributionExp());
 			addSymbol(new CalcSymbolDistributionUniform());
@@ -276,6 +281,7 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolDistributionSawtoothLeftDirect());
 			addSymbol(new CalcSymbolDistributionSawtoothRight());
 			addSymbol(new CalcSymbolDistributionSawtoothRightDirect());
+			addSymbol(new CalcSymbolDistributionLevy());
 
 			addSymbol(new CalcSymbolEmpiricalDistributionPDF());
 			addSymbol(new CalcSymbolEmpiricalDistributionCDF());

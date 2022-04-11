@@ -128,6 +128,24 @@ public final class DistributionTools {
 	/** Sägezahnverteilung (rechts) */
 	public static String[] DistSawtoothRight=new String[]{"Rechte Sägezahn-Verteilung"};
 
+	/** Levy-Verteilung */
+	public static String[] DistLevy=new String[]{"Levy-Verteilung"};
+
+	/** Hypergeometrische Verteilung */
+	public static String[] DistHyperGeom=new String[]{"Hypergeometrische Verteilung"};
+
+	/** Binomialverteilung */
+	public static String[] DistBinomial=new String[]{"Binomialverteilung"};
+
+	/** Poisson-Verteilung */
+	public static String[] DistPoisson=new String[]{"Poisson-Verteilung"};
+
+	/** Negative Binomialverteilung */
+	public static String[] DistNegativeBinomial=new String[]{"Negative Binomialverteilung"};
+
+	/** Zeta-Verteilung */
+	public static String[] DistZeta=new String[]{"Zeta-Verteilung"};
+
 	/** Warnung "unbekannte Verteilung" */
 	public static String DistUnknown="unbekannte Verteilung";
 
@@ -208,7 +226,13 @@ public final class DistributionTools {
 				new WrapperFrechetDistribution(),
 				new WrapperHyperbolicSecantDistribution(),
 				new WrapperSawtoothLeftDistribution(),
-				new WrapperSawtoothRightDistribution()
+				new WrapperSawtoothRightDistribution(),
+				new WrapperLevyDistribution(),
+				new WrapperHyperGeomDistribution(),
+				new WrapperBinomialDistribution(),
+				new WrapperPoissonDistribution(),
+				new WrapperNegativeBinomialDistribution(),
+				new WrapperZetaDistribution()
 		};
 	}
 

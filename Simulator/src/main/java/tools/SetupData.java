@@ -324,6 +324,15 @@ public class SetupData extends SetupBase {
 	 */
 	public String proxyPassword;
 
+	/**
+	 * Liste und Reihenfolge der in der Verteilungsliste hervorgehoben darzustellenden Verteilungen
+	 */
+	public String distributionListFilter;
+
+	/**
+	 * Bookmarks im Statistikbaum
+	 */
+	public List<String> statisticTreeBookmarks;
 
 	/* ----- ----- ----- ----- ----- */
 
@@ -448,6 +457,10 @@ public class SetupData extends SetupBase {
 		proxyPort=8080;
 		proxyUser="";
 		proxyPassword="";
+
+		distributionListFilter="";
+		if (statisticTreeBookmarks==null) statisticTreeBookmarks=new ArrayList<>();
+		statisticTreeBookmarks.clear();
 	}
 
 	/**
@@ -909,6 +922,16 @@ public class SetupData extends SetupBase {
 				openPDF=loadBoolean(e.getAttribute("pdf"),false);
 				continue;
 			}
+
+			if (s.equalsIgnoreCase("DistributionListFilter")) {
+				distributionListFilter=e.getTextContent();
+				continue;
+			}
+
+			if (s.equalsIgnoreCase("StatisticTreeBookmarks")) {
+				statisticTreeBookmarks.add(e.getTextContent());
+				continue;
+			}
 		}
 
 		lastFiles=addToArray(lastFiles,files);
@@ -1169,6 +1192,16 @@ public class SetupData extends SetupBase {
 			node.setAttribute("xlsx",openExcel?"1":"0");
 			node.setAttribute("ods",openODS?"1":"0");
 			node.setAttribute("pdf",openPDF?"1":"0");
+		}
+
+		if (distributionListFilter!=null && !distributionListFilter.trim().isEmpty()) {
+			root.appendChild(node=doc.createElement("DistributionListFilter"));
+			node.setTextContent(distributionListFilter.trim());
+		}
+
+		if (statisticTreeBookmarks.size()>0) for (String bookmark: statisticTreeBookmarks) {
+			root.appendChild(node=doc.createElement("StatisticTreeBookmarks"));
+			node.setTextContent(bookmark);
 		}
 	}
 

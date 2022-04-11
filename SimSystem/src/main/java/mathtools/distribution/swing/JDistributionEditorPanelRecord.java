@@ -16,6 +16,8 @@
 package mathtools.distribution.swing;
 
 import java.awt.Color;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,11 @@ import org.apache.commons.math3.distribution.UniformRealDistribution;
 import mathtools.NumberTools;
 import mathtools.distribution.ChiDistributionImpl;
 import mathtools.distribution.DataDistributionImpl;
+import mathtools.distribution.DiscreteBinomialDistributionImpl;
+import mathtools.distribution.DiscreteHyperGeomDistributionImpl;
+import mathtools.distribution.DiscreteNegativeBinomialDistributionImpl;
+import mathtools.distribution.DiscretePoissonDistributionImpl;
+import mathtools.distribution.DiscreteZetaDistributionImpl;
 import mathtools.distribution.ErlangDistributionImpl;
 import mathtools.distribution.ExtBetaDistributionImpl;
 import mathtools.distribution.FatigueLifeDistributionImpl;
@@ -36,6 +43,7 @@ import mathtools.distribution.HyperbolicSecantDistributionImpl;
 import mathtools.distribution.InverseGaussianDistributionImpl;
 import mathtools.distribution.JohnsonDistributionImpl;
 import mathtools.distribution.LaplaceDistributionImpl;
+import mathtools.distribution.LevyDistribution;
 import mathtools.distribution.LogLogisticDistributionImpl;
 import mathtools.distribution.LogNormalDistributionImpl;
 import mathtools.distribution.LogisticDistributionImpl;
@@ -50,6 +58,7 @@ import mathtools.distribution.TriangularDistributionImpl;
 import mathtools.distribution.tools.AbstractDistributionWrapper;
 import mathtools.distribution.tools.DistributionTools;
 import mathtools.distribution.tools.WrapperBetaDistribution;
+import mathtools.distribution.tools.WrapperBinomialDistribution;
 import mathtools.distribution.tools.WrapperCauchyDistribution;
 import mathtools.distribution.tools.WrapperChiDistribution;
 import mathtools.distribution.tools.WrapperChiSquaredDistribution;
@@ -61,17 +70,21 @@ import mathtools.distribution.tools.WrapperFatigueLifeDistribution;
 import mathtools.distribution.tools.WrapperFrechetDistribution;
 import mathtools.distribution.tools.WrapperGammaDistribution;
 import mathtools.distribution.tools.WrapperGumbelDistribution;
+import mathtools.distribution.tools.WrapperHyperGeomDistribution;
 import mathtools.distribution.tools.WrapperHyperbolicSecantDistribution;
 import mathtools.distribution.tools.WrapperInverseGaussianDistribution;
 import mathtools.distribution.tools.WrapperJohnsonDistribution;
 import mathtools.distribution.tools.WrapperLaplaceDistribution;
+import mathtools.distribution.tools.WrapperLevyDistribution;
 import mathtools.distribution.tools.WrapperLogLogisticDistribution;
 import mathtools.distribution.tools.WrapperLogNormalDistribution;
 import mathtools.distribution.tools.WrapperLogisticDistribution;
+import mathtools.distribution.tools.WrapperNegativeBinomialDistribution;
 import mathtools.distribution.tools.WrapperNormalDistribution;
 import mathtools.distribution.tools.WrapperOnePointDistribution;
 import mathtools.distribution.tools.WrapperParetoDistribution;
 import mathtools.distribution.tools.WrapperPertDistribution;
+import mathtools.distribution.tools.WrapperPoissonDistribution;
 import mathtools.distribution.tools.WrapperPowerDistribution;
 import mathtools.distribution.tools.WrapperRayleighDistribution;
 import mathtools.distribution.tools.WrapperSawtoothLeftDistribution;
@@ -79,22 +92,30 @@ import mathtools.distribution.tools.WrapperSawtoothRightDistribution;
 import mathtools.distribution.tools.WrapperTriangularDistribution;
 import mathtools.distribution.tools.WrapperUniformRealDistribution;
 import mathtools.distribution.tools.WrapperWeibullDistribution;
+import mathtools.distribution.tools.WrapperZetaDistribution;
 
 /**
  * Diese Klasse hält Datensätze für die Anzeige von Bearbeitung von
  * Verteilungen in einem {@link JDistributionEditorPanel} vor.
  * @author Alexander Herzog
- * @see JDistributionEditorPanelRecord#getList()
+ * @see #getList(List, boolean, boolean)
  */
 public abstract class JDistributionEditorPanelRecord {
 	/**
 	 * Wrapper-Klasse der Verteilung auf die sich dieser Datensatz beziehen soll
 	 */
 	private final AbstractDistributionWrapper wrapper;
+
 	/**
 	 * Namen der Eingabefelder
 	 */
 	private final String[] editLabels;
+
+	/**
+	 * Soll der Datensatz hervorgehoben dargestellt werden?
+	 * @see #copy(boolean)
+	 */
+	public boolean highlight;
 
 	/**
 	 * Konstruktor eines Datensatzes
@@ -104,6 +125,31 @@ public abstract class JDistributionEditorPanelRecord {
 	private JDistributionEditorPanelRecord(final AbstractDistributionWrapper wrapper, final String[] editLabels) {
 		this.wrapper=wrapper;
 		this.editLabels=editLabels;
+	}
+
+	/**
+	 * Handelt es sich bei dem Eintrag um einen Trenner?
+	 * @return	Trenner (=keine Verteilung; <code>true</code>) oder normaler Verteilungseintrag (<code>false</code>)
+	 */
+	public boolean isSeparator() {
+		return wrapper==null;
+	}
+
+	/**
+	 * Erstellt eine Kopie des Datensatzes.
+	 * @param highlight	Soll der Datensatz hervorgehoben dargestellt werden?
+	 * @return	Kopie des Datensatzes
+	 */
+	public JDistributionEditorPanelRecord copy(final boolean highlight) {
+		try {
+			@SuppressWarnings("unchecked")
+			final Constructor<JDistributionEditorPanelRecord> constructor=(Constructor<JDistributionEditorPanelRecord>)getClass().getConstructor();
+			final JDistributionEditorPanelRecord instance=constructor.newInstance();
+			instance.highlight=highlight;
+			return instance;
+		} catch (NoSuchMethodException|SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			return null;
+		}
 	}
 
 	/**
@@ -121,7 +167,17 @@ public abstract class JDistributionEditorPanelRecord {
 	 * @return	Name der Verteilung
 	 */
 	public String getName() {
+		if (wrapper==null) return JDistributionEditorPanel.SetupListDivier;
 		return wrapper.getName();
+	}
+
+	/**
+	 * Prüft ob dieser Datensatz für Verteilung des angegebenen Namens zuständig ist
+	 * @param name	Name der Verteilung bei der die Zuständigkeit geprüft werden soll
+	 * @return	Gibt <code>true</code> zurück, wenn dieser Datensatz sich für zuständig erachtet.
+	 */
+	public boolean isForDistribution(final String name) {
+		return wrapper.isForDistribution(name);
 	}
 
 	/**
@@ -175,42 +231,112 @@ public abstract class JDistributionEditorPanelRecord {
 	public abstract AbstractRealDistribution getDistribution(final JTextField[] fields, final double maxXValue);
 
 	/**
-	 * Liefert eine Liste aller Verteilungsdatensätze
+	 * Vergleicht zwei Datensätze in Bezug auf ihre Namen
+	 * @param record1	Datensatz 1 für Namensvergleich
+	 * @param record2	Datensatz 2 für Namensvergleich
+	 * @return	Entspricht dem String-Vergleich-Rückgabewert, wenn die Namen direkt verglichen würden
+	 */
+	public static int compare(final JDistributionEditorPanelRecord record1, final JDistributionEditorPanelRecord record2) {
+		return record1.getName().compareTo(record2.getName());
+	}
+
+	/**
+	 * Statische Liste mit allen Verteilungsdatensätzen
+	 * @see #getList(List, boolean, boolean)
+	 */
+	private static final List<JDistributionEditorPanelRecord> allRecords;
+
+	static {
+		allRecords=new ArrayList<>();
+		allRecords.add(new DataDistribution());
+		allRecords.add(new OnePointDistribution());
+		allRecords.add(new UniformDistribution());
+		allRecords.add(new ExpDistribution());
+		allRecords.add(new NormalDistribution());
+		allRecords.add(new LogNormalDistribution());
+		allRecords.add(new ErlangDistribution());
+		allRecords.add(new GammaDistribution());
+		allRecords.add(new BetaDistribution());
+		allRecords.add(new CauchyDistribution());
+		allRecords.add(new WeibullDistribution());
+		allRecords.add(new ChiSquaredDistribution());
+		allRecords.add(new ChiDistribution());
+		allRecords.add(new FDistribution());
+		allRecords.add(new JohnsonDistribution());
+		allRecords.add(new TriangularDistribution());
+		allRecords.add(new PertDistribution());
+		allRecords.add(new LaplaceDistribution());
+		allRecords.add(new ParetoDistribution());
+		allRecords.add(new LogisticDistribution());
+		allRecords.add(new InverseGaussianDistribution());
+		allRecords.add(new RayleighDistribution());
+		allRecords.add(new LogLogisticDistribution());
+		allRecords.add(new PowerDistribution());
+		allRecords.add(new GumbelDistribution());
+		allRecords.add(new FatigueLifeDistribution());
+		allRecords.add(new FrechetDistribution());
+		allRecords.add(new HyperbolicSecantDistribution());
+		allRecords.add(new SawtoothLeftDistributionPanel());
+		allRecords.add(new SawtoothRightDistributionPanel());
+		allRecords.add(new LevyDistributionPanel());
+		allRecords.add(new HyperGeomDistributionPanel());
+		allRecords.add(new BinomialDistributionPanel());
+		allRecords.add(new PoissonDistributionPanel());
+		allRecords.add(new NegativeBinomialDistributionPanel());
+		allRecords.add(new ZetaDistributionPanel());
+	}
+
+	/**
+	 * Liefert eine Liste aller Verteilungsdatensätze.
+	 * @param highlight Namen und Reihenfolge der hervorgehoben darzustellenden Verteilungen (darf <code>null</code> oder leer sein)
+	 * @param sortNonHighlightDistributions	Sollen die nicht hervorgehobenen Verteilungen alphabetisch sortiert dargestellt werden?
+	 * @param addSeparator	Soll ein Trenner (für den Editor) zwischen den hervorgehobenen und den normalen Einträgen angezeigt werden?
 	 * @return	Liste aller Verteilungsdatensätze
 	 */
-	public static List<JDistributionEditorPanelRecord> getList() {
-		final List<JDistributionEditorPanelRecord> list=new ArrayList<>();
-		list.add(new DataDistribution());
-		list.add(new OnePointDistribution());
-		list.add(new UniformDistribution());
-		list.add(new ExpDistribution());
-		list.add(new NormalDistribution());
-		list.add(new LogNormalDistribution());
-		list.add(new ErlangDistribution());
-		list.add(new GammaDistribution());
-		list.add(new BetaDistribution());
-		list.add(new CauchyDistribution());
-		list.add(new WeibullDistribution());
-		list.add(new ChiSquaredDistribution());
-		list.add(new ChiDistribution());
-		list.add(new FDistribution());
-		list.add(new JohnsonDistribution());
-		list.add(new TriangularDistribution());
-		list.add(new PertDistribution());
-		list.add(new LaplaceDistribution());
-		list.add(new ParetoDistribution());
-		list.add(new LogisticDistribution());
-		list.add(new InverseGaussianDistribution());
-		list.add(new RayleighDistribution());
-		list.add(new LogLogisticDistribution());
-		list.add(new PowerDistribution());
-		list.add(new GumbelDistribution());
-		list.add(new FatigueLifeDistribution());
-		list.add(new FrechetDistribution());
-		list.add(new HyperbolicSecantDistribution());
-		list.add(new SawtoothLeftDistributionPanel());
-		list.add(new SawtoothRightDistributionPanel());
-		return list;
+	public static List<JDistributionEditorPanelRecord> getList(final List<String> highlight, final boolean sortNonHighlightDistributions, final boolean addSeparator) {
+		final List<JDistributionEditorPanelRecord> workList=new ArrayList<>();
+		final List<JDistributionEditorPanelRecord> resultList=new ArrayList<>();
+
+		workList.addAll(allRecords);
+
+		/* Hervorzuhebende Verteilungen */
+		if (highlight!=null) for (String highlightName: highlight) {
+			int index=-1;
+			for (int i=0;i<workList.size();i++) if (workList.get(i).isForDistribution(highlightName)) {
+				index=i; break;
+			}
+			if (index>=0) {
+				resultList.add(workList.remove(index).copy(true));
+			}
+		}
+
+		/* Trenner */
+		if (addSeparator) resultList.add(new SeparatorPanel());
+
+		/* Nicht hervorzuhebende Verteilungen */
+		if (sortNonHighlightDistributions) workList.sort(JDistributionEditorPanelRecord::compare);
+		resultList.addAll(workList);
+
+		return resultList;
+	}
+
+	/**
+	 * Liefert die Namen (und die Reihenfolge) der standardmäßig hervorzuhebenden Verteilungsdatensätze.
+	 * @return	Namen (und die Reihenfolge) der standardmäßig hervorzuhebenden Verteilungsdatensätze
+	 */
+	public static List<String> getDefaultHighlights() {
+		final List<String> names=new ArrayList<>();
+
+		names.add(new ExpDistribution().getName());
+		names.add(new LogNormalDistribution().getName());
+		names.add(new GammaDistribution().getName());
+		names.add(new ErlangDistribution().getName());
+		names.add(new TriangularDistribution().getName());
+		names.add(new UniformDistribution().getName());
+		names.add(new OnePointDistribution().getName());
+		names.add(new DataDistribution().getName());
+
+		return names;
 	}
 
 	/**
@@ -219,7 +345,7 @@ public abstract class JDistributionEditorPanelRecord {
 	 * @return	Datensatz oder <code>null</code>, wenn kein Datensatz zu der angegebenen Verteilung bestimmt werden konnte
 	 */
 	public static JDistributionEditorPanelRecord getRecord(final AbstractRealDistribution distribution) {
-		for (JDistributionEditorPanelRecord record: getList()) {
+		for (JDistributionEditorPanelRecord record: allRecords) {
 			if (record.wrapper.isForDistribution(distribution)) return record;
 		}
 		return null;
@@ -293,6 +419,29 @@ public abstract class JDistributionEditorPanelRecord {
 			if (Double.isNaN(sd)) sd=Math.abs(mean/2);
 			fields[0].setText(NumberTools.formatNumberMax(mean));
 			fields[1].setText(NumberTools.formatNumberMax(sd));
+		}
+	}
+
+	/** Trenner zwischen hervorgehobenen und normalen Verteilungen für den Filter-Editor (kommt in der normalen Liste nicht vor) */
+	public static class SeparatorPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public SeparatorPanel() {
+			super(null,new String[0]);
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			return new String[0];
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[0];
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			return null;
 		}
 	}
 
@@ -1083,6 +1232,182 @@ public abstract class JDistributionEditorPanelRecord {
 			final Double d1=NumberTools.getNotNegativeDouble(fields[0],true); if (d1==null) return null;
 			final Double d2=NumberTools.getNotNegativeDouble(fields[1],true); if (d2==null) return null;
 			return new SawtoothRightDistribution(d1,d2);
+		}
+	}
+
+	/** Levy-Verteilung */
+	private static class LevyDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public LevyDistributionPanel() {
+			super(new WrapperLevyDistribution(),new String[]{DistributionTools.DistLocation+" (mu)",DistributionTools.DistScale+" (c)"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			return new String[]{"0",mean};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(Math.max(0,((LevyDistribution)distribution).mu)),
+					NumberTools.formatNumberMax(Math.max(0,((LevyDistribution)distribution).c))
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double d1=NumberTools.getNotNegativeDouble(fields[0],true); if (d1==null) return null;
+			final Double d2=NumberTools.getPositiveDouble(fields[1],true); if (d2==null) return null;
+			return new LevyDistribution(d1,d2);
+		}
+	}
+
+	/** Hypergeometrische Verteilung */
+	private static class HyperGeomDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public HyperGeomDistributionPanel() {
+			super(new WrapperHyperGeomDistribution(),new String[]{"N","K","n"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			return new String[]{"50","20","10"};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					""+((DiscreteHyperGeomDistributionImpl)distribution).N,
+					""+((DiscreteHyperGeomDistributionImpl)distribution).K,
+					""+((DiscreteHyperGeomDistributionImpl)distribution).n
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Long N=NumberTools.getPositiveLong(fields[0],true); if (N==null) return null;
+			final Integer K=NumberTools.getNotNegativeInteger(fields[1],true); if (K==null) return null;
+			final Long n=NumberTools.getPositiveLong(fields[2],true); if (n==null) return null;
+			return new DiscreteHyperGeomDistributionImpl(N.intValue(),K,n.intValue());
+		}
+	}
+
+	/** Binomialverteilung */
+	private static class BinomialDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public BinomialDistributionPanel() {
+			super(new WrapperBinomialDistribution(),new String[]{"p","n"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			if (meanD<=0 || stdD<=0) return new String[]{NumberTools.formatNumber(0.5),"10"};
+			/* E=n*p, Var=n*p*(1-p) => n=E/p, p=1-Var/E */
+			final double p=1-stdD*stdD/meanD;
+			if (p<=0 || p>1) return new String[]{NumberTools.formatNumber(0.5),"10"};
+			final int n=(int)Math.round(meanD/p);
+			return new String[]{NumberTools.formatNumber(p),""+n};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((DiscreteBinomialDistributionImpl)distribution).p),
+					""+((DiscreteBinomialDistributionImpl)distribution).n
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double p=NumberTools.getNotNegativeDouble(fields[0],true); if (p==null) return null;
+			final Long n=NumberTools.getPositiveLong(fields[1],true); if (n==null) return null;
+			return new DiscreteBinomialDistributionImpl(p,n.intValue());
+		}
+	}
+
+	/** Poisson-Verteilung */
+	private static class PoissonDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public PoissonDistributionPanel() {
+			super(new WrapperPoissonDistribution(),new String[]{"lambda"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			return new String[]{mean};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((DiscretePoissonDistributionImpl)distribution).lambda)
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double lambda=NumberTools.getPositiveDouble(fields[0],true); if (lambda==null) return null;
+			return new DiscretePoissonDistributionImpl(lambda);
+		}
+	}
+
+	/** Negative Binomialverteilung */
+	private static class NegativeBinomialDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public NegativeBinomialDistributionPanel() {
+			super(new WrapperNegativeBinomialDistribution(),new String[]{"p","r"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			if (meanD<=0 || stdD<=0) return new String[]{NumberTools.formatNumber(0.5),"10"};
+			/* E=r(1-p)/p, Var=r(1-p)/p^2 => p=E/Var, r=E*p/(1-p) */
+			final double p=meanD/(stdD*stdD);
+			if (p<=0 || p>1) return new String[]{NumberTools.formatNumber(0.5),"10"};
+			final int r=(int)Math.round(meanD*p/(1-p));
+			return new String[]{NumberTools.formatNumber(p),""+r};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((DiscreteNegativeBinomialDistributionImpl)distribution).p),
+					""+((DiscreteNegativeBinomialDistributionImpl)distribution).r
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double p=NumberTools.getNotNegativeDouble(fields[0],true); if (p==null) return null;
+			final Long r=NumberTools.getPositiveLong(fields[1],true); if (r==null) return null;
+			return new DiscreteNegativeBinomialDistributionImpl(p,r.intValue());
+		}
+	}
+
+	/** Zeta-Verteilung */
+	private static class ZetaDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public ZetaDistributionPanel() {
+			super(new WrapperZetaDistribution(),new String[]{"s"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			return new String[]{"3"};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((DiscreteZetaDistributionImpl)distribution).s)
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double s=NumberTools.getNotNegativeDouble(fields[0],true); if (s==null || s<=1.0) return null;
+			return new DiscreteZetaDistributionImpl(s);
 		}
 	}
 }

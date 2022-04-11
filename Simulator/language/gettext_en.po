@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-26 12:30+0200\n"
+"POT-Creation-Date: 2022-03-29 08:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1925,6 +1925,9 @@ msgstr "inactive"
 msgid "Distribution.Beta"
 msgstr "Beta distribution"
 
+msgid "Distribution.Binomial"
+msgstr "Binomial distribution"
+
 msgid "Distribution.CV"
 msgstr "Coefficient of variation"
 
@@ -1982,6 +1985,9 @@ msgstr "Gamma distribution"
 msgid "Distribution.Gumbel"
 msgstr "Gumbel distribution"
 
+msgid "Distribution.HyperGeom"
+msgstr "Hypergeometric distribution"
+
 msgid "Distribution.HyperbolicSecant"
 msgstr "Hyperbolic secant distribution"
 
@@ -1993,6 +1999,9 @@ msgstr "Inverse gaussian distribution"
 
 msgid "Distribution.Laplace"
 msgstr "Laplace distribution"
+
+msgid "Distribution.Levy"
+msgstr "Levy distribution"
 
 msgid "Distribution.Location"
 msgstr "Location"
@@ -2008,6 +2017,12 @@ msgstr "Logistic distribution"
 
 msgid "Distribution.Mean"
 msgstr "Mean"
+
+msgid "Distribution.MostLikely"
+msgstr "Most likely"
+
+msgid "Distribution.NegativeBinomial"
+msgstr "Negative binomial distribution"
 
 msgid "Distribution.Never"
 msgstr "Never"
@@ -2027,6 +2042,9 @@ msgstr "Pert distribution"
 msgid "Distribution.Point"
 msgstr "One point distribution"
 
+msgid "Distribution.Poisson"
+msgstr "Poisson distribution"
+
 msgid "Distribution.Power"
 msgstr "Power distribution"
 
@@ -2044,6 +2062,15 @@ msgstr "Right sawtooth distribution"
 
 msgid "Distribution.Scale"
 msgstr "Scale"
+
+msgid "Distribution.SetupList.Divider"
+msgstr "<html><body>Above: Highlighted distributions (given order)<br>Below: Non-highlighted distributions (will be sorted alhpabetically)</body></html>"
+
+msgid "Distribution.SetupList.Info"
+msgstr "<html><body>The selected distribution can be moved up or down by Ctrl+Up and Ctrl+Down.</body></html>"
+
+msgid "Distribution.SetupList.Title"
+msgstr "Edit list of highlighted distributions"
 
 msgid "Distribution.Skewness"
 msgstr "Skewness"
@@ -2071,6 +2098,9 @@ msgstr "unknown distribution"
 
 msgid "Distribution.Weibull"
 msgstr "Weibull distribution"
+
+msgid "Distribution.Zeta"
+msgstr "Zeta distribution"
 
 msgid "DistributionFitter.BestFitFor"
 msgstr "Best fit for"
@@ -9234,6 +9264,24 @@ msgstr "Total"
 
 msgid "Statistic.Tree.Parameter"
 msgstr "Copy parameter for this data to clipboard"
+
+msgid "Statistic.Tree.Parameter.BookmarkJump"
+msgstr "Jump to next bookmark"
+
+msgid "Statistic.Tree.Parameter.BookmarkJump.Hint"
+msgstr "Jumps the the next tree entry marked as bookmark"
+
+msgid "Statistic.Tree.Parameter.BookmarkOff"
+msgstr "Remove bookmark"
+
+msgid "Statistic.Tree.Parameter.BookmarkOff.Hint"
+msgstr "Removed the current tree entry from the bookmarks list"
+
+msgid "Statistic.Tree.Parameter.BookmarkOn"
+msgstr "Mark as bookmark"
+
+msgid "Statistic.Tree.Parameter.BookmarkOn.Hint"
+msgstr "Adds a bookmark for the current tree entry"
 
 msgid "Statistic.Tree.Parameter.Hint"
 msgstr "Copy parameters to get this data by command line to the clipboard"

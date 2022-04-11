@@ -56,6 +56,7 @@ import systemtools.statistics.StatisticViewerReport;
 import systemtools.statistics.StatisticViewerSpecialBase;
 import systemtools.statistics.StatisticsBasePanel;
 import tools.SetupData;
+import ui.FlatLaFHelper;
 import ui.HelpLink;
 import ui.editor.BaseEditDialog;
 import ui.help.Help;
@@ -177,7 +178,7 @@ public class StatisticTreePanel extends JPanel {
 		report.setIcon(Images.STATISTICS_REPORT.getIcon());
 
 		/* tree */
-		JScrollPane sp=new JScrollPane(tree=new StatisticTree(commandLineCommand,commandLineDataFileName){
+		JScrollPane sp=new JScrollPane(tree=new StatisticTree(commandLineCommand,commandLineDataFileName,getBookmarkColor(),()->getBookmarks(),list->setBookmarks(list)){
 			private static final long serialVersionUID = 5013035517806204341L;
 			@Override
 			protected void nodeSelected(StatisticNode node, DefaultMutableTreeNode treeNode) {updateDataPanel(node,treeNode);}
@@ -198,6 +199,39 @@ public class StatisticTreePanel extends JPanel {
 	 */
 	public void setDataFileName(final String commandLineDataFileName) {
 		tree.setDataFileName(commandLineDataFileName);
+	}
+
+	/**
+	 * Textfarbe für Bookmark-Einträge im Falle des dunklen Layouts (mit dunklem Hintergrund für den Baum)
+	 * @see #getBookmarkColor()
+	 */
+	private static final Color flatLafDarkBookmarkColor=new Color(128,128,255);
+
+	/**
+	 * Liefert die Textfarbe für Bookmark-Einträge.
+	 * @return	Textfarbe für Bookmark-Einträge
+	 */
+	protected Color getBookmarkColor() {
+		return FlatLaFHelper.isDark()?flatLafDarkBookmarkColor:Color.BLUE;
+	}
+
+	/**
+	 * Liefert die Liste der Bookmarks.
+	 * @return	Liste der Bookmarks (kann <code>null</code> sein, dann wird das Bookmarks-System deaktiviert)
+	 */
+	protected List<String> getBookmarks() {
+		return SetupData.getSetup().statisticTreeBookmarks;
+	}
+
+	/**
+	 * Speichert die veränderte Liste der Bookmarks.
+	 * @param newBookmarks	Zu speichernde, veränderte Liste der Bookmarks
+	 */
+	protected void setBookmarks(final List<String> newBookmarks) {
+		final SetupData setup=SetupData.getSetup();
+		setup.statisticTreeBookmarks.clear();
+		if (newBookmarks!=null) setup.statisticTreeBookmarks.addAll(newBookmarks);
+		setup.saveSetup();
 	}
 
 	/**
@@ -555,6 +589,20 @@ public class StatisticTreePanel extends JPanel {
 		if (index<0) return false;
 
 		return viewers.get(index).save(this,output);
+	}
+
+	/**
+	 * Wählt vom aktuellen Baumeintrag aus den nächsten markierten Eintrag
+	 */
+	public void jumpToNextBookmark() {
+		tree.jumpToNextBookmark();
+	}
+
+	/**
+	 * Schaltet beim aktuellen Eintrag zwischen markiert und nicht markiert um.
+	 */
+	public void toggleBookmark() {
+		tree.toggleBookmark();
 	}
 
 	/**

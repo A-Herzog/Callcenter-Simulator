@@ -28,6 +28,8 @@ import language.Language;
 import language.LanguageStaticLoader;
 import language.Messages_Java11;
 import mathtools.Table;
+import mathtools.distribution.swing.JDistributionEditorPanel;
+import mathtools.distribution.swing.JDistributionEditorPanelRecord;
 import systemtools.BaseDialog;
 import systemtools.GUITools;
 import systemtools.MsgBox;
@@ -147,14 +149,32 @@ public final class Main {
 		@Override
 		public void run() {
 			SetupData setup=SetupData.getSetup();
+
+			/* Look & Feel */
 			FlatLaFHelper.init();
 			FlatLaFHelper.setCombinedMenuBar(setup.lookAndFeelCombinedMenu);
 			GUITools.setupUI(setup.lookAndFeel);
 			FlatLaFHelper.setup();
+
+			/* Skalierung */
 			final double scaling=setup.scaleGUI;
 			GUITools.setupFontSize(scaling);
 			BaseDialog.windowScaling=scaling;
+
+			/* Meldungsdialoge */
 			MsgBox.setBackend(new MsgBoxBackendTaskDialog());
+
+			/* Filter für Verteilungsliste in Verteilungseditoren */
+			JDistributionEditorPanel.registerFilterGetter(()->{
+				final String s=setup.distributionListFilter.trim();
+				return (s.isEmpty())?String.join("\n",JDistributionEditorPanelRecord.getDefaultHighlights()):s;
+			});
+			JDistributionEditorPanel.registerFilterSetter(list->{
+				setup.distributionListFilter=list;
+				setup.saveSetup();
+			});
+
+			/* Start */
 			new MainFrame(VersionConst.version,loadFile);
 			new SpeedUpJFreeChart();
 		}
