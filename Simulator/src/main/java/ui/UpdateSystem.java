@@ -231,7 +231,6 @@ public class UpdateSystem {
 			final Element root=XMLTools.jsonToXml("{root: "+json+"}",true);
 			if (root!=null) return root.getAttribute("tag_name");
 		}
-		/* alt: final String line=downloadTextFile(wwwHomeURL+"version.txt"); */
 		return null;
 	}
 
