@@ -5552,8 +5552,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13365] = "Johnson-SU-Verteilung";
     t[13376] = "Window.Info.ShowGlossaryError.Opening.Title";
     t[13377] = "Glossar-Datei konnte nicht ge\u00f6ffnet werden";
-    t[13382] = "Statistic.Viewer.Information";
-    t[13383] = "Information";
+    t[13382] = "LoadCalculator.FlowFactor";
+    t[13383] = "Flussgrad";
     t[13386] = "Dialog.Button.New";
     t[13387] = "Neu";
     t[13388] = "Statistic.Filter.InvalidExpressionPosition";
@@ -5734,6 +5734,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13819] = "Wahrscheinlichkeit f\u00fcr Wahlwiederholung ist ung\u00fcltig";
     t[13822] = "MainMenu.Help.SupportRequest";
     t[13823] = "Unterst\u00fctzung anfordern";
+    t[13824] = "Statistic.Viewer.Information";
+    t[13825] = "Information";
     t[13826] = "XML.Statistic.Confidence.Accessibility.Clients";
     t[13827] = "KonfidenzErreichbarkeitKunden";
     t[13830] = "CommandLine.Preplanning.Mode.ServiceLevel.Complex";
@@ -6020,14 +6022,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14489] = "Zeit";
     t[14490] = "Editor.SkillLevel.Distribution.Global";
     t[14491] = "Globale Verteilung";
-    t[14494] = "Editor.Callcenter.DeleteAgentsGroup.No.Info";
-    t[14495] = "Die Agentengruppe bleibt unver\u00e4ndert in dem Callcenter erhalten.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14494] = "Editor.Callcenter.DeleteAgentsGroup.No.Info";
+    t[14495] = "Die Agentengruppe bleibt unver\u00e4ndert in dem Callcenter erhalten.";
     t[14508] = "Editor.SkillLevelOfTheAgents.Copy.Info";
     t[14509] = "Kopiert den gew\u00e4hlten Skill-Level und f\u00fcgt die Kopie der Liste aller Skill-Levels hinzu";
     t[14512] = "SimStatistic.Costs.Total";

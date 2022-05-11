@@ -5552,8 +5552,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13365] = "Johnson SU distribution";
     t[13376] = "Window.Info.ShowGlossaryError.Opening.Title";
     t[13377] = "Glossary file cannot be opened";
-    t[13382] = "Statistic.Viewer.Information";
-    t[13383] = "Information";
+    t[13382] = "LoadCalculator.FlowFactor";
+    t[13383] = "Flow factor";
     t[13386] = "Dialog.Button.New";
     t[13387] = "New";
     t[13388] = "Statistic.Filter.InvalidExpressionPosition";
@@ -5734,6 +5734,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13819] = "Retry probability is invalid";
     t[13822] = "MainMenu.Help.SupportRequest";
     t[13823] = "Support request";
+    t[13824] = "Statistic.Viewer.Information";
+    t[13825] = "Information";
     t[13826] = "XML.Statistic.Confidence.Accessibility.Clients";
     t[13827] = "ConfidenceAccessibilityClients";
     t[13830] = "CommandLine.Preplanning.Mode.ServiceLevel.Complex";
@@ -6020,14 +6022,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14489] = "Time";
     t[14490] = "Editor.SkillLevel.Distribution.Global";
     t[14491] = "Global distribution";
-    t[14494] = "Editor.Callcenter.DeleteAgentsGroup.No.Info";
-    t[14495] = "The agents group will remain unchanged in the call center.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14494] = "Editor.Callcenter.DeleteAgentsGroup.No.Info";
+    t[14495] = "The agents group will remain unchanged in the call center.";
     t[14508] = "Editor.SkillLevelOfTheAgents.Copy.Info";
     t[14509] = "Copies the selected skill level and adds the copy to the list of all skill levels";
     t[14512] = "SimStatistic.Costs.Total";
