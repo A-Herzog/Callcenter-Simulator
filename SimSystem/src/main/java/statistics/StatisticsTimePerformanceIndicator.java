@@ -227,7 +227,7 @@ public final class StatisticsTimePerformanceIndicator extends StatisticsPerforma
 			int max=(lastState>newState)?lastState:newState;
 			if (max<1) max=1;
 			if (max>MAX_STATE) max=MAX_STATE;
-			final boolean init=(lastTime<=0 && stateTime==null) || explicitTimeInit;
+			final boolean init=(lastTime<=0.0d && stateTime==null) || explicitTimeInit;
 
 			explicitTimeInit=false;
 			if (stateTime==null && time0<0 && timeMax<0) {
@@ -244,11 +244,11 @@ public final class StatisticsTimePerformanceIndicator extends StatisticsPerforma
 				final double add=time-lastTime;
 				if (stateTime==null) {
 					if (lastState==0) {
-						time0=(time0>=0)?(time0+add):add;
+						time0=(time0>=0.0d)?(time0+add):add;
 					} else {
 						if (timeMaxState==-1 || timeMaxState==lastState) {
 							timeMaxState=lastState;
-							timeMax=(timeMax>=0)?(timeMax+add):add;
+							timeMax=(timeMax>=0.0d)?(timeMax+add):add;
 						} else {
 							forceExpandStateTime();
 						}
@@ -263,10 +263,14 @@ public final class StatisticsTimePerformanceIndicator extends StatisticsPerforma
 				if (lastState<this.min || this.min==-1) this.min=lastState;
 				if (lastState>this.max || this.max==-1) this.max=lastState;
 				sum+=add;
-				valueSum+=add*lastState;
-				valueSumSquared+=add*lastState*lastState;
-				valueSumCubic+=add*lastState*lastState*lastState;
-				valueSumQuartic+=add*lastState*lastState*lastState*lastState;
+				if (lastState>0) {
+					final double addTimesLastState=add*lastState;
+					final double squared=lastState*lastState;
+					valueSum+=addTimesLastState;
+					valueSumSquared+=add*squared;
+					valueSumCubic+=addTimesLastState*squared;
+					valueSumQuartic+=add*squared*squared;
+				}
 			} else {
 				start=time;
 			}
@@ -276,7 +280,7 @@ public final class StatisticsTimePerformanceIndicator extends StatisticsPerforma
 
 		lastState=(newState>=0)?newState:0;
 
-		lastTimeMean=-1;
+		lastTimeMean=-1.0d;
 	}
 
 	/**
@@ -813,7 +817,7 @@ public final class StatisticsTimePerformanceIndicator extends StatisticsPerforma
 		node.setAttribute(xmlNameSD,NumberTools.formatSystemNumber(getTimeSD(),recycleStringBuilder));
 		node.setAttribute(xmlNameCV,NumberTools.formatSystemNumber(getTimeCV(),recycleStringBuilder));
 		node.setAttribute(xmlNameSk[0],NumberTools.formatSystemNumber(getTimeSk(),recycleStringBuilder));
-		node.setAttribute(xmlNameKurt[0],NumberTools.formatSystemNumber(getTimeKurt(),recycleStringBuilder));
+		node.setAttribute(xmlNameKurt[0],NumberTools.formatSystemNumber(NumberTools.reduceDigits(getTimeKurt(),8),recycleStringBuilder));
 		node.setAttribute(xmlNameMin[0],""+Math.max(0,getTimeMin()));
 		node.setAttribute(xmlNameMax[0],""+Math.max(0,getTimeMax()));
 
@@ -826,11 +830,11 @@ public final class StatisticsTimePerformanceIndicator extends StatisticsPerforma
 
 		if (runCount>0) {
 			node.setAttribute(StatisticsDataPerformanceIndicator.xmlNameRunCount[0],""+runCount);
-			node.setAttribute(StatisticsDataPerformanceIndicator.xmlNameRunVar[0],NumberTools.formatSystemNumber(getRunVar()));
+			node.setAttribute(StatisticsDataPerformanceIndicator.xmlNameRunVar[0],NumberTools.formatSystemNumber(getRunVar(),recycleStringBuilder));
 			for (double level: CONFIDENCE_SAVE_LEVEL) {
 				String s=String.valueOf(Math.round((1-level)*100));
 				double radius=NumberTools.reduceDigits(getRunConfidenceHalfWide(level),8);
-				node.setAttribute(StatisticsDataPerformanceIndicator.xmlNameRunHalfWide[0]+s,NumberTools.formatSystemNumber(radius));
+				node.setAttribute(StatisticsDataPerformanceIndicator.xmlNameRunHalfWide[0]+s,NumberTools.formatSystemNumber(radius,recycleStringBuilder));
 			}
 		}
 	}
