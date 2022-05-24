@@ -144,6 +144,16 @@ public class SetupDialogNetworkBalance extends JDialog {
 	 */
 	private class WorkThread extends Thread {
 		/**
+		 * Konstruktor der Klasse
+		 */
+		public WorkThread() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		/**
 		 * Wartet auf den Abschluss mehrerer Simulationen.
 		 * @param simulator	Laufende Simulatoren bei denen auf den Abschluss gewartet werden soll
 		 * @param percentAdd	Summand	für die Berechnung des Fortschritts für {@link SetupDialogNetworkBalance#setProgress(int)}

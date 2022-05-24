@@ -33,6 +33,16 @@ import ui.model.CallcenterModel;
  */
 public abstract class SimpleModelBaseLoader {
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public SimpleModelBaseLoader() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Lädt eine Tabelle aus einer Datei.
 	 * @param file	Tabellendatei
 	 * @param table	Optional Name der Tabelle in der Arbeitsmappe

@@ -48,6 +48,7 @@ public class SetupData extends SetupBase {
 	public static File userConfigFile=null;
 
 	/**
+	 * Fenstergröße beim Programmstart
 	 * @see SetupData#startSizeMode
 	 */
 	public enum StartMode {

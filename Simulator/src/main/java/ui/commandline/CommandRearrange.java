@@ -48,6 +48,16 @@ public class CommandRearrange extends AbstractCommand {
 	/**  Liste der Agenten- bzw. Anrufergruppen (bei Agentengruppen in der Form "Nr-CallcenterName" mit "Nr" 1-basierend), die verändert werden sollen. Wird <code>null</code> oder eine leere Liste übergeben, so werden alle Gruppen angepasst. */
 	private String[] groups=null;
 
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public CommandRearrange() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
 	@Override
 	public String[] getKeys() {
 		List<String> list=new ArrayList<>();

@@ -243,6 +243,16 @@ public class NewModelDialog extends BaseEditDialog {
 			 */
 			private static final long serialVersionUID = 6499061601895830242L;
 
+			/**
+			 * Konstruktor der Klasse
+			 */
+			public ModelListRenderer() {
+				/*
+				 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+				 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+				 */
+			}
+
 			@Override
 			protected void buildString(Object value, int index, StringBuilder s) {
 				if (!(value instanceof CallcenterModel)) {
@@ -285,6 +295,16 @@ public class NewModelDialog extends BaseEditDialog {
 		 * @see JModelSelection#list
 		 */
 		private class ModelSelectionListener implements ListSelectionListener, MouseListener {
+			/**
+			 * Konstruktor der Klasse
+			 */
+			public ModelSelectionListener() {
+				/*
+				 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+				 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+				 */
+			}
+
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				CallcenterModel model=list.getSelectedValue();

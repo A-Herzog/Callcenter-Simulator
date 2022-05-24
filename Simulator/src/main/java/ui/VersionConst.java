@@ -16,6 +16,8 @@
 package ui;
 
 /**
+ * Diese Klasse stellt statische Hilfsroutinen für die
+ * Verarbeitung der Programmversionsnummer zur Verfügung.
  * @author Alexander Herzog
  * @version 1.0
  */
@@ -24,6 +26,18 @@ public final class VersionConst {
 	 * Programmversion
 	 */
 	public static final String version="5.7.230";
+
+	/**
+	 * Konstruktor der Klasse<br>
+	 * Diese Klasse stellt nur statische Hilfsroutinen
+	 * zur Verfügung und kann daher nicht instanziert werden.
+	 */
+	private VersionConst() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
 
 	/**
 	 * Vergleich zwei Versionsnummern der Form x.y.z in Bezug auf die Komponenten x und y miteinander

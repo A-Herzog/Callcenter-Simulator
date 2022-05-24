@@ -380,14 +380,36 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 	 * @see StatisticViewerFastAccess#filter
 	 */
 	private class FilterKeyListener extends KeyAdapter {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public FilterKeyListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public void keyReleased(KeyEvent e) {filterUpdated();}
+		public void keyReleased(KeyEvent e) {
+			filterUpdated();
+		}
 	}
 
 	/**
 	 * Reagiert auf Klicks auf die Schaltflächen in der Symbolleiste
 	 */
 	private class ToolBarActionListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ToolBarActionListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Container c=null;

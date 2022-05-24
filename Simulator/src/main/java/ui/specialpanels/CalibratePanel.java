@@ -326,6 +326,16 @@ public class CalibratePanel extends JWorkPanel {
 	 * @see CalibratePanel#everythingDone()
 	 */
 	private class SimTimerTask extends TimerTask {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SimTimerTask() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			if (cancelWork) {timer.cancel(); simulator.cancel(); everythingDone(); return;}

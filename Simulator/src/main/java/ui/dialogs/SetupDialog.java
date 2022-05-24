@@ -717,6 +717,16 @@ public class SetupDialog extends BaseEditDialog {
 	 *@see SetupDialog#networkLocalButton
 	 */
 	private class ButtonWork implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ButtonWork() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==autoUpdateButton) {doUpdateNow(); return;}

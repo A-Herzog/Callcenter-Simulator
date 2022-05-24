@@ -1006,6 +1006,16 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen in diesem Dialog
 	 */
 	private class ButtonActionListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ButtonActionListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==agentAddButton) {agentAdd(); return;}
@@ -1065,6 +1075,16 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	 * @see CallcenterEditDialog#agentList
 	 */
 	private class ListListener implements KeyListener,MouseListener,ListSelectionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ListListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void keyTyped(KeyEvent e) {}
 
@@ -1213,6 +1233,16 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	 * @see AgentEditDialog#editSkillLevel()
 	 */
 	private class SkillLevelRenameListener implements RenameListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SkillLevelRenameListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void renamed(RenameEvent e) {
 			if (e.renamed) for (int i=0;i<agents.size();i++) if (agents.get(i).skillLevel.equalsIgnoreCase(e.oldName)) agents.get(i).skillLevel=e.newName;
@@ -1231,6 +1261,16 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		 * @see Serializable
 		 */
 		private static final long serialVersionUID = 2294389689021269527L;
+
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public AgentListRenderer() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
 
 		@Override
 		protected void buildString(Object value, int index, StringBuilder s) {
@@ -1291,6 +1331,16 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	 */
 	private class DialogElementListener implements KeyListener {
 		/**
+		 * Konstruktor der Klasse
+		 */
+		public DialogElementListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		/**
 		 * Reagiert auf ein Tastenereignis
 		 * @param e	Tastenereignis
 		 * @see #keyTyped(KeyEvent)
@@ -1329,6 +1379,16 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	 * @see CallcenterEditDialog#applyAllPages
 	 */
 	private class PopupActionListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public PopupActionListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			for (int i=0;i<applyThisPage.length;i++) if (applyThisPage[i]==e.getSource()) {

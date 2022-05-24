@@ -46,6 +46,16 @@ public final class SimpleModelLoader extends SimpleModelBaseLoader {
 	private Table agentsTable;
 
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public SimpleModelLoader() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Legt die Tabelle mit den Anruferzahlen fest.
 	 * @param file	Dateiname der Tabelle mit den Anruferzahlen.
 	 * @param table	Tabelle in der Arbeitsmappe (kann <code>null</code> oder leer sein, dann wird die erste Tabelle verwendet)

@@ -32,6 +32,16 @@ import ui.model.CallcenterModelCaller;
  * @see CommandLineSystem
  */
 public final class CommandGeneratorCaller extends AbstractGeneratorCommand {
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public CommandGeneratorCaller() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
 	@Override
 	public String[] getKeys() {
 		List<String> list=new ArrayList<>();

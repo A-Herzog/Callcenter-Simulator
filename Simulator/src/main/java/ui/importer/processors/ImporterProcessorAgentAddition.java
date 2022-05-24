@@ -30,6 +30,16 @@ import ui.model.CallcenterModelAgent;
  * @version 1.0
  */
 public class ImporterProcessorAgentAddition extends ImporterProcessor {
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public ImporterProcessorAgentAddition() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
 	@Override
 	public String[] getNames() {
 		List<String> list=new ArrayList<>();

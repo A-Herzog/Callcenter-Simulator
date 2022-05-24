@@ -39,6 +39,16 @@ public final class CommandBatch extends AbstractSimulationCommand {
 	/** Verzeichnis für die Modelldateien */
 	private File batchFolder;
 
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public CommandBatch() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
 	@Override
 	public String[] getKeys() {
 		List<String> list=new ArrayList<>();

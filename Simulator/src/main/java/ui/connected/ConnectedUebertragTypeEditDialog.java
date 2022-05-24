@@ -105,10 +105,37 @@ public final class ConnectedUebertragTypeEditDialog extends BaseEditDialog {
 		 * @see Serializable
 		 */
 		private static final long serialVersionUID = 3426277156013494341L;
-		@Override public boolean isCellEditable(int rowIndex, int columnIndex) {return columnIndex>0;}
-		@Override public String getColumnName(int column) {return (column==0)?Language.tr("Connected.ClientType"):Language.tr("Connected.Rate");}
-		@Override public int getRowCount() {return caller.length;}
-		@Override public int getColumnCount() {return 2;}
+
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public UebertragChangeTableModel() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		@Override
+		public boolean isCellEditable(int rowIndex, int columnIndex) {
+			return columnIndex>0;
+		}
+
+		@Override
+		public String getColumnName(int column) {
+			return (column==0)?Language.tr("Connected.ClientType"):Language.tr("Connected.Rate");
+		}
+
+		@Override
+		public int getRowCount() {
+			return caller.length;
+		}
+
+		@Override
+		public int getColumnCount() {
+			return 2;
+		}
+
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			if (columnIndex==0)  return caller[rowIndex];
@@ -116,6 +143,7 @@ public final class ConnectedUebertragTypeEditDialog extends BaseEditDialog {
 			if (d==null) d=0.0;
 			return NumberTools.formatNumberMax(d);
 		}
+
 		@Override
 		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 			if (columnIndex!=1) return;

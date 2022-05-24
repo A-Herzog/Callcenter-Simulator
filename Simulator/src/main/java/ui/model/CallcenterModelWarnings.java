@@ -254,6 +254,16 @@ public class CallcenterModelWarnings implements Cloneable {
 		/** Warnungsstatus (in der Variante für die Statistik-Daten) */
 		public WarningStatus warningStatus=WarningStatus.WARNING_STATUS_OK;
 
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public WarningRecord() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public WarningRecord clone() {
 			WarningRecord record=new WarningRecord();

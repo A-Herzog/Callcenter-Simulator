@@ -334,6 +334,16 @@ public class VarianzAnalysePanel extends JWorkPanel {
 	 * @see VarianzAnalysePanel#multiSimulatorDone()
 	 */
 	private class SimTimerTask extends TimerTask {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SimTimerTask() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			if (cancelWork) {timer.cancel(); multiSimulator.cancel(); multiSimulatorDone(); return;}
@@ -391,6 +401,16 @@ public class VarianzAnalysePanel extends JWorkPanel {
 	 * Reagiert auf Klicks auf die Schaltflächen
 	 */
 	private class ButtonListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ButtonListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==copyButton) {

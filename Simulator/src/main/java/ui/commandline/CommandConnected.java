@@ -41,6 +41,16 @@ public final class CommandConnected extends AbstractSimulationCommand {
 	/** Verbundenes Modell */
 	private ConnectedModel model;
 
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public CommandConnected() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
 	@Override
 	public String[] getKeys() {
 		List<String> list=new ArrayList<>();

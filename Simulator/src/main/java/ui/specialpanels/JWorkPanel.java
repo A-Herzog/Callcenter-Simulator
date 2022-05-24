@@ -301,6 +301,16 @@ public class JWorkPanel extends JCloseablePanel {
 	 *
 	 */
 	private final class WorkButtonListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public WorkButtonListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==workButton) {cancelWork=false; run(); return;}

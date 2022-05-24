@@ -178,6 +178,16 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 	 *
 	 */
 	private class DialogElementListener implements ActionListener, KeyListener, MouseListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public DialogElementListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==buttonAdd) {warningAdd(); return;}
@@ -224,6 +234,16 @@ public class CallcenterThresholdValuesDialog extends BaseEditDialog {
 		 * @see Serializable
 		 */
 		private static final long serialVersionUID = 6668671715230234568L;
+
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public WarningsListRenderer() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
 
 		@Override
 		protected void buildString(Object value, int index, StringBuilder s) {

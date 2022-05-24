@@ -62,6 +62,16 @@ public final class Service2StartEvent extends Event {
 	public short skillLevelNr;
 
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public Service2StartEvent() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Erfasst den Abschluss eines Anrufs
 	 * @param data	Simulationsdatenobjekt
 	 * @param serviceLevelSeconds	Service-Level-Sekunden für die Wartezeit vor der Bedienung

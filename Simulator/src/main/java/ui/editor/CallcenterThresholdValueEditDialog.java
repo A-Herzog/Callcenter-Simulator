@@ -506,6 +506,16 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 	 */
 	private class DialogListener implements ActionListener, KeyListener {
 		/**
+		 * Konstruktor der Klasse
+		 */
+		public DialogListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		/**
 		 * Auf Klick oder Tastendruck reagieren
 		 * @param obj	Auslösendes Element
 		 */

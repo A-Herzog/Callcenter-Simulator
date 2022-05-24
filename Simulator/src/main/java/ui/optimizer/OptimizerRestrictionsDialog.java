@@ -236,6 +236,16 @@ public class OptimizerRestrictionsDialog extends BaseEditDialog {
 	 * @see OptimizerRestrictionsDialog#tree
 	 */
 	private class SelectionListener implements TreeSelectionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SelectionListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void valueChanged(TreeSelectionEvent e) {
 			DefaultMutableTreeNode node=(DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
@@ -301,6 +311,16 @@ public class OptimizerRestrictionsDialog extends BaseEditDialog {
 	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen
 	 */
 	private class DialogListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public DialogListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 

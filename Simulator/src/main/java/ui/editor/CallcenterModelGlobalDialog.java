@@ -258,6 +258,16 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 	 * @see CallcenterModelGlobalDialog#addition
 	 */
 	private final class ButtonActionListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ButtonActionListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==efficiency) {
@@ -282,6 +292,16 @@ public final class CallcenterModelGlobalDialog extends BaseEditDialog {
 	 * Eingabefeldern des Dialogs
 	 */
 	private class DialogElementListener implements KeyListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public DialogElementListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		/**
 		 * Reagiert auf ein Tastenereignis
 		 * @param e	Tastenereignis

@@ -205,9 +205,34 @@ public class SimpleSimulationInputPanel extends JPanel {
 	 * Reagiert auf Änderungen in der GUI und aktualisiert die Ausgabe.
 	 */
 	private class UpdateSimulation implements ChangeListener, KeyListener {
-		@Override public void stateChanged(ChangeEvent e) {updateSimulation.run();}
-		@Override public void keyTyped(KeyEvent e) {updateSimulation.run();}
-		@Override public void keyPressed(KeyEvent e) {updateSimulation.run();}
-		@Override public void keyReleased(KeyEvent e) {updateSimulation.run();}
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public UpdateSimulation() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		@Override
+		public void stateChanged(ChangeEvent e) {
+			updateSimulation.run();
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			updateSimulation.run();
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			updateSimulation.run();
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			updateSimulation.run();
+		}
 	}
 }

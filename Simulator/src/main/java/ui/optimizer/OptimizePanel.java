@@ -601,6 +601,16 @@ public final class OptimizePanel extends JWorkPanel {
 	 * werden kann.
 	 */
 	private final class SimTimerTask extends TimerTask {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SimTimerTask() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			if (pauseMode && !cancelWork) return;

@@ -46,6 +46,16 @@ public final class Service1StartEvent extends Event {
 	public AgentRecord agent;
 
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public Service1StartEvent() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Erfasst den Start einer Bedienung
 	 * @param data	Simulationsdatenobjekt
 	 * @param serviceLevelSeconds	Service-Level-Sekunden für die Wartezeit vor der Bedienung

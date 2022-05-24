@@ -129,8 +129,29 @@ public class CallerRetryChangeDialog extends BaseEditDialog {
 	 * @see CallerRetryChangeDialog#rateInput
 	 */
 	private class RateInputListener implements KeyListener {
-		@Override public void keyTyped(KeyEvent e) {activeAdvancedMode.setSelected(true); checkData();}
-		@Override public void keyPressed(KeyEvent e) {activeAdvancedMode.setSelected(true); checkData();}
-		@Override public void keyReleased(KeyEvent e) {activeAdvancedMode.setSelected(true); checkData();}
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public RateInputListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			activeAdvancedMode.setSelected(true); checkData();
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			activeAdvancedMode.setSelected(true); checkData();
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			activeAdvancedMode.setSelected(true); checkData();
+		}
 	}
 }

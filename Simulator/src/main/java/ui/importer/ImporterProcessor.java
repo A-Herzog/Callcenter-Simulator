@@ -43,6 +43,16 @@ public abstract class ImporterProcessor {
 	}
 
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public ImporterProcessor() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Liefert den Namen des Importprozessors
 	 * @return Name des Importprozessors
 	 */

@@ -64,10 +64,26 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class TextCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public TextCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "Text";}
+		public String getName() {
+			return "Text";
+		}
+
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			if (parameters.length()>2 && (parameters.length() > 0 && parameters.charAt(0)=='"') && parameters.endsWith("\""))
@@ -82,10 +98,26 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class TitleCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public TitleCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "Title";}
+		public String getName() {
+			return "Title";
+		}
+
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			if (parameters.length()>2 && (parameters.length() > 0 && parameters.charAt(0)=='"') && parameters.endsWith("\""))
@@ -100,10 +132,26 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class PrintCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public PrintCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "Print";}
+		public String getName() {
+			return "Print";
+		}
+
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			/* Variable */
@@ -127,10 +175,26 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class FormatCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public FormatCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "Format";}
+		public String getName() {
+			return "Format";
+		}
+
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			if (parameters.equalsIgnoreCase("lokal") || parameters.equalsIgnoreCase("local")) {systemNumbers=false; return null;}
@@ -148,10 +212,25 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class SeparatorCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SeparatorCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "Separator";}
+		public String getName() {
+			return "Separator";
+		}
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			if (parameters.equalsIgnoreCase("semikolon") || parameters.equalsIgnoreCase("semicolon")) {separator=';'; return null;}
@@ -166,10 +245,25 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class SetCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SetCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "Set";}
+		public String getName() {
+			return "Set";
+		}
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			/* Variable und XML-Anweisung trennen */
@@ -195,10 +289,26 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class CalcCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public CalcCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "Calc";}
+		public String getName() {
+			return "Calc";
+		}
+
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			/* Variable und Anweisung trennen */
@@ -223,10 +333,26 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class SumCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SumCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "Sum";}
+		public String getName() {
+			return "Sum";
+		}
+
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			String value=null;
@@ -254,10 +380,26 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class MeanCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public MeanCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "Mean";}
+		public String getName() {
+			return "Mean";
+		}
+
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			String value=null;
@@ -284,10 +426,26 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class SDCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SDCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "SD";}
+		public String getName() {
+			return "SD";
+		}
+
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			String value=null;
@@ -314,10 +472,26 @@ public class DataFilter extends DataFilterBase {
 	 * @see DataFilterBase#registerCommand(DataFilterCommand)
 	 */
 	private class CVCommand implements DataFilterCommand {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public CVCommand() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public String getName() {return "CV";}
+		public String getName() {
+			return "CV";
+		}
+
 		@Override
-		public boolean allowEmptyParameters() {return false;}
+		public boolean allowEmptyParameters() {
+			return false;
+		}
+
 		@Override
 		public String run(String parameters) {
 			String value=null;

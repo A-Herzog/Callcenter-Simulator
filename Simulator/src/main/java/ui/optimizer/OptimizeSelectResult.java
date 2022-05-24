@@ -122,6 +122,16 @@ public final class OptimizeSelectResult extends BaseEditDialog  {
 	 * @see OptimizeSelectResult#comboBox
 	 */
 	private final class ComboBoxListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ComboBoxListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Statistics statistics=(results==null)?(resultsDirect[comboBox.getSelectedIndex()]):(results.data.get(comboBox.getSelectedIndex()));

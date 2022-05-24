@@ -294,6 +294,16 @@ public class RearrangePanel extends JWorkPanel {
 	 */
 	private class SimDoneNotify implements Runnable {
 		/**
+		 * Konstruktor der Klasse
+		 */
+		public SimDoneNotify() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		/**
 		 * Stellt die Standardansicht der grafischen
 		 * Oberfläche nach einer Simulation wieder her.
 		 */

@@ -786,6 +786,16 @@ public class BaseEditDialog extends JDialog {
 	 * zum Schließen des Dialogs
 	 */
 	private class CloseButtonActionEvents implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public CloseButtonActionEvents() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==closeButton) {closedBy=CLOSED_BY_OK;}
@@ -803,6 +813,16 @@ public class BaseEditDialog extends JDialog {
 	 * @see BaseEditDialog#name
 	 */
 	private class NameKeyListener implements KeyListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public NameKeyListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override public void keyTyped(KeyEvent e) {nameChange(name.getText());}
 		@Override public void keyPressed(KeyEvent e) {nameChange(name.getText());}
 		@Override public void keyReleased(KeyEvent e) {nameChange(name.getText());}
@@ -812,6 +832,16 @@ public class BaseEditDialog extends JDialog {
 	 * Listener für die benutzerdefinierten Schaltflächen
 	 */
 	private class UserButtonListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public UserButtonListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int nr=-1;

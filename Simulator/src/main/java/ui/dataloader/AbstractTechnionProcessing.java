@@ -230,6 +230,16 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 	 * @see AbstractTechnionProcessing#fileOutputButton
 	 */
 	private final class ButtonListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ButtonListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==fileInputButton) {
@@ -254,6 +264,16 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 	 * @see AbstractTechnionProcessing#fileInput
 	 */
 	private final class FileInputListener implements KeyListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public FileInputListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override public void keyPressed(KeyEvent arg0) {inputFileChanged();}
 		@Override public void keyReleased(KeyEvent arg0) {inputFileChanged();}
 		@Override public void keyTyped(KeyEvent arg0) {inputFileChanged();}

@@ -336,6 +336,16 @@ public final class HTMLPanel extends JPanel {
 	 * @see HTMLPanel#buttonContent
 	 */
 	private final class ButtonListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ButtonListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==buttonClose) {
@@ -390,6 +400,16 @@ public final class HTMLPanel extends JPanel {
 	 * @see HTMLPanel#textPane
 	 */
 	private final class PageLoadListener implements Runnable {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public PageLoadListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			buttonHome.setVisible(homeURL!=null);
@@ -410,6 +430,16 @@ public final class HTMLPanel extends JPanel {
 	 * @see HTMLPanel#processSpecialLink
 	 */
 	private final class LinkClickListener implements Runnable {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public LinkClickListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			URL url=textPane.getLastClickedURL();
@@ -448,6 +478,16 @@ public final class HTMLPanel extends JPanel {
 		 * @see Serializable
 		 */
 		private static final long serialVersionUID = 3060385322767789283L;
+
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public EscapeListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {

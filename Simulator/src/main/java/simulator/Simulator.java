@@ -33,6 +33,7 @@ import ui.model.CallcenterRunModel;
 import ui.model.CallcenterRunModelCaller;
 
 /**
+ * Haupt-Klasse für die Durchführung von Simulationen
  * @author Alexander Herzog
  * @version 1.0
  */

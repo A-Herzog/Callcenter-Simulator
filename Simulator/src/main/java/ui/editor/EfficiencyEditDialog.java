@@ -273,6 +273,16 @@ public class EfficiencyEditDialog extends BaseEditDialog {
 	 * Reagiert auf Klicks auf die Schaltflächen und Tasteneingaben in dem Dialog.
 	 */
 	private final class ButtonListener implements ActionListener, KeyListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ButtonListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==useGlobal) {enableGUI(!useGlobal.isSelected()); return;}

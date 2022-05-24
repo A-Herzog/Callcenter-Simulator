@@ -156,6 +156,16 @@ public class VarianzAnalyseExportableTable {
 		 */
 		private static final long serialVersionUID = -3597759277796840217L;
 
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public VarianzAnalyseExportableTableModel() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public String getColumnName(int column) {
 			if (column==0) return "";

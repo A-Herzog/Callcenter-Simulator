@@ -46,6 +46,16 @@ public class CommandUpdate extends AbstractCommand {
 	/** Ausgabe-jar-Datei */
 	private File jarFile;
 
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public CommandUpdate() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
 	@Override
 	public String[] getKeys() {
 		List<String> list=new ArrayList<>();

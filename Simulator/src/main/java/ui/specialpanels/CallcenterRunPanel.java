@@ -177,6 +177,16 @@ public class CallcenterRunPanel extends JCloseablePanel {
 	 * Aktualisiert die Anzeige gemäß des Simulationsfortschritts
 	 */
 	private class UpdateInfoTask extends TimerTask {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public UpdateInfoTask() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			if (abortRun) {

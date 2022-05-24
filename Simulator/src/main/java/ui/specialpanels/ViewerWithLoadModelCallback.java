@@ -20,6 +20,9 @@ import java.io.Serializable;
 import ui.model.CallcenterModel;
 
 /**
+ * Diese Klasse stellt über die Möglichkeiten von {@link JWorkPanel}
+ * hinaus Callback-Routinen zum Laden von Modellen bereit.
+ * @see JWorkPanel
  * @author Alexander Herzog
  * @version 1.0
  */

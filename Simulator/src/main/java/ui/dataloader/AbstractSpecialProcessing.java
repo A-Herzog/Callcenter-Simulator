@@ -235,6 +235,16 @@ public abstract class AbstractSpecialProcessing {
 	 * @see AbstractSpecialProcessing#viewer
 	 */
 	private final class LinkListener implements HyperlinkListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public LinkListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void hyperlinkUpdate(HyperlinkEvent e) {
 			if (e.getEventType()==HyperlinkEvent.EventType.ENTERED) {
@@ -273,6 +283,16 @@ public abstract class AbstractSpecialProcessing {
 	 * @see AbstractSpecialProcessing#drop
 	 */
 	private final class FileDropActionListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public FileDropActionListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			final FileDropperData data=(FileDropperData)e.getSource();

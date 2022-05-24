@@ -53,6 +53,16 @@ public abstract class JTableExtAbstractTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = -4249212671820906541L;
 
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public JTableExtAbstractTableModel() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Erstellt ein Panel für eine Tabellenzelle aus mehreren Schaltflächen
 	 * @param title	Namen der Schaltflächen (darf <code>null</code> sein)
 	 * @param icon	Icons für die Schaltflächen (darf <code>null</code> sein)

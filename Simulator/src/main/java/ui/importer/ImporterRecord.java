@@ -68,6 +68,16 @@ public final class ImporterRecord implements Cloneable {
 	private static List<ImporterProcessor> importerProcessors=null;
 
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public ImporterRecord() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Liefert eine Liste aller {@link ImporterProcessor}-Klassen, zum Verarbeiten
 	 * der Importschablonen.
 	 * (Hier müssen die <code>ImporterProcessor</code>-Klassen registriert werden.

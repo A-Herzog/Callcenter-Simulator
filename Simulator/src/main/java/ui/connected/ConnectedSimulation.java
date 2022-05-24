@@ -61,6 +61,16 @@ public final class ConnectedSimulation {
 	private CallcenterSimulatorInterface simulator;
 
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public ConnectedSimulation() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Lädt das angegeben verbundenen Simulationsmodell und prüft dabei, ob die in dem
 	 * Modell angegebenen Dateien vorhanden sind.
 	 * @param model	Verbundenes Simulationsmodell

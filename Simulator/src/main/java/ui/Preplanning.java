@@ -41,6 +41,7 @@ public final class Preplanning {
 	private double fixedLoadStatus;
 
 	/**
+	 * Auswahlmöglichkeiten für die Zielkenngröße und die Modellvereinfachung
 	 * @see Preplanning#calc(Mode, Mode, double, boolean, double)
 	 */
 	public enum Mode {

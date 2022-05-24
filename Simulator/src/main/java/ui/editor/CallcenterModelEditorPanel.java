@@ -325,8 +325,26 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		 * @see Serializable
 		 */
 		private static final long serialVersionUID = -6177382334742454499L;
-		@Override public Object stringToValue(String text) {return CallcenterModel.stringToDate(text);}
-		@Override public String valueToString(Object value) throws ParseException {return (value!=null && (value instanceof Calendar))?CallcenterModel.dateToLocalString((Calendar)value):"";}
+
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public DateLabelFormatter() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		@Override
+		public Object stringToValue(String text) {
+			return CallcenterModel.stringToDate(text);
+		}
+
+		@Override
+		public String valueToString(Object value) throws ParseException {
+			return (value!=null && (value instanceof Calendar))?CallcenterModel.dateToLocalString((Calendar)value):"";
+		}
 	}
 
 	/**
@@ -862,6 +880,16 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	 * Reagiert darauf, wenn eine Anrufergruppe umbenannt wurde.
 	 */
 	private class CallerTypeRenameListener implements RenameListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public CallerTypeRenameListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void renamed(RenameEvent e) {
 			for (int i=0;i<model.callcenter.size();i++) {
@@ -1153,6 +1181,16 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	 * Reagiert darauf, wenn ein Skill-Level umbenannt wird
 	 */
 	private class SkillLevelRenameListener implements RenameListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SkillLevelRenameListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void renamed(RenameEvent e) {
 			for (int i=0;i<model.skills.size();i++) if (model.skills.get(i).name.equalsIgnoreCase(e.oldName)) {
@@ -1912,6 +1950,16 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		private static final long serialVersionUID = -3181757143428275248L;
 
 		/**
+		 * Konstruktor der Klasse
+		 */
+		public CallerListRenderer() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		/**
 		 * Kann sich der Kundentyp für Kunden eines bestimmten Typs bei einer Wiederholung verändern?
 		 * @param caller	Zu prüfender Kundentyp
 		 * @return	Liefert <code>true</code>, wenn die Kunden dieses Typs bei einer Wiederholung unter einem neuen Typ auftreten können
@@ -1997,6 +2045,16 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 	 */
 	private static class CallcenterListRenderer extends AdvancedListCellRenderer {
 		/**
+		 * Konstruktor der Klasse
+		 */
+		public CallcenterListRenderer() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		/**
 		 * Serialisierungs-ID der Klasse
 		 * @see Serializable
 		 */
@@ -2066,6 +2124,16 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		 * @see Serializable
 		 */
 		private static final long serialVersionUID = -838162614370052084L;
+
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SkillLevelListRenderer() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
 
 		@Override
 		protected void buildString(Object value, int index, StringBuilder s) {

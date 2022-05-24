@@ -35,6 +35,16 @@ public class CommandLanguage extends AbstractCommand {
 	/** Einzustellende Sprache ("de" oder "en") */
 	private String languageName="";
 
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public CommandLanguage() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
 	@Override
 	public String[] getKeys() {
 		final List<String> list=new ArrayList<>();

@@ -2516,6 +2516,16 @@ public final class MainPanel extends MainPanelBase {
 	 */
 	private class SimDoneNotify implements Runnable {
 		/**
+		 * Konstruktor der Klasse
+		 */
+		public SimDoneNotify() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		/**
 		 * Führt die Verarbeitung zum Abschluss einer Simulation durch.
 		 * @param runComplete	Ist die Simulation erfolgreich abgeschlossen worden?
 		 * @param logFile	Log-Datei für die Simulation
@@ -2660,6 +2670,16 @@ public final class MainPanel extends MainPanelBase {
 	 * Liefert einen möglichen Hilfe-Special-Link aus dem Welcome-Panel-
 	 */
 	private class ProcessSpecialWelcomeLink extends ProcessSpecialLink {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ProcessSpecialWelcomeLink() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		protected String getHRef() {
 			return welcomePanel.getSpecialLink();
@@ -2704,6 +2724,16 @@ public final class MainPanel extends MainPanelBase {
 	 */
 	private abstract class ProcessSpecialLink implements Runnable {
 		/**
+		 * Konstruktor der Klasse
+		 */
+		public ProcessSpecialLink() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		/**
 		 * Liefert die Adresse des angeklicken Links
 		 * @return	Adresse des angeklicken Links
 		 */
@@ -2747,6 +2777,16 @@ public final class MainPanel extends MainPanelBase {
 	 * @see MainPanel#backgroundSimulator
 	 */
 	private class BackgroundModelGetter extends TimerTask {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public BackgroundModelGetter() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			if (workPanel!=null) return;

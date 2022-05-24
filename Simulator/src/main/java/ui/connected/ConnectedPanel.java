@@ -60,6 +60,7 @@ import ui.specialpanels.JWorkPanel;
 import xml.XMLTools;
 
 /**
+ * Steuerungspanel für die verbundene Simulation
  * @author Alexander Herzog
  * @version 1.0
  */
@@ -342,6 +343,16 @@ public final class ConnectedPanel extends JWorkPanel {
 	 * @see ConnectedPanel#everythingDone()
 	 */
 	private final class SimTimerTask extends TimerTask {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SimTimerTask() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			if (cancelWork) {timer.cancel(); simulation.getSimulator().cancel(); everythingDone(); return;}
@@ -464,9 +475,30 @@ public final class ConnectedPanel extends JWorkPanel {
 	 * @see ConnectedPanel#folderField
 	 */
 	private final class FolderFieldKeyListener implements KeyListener {
-		@Override public void keyTyped(KeyEvent e) {tableModel.setDefaultFolder(folderField.getText());}
-		@Override public void keyPressed(KeyEvent e) {tableModel.setDefaultFolder(folderField.getText());}
-		@Override public void keyReleased(KeyEvent e) {tableModel.setDefaultFolder(folderField.getText());}
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public FolderFieldKeyListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			tableModel.setDefaultFolder(folderField.getText());
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			tableModel.setDefaultFolder(folderField.getText());
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			tableModel.setDefaultFolder(folderField.getText());
+		}
 	}
 
 	/**
@@ -474,9 +506,30 @@ public final class ConnectedPanel extends JWorkPanel {
 	 * @see ConnectedPanel#day0statisticsField
 	 */
 	private final class FileFieldKeyListener implements KeyListener {
-		@Override public void keyTyped(KeyEvent e) {tableModel.setDay0Statistics(day0statisticsField.getText());}
-		@Override public void keyPressed(KeyEvent e) {tableModel.setDay0Statistics(day0statisticsField.getText());}
-		@Override public void keyReleased(KeyEvent e) {tableModel.setDay0Statistics(day0statisticsField.getText());}
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public FileFieldKeyListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			tableModel.setDay0Statistics(day0statisticsField.getText());
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			tableModel.setDay0Statistics(day0statisticsField.getText());
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			tableModel.setDay0Statistics(day0statisticsField.getText());
+		}
 	}
 
 	/**
@@ -489,6 +542,16 @@ public final class ConnectedPanel extends JWorkPanel {
 	 * @see ConnectedPanel#drop2
 	 */
 	private final class ButtonListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ButtonListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==folderButton) {selectFolder(); return;}

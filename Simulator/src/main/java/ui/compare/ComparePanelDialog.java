@@ -111,6 +111,16 @@ public class ComparePanelDialog extends JFrame {
 	 * @see ComparePanelDialog#compare
 	 */
 	private class CloseNotify implements Runnable {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public CloseNotify() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			if (closeNotify!=null) closeNotify.run();

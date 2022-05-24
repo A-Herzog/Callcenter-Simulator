@@ -501,6 +501,16 @@ public class NewModelWizard extends JDialog {
 	 * Reagiert auf Klicks auf die Schaltflächen in dem Dialog.
 	 */
 	private class ActionEvents implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ActionEvents() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==cancelButton) {setVisible(false); dispose();}

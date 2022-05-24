@@ -36,6 +36,16 @@ import ui.model.CallcenterRunModelCaller;
  */
 public class StopTestEvent extends Event {
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public StopTestEvent() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Entfernt einen Kunden, der nicht mehr bedient werden kann, aus der Warteschlange.
 	 * @param data	Simulationsdatenobjekt
 	 * @param caller	Anrufer

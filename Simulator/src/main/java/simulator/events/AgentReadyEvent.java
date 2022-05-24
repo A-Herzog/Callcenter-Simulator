@@ -36,6 +36,16 @@ public final class AgentReadyEvent extends Event {
 	public AgentRecord agentRecord;
 
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public AgentReadyEvent() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Agenten wieder als verfügbar verbuchen
 	 * @param agentRecord	Agentendatensatz
 	 * @param time	Aktuelle Zeit

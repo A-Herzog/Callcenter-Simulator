@@ -80,6 +80,16 @@ public class SimpleSimulationDialog extends BaseEditDialog {
 	 * Aktualisiert die Ausgaben
 	 */
 	private class UpdateSimulation implements Runnable {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public UpdateSimulation() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			SimpleSimulationInput input=inputPanel.getInputData();

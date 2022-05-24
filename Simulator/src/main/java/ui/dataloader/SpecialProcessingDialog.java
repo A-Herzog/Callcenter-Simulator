@@ -169,6 +169,16 @@ public final class SpecialProcessingDialog extends BaseEditDialog {
 	 * @see SpecialProcessingDialog#list
 	 */
 	private final class ListSelection implements ListSelectionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ListSelection() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			int i=list.getSelectedIndex(); if (i<0) return;

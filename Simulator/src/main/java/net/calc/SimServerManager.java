@@ -130,6 +130,16 @@ public abstract class SimServerManager {
 		 */
 		public SimServerThread thread;
 
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ThreadStartWork() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void run() {
 			showInfo(thread.getName(),String.format(Language.tr("Server.ConnectedWith"),thread.getClientIP()),false);

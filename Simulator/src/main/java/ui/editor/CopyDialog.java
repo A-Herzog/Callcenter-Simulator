@@ -252,11 +252,29 @@ public class CopyDialog extends BaseEditDialog {
 	 * @see CopyDialog#percent
 	 */
 	private class PercentListener implements KeyListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public PercentListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
-		public void keyTyped(KeyEvent e) {if (e.getSource()==percent) updateCount();}
+		public void keyTyped(KeyEvent e) {
+			if (e.getSource()==percent) updateCount();
+		}
+
 		@Override
-		public void keyPressed(KeyEvent e) {if (e.getSource()==percent) updateCount();}
+		public void keyPressed(KeyEvent e) {
+			if (e.getSource()==percent) updateCount();
+		}
+
 		@Override
-		public void keyReleased(KeyEvent e) {if (e.getSource()==percent) updateCount();}
+		public void keyReleased(KeyEvent e) {
+			if (e.getSource()==percent) updateCount();
+		}
 	}
 }

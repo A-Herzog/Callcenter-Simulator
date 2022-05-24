@@ -33,6 +33,7 @@ import ui.HelpLink;
 import ui.editor.BaseEditDialog;
 
 /**
+ * Einfacher Rechner-Dialog
  * @author Alexander Herzog
  * @version 1.0
  */
@@ -81,6 +82,16 @@ public class CalculatorDialog extends BaseEditDialog {
 		 * Rechensystem
 		 */
 		private final CalcSystem calc=new CalcSystem();
+
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public InputListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
 
 		/**
 		 * Rechnung aktualisieren

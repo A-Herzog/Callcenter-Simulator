@@ -32,6 +32,16 @@ public final class ReCheckEvent extends Event {
 	/** Kunden auf den sich die Prüfung bezieht */
 	public CallerRecord callerRecord;
 
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public ReCheckEvent() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
 	/* (non-Javadoc)
 	 * @see simcore.Event#run(simcore.SimData)
 	 */

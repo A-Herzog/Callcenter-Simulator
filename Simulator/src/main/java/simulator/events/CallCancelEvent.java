@@ -41,6 +41,16 @@ public final class CallCancelEvent extends Event {
 	public CallerRecord callerRecord;
 
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public CallCancelEvent() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Verbucht den Warteabbruch in der Statistik
 	 * @param data	Simulationsdatenobjekt
 	 * @param callerRecord	Kunde der das Warten aufgibt

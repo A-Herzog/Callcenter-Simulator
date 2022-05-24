@@ -25,6 +25,16 @@ import ui.model.CallcenterModel;
  */
 public abstract class ImporterProcessorSingleValue extends ImporterProcessor {
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public ImporterProcessorSingleValue() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Führt den Importvorgang aus
 	 * @param model	Callcenter-Modell, in das die Daten importiert werden sollen
 	 * @param parameter	 Zusätzlicher Parameter, der angibt, was importiert werden soll

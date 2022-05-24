@@ -39,6 +39,16 @@ import ui.model.CallcenterModel;
  */
 public abstract class AbstractGeneratorCommand extends AbstractSimulationCommand {
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public AbstractGeneratorCommand() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Anzahl an zusätzlich erwarteten Kommandozeilenargumenten für den Befehl.
 	 * Dieser Wert sollte bereits vom Konstruktor eingestellt werden. Die
 	 * zusätzlichen Argumente werden von {@link #prepare(String[], InputStream, PrintStream)}

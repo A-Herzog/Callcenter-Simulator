@@ -31,6 +31,16 @@ import language.Language;
  * @see CommandServer
  */
 public final class CommandServerLog extends CommandServer {
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public CommandServerLog() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
 	@Override
 	public String[] getKeys() {
 		List<String> list=new ArrayList<>();

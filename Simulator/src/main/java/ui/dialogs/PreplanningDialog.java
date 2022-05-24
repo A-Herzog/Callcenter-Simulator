@@ -237,6 +237,16 @@ public class PreplanningDialog extends BaseEditDialog {
 	 * @see PreplanningDialog#comboValueType
 	 */
 	private class ComboListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ComboListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==comboMode) {
@@ -266,6 +276,16 @@ public class PreplanningDialog extends BaseEditDialog {
 	 * @see PreplanningDialog#value
 	 */
 	private class EditListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public EditListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (comboMode.getSelectedIndex()==0) {

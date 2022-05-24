@@ -565,6 +565,16 @@ public final class RunData {
 		public int callerStayingTime;
 
 		/**
+		 * Konstruktor der Klasse
+		 */
+		public CallerRecord() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		/**
 		 * Reinitialisiert den Kundendatensatz.<br>
 		 * (Die Objekte werden nicht immer wieder angelegt und
 		 * abgebaut, sondern wiederverwendet.)

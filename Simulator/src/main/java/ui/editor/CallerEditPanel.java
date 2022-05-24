@@ -150,6 +150,16 @@ public abstract class CallerEditPanel extends JPanel {
 	 * Reagiert auf Eingabe und auf Klicks auf die Steuerelement im Dialog
 	 */
 	private class DialogElementListener implements ActionListener, KeyListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public DialogElementListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			processDialogEvents(e);

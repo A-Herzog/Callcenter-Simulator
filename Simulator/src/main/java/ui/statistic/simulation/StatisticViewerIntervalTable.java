@@ -31,6 +31,15 @@ import systemtools.statistics.StatisticViewerTable;
  * @version 1.0
  */
 public class StatisticViewerIntervalTable extends StatisticViewerTable {
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public StatisticViewerIntervalTable() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
 
 	/**
 	 * Erzeugt die Tabelle

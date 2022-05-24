@@ -34,6 +34,16 @@ public final class AgentQuitEvent extends Event {
 	 */
 	public AgentRecord agentRecord;
 
+	/**
+	 * Konstruktor der Klasse
+	 */
+	public AgentQuitEvent() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
 	/* (non-Javadoc)
 	 * @see simcore.Event#run(simcore.SimData)
 	 */

@@ -35,6 +35,16 @@ import language.Language;
  */
 public class AdvancedListCellRenderer extends DefaultListCellRenderer {
 	/**
+	 * Konstruktor der Klasse
+	 */
+	public AdvancedListCellRenderer() {
+		/*
+		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+		 */
+	}
+
+	/**
 	 * Serialisierungs-ID der Klasse
 	 * @see Serializable
 	 */

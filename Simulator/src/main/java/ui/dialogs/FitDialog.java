@@ -65,6 +65,7 @@ import ui.model.CallcenterModelCaller;
 import ui.model.CallcenterModelSkillLevel;
 
 /**
+ * Dialog zur Durchführung der Verteilungsanpassung
  * @author Alexander Herzog
  * @version 1.0
  */

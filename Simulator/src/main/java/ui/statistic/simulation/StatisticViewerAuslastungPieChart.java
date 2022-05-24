@@ -76,7 +76,7 @@ public class StatisticViewerAuslastungPieChart extends StatisticViewerPieChart {
 	}
 
 	/**
-	 *
+	 * Konstruktor der Klasse
 	 * @param statistic	Objekt vom Typ {@link Statistics}, dem die Auslastungszahlen entnommen werden sollen
 	 * @param dataType	Darstellungsart, siehe <code>DATA_TYPE_*</code> Konstanten.
 	 * @param dataNr	Nummer des Callcenters oder des Skill-Levels bei Verwendung von <code>DATA_TYPE_CALLCENTER</code> oder <code>DATA_TYPE_SKILL_LEVEL</code>

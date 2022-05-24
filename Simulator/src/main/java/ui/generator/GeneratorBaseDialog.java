@@ -275,6 +275,16 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 	 * Reagiert auf Eingaben und auf Klicks auf die Schaltflächen
 	 */
 	private final class TableButtonListener implements ActionListener, KeyListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public TableButtonListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==tableField) {loadTable(new File(tableField.getText())); return;}
@@ -286,11 +296,22 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 			}
 		}
 		@Override
-		public void keyTyped(KeyEvent e) {loadTable(new File(tableField.getText().trim())); return;}
+		public void keyTyped(KeyEvent e) {
+			loadTable(new File(tableField.getText().trim()));
+			return;
+		}
+
 		@Override
-		public void keyPressed(KeyEvent e) {loadTable(new File(tableField.getText().trim())); return;}
+		public void keyPressed(KeyEvent e) {
+			loadTable(new File(tableField.getText().trim()));
+			return;
+		}
+
 		@Override
-		public void keyReleased(KeyEvent e) {loadTable(new File(tableField.getText().trim())); return;}
+		public void keyReleased(KeyEvent e) {
+			loadTable(new File(tableField.getText().trim()));
+			return;
+		}
 	}
 
 	/**

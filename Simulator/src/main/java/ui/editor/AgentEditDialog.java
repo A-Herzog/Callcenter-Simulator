@@ -773,6 +773,16 @@ public class AgentEditDialog extends BaseEditDialog {
 	 * @see AgentEditDialog#tools2Popup
 	 */
 	private class ToolPopupListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ToolPopupListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==tools1) {tools1Popup.show(tools1,0,tools1.getBounds().height); return;}
@@ -865,6 +875,16 @@ public class AgentEditDialog extends BaseEditDialog {
 	 * @see AgentEditDialog#editSkillLevel()
 	 */
 	private class SkillLevelRenameListener implements RenameListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public SkillLevelRenameListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void renamed(RenameEvent e) {
 			/* ComboBox aktualisieren */
@@ -890,6 +910,16 @@ public class AgentEditDialog extends BaseEditDialog {
 	 * Eingabefeldern des Dialogs
 	 */
 	private class DialogElementListener implements KeyListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public DialogElementListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		/**
 		 * Reagiert auf ein Tastenereignis
 		 * @param e	Tastenereignis
@@ -1019,6 +1049,16 @@ public class AgentEditDialog extends BaseEditDialog {
 	 * @see AgentEditDialog#applyThisPage
 	 */
 	private class PopupActionListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public PopupActionListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			for (int i=0;i<applyThisPage.length;i++) if (applyThisPage[i]==e.getSource()) {

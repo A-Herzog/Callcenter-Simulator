@@ -313,6 +313,16 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 		 */
 		private static final long serialVersionUID = -3347645492735924255L;
 
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public UebertragTableModel() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
 			return columnIndex>0;
@@ -367,9 +377,30 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 	 * @see ConnectedUebertragEditDialog#retryGlobal
 	 */
 	private final class RetryGlobalKeyListener implements KeyListener {
-		@Override public void keyTyped(KeyEvent e) {radioGlobal.setSelected(true);}
-		@Override public void keyPressed(KeyEvent e) {radioGlobal.setSelected(true);}
-		@Override public void keyReleased(KeyEvent e) {radioGlobal.setSelected(true);}
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public RetryGlobalKeyListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			radioGlobal.setSelected(true);
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			radioGlobal.setSelected(true);
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			radioGlobal.setSelected(true);
+		}
 	}
 
 	/**

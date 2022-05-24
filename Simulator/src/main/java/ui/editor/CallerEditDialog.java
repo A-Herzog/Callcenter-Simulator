@@ -306,6 +306,16 @@ public class CallerEditDialog extends BaseEditDialog {
 	 * @see CallerEditDialog#applyAllPages
 	 */
 	private class PopupActionListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public PopupActionListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			for (int i=0;i<applyThisPage.length;i++) if (applyThisPage[i]==e.getSource()) {

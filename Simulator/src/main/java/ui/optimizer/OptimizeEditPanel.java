@@ -758,6 +758,16 @@ public final class OptimizeEditPanel extends JTabbedPane {
 	 */
 	private final class DialogElementListener implements ActionListener {
 		/**
+		 * Konstruktor der Klasse
+		 */
+		public DialogElementListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
+		/**
 		 * Veränderte Auswahl für welche Kunden- oder Agentengruppen der Zielwert erreicht werden muss
 		 * @see OptimizeEditPanel#optGroups
 		 */
@@ -889,6 +899,16 @@ public final class OptimizeEditPanel extends JTabbedPane {
 	 * Reagiert auf Klicks auf die verschiedenen Schaltflächen
 	 */
 	private final class ButtonListener implements ActionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public ButtonListener() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		/**
 		 * Zeigt den Dialog zur Konfiguration des Übertrag der Warteabbrecher an.
 		 * @see OptimizeEditPanel#day0configButton

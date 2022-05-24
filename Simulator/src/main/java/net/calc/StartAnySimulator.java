@@ -29,6 +29,7 @@ import ui.model.CallcenterModel;
 import ui.model.CallcenterRunModel;
 
 /**
+ * Factory-Klasse zum Starten von Simulator instanzen
  * @author Alexander Herzog
  * @version 1.0
  */

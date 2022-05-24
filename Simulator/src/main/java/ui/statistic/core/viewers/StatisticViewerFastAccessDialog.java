@@ -347,6 +347,16 @@ public class StatisticViewerFastAccessDialog extends BaseEditDialog {
 		 */
 		private static final long serialVersionUID = -7643893461330181707L;
 
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public RadioButtonRenderer() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 			if (value==null || !(value instanceof Component)) return super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
@@ -635,6 +645,16 @@ public class StatisticViewerFastAccessDialog extends BaseEditDialog {
 	 * @see StatisticViewerFastAccessDialog#tree
 	 */
 	private class TreeSelectionChanged implements TreeSelectionListener {
+		/**
+		 * Konstruktor der Klasse
+		 */
+		public TreeSelectionChanged() {
+			/*
+			 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
+			 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
+			 */
+		}
+
 		/**
 		 * Liefert den aktuell in {@link StatisticViewerFastAccessDialog#tree}
 		 * gewählten Eintrag
