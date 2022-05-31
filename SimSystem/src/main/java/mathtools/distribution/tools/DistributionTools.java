@@ -146,6 +146,9 @@ public final class DistributionTools {
 	/** Zeta-Verteilung */
 	public static String[] DistZeta=new String[]{"Zeta-Verteilung"};
 
+	/** Diskrete Gleichverteilung */
+	public static String[] DistDiscreteUniform=new String[]{"Diskrete Gleichverteilung"};
+
 	/** Warnung "unbekannte Verteilung" */
 	public static String DistUnknown="unbekannte Verteilung";
 
@@ -181,6 +184,9 @@ public final class DistributionTools {
 
 	/** Bezeichner "Schiefe" */
 	public static String DistSkewness="Schiefe";
+
+	/** Bezeichner "Modus" */
+	public static String DistMode="Modus";
 
 	/**
 	 * Diese Klasse kann nicht instanziert werden.
@@ -232,7 +238,8 @@ public final class DistributionTools {
 				new WrapperBinomialDistribution(),
 				new WrapperPoissonDistribution(),
 				new WrapperNegativeBinomialDistribution(),
-				new WrapperZetaDistribution()
+				new WrapperZetaDistribution(),
+				new WrapperDiscreteUniformDistribution()
 		};
 	}
 

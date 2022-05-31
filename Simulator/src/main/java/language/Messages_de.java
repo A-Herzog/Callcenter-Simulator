@@ -70,6 +70,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[141] = "Speichert den Schichtplan als Grafik in einer Datei";
     t[144] = "Calibrate.ErrorInvalidMaximumAccessibilityError";
     t[145] = "Die maximal zul\u00e4ssige Abweichung zur angegebenen Ziel-Erreichbarkeit ist ung\u00fcltig.";
+    t[146] = "Distribution.Mode";
+    t[147] = "Modus";
     t[154] = "SimStatistic.Caller.Total";
     t[155] = "Anrufer gesamt";
     t[156] = "MainMenu.Help.Help.Tooltip";
@@ -404,6 +406,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[989] = "Externes Skript:";
     t[990] = "FitDalog.UseFor.RecallTimeDistribution";
     t[991] = "Wiederanrufabst\u00e4ndeverteilung";
+    t[1000] = "Distribution.SetupList.Info.Plural";
+    t[1001] = "%d von %d Verteilungen sind hervorgehoben.";
     t[1002] = "NewModelWizard.Error.SmallNumberOfCallers.Title";
     t[1003] = "Kleine Anzahl an Anrufern";
     t[1012] = "MainMenu.Simulation.Preplanning.Mnemonic";
@@ -1448,6 +1452,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3619] = "Exportieren von Grafiken";
     t[3622] = "Optimizer.OptimizeProperty.TargetForLabel.ServiceLevel.Tooltip";
     t[3623] = "Dieser Wert gibt den minimal gew\u00fcnschten Service-Level an, nicht die wie viele Agenten eingesetzt werden sollen.";
+    t[3626] = "SimStatistic.ForwardedCalls.Number";
+    t[3627] = "Weitergeleitete Anrufe (Anzahl)";
     t[3634] = "XML.Model.ClientType.CostPerCaller.WaitingSecond.Error";
     t[3635] = "Die angegebenen Kosten pro Wartesekunde %s sind ung\u00fcltig.";
     t[3638] = "XML.OptimizerSetup.Property.Error";
@@ -1572,6 +1578,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3861] = "Speedtest";
     t[3866] = "FileType.HTMLApp";
     t[3867] = "html-App-Dateien";
+    t[3872] = "Distribution.DiscreteUniform";
+    t[3873] = "Diskrete Gleichverteilung";
     t[3876] = "LoadCalculator.CallContinue";
     t[3877] = "Weiterleitung";
     t[3882] = "MainMenu.Simulation.OptimizerResults.Tooltip";
@@ -2002,6 +2010,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4791] = "Mittleres Erlang-C-Beispielmodell";
     t[4792] = "XML.OptimizerSetup.Property.WorkLoad";
     t[4793] = "Auslastung";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4800] = "XML.Statistic.Clients.CancelTimeDistribution.Calls.Error";
     t[4801] = "Die Abbruchzeitverteilung der Anrufe ist ung\u00fcltig.";
     t[4804] = "Simulation.Log.ReCheck";
@@ -2010,12 +2024,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4807] = "O";
     t[4810] = "Statistic.GenerateReport.Tooltip";
     t[4811] = "Erstellt einen Bericht \u00fcber eine selbst zusammenstellbare Teilmenge der Ergebnisse";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4812] = "Optimizer.ControlVariable.ChangeNumberOfAgents";
     t[4813] = "Anzahl an Agenten in jedem Lauf um Prozentwert ver\u00e4ndern";
     t[4814] = "Model.Plausibility.Info";
@@ -4008,6 +4016,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9507] = "N\u00e4chstes Callcenter";
     t[9510] = "SimStatistic.Category.WorkLoadOverTheDay";
     t[9511] = "Auslastung \u00fcber den Tag";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9516] = "Editor.AgentsGroup.Shift.ShowPlan.Tabs.DistributionTable";
     t[9517] = "Verteilungstabelle";
     t[9518] = "MainMenu.Simulation.Run";
@@ -4016,12 +4030,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9521] = "darf kein weiterer Parameter folgen";
     t[9522] = "CommandLine.Count.Then1";
     t[9523] = "muss genau ein weiterer Parameter folgen";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9524] = "OptimizeResults.Button.LastRunResult";
     t[9525] = "Daten des finalen Simulationslaufs";
     t[9526] = "JDistributionEditor.DataVector";
@@ -4854,8 +4862,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11597] = "Rate";
     t[11604] = "XML.Connected.Day";
     t[11605] = "VerknuepftTag";
-    t[11608] = "SimStatistic.ForwardedCalls.Number";
-    t[11609] = "Weitergeleitete Anrufe (Anzahl)";
+    t[11608] = "Distribution.SetupList.Info.Singular";
+    t[11609] = "%d von %d Verteilungen ist hervorgehoben.";
     t[11622] = "CommandLine.ExportStatistic.Description.Long";
     t[11623] = "Dieser Befehl erwartet genau drei weitere Parameter:\n1. Gew\u00fcnschtes Export-Ausgabeformat (\"json\" oder \"WebApp\")\n2. Name der Eingabe-Statistik-Datei\n3. Name der Ausgabedatei\nDie Eingabedatei muss existieren. Die Ausgabedatei darf nicht existieren.";
     t[11624] = "Optimizer.AgentsPerHalfHourInterval";
@@ -6014,6 +6022,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14465] = "Anteil an Tagen, der auf dem Server simuliert werden soll";
     t[14468] = "CommandLine.Error.File.InputNoValidCallCenterModel";
     t[14469] = "Die Eingabedatei %s ist keine g\u00fcltige Callcenter-Modell Datei.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14482] = "Editor.Caller.Score.Forwarded";
     t[14483] = "Zus\u00e4tzlicher Scorewert bei Weiterleitungen";
     t[14484] = "MainMenu.Simulation.Run.Tooltip";
@@ -6022,12 +6036,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14489] = "Zeit";
     t[14490] = "Editor.SkillLevel.Distribution.Global";
     t[14491] = "Globale Verteilung";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14494] = "Editor.Callcenter.DeleteAgentsGroup.No.Info";
     t[14495] = "Die Agentengruppe bleibt unver\u00e4ndert in dem Callcenter erhalten.";
     t[14508] = "Editor.SkillLevelOfTheAgents.Copy.Info";

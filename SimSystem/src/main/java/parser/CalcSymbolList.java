@@ -64,6 +64,7 @@ import parser.symbols.CalcSymbolPreOperatorFrac;
 import parser.symbols.CalcSymbolPreOperatorGamma;
 import parser.symbols.CalcSymbolPreOperatorIf;
 import parser.symbols.CalcSymbolPreOperatorInt;
+import parser.symbols.CalcSymbolPreOperatorKurt;
 import parser.symbols.CalcSymbolPreOperatorLd;
 import parser.symbols.CalcSymbolPreOperatorLg;
 import parser.symbols.CalcSymbolPreOperatorLog;
@@ -74,11 +75,14 @@ import parser.symbols.CalcSymbolPreOperatorMin;
 import parser.symbols.CalcSymbolPreOperatorModulo;
 import parser.symbols.CalcSymbolPreOperatorPower;
 import parser.symbols.CalcSymbolPreOperatorRandom;
+import parser.symbols.CalcSymbolPreOperatorRandomGeneratorInvers;
+import parser.symbols.CalcSymbolPreOperatorRandomGeneratorInversX;
 import parser.symbols.CalcSymbolPreOperatorRound;
 import parser.symbols.CalcSymbolPreOperatorSCV;
 import parser.symbols.CalcSymbolPreOperatorSign;
 import parser.symbols.CalcSymbolPreOperatorSin;
 import parser.symbols.CalcSymbolPreOperatorSinh;
+import parser.symbols.CalcSymbolPreOperatorSk;
 import parser.symbols.CalcSymbolPreOperatorSqr;
 import parser.symbols.CalcSymbolPreOperatorSqrt;
 import parser.symbols.CalcSymbolPreOperatorStdDev;
@@ -93,6 +97,7 @@ import parser.symbols.distributions.CalcSymbolDiscreteDistributionHyperGeom;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionNegativeBinomial;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionNegativeBinomialDirect;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionPoisson;
+import parser.symbols.distributions.CalcSymbolDiscreteDistributionUniform;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionZeta;
 import parser.symbols.distributions.CalcSymbolDistributionBeta;
 import parser.symbols.distributions.CalcSymbolDistributionBetaDirect;
@@ -249,6 +254,7 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolDiscreteDistributionZeta());
 			addSymbol(new CalcSymbolDiscreteDistributionNegativeBinomial());
 			addSymbol(new CalcSymbolDiscreteDistributionNegativeBinomialDirect());
+			addSymbol(new CalcSymbolDiscreteDistributionUniform());
 
 			addSymbol(new CalcSymbolDistributionExp());
 			addSymbol(new CalcSymbolDistributionUniform());
@@ -358,6 +364,8 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolPreOperatorStdDev());
 			addSymbol(new CalcSymbolPreOperatorSCV());
 			addSymbol(new CalcSymbolPreOperatorCV());
+			addSymbol(new CalcSymbolPreOperatorSk());
+			addSymbol(new CalcSymbolPreOperatorKurt());
 			addSymbol(new CalcSymbolPreOperatorErlangC());
 			addSymbol(new CalcSymbolPreOperatorAllenCunneen());
 			addSymbol(new CalcSymbolPreOperatorModulo());
@@ -377,6 +385,10 @@ public class CalcSymbolList {
 
 			addSymbol(new CalcSymbolConstE());
 			addSymbol(new CalcSymbolConstPi());
+
+			addSymbol(new CalcSymbolPreOperatorRandomGeneratorInversX());
+			addSymbol(new CalcSymbolPreOperatorRandomGeneratorInvers());
+
 		} finally {
 			initLock.release();
 		}

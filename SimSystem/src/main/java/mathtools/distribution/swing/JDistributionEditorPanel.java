@@ -143,6 +143,12 @@ public class JDistributionEditorPanel extends JPanel {
 	/** Infozeile oben im Dialog zum Bearbeiten der hervorgehobenen Verteilungen */
 	public static String SetupListInfo="<html><body>Die jeweils ausgewählte Verteilung kann per Strg+Hoch<br>und Strg+Runter verschoben werden.</body></html>";
 
+	/** Infozeile unten im Dialog zum Bearbeiten der hervorgehobenen Verteilungen (eine Verteilung hervorgehoben) */
+	public static String SetupListInfoSingular="%d von %d Verteilungen ist hervorgehoben.";
+
+	/** Infozeile unten im Dialog zum Bearbeiten der hervorgehobenen Verteilungen (mehrere Verteilungen hervorgehoben) */
+	public static String SetupListInfoPlural="%d von %d Verteilungen sind hervorgehoben.";
+
 	/** Trenner zwischen den hervorgehobenen und den normalen Verteilungen */
 	public static String SetupListDivier="<html><body>Oben: hervorgehobene Verteilungen (angegebene Reihenfolge)<br>Unten: Normale Verteilungen (werden alphabetisch sortiert)</body></html>";
 
@@ -523,8 +529,12 @@ public class JDistributionEditorPanel extends JPanel {
 		if (listUpdating) return;
 		if (distributionType.getSelectedIndex()==lastIndex) return;
 		lastIndex=distributionType.getSelectedIndex();
-		final double mean=NumberTools.reduceDigits(DistributionTools.getMean(distribution),10);
-		final double sd=NumberTools.reduceDigits(DistributionTools.getStandardDeviation(distribution),10);
+		double mean=DistributionTools.getMean(distribution);
+		if (Double.isNaN(mean) || Double.isInfinite(mean) || mean<0 || mean>10E10) mean=10;
+		mean=NumberTools.reduceDigits(mean,10);
+		double sd=DistributionTools.getStandardDeviation(distribution);
+		if (Double.isNaN(sd) || Double.isInfinite(sd) || sd<0 || sd>10E10) sd=1;
+		sd=NumberTools.reduceDigits(sd,10);
 
 		((CardLayout)editPanel.getLayout()).show(editPanel,((JDistributionEditorPanelRecord)distributionType.getSelectedItem()).getName());
 

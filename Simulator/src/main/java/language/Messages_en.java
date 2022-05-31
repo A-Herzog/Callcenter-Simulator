@@ -70,6 +70,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[141] = "Saves the shift plan as a graphics in a file";
     t[144] = "Calibrate.ErrorInvalidMaximumAccessibilityError";
     t[145] = "The selected maximum target accessibility error is invalid.";
+    t[146] = "Distribution.Mode";
+    t[147] = "Mode";
     t[154] = "SimStatistic.Caller.Total";
     t[155] = "Caller total";
     t[156] = "MainMenu.Help.Help.Tooltip";
@@ -404,6 +406,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[989] = "External script:";
     t[990] = "FitDalog.UseFor.RecallTimeDistribution";
     t[991] = "Recall time distribution";
+    t[1000] = "Distribution.SetupList.Info.Plural";
+    t[1001] = "%d of %d distributions are highlighted.";
     t[1002] = "NewModelWizard.Error.SmallNumberOfCallers.Title";
     t[1003] = "Small number of caller";
     t[1012] = "MainMenu.Simulation.Preplanning.Mnemonic";
@@ -1448,6 +1452,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[3619] = "Exporting graphics";
     t[3622] = "Optimizer.OptimizeProperty.TargetForLabel.ServiceLevel.Tooltip";
     t[3623] = "This value specifies the minimum desired service level, not how many agents should be used.";
+    t[3626] = "SimStatistic.ForwardedCalls.Number";
+    t[3627] = "Forwarded calls (number)";
     t[3634] = "XML.Model.ClientType.CostPerCaller.WaitingSecond.Error";
     t[3635] = "The specified costs per waiting second %s are invalid.";
     t[3638] = "XML.OptimizerSetup.Property.Error";
@@ -1572,6 +1578,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[3861] = "Speedtest";
     t[3866] = "FileType.HTMLApp";
     t[3867] = "html app files";
+    t[3872] = "Distribution.DiscreteUniform";
+    t[3873] = "Discrete uniform distribution";
     t[3876] = "LoadCalculator.CallContinue";
     t[3877] = "Continue";
     t[3882] = "MainMenu.Simulation.OptimizerResults.Tooltip";
@@ -2002,6 +2010,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4791] = "Medium Erlang C example model";
     t[4792] = "XML.OptimizerSetup.Property.WorkLoad";
     t[4793] = "WorkLoad";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4800] = "XML.Statistic.Clients.CancelTimeDistribution.Calls.Error";
     t[4801] = "The cancel time distribution of the calls is invalid.";
     t[4804] = "Simulation.Log.ReCheck";
@@ -2010,12 +2024,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4807] = "O";
     t[4810] = "Statistic.GenerateReport.Tooltip";
     t[4811] = "Create a report containing a selectable part of the simulation results";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4812] = "Optimizer.ControlVariable.ChangeNumberOfAgents";
     t[4813] = "Change number of agents in each run by this percentage value";
     t[4814] = "Model.Plausibility.Info";
@@ -4008,6 +4016,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9507] = "Next call center";
     t[9510] = "SimStatistic.Category.WorkLoadOverTheDay";
     t[9511] = "Work load over the day";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9516] = "Editor.AgentsGroup.Shift.ShowPlan.Tabs.DistributionTable";
     t[9517] = "Distribution table";
     t[9518] = "MainMenu.Simulation.Run";
@@ -4016,12 +4030,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9521] = "no further parameters are allowed";
     t[9522] = "CommandLine.Count.Then1";
     t[9523] = "exactly one more parameter has to be entered";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9524] = "OptimizeResults.Button.LastRunResult";
     t[9525] = "Data of the final simulation run";
     t[9526] = "JDistributionEditor.DataVector";
@@ -4854,8 +4862,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11597] = "Rate";
     t[11604] = "XML.Connected.Day";
     t[11605] = "ConnectedDay";
-    t[11608] = "SimStatistic.ForwardedCalls.Number";
-    t[11609] = "Forwarded calls (number)";
+    t[11608] = "Distribution.SetupList.Info.Singular";
+    t[11609] = "%d of %d distributions is highlighted.";
     t[11622] = "CommandLine.ExportStatistic.Description.Long";
     t[11623] = "The command expects exactly three additional parameters:\n1. Desired output format (\"json\" or \"WebApp\")\n2. Name of the input statistic file\n3. Name of the output file\nThe input file has to exist, the output file has to be non existent.";
     t[11624] = "Optimizer.AgentsPerHalfHourInterval";
@@ -6014,6 +6022,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14465] = "Part of days to be simulated on the server";
     t[14468] = "CommandLine.Error.File.InputNoValidCallCenterModel";
     t[14469] = "The input file %s is no valid call center model file.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14482] = "Editor.Caller.Score.Forwarded";
     t[14483] = "Additional score when forwarding the caller";
     t[14484] = "MainMenu.Simulation.Run.Tooltip";
@@ -6022,12 +6036,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14489] = "Time";
     t[14490] = "Editor.SkillLevel.Distribution.Global";
     t[14491] = "Global distribution";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14494] = "Editor.Callcenter.DeleteAgentsGroup.No.Info";
     t[14495] = "The agents group will remain unchanged in the call center.";
     t[14508] = "Editor.SkillLevelOfTheAgents.Copy.Info";

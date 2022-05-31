@@ -39,6 +39,8 @@ import mathtools.distribution.DataDistributionImpl;
 import mathtools.distribution.DiscreteBinomialDistributionImpl;
 import mathtools.distribution.DiscreteNegativeBinomialDistributionImpl;
 import mathtools.distribution.DiscretePoissonDistributionImpl;
+import mathtools.distribution.DiscreteUniformDistributionImpl;
+import mathtools.distribution.ErlangDistributionImpl;
 import mathtools.distribution.OnePointDistributionImpl;
 import mathtools.distribution.RayleighDistributionImpl;
 import mathtools.distribution.tools.AbstractDistributionWrapper;
@@ -178,13 +180,19 @@ class DistributionToolsTests {
 		for (String name: names) {
 			final AbstractRealDistribution dist1=DistributionTools.getDistributionFromInfo(name,3,2);
 			if (dist1==null) continue;
-			assertEquals(3.0,DistributionTools.getMean(dist1),0.00001,"Verteilung: "+name);
+			boolean exactMeanAvailable=true;
+			if (dist1 instanceof ErlangDistributionImpl) exactMeanAvailable=false;
+			if (exactMeanAvailable) {
+				assertEquals(3.0,DistributionTools.getMean(dist1),0.00001,"Verteilung: "+name);
+			}
 			boolean exactStdAvailable=true;
 			if (dist1 instanceof OnePointDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof ExponentialDistribution) exactStdAvailable=false;
+			if (dist1 instanceof ErlangDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof ChiSquaredDistribution) exactStdAvailable=false;
 			if (dist1 instanceof RayleighDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscreteBinomialDistributionImpl) exactStdAvailable=false;
+			if (dist1 instanceof DiscreteUniformDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscretePoissonDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscreteNegativeBinomialDistributionImpl) exactStdAvailable=false;
 			if (exactStdAvailable) {
@@ -228,9 +236,11 @@ class DistributionToolsTests {
 			boolean exactStdAvailable=true;
 			if (dist1 instanceof OnePointDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof ExponentialDistribution) exactStdAvailable=false;
+			if (dist1 instanceof ErlangDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof ChiSquaredDistribution) exactStdAvailable=false;
 			if (dist1 instanceof RayleighDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscreteBinomialDistributionImpl) exactStdAvailable=false;
+			if (dist1 instanceof DiscreteUniformDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscretePoissonDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscreteNegativeBinomialDistributionImpl) exactStdAvailable=false;
 			if (exactStdAvailable) {

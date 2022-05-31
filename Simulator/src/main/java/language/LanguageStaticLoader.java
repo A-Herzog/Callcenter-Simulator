@@ -132,6 +132,7 @@ public class LanguageStaticLoader {
 		DistributionTools.DistPoisson=Language.trAll("Distribution.Poisson");
 		DistributionTools.DistNegativeBinomial=Language.trAll("Distribution.NegativeBinomial");
 		DistributionTools.DistZeta=Language.trAll("Distribution.Zeta");
+		DistributionTools.DistDiscreteUniform=Language.trAll("Distribution.DiscreteUniform");
 		DistributionTools.DistUnknown=Language.tr("Distribution.Unknown");
 		DistributionTools.DistDataPoint=Language.tr("Distribution.DataPoint");
 		DistributionTools.DistDataPoints=Language.tr("Distribution.DataPoints");
@@ -144,6 +145,7 @@ public class LanguageStaticLoader {
 		DistributionTools.DistStdDev=Language.tr("Distribution.StdDev");
 		DistributionTools.DistCV=Language.tr("Distribution.CV");
 		DistributionTools.DistSkewness=Language.tr("Distribution.Skewness");
+		DistributionTools.DistMode=Language.tr("Distribution.Mode");
 		JDataDistributionPanel.errorString=Language.tr("Distribution.NoDistribution");
 
 		/* DistributionFitter */
@@ -225,6 +227,9 @@ public class LanguageStaticLoader {
 		JDistributionEditorPanel.SetupListTitle=Language.tr("Distribution.SetupList.Title");
 		JDistributionEditorPanel.SetupListInfo=Language.tr("Distribution.SetupList.Info");
 		JDistributionEditorPanel.SetupListDivier=Language.tr("Distribution.SetupList.Divider");
+		JDistributionEditorPanel.SetupListInfoSingular=Language.tr("Distribution.SetupList.Info.Singular");
+		JDistributionEditorPanel.SetupListInfoPlural=Language.tr("Distribution.SetupList.Info.Plural");
+
 
 		/* JDataDistributionEditPanel */
 		JDataDistributionEditPanel.ButtonCopy=Language.tr("Dialog.Button.Copy");
