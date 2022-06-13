@@ -240,7 +240,7 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 	}
 
 	@Override
-	public Object[] process(WebServerThread server, String url, String remoteHost, String serverHost, Locale language) {
+	public Object[] process(WebServerThread server, String url, String serverHost, Locale language) {
 		Object[] obj;
 
 		url=WebServerTools.testURLSegment(url,"viewer");

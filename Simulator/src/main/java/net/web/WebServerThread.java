@@ -23,9 +23,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Vector;
 
-import fi.iki.elonen.NanoHTTPD;
-import fi.iki.elonen.NanoHTTPD.IHTTPSession;
-import fi.iki.elonen.NanoHTTPD.Response;
+import org.nanohttpd.protocols.http.IHTTPSession;
+import org.nanohttpd.protocols.http.NanoHTTPD;
+import org.nanohttpd.protocols.http.response.Response;
+import org.nanohttpd.protocols.http.response.Status;
+
 import language.Language;
 
 /**
@@ -147,14 +149,13 @@ public class WebServerThread extends Thread {
 	/**
 	 * Verarbeitet eine Anfrage.
 	 * @param url	Angefragt URL
-	 * @param remoteHost	Hostname des entfernten Clients
 	 * @param serverHost	Hostname dieses Servers
 	 * @param language	Sprache für die Ausgabe
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
 	 */
-	private Object[] processRequest(String url, String remoteHost, String serverHost, Locale language) {
+	private Object[] processRequest(String url, String serverHost, Locale language) {
 		for (WebServerDataHandler handler : handlers) {
-			Object[] result=handler.process(this,url,remoteHost,serverHost,language);
+			Object[] result=handler.process(this,url,serverHost,language);
 			if (result!=null && result.length>0) return result;
 		}
 		return null;
@@ -165,7 +166,7 @@ public class WebServerThread extends Thread {
 	 * @return	404-Fehler-Antwort
 	 */
 	private Response getErrorResponse() {
-		final NanoHTTPD.Response nanoResponse=NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.NOT_FOUND,"text/plain; charset=utf-8",null,0);
+		final Response nanoResponse=Response.newFixedLengthResponse(Status.NOT_FOUND,"text/plain; charset=utf-8",null,0);
 		nanoResponse.addHeader("Cache-Control","no-cache, no-store, must-revalidate");
 		return nanoResponse;
 	}
@@ -180,7 +181,7 @@ public class WebServerThread extends Thread {
 	 */
 	private Response getDataResponse(final byte[] data, final String mime, boolean allowCaching, final String[] additionalHeaders) {
 
-		final NanoHTTPD.Response nanoResponse=NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK,mime,new ByteArrayInputStream(data),data.length);
+		final Response nanoResponse=Response.newFixedLengthResponse(Status.OK,mime,new ByteArrayInputStream(data),data.length);
 		nanoResponse.addHeader("Cache-Control","no-cache, no-store, must-revalidate");
 
 		if (allowCaching) {
@@ -240,7 +241,7 @@ public class WebServerThread extends Thread {
 		if (host.isEmpty()) try {host=InetAddress.getLocalHost().getHostName();} catch (UnknownHostException e) {host="localhost";}
 
 		/* Anfrage bearbeiten */
-		Object[] response=processRequest(session.getUri(),session.getRemoteHostName(),host,language);
+		Object[] response=processRequest(session.getUri(),host,language);
 
 		if (response==null || response.length==0) {
 			return getErrorResponse();

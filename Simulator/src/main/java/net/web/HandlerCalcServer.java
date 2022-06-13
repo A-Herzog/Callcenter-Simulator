@@ -113,7 +113,7 @@ public class HandlerCalcServer implements WebServerDataHandler {
 	}
 
 	@Override
-	public Object[] process(WebServerThread server, String url, String remoteHost, String serverHost, Locale language) {
+	public Object[] process(WebServerThread server, String url, String serverHost, Locale language) {
 		url=WebServerTools.testURLSegment(url,"applet");
 		if (url==null) return null;
 

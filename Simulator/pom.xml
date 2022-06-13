@@ -36,28 +36,36 @@
         <version>1.3.4</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.nanohttpd/nanohttpd -->
+    <!--
     <dependency>
-        <groupId>org.nanohttpd</groupId>
+            <groupId>org.nanohttpd</groupId>
+            <artifactId>nanohttpd</artifactId>
+            <version>2.3.1</version>
+    </dependency>
+    -->
+    <!-- https://mvnrepository.com/artifact/com.gitee.l0km/nanohttpd -->
+    <dependency>
+        <groupId>com.gitee.l0km</groupId>
         <artifactId>nanohttpd</artifactId>
-        <version>2.3.1</version>
+        <version>2.3.4</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.commonmark/commonmark -->
     <dependency>
             <groupId>org.commonmark</groupId>
             <artifactId>commonmark</artifactId>
-            <version>0.18.1</version>
+            <version>0.19.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.commonmark/commonmark-ext-autolink -->
     <dependency>
             <groupId>org.commonmark</groupId>
             <artifactId>commonmark-ext-autolink</artifactId>
-            <version>0.18.1</version>
+            <version>0.19.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.formdev/flatlaf -->
     <dependency>
         <groupId>com.formdev</groupId>
         <artifactId>flatlaf</artifactId>
-        <version>2.2</version>
+        <version>2.3</version>
     </dependency>
   </dependencies>
 
@@ -70,7 +78,39 @@
       </resource>
     </resources>
 
+    <pluginManagement>
+      <plugins>
+          <plugin>
+              <groupId>org.cyclonedx</groupId>
+              <artifactId>cyclonedx-maven-plugin</artifactId>
+              <version>2.7.0</version>
+              <executions>
+                <execution>
+                    <id>cyclonedx-aggregate</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>makeAggregateBom</goal>
+                    </goals>
+                </execution>
+              </executions>
+              <configuration>
+                <includeCompileScope>true</includeCompileScope>
+                <includeProvidedScope>true</includeProvidedScope>
+                <includeRuntimeScope>true</includeRuntimeScope>
+                <includeSystemScope>true</includeSystemScope>
+                <includeTestScope>false</includeTestScope>
+              </configuration>
+          </plugin>
+      </plugins>
+    </pluginManagement>
+
     <plugins>
+    
+      <plugin>
+        <groupId>org.cyclonedx</groupId>
+        <artifactId>cyclonedx-maven-plugin</artifactId>
+        <inherited>false</inherited>
+      </plugin>
     
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

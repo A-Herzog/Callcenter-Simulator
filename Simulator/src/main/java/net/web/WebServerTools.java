@@ -42,7 +42,7 @@ public class WebServerTools {
 	 * @param text	Inhalt der HTML-Seite
 	 * @param needUTF8Encoding	Muss der Text vor der Ausgabe noch von ANSI nach UTF-8 konvertiert werden?
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
-	 * @see WebServerDataHandler#process(WebServerThread, String, String, String, java.util.Locale)
+	 * @see WebServerDataHandler#process(WebServerThread, String, String, java.util.Locale)
 	 */
 	public static Object[] buildHTMLResponse(final String text, final boolean needUTF8Encoding) {
 		if (text==null) return null;
@@ -61,7 +61,7 @@ public class WebServerTools {
 	 * @param needUTF8Encoding	Muss der Text vor der Ausgabe noch von ANSI nach UTF-8 konvertiert werden?
 	 * @param downloadFileName	Dateiname unter dem die Datei zum Download angeboten werden soll (oder <code>null</code> wenn die Datei nicht als "zum Download" markiert werden soll)
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
-	 * @see WebServerDataHandler#process(WebServerThread, String, String, String, java.util.Locale)
+	 * @see WebServerDataHandler#process(WebServerThread, String, String, java.util.Locale)
 	 */
 	public static Object[] buildTXTResponse(final String text, final boolean needUTF8Encoding, final String downloadFileName) {
 		if (text==null) return null;
@@ -88,7 +88,7 @@ public class WebServerTools {
 	 * @param needUTF8Encoding	Muss der Text vor der Ausgabe noch von ANSI nach UTF-8 konvertiert werden?
 	 * @param downloadFileName	Dateiname unter dem die Datei zum Download angeboten werden soll (oder <code>null</code> wenn die Datei nicht als "zum Download" markiert werden soll)
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
-	 * @see WebServerDataHandler#process(WebServerThread, String, String, String, java.util.Locale)
+	 * @see WebServerDataHandler#process(WebServerThread, String, String, java.util.Locale)
 	 */
 	public static Object[] buildXMLResponse(final String text, final boolean needUTF8Encoding, final String downloadFileName) {
 		if (text==null) return null;
@@ -110,7 +110,7 @@ public class WebServerTools {
 	 * @param data	xml-Datei als bytes-Array
 	 * @param downloadFileName	Dateiname unter dem die Datei zum Download angeboten werden soll (oder <code>null</code> wenn die Datei nicht als "zum Download" markiert werden soll)
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
-	 * @see WebServerDataHandler#process(WebServerThread, String, String, String, java.util.Locale)
+	 * @see WebServerDataHandler#process(WebServerThread, String, String, java.util.Locale)
 	 */
 	public static Object[] buildXMLResponse(final byte[] data, final String downloadFileName) {
 		if (data==null) return null;
@@ -126,7 +126,7 @@ public class WebServerTools {
 	 * @param text	Inhalt der CSS-Datei
 	 * @param needUTF8Encoding	Muss der Text vor der Ausgabe noch von ANSI nach UTF-8 konvertiert werden?
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
-	 * @see WebServerDataHandler#process(WebServerThread, String, String, String, java.util.Locale)
+	 * @see WebServerDataHandler#process(WebServerThread, String, String, java.util.Locale)
 	 */
 	public static Object[] buildCSSResponse(final String text, final boolean needUTF8Encoding) {
 		if (text==null) return null;
@@ -144,7 +144,7 @@ public class WebServerTools {
 	 * @param text	Inhalt der Javascript-Datei
 	 * @param needUTF8Encoding	Muss der Text vor der Ausgabe noch von ANSI nach UTF-8 konvertiert werden?
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
-	 * @see WebServerDataHandler#process(WebServerThread, String, String, String, java.util.Locale)
+	 * @see WebServerDataHandler#process(WebServerThread, String, String, java.util.Locale)
 	 */
 	public static Object[] buildJSResponse(final String text, final boolean needUTF8Encoding) {
 		if (text==null) return null;
@@ -161,7 +161,7 @@ public class WebServerTools {
 	 * Erstellt ein Antwortobjekt, welches <code>WebServerDataHandler.process</code> im Fall einer Javascript-Datei als Antwort zurückliefern kann.
 	 * @param data	Javascript-Datei als bytes-Array
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
-	 * @see WebServerDataHandler#process(WebServerThread, String, String, String, java.util.Locale)
+	 * @see WebServerDataHandler#process(WebServerThread, String, String, java.util.Locale)
 	 */
 	public static Object[] buildJSResponse(final byte[] data) {
 		if (data==null) return null;
@@ -172,7 +172,7 @@ public class WebServerTools {
 	 * Erstellt ein Antwortobjekt, welches <code>WebServerDataHandler.process</code> im Fall einer Applets-jar-Datei als Antwort zurückliefern kann.
 	 * @param data	jar-Datei als bytes-Array
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
-	 * @see WebServerDataHandler#process(WebServerThread, String, String, String, java.util.Locale)
+	 * @see WebServerDataHandler#process(WebServerThread, String, String, java.util.Locale)
 	 */
 	public static Object[] buildAppletResponse(final byte[] data) {
 		if (data==null) return null;
@@ -183,7 +183,7 @@ public class WebServerTools {
 	 * Erstellt ein Antwortobjekt, welches <code>WebServerDataHandler.process</code> im Fall einer ico-Datei als Antwort zurückliefern kann.
 	 * @param data	ico-Datei als bytes-Array
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
-	 * @see WebServerDataHandler#process(WebServerThread, String, String, String, java.util.Locale)
+	 * @see WebServerDataHandler#process(WebServerThread, String, String, java.util.Locale)
 	 */
 	public static Object[] buildICOResponse(final byte[] data) {
 		if (data==null) return null;
@@ -195,7 +195,7 @@ public class WebServerTools {
 	 * @param data	Bilddatei als bytes-Array
 	 * @param	extension	Dateiendung ("png", "jpeg" oder "gif")
 	 * @return	Antwortobjekt (bestehend aus Daten, Datenlänge und MIME-Type)
-	 * @see WebServerDataHandler#process(WebServerThread, String, String, String, java.util.Locale)
+	 * @see WebServerDataHandler#process(WebServerThread, String, String, java.util.Locale)
 	 */
 	public static Object[] buildImageResponse(final byte[] data, final String extension) {
 		if (data==null) return null;

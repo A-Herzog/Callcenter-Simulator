@@ -28,11 +28,10 @@ public interface WebServerDataHandler {
 	 * Verarbeitet einen Request
 	 * @param server	Webserver-Thread
 	 * @param url	Aufgerufene/zu verarbeitende URL
-	 * @param remoteHost	Entfernter Host
 	 * @param serverHost	Eigener Host
 	 * @param language	Zu verwendende Sprache
 	 * @return	Antwort auf die Anfrage, siehe z.B. {@link WebServerTools#buildHTMLResponse(String, boolean)}
 	 * @see WebServerTools
 	 */
-	Object[] process(WebServerThread server, String url, String remoteHost, String serverHost, Locale language);
+	Object[] process(WebServerThread server, String url, String serverHost, Locale language);
 }

@@ -98,7 +98,7 @@ public class HandlerMainMenu implements WebServerDataHandler {
 	/**
 	 * Erstellt das Hauptmenü.
 	 * @return	Hauptmenü
-	 * @see #process(WebServerThread, String, String, String, Locale)
+	 * @see #process(WebServerThread, String, String, Locale)
 	 */
 	private String getMenu() {
 		final StringBuilder sb=new StringBuilder();
@@ -111,7 +111,7 @@ public class HandlerMainMenu implements WebServerDataHandler {
 				sb.append(getLi("./viewer/"+(i+1)+"/datelist/",Language.tr("Server.WebMenu.Viewer.ServerByDate")+" <small>("+showServerViewer[i].name+")</small>","calendar.png",false));
 			}
 		}
-		sb.append(getLi(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.homeURL+"/viewer",Language.tr("Server.WebMenu.Viewer.WebService"),"server.png",false));
+		/* sb.append(getLi(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.homeURL+"/viewer",Language.tr("Server.WebMenu.Viewer.WebService"),"server.png",false)); */
 		if (showApplet) sb.append(getLi("./applet/",Language.tr("Server.WebMenu.Applet"),"Symbol.png",false));
 		sb.append(getLi(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL,Language.tr("Server.WebMenu.Homepage"),"world.png",false));
 		sb.append("</ul>\n");
@@ -120,7 +120,7 @@ public class HandlerMainMenu implements WebServerDataHandler {
 	}
 
 	@Override
-	public Object[] process(WebServerThread server, String url, String remoteHost, String serverHost, Locale language) {
+	public Object[] process(WebServerThread server, String url, String serverHost, Locale language) {
 		if (url.trim().equalsIgnoreCase("/favicon.ico")) {
 			try (InputStream stream=HandlerMainMenu.class.getResourceAsStream("../res/Symbol.ico")) {
 				return WebServerTools.buildICOResponse(WebServerTools.getBinaryFile(stream,false));
