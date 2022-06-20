@@ -25,7 +25,7 @@ public final class VersionConst {
 	/**
 	 * Programmversion
 	 */
-	public static final String version="5.7.230";
+	public static final String version="5.8.231";
 
 	/**
 	 * Konstruktor der Klasse<br>

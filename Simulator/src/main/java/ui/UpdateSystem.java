@@ -197,7 +197,7 @@ public class UpdateSystem {
 			MsgBox.info(null,Language.tr("Update.Updater.Title"),Language.tr("Update.Updater.Info"));
 		}
 
-		final String cmd=updateInstallerRun.getAbsolutePath()+" /S /D="+System.getProperty("user.dir");
+		final String[] cmd=new String[]{updateInstallerRun.getAbsolutePath(),"/S","/D="+System.getProperty("user.dir")};
 		Runtime.getRuntime().addShutdownHook(new Thread((Runnable)()-> {
 			try {
 				Runtime.getRuntime().exec(cmd);

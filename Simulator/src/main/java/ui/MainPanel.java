@@ -198,7 +198,7 @@ public final class MainPanel extends MainPanelBase {
 
 	/**
 	 * Info-Panel für die Anzeige von
-	 * Nachriten innerhalb des Panels
+	 * Nachrichten innerhalb des Panels
 	 */
 	private JPanel infoPanel;
 
