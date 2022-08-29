@@ -966,6 +966,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2367] = "LeerlaufProIntervall";
     t[2368] = "Editor.Callcenter.Title";
     t[2369] = "Callcenter bearbeiten";
+    t[2372] = "Distribution.Parameter";
+    t[2373] = "Parameter";
     t[2380] = "OptimizeResults.Button.LastRunResult.Info";
     t[2381] = "Zeigt die Ergebnisse des letzten Simulationslaufes innerhalb des Optimierungsprozesses an.";
     t[2382] = "CommandLine.Optimizer.RunStarted";
@@ -2008,14 +2010,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4789] = "Statistikdatei ausw\u00e4hlen";
     t[4790] = "MainMenu.File.NewModel.MediumErlangCExampleModel";
     t[4791] = "Mittleres Erlang-C-Beispielmodell";
-    t[4792] = "XML.OptimizerSetup.Property.WorkLoad";
-    t[4793] = "Auslastung";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4792] = "XML.OptimizerSetup.Property.WorkLoad";
+    t[4793] = "Auslastung";
     t[4800] = "XML.Statistic.Clients.CancelTimeDistribution.Calls.Error";
     t[4801] = "Die Abbruchzeitverteilung der Anrufe ist ung\u00fcltig.";
     t[4804] = "Simulation.Log.ReCheck";
@@ -3588,8 +3590,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[8449] = "bis";
     t[8450] = "OptimizeResults.Button.RunResults";
     t[8451] = "Ergebnisse f\u00fcr einzelnen Simulationslauf";
-    t[8454] = "SettingsDialog.ImageResolution.Invalid.Title";
-    t[8455] = "Ung\u00fcltige Bildgr\u00f6\u00dfe angegeben";
     t[8460] = "SimStatistic.Category.AgentsOnModelBasis";
     t[8461] = "Modellbasierte Agentendaten";
     t[8462] = "XML.Statistic.Clients.Forwarding.Clients";
@@ -4308,6 +4308,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[10189] = "Verteilung der Erstanrufer";
     t[10190] = "Simulation.Log.General.Callcenter";
     t[10191] = "Callcenter";
+    t[10194] = "Distribution.MaxwellBoltzmann";
+    t[10195] = "Maxwell-Boltzmann-Verteilung";
     t[10198] = "Connected.Error.Day0StatisticFileDoesNotExist";
     t[10199] = "Die angegebene Datei f\u00fcr den initialen \u00dcbertrag %s existiert nicht.";
     t[10200] = "Optimizer.OptimizeProperty.TargetForLabel.AverageResidenceTime.Info";
@@ -6020,14 +6022,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14461] = "Simulation von %s (Modell %d von %d)";
     t[14464] = "SettingsDialog.NetworkSimulation.ServerPart";
     t[14465] = "Anteil an Tagen, der auf dem Server simuliert werden soll";
-    t[14468] = "CommandLine.Error.File.InputNoValidCallCenterModel";
-    t[14469] = "Die Eingabedatei %s ist keine g\u00fcltige Callcenter-Modell Datei.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14468] = "CommandLine.Error.File.InputNoValidCallCenterModel";
+    t[14469] = "Die Eingabedatei %s ist keine g\u00fcltige Callcenter-Modell Datei.";
     t[14482] = "Editor.Caller.Score.Forwarded";
     t[14483] = "Zus\u00e4tzlicher Scorewert bei Weiterleitungen";
     t[14484] = "MainMenu.Simulation.Run.Tooltip";
@@ -6538,8 +6540,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15797] = "Modellinformationen";
     t[15800] = "OptimizeResults.OptimizerSettings";
     t[15801] = "Optimierer-Einstellungen";
-    t[15808] = "Server.WebMenu.Viewer.WebService";
-    t[15809] = "Statistik-Datei vom Computer laden und anzeigen <small>(mit Hilfe von Hersteller Webdienst)</small>";
+    t[15808] = "SettingsDialog.ImageResolution.Invalid.Title";
+    t[15809] = "Ung\u00fcltige Bildgr\u00f6\u00dfe angegeben";
     t[15814] = "SettingsDialog.Tabs.Updates";
     t[15815] = "Updates";
     t[15822] = "Statistic.FastAccess.DiscardConfirm.Info";

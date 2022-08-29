@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 15:56+0200\n"
+"POT-Creation-Date: 2022-08-09 10:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2028,6 +2028,9 @@ msgstr "Lognormalverteilung"
 msgid "Distribution.Logistic"
 msgstr "Logistische Verteilung"
 
+msgid "Distribution.MaxwellBoltzmann"
+msgstr "Maxwell-Boltzmann-Verteilung"
+
 msgid "Distribution.Mean"
 msgstr "Mittelwert"
 
@@ -2048,6 +2051,9 @@ msgstr "Keine Verteilung angegeben"
 
 msgid "Distribution.Normal"
 msgstr "Normalverteilung"
+
+msgid "Distribution.Parameter"
+msgstr "Parameter"
 
 msgid "Distribution.Pareto"
 msgstr "Pareto-Verteilung"
@@ -7482,9 +7488,6 @@ msgstr "Statistik-Datei vom Server laden und anzeigen"
 msgid "Server.WebMenu.Viewer.ServerByDate"
 msgstr "Statistik-Datei vom Server laden und anzeigen (nach Modelldatum auswählen)"
 
-msgid "Server.WebMenu.Viewer.WebService"
-msgstr "Statistik-Datei vom Computer laden und anzeigen <small>(mit Hilfe von Hersteller Webdienst)</small>"
-
 msgid "Server.WebMenu.ViewerData.Title"
 msgstr "Callcenter Simulator Viewer - Modellüberblick"
 
@@ -11941,6 +11944,9 @@ msgstr "StatistikSchwellenwerte"
 
 msgid "XML.XSD"
 msgstr "CallcenterSimulator_de.xsd"
+
+#~ msgid "Server.WebMenu.Viewer.WebService"
+#~ msgstr "Statistik-Datei vom Computer laden und anzeigen <small>(mit Hilfe von Hersteller Webdienst)</small>"
 
 #~ msgid "SimStatistic.SystemData.ServerVersion"
 #~ msgstr "Simulationsserver"

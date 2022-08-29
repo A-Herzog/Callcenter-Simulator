@@ -966,6 +966,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[2367] = "FreeTimePerInterval";
     t[2368] = "Editor.Callcenter.Title";
     t[2369] = "Edit call center";
+    t[2372] = "Distribution.Parameter";
+    t[2373] = "Parameter";
     t[2380] = "OptimizeResults.Button.LastRunResult.Info";
     t[2381] = "Shows the simulation results of the last run from the optimization process.";
     t[2382] = "CommandLine.Optimizer.RunStarted";
@@ -2008,14 +2010,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4789] = "Select statistic file";
     t[4790] = "MainMenu.File.NewModel.MediumErlangCExampleModel";
     t[4791] = "Medium Erlang C example model";
-    t[4792] = "XML.OptimizerSetup.Property.WorkLoad";
-    t[4793] = "WorkLoad";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4792] = "XML.OptimizerSetup.Property.WorkLoad";
+    t[4793] = "WorkLoad";
     t[4800] = "XML.Statistic.Clients.CancelTimeDistribution.Calls.Error";
     t[4801] = "The cancel time distribution of the calls is invalid.";
     t[4804] = "Simulation.Log.ReCheck";
@@ -3588,8 +3590,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[8449] = "to";
     t[8450] = "OptimizeResults.Button.RunResults";
     t[8451] = "Results for a single simulation run";
-    t[8454] = "SettingsDialog.ImageResolution.Invalid.Title";
-    t[8455] = "Invalid image size entered";
     t[8460] = "SimStatistic.Category.AgentsOnModelBasis";
     t[8461] = "Agents on model basis";
     t[8462] = "XML.Statistic.Clients.Forwarding.Clients";
@@ -4308,6 +4308,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[10189] = "Fresh calls distribution";
     t[10190] = "Simulation.Log.General.Callcenter";
     t[10191] = "Call center";
+    t[10194] = "Distribution.MaxwellBoltzmann";
+    t[10195] = "Maxwell Boltzmann distribution";
     t[10198] = "Connected.Error.Day0StatisticFileDoesNotExist";
     t[10199] = "The specified file for the initial carry over %s does not exist.";
     t[10200] = "Optimizer.OptimizeProperty.TargetForLabel.AverageResidenceTime.Info";
@@ -6020,14 +6022,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14461] = "Simulation of %s (model %d of %d)";
     t[14464] = "SettingsDialog.NetworkSimulation.ServerPart";
     t[14465] = "Part of days to be simulated on the server";
-    t[14468] = "CommandLine.Error.File.InputNoValidCallCenterModel";
-    t[14469] = "The input file %s is no valid call center model file.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14468] = "CommandLine.Error.File.InputNoValidCallCenterModel";
+    t[14469] = "The input file %s is no valid call center model file.";
     t[14482] = "Editor.Caller.Score.Forwarded";
     t[14483] = "Additional score when forwarding the caller";
     t[14484] = "MainMenu.Simulation.Run.Tooltip";
@@ -6538,8 +6540,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15797] = "Modelinformation";
     t[15800] = "OptimizeResults.OptimizerSettings";
     t[15801] = "Optimizer setup";
-    t[15808] = "Server.WebMenu.Viewer.WebService";
-    t[15809] = "Load and view static file from computer <small>(using vendors web service)</small>";
+    t[15808] = "SettingsDialog.ImageResolution.Invalid.Title";
+    t[15809] = "Invalid image size entered";
     t[15814] = "SettingsDialog.Tabs.Updates";
     t[15815] = "Updates";
     t[15822] = "Statistic.FastAccess.DiscardConfirm.Info";
