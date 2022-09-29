@@ -34,7 +34,7 @@ import systemtools.BaseDialog;
 import systemtools.GUITools;
 import systemtools.MsgBox;
 import systemtools.MsgBoxBackendTaskDialog;
-import systemtools.statistics.PDFWriter;
+import systemtools.statistics.PDFWriterBase;
 import tools.SetupData;
 import ui.FlatLaFHelper;
 import ui.MainFrame;
@@ -104,7 +104,7 @@ public final class Main {
 			args=processConfigFileParameter(args);
 
 			/* Cache-Ordner für PDFWriter einstellen */
-			PDFWriter.cacheFolder=SetupData.getSetupFolder();
+			PDFWriterBase.cacheFolder=SetupData.getSetupFolder();
 		} catch (NoClassDefFoundError e) {
 			if (GraphicsEnvironment.isHeadless()) {
 				System.out.println("The required libraries in the \"libs\" subfolder are missing.");

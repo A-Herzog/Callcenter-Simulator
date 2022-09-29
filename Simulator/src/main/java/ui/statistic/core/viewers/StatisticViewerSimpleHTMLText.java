@@ -48,14 +48,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLFrameHyperlinkEvent;
 
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-
 import language.Language;
 import mathtools.NumberTools;
 import mathtools.Table;
 import mathtools.distribution.swing.CommonVariables;
 import systemtools.MsgBox;
 import systemtools.statistics.ChartSetup;
+import systemtools.statistics.DOCXWriter;
 import systemtools.statistics.PDFWriter;
 import systemtools.statistics.StatisticViewer;
 import systemtools.statistics.StatisticsBasePanel;
@@ -241,8 +240,10 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 	}
 
 	@Override
-	public boolean saveDOCX(XWPFDocument doc) {
-		doc.createParagraph().createRun().setText(infoText);
+	public boolean saveDOCX(DOCXWriter doc) {
+		doc.beginParagraph();
+		doc.writeText(infoText);
+		doc.endParagraph();
 		return true;
 	}
 
