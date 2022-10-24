@@ -539,7 +539,7 @@ public final class OptimizeEditPanel extends JTabbedPane {
 
 		String s=optValue.getText();
 		Double d=0.0;
-		Integer in;
+		Long in;
 		switch (optProperty.getSelectedIndex()) {
 		case 0:
 		case 1:

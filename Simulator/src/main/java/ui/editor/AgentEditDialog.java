@@ -662,9 +662,9 @@ public class AgentEditDialog extends BaseEditDialog {
 			/* Anzahl */
 			agent.count=NumberTools.getNotNegativeInteger(count,false);
 			/* Arbeitszeiten */
-			agent.workingTimeStart=TimeTools.getTime(workingTimeStart,false);
-			Integer I=TimeTools.getTime(workingTimeEnd,false);
-			if (I!=null) agent.workingTimeEnd=I;
+			agent.workingTimeStart=TimeTools.getTime(workingTimeStart,false).intValue();
+			final Long L=TimeTools.getTime(workingTimeEnd,false);
+			if (L!=null) agent.workingTimeEnd=L.intValue();
 			agent.workingNoEndTime=workingNoEndTime.isSelected();
 			break;
 		case 1:

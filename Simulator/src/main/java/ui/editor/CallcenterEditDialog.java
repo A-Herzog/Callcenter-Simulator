@@ -840,9 +840,9 @@ public class CallcenterEditDialog extends BaseEditDialog {
 				if (cell.trim().isEmpty()) continue;
 				Integer I=NumberTools.getNotNegativeInteger(cell);
 				String[] parts=cell.split(" ");
-				Integer T=TimeTools.getTime(parts[parts.length-1]);
+				Long T=TimeTools.getTime(parts[parts.length-1]);
 				if (I!=null && c<0) {c=I; continue;}
-				if (T!=null && t2<0) {if (t1<0) t1=T; else t2=T; continue;}
+				if (T!=null && t2<0) {if (t1<0) t1=T.intValue(); else t2=T.intValue(); continue;}
 				t2=-1; break;
 			}
 			if (t2<0) continue;

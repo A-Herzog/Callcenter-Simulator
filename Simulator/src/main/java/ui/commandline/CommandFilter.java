@@ -29,6 +29,7 @@ import java.util.List;
 import language.Language;
 import simulator.Statistics;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.statistic.core.filter.DataFilter;
 import ui.statistic.core.filter.DataFilterBase;
 
@@ -48,14 +49,11 @@ public final class CommandFilter extends AbstractSimulationCommand {
 
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandFilter() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public CommandFilter(final BaseCommandLineSystem system) {
+		super(system);
 	}
-
 	@Override
 	public String[] getKeys() {
 		List<String> list=new ArrayList<>();

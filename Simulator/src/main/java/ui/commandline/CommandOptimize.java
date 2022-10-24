@@ -23,6 +23,7 @@ import java.util.List;
 
 import language.Language;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.model.CallcenterModel;
 import ui.optimizer.OptimizeSetup;
 import ui.optimizer.Optimizer;
@@ -45,12 +46,10 @@ public final class CommandOptimize extends AbstractSimulationCommand {
 
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandOptimize() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public CommandOptimize(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	@Override

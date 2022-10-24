@@ -22,6 +22,7 @@ import java.util.List;
 import language.Language;
 import mathtools.Table;
 import mathtools.distribution.DataDistributionImpl;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.model.CallcenterModel;
 import ui.model.CallcenterModelCaller;
 
@@ -34,12 +35,10 @@ import ui.model.CallcenterModelCaller;
 public final class CommandGeneratorCaller extends AbstractGeneratorCommand {
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandGeneratorCaller() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public CommandGeneratorCaller(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	@Override

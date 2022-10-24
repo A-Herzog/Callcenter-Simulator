@@ -24,6 +24,7 @@ import java.util.List;
 import language.Language;
 import mathtools.NumberTools;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.connected.ConnectedModel;
 import ui.connected.ConnectedModelUebertrag;
 import ui.connected.ConnectedSimulation;
@@ -43,12 +44,10 @@ public final class CommandConnected extends AbstractSimulationCommand {
 
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandConnected() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public CommandConnected(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	@Override

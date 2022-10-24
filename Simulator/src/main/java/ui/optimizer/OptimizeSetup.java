@@ -457,7 +457,7 @@ public final class OptimizeSetup {
 
 			if (Language.trAll("XML.OptimizerSetup.Value",s)) {
 				String t=e.getTextContent();
-				Integer time=TimeTools.getTime(t);
+				Long time=TimeTools.getTime(t);
 				if (time!=null) {optimizeValue=time; continue;}
 				Double d=NumberTools.getProbability(t);
 				if (d!=null) {optimizeValue=d; continue;}
@@ -466,7 +466,7 @@ public final class OptimizeSetup {
 
 			if (Language.trAll("XML.OptimizerSetup.ValueMaximum",s)) {
 				String t=e.getTextContent();
-				Integer time=TimeTools.getTime(t);
+				Long time=TimeTools.getTime(t);
 				if (time!=null) {optimizeMaxValue=time; continue;}
 				Double d=NumberTools.getProbability(t);
 				if (d!=null) {optimizeMaxValue=d; continue;}

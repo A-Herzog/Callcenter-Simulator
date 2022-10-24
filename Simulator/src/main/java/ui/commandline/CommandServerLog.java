@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import language.Language;
+import systemtools.commandline.BaseCommandLineSystem;
 
 /**
  * Simulator als Rechenserver starten (Statusausgaben in Datei speichern).
@@ -33,12 +34,10 @@ import language.Language;
 public final class CommandServerLog extends CommandServer {
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandServerLog() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public CommandServerLog(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	@Override

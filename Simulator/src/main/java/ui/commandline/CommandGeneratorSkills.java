@@ -24,6 +24,7 @@ import org.apache.commons.math3.distribution.AbstractRealDistribution;
 import language.Language;
 import mathtools.Table;
 import mathtools.distribution.DataDistributionImpl;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.model.CallcenterModel;
 import ui.model.CallcenterModelSkillLevel;
 
@@ -36,8 +37,10 @@ import ui.model.CallcenterModelSkillLevel;
 public final class CommandGeneratorSkills extends AbstractGeneratorCommand {
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandGeneratorSkills() {
+	public CommandGeneratorSkills(final BaseCommandLineSystem system) {
+		super(system);
 		nameArgumentCount=1;
 	}
 

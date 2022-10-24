@@ -33,6 +33,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import language.Language;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.UpdateSystem;
 import ui.UpdateSystemSignature;
 
@@ -48,12 +49,10 @@ public class CommandUpdate extends AbstractCommand {
 
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandUpdate() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public CommandUpdate(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	@Override

@@ -383,14 +383,14 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		if (type==CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CALL || type==CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CLIENT || type==CallcenterModelWarnings.WarningType.WARNING_TYPE_RESIDENCETIME_CALL || type==CallcenterModelWarnings.WarningType.WARNING_TYPE_RESIDENCETIME_CLIENT) {
 			warningYellowTime=warningYellow.getText();
 			warningRedTime=warningRed.getText();
-			Integer I;
-			I=TimeTools.getTime(warningYellow,true);
-			if (I==null || I<0) {
+			Long T;
+			T=TimeTools.getTime(warningYellow,true);
+			if (T==null || T<0) {
 				if (message) MsgBox.error(this,Language.tr("Editor.GeneralData.ThresholdValues.warningYellow.InvalidValue"),Language.tr("Editor.GeneralData.ThresholdValues.warningYellow.InvalidValue.TimeNeeded"));
 				return false;
 			}
-			I=TimeTools.getTime(warningRed,true);
-			if (I==null || I<0) {
+			T=TimeTools.getTime(warningRed,true);
+			if (T==null || T<0) {
 				if (message) MsgBox.error(this,Language.tr("Editor.GeneralData.ThresholdValues.warningRed.InvalidValue"),Language.tr("Editor.GeneralData.ThresholdValues.warningRed.InvalidValue.TimeNeeded"));
 				return false;
 			}
@@ -487,11 +487,11 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		}
 
 		if (record.type==CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CALL || record.type==CallcenterModelWarnings.WarningType.WARNING_TYPE_WAITINGTIME_CLIENT || record.type==CallcenterModelWarnings.WarningType.WARNING_TYPE_RESIDENCETIME_CALL || record.type==CallcenterModelWarnings.WarningType.WARNING_TYPE_RESIDENCETIME_CLIENT) {
-			Integer I;
-			I=TimeTools.getTime(warningYellow,true);
-			record.warningYellow=I;
-			I=TimeTools.getTime(warningRed,true);
-			record.warningRed=I;
+			Long L;
+			L=TimeTools.getTime(warningYellow,true);
+			record.warningYellow=L.intValue();
+			L=TimeTools.getTime(warningRed,true);
+			record.warningRed=L.intValue();
 		} else {
 			Double D;
 			D=NumberTools.getExtProbability(warningYellow,true);

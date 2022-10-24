@@ -23,6 +23,7 @@ import java.util.List;
 
 import language.Language;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.dataloader.SimpleModelLoader;
 
 /**
@@ -43,9 +44,10 @@ public class CommandGeneratorLoadSimpleModel extends AbstractCommand {
 
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandGeneratorLoadSimpleModel() {
-		super();
+	public CommandGeneratorLoadSimpleModel(final BaseCommandLineSystem system) {
+		super(system);
 		tableFile=new ArrayList<>();
 		tableName=new ArrayList<>();
 		tableColumn=new ArrayList<>();

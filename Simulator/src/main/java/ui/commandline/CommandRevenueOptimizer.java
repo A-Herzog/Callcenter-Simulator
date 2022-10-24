@@ -23,6 +23,7 @@ import java.util.List;
 
 import language.Language;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.RevenueOptimizer;
 import ui.model.CallcenterModel;
 
@@ -42,12 +43,10 @@ public class CommandRevenueOptimizer extends AbstractSimulationCommand {
 
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandRevenueOptimizer() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public CommandRevenueOptimizer(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	@Override

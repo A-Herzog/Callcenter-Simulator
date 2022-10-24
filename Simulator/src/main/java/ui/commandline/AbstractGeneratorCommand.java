@@ -27,6 +27,7 @@ import mathtools.NumberTools;
 import mathtools.Table;
 import mathtools.distribution.DataDistributionImpl;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.model.CallcenterModel;
 
 /**
@@ -40,12 +41,10 @@ import ui.model.CallcenterModel;
 public abstract class AbstractGeneratorCommand extends AbstractSimulationCommand {
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public AbstractGeneratorCommand() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public AbstractGeneratorCommand(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	/**

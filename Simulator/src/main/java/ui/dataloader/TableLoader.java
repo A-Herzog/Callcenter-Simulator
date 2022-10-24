@@ -174,9 +174,9 @@ public abstract class TableLoader {
 	 * @return	Zugehöriger 0-basierte Intervallnummer
 	 */
 	protected final int getIntervalFromTime(final String time) {
-		Integer i=TimeTools.getTime(time);
-		if (i==null) {lastError=String.format(Language.tr("Loader.ProcessError.InvalidTimeValue"),time); return 0;}
-		return i/1800;
+		Long l=TimeTools.getTime(time);
+		if (l==null) {lastError=String.format(Language.tr("Loader.ProcessError.InvalidTimeValue"),time); return 0;}
+		return l.intValue()/1800;
 	}
 
 	/**

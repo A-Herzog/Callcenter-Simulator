@@ -23,6 +23,7 @@ import java.util.List;
 
 import language.Language;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.optimizer.OptimizeData;
 
 /**
@@ -40,12 +41,10 @@ public class CommandOptimizeExport extends AbstractCommand {
 
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandOptimizeExport() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public CommandOptimizeExport(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	@Override

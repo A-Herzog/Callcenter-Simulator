@@ -87,6 +87,7 @@ import parser.symbols.CalcSymbolPreOperatorPower;
 import parser.symbols.CalcSymbolPreOperatorRandom;
 import parser.symbols.CalcSymbolPreOperatorRandomGeneratorInvers;
 import parser.symbols.CalcSymbolPreOperatorRandomGeneratorInversX;
+import parser.symbols.CalcSymbolPreOperatorRandomValues;
 import parser.symbols.CalcSymbolPreOperatorRound;
 import parser.symbols.CalcSymbolPreOperatorSCV;
 import parser.symbols.CalcSymbolPreOperatorSign;
@@ -175,7 +176,7 @@ public class CalcSymbolList {
 	/** Liste mit den Namen aller Symbole */
 	private static final List<String> listNames=new ArrayList<>();
 	/** Liste mit den Namen aller Symbole in Kleinbuchstaben */
-	private static final List<String> listNamesLower=new ArrayList<>();
+	private static List<String> listNamesLower;
 
 	/**
 	 * Lock um die Initialisierung Thread-sicher zu gestalten
@@ -219,9 +220,23 @@ public class CalcSymbolList {
 				for (int i=0;i<listMiddleOperator.size();i++) listNames.addAll(Arrays.asList(listMiddleOperator.get(i).getNames()));
 				for (int i=0;i<listPostOperator.size();i++) listNames.addAll(Arrays.asList(listPostOperator.get(i).getNames()));
 				for (int i=0;i<listConst.size();i++) listNames.addAll(Arrays.asList(listConst.get(i).getNames()));
-				for (String name: listNames) listNamesLower.add(name.toLowerCase());
+				final String[] arr=new String[listNames.size()];
+				for (int i=0;i<listNames.size();i++) arr[i]=listNames.get(i).toLowerCase();
+				listNamesLower=new ImmutableArrayList<>(arr);
 			}
 		}
+	}
+
+	/**
+	 * Liefert die Anzahl an verschiedenen erkannten Symbolen (d.h. ein Symbol in allen seinen Schreibweisen zählt nur als ein Symbol).
+	 * @return	Anzahl an verschiedenen erkannten Symbolen
+	 * @param includeUserFunctions	Sollen auch die über {@link #getUserFunctions()} abrufbaren Symbole mitgezählt werden?
+	 * @see #getAllSymbolNames()
+	 */
+	public int getSymbolCount(final boolean includeUserFunctions) {
+		initSymbols();
+		final int userFunctionCount=(includeUserFunctions && getUserFunctions()!=null)?getUserFunctions().size():0;
+		return listConst.size()+listPreOperator.size()+listMiddleOperator.size()+listPostOperator.size()+userFunctionCount+variables.length;
 	}
 
 	/**
@@ -412,6 +427,7 @@ public class CalcSymbolList {
 
 			addSymbol(new CalcSymbolPreOperatorRandomGeneratorInversX());
 			addSymbol(new CalcSymbolPreOperatorRandomGeneratorInvers());
+			addSymbol(new CalcSymbolPreOperatorRandomValues());
 
 		} finally {
 			initLock.release();
@@ -419,8 +435,10 @@ public class CalcSymbolList {
 	}
 
 	/**
-	 * Liefert eine Liste aller dem System bekannten Symbole (einschließlich Variablennamen)
+	 * Liefert eine Liste aller dem System bekannten Symbole (einschließlich Variablennamen).
+	 * Verschiedene Schreibweisen werden hier als verschiedene Symbole erfasst.
 	 * @return	Liste aller bekannten Symbole
+	 * @see #getSymbolCount(boolean)
 	 */
 	public String[] getAllSymbolNames() {
 		if (allSymbolNames==null) {
@@ -518,7 +536,7 @@ public class CalcSymbolList {
 			size+=variables.length;
 
 			final List<String> allSymbolNamesList=new ArrayList<>(size);
-			if (listPreOperatorUser!=null) for (int i=0;i<listPreOperatorUser.size();i++) allSymbolNamesList.addAll(Arrays.asList(listPreOperatorUser.get(i).getNames()));
+			if (listPreOperatorUser!=null) for (int i=0;i<listPreOperatorUser.size();i++) allSymbolNamesList.addAll(new ImmutableArrayList<>(listPreOperatorUser.get(i).getNames()));
 			allSymbolNamesList.addAll(listNamesLower);
 			for (final String variable: variables) if (variable!=null) {
 				final String s=variable.trim();

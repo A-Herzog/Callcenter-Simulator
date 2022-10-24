@@ -24,6 +24,7 @@ import java.util.List;
 import language.Language;
 import mathtools.MultiTable;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.importer.ImporterData;
 import ui.model.CallcenterModel;
 
@@ -46,12 +47,10 @@ public class CommandImporter extends AbstractSimulationCommand {
 
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandImporter() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public CommandImporter(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	@Override

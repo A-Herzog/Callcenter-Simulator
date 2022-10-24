@@ -26,6 +26,7 @@ import net.calc.StartAnySimulator;
 import simulator.CallcenterSimulatorInterface;
 import simulator.Statistics;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import tools.SetupData;
 import ui.model.CallcenterModel;
 import ui.model.CallcenterRunModel;
@@ -42,12 +43,10 @@ import xml.XMLTools;
 public abstract class AbstractSimulationCommand extends AbstractCommand {
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public AbstractSimulationCommand() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public AbstractSimulationCommand(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	/**

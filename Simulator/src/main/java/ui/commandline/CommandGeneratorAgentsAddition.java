@@ -23,6 +23,7 @@ import language.Language;
 import mathtools.NumberTools;
 import mathtools.Table;
 import mathtools.distribution.DataDistributionImpl;
+import systemtools.commandline.BaseCommandLineSystem;
 import ui.model.CallcenterModel;
 import ui.model.CallcenterModelAgent;
 import ui.model.CallcenterModelCallcenter;
@@ -36,8 +37,10 @@ import ui.model.CallcenterModelCallcenter;
 public class CommandGeneratorAgentsAddition extends AbstractGeneratorCommand {
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandGeneratorAgentsAddition() {
+	public CommandGeneratorAgentsAddition(final BaseCommandLineSystem system) {
+		super(system);
 		nameArgumentCount=1;
 	}
 

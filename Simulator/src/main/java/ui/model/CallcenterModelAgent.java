@@ -556,14 +556,14 @@ public final class CallcenterModelAgent implements Cloneable {
 				count=J; continue;
 			}
 			if (Language.trAll("XML.Model.AgentsGroup.WorkingTimeBegin",s)) {
-				Integer J=TimeTools.getTime(e.getTextContent());
+				Long J=TimeTools.getTime(e.getTextContent());
 				if (J==null) return String.format(Language.tr("XML.Model.AgentsGroup.WorkingTimeBegin.Error"),e.getTextContent());
-				workingTimeStart=J; continue;
+				workingTimeStart=J.intValue(); continue;
 			}
 			if (Language.trAll("XML.Model.AgentsGroup.WorkingTimeEnd",s)) {
-				Integer J=TimeTools.getTime(e.getTextContent());
+				Long J=TimeTools.getTime(e.getTextContent());
 				if (J==null) return String.format(Language.tr("XML.Model.AgentsGroup.WorkingTimeEnd.Error"),e.getTextContent());
-				workingTimeEnd=J; workingNoEndTime=false; continue;
+				workingTimeEnd=J.intValue(); workingNoEndTime=false; continue;
 			}
 			if (Language.trAll("XML.Model.AgentsGroup.Distribution",s)) {
 				newCountPerInterval=DataDistributionImpl.createFromString(e.getTextContent(),countPerIntervalMaxX);

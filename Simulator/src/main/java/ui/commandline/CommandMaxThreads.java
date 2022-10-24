@@ -23,6 +23,7 @@ import java.util.List;
 import language.Language;
 import mathtools.NumberTools;
 import systemtools.commandline.AbstractCommand;
+import systemtools.commandline.BaseCommandLineSystem;
 import tools.SetupData;
 
 /**
@@ -37,12 +38,10 @@ public class CommandMaxThreads extends AbstractCommand {
 
 	/**
 	 * Konstruktor der Klasse
+	 * @param system	Referenz auf das Kommandozeilensystem
 	 */
-	public CommandMaxThreads() {
-		/*
-		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
-		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
-		 */
+	public CommandMaxThreads(final BaseCommandLineSystem system) {
+		super(system);
 	}
 
 	@Override

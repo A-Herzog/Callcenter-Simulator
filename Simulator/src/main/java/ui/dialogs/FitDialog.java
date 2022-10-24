@@ -50,6 +50,7 @@ import mathtools.distribution.swing.JDataDistributionEditPanel;
 import mathtools.distribution.swing.JDataLoader;
 import mathtools.distribution.swing.JDistributionPanel;
 import mathtools.distribution.tools.DistributionFitter;
+import mathtools.distribution.tools.DistributionFitterBase;
 import mathtools.distribution.tools.DistributionTools;
 import mathtools.distribution.tools.FileDropper;
 import mathtools.distribution.tools.FileDropperData;
@@ -345,7 +346,7 @@ public class FitDialog extends BaseEditDialog {
 			sb.append("</p>");
 
 			/* Messwerte-Diagramm füllen */
-			final Object[] obj=DistributionFitter.dataDistributionFromValues(newValues);
+			final Object[] obj=DistributionFitterBase.dataDistributionFromValues(newValues);
 			if (obj==null) return false;
 			inputDistribution.setDistribution((DataDistributionImpl)obj[0]);
 			inputValuesMax=((DataDistributionImpl)obj[0]).densityData.length;
@@ -389,13 +390,13 @@ public class FitDialog extends BaseEditDialog {
 		 */
 		private void calcFit() {
 			DistributionFitter fitter=new DistributionFitter();
-			fitter.process(inputDistribution.getDistribution());
+			fitter.processDensity(inputDistribution.getDistribution());
 			outputReportPlain=fitter.getResult(false);
 			outputReportHTML=fitter.getResult(true);
 			String info="";
 			if (hasFloat) info="<h2>"+Language.tr("Dialog.Title.Information")+"</h2><p>"+Language.tr("FitDialog.InfoValuesRounded")+"</p>";
 			outputText.setText((FlatLaFHelper.isDark()?htmlHeadDark:htmlHead)+"<h2>"+Language.tr("FitDalog.FittedDistribution")+"</h2>"+outputReportHTML+info+htmlFoot);
-			outputDistribution.setDistribution(fitter.getFitDistribution());
+			outputDistribution.setDistribution(fitter.getFitDistribution().get(0));
 			outputDistribution.setMaxXValue(inputValuesMax);
 			ouputSelectInsert.setEnabled(true);
 			List<String> list=fitter.getResultList();
