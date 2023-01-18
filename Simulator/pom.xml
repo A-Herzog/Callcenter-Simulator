@@ -53,19 +53,19 @@
     <dependency>
             <groupId>org.commonmark</groupId>
             <artifactId>commonmark</artifactId>
-            <version>0.19.0</version>
+            <version>0.21.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.commonmark/commonmark-ext-autolink -->
     <dependency>
             <groupId>org.commonmark</groupId>
             <artifactId>commonmark-ext-autolink</artifactId>
-            <version>0.19.0</version>
+            <version>0.21.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.formdev/flatlaf -->
     <dependency>
         <groupId>com.formdev</groupId>
         <artifactId>flatlaf</artifactId>
-        <version>2.3</version>
+        <version>3.0</version>
     </dependency>
   </dependencies>
 
