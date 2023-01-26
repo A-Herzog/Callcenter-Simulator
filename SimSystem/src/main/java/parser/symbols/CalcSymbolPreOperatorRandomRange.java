@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Alexander Herzog
+ * Copyright 2023 Alexander Herzog
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,25 +15,26 @@
  */
 package parser.symbols;
 
+import mathtools.distribution.tools.DistributionRandomNumber;
 import parser.MathCalcError;
 import parser.coresymbols.CalcSymbolPreOperator;
 
 /**
- * Liefert 1, wenn die Anzahl der übergebenen Parameter,
- * deren Werte ungleich 0 sind, ungerade ist, sonst 0.
+ * Zufallszahl im Bereich [a,b)<br>
  * @author Alexander Herzog
+ * @see DistributionRandomNumber#nextDouble()
  */
-public class CalcSymbolPreOperatorLogicXor extends CalcSymbolPreOperator {
+public final class CalcSymbolPreOperatorRandomRange extends CalcSymbolPreOperator {
 	/**
 	 * Namen für das Symbol
 	 * @see #getNames()
 	 */
-	private static final String[] names=new String[]{"xor"};
+	private static final String[] names=new String[]{"RandomRange"};
 
 	/**
 	 * Konstruktor der Klasse
 	 */
-	public CalcSymbolPreOperatorLogicXor() {
+	public CalcSymbolPreOperatorRandomRange() {
 		/*
 		 * Wird nur benötigt, um einen JavaDoc-Kommentar für diesen (impliziten) Konstruktor
 		 * setzen zu können, damit der JavaDoc-Compiler keine Warnung mehr ausgibt.
@@ -46,18 +47,27 @@ public class CalcSymbolPreOperatorLogicXor extends CalcSymbolPreOperator {
 	}
 
 	@Override
+	protected boolean isDeterministic() {
+		return false;
+	}
+
+	@Override
 	protected double calc(double[] parameters) throws MathCalcError {
-		if (parameters.length==0) throw error();
-		int count=0;
-		for (double d: parameters) if (Math.abs(d)>=10E-10) count++;
-		return (count%2!=0)?1.0:0.0; /* "==1" sieht SpotBug als Probem an, da dies bei negativen Werten (die hier nicht auftreten können) nicht funktioniert. Also "!=0" statt "==1". */
+		if (parameters.length!=2) throw error();
+
+		final double a=Math.min(parameters[0],parameters[1]);
+		final double b=Math.max(parameters[0],parameters[1]);
+
+		return a+DistributionRandomNumber.nextDouble()*(b-a);
 	}
 
 	@Override
 	protected double calcOrDefault(final double[] parameters, final double fallbackValue) {
-		if (parameters.length==0) return fallbackValue;
-		int count=0;
-		for (double d: parameters) if (Math.abs(d)>=10E-10) count++;
-		return (count%2!=0)?1.0:0.0; /* "==1" sieht SpotBug als Probem an, da dies bei negativen Werten (die hier nicht auftreten können) nicht funktioniert. Also "!=0" statt "==1". */
+		if (parameters.length!=2) return fallbackValue;
+
+		final double a=Math.min(parameters[0],parameters[1]);
+		final double b=Math.max(parameters[0],parameters[1]);
+
+		return a+DistributionRandomNumber.nextDouble()*(b-a);
 	}
 }
