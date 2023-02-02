@@ -100,6 +100,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[217] = "Successful calls";
     t[218] = "FileType.LaTeX";
     t[219] = "LaTeX files";
+    t[220] = "LoadCalculator.OptionKLB.Info";
+    t[221] = "The correction factor applies only when b(I)&gt;1, b(S)&gt;1, CV[I]&ne;1 or CV[S]&ne;1.";
     t[234] = "MainMenu.Simulation.Optimizer.Tooltip";
     t[235] = "Starts the optimizer";
     t[242] = "MainMenu.Simulation.OptimizerResults";
@@ -1482,6 +1484,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[3685] = "Directly in the html file (only one output file; cannot be read by Word)";
     t[3688] = "Importer.Errror.AgentsGroupForIntervalValueDoesNotExist";
     t[3689] = "The agents group \"%s\" for which the distribution per half-our interval is to be loaded does not exist.";
+    t[3690] = "LoadCalculator.OptionHanschke.Paper";
+    t[3691] = "Paper on the correction formula";
     t[3692] = "SimStatistic.Category.IdleTimeOverTheDay.SingleGraphics";
     t[3693] = "Idle time over the day - single graphics";
     t[3694] = "CommandLine.Error.File.CannotCreateLogFile";
@@ -2006,16 +2010,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4777] = "Port number of the simulation server";
     t[4780] = "XML.Statistic.GeneralAttributes.Distribution";
     t[4781] = "Distribution";
-    t[4788] = "Optimizer.CarryOver.SelectStatisticButton";
-    t[4789] = "Select statistic file";
-    t[4790] = "MainMenu.File.NewModel.MediumErlangCExampleModel";
-    t[4791] = "Medium Erlang C example model";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4788] = "Optimizer.CarryOver.SelectStatisticButton";
+    t[4789] = "Select statistic file";
+    t[4790] = "MainMenu.File.NewModel.MediumErlangCExampleModel";
+    t[4791] = "Medium Erlang C example model";
     t[4792] = "XML.OptimizerSetup.Property.WorkLoad";
     t[4793] = "WorkLoad";
     t[4800] = "XML.Statistic.Clients.CancelTimeDistribution.Calls.Error";
@@ -2052,6 +2056,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4859] = "An error occured while saving the model to the file\n%s.";
     t[4866] = "XML.Model.ClientType.Retry.ClientType.NewClientType.Error";
     t[4867] = "The specified rate %s for client type \"%s\" is invalid.";
+    t[4870] = "LoadCalculator.ResultFactorKLB";
+    t[4871] = "Kr\u00e4mer, Langenbach-Belz correction factor";
     t[4882] = "Example.Empty.Title";
     t[4883] = "Empty model";
     t[4888] = "XML.Model.Surcharge.ErrorCallCenter";
@@ -3100,6 +3106,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7259] = "The specified retry probability for the first retry after canceling %s is invalid.";
     t[7260] = "Server.ErrorCreatingConfiguration";
     t[7261] = "An error occured while creating the server configuration.";
+    t[7266] = "LoadCalculator.OptionKLB.Paper";
+    t[7267] = "Paper on the correction formula";
     t[7272] = "MainMenu.Help.ShowWelcomePage.Mnemonic";
     t[7273] = "W";
     t[7276] = "SimStatistic.Costs.WaitingTime";
@@ -3998,8 +4006,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9465] = "Error loading the statistics data";
     t[9476] = "Connected.NewModel.Info";
     t[9477] = "Create a new connected call center model";
-    t[9478] = "SimStatistic.MinimumWaitingTime";
-    t[9479] = "Client type specific minimum waiting time";
+    t[9478] = "LoadCalculator.CopyResults.Info";
+    t[9479] = "Copies the calculation results to clipboard";
     t[9480] = "CommandLine.Error.NoClientTypeWithName";
     t[9481] = "There is no client type with name \"%s\".";
     t[9488] = "Connected.DoneInfoMultiple";
@@ -4008,6 +4016,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9491] = "CellTo";
     t[9492] = "XML.InterpreterError";
     t[9493] = "Unable to initialize the XML interpreter.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9494] = "SimStatistic.OptimizeSetup.Intervals.All";
     t[9495] = "The optimization was done over the whole day.";
     t[9500] = "NewModelWizard.Page1Info";
@@ -4016,12 +4030,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9507] = "Next call center";
     t[9510] = "SimStatistic.Category.WorkLoadOverTheDay";
     t[9511] = "Work load over the day";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9516] = "Editor.AgentsGroup.Shift.ShowPlan.Tabs.DistributionTable";
     t[9517] = "Distribution table";
     t[9518] = "MainMenu.Simulation.Run";
@@ -5654,6 +5662,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13595] = "Process data according to specified format...";
     t[13596] = "VarianceAnalysis.Canceled.Info";
     t[13597] = "Processing was canceled.";
+    t[13602] = "LoadCalculator.OptionHanschke.Info";
+    t[13603] = "The correction factor applies only when b(I)&gt;b(S)*c.";
     t[13604] = "XML.ErrorProcessingStream";
     t[13605] = "An error occurred while processing the stream.";
     t[13608] = "MainMenu.Simulation.OptimizerResults.Mnemonic";
@@ -6012,8 +6022,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14441] = "Recommendations";
     t[14444] = "Connected.LogRun.Title";
     t[14445] = "Save log";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14446] = "SettingsDialog.Tabs.Simulation";
     t[14447] = "Simulation";
+    t[14448] = "LoadCalculator.OptionKLB";
+    t[14449] = "Use Kr\u00e4mer, Langenbach-Belz correction factor";
     t[14454] = "CommandLine.Preplanning.Mode.Success.Simple.PreSimplify";
     t[14455] = "AccessibilitySimplified";
     t[14458] = "Batch.Simulation.BatchStatus1";
@@ -6022,12 +6040,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14461] = "Simulation of %s (model %d of %d)";
     t[14464] = "SettingsDialog.NetworkSimulation.ServerPart";
     t[14465] = "Part of days to be simulated on the server";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14468] = "CommandLine.Error.File.InputNoValidCallCenterModel";
     t[14469] = "The input file %s is no valid call center model file.";
     t[14482] = "Editor.Caller.Score.Forwarded";
@@ -6090,8 +6102,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14591] = "  The model was created using a newer Version of the Callcenter Simulator.\n  Maybe this version is not able to process all properties of the model.";
     t[14594] = "Loader.ProcessError.WhileProcessingLineInfo";
     t[14595] = "While processing line %d.";
-    t[14598] = "XML.Model.ClientType.Forwarding.SkillLevel";
-    t[14599] = "SkillLevel";
+    t[14598] = "LoadCalculator.CopyResults";
+    t[14599] = "Copy results";
     t[14606] = "Dialog.Button.Delete";
     t[14607] = "Delete";
     t[14608] = "Calibrate.WaitingTimeToleranceCV";
@@ -6648,8 +6660,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16137] = "Average queue length";
     t[16142] = "Distribution.Data";
     t[16143] = "Empirical data";
-    t[16144] = "XML.Model.AgentsGroup.CostsPerClientType.PerMinute.Error1";
-    t[16145] = "On the costs per client type node for client type %s there are no costs per minute specified.";
+    t[16144] = "LoadCalculator.ResultFactorHanschke";
+    t[16145] = "Hanschke correction term";
     t[16146] = "SimStatistic.BlockedCallsPart";
     t[16147] = "Part of calls being blocked";
     t[16148] = "SimStatistic.AllCalls";
@@ -6794,8 +6806,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16531] = "Call center model";
     t[16534] = "XML.OptimizerSetup.ModificationValue.Error";
     t[16535] = "The specified value by which the number of agents is to be changed per simulation run is invalid.";
-    t[16536] = "XML.Statistic.Agents.Summary.HoldingTime.Error";
-    t[16537] = "The total holding time %s is invalid. The value has to be a non-negative integer value.";
+    t[16536] = "XML.Model.AgentsGroup.CostsPerClientType.PerMinute.Error1";
+    t[16537] = "On the costs per client type node for client type %s there are no costs per minute specified.";
     t[16538] = "XML.Statistic.SkillLevel";
     t[16539] = "SkillLevel";
     t[16540] = "XML.Model.AgentsGroup.CostsPerClientType.PerMinute.Error2";
@@ -6812,6 +6824,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16559] = "ClientsWaitingTimeToleranceDistribution";
     t[16560] = "SimStatistic.AgentsWorkLoad.Callcenter";
     t[16561] = "Call center \"%s\" agents work load";
+    t[16568] = "SimStatistic.MinimumWaitingTime";
+    t[16569] = "Client type specific minimum waiting time";
     t[16570] = "Simulation.Log.Ready.ReadyAfterService";
     t[16571] = "Agents finishes work for a client and is ready now";
     t[16572] = "XML.OptimizerSetup.Intervals.InOrder";
@@ -7024,6 +7038,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17041] = "Surcharge value is invalid";
     t[17042] = "Dialog.Button.PasteDoNotScale";
     t[17043] = "Paste (and fill with zeros)";
+    t[17046] = "XML.Model.ClientType.Forwarding.SkillLevel";
+    t[17047] = "SkillLevel";
     t[17048] = "Editor.Callcenter.Move.EditPrevious";
     t[17049] = "Ok & edit previous call center";
     t[17050] = "Rearranger.MoveCalls";
@@ -7286,6 +7302,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17679] = "No intervals to be used in the optimization process have been selected.";
     t[17680] = "LoadCalculator.ErlangCNotCalculateable";
     t[17681] = "not calculateable (to few agents)";
+    t[17682] = "XML.Statistic.Agents.Summary.HoldingTime.Error";
+    t[17683] = "The total holding time %s is invalid. The value has to be a non-negative integer value.";
     t[17686] = "Importer.UnsavedWarning.Title";
     t[17687] = "Unsaved import template";
     t[17690] = "XML.Statistic.Clients.HoldingTime.Clients";
@@ -7528,6 +7546,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[18241] = "Java archive files";
     t[18242] = "Simulation.Log.Call.CarriedOver.LastDayWaitingTime";
     t[18243] = "Waiting time already on the last day";
+    t[18248] = "LoadCalculator.OptionHanschke";
+    t[18249] = "Use Hanschke correction term";
     t[18250] = "Window.JavaSecurityWarnung.Link";
     t[18251] = "https://adoptium.net/";
     t[18252] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMax.Title";

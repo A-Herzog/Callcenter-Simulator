@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -33,6 +34,7 @@ import javax.swing.JTextPane;
 import language.Language;
 import systemtools.BaseDialog;
 import ui.HelpLink;
+import ui.images.Images;
 
 /**
  * Warteschlangenrechner gem‰ﬂ verschiedener analytischer Formeln
@@ -64,6 +66,7 @@ public class QueueingCalculatorDialog extends BaseDialog {
 		pages=new ArrayList<>();
 
 		showCloseButton=true;
+		addUserButton(Language.tr("LoadCalculator.CopyResults"),Images.EDIT_COPY.getIcon()).setToolTipText(Language.tr("LoadCalculator.CopyResults.Info"));
 		final JPanel content=createGUI(helpLink.dialogLoadCalculator);
 		content.setLayout(new BorderLayout());
 
@@ -78,7 +81,10 @@ public class QueueingCalculatorDialog extends BaseDialog {
 		calc();
 
 		pack();
-		Dimension d=getSize(); d.width=Math.max(d.width,525); setSize(d);
+		final Dimension size=getSize();
+		size.width=Math.max(size.width,525);
+		size.height+=50;
+		setSize(size);
 		setLocationRelativeTo(this.owner);
 	}
 
@@ -119,6 +125,11 @@ public class QueueingCalculatorDialog extends BaseDialog {
 	private void calc() {
 		setHelpPage(pages.get(tabs.getSelectedIndex()).getHelpPage());
 		pages.stream().forEach(page->page.calc());
+	}
+
+	@Override
+	protected void userButtonClick(final int nr, final JButton button) {
+		pages.get(tabs.getSelectedIndex()).copyResultsToClipboard();
 	}
 
 	/**
