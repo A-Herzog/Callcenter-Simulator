@@ -24,7 +24,7 @@ This file lists the third-party components used by "Simulator" project and their
 
 - Repository: https://mvnrepository.com/artifact/com.formdev/flatlaf
 - License: Apache 2.0
-- License URL: https://opensource.org/licenses/Apache-2.0
+- License URL: https://www.apache.org/licenses/LICENSE-2.0
 - Homepage: https://github.com/JFormDesigner/FlatLaf
 
 ### Gettext Commons
