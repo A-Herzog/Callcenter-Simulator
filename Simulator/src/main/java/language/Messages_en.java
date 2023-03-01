@@ -3924,8 +3924,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9303] = "Keep the selected numbers of fresh calls.\nThe simulation results will hardly allow any meaningful conclusions.";
     t[9312] = "Statistic.Viewer.SaveImage.Size.Error.Info";
     t[9313] = "The image could not be saved in the file\n%s";
-    t[9316] = "Loader.OutputFile.Info";
-    t[9317] = "Selects the output file where the processed data will be saved";
+    t[9316] = "LoadCalculator.DownTimeCV";
+    t[9317] = "Coefficient of variation of the downtimes";
     t[9318] = "Editor.SkillLevel.Delete.Yes.Info";
     t[9319] = "The skill level will be deleted permanently.";
     t[9320] = "Connected.ClientTypeChangeTitle";
@@ -3940,8 +3940,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9329] = "Costs";
     t[9330] = "Optimizer.OptimizeProperty.TargetMaxForLabel.AverageResidenceTime";
     t[9331] = "When below this average residence time reduce number of agents";
-    t[9336] = "MainMenu.Help.Mnemonic";
-    t[9337] = "H";
+    t[9336] = "LoadCalculator.AverageDownTime";
+    t[9337] = "Average downtime";
     t[9338] = "Rearranger.Slider.MaxClients";
     t[9339] = "complete rearrangement<br>by number of agents";
     t[9344] = "Editor.GeneralData.GlobalParameters.MaximumQueueLength.InvalidInfo";
@@ -4700,6 +4700,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11137] = "Number of agents per hour";
     t[11140] = "Editor.CallcenterAndAgents.Up.Info";
     t[11141] = "Moves the selected call center up in the list of all call centers";
+    t[11146] = "LoadCalculator.Uptime";
+    t[11147] = "Uptime";
     t[11154] = "Editor.Callcenter.List.MinimumWaitingTimeFor";
     t[11155] = "Minimum waiting time for";
     t[11166] = "XML.Model.AgentsGroup.ByClients.AgentsHalfHours";
@@ -5156,6 +5158,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12307] = "Load model";
     t[12308] = "SettingsDialog.Update.ManualUpdateAvailable.DownloadInfo";
     t[12309] = "The update is being downloaded now. The signature will be checked and the\ninstallation file will be stored in the specified directory for manual\ninstallation.";
+    t[12310] = "Loader.OutputFile.Info";
+    t[12311] = "Selects the output file where the processed data will be saved";
     t[12320] = "XML.Connected.InitialInventory";
     t[12321] = "ConnectedInitialInventory";
     t[12326] = "CommandLine.ResetConfig.Description.Long";
@@ -6018,16 +6022,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14431] = "Output folder";
     t[14436] = "Statistic.Information";
     t[14437] = "Information";
-    t[14440] = "SimStatistic.Recommendations";
-    t[14441] = "Recommendations";
-    t[14444] = "Connected.LogRun.Title";
-    t[14445] = "Save log";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14440] = "SimStatistic.Recommendations";
+    t[14441] = "Recommendations";
+    t[14444] = "Connected.LogRun.Title";
+    t[14445] = "Save log";
     t[14446] = "SettingsDialog.Tabs.Simulation";
     t[14447] = "Simulation";
     t[14448] = "LoadCalculator.OptionKLB";
@@ -6282,6 +6286,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15111] = "Forwarding rate to a client type is invalid";
     t[15114] = "CommandLine.Dialog.Results";
     t[15115] = "Results";
+    t[15120] = "MainMenu.Help.Mnemonic";
+    t[15121] = "H";
     t[15126] = "Editor.Caller.FreshCalls.Tools.TotalNumberToDensity";
     t[15127] = "Distribute the total number of fresh calls per day to the density";
     t[15128] = "XML.Connected.LoadStatistic.ErrorNoStatisticFileFound";

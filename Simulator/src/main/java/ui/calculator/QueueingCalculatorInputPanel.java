@@ -55,6 +55,11 @@ public class QueueingCalculatorInputPanel {
 		NOT_NEGATIVE_DOUBLE,
 
 		/**
+		 * Wahrscheinlichkeit (0..1)
+		 */
+		PROBABILITY,
+
+		/**
 		 * Positive Fließkommazahlen
 		 */
 		POSITIVE_DOUBLE,
@@ -80,7 +85,7 @@ public class QueueingCalculatorInputPanel {
 	/** Vorgabewert für das Eingabefeld */
 	private double defaulValue;
 	/** Mögliche Varianten für den Wert (z.B. Zeit und Rate) */
-	private List<Record> records;
+	private final List<Record> records;
 
 	/** Titel des Eingabeelements */
 	private final String title;
@@ -299,6 +304,7 @@ public class QueueingCalculatorInputPanel {
 		case DOUBLE: return true;
 		case LONG: return isLong(d);
 		case NOT_NEGATIVE_DOUBLE: return d>=0;
+		case PROBABILITY: return d>=0 && d<=1;
 		case NOT_NEGATIVE_LONG: return isLong(d) && d>=0;
 		case POSITIVE_DOUBLE: return d>0;
 		case POSITIVE_LONG: return isLong(d) && d>0;
