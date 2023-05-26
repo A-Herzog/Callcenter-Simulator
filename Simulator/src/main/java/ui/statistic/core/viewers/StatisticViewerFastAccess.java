@@ -538,4 +538,10 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 	public boolean isViewerGenerated() {
 		return false;
 	}
+
+	@Override
+	public void navigation(JButton button) {
+		// TODO Auto-generated method stub
+
+	}
 }

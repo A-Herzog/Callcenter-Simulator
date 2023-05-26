@@ -156,6 +156,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[355] = "Mittlere Wartezeit";
     t[358] = "XML.Statistic.Agents.Summary.PostProcessingTime";
     t[359] = "Nachbearbeitungszeit";
+    t[364] = "Statistic.Viewer.Report.NoTablesSelected.Title";
+    t[365] = "Keine Daten zum Speichern ausgew\u00e4hlt";
     t[366] = "Connected.Error.InvalidRetryProbability.Title";
     t[367] = "Ung\u00fcltige Wiederholwahrscheinlichkeit";
     t[368] = "Statistic.Viewer.Report.Workbook.Error.Info";
@@ -378,8 +380,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[915] = "S";
     t[916] = "MainMenu.Compare";
     t[917] = "Modelle vergleichen";
-    t[918] = "JDistributionEditor.Edit.Info";
-    t[919] = "\u00d6ffnet den Dialog zum Bearbeiten der Verteilung";
+    t[918] = "Distribution.StudentTWikipedia";
+    t[919] = "https://de.wikipedia.org/wiki/Studentsche_t-Verteilung";
     t[924] = "XML.Statistic.Info.RunTime.Error";
     t[925] = "Die angegebene Laufzeit %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
     t[928] = "XML.Model.ClientType.Forwarding.Probability.Error";
@@ -560,6 +562,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1359] = "Kundentyp";
     t[1366] = "XML.Statistic.Confidence.ServiceLevel.ClientsSuccess";
     t[1367] = "KonfidenzServiceLevelKundenErfolg";
+    t[1370] = "Distribution.LogLogisticWikipedia";
+    t[1371] = "https://en.wikipedia.org/wiki/Log-logistic_distribution";
     t[1374] = "Importer.Error.NumberBetween0And1Needed";
     t[1375] = "Es wurde ein Wert zwischen 0 und 1 erwartet. Es wurde jedoch %s \u00fcbergeben.";
     t[1382] = "Editor.CallerGroups.Down.Info";
@@ -634,6 +638,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1557] = "In Skill-Level \"%s\" gibt es keine Kundengruppe mit dem Namen \"%s\".";
     t[1564] = "CommandLine.SaaSServer.InvalidHTMLPort";
     t[1565] = "Der angegebene HTML-Port %s ist ung\u00fcltig.";
+    t[1568] = "Distribution.TriangularWikipedia";
+    t[1569] = "https://de.wikipedia.org/wiki/Dreiecksverteilung";
     t[1570] = "Editor.GeneralData.ThresholdValues.Type.ServiceLevelOnSuccessfulCalls";
     t[1571] = "Service-Level auf Anrufbasis (bezogen auf erfolgreiche Anrufe)";
     t[1574] = "Model.Check.Callcenter.MinimumWaitingTimeInternalError";
@@ -690,6 +696,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1739] = "Es gibt eine Agentengruppe, in der %s Arbeits-Halbstundenintervalle verplant sind.";
     t[1742] = "Statistic.Viewer.Report.HTMLAppTitle";
     t[1743] = "Statistik";
+    t[1744] = "Statistic.Viewer.Toolbar.Search.DialogRegEx";
+    t[1745] = "Suchbegriff ist regul\u00e4rer Ausdruck";
     t[1748] = "MainMenu.File.SaveModelAs.Tooltip";
     t[1749] = "Speichert das Modell unter einem anzugebenden Dateinamen";
     t[1752] = "Editor.AgentsGroup.Error.ConversationMinuteCosts.Info";
@@ -844,6 +852,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2055] = "Es wurde kein Callcenter definiert.";
     t[2060] = "Optimizer.Error.MaxTargetServiceLevel.Info";
     t[2061] = "Der angegebene maximale Ziel-Service-Level %s ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Zahl (optional ein Prozentwert) sein.";
+    t[2068] = "Distribution.DataWikipedia";
+    t[2069] = "https://de.wikipedia.org/wiki/Empirische_Verteilungsfunktion";
     t[2072] = "CommandLine.GeneratorSkillLevel.Description.Short";
     t[2073] = "Bedien- und Nachbearbeitungszeiten aus Tabelle laden.";
     t[2074] = "Optimizer.StartOptimization";
@@ -870,8 +880,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2111] = "gro\u00df";
     t[2116] = "SimStatistic.Canceled.CallBlocked";
     t[2117] = "Abgebrochene Anrufe (Besetztzeichen)";
-    t[2118] = "MainMenu.Tools.LogRun";
-    t[2119] = "Simulationslauf in Logdatei aufzeichnen...";
+    t[2118] = "Distribution.BinomialWikipedia";
+    t[2119] = "https://de.wikipedia.org/wiki/Binomialverteilung";
     t[2122] = "Batch.Parameter.ChangeType.StdDev";
     t[2123] = "Standardabweichung einer Verteilung";
     t[2126] = "MainMenu.Tools.Calculator.Mnemonic";
@@ -1028,6 +1038,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2525] = "Achtung: Die von Ihnen verwendete Java-Version ist veraltet und enth\u00e4lt m\u00f6glicherweise Sicherheitsl\u00fccken. Update:";
     t[2528] = "XML.Model.AgentsGroup.WorkingTimeEnd.Error";
     t[2529] = "Das angegebene Arbeitszeitende %s ist ung\u00fcltig.";
+    t[2538] = "Distribution.UniformWikipedia";
+    t[2539] = "https://de.wikipedia.org/wiki/Stetige_Gleichverteilung";
     t[2542] = "CommandLine.Interactive.Description.Long";
     t[2543] = "Dieser Befehl erwartet keine weiteren Parameter.";
     t[2544] = "LoadCalculator.TUCOnlineCalculator";
@@ -1066,8 +1078,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2623] = "F\u00fcr Tag %d wurde keine Modelldatei angegeben.";
     t[2624] = "Editor.Caller.List.Score";
     t[2625] = "Score: Basis=%s, Weiterleitung=%s, Wartesekunde=%s";
-    t[2632] = "Distribution.ChiQuare";
-    t[2633] = "Chi^2-Verteilung";
     t[2634] = "Dialog.Select.Nothing";
     t[2635] = "Keine";
     t[2636] = "Table.BoolFalse";
@@ -1308,8 +1318,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3251] = "Die Simulation wurde gestartet.";
     t[3252] = "Statistic.Viewer.Context.Width.This";
     t[3253] = "Spaltenbreite - diese Spalte";
+    t[3262] = "Distribution.CauchyWikipedia";
+    t[3263] = "https://de.wikipedia.org/wiki/Cauchy-Verteilung";
     t[3268] = "Window.Info.ModelOverviewError.Opening.Info";
     t[3269] = "Die Modell-\u00dcbersichtsdatei\n%s\nkonnte nicht ge\u00f6ffnet werden:\n%s";
+    t[3278] = "Distribution.RayleighWikipedia";
+    t[3279] = "https://de.wikipedia.org/wiki/Rayleigh-Verteilung";
     t[3280] = "Editor.SkillLevel.Copy";
     t[3281] = "Skill kopieren";
     t[3282] = "XML.Model.Warnings.Record.Status";
@@ -1678,8 +1692,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4101] = "Der Minimalwert muss eine nicht-negative Ganzzahl sein.";
     t[4102] = "SimStatistic.ResidenceTimesWithoutWaitingTime";
     t[4103] = "Verweilzeiten (ohne Wartezeiten)";
-    t[4116] = "Editor.Callcenter.AgentsMode.Distribution";
-    t[4117] = "Agentenanzahl per Verteilung";
+    t[4116] = "Distribution.FatigueLifeWikipedia";
+    t[4117] = "https://en.wikipedia.org/wiki/Birnbaum%E2%80%93Saunders_distribution";
     t[4122] = "XML.Statistic.Clients.HoldingTimeDistribution.Clients.Error";
     t[4123] = "Die Verweilzeitverteilung der Kunden ist ung\u00fcltig.";
     t[4124] = "Editor.Callcenter.Copy.Title";
@@ -1828,6 +1842,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4389] = "Weiterleitungsrate zu Kundentyp bei Wiederanruf ist ung\u00fcltig";
     t[4390] = "SettingsDialog.JDK.Link";
     t[4391] = "https://adoptium.net/";
+    t[4392] = "Distribution.InverseGaussianWikipedia";
+    t[4393] = "https://de.wikipedia.org/wiki/Inverse_Normalverteilung";
     t[4394] = "Editor.Caller.Error.InvalidFreshCalls.Title";
     t[4395] = "Erstanruferanzahl ist ung\u00fcltig";
     t[4396] = "XML.Connected.CarryOver.Value";
@@ -1994,6 +2010,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4753] = "Simulation und Statistikergebnisse";
     t[4754] = "Statistic.Units.Year";
     t[4755] = "Jahr";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4756] = "Batch.Parameter.OutpurFolder.Info";
     t[4757] = "W\u00e4hlt das Ausgabeverzeichnis f\u00fcr die Statistikdaten.";
     t[4762] = "Editor.Caller.Apply.Error.AdditionalInformation";
@@ -2010,12 +2032,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4777] = "Portnummer des Simulationsservers";
     t[4780] = "XML.Statistic.GeneralAttributes.Distribution";
     t[4781] = "Verteilung";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4788] = "Optimizer.CarryOver.SelectStatisticButton";
     t[4789] = "Statistikdatei ausw\u00e4hlen";
     t[4790] = "MainMenu.File.NewModel.MediumErlangCExampleModel";
@@ -2362,6 +2378,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[5469] = "Der gew\u00e4hlte Name %s ist bereits f\u00fcr ein anderes Callcenter vergeben.";
     t[5470] = "SimStatistic.NumberOfAgents.Change";
     t[5471] = "Ver\u00e4nderung der Agentenanzahl";
+    t[5474] = "Distribution.LogisticWikipedia";
+    t[5475] = "https://de.wikipedia.org/wiki/Logistische_Verteilung";
     t[5480] = "Dialog.SaveNow.No";
     t[5481] = "Nicht speichern";
     t[5482] = "Editor.AgentsGroup.Change";
@@ -2496,8 +2514,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[5765] = "Da keine grafische Oberfl\u00e4che zur Verf\u00fcgung steht, kann der Simulator nur im Konsolen-Modus betrieben werden. Rufen Sie den Simulator mit dem Parameter \"Hilfe\" auf, um eine \u00dcbersicht \u00fcber die verf\u00fcgbaren Konsolen-Befehle zu erhalten.";
     t[5766] = "Editor.GeneralData.GlobalParameters.PreferedShiftLength.Info";
     t[5767] = "wird bei der automatischen Festlegung von Arbeitszeiten verwendet";
-    t[5772] = "XML.SaaS.StatisticFolder.Name";
-    t[5773] = "Name";
+    t[5772] = "Distribution.ExpWikipedia";
+    t[5773] = "https://de.wikipedia.org/wiki/Exponentialverteilung";
     t[5774] = "Simulation.Log.General.ShiftStart";
     t[5775] = "Dienstbeginn";
     t[5776] = "Generator.Error.MultipleColumnsAsSourceForOneClientType.Info";
@@ -2642,6 +2660,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6125] = "Die Glossar-Datei\n%s\nkonnte nicht ge\u00f6ffnet werden:\n%s";
     t[6136] = "Server.DownloadingApplet.NoLocalPathToAppletTryingToDownload";
     t[6137] = "Kein Pfad zur Applet-Jar-Datei angegeben. Das Applet wird heruntergeladen.";
+    t[6138] = "Distribution.BetaWikipedia";
+    t[6139] = "https://de.wikipedia.org/wiki/Beta-Verteilung";
     t[6148] = "Editor.SkillLevel.CopySkillDataToOtherSkill.All";
     t[6149] = "Alle anderen Skills in diesem Skill-Level";
     t[6154] = "CommandLine.ReportBase.Error.Input";
@@ -2766,6 +2786,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6455] = "Ver\u00e4ndertes Modell";
     t[6460] = "NewModelWizard.Model.Description";
     t[6461] = "Per Assistent erstelltes Callcenter-Modell.\nEs besteht aus einer Kundengruppe, einem Callcenter und einer Agentengruppe.";
+    t[6462] = "Distribution.StudentT";
+    t[6463] = "Studentsche t-Verteilung";
     t[6464] = "XML.Statistic.Clients.ClientsCallsCount.SuccessPerInterval";
     t[6465] = "ErfolgProIntervall";
     t[6466] = "MainMenu.Data.LoadTable.Short";
@@ -2774,8 +2796,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6471] = "Die Summe der Wartezeiten der Anrufe %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
     t[6472] = "Editor.Caller.Title";
     t[6473] = "Kundentyp bearbeiten";
-    t[6476] = "Statistic.Viewer.Report.NoTablesSelected.Title";
-    t[6477] = "Keine Daten zum Speichern ausgew\u00e4hlt";
+    t[6476] = "Distribution.FrechetWikipedia";
+    t[6477] = "https://de.wikipedia.org/wiki/Frechet-Verteilung";
     t[6480] = "Editor.AgentsGroup.Tools.ChangeAllIntervals.AllCallcenter";
     t[6481] = "Agentenanzahl in allen Intervallen in allen Callcentern ver\u00e4ndern";
     t[6490] = "XML.Connected.CarryOver.ClientType";
@@ -2806,6 +2828,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6563] = "Homepage zum Callcenter Simulator aufrufen";
     t[6564] = "Statistic.NoDataSelected";
     t[6565] = "bisher keine Daten";
+    t[6566] = "JDistributionEditor.Edit.Info";
+    t[6567] = "\u00d6ffnet den Dialog zum Bearbeiten der Verteilung";
     t[6568] = "Statistic.Viewer.Report.Hint";
     t[6569] = "Erstellt einen Bericht \u00fcber eine selbst zusammenstellbare Teilmenge der Ergebnisse";
     t[6570] = "MainMenu.Simulation.MoreOptimization.Tooltip";
@@ -2848,6 +2872,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6651] = "Empirische Verteilung";
     t[6652] = "SettingsDialog.Theme";
     t[6653] = "Thema";
+    t[6654] = "XML.Statistic.Clients.ClientsCallsCount.CountPerInterval.ErrorCalls";
+    t[6655] = "Die Anzahl an Anrufen pro Intervall ist ung\u00fcltig.";
     t[6658] = "XML.Model.ClientType.Retry.ClientType.Blocked";
     t[6659] = "WiederholungenKundentypNachBlockierungWeitereVersuche";
     t[6666] = "SettingsDialog.AutoUpdate";
@@ -2878,6 +2904,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6713] = "Bei der Optimierung werden die Agentenzahlen in mehreren Intervallen gleichzeitig ver\u00e4ndert.";
     t[6714] = "Connected.LoadModelDoesNotExist.Info";
     t[6715] = "Die angegebene Datei\n%s\nexistiert nicht.";
+    t[6726] = "Distribution.MaxwellBoltzmannWikipedia";
+    t[6727] = "https://de.wikipedia.org/wiki/Maxwell-Boltzmann-Verteilung";
     t[6728] = "SimStatistic.Canceled.CallWaitingTime";
     t[6729] = "Abgebrochene Anrufe (Warteabbruch)";
     t[6732] = "Editor.GeneralData.Actions";
@@ -2958,6 +2986,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6925] = "Intervalle";
     t[6932] = "Example.Erlang.SkillLevel";
     t[6933] = "Skill-Level";
+    t[6934] = "Distribution.FWikipedia";
+    t[6935] = "https://de.wikipedia.org/wiki/F-Verteilung";
     t[6936] = "NewModelWizard.Error.RetryProbability.Info";
     t[6937] = "Die angegebene Wiederholwahrscheinlichkeit %s ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Zahl (optional ein Prozentwert) sein.";
     t[6938] = "Model.Plausibility.ResultsTitle";
@@ -3022,6 +3052,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7047] = "StatistikSchwellenwerte";
     t[7050] = "SimStatistic.SystemData";
     t[7051] = "Systemdaten";
+    t[7054] = "Distribution.PowerWikipedia";
+    t[7055] = "https://en.wikipedia.org/wiki/Pareto_distribution#Inverse-Pareto_Distribution_/_Power_Distribution";
     t[7060] = "Editor.AgentsGroup.WorkingTimeStart";
     t[7061] = "Arbeitszeitbeginn";
     t[7066] = "Editor.GeneralData.ThresholdValues.Intervals.TooltipRange";
@@ -3106,6 +3138,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7259] = "Die angegebene Wiederholwahrscheinlichkeit im ersten Versuch nach einem Warteabbruch %s ist ung\u00fcltig.";
     t[7260] = "Server.ErrorCreatingConfiguration";
     t[7261] = "Bei der Erstellung der Serverkonfiguration ist ein Fehler aufgetreten.";
+    t[7262] = "Distribution.ChiWikipedia";
+    t[7263] = "https://en.wikipedia.org/wiki/Chi_distribution";
     t[7266] = "LoadCalculator.OptionKLB.Paper";
     t[7267] = "Paper zur Korrekturformel";
     t[7272] = "MainMenu.Help.ShowWelcomePage.Mnemonic";
@@ -3194,6 +3228,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7463] = "Ung\u00fcltiger Wert";
     t[7468] = "DistributionFitter.PValueChiSqr";
     t[7469] = "Chi\u00b2-Anpassungstest p-Wert";
+    t[7470] = "Editor.Callcenter.AgentsMode.Distribution";
+    t[7471] = "Agentenanzahl per Verteilung";
     t[7472] = "MainMenu.Simulation.MoreOptimization";
     t[7473] = "Mehr";
     t[7484] = "RevenueOptimizer.RevenueForInitialModel.Calculating";
@@ -3278,6 +3314,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7669] = "Der angegebene Parameter %s ist ung\u00fcltig.\nEs wird eine nicht-negative ganze Zahl erwartet.";
     t[7670] = "Loader.Info.SimpleModel.InputFileAgents";
     t[7671] = "Eingabedatei f\u00fcr die Agenten";
+    t[7682] = "Distribution.SawtoothRightWikipedia";
+    t[7683] = "https://de.wikipedia.org/wiki/Dreiecksverteilung";
     t[7694] = "Editor.Callcenter.Apply.ThisPage";
     t[7695] = "Inhalt dieser Seite \u00fcbernehmen";
     t[7702] = "Statistic.Viewer.DiagramSettings.Title";
@@ -3304,6 +3342,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7739] = "Markdown-Dateien";
     t[7742] = "Statistic.Viewer.SpecialText.NoData";
     t[7743] = "<p>Momentan stehen noch keine Statistik-Daten zur Verf\u00fcgung.</p>\n<p>Dr\u00fccken Sie die <b>F5-Taste</b> oder w\u00e4hlen Sie auf der Seite \"Modell-Editor\" die Funktion <b>\"Simulation starten\"</b>.</p>";
+    t[7746] = "Distribution.DiscreteUniformWikipedia";
+    t[7747] = "https://de.wikipedia.org/wiki/Diskrete_Gleichverteilung";
     t[7748] = "MainMenu.File.NewModel.Tab.Empty";
     t[7749] = "Leeres Modell";
     t[7750] = "Optimizer.CallerGroups.AverageOverAll";
@@ -3428,6 +3468,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[8041] = "Anruferzahlen \u00fcber den Tag";
     t[8046] = "Editor.Caller.Error.RetryProbabiltyAfterBlocked.Info";
     t[8047] = "Die Wahrscheinlichkeit f\u00fcr weitere Wiederversuche nach \"besetzt\" %s ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Zahl (optional ein Prozentwert) sein.";
+    t[8052] = "XML.Statistic.Costs.Cancelations.Error";
+    t[8053] = "Die durch Warteabbr\u00fcche entstandenen Kosten %s sind ung\u00fcltig. Die Kosten m\u00fcssen eine nichtnegative Zahl sein.";
     t[8062] = "Distribution.Zeta";
     t[8063] = "Zeta-Verteilung";
     t[8076] = "XML.Connected.Statistics.Error";
@@ -3692,6 +3734,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[8659] = "Agentenproduktivit\u00e4t laden";
     t[8662] = "Dialog.inactive.lower";
     t[8663] = "inaktiv";
+    t[8666] = "Distribution.LogNormalWikipedia";
+    t[8667] = "https://de.wikipedia.org/wiki/Logarithmische_Normalverteilung";
     t[8668] = "Editor.Caller.RetryProbability.ClientTypeChange.ClientType";
     t[8669] = "Kundentyp";
     t[8684] = "LoadCalculator.Units.Rate";
@@ -3972,6 +4016,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9395] = "Kunden des Typs \"%s\" werden nach einem Gespr\u00e4ch mit einem Agenten des Skill-Levels \"%s\" mit einer positiven Wahrscheinlichkeit weitergeleitet, es sind jedoch keine Kundentypen, zu denen Weiterleitungen erfolgen, (mit positiven Raten) angegeben.";
     t[9400] = "FileType.xmz";
     t[9401] = "Komprimierte xml-Dateien";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9408] = "XML.Model.CallCenter.Score.Error";
     t[9409] = "Die angegebene Callcenter-Score %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
     t[9420] = "Statistic.FastAccess.SelectXMLTag.empty";
@@ -4016,12 +4066,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9491] = "ZelleBis";
     t[9492] = "XML.InterpreterError";
     t[9493] = "Der XML-Interpreter konnte nicht initalisiert werden.";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9494] = "SimStatistic.OptimizeSetup.Intervals.All";
     t[9495] = "Die Optimierung wurde \u00fcber den gesamten Tag durchgef\u00fchrt.";
     t[9500] = "NewModelWizard.Page1Info";
@@ -4134,8 +4178,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9719] = "SkillLevelKundentyp;SkillKundentyp";
     t[9720] = "Help.Search.Info";
     t[9721] = "Erm\u00f6glicht die Suche in der gesamten Hilfe";
-    t[9726] = "Model.Check.Callcenter.DoubleName";
-    t[9727] = "Es gibt mehrere Skill-Level mit dem Namen \"%s\".";
+    t[9726] = "Distribution.PertWikipedia";
+    t[9727] = "https://en.wikipedia.org/wiki/PERT_distribution";
     t[9728] = "XML.Statistic.Info.Threads";
     t[9729] = "StatistikThreads;Threads";
     t[9730] = "Editor.Callcenter.Tools.LoadFixedGroupsFromFile";
@@ -4216,6 +4260,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9919] = "Wartezeitabh\u00e4ngige Bedienzeitverl\u00e4ngerung";
     t[9922] = "Optimizer.InitialValues";
     t[9923] = "Ausgangswerte";
+    t[9930] = "Distribution.LevyWikipedia";
+    t[9931] = "https://de.wikipedia.org/wiki/Levy-Verteilung";
     t[9932] = "Batch.Simulation.ParameterStatus1";
     t[9933] = "Simulation von Parameter=%s";
     t[9934] = "Batch.Simulation.ParameterStatus2";
@@ -4538,6 +4584,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[10767] = "Zeigt die Daten in einem neuen Fenster an.";
     t[10768] = "Editor.Preplanning.Simplify.MaxAHT";
     t[10769] = "Modell vereinfachen (Kundentypen und Skill-Level zusammenfassen; maximale Bedienzeit f\u00fcr alle verwenden)";
+    t[10770] = "SimStatistic.Forwarding.OnAgentSkillLevel";
+    t[10771] = "Weiterleitungen (bei Bedienung durch einen Agenten des Skill-Levels \"%s\")";
     t[10774] = "CommandLine.Preplanning.Description.Short";
     t[10775] = "Erlang-C-basierte Vorplanung der Anzahl an Agenten.";
     t[10778] = "CommandLine.Rearrange.ValueError";
@@ -4594,6 +4642,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[10887] = "F\u00fcgt Zellen aus einer Tabelle in eine XML-Datei ein.";
     t[10898] = "Optimizer.AgentGroup";
     t[10899] = "Agentengruppe";
+    t[10902] = "Distribution.NegativeBinomialWikipedia";
+    t[10903] = "https://de.wikipedia.org/wiki/Negative_Binomialverteilung";
     t[10910] = "Editor.Callcenter.DeleteAgentsGroup.Info";
     t[10911] = "Soll die gew\u00e4hlte Agentengruppe wirklich unwiderruflich gel\u00f6scht werden?";
     t[10912] = "Editor.SkillLevel.Name";
@@ -4736,6 +4786,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11227] = "Erm\u00f6glicht die Ausf\u00fchrung eines Kommandozeilen-Befehls direkt aus dieser grafischen Umgebung heraus";
     t[11234] = "LicenseViewer.Part.Components.SimTools";
     t[11235] = "Lizenzen der von den Simulator-Hilfsmitteln genutzten Komponenten";
+    t[11236] = "Distribution.SawtoothLeftWikipedia";
+    t[11237] = "https://de.wikipedia.org/wiki/Dreiecksverteilung";
     t[11238] = "Optimizer.Error.CannotOptimizeWithRestrictionsInAverage";
     t[11239] = "Es k\u00f6nnen keinen intervallbasierenden Einschr\u00e4nkungen f\u00fcr die Anzahl an Agenten pro Gruppe bei einer Optimierung im Mittel \u00fcber alle Intervalle definiert werden.";
     t[11240] = "Connected.SelectModel.SelectFile";
@@ -4946,6 +4998,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11741] = "Wartezeitverteilung";
     t[11742] = "VarianceAnalysis.Table";
     t[11743] = "Tabelle";
+    t[11752] = "XML.SaaS.StatisticFolder.Name";
+    t[11753] = "Name";
     t[11770] = "Editor.Caller.FreshCalls.Tools.LoadArrivalsOn15MinutesBasis";
     t[11771] = "Ankunftsverteilung aller Kunden (auf 15-Minutenbasis) global laden";
     t[11782] = "SimStatistic.AveragePerHalfHourInterval";
@@ -4954,8 +5008,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11787] = "Ertrag pro erfolgreich bedientem Kunden";
     t[11788] = "XML.SaaS.LogFile";
     t[11789] = "LogDatei";
-    t[11806] = "SimStatistic.Forwarding.OnAgentSkillLevel";
-    t[11807] = "Weiterleitungen (bei Bedienung durch einen Agenten des Skill-Levels \"%s\")";
+    t[11806] = "Distribution.ZetaWikipedia";
+    t[11807] = "https://de.wikipedia.org/wiki/Zeta-Verteilung";
     t[11808] = "XML.Model.Warnings.Record.Value.Error.NoValue";
     t[11809] = "Es wurde kein Wert angegeben.";
     t[11812] = "CommandLine.Error.File.OutputAlreadyExist";
@@ -5150,6 +5204,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12297] = "Kundenank\u00fcnfte auf Halbstundenbasis aus Tabelle laden...";
     t[12298] = "Batch.Folder.Label";
     t[12299] = "Verzeichnis";
+    t[12300] = "Distribution.LaplaceWikipedia";
+    t[12301] = "https://de.wikipedia.org/wiki/Laplace-Verteilung";
     t[12302] = "FileType.png";
     t[12303] = "png-Dateien";
     t[12304] = "XML.SaaS.WebServer";
@@ -5212,8 +5268,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12457] = "\u00d6ffnen";
     t[12460] = "XML.Model.ClientType.Retry.ClientType.BlockedFirst";
     t[12461] = "WiederholungenKundentypNachBlockierungErsterVersuch";
-    t[12468] = "XML.Statistic.Costs.Cancelations.Error";
-    t[12469] = "Die durch Warteabbr\u00fcche entstandenen Kosten %s sind ung\u00fcltig. Die Kosten m\u00fcssen eine nichtnegative Zahl sein.";
+    t[12468] = "Distribution.GumbelWikipedia";
+    t[12469] = "https://de.wikipedia.org/wiki/Gumbel-Verteilung";
     t[12472] = "VarianceAnalysis.VariableNumberOfSimulationDays";
     t[12473] = "Variable Anzahl an Simulationstagen";
     t[12474] = "XML.OptimizerSetup.InitialInventory";
@@ -5348,8 +5404,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12803] = "Optimierung-Intervalle";
     t[12806] = "Window.ErrorStartingSimulation.Title";
     t[12807] = "Fehler beim Starten der Simulation";
-    t[12812] = "Loader.Info.SimpleModel.InputFileCallerStartColumn";
-    t[12813] = "Erste zu verwendende Spalte in der Datei";
+    t[12812] = "Distribution.ChiSquareWikipedia";
+    t[12813] = "https://de.wikipedia.org/wiki/Chi-Quadrat-Verteilung";
     t[12818] = "Optimizer.LoadSetup.Title";
     t[12819] = "Optimierer-Einstellungen laden";
     t[12820] = "Loader.ProcessError.XMLProcessing.ErrorInLine";
@@ -5482,6 +5538,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13123] = "Arbeitszeitverteilung wurde geladen f\u00fcr Agentengruppe %s in Callcenter \"%s\".";
     t[13124] = "MainToolbar.ShowWebViewer.Tooltip";
     t[13125] = "Zeigt die Statistik-Ergebnisse im WebViewer an.";
+    t[13128] = "Distribution.NormalWikipedia";
+    t[13129] = "https://de.wikipedia.org/wiki/Normalverteilung";
     t[13130] = "Editor.Callcenter.Active";
     t[13131] = "Callcenter aktiv";
     t[13132] = "Optimizer.ControlVariable.Restrictions.Dialog.Title";
@@ -5586,8 +5644,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13401] = "Es wurde die Client-Server-Simulation gew\u00e4hlt, aber keine Server-Adresse angegeben.";
     t[13402] = "Editor.SkillLevel.Delete.Info";
     t[13403] = "Soll der gew\u00e4hlte Skill-Level \"%s\" wirklich unwiderruflich gel\u00f6scht werden?";
-    t[13406] = "Statistic.Filter.InvalidDataDistribution";
-    t[13407] = "Die Zeichenkette \"%s\" konnte nicht als empirische Verteilungsfunktion interpretiert werden.";
+    t[13406] = "Distribution.HyperGeomWikipedia";
+    t[13407] = "https://de.wikipedia.org/wiki/Hypergeometrische_Verteilung";
     t[13408] = "Editor.Caller.ServiceLevel.Individual.Info";
     t[13409] = "Service-Level Sekundenwert f\u00fcr diesen Kundentyp";
     t[13416] = "XML.Model.CallCenter.TechnicalFreeTime";
@@ -5674,8 +5732,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13609] = "E";
     t[13610] = "OptimizeResults.AllResults";
     t[13611] = "Alle Ergebnisse";
-    t[13612] = "Editor.Productivity.DiseaseRelatedSurcharge.Conatant";
-    t[13613] = "Konstanter Krankheitsaufschlag (100%=kein Aufschlag):";
+    t[13612] = "Distribution.ChiSquare";
+    t[13613] = "Chi^2-Verteilung";
     t[13616] = "Editor.GeneralData.ThresholdValues.ModeTime.Average";
     t[13617] = "Im Durchschnitt \u00fcber den Tag";
     t[13618] = "NewModelWizard.Error.HoldingTime.Title";
@@ -5964,6 +6022,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14279] = "L\u00f6scht den gew\u00e4hlten Skill-Level";
     t[14284] = "RevenueOptimizer.Warning.SearchDirection.Title";
     t[14285] = "Suchrichtung";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14298] = "XML.Connected.InitialInventory.ClientType.Name.Error";
     t[14299] = "F\u00fcr den %d. initialen \u00dcbertrag ist kein Kundentyp angegeben.";
     t[14306] = "Window.Info.ModelOverview.FileName";
@@ -6008,6 +6072,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14381] = "Plan kopieren";
     t[14384] = "SimStatistic.WaitingTimesDistribution";
     t[14385] = "Wartezeitenverteilung";
+    t[14392] = "Editor.Productivity.DiseaseRelatedSurcharge.Conatant";
+    t[14393] = "Konstanter Krankheitsaufschlag (100%=kein Aufschlag):";
     t[14396] = "Optimization.Error.GeneralTitle";
     t[14397] = "Fehler w\u00e4hrend der Optimierung";
     t[14402] = "XML.OptimizerSetup.InitialInventory.ClientType";
@@ -6022,12 +6088,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14431] = "Ausgabeverzeichnis";
     t[14436] = "Statistic.Information";
     t[14437] = "Information";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14440] = "SimStatistic.Recommendations";
     t[14441] = "Empfehlungen";
     t[14444] = "Connected.LogRun.Title";
@@ -6140,8 +6200,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14673] = "Bereitzeit \u00fcber den Tag";
     t[14680] = "FitDialog.PasteValues";
     t[14681] = "Messwerte einf\u00fcgen";
-    t[14688] = "JDistributionEditor.Wikipedia.Link";
-    t[14689] = "https://de.wikipedia.org/wiki/";
     t[14690] = "Editor.Overview.ExtendedErlangCModel.AverageWaitingTime";
     t[14691] = "Mittlere Wartezeit";
     t[14698] = "SimStatistic.CostStructure.AgentConversation";
@@ -6204,6 +6262,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14859] = "Beste \u00dcbereinstimmung f\u00fcr";
     t[14862] = "Editor.GeneralData.ThresholdValues.ModeTime.Intervals.Button";
     t[14863] = "Intervalle ausw\u00e4hlen";
+    t[14868] = "Distribution.ErlangWikipedia";
+    t[14869] = "https://de.wikipedia.org/wiki/Erlang-Verteilung";
     t[14874] = "SimStatistic.Thresholds.Status.Red";
     t[14875] = "Warnung Stufe \"Rot\"";
     t[14876] = "XML.SaaS.StatisticFolder";
@@ -6294,6 +6354,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15129] = "Die f\u00fcr den %d. Tag angegebene Statistikdatei %s existiert nicht.";
     t[15130] = "AutoSave.Setup.SaveFiltered.UseExternalScript";
     t[15131] = "Externes Skript verwenden";
+    t[15132] = "Distribution.GammaWikipedia";
+    t[15133] = "https://de.wikipedia.org/wiki/Gammaverteilung";
     t[15134] = "SimStatistic.Category.IdleTimeOverTheDay";
     t[15135] = "Bereitzeit \u00fcber den Tag";
     t[15136] = "XML.Statistic.Agents.Summary.HoldingTimePerInterval";
@@ -6478,6 +6540,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15579] = "Es ist ein Fehler beim Schlie\u00dfen der Datei\n%s\naufgetreten.";
     t[15582] = "CommandLine.Connected.Error.Simulation.Done";
     t[15583] = "Beim Beenden der verketteten Simulation ist folgender Fehler aufgetreten";
+    t[15594] = "MainMenu.Tools.LogRun";
+    t[15595] = "Simulationslauf in Logdatei aufzeichnen...";
     t[15596] = "CommandLine.OptimizerExport.ErrorLoadingResults";
     t[15597] = "Beim Laden der Optimiererergebnisse ist folgender Fehler aufgetreten";
     t[15600] = "Editor.Overview.General.Information";
@@ -6528,6 +6592,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15705] = "%d Erstanrufer";
     t[15714] = "Model.Check.ClientType.RetryCheck.Canceled";
     t[15715] = "Bei Warteabbruch, ab dem zweiten Wiederholversuch.";
+    t[15720] = "Distribution.WeibullWikipedia";
+    t[15721] = "https://de.wikipedia.org/wiki/Weibull-Verteilung";
     t[15726] = "MainMenu.Tools.FitDistribution.Mnemonic";
     t[15727] = " ";
     t[15728] = "XML.SaaS.AppletJarFile";
@@ -6606,12 +6672,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15965] = "Ung\u00fcltiger Bereich";
     t[15972] = "Server.Port";
     t[15973] = "Port";
+    t[15976] = "Statistic.Viewer.Toolbar.SaveTables.Hint";
+    t[15977] = "Speichert nur die ausgew\u00e4hlten Tabellen in einer gemeinsamen Arbeitsmappe.";
     t[15978] = "RevenueOptimizer.NoCostsDefined";
     t[15979] = "Es sind keine Kosten und Ertr\u00e4ge in dem Modell definiert.\nDaher kann auch keine Ertragsverbesserung vorgenommen werden.";
     t[15986] = "MainMenu.Simulation.RunAndSave";
     t[15987] = "Simulation starten und Ergebnisse speichern";
-    t[15994] = "Statistic.Viewer.Toolbar.SaveTables.Hint";
-    t[15995] = "Speichert nur die ausgew\u00e4hlten Tabellen in einer gemeinsamen Arbeitsmappe.";
+    t[15994] = "Statistic.Filter.InvalidDataDistribution";
+    t[15995] = "Die Zeichenkette \"%s\" konnte nicht als empirische Verteilungsfunktion interpretiert werden.";
     t[16010] = "Editor.Caller.Error.CostsPerCancel.Title";
     t[16011] = "Kosten pro Warteabbruch sind ung\u00fcltig";
     t[16012] = "FitDalog.UseFor.WaitingTimeToleranceDistribution";
@@ -6762,10 +6830,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[16391] = "Seite";
     t[16392] = "SimStatistic.Costs.Total.Short";
     t[16393] = "Gesamtkosten";
-    t[16394] = "XML.Statistic.Clients.ClientsCallsCount.CountPerInterval.ErrorCalls";
-    t[16395] = "Die Anzahl an Anrufen pro Intervall ist ung\u00fcltig.";
+    t[16394] = "Distribution.DistJohnsonSUWikipedia";
+    t[16395] = "https://en.wikipedia.org/wiki/Johnson%27s_SU-distribution";
     t[16396] = "XML.SaaS.Password";
     t[16397] = "Passwort";
+    t[16410] = "Distribution.PoissonWikipedia";
+    t[16411] = "https://de.wikipedia.org/wiki/Poisson-Verteilung";
     t[16412] = "Table.LoadErrorLastCellInvalid";
     t[16413] = "Die angegebene Endzelle \"%s\" ist ung\u00fcltig.";
     t[16418] = "Editor.GeneralData.CreateDescription";
@@ -6878,6 +6948,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[16655] = "Agentengruppe l\u00f6schen";
     t[16662] = "SimStatistic.Call.Blocked";
     t[16663] = "Anruf besetzt";
+    t[16666] = "Statistic.Viewer.Toolbar.Search.DialogSearchString";
+    t[16667] = "Suchbegriff";
     t[16670] = "XML.Statistic.Queue.Average";
     t[16671] = "Mittel";
     t[16674] = "Editor.Overview.Agents.All";
@@ -7016,6 +7088,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[16985] = "Dienstbeginn";
     t[16988] = "Editor.Caller.RetryProbability.ClientTypeChange.NotActive";
     t[16989] = "Kundentyp \u00e4ndert sich nicht bei Wiederholung";
+    t[16992] = "MainMenu.Data.Mnemonic";
+    t[16993] = " ";
     t[16998] = "Batch.Folder.ErrorInputFolderDoesNotExist";
     t[16999] = "Das Eingabeverzeichnis %s existiert nicht.";
     t[17000] = "XML.OptimizerSetup.Intervals.Individual";
@@ -7150,8 +7224,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17265] = "Die angegebene Wiederanrufabst\u00e4nde-Verteilung %s ist ung\u00fcltig.";
     t[17266] = "Distribution.Mean";
     t[17267] = "Mittelwert";
-    t[17272] = "MainMenu.Data.Mnemonic";
-    t[17273] = " ";
+    t[17272] = "Distribution.ParetoWikipedia";
+    t[17273] = "https://de.wikipedia.org/wiki/Pareto-Verteilung";
     t[17274] = "XML.SaaS.Port";
     t[17275] = "Port";
     t[17282] = "XML.Connected.InitialCarryOver";
@@ -7210,6 +7284,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17405] = "Das Basiselement hei\u00dft nicht \"%s\".";
     t[17412] = "Statistic.Viewer.Toolbar.Save.DefaultSize";
     t[17413] = "In Standardgr\u00f6\u00dfe (%dx%d Pixel) speichern";
+    t[17414] = "Model.Check.Callcenter.DoubleName";
+    t[17415] = "Es gibt mehrere Skill-Level mit dem Namen \"%s\".";
     t[17424] = "Distribution.Uniform.End";
     t[17425] = "Ende";
     t[17430] = "Editor.Overview.Caller.All";
@@ -7222,6 +7298,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17439] = "BelegtLeitung";
     t[17444] = "SimStatistic.ForwardedCallsPart";
     t[17445] = "Anteil weitergeleiteter Anrufe";
+    t[17446] = "Statistic.Viewer.Toolbar.Search.DialogCaseSensitive";
+    t[17447] = "Gro\u00df- und Kleinschreibung ber\u00fccksichtigen";
     t[17456] = "Editor.AgentsGroup.Active";
     t[17457] = "Agentengruppe aktiv";
     t[17460] = "Editor.Callcenter.Error.AgentsFreeTime.Info";
@@ -7338,6 +7416,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17737] = "Einstellungen zu den Skill-Levels der Agenten";
     t[17740] = "Editor.AgentsGroup.Shift.PreferredShiftLength.Global";
     t[17741] = "Globale Vorgabe";
+    t[17742] = "Distribution.HyperbolicSecantWikipedia";
+    t[17743] = "https://en.wikipedia.org/wiki/Hyperbolic_secant_distribution";
     t[17744] = "SimStatistic.Recommendations.NoRecommendations";
     t[17745] = "Es liegen keine Empfehlungen f\u00fcr dieses Modell vor.";
     t[17750] = "NewModelWizard.Error.PostProcessingTime.Title";
@@ -7398,10 +7478,10 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17891] = "Einstellungen des Optimierers";
     t[17894] = "Connected.Error.LoadingModel.Info";
     t[17895] = "Beim Laden des Modells ist folgender Fehler aufgetreten:";
-    t[17900] = "Distribution.StdDevs";
-    t[17901] = "Standardabweichungen";
     t[17908] = "MainMenu.Tools.KeepModel.Tooltip";
     t[17909] = "Aktuelles Modell f\u00fcr sp\u00e4teren Vergleich festhalten";
+    t[17922] = "Loader.Info.SimpleModel.InputFileCallerStartColumn";
+    t[17923] = "Erste zu verwendende Spalte in der Datei";
     t[17926] = "Statistic.Viewer.SpecialText.SubCategory";
     t[17927] = "<p>Bitte w\u00e4hlen Sie in der Baumstruktur eine <b>Unterkategorie</b> aus, um die entsprechenden Informationen angezeigt zu bekommen.</p>";
     t[17932] = "Statistic.Units.InMinutes";

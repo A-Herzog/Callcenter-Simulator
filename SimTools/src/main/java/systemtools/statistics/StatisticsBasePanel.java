@@ -15,6 +15,7 @@
  */
 package systemtools.statistics;
 
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -356,12 +357,22 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	public static String viewersToolbarSaveDefaultSize="In Standardgröße (%dx%d Pixel) speichern";
 	/** Popupmenü Bezeichner für Speichern in Fenstergröße */
 	public static String viewersToolbarSaveWindowSize="In Fenstergröße (%dx%d Pixel) speichern";
+	/** Bezeichner für das Toolbar-Button "Navigation" */
+	public static String viewersToolbarNavigation="Navigation";
+	/** Bezeichner für den Tooltip für das Toolbar-Button "Speichern" */
+	public static String viewersToolbarNavigationHint="Ermöglicht die direkte Navigation zu einer Überschrift auf dieser Seite.";
 	/** Bezeichner für das Toolbar-Button "Suchen" */
 	public static String viewersToolbarSearch="Suchen";
 	/** Bezeichner für den Tooltip für das Toolbar-Button "Suchen" */
 	public static String viewersToolbarSearchHint="Sucht nach einem Text auf der aktuellen Seite";
 	/** Titel für den Such-Dialog zum Suchen von Text innerhalb eines Viewers */
 	public static String viewersToolbarSearchTitle="Text suchen";
+	/** Beschriftung des Eingabefeldes im Such-Dialog */
+	public static String viewersToolbarSearchString="Suchbegriff";
+	/** Option "Groß- und Kleinschreibung berücksichtigen" im Such-Dialog */
+	public static String viewersToolbarSearchCaseSensitive="Groß- und Kleinschreibung berücksichtigen";
+	/** Option "Suchbegriff ist regulärer Ausdruck" im Such-Dialog */
+	public static String viewersToolbarSearchRegEx="Suchbegriff ist regulärer Ausdruck";
 	/** Meldung, dass die Suche nach einem Text keine Treffer ergab. */
 	public static String viewersToolbarSearchNotFound="Der Text \"%s\" wurde nicht gefunden.";
 	/** Bezeichner für das Toolbar-Button "Einstellungen" */
@@ -589,6 +600,9 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	/** "Speichern"-Schaltflächen über den einzelnen Viewern */
 	private final JButton[] save;
 
+	/** "Navigation"-Schaltflächen über den einzelnen Viewern */
+	private final JButton[] nav;
+
 	/** "Suchen"-Schaltflächen über den einzelnen Viewern */
 	private final JButton[] search;
 
@@ -739,6 +753,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 		copy=new JButton[dataToolBar.length];
 		print=new JButton[dataToolBar.length];
 		save=new JButton[dataToolBar.length];
+		nav=new JButton[dataToolBar.length];
 		search=new JButton[dataToolBar.length];
 		settings=new JButton[dataToolBar.length];
 		selectAll=new JButton[dataToolBar.length];
@@ -767,6 +782,11 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 			save[i].addActionListener(new ButtonListener());
 			save[i].setIcon(SimToolsImages.SAVE.getIcon());
 			dataToolBar[i].add(save[i]);
+			nav[i]=new JButton(viewersToolbarNavigation);
+			nav[i].setToolTipText(viewersToolbarNavigationHint);
+			nav[i].addActionListener(new ButtonListener());
+			nav[i].setIcon(SimToolsImages.NAVIGATION.getIcon());
+			dataToolBar[i].add(nav[i]);
 			search[i]=new JButton(viewersToolbarSearch);
 			search[i].setToolTipText(viewersToolbarSearchHint);
 			search[i].addActionListener(new ButtonListener());
@@ -808,10 +828,12 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 			final KeyStroke keyCtrlIns=KeyStroke.getKeyStroke(KeyEvent.VK_INSERT,InputEvent.CTRL_DOWN_MASK,true);  /* true=Beim Loslassen erkennen; muss gesetzt sein, da die Subviewer die anderen Hotkeys teilweise aufhalten */
 			final KeyStroke keyCtrlB=KeyStroke.getKeyStroke(KeyEvent.VK_B,InputEvent.CTRL_DOWN_MASK);
 			final KeyStroke keyCtrlShiftB=KeyStroke.getKeyStroke(KeyEvent.VK_B,InputEvent.CTRL_DOWN_MASK+InputEvent.SHIFT_DOWN_MASK);
+			final KeyStroke keyCtrlF=KeyStroke.getKeyStroke(KeyEvent.VK_F,InputEvent.CTRL_DOWN_MASK);
 			getInputMap(WHEN_IN_FOCUSED_WINDOW).put(keyCtrlC,"CopyViewer");
 			getInputMap(WHEN_IN_FOCUSED_WINDOW).put(keyCtrlIns,"CopyViewer");
 			getInputMap(WHEN_IN_FOCUSED_WINDOW).put(keyCtrlB,"NextBookmark");
 			getInputMap(WHEN_IN_FOCUSED_WINDOW).put(keyCtrlShiftB,"ToggleBookmark");
+			getInputMap(WHEN_IN_FOCUSED_WINDOW).put(keyCtrlF,"StatisticSearch");
 		});
 
 		getActionMap().put("CopyViewer",new AbstractAction() {
@@ -840,6 +862,17 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tree.toggleBookmark();
+			}
+		});
+
+		getActionMap().put("StatisticSearch",new AbstractAction() {
+			private static final long serialVersionUID=-1716436949935713910L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (search.length==1 && search[0].isVisible()) {
+					final ActionEvent ev=new ActionEvent(search[0],AWTEvent.RESERVED_ID_MAX+1,"search");
+					new ButtonListener().actionPerformed(ev);
+				}
 			}
 		});
 
@@ -1570,6 +1603,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 			print[i].setVisible(container!=null && viewer[i].getCanDo(CanDoAction.CAN_DO_PRINT));
 			save[i].setVisible(container!=null && viewer[i].getCanDo(CanDoAction.CAN_DO_SAVE));
 			search[i].setVisible(container!=null && viewer[i].getCanDo(CanDoAction.CAN_DO_SEARCH));
+			nav[i].setVisible(container!=null && viewer[i].getCanDo(CanDoAction.CAN_DO_NAVIGATION));
 
 			for (JButton oldButton: userToolbarButtons[i]) dataToolBar[i].remove(oldButton);
 			userToolbarButtons[i].clear();
@@ -1818,6 +1852,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 				if (sender==copy[i]) dataViewer[i].copyToClipboard(Toolkit.getDefaultToolkit().getSystemClipboard());
 				if (sender==print[i]) dataViewer[i].print();
 				if (sender==save[i]) dataViewer[i].save(getOwnerWindow());
+				if (sender==nav[i]) dataViewer[i].navigation(nav[i]);
 				if (sender==search[i]) dataViewer[i].search(getOwnerWindow());
 				if (sender==settings[i]) settingsMenu[i].show(settings[i],0,settings[i].getHeight());
 				if (sender==selectAll[i] && dataViewer[i] instanceof StatisticViewerReport) ((StatisticViewerReport)dataViewer[i]).selectAll();

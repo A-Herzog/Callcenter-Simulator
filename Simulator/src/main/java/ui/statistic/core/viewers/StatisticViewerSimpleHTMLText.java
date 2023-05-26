@@ -366,4 +366,8 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 	public boolean isViewerGenerated() {
 		return textPane!=null;
 	}
+
+	@Override
+	public void navigation(JButton button) {
+	}
 }

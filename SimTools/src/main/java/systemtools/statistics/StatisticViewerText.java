@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -43,16 +44,19 @@ import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 import java.util.function.IntSupplier;
 import java.util.function.Supplier;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextPane;
+import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileFilter;
@@ -67,6 +71,10 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 import org.apache.commons.math3.distribution.TDistribution;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -78,6 +86,7 @@ import mathtools.NumberTools;
 import mathtools.Table;
 import mathtools.TimeTools;
 import mathtools.distribution.swing.CommonVariables;
+import systemtools.BaseDialog;
 import systemtools.GUITools;
 import systemtools.MsgBox;
 import systemtools.images.SimToolsImages;
@@ -94,6 +103,29 @@ public abstract class StatisticViewerText implements StatisticViewer {
 	 * @see #initTextPane()
 	 */
 	private JTextPane textPane=null;
+
+	/**
+	 * Navigationsbaumstruktur
+	 * @see #getViewer(boolean)
+	 * @see #getSelectedNavLine()
+	 */
+	private JTree tree;
+
+	/**
+	 * Scroll-Komponente um die Baumstruktur {@link #tree}
+	 */
+	private JScrollPane treeScroller;
+
+	/**
+	 * Splitter zwischen Navigationsstruktur links
+	 * und Text auf der rechten Seite
+	 */
+	private JSplitPane split;
+
+	/**
+	 * Standardbreite des Trenners in {@link #split}
+	 */
+	private int splitDividerSize;
 
 	/**
 	 * Auszugebende Zeilen
@@ -144,9 +176,28 @@ public abstract class StatisticViewerText implements StatisticViewer {
 	private final boolean isDark;
 
 	/**
+	 * Suchbegriff beim letzten Aufruf der Suchfunktion
+	 * @see #search(Component)
+	 */
+	private String lastSearchString;
+	
+	/**
+	 * Status "Groß- und Kleinschreibung beachten" beim letzten Aufruf der Suchfunktion
+	 * @see #search(Component)
+	 */
+	private boolean lastCaseSensitive;
+	
+	/**
+	 * Status "Suchbegriff ist regulärer Ausdruck" beim letzten Aufruf der Suchfunktion
+	 * @see #search(Component)
+	 */
+	private boolean lastRegularExpression;
+
+	/**
 	 * Maximalanzahl an zurück zu liefernden Suchtreffern
 	 * @see #search(Component)
-	 * @see #searchInElement(Element, String, List)
+	 * @see #searchInElement(Element, String, boolean, List)
+	 * @see #searchInElementRegEx(Element, Pattern, List)
 	 */
 	private static final int MAX_SEARCH_HITS=1_000;
 
@@ -201,6 +252,7 @@ public abstract class StatisticViewerText implements StatisticViewer {
 		case CAN_DO_PRINT: return true;
 		case CAN_DO_SAVE: return true;
 		case CAN_DO_SEARCH: return true;
+		case CAN_DO_NAVIGATION: return true;
 		default: return false;
 		}
 	}
@@ -374,6 +426,97 @@ public abstract class StatisticViewerText implements StatisticViewer {
 	}
 
 	/**
+	 * Maximal zu berücksichtigende Anzahl an Navigationsebenen
+	 * @see #getNavigationTree()
+	 */
+	private static final int MAX_NAV_LEVELS=10;
+
+	/**
+	 * Baut die Navigationsbaumstruktur auf.
+	 * @return	Navigationsbaumstruktur
+	 * @see #getViewer(boolean)
+	 */
+	private DefaultMutableTreeNode getNavigationTree() {
+		final DefaultMutableTreeNode root=new DefaultMutableTreeNode();
+
+		final DefaultMutableTreeNode[] headings=new DefaultMutableTreeNode[MAX_NAV_LEVELS+1];
+		for (int j=0;j<MAX_NAV_LEVELS;j++) headings[j]=root;
+
+		final int size=lines.size();
+		for (int i=0;i<size;i++) {
+			final int level=lineTypes.get(i);
+			if (level<=0 || level>MAX_NAV_LEVELS) continue;
+
+			final DefaultMutableTreeNode node=new DefaultMutableTreeNode(new NavRecord(lines.get(i),i));
+
+			headings[level-1].add(node);
+			for (int j=level;j<MAX_NAV_LEVELS+1;j++) headings[j]=node;
+		}
+
+		return root;
+	}
+
+	/**
+	 * Navigationsdatensatz
+	 * @see StatisticViewerText#getNavigationTree()
+	 *
+	 */
+	private static class NavRecord {
+		/**
+		 * Name des Eintrags
+		 */
+		private final String name;
+
+		/**
+		 * Zeilennummer
+		 */
+		private final int lineNr;
+
+		/**
+		 * Konstruktor der Klasse
+		 * @param name	Name des Eintrags
+		 * @param lineNr	Zeilennummer
+		 */
+		public NavRecord(final String name, final int lineNr) {
+			this.name=name;
+			this.lineNr=lineNr;
+		}
+
+		@Override
+		public String toString() {
+			return name;
+		}
+	}
+
+	/**
+	 * Aktualisiert die Breite der Navigationsbaumstruktur.
+	 */
+	private void updateTreeSize() {
+		Dimension d=tree.getPreferredSize();
+		d.width=Math.min(d.width,Math.max(250,split.getBounds().width/5));
+		d=tree.getMinimumSize();
+		d.width=Math.max(d.width,250);
+		tree.setMinimumSize(d);
+		if (d.width!=split.getDividerLocation()) split.setDividerLocation(d.width);
+	}
+
+	/**
+	 * Liefert die Zeilennummer zu dem in der Baumstruktur ausgewählten Navigationsdatensatz
+	 * @return	0-basierte Zeilennummer oder -1, wenn keine Datensatz gewählt ist
+	 */
+	public int getSelectedNavLine() {
+		final TreePath path=tree.getSelectionPath();
+		if (path==null) return -1;
+		final Object last=path.getLastPathComponent();
+		if (!(last instanceof DefaultMutableTreeNode)) return -1;
+		final DefaultMutableTreeNode node=(DefaultMutableTreeNode)last;
+		final Object userObject=node.getUserObject();
+		if (!(userObject instanceof NavRecord)) return -1;
+
+		return ((NavRecord)userObject).lineNr;
+	}
+
+	/**
 	 * Initialisiert die Anzeige der zusätzlichen Beschreibung.
 	 * @see #addDescription(URL, Consumer)
 	 * @see #descriptionURL
@@ -401,6 +544,12 @@ public abstract class StatisticViewerText implements StatisticViewer {
 	public Container getViewer(final boolean needReInit) {
 		if (viewer!=null && !needReInit) return viewer;
 
+		/* Split zwischen Navigation und Text */
+		split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+		split.setResizeWeight(0.25);
+		splitDividerSize=split.getDividerSize();
+
+		/* Text */
 		if (textPane==null || needReInit) {
 			textPane=null;
 			lines.clear();
@@ -415,10 +564,26 @@ public abstract class StatisticViewerText implements StatisticViewer {
 		final JScrollPane textScroller=new JScrollPane(textPane);
 		textPane.setSelectionStart(0);
 		textPane.setSelectionEnd(0);
+		split.setRightComponent(textScroller);
 
-		if (descriptionPane==null) return viewer=textScroller;
+		/* Navigationsstruktur */
+		tree=new JTree(new DefaultTreeModel(getNavigationTree()));
+		split.setLeftComponent(treeScroller=new JScrollPane(tree));
+		tree.setRootVisible(false);
+		tree.getParent().setMinimumSize(new Dimension(150,0));
+		tree.addTreeSelectionListener(e->gotoStartOfLine(getSelectedNavLine()+1));
+		((DefaultTreeCellRenderer)tree.getCellRenderer()).setLeafIcon(SimToolsImages.STATISTICS_TEXT.getIcon());
+		for (int i=0;i<tree.getRowCount();i++) tree.expandRow(i);
+		if (!isDark) tree.setBackground(new Color(0xFF,0xFF,0xF8));
+		split.addPropertyChangeListener("ancestor",e->updateTreeSize());
+		treeScroller.setVisible(false);
 
-		return viewer=descriptionPane.getSplitPanel(textScroller);
+		split.setDividerLocation(0);
+		split.setDividerSize(0);
+
+		/* Hinweistext unten */
+		if (descriptionPane==null) return viewer=split;
+		return viewer=descriptionPane.getSplitPanel(split);
 	}
 
 	@Override
@@ -1653,17 +1818,38 @@ public abstract class StatisticViewerText implements StatisticViewer {
 	}
 
 	/**
+	 * Speichert die Daten zu einem einzelnen Suchtreffer
+	 */
+	private static class Hit {
+		/** Startposition */
+		public final int start;
+		/** Endposition */
+		public final int end;
+
+		/**
+		 * Konstruktor
+		 * @param start	Startposition
+		 * @param end	Endposition
+		 */
+		public Hit(final int start, final int end) {
+			this.start=start;
+			this.end=end;
+		}
+	}
+
+	/**
 	 * Sucht einen Text in einem Element und seinen Unterelementen
 	 * @param element	Element von dem die Suche ausgehen soll
-	 * @param searchLower	Suchtext in Kleinschreibung
+	 * @param search	Bei Berücksichtigung von Groß- und Kleinschreibung: Suchtext; ohne Berücksichtigung von Groß- und Kleinschreibung: Suchtext in Kleinschreibung
+	 * @param caseSensitive	Soll die Groß- und Kleinschreibung berücksichtigt werden?
 	 * @param hits	Liste mit den Fundstellen (Cursorpositionen)
-	 * @see #getCaretPositions(String)
+	 * @see #getCaretPositions(String, boolean, boolean)
 	 */
-	private void searchInElement(final Element element, final String searchLower, final List<Integer> hits) {
+	private void searchInElement(final Element element, final String search, final boolean caseSensitive, final List<Hit> hits) {
 		if (hits.size()>=MAX_SEARCH_HITS) return;
 
 		for (int i=0;i<element.getElementCount();i++) {
-			searchInElement(element.getElement(i),searchLower,hits);
+			searchInElement(element.getElement(i),search,caseSensitive,hits);
 			if (hits.size()>=MAX_SEARCH_HITS) return;
 		}
 
@@ -1671,13 +1857,49 @@ public abstract class StatisticViewerText implements StatisticViewer {
 			final LeafElement leaf=(LeafElement)element;
 			try {
 				final int start=leaf.getStartOffset();
-				final String textLower=textPane.getText(start,leaf.getEndOffset()-start).toLowerCase();
+				String text=textPane.getText(start,leaf.getEndOffset()-start);
+				if (text.isEmpty()) return;
+				if (!caseSensitive) text=text.toLowerCase();
 
 				int index=-1;
 				while (true) {
-					index=textLower.indexOf(searchLower,index+1);
+					index=text.indexOf(search,index+1);
 					if (index<0) break;
-					hits.add(start+index);
+					hits.add(new Hit(start+index,start+index+search.length()-1));
+					if (hits.size()>=MAX_SEARCH_HITS) return;
+				}
+			} catch (BadLocationException e) {}
+		}
+	}
+
+	/**
+	 * Sucht einen Text in einem Element und seinen Unterelementen
+	 * @param element	Element von dem die Suche ausgehen soll
+	 * @param pattern	Regulärer Ausdruck nach dem gesucht werden soll
+	 * @param hits	Liste mit den Fundstellen (Cursorpositionen)
+	 * @see #getCaretPositions(String, boolean, boolean)
+	 */
+	private void searchInElementRegEx(final Element element, final Pattern pattern, final List<Hit> hits) {
+		if (hits.size()>=MAX_SEARCH_HITS) return;
+
+		for (int i=0;i<element.getElementCount();i++) {
+			searchInElementRegEx(element.getElement(i),pattern,hits);
+			if (hits.size()>=MAX_SEARCH_HITS) return;
+		}
+
+		if (element instanceof LeafElement) {
+			final LeafElement leaf=(LeafElement)element;
+			try {
+				final int start=leaf.getStartOffset();
+				String text=textPane.getText(start,leaf.getEndOffset()-start);
+				if (text.isEmpty()) return;
+
+				final Matcher matcher=pattern.matcher(text);
+				int index=-1;
+				while (true) {
+					if (!matcher.find(index+1)) break;
+					index=matcher.start();
+					hits.add(new Hit(start+index,start+matcher.end()-1));
 					if (hits.size()>=MAX_SEARCH_HITS) return;
 				}
 			} catch (BadLocationException e) {}
@@ -1687,14 +1909,21 @@ public abstract class StatisticViewerText implements StatisticViewer {
 	/**
 	 * Sucht in dem Viewer nach einem Text und liefert die Cursorpositionen der Fundstellen
 	 * @param search	Zu suchender Text
+	 * @param caseSensitive	Soll die Groß- und Kleinschreibung berücksichtigt werden?
+	 * @param regularExpression	Suchbegriff ist regulärer Ausdruck?
 	 * @return	Liste mit den Cursorpositionen der Fundstellen (kann leer sein, ist aber nie <code>null</code>)
 	 * @see #search(Component)
 	 */
-	private List<Integer> getCaretPositions(final String search) {
-		final List<Integer> hits=new ArrayList<>();
-		final String searchLower=search.toLowerCase();
-
-		searchInElement(textPane.getStyledDocument().getDefaultRootElement(),searchLower,hits);
+	private List<Hit> getCaretPositions(String search, final boolean caseSensitive, final boolean regularExpression) {
+		final List<Hit> hits=new ArrayList<>();
+		final Element root=textPane.getStyledDocument().getDefaultRootElement();
+		if (regularExpression) {
+			final Pattern pattern=Pattern.compile(search,caseSensitive?0:Pattern.CASE_INSENSITIVE);
+			searchInElementRegEx(root,pattern,hits);
+		} else {
+			if (!caseSensitive) search=search.toLowerCase();
+			searchInElement(root,search,caseSensitive,hits);
+		}
 
 		return hits;
 	}
@@ -1706,7 +1935,7 @@ public abstract class StatisticViewerText implements StatisticViewer {
 	 * @param hits	Liste mit den Treffern
 	 * @see #search(Component)
 	 */
-	private void processSearchResults(final Component owner, final String search, final List<Integer> hits) {
+	private void processSearchResults(final Component owner, final String search, final List<Hit> hits) {
 		textPane.getHighlighter().removeAllHighlights();
 
 		if (hits==null || hits.isEmpty()) {
@@ -1715,12 +1944,12 @@ public abstract class StatisticViewerText implements StatisticViewer {
 		}
 
 		final DefaultHighlighter.DefaultHighlightPainter highlightPainter=new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
-		for (Integer hit: hits) {
+		for (Hit hit: hits) {
 			try {
-				textPane.getHighlighter().addHighlight(hit,hit+search.length(),highlightPainter);
+				textPane.getHighlighter().addHighlight(hit.start,hit.end+1,highlightPainter);
 			} catch (BadLocationException e) {}
 		}
-		textPane.setCaretPosition(hits.get(0));
+		textPane.setCaretPosition(hits.get(0).start);
 	}
 
 	@Override
@@ -1731,14 +1960,50 @@ public abstract class StatisticViewerText implements StatisticViewer {
 			initDescriptionPane();
 		}
 
-		final String search=JOptionPane.showInputDialog(owner,StatisticsBasePanel.viewersToolbarSearchTitle);
-		if (search==null || search.trim().isEmpty()) {
+		final StatisticViewerSearchDialog dialog=new StatisticViewerSearchDialog(owner,lastSearchString,lastCaseSensitive,lastRegularExpression);
+		if (dialog.getClosedBy()!=BaseDialog.CLOSED_BY_OK || dialog.getSearchString().isEmpty()) {
 			textPane.getHighlighter().removeAllHighlights();
 			return;
 		}
 
-		final List<Integer> hits=getCaretPositions(search);
-		processSearchResults(owner,search,hits);
+		lastSearchString=dialog.getSearchString();
+		lastCaseSensitive=dialog.isCaseSensitive();
+		lastRegularExpression=dialog.isRegularExpression();
+
+		final List<Hit> hits=getCaretPositions(lastSearchString,lastCaseSensitive,lastRegularExpression);
+		processSearchResults(owner,lastSearchString,hits);
+	}
+
+	@Override
+	public void navigation(final JButton button) {
+		treeScroller.setVisible(!treeScroller.isVisible());
+		if (!treeScroller.isVisible()) {
+			split.setDividerLocation(0);
+			split.setDividerSize(0);
+		} else {
+			split.setDividerSize(splitDividerSize);
+			updateTreeSize();
+		}
+	}
+
+	/**
+	 * Scrollt den Text zu einer bestimmten Zeile.
+	 * @param line	1-basierte Zeilennummer (Werte &le;0 führen zu keiner Scroll-Veränderung)
+	 */
+	public void gotoStartOfLine(int line) {
+		if (line<=0) return;
+
+		if (textPane==null) {
+			buildText();
+			initTextPane();
+			initDescriptionPane();
+		}
+
+		final Element root=textPane.getDocument().getDefaultRootElement();
+		line=Math.max(line,1);
+		line=Math.min(line,root.getElementCount());
+		int startOfLineOffset=root.getElement(line-1).getStartOffset();
+		textPane.setCaretPosition(startOfLineOffset);
 	}
 
 	/**
