@@ -980,6 +980,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2369] = "Callcenter bearbeiten";
     t[2372] = "Distribution.Parameter";
     t[2373] = "Parameter";
+    t[2378] = "LoadCalculator.Tab.PollaczekChintschin";
+    t[2379] = "Pollaczek-Chintschin-Formel";
     t[2380] = "OptimizeResults.Button.LastRunResult.Info";
     t[2381] = "Zeigt die Ergebnisse des letzten Simulationslaufes innerhalb des Optimierungsprozesses an.";
     t[2382] = "CommandLine.Optimizer.RunStarted";
@@ -2008,14 +2010,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4751] = "U";
     t[4752] = "MainMenu.View.Statistics.Tooltip";
     t[4753] = "Simulation und Statistikergebnisse";
-    t[4754] = "Statistic.Units.Year";
-    t[4755] = "Jahr";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4754] = "Statistic.Units.Year";
+    t[4755] = "Jahr";
     t[4756] = "Batch.Parameter.OutpurFolder.Info";
     t[4757] = "W\u00e4hlt das Ausgabeverzeichnis f\u00fcr die Statistikdaten.";
     t[4762] = "Editor.Caller.Apply.Error.AdditionalInformation";
@@ -2032,6 +2034,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4777] = "Portnummer des Simulationsservers";
     t[4780] = "XML.Statistic.GeneralAttributes.Distribution";
     t[4781] = "Verteilung";
+    t[4784] = "LoadCalculator.Tab.PollaczekChintschinShort";
+    t[4785] = "Pollaczek-Chintschin";
     t[4788] = "Optimizer.CarryOver.SelectStatisticButton";
     t[4789] = "Statistikdatei ausw\u00e4hlen";
     t[4790] = "MainMenu.File.NewModel.MediumErlangCExampleModel";
@@ -4012,16 +4016,16 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9389] = "Anteil";
     t[9392] = "XML.Statistic.Clients.Retry.Clients.ErrorSumPerInterval";
     t[9393] = "Die Wiederholungsanzahl der Kunden pro Intervall ist ung\u00fcltig.";
-    t[9394] = "Model.Check.ClientType.ForwardCheck.NoChangeRates.SkillLevelSpecific";
-    t[9395] = "Kunden des Typs \"%s\" werden nach einem Gespr\u00e4ch mit einem Agenten des Skill-Levels \"%s\" mit einer positiven Wahrscheinlichkeit weitergeleitet, es sind jedoch keine Kundentypen, zu denen Weiterleitungen erfolgen, (mit positiven Raten) angegeben.";
-    t[9400] = "FileType.xmz";
-    t[9401] = "Komprimierte xml-Dateien";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9394] = "Model.Check.ClientType.ForwardCheck.NoChangeRates.SkillLevelSpecific";
+    t[9395] = "Kunden des Typs \"%s\" werden nach einem Gespr\u00e4ch mit einem Agenten des Skill-Levels \"%s\" mit einer positiven Wahrscheinlichkeit weitergeleitet, es sind jedoch keine Kundentypen, zu denen Weiterleitungen erfolgen, (mit positiven Raten) angegeben.";
+    t[9400] = "FileType.xmz";
+    t[9401] = "Komprimierte xml-Dateien";
     t[9408] = "XML.Model.CallCenter.Score.Error";
     t[9409] = "Die angegebene Callcenter-Score %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
     t[9420] = "Statistic.FastAccess.SelectXMLTag.empty";
@@ -5588,6 +5592,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13251] = "in Minuten";
     t[13258] = "XML.Statistic.Agents.Summary.FreeTime.Error";
     t[13259] = "Die Gesamtleerlaufzeit %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
+    t[13260] = "LoadCalculator.Tab.PollaczekChintschin.Link.Info";
+    t[13261] = "Informationen zur Pollaczek-Chintschin-Formel";
     t[13262] = "Batch.Simulation.Error.SaveStatistic";
     t[13263] = "Die Statistikdaten konnten nicht gespeichert werden.";
     t[13264] = "Server.WebMenu.Homepage";
@@ -6016,18 +6022,18 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14265] = "Die Dateiformat-Beschreibungsdatei\n%s\nkonnte nicht ge\u00f6ffnet werden:\n%s\n(M\u00f6glicherweise ist kein Editor f\u00fcr dieses Dateiformat konfiguriert.)";
     t[14270] = "XML.Statistic.Agents.Costs.Calls";
     t[14271] = "KostenFuerGespraeche";
-    t[14272] = "Importer.Error.ErrorLoadingTable.Title";
-    t[14273] = "Tabellendatei konnte nicht geladen werden";
-    t[14278] = "Editor.SkillLevelOfTheAgents.Delete.Info";
-    t[14279] = "L\u00f6scht den gew\u00e4hlten Skill-Level";
-    t[14284] = "RevenueOptimizer.Warning.SearchDirection.Title";
-    t[14285] = "Suchrichtung";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14272] = "Importer.Error.ErrorLoadingTable.Title";
+    t[14273] = "Tabellendatei konnte nicht geladen werden";
+    t[14278] = "Editor.SkillLevelOfTheAgents.Delete.Info";
+    t[14279] = "L\u00f6scht den gew\u00e4hlten Skill-Level";
+    t[14284] = "RevenueOptimizer.Warning.SearchDirection.Title";
+    t[14285] = "Suchrichtung";
     t[14298] = "XML.Connected.InitialInventory.ClientType.Name.Error";
     t[14299] = "F\u00fcr den %d. initialen \u00dcbertrag ist kein Kundentyp angegeben.";
     t[14306] = "Window.Info.ModelOverview.FileName";
@@ -6448,6 +6454,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15349] = "Die angegebene Liste der bei der Optimierung zu ber\u00fccksichtigen Intervalle %s ist ung\u00fcltig.";
     t[15350] = "Editor.Callcenter.AgentGroupNr";
     t[15351] = "Agentengruppe %d";
+    t[15352] = "LoadCalculator.Tab.PollaczekChintschin.Link";
+    t[15353] = "https://de.wikipedia.org/wiki/Pollaczek-Chintschin-Formel";
     t[15356] = "Distribution.Gumbel";
     t[15357] = "Gumbel-Verteilung";
     t[15360] = "CommandLine.Error.File.OptimizerResultsFileDoesNotExist";
@@ -6576,6 +6584,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15655] = "Fehler bei der Verarbeitung der Daten";
     t[15660] = "Connected.LoadStatistic";
     t[15661] = "Statistik laden";
+    t[15672] = "LoadCalculator.PollaczekChintschinInvalidWorkLoad";
+    t[15673] = "ung\u00fcltige Auslastung";
     t[15678] = "Distribution.LogNormal";
     t[15679] = "Lognormalverteilung";
     t[15684] = "LoadCalculator.Tab.ErlangC.Link";
@@ -7478,6 +7488,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17891] = "Einstellungen des Optimierers";
     t[17894] = "Connected.Error.LoadingModel.Info";
     t[17895] = "Beim Laden des Modells ist folgender Fehler aufgetreten:";
+    t[17900] = "Distribution.StdDevs";
+    t[17901] = "Standardabweichungen";
     t[17908] = "MainMenu.Tools.KeepModel.Tooltip";
     t[17909] = "Aktuelles Modell f\u00fcr sp\u00e4teren Vergleich festhalten";
     t[17922] = "Loader.Info.SimpleModel.InputFileCallerStartColumn";

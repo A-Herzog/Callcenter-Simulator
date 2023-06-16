@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-22 15:17+0200\n"
+"POT-Creation-Date: 2023-06-04 19:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2206,7 +2206,7 @@ msgid "Distribution.StdDev"
 msgstr "Standardabweichung"
 
 msgid "Distribution.StdDevs"
-msgstr ""
+msgstr "Standardabweichungen"
 
 msgid "Distribution.StudentT"
 msgstr "Studentsche t-Verteilung"
@@ -5016,6 +5016,9 @@ msgstr "Paper zur Korrekturformel"
 msgid "LoadCalculator.PartOfLoadForTheCallcenter"
 msgstr "Lastanteil des Callcenters"
 
+msgid "LoadCalculator.PollaczekChintschinInvalidWorkLoad"
+msgstr "ungültige Auslastung"
+
 msgid "LoadCalculator.PostProcessingTime"
 msgstr "Nachbearbeitungszeit nach Kundenbedienung"
 
@@ -5096,6 +5099,18 @@ msgstr "Informationen zur Erlang C Formel"
 
 msgid "LoadCalculator.Tab.ErlangCext"
 msgstr "Erlang C (erweitert)"
+
+msgid "LoadCalculator.Tab.PollaczekChintschin"
+msgstr "Pollaczek-Chintschin-Formel"
+
+msgid "LoadCalculator.Tab.PollaczekChintschin.Link"
+msgstr "https://de.wikipedia.org/wiki/Pollaczek-Chintschin-Formel"
+
+msgid "LoadCalculator.Tab.PollaczekChintschin.Link.Info"
+msgstr "Informationen zur Pollaczek-Chintschin-Formel"
+
+msgid "LoadCalculator.Tab.PollaczekChintschinShort"
+msgstr "Pollaczek-Chintschin"
 
 msgid "LoadCalculator.Tab.WaitingTimeTolerance"
 msgstr "Wartezeittoleranz"

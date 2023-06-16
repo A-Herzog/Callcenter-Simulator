@@ -980,6 +980,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[2369] = "Edit call center";
     t[2372] = "Distribution.Parameter";
     t[2373] = "Parameter";
+    t[2378] = "LoadCalculator.Tab.PollaczekChintschin";
+    t[2379] = "Pollaczek\u2013Khinchine formula";
     t[2380] = "OptimizeResults.Button.LastRunResult.Info";
     t[2381] = "Shows the simulation results of the last run from the optimization process.";
     t[2382] = "CommandLine.Optimizer.RunStarted";
@@ -2008,14 +2010,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4751] = "u";
     t[4752] = "MainMenu.View.Statistics.Tooltip";
     t[4753] = "Simulation and statistic results";
-    t[4754] = "Statistic.Units.Year";
-    t[4755] = "Year";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4754] = "Statistic.Units.Year";
+    t[4755] = "Year";
     t[4756] = "Batch.Parameter.OutpurFolder.Info";
     t[4757] = "Selects the output folder for the statistic files.";
     t[4762] = "Editor.Caller.Apply.Error.AdditionalInformation";
@@ -2032,6 +2034,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4777] = "Port number of the simulation server";
     t[4780] = "XML.Statistic.GeneralAttributes.Distribution";
     t[4781] = "Distribution";
+    t[4784] = "LoadCalculator.Tab.PollaczekChintschinShort";
+    t[4785] = "Pollaczek\u2013Khinchine";
     t[4788] = "Optimizer.CarryOver.SelectStatisticButton";
     t[4789] = "Select statistic file";
     t[4790] = "MainMenu.File.NewModel.MediumErlangCExampleModel";
@@ -4012,16 +4016,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9389] = "Part";
     t[9392] = "XML.Statistic.Clients.Retry.Clients.ErrorSumPerInterval";
     t[9393] = "The number of retrying clients per interval is invalid.";
-    t[9394] = "Model.Check.ClientType.ForwardCheck.NoChangeRates.SkillLevelSpecific";
-    t[9395] = "Clients of type \"%s\" are forwarded after being served by an agent with skill level \"%s\" with a positive probability, but there are no client types defined (with a positive rate) to which they shall be forwarded.";
-    t[9400] = "FileType.xmz";
-    t[9401] = "Compressed xml files";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9394] = "Model.Check.ClientType.ForwardCheck.NoChangeRates.SkillLevelSpecific";
+    t[9395] = "Clients of type \"%s\" are forwarded after being served by an agent with skill level \"%s\" with a positive probability, but there are no client types defined (with a positive rate) to which they shall be forwarded.";
+    t[9400] = "FileType.xmz";
+    t[9401] = "Compressed xml files";
     t[9408] = "XML.Model.CallCenter.Score.Error";
     t[9409] = "The specified call center score %s is invalid. The value has to be a non-negative integer number.";
     t[9420] = "Statistic.FastAccess.SelectXMLTag.empty";
@@ -5588,6 +5592,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13251] = "in minutes";
     t[13258] = "XML.Statistic.Agents.Summary.FreeTime.Error";
     t[13259] = "The total free time %s is invalid. The value has to be a non-negative integer value.";
+    t[13260] = "LoadCalculator.Tab.PollaczekChintschin.Link.Info";
+    t[13261] = "Information about Pollaczek\u2013Khinchine formula";
     t[13262] = "Batch.Simulation.Error.SaveStatistic";
     t[13263] = "The statistic data could not be saved.";
     t[13264] = "Server.WebMenu.Homepage";
@@ -6016,18 +6022,18 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14265] = "The file format description file\n%s\ncould not be opened:\n%s\n(Perhaps no editor for this file format is configured.)";
     t[14270] = "XML.Statistic.Agents.Costs.Calls";
     t[14271] = "CostsForCalls";
-    t[14272] = "Importer.Error.ErrorLoadingTable.Title";
-    t[14273] = "Could not load table file";
-    t[14278] = "Editor.SkillLevelOfTheAgents.Delete.Info";
-    t[14279] = "Deletes the selected skill level";
-    t[14284] = "RevenueOptimizer.Warning.SearchDirection.Title";
-    t[14285] = "Search direction";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14272] = "Importer.Error.ErrorLoadingTable.Title";
+    t[14273] = "Could not load table file";
+    t[14278] = "Editor.SkillLevelOfTheAgents.Delete.Info";
+    t[14279] = "Deletes the selected skill level";
+    t[14284] = "RevenueOptimizer.Warning.SearchDirection.Title";
+    t[14285] = "Search direction";
     t[14298] = "XML.Connected.InitialInventory.ClientType.Name.Error";
     t[14299] = "For the initial inventory %d no client type was defined.";
     t[14306] = "Window.Info.ModelOverview.FileName";
@@ -6448,6 +6454,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15349] = "The specified list of the intervals to be used for optimization %s is invalid.";
     t[15350] = "Editor.Callcenter.AgentGroupNr";
     t[15351] = "Agents group %d";
+    t[15352] = "LoadCalculator.Tab.PollaczekChintschin.Link";
+    t[15353] = "https://en.wikipedia.org/wiki/Pollaczek%E2%80%93Khinchine_formula";
     t[15356] = "Distribution.Gumbel";
     t[15357] = "Gumbel distribution";
     t[15360] = "CommandLine.Error.File.OptimizerResultsFileDoesNotExist";
@@ -6576,6 +6584,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15655] = "Error processing the data";
     t[15660] = "Connected.LoadStatistic";
     t[15661] = "Load statistic";
+    t[15672] = "LoadCalculator.PollaczekChintschinInvalidWorkLoad";
+    t[15673] = "invalid work load";
     t[15678] = "Distribution.LogNormal";
     t[15679] = "Lognormal distribution";
     t[15684] = "LoadCalculator.Tab.ErlangC.Link";
@@ -7478,6 +7488,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17891] = "Optimizer setup";
     t[17894] = "Connected.Error.LoadingModel.Info";
     t[17895] = "The following error occured while loading the model:";
+    t[17900] = "Distribution.StdDevs";
+    t[17901] = "Standard deviations";
     t[17908] = "MainMenu.Tools.KeepModel.Tooltip";
     t[17909] = "Keep current model for comparison";
     t[17922] = "Loader.Info.SimpleModel.InputFileCallerStartColumn";
