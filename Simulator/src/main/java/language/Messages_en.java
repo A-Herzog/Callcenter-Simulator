@@ -618,6 +618,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[1495] = "Outline width";
     t[1496] = "JDistributionEditor.CumulativeProbability.Label";
     t[1497] = "Cumulative probability distribution";
+    t[1500] = "Statistic.Viewer.Context.Sort.Ascending";
+    t[1501] = "Ascending by this column";
     t[1508] = "Editor.Caller.List.WaitingTimeTolerance.EmpiricalDistribution";
     t[1509] = "Empirical distribution";
     t[1514] = "Compare.Error.ModelError.Title";
@@ -2008,14 +2010,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4749] = "Density";
     t[4750] = "Main.Menu.Help.Updates.Mnemonic";
     t[4751] = "u";
-    t[4752] = "MainMenu.View.Statistics.Tooltip";
-    t[4753] = "Simulation and statistic results";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4752] = "MainMenu.View.Statistics.Tooltip";
+    t[4753] = "Simulation and statistic results";
     t[4754] = "Statistic.Units.Year";
     t[4755] = "Year";
     t[4756] = "Batch.Parameter.OutpurFolder.Info";
@@ -3860,6 +3862,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9007] = "Not anymore servable client types";
     t[9012] = "CommandLine.ExportStatistic.InvalidExportMode";
     t[9013] = "The export data could not be saved to the file %s.";
+    t[9014] = "Statistic.Viewer.Context.Filter.SelectTitle";
+    t[9015] = "Select values for lines to be displayed";
     t[9016] = "Window.LogRun.Title";
     t[9017] = "Save simulation log";
     t[9020] = "RevenueOptimizer.Working.IntervalCallcenter";
@@ -3932,6 +3936,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9169] = "found on page \"%s\"";
     t[9170] = "LoadCalculator.ProbabilityOfBlocking";
     t[9171] = "Probability of blocking";
+    t[9174] = "Statistic.Viewer.Context.Filter.Select";
+    t[9175] = "Select values...";
     t[9176] = "Editor.GeneralData.ThresholdValues.Type.WaitingTimeClients";
     t[9177] = "Waiting time on client basis";
     t[9192] = "LoadCalculator.Units.Minutes";
@@ -4010,18 +4016,18 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9375] = "ClientsAccessibility";
     t[9382] = "Server.WebMenu.Applet";
     t[9383] = "Start Callcenter Simulator <small>(requires Java)</small>";
-    t[9386] = "SimStatistic.AllActiveAgents";
-    t[9387] = "All active agents";
-    t[9388] = "Statistic.Viewer.Chart.Part";
-    t[9389] = "Part";
-    t[9392] = "XML.Statistic.Clients.Retry.Clients.ErrorSumPerInterval";
-    t[9393] = "The number of retrying clients per interval is invalid.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9386] = "SimStatistic.AllActiveAgents";
+    t[9387] = "All active agents";
+    t[9388] = "Statistic.Viewer.Chart.Part";
+    t[9389] = "Part";
+    t[9392] = "XML.Statistic.Clients.Retry.Clients.ErrorSumPerInterval";
+    t[9393] = "The number of retrying clients per interval is invalid.";
     t[9394] = "Model.Check.ClientType.ForwardCheck.NoChangeRates.SkillLevelSpecific";
     t[9395] = "Clients of type \"%s\" are forwarded after being served by an agent with skill level \"%s\" with a positive probability, but there are no client types defined (with a positive rate) to which they shall be forwarded.";
     t[9400] = "FileType.xmz";
@@ -5220,6 +5226,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12309] = "The update is being downloaded now. The signature will be checked and the\ninstallation file will be stored in the specified directory for manual\ninstallation.";
     t[12310] = "Loader.OutputFile.Info";
     t[12311] = "Selects the output file where the processed data will be saved";
+    t[12312] = "Statistic.Viewer.Context.Filter.All";
+    t[12313] = "Show all";
     t[12320] = "XML.Connected.InitialInventory";
     t[12321] = "ConnectedInitialInventory";
     t[12326] = "CommandLine.ResetConfig.Description.Long";
@@ -5628,6 +5636,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13333] = "An error occurred while decrypting file %s.";
     t[13350] = "Editor.ToolsPopup.Caller48";
     t[13351] = "Load arrival distribution (on half-hour basis) for multiple caller groups";
+    t[13354] = "Statistic.Viewer.Context.Filter.SelectAll";
+    t[13355] = "All";
     t[13356] = "FitDalog.UseDistribution.InfoSingle";
     t[13357] = "The data was taken in the model for one property.";
     t[13360] = "XML.Statistic.Agents.Summary.Calls";
@@ -5706,6 +5716,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13557] = "single graphics";
     t[13558] = "CommandLine.GeneratorAgentsEfficiency.Description.Short";
     t[13559] = "Load agents efficiency from table.";
+    t[13560] = "Statistic.Viewer.Context.Sort.Reset";
+    t[13561] = "Reset order";
     t[13568] = "XML.Model.Days.Error";
     t[13569] = "The number of days to be simulated has to be a non-negative integer number.";
     t[13570] = "Connected.Simulation.Start";
@@ -6006,8 +6018,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14231] = "The caller table can consist of any number of columns. Each column defines one client type. Each column has to consist of the following rows:\n<ul>\n  <li>Name of the client type</li>\n  <li>48 rows defining the number of calls by half-hour interval</li>\n  <li>Basis priority for the client type</li>\n  <li>Priority change per waiting second</li>\n  <li>Priority change on forwarding</li>\n  <li>Mean waiting time tolerance</li>\n  <li>Retry probability</li>\n  <li>Mean retry time</li>\n  <li>Any number of additional rows defining the probability of clients of this type to be forwarded after the service (in the order of the column order of the table; empty rows mean there is no forwarding to this client type)</li>\n</ul>\nThe agents table can consist of any number of columns. Each column defines one agents group. Each column has to consist of the following rows:\n<ul>\n  <li>Name of the agents group / the skill level</li>\n  <li>48 rows for the numbers of agents per half-hour interval</li>\n  <li>Any number of additional rows defining the mean service times for the client types (in the order of the column order of the client types in the callers table; empty rows mean the agents group will not be able to servce clients of this type)</li>\n</ul>";
     t[14232] = "Model.Plausibility.ExtError";
     t[14233] = "The normal model audit was successful but the strict model audit has found the following problem:";
+    t[14234] = "Statistic.Viewer.Context.Filter";
+    t[14235] = "Filter";
     t[14236] = "Window.Info.FileFormatError.NotExist.Info";
     t[14237] = "The file format description file\n%s\ndoes not exist.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14242] = "XML.OptimizerSetup.InitialInventory.ClientType.Name";
     t[14243] = "Name";
     t[14248] = "Statistic.Viewer.DiagramSettings.Outline.Color";
@@ -6022,12 +6042,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14265] = "The file format description file\n%s\ncould not be opened:\n%s\n(Perhaps no editor for this file format is configured.)";
     t[14270] = "XML.Statistic.Agents.Costs.Calls";
     t[14271] = "CostsForCalls";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14272] = "Importer.Error.ErrorLoadingTable.Title";
     t[14273] = "Could not load table file";
     t[14278] = "Editor.SkillLevelOfTheAgents.Delete.Info";
@@ -6214,6 +6228,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14701] = "The configuration file %s does not exist.";
     t[14704] = "Model.Check.ClientType.RetryCheck.InvalidChangeRate";
     t[14705] = "The client type change rate for client type \"%s\" to \"$name\" on a retry is negative.";
+    t[14706] = "Statistic.Viewer.Context.Sort.Descending";
+    t[14707] = "Descending by this column";
     t[14710] = "XML.Statistic.Confidence";
     t[14711] = "StatisticConfidence";
     t[14714] = "Calibrate.ErrorInvalidTargetAccessibility";
@@ -6772,6 +6788,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16193] = "Call center parameters";
     t[16202] = "SimStatistic.PostProcessingTime.Distribution";
     t[16203] = "Post processing time distribution";
+    t[16206] = "Statistic.Viewer.Context.Sort";
+    t[16207] = "Sort";
     t[16210] = "FileType.DBF";
     t[16211] = "dbf databases";
     t[16214] = "SimStatistic.AgentsOnModelBasis.AgentsInModel";
@@ -6824,6 +6842,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16335] = "RetryProbabilityAfterCanceledFirstRetry";
     t[16336] = "CommandLine.ReportBase.Error";
     t[16337] = "The report could not be created.";
+    t[16338] = "Statistic.Viewer.Context.Filter.SelectNone";
+    t[16339] = "None";
     t[16346] = "Compare.Models.Base";
     t[16347] = "Base model";
     t[16348] = "Editor.Callcenter.Delete.Info";
