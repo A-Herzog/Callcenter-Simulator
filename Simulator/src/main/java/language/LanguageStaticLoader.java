@@ -31,6 +31,7 @@ import mathtools.distribution.tools.DistributionFitterBase;
 import mathtools.distribution.tools.DistributionTools;
 import statistics.StatisticsSimulationBaseData;
 import systemtools.GUITools;
+import systemtools.JRegExWikipediaLinkLabel;
 import systemtools.MsgBox;
 import systemtools.SetupBase;
 import systemtools.commandline.BaseCommandLineSystem;
@@ -93,6 +94,11 @@ public class LanguageStaticLoader {
 		MsgBox.OpenURLErrorTitle=Language.tr("Window.Info.NoInternetConnection");
 		MsgBox.OpenURLErrorMessage=Language.tr("Window.Info.NoInternetConnection.Address");
 		MsgBox.ActiveLocale=locale;
+
+		/* Sucheinstellungen */
+		JRegExWikipediaLinkLabel.title=Language.tr("RegExWikipdiaLink.Title");
+		JRegExWikipediaLinkLabel.tooltip=Language.tr("RegExWikipdiaLink.Tooltip");
+		JRegExWikipediaLinkLabel.url=Language.tr("RegExWikipdiaLink.URL");
 
 		/* Verteilungen */
 		DistributionTools.DistData=Language.trAll("Distribution.Data");
@@ -304,6 +310,7 @@ public class LanguageStaticLoader {
 		JDistributionPanel.SaveButtonTooltip=Language.tr("JDistributionEditor.Save.Graphics.Info");
 		JDistributionPanel.WikiButtonLabel=Language.tr("Dialog.Button.Help");
 		JDistributionPanel.WikiButtonTooltip=Language.tr("JDistributionEditor.Wikipedia.Info");
+		JDistributionPanel.ChangeDistributionTypeHighlightList=Language.tr("JDistributionEditor.ChangeDistributionTypeHighlightList");
 		JDistributionPanel.DensityLabel=Language.tr("JDistributionEditor.Density.Label");
 		JDistributionPanel.CountDensityLabel=Language.tr("JDistributionEditor.Density.Label");
 		JDistributionPanel.CumulativeProbabilityLabel=Language.tr("JDistributionEditor.CumulativeProbability.Label");

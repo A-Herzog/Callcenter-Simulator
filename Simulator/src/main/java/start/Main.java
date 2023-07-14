@@ -183,6 +183,7 @@ public final class Main {
 			FlatLaFHelper.setup();
 
 			/* Skalierung */
+			GUITools.setupFontSizeFixSystemScaling();
 			final double scaling=setup.scaleGUI;
 			GUITools.setupFontSize(scaling);
 			BaseDialog.windowScaling=scaling;

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-18 18:47+0200\n"
+"POT-Creation-Date: 2023-07-14 21:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4815,6 +4815,9 @@ msgstr "Tabellenblatt"
 msgid "JDataLoader.Title"
 msgstr "Daten importieren"
 
+msgid "JDistributionEditor.ChangeDistributionTypeHighlightList"
+msgstr "Hier werden nur die hervorgehobenen Verteilungen dargestellt. Eine vollständige Liste steht im Bearbeiten-Dialog zur Auswahl zur Verfügung."
+
 msgid "JDistributionEditor.Copy.Graphics"
 msgstr "Grafik"
 
@@ -7341,6 +7344,15 @@ msgstr "vollständig gemäß<br>Agenten anordnen"
 
 msgid "Rearranger.Slider.Min"
 msgstr "keine<br>Anpassung"
+
+msgid "RegExWikipdiaLink.Title"
+msgstr "Hilfe zu regulären Ausdrücken"
+
+msgid "RegExWikipdiaLink.Tooltip"
+msgstr "Wikipedia-Seite zum Thema \"Reguläre Ausdrücke\""
+
+msgid "RegExWikipdiaLink.URL"
+msgstr "https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck"
 
 msgid "RevenueOptimizer.Button.Cancel"
 msgstr "Optimierung abbrechen"

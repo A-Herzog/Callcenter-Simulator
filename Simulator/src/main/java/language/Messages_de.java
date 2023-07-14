@@ -254,6 +254,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[593] = "Die Arbeitslohn-Kosten %s sind ung\u00fcltig.";
     t[604] = "Statistic.Units.MilliSeconds";
     t[605] = "ms";
+    t[612] = "XML.OptimizerSetup.UseIntervals";
+    t[613] = "Optimierung-Optimierungsintervalle";
     t[616] = "MainMenu.Data.LoadAgents.Mnemonic";
     t[617] = "A";
     t[618] = "CommandLine.Help.Help.Long";
@@ -1378,8 +1380,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3407] = "Agenten";
     t[3410] = "Loader.Info.SimpleModel.ErrorProcessingCaller";
     t[3411] = "Fehler bei der Verarbeitung der Anruferdaten";
-    t[3420] = "XML.OptimizerSetup.UseIntervals";
-    t[3421] = "Optimierung-Optimierungsintervalle";
+    t[3420] = "RegExWikipdiaLink.Tooltip";
+    t[3421] = "Wikipedia-Seite zum Thema \"Regul\u00e4re Ausdr\u00fccke\"";
     t[3422] = "XML.Statistic.Agents.Summary.FreeTimePart";
     t[3423] = "LeerlaufAnteil";
     t[3426] = "JDistributionEditor.Copy.Info";
@@ -1936,6 +1938,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4563] = "Skalierung";
     t[4570] = "XML.Statistic.Clients.HoldingTimeDistributionLong.Calls";
     t[4571] = "StatistikAnrufeVerweilzeitverteilungLang";
+    t[4584] = "Statistic.Viewer.Toolbar.OpenPDF";
+    t[4585] = "PDF";
     t[4586] = "Statistic.Viewer.Toolbar.Copy.WindowSize";
     t[4587] = "In Fenstergr\u00f6\u00dfe (%dx%d Pixel) kopieren";
     t[4590] = "SimStatistic.CostStructure.CostPerCanceledCall";
@@ -2006,16 +2010,16 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4737] = "Auswahl";
     t[4740] = "Importer.PostProcessingTimeDistribution";
     t[4741] = "Nachbearbeitungszeitverteilung";
-    t[4748] = "JDistributionEditor.Density.Label";
-    t[4749] = "Dichte";
-    t[4750] = "Main.Menu.Help.Updates.Mnemonic";
-    t[4751] = "U";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4748] = "JDistributionEditor.Density.Label";
+    t[4749] = "Dichte";
+    t[4750] = "Main.Menu.Help.Updates.Mnemonic";
+    t[4751] = "U";
     t[4752] = "MainMenu.View.Statistics.Tooltip";
     t[4753] = "Simulation und Statistikergebnisse";
     t[4754] = "Statistic.Units.Year";
@@ -2514,6 +2518,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[5753] = "Sie haben ausgew\u00e4hlt, dass der Zielwert im Mittel \u00fcber den Tag erreicht werden soll, und\ngleichzeitig, dass nur einige bestimmte Intervalle bei der Optimierung ber\u00fccksichtigt\nwerden sollen. Dies kann zu verzerrten Ergebnissen f\u00fchren. Es wird empfohlen, eine\nOptimierung auf Intervallbasis durchzuf\u00fchren, wenn nur bestimmte Intervalle\nber\u00fccksichtigt werden sollen.";
     t[5754] = "SimStatistic.FreshCalls.Per";
     t[5755] = "Erstanrufer pro %s";
+    t[5756] = "RegExWikipdiaLink.Title";
+    t[5757] = "Hilfe zu regul\u00e4ren Ausdr\u00fccken";
     t[5762] = "Model.Check.ClientType.RecallCheck.UnknownSkillLevel";
     t[5763] = "F\u00fcr Kunden des Typs \"%s\" sind Wiederanrufregeln f\u00fcr den Fall einer Bedienung durch einen Agenten des Skill-Levels \"%s\" definiert. Diesen Skill-Level gibt es jedoch nicht.";
     t[5764] = "Window.ErrorNoGraphics";
@@ -3918,8 +3924,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9131] = "B";
     t[9132] = "SimStatistic.ModelInformation.Date";
     t[9133] = "Datum des Modelltages";
-    t[9140] = "Statistic.Viewer.Toolbar.OpenPDF";
-    t[9141] = "PDF";
+    t[9140] = "RegExWikipdiaLink.URL";
+    t[9141] = "https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck";
     t[9148] = "Setup.SaveError.Title";
     t[9149] = "Konfiguration konnte nicht gespeichert werden";
     t[9150] = "XML.Model.ClientType.Retry.ClientType.NewClientType";
@@ -4010,18 +4016,18 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9357] = "Kunden des Typs \"%s\" k\u00f6nnen bei einem Warteabbruch zu Kunden des Typs \"$name\" werden, den es jedoch nicht gibt.";
     t[9358] = "Connected.Error.NewerVersion";
     t[9359] = "Das Modell wurde mit einer neueren Version des Callcenter Simulators erstellt und kann daher nicht mit dieser Version simuliert werden.";
-    t[9372] = "FileType.xml";
-    t[9373] = "xml-Dateien";
-    t[9374] = "XML.Statistic.Clients.Summary.ClientsAccessibility";
-    t[9375] = "KundenErreichbarkeit";
-    t[9382] = "Server.WebMenu.Applet";
-    t[9383] = "Callcenter Simulator starten <small>(erfordert Java)</small>";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9372] = "FileType.xml";
+    t[9373] = "xml-Dateien";
+    t[9374] = "XML.Statistic.Clients.Summary.ClientsAccessibility";
+    t[9375] = "KundenErreichbarkeit";
+    t[9382] = "Server.WebMenu.Applet";
+    t[9383] = "Callcenter Simulator starten <small>(erfordert Java)</small>";
     t[9386] = "SimStatistic.AllActiveAgents";
     t[9387] = "Alle aktiven Agenten";
     t[9388] = "Statistic.Viewer.Chart.Part";
@@ -6016,18 +6022,18 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14229] = "Gelb";
     t[14230] = "Loader.Info.SimpleModel.Description";
     t[14231] = "Die Anrufertabelle kann beliebig viele Spalten enthalten. Pro Spalte wird ein Kundentyp definiert. Jede Spalte muss aus folgenden Zeilen bestehen:\n<ul>\n  <li>Name des Kundentyps</li>\n  <li>48 Zeilen f\u00fcr die Anzahlen an Anrufen pro Halbstundenintervall</li>\n  <li>Basispriorit\u00e4t des Kundentyps</li>\n  <li>Priorit\u00e4ts\u00e4nderung pro Wartesekunde</li>\n  <li>Priorit\u00e4ts\u00e4nderung bei Weiterleitungen</li>\n  <li>Mittlere Wartezeittoleranz</li>\n  <li>Wiederholwahrscheinlichkeit</li>\n  <li>Mittlerer Wiederholabstand</li>\n  <li>Beliebig viele weitere Zeilen, die angeben mit welcher Wahrscheinlichkeit Kunden dieses Typs nach einem Gespr\u00e4ch weitergeleitet werden (Reihenfolge entsprechend der Spaltenreihenfolge der Tabelle; leere Zeilen bedeuten, dass Kunden nicht zu dem jeweiligen Typ weitergeleitet werden)</li>\n</ul>\nDie Agententabelle kann beliebig viele Spalten enthalten. Pro Spalte wird eine Agentengruppe definiert. Jede Spalte muss aus folgenden Zeilen bestehen:\n<ul>\n  <li>Name der Gruppe bzw. des Skill-Levels</li<\n  <li>48 Zeilen f\u00fcr die Agentenanzahlen pro Halbstundenintervall</li>\n  <li>Beliebig viele weitere Zeilen f\u00fcr die mittleren Bedienzeiten der Kundentypen (Reihenfolge entsprechend der Spaltenreihenfolge der Kundentabelle; leere Zeilen bedeuten, dass die Agentengruppe Kunden dieses Typs nicht bedienen kann)</li>\n</ul>";
-    t[14232] = "Model.Plausibility.ExtError";
-    t[14233] = "Die normale Modellpr\u00fcfung hat keine Fehler ergeben, aber die strenge Modellpr\u00fcfung hat folgendes Problem festgestellt:";
-    t[14234] = "Statistic.Viewer.Context.Filter";
-    t[14235] = "Filtern";
-    t[14236] = "Window.Info.FileFormatError.NotExist.Info";
-    t[14237] = "Die Dateiformat-Beschreibungsdatei\n%s\nexistiert nicht.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14232] = "Model.Plausibility.ExtError";
+    t[14233] = "Die normale Modellpr\u00fcfung hat keine Fehler ergeben, aber die strenge Modellpr\u00fcfung hat folgendes Problem festgestellt:";
+    t[14234] = "Statistic.Viewer.Context.Filter";
+    t[14235] = "Filtern";
+    t[14236] = "Window.Info.FileFormatError.NotExist.Info";
+    t[14237] = "Die Dateiformat-Beschreibungsdatei\n%s\nexistiert nicht.";
     t[14242] = "XML.OptimizerSetup.InitialInventory.ClientType.Name";
     t[14243] = "Name";
     t[14248] = "Statistic.Viewer.DiagramSettings.Outline.Color";
@@ -6246,6 +6252,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14753] = "Agentengruppe";
     t[14754] = "XML.Statistic.Clients.Summary.CallsAverageResidenceTime";
     t[14755] = "AnrufeMittlereVerweilzeit";
+    t[14756] = "JDistributionEditor.ChangeDistributionTypeHighlightList";
+    t[14757] = "Hier werden nur die hervorgehobenen Verteilungen dargestellt. Eine vollst\u00e4ndige Liste steht im Bearbeiten-Dialog zur Auswahl zur Verf\u00fcgung.";
     t[14758] = "Statistic.Viewer.Toolbar.Zoom.HintPanel";
     t[14759] = "In dem Diagramm k\u00f6nnen mit gedr\u00fcckter linker Maustaste Zoom-Rahmen aufgezogen werden. Au\u00dferdem kann mit dem Mausrad gezoomt werden. Wird die Strg-Taste gedr\u00fcckt gehalten, so kann der darzustellende Bereich mit gedr\u00fcckter linker Maustaste verschoben werden.";
     t[14760] = "Calibrate.ErrorWaitingTimeToleranceEstimationActive";

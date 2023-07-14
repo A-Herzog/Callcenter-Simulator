@@ -254,6 +254,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[593] = "The wages %s are invalid.";
     t[604] = "Statistic.Units.MilliSeconds";
     t[605] = "ms";
+    t[612] = "XML.OptimizerSetup.UseIntervals";
+    t[613] = "Optimizer-OptimizationIntervals";
     t[616] = "MainMenu.Data.LoadAgents.Mnemonic";
     t[617] = "A";
     t[618] = "CommandLine.Help.Help.Long";
@@ -1378,8 +1380,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[3407] = "Agents";
     t[3410] = "Loader.Info.SimpleModel.ErrorProcessingCaller";
     t[3411] = "Error while processing the callers data";
-    t[3420] = "XML.OptimizerSetup.UseIntervals";
-    t[3421] = "Optimizer-OptimizationIntervals";
+    t[3420] = "RegExWikipdiaLink.Tooltip";
+    t[3421] = "Wikipedia page on topic \"Regular expressions\"";
     t[3422] = "XML.Statistic.Agents.Summary.FreeTimePart";
     t[3423] = "FreeTimePart";
     t[3426] = "JDistributionEditor.Copy.Info";
@@ -1936,6 +1938,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4563] = "Scale";
     t[4570] = "XML.Statistic.Clients.HoldingTimeDistributionLong.Calls";
     t[4571] = "StatisticCallsHoldingTimeDistributionLong";
+    t[4584] = "Statistic.Viewer.Toolbar.OpenPDF";
+    t[4585] = "PDF";
     t[4586] = "Statistic.Viewer.Toolbar.Copy.WindowSize";
     t[4587] = "Copy using window size (%dx%d pixels)";
     t[4590] = "SimStatistic.CostStructure.CostPerCanceledCall";
@@ -2006,16 +2010,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4737] = "Selection";
     t[4740] = "Importer.PostProcessingTimeDistribution";
     t[4741] = "Post processing time distribution";
-    t[4748] = "JDistributionEditor.Density.Label";
-    t[4749] = "Density";
-    t[4750] = "Main.Menu.Help.Updates.Mnemonic";
-    t[4751] = "u";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4748] = "JDistributionEditor.Density.Label";
+    t[4749] = "Density";
+    t[4750] = "Main.Menu.Help.Updates.Mnemonic";
+    t[4751] = "u";
     t[4752] = "MainMenu.View.Statistics.Tooltip";
     t[4753] = "Simulation and statistic results";
     t[4754] = "Statistic.Units.Year";
@@ -2514,6 +2518,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[5753] = "You have chosen to optimize the target value in average over the whole day but also selected\nonly to respect some intervals in optimization. This can lead to biased results. If you want\nto respect only some intervals an interval based optimization should be chosen.";
     t[5754] = "SimStatistic.FreshCalls.Per";
     t[5755] = "Fresh calls per %s";
+    t[5756] = "RegExWikipdiaLink.Title";
+    t[5757] = "Help on regular expressions";
     t[5762] = "Model.Check.ClientType.RecallCheck.UnknownSkillLevel";
     t[5763] = "For clients of type \"%s\" there are recall rules when being served by agents of skill level \"%s\", but there is no such skill level.";
     t[5764] = "Window.ErrorNoGraphics";
@@ -3918,8 +3924,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9131] = "Q";
     t[9132] = "SimStatistic.ModelInformation.Date";
     t[9133] = "Date of the model day";
-    t[9140] = "Statistic.Viewer.Toolbar.OpenPDF";
-    t[9141] = "PDF";
+    t[9140] = "RegExWikipdiaLink.URL";
+    t[9141] = "https://en.wikipedia.org/wiki/Regular_expression";
     t[9148] = "Setup.SaveError.Title";
     t[9149] = "Configuration could not be saved";
     t[9150] = "XML.Model.ClientType.Retry.ClientType.NewClientType";
@@ -4010,18 +4016,18 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9357] = "Clients of type \"%s\" can change their type to \"$name\" on a retry, but this client type does not exist.";
     t[9358] = "Connected.Error.NewerVersion";
     t[9359] = "The model was created with a newer version of the Callcenter Simulator and therefore cannot be simulated with this version.";
-    t[9372] = "FileType.xml";
-    t[9373] = "xml files";
-    t[9374] = "XML.Statistic.Clients.Summary.ClientsAccessibility";
-    t[9375] = "ClientsAccessibility";
-    t[9382] = "Server.WebMenu.Applet";
-    t[9383] = "Start Callcenter Simulator <small>(requires Java)</small>";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9372] = "FileType.xml";
+    t[9373] = "xml files";
+    t[9374] = "XML.Statistic.Clients.Summary.ClientsAccessibility";
+    t[9375] = "ClientsAccessibility";
+    t[9382] = "Server.WebMenu.Applet";
+    t[9383] = "Start Callcenter Simulator <small>(requires Java)</small>";
     t[9386] = "SimStatistic.AllActiveAgents";
     t[9387] = "All active agents";
     t[9388] = "Statistic.Viewer.Chart.Part";
@@ -6016,18 +6022,18 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14229] = "Yellow";
     t[14230] = "Loader.Info.SimpleModel.Description";
     t[14231] = "The caller table can consist of any number of columns. Each column defines one client type. Each column has to consist of the following rows:\n<ul>\n  <li>Name of the client type</li>\n  <li>48 rows defining the number of calls by half-hour interval</li>\n  <li>Basis priority for the client type</li>\n  <li>Priority change per waiting second</li>\n  <li>Priority change on forwarding</li>\n  <li>Mean waiting time tolerance</li>\n  <li>Retry probability</li>\n  <li>Mean retry time</li>\n  <li>Any number of additional rows defining the probability of clients of this type to be forwarded after the service (in the order of the column order of the table; empty rows mean there is no forwarding to this client type)</li>\n</ul>\nThe agents table can consist of any number of columns. Each column defines one agents group. Each column has to consist of the following rows:\n<ul>\n  <li>Name of the agents group / the skill level</li>\n  <li>48 rows for the numbers of agents per half-hour interval</li>\n  <li>Any number of additional rows defining the mean service times for the client types (in the order of the column order of the client types in the callers table; empty rows mean the agents group will not be able to servce clients of this type)</li>\n</ul>";
-    t[14232] = "Model.Plausibility.ExtError";
-    t[14233] = "The normal model audit was successful but the strict model audit has found the following problem:";
-    t[14234] = "Statistic.Viewer.Context.Filter";
-    t[14235] = "Filter";
-    t[14236] = "Window.Info.FileFormatError.NotExist.Info";
-    t[14237] = "The file format description file\n%s\ndoes not exist.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14232] = "Model.Plausibility.ExtError";
+    t[14233] = "The normal model audit was successful but the strict model audit has found the following problem:";
+    t[14234] = "Statistic.Viewer.Context.Filter";
+    t[14235] = "Filter";
+    t[14236] = "Window.Info.FileFormatError.NotExist.Info";
+    t[14237] = "The file format description file\n%s\ndoes not exist.";
     t[14242] = "XML.OptimizerSetup.InitialInventory.ClientType.Name";
     t[14243] = "Name";
     t[14248] = "Statistic.Viewer.DiagramSettings.Outline.Color";
@@ -6246,6 +6252,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14753] = "Agents group";
     t[14754] = "XML.Statistic.Clients.Summary.CallsAverageResidenceTime";
     t[14755] = "CallsAverageResidenceTime";
+    t[14756] = "JDistributionEditor.ChangeDistributionTypeHighlightList";
+    t[14757] = "Only the highlighted distributions are shown here. A complete list is available for selection in the Edit dialog.";
     t[14758] = "Statistic.Viewer.Toolbar.Zoom.HintPanel";
     t[14759] = "Zoom frames can be drawn in the diagram by holding down the left mouse button. In addition, the mouse wheel can be used to zoom. If the ctrl key is held down, the area to be displayed can be moved by holding down the left mouse button.";
     t[14760] = "Calibrate.ErrorWaitingTimeToleranceEstimationActive";

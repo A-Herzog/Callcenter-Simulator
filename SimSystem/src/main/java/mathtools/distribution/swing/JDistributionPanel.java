@@ -21,11 +21,13 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.Window;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -40,6 +42,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -47,10 +50,12 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
@@ -64,6 +69,7 @@ import org.apache.commons.math3.exception.MathRuntimeException;
 
 import mathtools.NumberTools;
 import mathtools.distribution.DataDistributionImpl;
+import mathtools.distribution.tools.AbstractDistributionWrapper;
 import mathtools.distribution.tools.DistributionTools;
 import mathtools.distribution.tools.FileDropper;
 import mathtools.distribution.tools.FileDropperData;
@@ -103,6 +109,8 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 	public static String WikiButtonLabel="Hilfe";
 	/** Bezeichner für Tooltip für Dialogschaltfläche "Hilfe" */
 	public static String WikiButtonTooltip="Öffnet ein Browserfenster mit weiteren Informationen zu dem gewählten Verteilungstyp";
+	/** Informationstext in der Verteilungsanzeige zur Veränderung des Verteilungstyps */
+	public static String ChangeDistributionTypeHighlightList="Hier werden nur die hervorgehobenen Verteilungen dargestellt. Eine vollständige Liste steht im Bearbeiten-Dialog zur Auswahl zur Verfügung.";
 	/** Bezeichner "Dichte" */
 	public static String DensityLabel="Dichte";
 	/** Bezeichner "Zähldichte" */
@@ -161,7 +169,7 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 	private int plotType=BOTH;
 
 	/** Darzustellende Verteilung */
-	private AbstractRealDistribution distribution = null;
+	private AbstractRealDistribution distribution=null;
 
 	/**
 	 * Darf der Typ der Verteilung im Editor geändert werden?
@@ -243,18 +251,18 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 			infoPanelEast.add(save);
 		} catch (SecurityException e) {}
 
+		infoPanelEast.add(wiki=new JButton(WikiButtonLabel));
+		wiki.setToolTipText(WikiButtonTooltip);
+		wiki.addActionListener(e->actionWiki());
+		wiki.setIcon(SimSystemsSwingImages.HELP.getIcon());
+
 		if (showEditButton) {
 			infoPanelEast.add(edit=new JButton(EditButtonLabel));
 			edit.setToolTipText(EditButtonTooltip);
 			edit.addActionListener(e->editButtonClicked());
 			edit.setIcon(SimSystemsSwingImages.EDIT.getIcon());
-			wiki=null;
 		} else {
 			edit=null;
-			infoPanelEast.add(wiki=new JButton(WikiButtonLabel));
-			wiki.setToolTipText(WikiButtonTooltip);
-			wiki.addActionListener(e->actionWiki());
-			wiki.setIcon(SimSystemsSwingImages.HELP.getIcon());
 		}
 
 		add(plotter=new JDistributionPlotter(),BorderLayout.CENTER);
@@ -326,7 +334,7 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 			if (dataLong.isEmpty()) {
 				info.setToolTipText("");
 			} else {
-				info.setToolTipText(name+" ("+dataLong+")");
+				info.setToolTipText("<html><body><b>"+name+"</b><br>"+dataLong.replace("; ","<br>")+"</body></html>");
 			}
 			return true;
 		} else {
@@ -453,11 +461,20 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 	 * @see #maxXValue
 	 */
 	private double getRealMaxXValue() {
-		double d=maxXValue;
-		if (distribution!=null) {
-			if (distribution.getSupportUpperBound()*1.1<d) d=distribution.getSupportUpperBound()*1.1;
+		if (distribution==null) return maxXValue;
+
+		double test=Math.min(maxXValue,Math.min(10_000,distribution.getSupportUpperBound()));
+		if (distribution.cumulativeProbability(test)>0.99) {
+			while (test>10) {
+				double testOld=test;
+				test=Math.round(test/2);
+				if (distribution.cumulativeProbability(test)<0.99) return testOld;
+			}
+			return test;
+		} else {
+			if (distribution.getSupportUpperBound()*1.1<maxXValue) return distribution.getSupportUpperBound()*1.1;
+			return maxXValue;
 		}
-		return d;
 	}
 
 	/**
@@ -527,14 +544,24 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 		private void paintDistributionRect(final Graphics g, final Rectangle r, final Rectangle dataRect, final double maxXValue) {
 			int fontDelta=g.getFontMetrics().getAscent();
 
-			g.setColor(isDark?Color.GRAY:Color.WHITE);
-			g.fillRect(dataRect.x,dataRect.y,dataRect.width,dataRect.height);
+			/* Hintergrund */
+			final Graphics2D g2d=(Graphics2D)g;
+			g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+			final GradientPaint gp=new GradientPaint(0,0,isDark?Color.GRAY:new Color(235,235,255),0,dataRect.height,isDark?Color.DARK_GRAY:Color.WHITE);
+			g2d.setPaint(gp);
+			g2d.fillRect(dataRect.x,dataRect.y,dataRect.width,dataRect.height);
 
-			g.setColor(Color.BLACK);
+			/* Rahmenlinien links und unten (=Koordinatenachsen) */
+			g.setColor(isDark?Color.LIGHT_GRAY:Color.BLACK);
 			g.drawLine(dataRect.x,dataRect.y,dataRect.x,dataRect.y+dataRect.height);
 			g.drawLine(dataRect.x,dataRect.y+dataRect.height,dataRect.x+dataRect.width,dataRect.y+dataRect.height);
 
-			if (isDark) g.setColor(Color.WHITE);
+			/* Rahmenlinien oben und rechts */
+			g.setColor(Color.LIGHT_GRAY);
+			g.drawLine(dataRect.x+dataRect.width,dataRect.y,dataRect.x+dataRect.width,dataRect.y+dataRect.height);
+			g.drawLine(dataRect.x,dataRect.y,dataRect.x+dataRect.width,dataRect.y);
+
+			g.setColor(isDark?Color.WHITE:Color.BLACK);
 			if (!(distribution instanceof DataDistributionImpl)) g.drawString("1",r.x,r.y+fontDelta);
 			g.drawString("0",r.x,r.y+r.height);
 
@@ -631,11 +658,17 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 		private void paintToRectangle(final Graphics g, Rectangle r, final double maxXValue) {
 			if (distribution==null) {paintNullDistribution(g,r); return;}
 
-			g.setColor(isDark?Color.GRAY:Color.WHITE);
+			/* Hintergrund über alles */
+			g.setColor(getBackground());
 			g.fillRect(r.x,r.y,r.x+r.width,r.y+r.height);
+
+			/* Rahmen um alles - aus */
+			/*
 			g.setColor(Color.GRAY);
 			g.drawRect(r.x,r.y,r.x+r.width,r.y+r.height);
+			 */
 
+			/* Rechteck innerhalb der Achsen definieren */
 			Dimension space=new Dimension(g.getFontMetrics().stringWidth("0"),g.getFontMetrics().getHeight());
 			final int padding=3;
 			r=new Rectangle(r.x+padding,r.y+padding,r.width-2*padding,r.height-2*padding);
@@ -841,6 +874,53 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 		final String[] values=record.getValues(distribution);
 		final JTextField[] fields=new JTextField[values.length];
 
+		/* Typ ändern */
+		final String[] distNames=JDistributionEditorPanel.getHighlightedDistributions();
+		if (distNames.length>0) {
+			final List<JDistributionEditorPanelRecord> records=JDistributionEditorPanelRecord.getList(null,false,false);
+			final JMenu typeItem=new JMenu("Verteilungstyp");
+
+			popup.add(typeItem);
+			for (String distName: distNames) {
+				final JDistributionEditorPanelRecord info=records.stream().filter(r->r.isForDistribution(distName)).findFirst().orElseGet(()->null);
+				final JRadioButtonMenuItem item=new JRadioButtonMenuItem(distName,info!=null && info==record);
+				typeItem.add(item);
+				item.addActionListener(e->{
+					final JRadioButtonMenuItem actionItem=(JRadioButtonMenuItem)e.getSource();
+					final AbstractDistributionWrapper oldWrapper=DistributionTools.getWrapper(distribution);
+					final AbstractDistributionWrapper newWrapper=DistributionTools.getWrapper(actionItem.getText());
+					if (oldWrapper==newWrapper) return;
+					double mean=DistributionTools.getMean(distribution);
+					if (Double.isNaN(mean) || Double.isInfinite(mean) || mean<0 || mean>10E10) mean=10;
+					mean=NumberTools.reduceDigits(mean,5);
+					double sd=DistributionTools.getStandardDeviation(distribution);
+					if (Double.isNaN(sd) || Double.isInfinite(sd) || sd<0 || sd>10E10) sd=1;
+					sd=NumberTools.reduceDigits(sd,5);
+					AbstractRealDistribution newDistribution=newWrapper.getDistribution(mean,sd);
+					if (newDistribution==null) newDistribution=newWrapper.getDefaultDistribution();
+					if (newDistribution!=null) setDistribution(newDistribution);
+				});
+			}
+			typeItem.addSeparator();
+			final StringBuilder infoText=new StringBuilder();
+			int lineLength=0;
+			for (String token: ChangeDistributionTypeHighlightList.split("\\s")) {
+				if (lineLength+token.length()>=30) {
+					infoText.append("<br>");
+					lineLength=0;
+				}
+				infoText.append(token);
+				lineLength+=token.length();
+				infoText.append(" ");
+				lineLength+=1;
+			}
+			final JMenuItem infoItem=new JMenuItem("<html><body>"+infoText.toString()+"</body></html>");
+			infoItem.setEnabled(false);
+			typeItem.add(infoItem);
+			popup.addSeparator();
+		}
+
+		/* Werte ändern */
 		for (int i=0;i<Math.min(labels.length,values.length);i++) {
 			final JMenuItem item=new JMenuItem("<html><body><b>"+labels[i]+"</b></body></html>");
 			item.setEnabled(false);
@@ -848,6 +928,7 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 
 			final JPanel line=new JPanel(new FlowLayout(FlowLayout.LEFT));
 			popup.add(line);
+			line.setOpaque(false);
 
 			fields[i]=new JTextField(values[i],10);
 			line.add(Box.createHorizontalStrut(24));
@@ -884,7 +965,11 @@ public class JDistributionPanel extends JPanel implements JGetImage {
 		popup.add(item=new JMenuItem(save.getText(),save.getIcon()));
 		item.addActionListener(ev->actionSave());
 
+		popup.add(item=new JMenuItem(wiki.getText(),wiki.getIcon()));
+		item.addActionListener(ev->actionWiki());
+
 		if (showEditButton) {
+			popup.addSeparator();
 			popup.add(item=new JMenuItem(edit.getText(),edit.getIcon()));
 			item.addActionListener(ev->editButtonClicked());
 		}
