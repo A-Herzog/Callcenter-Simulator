@@ -199,7 +199,6 @@ public class JDataDistributionPanel extends JPanel implements JGetImage {
 		 * @see #paintToRectangle(Graphics, Rectangle, boolean)
 		 */
 		private void paintDistributionRect(Graphics g, Rectangle r, Rectangle dataRect) {
-			// XXX
 			/* Hintergrund */
 			final Graphics2D g2d=(Graphics2D)g;
 			g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);

@@ -2828,6 +2828,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6527] = "Service-Level";
     t[6532] = "FileType.HTMLTable";
     t[6533] = "html-Datei mit eingebetteter Tabelle";
+    t[6534] = "VarianceAnalysis.AllCaller";
+    t[6535] = "Alle Anrufer";
     t[6536] = "XML.OptimizerSetup.Property.ServiceLevelClientsAll";
     t[6537] = "ServiceLevel(Kundenbasis;Alle)";
     t[6544] = "XML.Statistic.GeneralAttributes.Confidence90Min";
@@ -4014,14 +4016,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9353] = "Die Simulation wurde abgeschlossen.";
     t[9356] = "Model.Check.ClientType.RetryCheck.UnknownClientType";
     t[9357] = "Kunden des Typs \"%s\" k\u00f6nnen bei einem Warteabbruch zu Kunden des Typs \"$name\" werden, den es jedoch nicht gibt.";
-    t[9358] = "Connected.Error.NewerVersion";
-    t[9359] = "Das Modell wurde mit einer neueren Version des Callcenter Simulators erstellt und kann daher nicht mit dieser Version simuliert werden.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9358] = "Connected.Error.NewerVersion";
+    t[9359] = "Das Modell wurde mit einer neueren Version des Callcenter Simulators erstellt und kann daher nicht mit dieser Version simuliert werden.";
     t[9372] = "FileType.xml";
     t[9373] = "xml-Dateien";
     t[9374] = "XML.Statistic.Clients.Summary.ClientsAccessibility";
@@ -6020,14 +6022,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14227] = "Agentenverteilung gem\u00e4\u00df Kundenank\u00fcnften";
     t[14228] = "XML.Model.Warnings.Record.Status.Yellow";
     t[14229] = "Gelb";
-    t[14230] = "Loader.Info.SimpleModel.Description";
-    t[14231] = "Die Anrufertabelle kann beliebig viele Spalten enthalten. Pro Spalte wird ein Kundentyp definiert. Jede Spalte muss aus folgenden Zeilen bestehen:\n<ul>\n  <li>Name des Kundentyps</li>\n  <li>48 Zeilen f\u00fcr die Anzahlen an Anrufen pro Halbstundenintervall</li>\n  <li>Basispriorit\u00e4t des Kundentyps</li>\n  <li>Priorit\u00e4ts\u00e4nderung pro Wartesekunde</li>\n  <li>Priorit\u00e4ts\u00e4nderung bei Weiterleitungen</li>\n  <li>Mittlere Wartezeittoleranz</li>\n  <li>Wiederholwahrscheinlichkeit</li>\n  <li>Mittlerer Wiederholabstand</li>\n  <li>Beliebig viele weitere Zeilen, die angeben mit welcher Wahrscheinlichkeit Kunden dieses Typs nach einem Gespr\u00e4ch weitergeleitet werden (Reihenfolge entsprechend der Spaltenreihenfolge der Tabelle; leere Zeilen bedeuten, dass Kunden nicht zu dem jeweiligen Typ weitergeleitet werden)</li>\n</ul>\nDie Agententabelle kann beliebig viele Spalten enthalten. Pro Spalte wird eine Agentengruppe definiert. Jede Spalte muss aus folgenden Zeilen bestehen:\n<ul>\n  <li>Name der Gruppe bzw. des Skill-Levels</li<\n  <li>48 Zeilen f\u00fcr die Agentenanzahlen pro Halbstundenintervall</li>\n  <li>Beliebig viele weitere Zeilen f\u00fcr die mittleren Bedienzeiten der Kundentypen (Reihenfolge entsprechend der Spaltenreihenfolge der Kundentabelle; leere Zeilen bedeuten, dass die Agentengruppe Kunden dieses Typs nicht bedienen kann)</li>\n</ul>";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14230] = "Loader.Info.SimpleModel.Description";
+    t[14231] = "Die Anrufertabelle kann beliebig viele Spalten enthalten. Pro Spalte wird ein Kundentyp definiert. Jede Spalte muss aus folgenden Zeilen bestehen:\n<ul>\n  <li>Name des Kundentyps</li>\n  <li>48 Zeilen f\u00fcr die Anzahlen an Anrufen pro Halbstundenintervall</li>\n  <li>Basispriorit\u00e4t des Kundentyps</li>\n  <li>Priorit\u00e4ts\u00e4nderung pro Wartesekunde</li>\n  <li>Priorit\u00e4ts\u00e4nderung bei Weiterleitungen</li>\n  <li>Mittlere Wartezeittoleranz</li>\n  <li>Wiederholwahrscheinlichkeit</li>\n  <li>Mittlerer Wiederholabstand</li>\n  <li>Beliebig viele weitere Zeilen, die angeben mit welcher Wahrscheinlichkeit Kunden dieses Typs nach einem Gespr\u00e4ch weitergeleitet werden (Reihenfolge entsprechend der Spaltenreihenfolge der Tabelle; leere Zeilen bedeuten, dass Kunden nicht zu dem jeweiligen Typ weitergeleitet werden)</li>\n</ul>\nDie Agententabelle kann beliebig viele Spalten enthalten. Pro Spalte wird eine Agentengruppe definiert. Jede Spalte muss aus folgenden Zeilen bestehen:\n<ul>\n  <li>Name der Gruppe bzw. des Skill-Levels</li<\n  <li>48 Zeilen f\u00fcr die Agentenanzahlen pro Halbstundenintervall</li>\n  <li>Beliebig viele weitere Zeilen f\u00fcr die mittleren Bedienzeiten der Kundentypen (Reihenfolge entsprechend der Spaltenreihenfolge der Kundentabelle; leere Zeilen bedeuten, dass die Agentengruppe Kunden dieses Typs nicht bedienen kann)</li>\n</ul>";
     t[14232] = "Model.Plausibility.ExtError";
     t[14233] = "Die normale Modellpr\u00fcfung hat keine Fehler ergeben, aber die strenge Modellpr\u00fcfung hat folgendes Problem festgestellt:";
     t[14234] = "Statistic.Viewer.Context.Filter";
@@ -7058,8 +7060,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[16857] = "F\u00fchrt einen Geschwindigkeitstest des Rechners aus.";
     t[16860] = "Server.Error.NewerClientVersionNeeded";
     t[16861] = "Der Server setzt eine neuere Version der Client-Software als installiert ist voraus.";
-    t[16866] = "VarianceAnalysis.AllCaller";
-    t[16867] = "Alle Anrufer";
+    t[16866] = "Statistic.Viewer.Toolbar.Copy.HintPlain";
+    t[16867] = "<html><body>Kopiert die Ergebnisse von dieser Seite in die Zwischenablage.<br>(Umschalt+Klick = ohne Tabellenrahmen kopieren)</body></html>";
     t[16872] = "Statistic.NewVersionWarning.Info";
     t[16873] = "Die geladenen Statistikdaten wurde mit der neueren Version %s des Callcenter Simulators erstellt.\nDie aktuelle Version des Simulators ist evtl. nicht in der Lage, alle in der Datei enthaltenen Informationen auszugeben.";
     t[16880] = "CommandLine.Optimizer.Canceled";

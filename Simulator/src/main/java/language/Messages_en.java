@@ -2828,6 +2828,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[6527] = "Service level";
     t[6532] = "FileType.HTMLTable";
     t[6533] = "html file with embedded table";
+    t[6534] = "VarianceAnalysis.AllCaller";
+    t[6535] = "All caller";
     t[6536] = "XML.OptimizerSetup.Property.ServiceLevelClientsAll";
     t[6537] = "ServiceLevel(ClientBasis;All)";
     t[6544] = "XML.Statistic.GeneralAttributes.Confidence90Min";
@@ -4014,14 +4016,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9353] = "The simulation is done.";
     t[9356] = "Model.Check.ClientType.RetryCheck.UnknownClientType";
     t[9357] = "Clients of type \"%s\" can change their type to \"$name\" on a retry, but this client type does not exist.";
-    t[9358] = "Connected.Error.NewerVersion";
-    t[9359] = "The model was created with a newer version of the Callcenter Simulator and therefore cannot be simulated with this version.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9358] = "Connected.Error.NewerVersion";
+    t[9359] = "The model was created with a newer version of the Callcenter Simulator and therefore cannot be simulated with this version.";
     t[9372] = "FileType.xml";
     t[9373] = "xml files";
     t[9374] = "XML.Statistic.Clients.Summary.ClientsAccessibility";
@@ -6020,14 +6022,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14227] = "Agent distribution according to customer arrivals";
     t[14228] = "XML.Model.Warnings.Record.Status.Yellow";
     t[14229] = "Yellow";
-    t[14230] = "Loader.Info.SimpleModel.Description";
-    t[14231] = "The caller table can consist of any number of columns. Each column defines one client type. Each column has to consist of the following rows:\n<ul>\n  <li>Name of the client type</li>\n  <li>48 rows defining the number of calls by half-hour interval</li>\n  <li>Basis priority for the client type</li>\n  <li>Priority change per waiting second</li>\n  <li>Priority change on forwarding</li>\n  <li>Mean waiting time tolerance</li>\n  <li>Retry probability</li>\n  <li>Mean retry time</li>\n  <li>Any number of additional rows defining the probability of clients of this type to be forwarded after the service (in the order of the column order of the table; empty rows mean there is no forwarding to this client type)</li>\n</ul>\nThe agents table can consist of any number of columns. Each column defines one agents group. Each column has to consist of the following rows:\n<ul>\n  <li>Name of the agents group / the skill level</li>\n  <li>48 rows for the numbers of agents per half-hour interval</li>\n  <li>Any number of additional rows defining the mean service times for the client types (in the order of the column order of the client types in the callers table; empty rows mean the agents group will not be able to servce clients of this type)</li>\n</ul>";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14230] = "Loader.Info.SimpleModel.Description";
+    t[14231] = "The caller table can consist of any number of columns. Each column defines one client type. Each column has to consist of the following rows:\n<ul>\n  <li>Name of the client type</li>\n  <li>48 rows defining the number of calls by half-hour interval</li>\n  <li>Basis priority for the client type</li>\n  <li>Priority change per waiting second</li>\n  <li>Priority change on forwarding</li>\n  <li>Mean waiting time tolerance</li>\n  <li>Retry probability</li>\n  <li>Mean retry time</li>\n  <li>Any number of additional rows defining the probability of clients of this type to be forwarded after the service (in the order of the column order of the table; empty rows mean there is no forwarding to this client type)</li>\n</ul>\nThe agents table can consist of any number of columns. Each column defines one agents group. Each column has to consist of the following rows:\n<ul>\n  <li>Name of the agents group / the skill level</li>\n  <li>48 rows for the numbers of agents per half-hour interval</li>\n  <li>Any number of additional rows defining the mean service times for the client types (in the order of the column order of the client types in the callers table; empty rows mean the agents group will not be able to servce clients of this type)</li>\n</ul>";
     t[14232] = "Model.Plausibility.ExtError";
     t[14233] = "The normal model audit was successful but the strict model audit has found the following problem:";
     t[14234] = "Statistic.Viewer.Context.Filter";
@@ -7058,8 +7060,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16857] = "Performs a speed test of the computer.";
     t[16860] = "Server.Error.NewerClientVersionNeeded";
     t[16861] = "The server requires a newer version of the client softwan than installed.";
-    t[16866] = "VarianceAnalysis.AllCaller";
-    t[16867] = "All caller";
+    t[16866] = "Statistic.Viewer.Toolbar.Copy.HintPlain";
+    t[16867] = "<html><body>Copies the results from this page to the clipboard.<br>(Shift+Click = Copy without table frame)</body></html>";
     t[16872] = "Statistic.NewVersionWarning.Info";
     t[16873] = "The loaded statistic data was saved with the new version %s of the Callcenter Simulator.\nThe current version of the simulator may not be able to display all information contained in the statistic file.";
     t[16880] = "CommandLine.Optimizer.Canceled";
