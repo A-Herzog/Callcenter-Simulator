@@ -46,13 +46,30 @@
         <copy file="${SimSystem.location}/target/bom.json" tofile="${Release.location}/docs/bom-SimSystem.json"/>
         <copy file="${SimSystem.location}/target/bom.xml" tofile="${Release.location}/docs/bom-SimSystem.xml"/>
 
-    	    <available file="${NSIS.location}\makensis.exe" property="NSIS.present"/>
-    	    <condition property="Signer.present">
-    	        <and>
-    	            <available file="${NSIS.location}\makensis.exe" />
-    	            <available file="${Signer.location}\SignTool.exe" />
-    	        </and>
-    	    </condition>
+    	<available file="${NSIS.location}\makensis.exe" property="NSIS.present"/>
+    	<condition property="Signer.present">
+    	    <and>
+    	        <available file="${NSIS.location}\makensis.exe" />
+    	        <available file="${Signer.location}\SignTool.exe" />
+    	    </and>
+    	</condition>
+		
+		<echo message="Set CallcenterSimulator.jar checksum in wrapper scripts" />		
+		<checksum file="${Release.location}/CallcenterSimulator.jar" algorithm="SHA-256" />
+		<exec dir="${BuildTools.location}" executable="${sed.location}/sed.exe" output="${BuildTools.location}/Checksum_CallcenterSimulator.nsi">
+			<arg line="-nf &quot;${BuildTools.location}/Checksum_CallcenterSimulator_sed.txt&quot; &quot;${Release.location}/CallcenterSimulator.jar.SHA-256&quot;" />
+		</exec>
+		<delete file="${Release.location}/CallcenterSimulator.jar.SHA-256" />
+		<checksum file="${Release.location}/libs/simsystem.jar" algorithm="SHA-256" />
+		<exec dir="${BuildTools.location}" executable="${sed.location}/sed.exe" output="${BuildTools.location}/Checksum_SimSystem.nsi">
+			<arg line="-nf &quot;${BuildTools.location}/Checksum_SimSystem_sed.txt&quot; &quot;${Release.location}/libs/simsystem.jar.SHA-256&quot;" />
+		</exec>
+		<delete file="${Release.location}/libs/simsystem.jar.SHA-256" />
+		<checksum file="${Release.location}/libs/simtools.jar" algorithm="SHA-256" />
+		<exec dir="${BuildTools.location}" executable="${sed.location}/sed.exe" output="${BuildTools.location}/Checksum_SimTools.nsi">
+			<arg line="-nf &quot;${BuildTools.location}/Checksum_SimTools_sed.txt&quot; &quot;${Release.location}/libs/simtools.jar.SHA-256&quot;" />
+		</exec>
+		<delete file="${Release.location}/libs/simtools.jar.SHA-256" />		
     	
         <echo message="Generate exe wrapper" />
         <exec executable="${NSIS.location}\makensis.exe" dir="${BuildTools.location}" if:set="NSIS.present">

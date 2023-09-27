@@ -2,6 +2,9 @@ target/
 language/gettext/
 language/sed/
 build/Signer/
+build/Checksum_SimSystem.nsi
+build/Checksum_SimTools.nsi
+build/Checksum_CallcenterSimulator.nsi
 src/main/java/ui/res/CCS.*
 src/main/java/net/web/res/viewer/images/CS.gif
 CallcenterSimulator.cfg

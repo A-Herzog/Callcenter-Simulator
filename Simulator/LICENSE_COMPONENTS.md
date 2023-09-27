@@ -88,6 +88,11 @@ This file lists the third-party components used by "Simulator" project and their
 - License URL: https://www.zlib.net/zlib_license.html
 - Homepage: https://nsis.sourceforge.io/UAC_plug-in
 
+### Crypto plug-in
+
+- License: Freeware
+- Homepage: https://nsis.sourceforge.io/Crypto_plug-in
+
 ## Full license texts of all used licenses
 
 ### BSD 2-Clause "Simplified" License
