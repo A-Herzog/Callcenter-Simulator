@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-18 19:22+0200\n"
+"POT-Creation-Date: 2023-11-02 14:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1777,6 +1777,12 @@ msgstr "Close"
 msgid "Dialog.Button.Copy"
 msgstr "Copy"
 
+msgid "Dialog.Button.Copy.Image"
+msgstr "Copy image"
+
+msgid "Dialog.Button.Copy.Table"
+msgstr "Copy table of values"
+
 msgid "Dialog.Button.Delete"
 msgstr "Delete"
 
@@ -1818,6 +1824,12 @@ msgstr "Print"
 
 msgid "Dialog.Button.Save"
 msgstr "Save"
+
+msgid "Dialog.Button.Save.Image"
+msgstr "Save image"
+
+msgid "Dialog.Button.Save.Table"
+msgstr "Save table of values"
 
 msgid "Dialog.Button.Show"
 msgstr "Show"
@@ -4808,9 +4820,6 @@ msgstr "Only the highlighted distributions are shown here. A complete list is av
 msgid "JDistributionEditor.Copy.Graphics"
 msgstr "Graphics"
 
-msgid "JDistributionEditor.Copy.Graphics.Info"
-msgstr "Copies the distribution as graphics to the clipboard"
-
 msgid "JDistributionEditor.Copy.Info"
 msgstr "Copies the values of the probability distribution vector or a graphics to the clipboard"
 
@@ -4850,14 +4859,14 @@ msgstr "No distribution given"
 msgid "JDistributionEditor.Paste.Info"
 msgstr "Loads the probability distribution vector from the clipboard"
 
+msgid "JDistributionEditor.QuickSelect"
+msgstr "Distribution type"
+
 msgid "JDistributionEditor.Save"
 msgstr "Save"
 
 msgid "JDistributionEditor.Save.Graphics"
 msgstr "Save graphics"
-
-msgid "JDistributionEditor.Save.Graphics.Info"
-msgstr "Saves the graphics as a file"
 
 msgid "JDistributionEditor.Save.Info"
 msgstr "Stores the values of the probability distribution vector or a graphics to a file"
@@ -12135,6 +12144,12 @@ msgstr "CallcenterSimulator_en.xsd"
 
 #~ msgid "Distribution.Range.to"
 #~ msgstr "to"
+
+#~ msgid "JDistributionEditor.Copy.Graphics.Info"
+#~ msgstr "Copies the distribution as graphics to the clipboard"
+
+#~ msgid "JDistributionEditor.Save.Graphics.Info"
+#~ msgstr "Saves the graphics as a file"
 
 #~ msgid "JDistributionEditor.Wikipedia.Link"
 #~ msgstr "https://en.wikipedia.org/wiki/"

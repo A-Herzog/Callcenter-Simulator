@@ -1882,6 +1882,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4459] = "Value after optimizing";
     t[4462] = "Statistic.Viewer.Toolbar.Settings.Hint";
     t[4463] = "Change settings for the selected statistics page.";
+    t[4466] = "Dialog.Button.Copy.Table";
+    t[4467] = "Copy table of values";
     t[4470] = "SimStatistic.OptimizeSetup.Property.WaitingTime";
     t[4471] = "Minimizing the waiting time";
     t[4474] = "MainToolbar.SaveStatistic.Tooltip";
@@ -1928,8 +1930,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4543] = "Display the accessibility";
     t[4546] = "Editor.Callcenter.Name";
     t[4547] = "Name of the call center";
-    t[4552] = "SimStatistic.Thresholds.Count.OneOK";
-    t[4553] = "One further threshold value was kept.";
+    t[4552] = "Dialog.Button.Copy.Image";
+    t[4553] = "Copy image";
     t[4554] = "Optimizer.Error.TargetWorkLoad.Title";
     t[4555] = "Invalid target work load";
     t[4560] = "LoadCalculator.ContinueProbability";
@@ -2008,14 +2010,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4729] = "Shows the start page of the help information.";
     t[4736] = "XML.OptimizerSetup.ModificationGroups.Selection";
     t[4737] = "Selection";
-    t[4740] = "Importer.PostProcessingTimeDistribution";
-    t[4741] = "Post processing time distribution";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4740] = "Importer.PostProcessingTimeDistribution";
+    t[4741] = "Post processing time distribution";
     t[4748] = "JDistributionEditor.Density.Label";
     t[4749] = "Density";
     t[4750] = "Main.Menu.Help.Updates.Mnemonic";
@@ -2246,8 +2248,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[5203] = "Yield";
     t[5206] = "Simulation.Log.Service2Start.Finish";
     t[5207] = "Client leaves the system successfully served";
-    t[5208] = "JDistributionEditor.Save.Graphics.Info";
-    t[5209] = "Saves the graphics as a file";
     t[5212] = "Statistic.Viewer.DiagramSettings.Surface";
     t[5213] = "Surface";
     t[5224] = "XML.SaaS.Error";
@@ -2370,6 +2370,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[5441] = "Name of the table in the workbook (optional)";
     t[5442] = "SimStatistic.AgentsModelingCallerDistribution.Info";
     t[5443] = "Then, if necessary, a conversion takes place in accordance with the specified productivity.";
+    t[5448] = "SimStatistic.Thresholds.Count.OneOK";
+    t[5449] = "One further threshold value was kept.";
     t[5450] = "Statistic.Viewer.Toolbar.Excel";
     t[5451] = "Excel";
     t[5454] = "Importer.Error.TableDoesNotExist.Info";
@@ -4014,14 +4016,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9351] = "Opens a browser window with additional information about the selected distribution type";
     t[9352] = "CommandLine.Connected.SimulationDone";
     t[9353] = "The simulation is done.";
-    t[9356] = "Model.Check.ClientType.RetryCheck.UnknownClientType";
-    t[9357] = "Clients of type \"%s\" can change their type to \"$name\" on a retry, but this client type does not exist.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9356] = "Model.Check.ClientType.RetryCheck.UnknownClientType";
+    t[9357] = "Clients of type \"%s\" can change their type to \"$name\" on a retry, but this client type does not exist.";
     t[9358] = "Connected.Error.NewerVersion";
     t[9359] = "The model was created with a newer version of the Callcenter Simulator and therefore cannot be simulated with this version.";
     t[9372] = "FileType.xml";
@@ -4326,6 +4328,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[10023] = "Base score";
     t[10026] = "XML.Model.Warnings.Record.Groups";
     t[10027] = "Groups";
+    t[10036] = "JDistributionEditor.QuickSelect";
+    t[10037] = "Distribution type";
     t[10042] = "Statistic.Viewer.Toolbar.OpenTable.Hint";
     t[10043] = "Open table in external application.";
     t[10044] = "SimStatistic.NumberPerDay";
@@ -4896,6 +4900,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11485] = "Edit threshold value";
     t[11486] = "SimStatistic.Agents";
     t[11487] = "Agents";
+    t[11490] = "Dialog.Button.Save.Table";
+    t[11491] = "Save table of values";
     t[11496] = "Importer.Error.NonNegativeNeeded";
     t[11497] = "A non-negative number was expected, but %s was given.";
     t[11498] = "XML.Model.ClientType.ServiceLevel.Error";
@@ -4920,8 +4926,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11543] = "Save statistics";
     t[11544] = "MainMenu.Simulation.HeuristicRevenueOptimizer.Tooltip";
     t[11545] = "Runs a heuristic revenue improvement";
-    t[11546] = "JDistributionEditor.Copy.Graphics.Info";
-    t[11547] = "Copies the distribution as graphics to the clipboard";
     t[11548] = "SimStatistic.AllSkillLevel";
     t[11549] = "All skill level";
     t[11552] = "MainMenu.Setup.Tooltip";
@@ -4936,6 +4940,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11569] = "Skill levels of the agents";
     t[11574] = "Editor.AgentsGroup.Values96";
     t[11575] = "Number of agents per 15 minutes interval";
+    t[11576] = "Dialog.Button.Save.Image";
+    t[11577] = "Save image";
     t[11580] = "CommandLine.Connected.Error.StartingDay";
     t[11581] = "The following error occured while staring day %d of the connected simulation";
     t[11582] = "XML.Model.Warnings.Record.Type.ResidenceTimeCalls";
@@ -6016,18 +6022,18 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14215] = "Retrys";
     t[14220] = "Editor.Caller.RetryProbability.ClientTypeChange.Rate";
     t[14221] = "Rate";
-    t[14224] = "CommandLine.Filter.ErrorLoadingStatistic";
-    t[14225] = "The following error occured while loading the statistic data";
-    t[14226] = "Editor.Callcenter.AgentsMode.ClientArrivals";
-    t[14227] = "Agent distribution according to customer arrivals";
-    t[14228] = "XML.Model.Warnings.Record.Status.Yellow";
-    t[14229] = "Yellow";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14224] = "CommandLine.Filter.ErrorLoadingStatistic";
+    t[14225] = "The following error occured while loading the statistic data";
+    t[14226] = "Editor.Callcenter.AgentsMode.ClientArrivals";
+    t[14227] = "Agent distribution according to customer arrivals";
+    t[14228] = "XML.Model.Warnings.Record.Status.Yellow";
+    t[14229] = "Yellow";
     t[14230] = "Loader.Info.SimpleModel.Description";
     t[14231] = "The caller table can consist of any number of columns. Each column defines one client type. Each column has to consist of the following rows:\n<ul>\n  <li>Name of the client type</li>\n  <li>48 rows defining the number of calls by half-hour interval</li>\n  <li>Basis priority for the client type</li>\n  <li>Priority change per waiting second</li>\n  <li>Priority change on forwarding</li>\n  <li>Mean waiting time tolerance</li>\n  <li>Retry probability</li>\n  <li>Mean retry time</li>\n  <li>Any number of additional rows defining the probability of clients of this type to be forwarded after the service (in the order of the column order of the table; empty rows mean there is no forwarding to this client type)</li>\n</ul>\nThe agents table can consist of any number of columns. Each column defines one agents group. Each column has to consist of the following rows:\n<ul>\n  <li>Name of the agents group / the skill level</li>\n  <li>48 rows for the numbers of agents per half-hour interval</li>\n  <li>Any number of additional rows defining the mean service times for the client types (in the order of the column order of the client types in the callers table; empty rows mean the agents group will not be able to servce clients of this type)</li>\n</ul>";
     t[14232] = "Model.Plausibility.ExtError";

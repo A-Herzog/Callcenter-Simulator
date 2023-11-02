@@ -1882,6 +1882,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4459] = "Wert nach Optimierung";
     t[4462] = "Statistic.Viewer.Toolbar.Settings.Hint";
     t[4463] = "Einstellungen zu der gew\u00e4hlten Statistik-Anzeige vornehmen";
+    t[4466] = "Dialog.Button.Copy.Table";
+    t[4467] = "Wertetabelle kopieren";
     t[4470] = "SimStatistic.OptimizeSetup.Property.WaitingTime";
     t[4471] = "Minimierung der Wartezeit";
     t[4474] = "MainToolbar.SaveStatistic.Tooltip";
@@ -1928,8 +1930,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4543] = "Ausgabe der Erreichbarkeit";
     t[4546] = "Editor.Callcenter.Name";
     t[4547] = "Name des Callcenters";
-    t[4552] = "SimStatistic.Thresholds.Count.OneOK";
-    t[4553] = "Ein weiterer Schwellenwert wurde eingehalten.";
+    t[4552] = "Dialog.Button.Copy.Image";
+    t[4553] = "Bild kopieren";
     t[4554] = "Optimizer.Error.TargetWorkLoad.Title";
     t[4555] = "Die Ziel-Auslastung ist ung\u00fcltig";
     t[4560] = "LoadCalculator.ContinueProbability";
@@ -2008,14 +2010,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4729] = "Zeigt die Startseite der Hilfe an.";
     t[4736] = "XML.OptimizerSetup.ModificationGroups.Selection";
     t[4737] = "Auswahl";
-    t[4740] = "Importer.PostProcessingTimeDistribution";
-    t[4741] = "Nachbearbeitungszeitverteilung";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4740] = "Importer.PostProcessingTimeDistribution";
+    t[4741] = "Nachbearbeitungszeitverteilung";
     t[4748] = "JDistributionEditor.Density.Label";
     t[4749] = "Dichte";
     t[4750] = "Main.Menu.Help.Updates.Mnemonic";
@@ -2246,8 +2248,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[5203] = "Ertrag";
     t[5206] = "Simulation.Log.Service2Start.Finish";
     t[5207] = "Kunde verl\u00e4sst das System erfolgreich bedient";
-    t[5208] = "JDistributionEditor.Save.Graphics.Info";
-    t[5209] = "Speichert die Grafik als Bilddatei";
     t[5212] = "Statistic.Viewer.DiagramSettings.Surface";
     t[5213] = "Zeichenfl\u00e4che";
     t[5224] = "XML.SaaS.Error";
@@ -2370,6 +2370,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[5441] = "Name der Tabelle in der Arbeitsmappe (optional)";
     t[5442] = "SimStatistic.AgentsModelingCallerDistribution.Info";
     t[5443] = "Danach erfolgt ggf. noch eine Umrechnung gem\u00e4\u00df vorgegebener Produktivit\u00e4t.";
+    t[5448] = "SimStatistic.Thresholds.Count.OneOK";
+    t[5449] = "Ein weiterer Schwellenwert wurde eingehalten.";
     t[5450] = "Statistic.Viewer.Toolbar.Excel";
     t[5451] = "Excel";
     t[5454] = "Importer.Error.TableDoesNotExist.Info";
@@ -4014,14 +4016,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9351] = "\u00d6ffnet ein Browserfenster mit weiteren Informationen zu dem gew\u00e4hlten Verteilungstyp";
     t[9352] = "CommandLine.Connected.SimulationDone";
     t[9353] = "Die Simulation wurde abgeschlossen.";
-    t[9356] = "Model.Check.ClientType.RetryCheck.UnknownClientType";
-    t[9357] = "Kunden des Typs \"%s\" k\u00f6nnen bei einem Warteabbruch zu Kunden des Typs \"$name\" werden, den es jedoch nicht gibt.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9356] = "Model.Check.ClientType.RetryCheck.UnknownClientType";
+    t[9357] = "Kunden des Typs \"%s\" k\u00f6nnen bei einem Warteabbruch zu Kunden des Typs \"$name\" werden, den es jedoch nicht gibt.";
     t[9358] = "Connected.Error.NewerVersion";
     t[9359] = "Das Modell wurde mit einer neueren Version des Callcenter Simulators erstellt und kann daher nicht mit dieser Version simuliert werden.";
     t[9372] = "FileType.xml";
@@ -4326,6 +4328,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[10023] = "Basisscore";
     t[10026] = "XML.Model.Warnings.Record.Groups";
     t[10027] = "Gruppen";
+    t[10036] = "JDistributionEditor.QuickSelect";
+    t[10037] = "Verteilungstyp";
     t[10042] = "Statistic.Viewer.Toolbar.OpenTable.Hint";
     t[10043] = "Tabelle in externer Anwendung anzeigen.";
     t[10044] = "SimStatistic.NumberPerDay";
@@ -4896,6 +4900,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11485] = "Schwellenwert bearbeiten";
     t[11486] = "SimStatistic.Agents";
     t[11487] = "Agenten";
+    t[11490] = "Dialog.Button.Save.Table";
+    t[11491] = "Wertetabelle speichern";
     t[11496] = "Importer.Error.NonNegativeNeeded";
     t[11497] = "Es wurde eine nichtnegative Zahl erwartet. Es wurde jedoch %s \u00fcbergeben.";
     t[11498] = "XML.Model.ClientType.ServiceLevel.Error";
@@ -4920,8 +4926,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11543] = "Statistikdaten speichern";
     t[11544] = "MainMenu.Simulation.HeuristicRevenueOptimizer.Tooltip";
     t[11545] = "F\u00fchrt eine heuristische Ertragsverbesserung durch";
-    t[11546] = "JDistributionEditor.Copy.Graphics.Info";
-    t[11547] = "Kopiert die Darstellung als Grafik in die Zwischenablage";
     t[11548] = "SimStatistic.AllSkillLevel";
     t[11549] = "Alle Skill-Level";
     t[11552] = "MainMenu.Setup.Tooltip";
@@ -4936,6 +4940,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11569] = "Skill-Level der Agenten";
     t[11574] = "Editor.AgentsGroup.Values96";
     t[11575] = "Agentenanzahl pro 15-Minuten-Intervall";
+    t[11576] = "Dialog.Button.Save.Image";
+    t[11577] = "Bild speichern";
     t[11580] = "CommandLine.Connected.Error.StartingDay";
     t[11581] = "Beim Start der verketteten Simulation von Tag %d ist folgender Fehler aufgetreten";
     t[11582] = "XML.Model.Warnings.Record.Type.ResidenceTimeCalls";
@@ -6016,18 +6022,18 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14215] = "Wiederholungen";
     t[14220] = "Editor.Caller.RetryProbability.ClientTypeChange.Rate";
     t[14221] = "Rate";
-    t[14224] = "CommandLine.Filter.ErrorLoadingStatistic";
-    t[14225] = "Beim Laden der Statistikdaten ist folgender Fehler aufgetreten";
-    t[14226] = "Editor.Callcenter.AgentsMode.ClientArrivals";
-    t[14227] = "Agentenverteilung gem\u00e4\u00df Kundenank\u00fcnften";
-    t[14228] = "XML.Model.Warnings.Record.Status.Yellow";
-    t[14229] = "Gelb";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14224] = "CommandLine.Filter.ErrorLoadingStatistic";
+    t[14225] = "Beim Laden der Statistikdaten ist folgender Fehler aufgetreten";
+    t[14226] = "Editor.Callcenter.AgentsMode.ClientArrivals";
+    t[14227] = "Agentenverteilung gem\u00e4\u00df Kundenank\u00fcnften";
+    t[14228] = "XML.Model.Warnings.Record.Status.Yellow";
+    t[14229] = "Gelb";
     t[14230] = "Loader.Info.SimpleModel.Description";
     t[14231] = "Die Anrufertabelle kann beliebig viele Spalten enthalten. Pro Spalte wird ein Kundentyp definiert. Jede Spalte muss aus folgenden Zeilen bestehen:\n<ul>\n  <li>Name des Kundentyps</li>\n  <li>48 Zeilen f\u00fcr die Anzahlen an Anrufen pro Halbstundenintervall</li>\n  <li>Basispriorit\u00e4t des Kundentyps</li>\n  <li>Priorit\u00e4ts\u00e4nderung pro Wartesekunde</li>\n  <li>Priorit\u00e4ts\u00e4nderung bei Weiterleitungen</li>\n  <li>Mittlere Wartezeittoleranz</li>\n  <li>Wiederholwahrscheinlichkeit</li>\n  <li>Mittlerer Wiederholabstand</li>\n  <li>Beliebig viele weitere Zeilen, die angeben mit welcher Wahrscheinlichkeit Kunden dieses Typs nach einem Gespr\u00e4ch weitergeleitet werden (Reihenfolge entsprechend der Spaltenreihenfolge der Tabelle; leere Zeilen bedeuten, dass Kunden nicht zu dem jeweiligen Typ weitergeleitet werden)</li>\n</ul>\nDie Agententabelle kann beliebig viele Spalten enthalten. Pro Spalte wird eine Agentengruppe definiert. Jede Spalte muss aus folgenden Zeilen bestehen:\n<ul>\n  <li>Name der Gruppe bzw. des Skill-Levels</li<\n  <li>48 Zeilen f\u00fcr die Agentenanzahlen pro Halbstundenintervall</li>\n  <li>Beliebig viele weitere Zeilen f\u00fcr die mittleren Bedienzeiten der Kundentypen (Reihenfolge entsprechend der Spaltenreihenfolge der Kundentabelle; leere Zeilen bedeuten, dass die Agentengruppe Kunden dieses Typs nicht bedienen kann)</li>\n</ul>";
     t[14232] = "Model.Plausibility.ExtError";

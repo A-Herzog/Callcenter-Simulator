@@ -541,7 +541,5 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 
 	@Override
 	public void navigation(JButton button) {
-		// TODO Auto-generated method stub
-
 	}
 }
