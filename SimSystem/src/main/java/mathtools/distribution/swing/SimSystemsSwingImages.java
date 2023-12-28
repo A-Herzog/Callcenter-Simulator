@@ -16,9 +16,8 @@
 package mathtools.distribution.swing;
 
 import java.awt.Image;
+import java.awt.image.BaseMultiResolutionImage;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +43,9 @@ public enum SimSystemsSwingImages {
 
 	/** Symbol "Als Tabelle kopieren" */
 	COPY_AS_TABLE("Table.png"),
+
+	/** Symbol "Zufallszahlen erzeugen und kopieren" */
+	COPY_RANDOM_NUMBERS("123.png"),
 
 	/** Symbol "Als Bild kopieren" */
 	COPY_AS_IMAGE("chart_curve.png"),
@@ -139,25 +141,10 @@ public enum SimSystemsSwingImages {
 			addURL(list,"res24",name);
 			addURL(list,"res32",name);
 			addURL(list,"res48",name);
-			urls=list.toArray(new URL[0]);
+			urls=list.toArray(URL[]::new);
 		}
 		assert(urls!=null);
 		return urls;
-	}
-
-	/**
-	 * Wird das Programm unter Java 9 oder höher ausgeführt, so wird
-	 * der Konstruktor der Multi-Resolution-Bild-Objektes geliefert, sonst <code>null</code>.
-	 * @return	Multi-Resolution-Bild-Konstruktor oder <code>null</code>
-	 */
-	@SuppressWarnings("unchecked")
-	private static Constructor<Object> getMultiImageConstructor() {
-		try {
-			final Class<?> cls=Class.forName("java.awt.image.BaseMultiResolutionImage");
-			return (Constructor<Object>)cls.getDeclaredConstructor(int.class,Image[].class);
-		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException e) {
-			return null;
-		}
 	}
 
 	/**
@@ -200,9 +187,6 @@ public enum SimSystemsSwingImages {
 
 		if (urls.length==1) return image=getDefaultImage(urls);
 
-		final Constructor<Object> multiConstructor=getMultiImageConstructor();
-		if (multiConstructor==null) return image=getDefaultImage(urls);
-
 		final Image[] images=Arrays.asList(urls).stream().map(url->{
 			try {
 				return ImageIO.read(url);
@@ -211,13 +195,7 @@ public enum SimSystemsSwingImages {
 			}
 		}).toArray(Image[]::new);
 
-		try {
-			image=(Image)multiConstructor.newInstance(0,images);
-			assert(image!=null);
-			return image;
-		} catch (InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
-			return image=getDefaultImage(urls);
-		}
+		return image=new BaseMultiResolutionImage(0,images);
 	}
 
 	/**

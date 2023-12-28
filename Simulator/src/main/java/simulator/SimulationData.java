@@ -79,7 +79,7 @@ public final class SimulationData extends SimData {
 	 * @param model	Referenz auf das Objekt, das die statischen Daten für die Simulation enthält
 	 */
 	public SimulationData(final EventManager eventManager, final EventCache eventCache, final int threadNr, final int threadCount, final CallcenterRunModel model) {
-		super(eventManager,eventCache,threadNr,threadCount);
+		super(eventManager,eventCache,threadNr,threadCount,1000);
 		this.model=model;
 
 		simDaysByOtherThreads=0;

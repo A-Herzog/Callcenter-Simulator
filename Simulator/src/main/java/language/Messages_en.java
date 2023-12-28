@@ -4074,6 +4074,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9463] = "Recall probability is invalid";
     t[9464] = "Window.ConnectedResults.Error.StatisticTitle";
     t[9465] = "Error loading the statistics data";
+    t[9468] = "Dialog.Button.Copy.RandomNumbers";
+    t[9469] = "Generate and copy random numbers";
     t[9476] = "Connected.NewModel.Info";
     t[9477] = "Create a new connected call center model";
     t[9478] = "LoadCalculator.CopyResults.Info";
@@ -4526,6 +4528,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[10561] = "A";
     t[10564] = "MainMenu.Tools.CompareKeptModel";
     t[10565] = "Compare current model and kept model";
+    t[10570] = "JDistributionEditor.QuickSelectInfo";
+    t[10571] = "Only the highlighted distributions are shown here. A complete list is available for selection in the Edit dialog.";
     t[10580] = "FitDialog.LoadValues.Tooltip";
     t[10581] = "Loads values from a file";
     t[10582] = "Dialog.SaveNow.Cancel.Info";
@@ -5180,6 +5184,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12161] = "The specified data port %s is invalid.";
     t[12164] = "MainMenu.Data.LoadCaller24";
     t[12165] = "Load fresh calls on 60 minutes basis from table...";
+    t[12172] = "Dialog.Button.Save.RandomNumbers";
+    t[12173] = "Generate and save random numbers";
     t[12174] = "VarianceAnalysis.WaitingTimeCV";
     t[12175] = "Coefficient of variation of the waiting times";
     t[12184] = "Editor.Caller.FreshCalls.Distribution.60Minutes";
@@ -5210,6 +5216,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12241] = "simulated days";
     t[12248] = "LoadCalculator.OfferedWorkLoad";
     t[12249] = "Offered work load";
+    t[12250] = "FileType.tiff";
+    t[12251] = "tiff files";
     t[12254] = "SimStatistic.Category.WorkLoadPerCallcenter.SingleGraphics";
     t[12255] = "Work load per call center - signle graphics";
     t[12258] = "XML.Statistic.Clients.ClientsCallsCount.SuccessPerInterval.ErrorClients";
@@ -5928,6 +5936,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14011] = "The specified value if to optimize in average over all intervals or vor each interval is invalid.";
     t[14020] = "Importer.WaitingTimeToleranceHalfHoursBasis";
     t[14021] = "Waiting time tolerance (on half-hour basis)";
+    t[14022] = "Dialog.RandomNumbers.Error";
+    t[14023] = "The number of random numbers must be a positive integer number.";
     t[14024] = "Importer.Error.WrongNumberOfFreshCallsDistributionValues";
     t[14025] = "The fresh calls distribution has to consist of exactly 24, 48 or 96 cells, But %d values were specified.";
     t[14028] = "Model.Check.Callcenter.AgentsGroupError";
@@ -6012,6 +6022,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14199] = "The sum of the squared waiting times of the clients %s is invalid. The value has to be a non-negative integer number.";
     t[14204] = "XML.Model.ClientType.FreshCalls";
     t[14205] = "ClientsFreshCalls";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14208] = "Editor.Caller.WaitingTimeTolerance.Estimation.CorrectionValue";
     t[14209] = "Correction value (positive or negative time value)";
     t[14210] = "XML.Model.ClientType.FreshCalls.Count.Error";
@@ -6022,12 +6038,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14215] = "Retrys";
     t[14220] = "Editor.Caller.RetryProbability.ClientTypeChange.Rate";
     t[14221] = "Rate";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14224] = "CommandLine.Filter.ErrorLoadingStatistic";
     t[14225] = "The following error occured while loading the statistic data";
     t[14226] = "Editor.Callcenter.AgentsMode.ClientArrivals";
@@ -6260,8 +6270,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14753] = "Agents group";
     t[14754] = "XML.Statistic.Clients.Summary.CallsAverageResidenceTime";
     t[14755] = "CallsAverageResidenceTime";
-    t[14756] = "JDistributionEditor.ChangeDistributionTypeHighlightList";
-    t[14757] = "Only the highlighted distributions are shown here. A complete list is available for selection in the Edit dialog.";
     t[14758] = "Statistic.Viewer.Toolbar.Zoom.HintPanel";
     t[14759] = "Zoom frames can be drawn in the diagram by holding down the left mouse button. In addition, the mouse wheel can be used to zoom. If the ctrl key is held down, the area to be displayed can be moved by holding down the left mouse button.";
     t[14760] = "Calibrate.ErrorWaitingTimeToleranceEstimationActive";
@@ -7034,6 +7042,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16741] = "Finds a distribution fitting to some measured values";
     t[16744] = "MainMenu.Data.LoadAgents96";
     t[16745] = "Load agents on 15 minutes basis from table...";
+    t[16748] = "Dialog.RandomNumbers.Count";
+    t[16749] = "Number of random numbers to be generated";
     t[16752] = "Batch.AdditionalOutputSetting";
     t[16753] = "Additional output settings";
     t[16756] = "Importer.LoadTemplate.ErrorExistsNot.Title";

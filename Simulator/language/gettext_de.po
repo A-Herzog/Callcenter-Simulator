@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-02 14:06+0100\n"
+"POT-Creation-Date: 2023-12-28 20:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1790,6 +1790,9 @@ msgstr "Kopieren"
 msgid "Dialog.Button.Copy.Image"
 msgstr "Bild kopieren"
 
+msgid "Dialog.Button.Copy.RandomNumbers"
+msgstr "Zufallszahlen erzeugen und kopieren"
+
 msgid "Dialog.Button.Copy.Table"
 msgstr "Wertetabelle kopieren"
 
@@ -1837,6 +1840,9 @@ msgstr "Speichern"
 
 msgid "Dialog.Button.Save.Image"
 msgstr "Bild speichern"
+
+msgid "Dialog.Button.Save.RandomNumbers"
+msgstr "Zufallszahlen erzeugen und speichern"
 
 msgid "Dialog.Button.Save.Table"
 msgstr "Wertetabelle speichern"
@@ -1895,6 +1901,12 @@ msgstr "Datei überschreiben"
 
 msgid "Dialog.Overwrite.Yes.Info"
 msgstr "Löscht die bisher unter diesem Namen existierende Datei und speichert die neuen Daten unter diesem Dateinamen."
+
+msgid "Dialog.RandomNumbers.Count"
+msgstr "Anzahl an zu erzeugenden Zufallszahlen"
+
+msgid "Dialog.RandomNumbers.Error"
+msgstr "Die Anzahl an Zufallszahlen muss eine positive Ganzzahl sein."
 
 msgid "Dialog.SaveNow.Cancel.Info"
 msgstr "Führt den gewählten Befehl nicht aus. Die Daten bleiben unverändert bestehen."
@@ -4278,6 +4290,9 @@ msgstr "png-Dateien"
 msgid "FileType.targz"
 msgstr "GZip-komprimierte tar-Dateien"
 
+msgid "FileType.tiff"
+msgstr "tiff-Dateien"
+
 msgid "FileType.xml"
 msgstr "xml-Dateien"
 
@@ -4827,9 +4842,6 @@ msgstr "Tabellenblatt"
 msgid "JDataLoader.Title"
 msgstr "Daten importieren"
 
-msgid "JDistributionEditor.ChangeDistributionTypeHighlightList"
-msgstr "Hier werden nur die hervorgehobenen Verteilungen dargestellt. Eine vollständige Liste steht im Bearbeiten-Dialog zur Auswahl zur Verfügung."
-
 msgid "JDistributionEditor.Copy.Graphics"
 msgstr "Grafik"
 
@@ -4874,6 +4886,9 @@ msgstr "Lädt die Zähldichte aus der Zwischenablage"
 
 msgid "JDistributionEditor.QuickSelect"
 msgstr "Verteilungstyp"
+
+msgid "JDistributionEditor.QuickSelectInfo"
+msgstr "Hier werden nur die hervorgehobenen Verteilungen dargestellt. Eine vollständige Liste steht im Bearbeiten-Dialog zur Auswahl zur Verfügung."
 
 msgid "JDistributionEditor.Save"
 msgstr "Speichern"
@@ -12190,6 +12205,9 @@ msgstr "CallcenterSimulator_de.xsd"
 
 #~ msgid "Distribution.Range.to"
 #~ msgstr "bis"
+
+#~ msgid "JDistributionEditor.ChangeDistributionTypeHighlightList"
+#~ msgstr "Hier werden nur die hervorgehobenen Verteilungen dargestellt. Eine vollständige Liste steht im Bearbeiten-Dialog zur Auswahl zur Verfügung."
 
 #~ msgid "JDistributionEditor.Copy.Graphics.Info"
 #~ msgstr "Kopiert die Darstellung als Grafik in die Zwischenablage"

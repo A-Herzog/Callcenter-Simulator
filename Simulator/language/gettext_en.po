@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-02 14:06+0100\n"
+"POT-Creation-Date: 2023-12-28 20:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1780,6 +1780,9 @@ msgstr "Copy"
 msgid "Dialog.Button.Copy.Image"
 msgstr "Copy image"
 
+msgid "Dialog.Button.Copy.RandomNumbers"
+msgstr "Generate and copy random numbers"
+
 msgid "Dialog.Button.Copy.Table"
 msgstr "Copy table of values"
 
@@ -1827,6 +1830,9 @@ msgstr "Save"
 
 msgid "Dialog.Button.Save.Image"
 msgstr "Save image"
+
+msgid "Dialog.Button.Save.RandomNumbers"
+msgstr "Generate and save random numbers"
 
 msgid "Dialog.Button.Save.Table"
 msgstr "Save table of values"
@@ -1885,6 +1891,12 @@ msgstr "Overwrite file"
 
 msgid "Dialog.Overwrite.Yes.Info"
 msgstr "Deletes the already existing file and saves the new file under this file name."
+
+msgid "Dialog.RandomNumbers.Count"
+msgstr "Number of random numbers to be generated"
+
+msgid "Dialog.RandomNumbers.Error"
+msgstr "The number of random numbers must be a positive integer number."
 
 msgid "Dialog.SaveNow.Cancel.Info"
 msgstr "Do not execute the current command. All data will remain unchanged."
@@ -4266,6 +4278,9 @@ msgstr "png files"
 msgid "FileType.targz"
 msgstr "GZip Compressed tar files"
 
+msgid "FileType.tiff"
+msgstr "tiff files"
+
 msgid "FileType.xml"
 msgstr "xml files"
 
@@ -4814,9 +4829,6 @@ msgstr "Sheet"
 msgid "JDataLoader.Title"
 msgstr "Import data"
 
-msgid "JDistributionEditor.ChangeDistributionTypeHighlightList"
-msgstr "Only the highlighted distributions are shown here. A complete list is available for selection in the Edit dialog."
-
 msgid "JDistributionEditor.Copy.Graphics"
 msgstr "Graphics"
 
@@ -4861,6 +4873,9 @@ msgstr "Loads the probability distribution vector from the clipboard"
 
 msgid "JDistributionEditor.QuickSelect"
 msgstr "Distribution type"
+
+msgid "JDistributionEditor.QuickSelectInfo"
+msgstr "Only the highlighted distributions are shown here. A complete list is available for selection in the Edit dialog."
 
 msgid "JDistributionEditor.Save"
 msgstr "Save"
@@ -12144,6 +12159,9 @@ msgstr "CallcenterSimulator_en.xsd"
 
 #~ msgid "Distribution.Range.to"
 #~ msgstr "to"
+
+#~ msgid "JDistributionEditor.ChangeDistributionTypeHighlightList"
+#~ msgstr "Only the highlighted distributions are shown here. A complete list is available for selection in the Edit dialog."
 
 #~ msgid "JDistributionEditor.Copy.Graphics.Info"
 #~ msgstr "Copies the distribution as graphics to the clipboard"

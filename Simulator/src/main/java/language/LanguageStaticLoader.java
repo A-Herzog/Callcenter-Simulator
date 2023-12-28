@@ -306,14 +306,16 @@ public class LanguageStaticLoader {
 		JDistributionPanel.EditButtonLabelDisabled=Language.tr("JDistributionEditor.Edit.Disabled");
 		JDistributionPanel.CopyButtonLabel=Language.tr("Dialog.Button.Copy");
 		JDistributionPanel.CopyButtonTable=Language.tr("Dialog.Button.Copy.Table");
+		JDistributionPanel.CopyButtonRandomNumbers=Language.tr("Dialog.Button.Copy.RandomNumbers");
 		JDistributionPanel.CopyButtonImage=Language.tr("Dialog.Button.Copy.Image");
 		JDistributionPanel.SaveButtonLabel=Language.tr("Dialog.Button.Save");
 		JDistributionPanel.SaveButtonTable=Language.tr("Dialog.Button.Save.Table");
+		JDistributionPanel.SaveButtonRandomNumbers=Language.tr("Dialog.Button.Save.RandomNumbers");
 		JDistributionPanel.SaveButtonImage=Language.tr("Dialog.Button.Save.Image");
 		JDistributionPanel.WikiButtonLabel=Language.tr("Dialog.Button.Help");
 		JDistributionPanel.WikiButtonTooltip=Language.tr("JDistributionEditor.Wikipedia.Info");
 		JDistributionPanel.ChangeDistributionType=Language.tr("JDistributionEditor.QuickSelect");
-		JDistributionPanel.ChangeDistributionTypeHighlightList=Language.tr("JDistributionEditor.ChangeDistributionTypeHighlightList");
+		JDistributionPanel.ChangeDistributionTypeHighlightList=Language.tr("JDistributionEditor.QuickSelectInfo");
 		JDistributionPanel.DensityLabel=Language.tr("JDistributionEditor.Density.Label");
 		JDistributionPanel.CountDensityLabel=Language.tr("JDistributionEditor.Density.Label");
 		JDistributionPanel.CumulativeProbabilityLabel=Language.tr("JDistributionEditor.CumulativeProbability.Label");
@@ -322,10 +324,13 @@ public class LanguageStaticLoader {
 		JDistributionPanel.FileTypeGIF=Language.tr("FileType.gif");
 		JDistributionPanel.FileTypePNG=Language.tr("FileType.png");
 		JDistributionPanel.FileTypeBMP=Language.tr("FileType.bmp");
+		JDistributionPanel.FileTypeTIFF=Language.tr("FileType.tiff");
 		JDistributionPanel.GraphicsFileOverwriteWarning=Language.tr("Dialog.Overwrite.Info");
 		JDistributionPanel.GraphicsFileOverwriteWarningTitle=Language.tr("Dialog.Title.Warning");
 		JDistributionPanel.GraphicsOpenURLWarning=Language.tr("Dialog.OpenURL.Info");
 		JDistributionPanel.GraphicsOpenURLWarningTitle=Language.tr("Dialog.Title.Warning");
+		JDistributionPanel.RandomNumbersCount=Language.tr("Dialog.RandomNumbers.Count");
+		JDistributionPanel.RandomNumbersError=Language.tr("Dialog.RandomNumbers.Error");
 
 		/* GUITools */
 		GUITools.errorNoGraphicsOutputAvailable=Language.tr("Window.ErrorNoGraphics");
