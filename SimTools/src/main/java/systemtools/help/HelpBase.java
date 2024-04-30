@@ -304,7 +304,7 @@ public abstract class HelpBase {
 			break;
 		}
 
-		if (customStyleSheet!=null && !customStyleSheet.trim().isEmpty()) viewer.setUserDefinedStyleSheet(customStyleSheet);
+		if (customStyleSheet!=null && !customStyleSheet.isBlank()) viewer.setUserDefinedStyleSheet(customStyleSheet);
 
 		return viewer;
 	}
@@ -356,6 +356,10 @@ public abstract class HelpBase {
 				@Override
 				public URL getPageURL(String res) {
 					return HelpBase.this.getPageURL(res);
+				}
+				@Override
+				protected void preprocessPage(final Element root) {
+					HelpBase.this.preprocessPage(root);
 				}
 			};
 			lastPanel.setProcessSpecialLink(()->processSpecialLink(lastPanel.getSpecialLink(),modalHelp));

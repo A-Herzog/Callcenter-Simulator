@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-28 20:07+0100\n"
+"POT-Creation-Date: 2024-04-27 13:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2057,6 +2057,12 @@ msgstr "Gumbel distribution"
 msgid "Distribution.GumbelWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Gumbel_distribution"
 
+msgid "Distribution.HalfNormal"
+msgstr "Half normal distribution"
+
+msgid "Distribution.HalfNormalWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Normal_distribution"
+
 msgid "Distribution.HyperGeom"
 msgstr "Hypergeometric distribution"
 
@@ -2228,6 +2234,12 @@ msgstr "Student t-distribution"
 msgid "Distribution.StudentTWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Student%27s_t-distribution"
 
+msgid "Distribution.Trapezoid"
+msgstr "Trapezoid distribution"
+
+msgid "Distribution.TrapezoidWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Trapezoidal_distribution"
+
 msgid "Distribution.Triangular"
 msgstr "Triangular distribution"
 
@@ -2265,7 +2277,7 @@ msgid "DistributionFitter.BestFitFor"
 msgstr "Best fit for"
 
 msgid "DistributionFitter.ComparedDistributions"
-msgstr "Compared distributions"
+msgstr "Compared distributions (%d distributions)"
 
 msgid "DistributionFitter.ErrorInvalidFormat"
 msgstr "The input value format could not be interpreted."
@@ -2278,6 +2290,9 @@ msgstr "Mean"
 
 msgid "DistributionFitter.MeanSquares"
 msgstr "Mean squared error"
+
+msgid "DistributionFitter.NotFit"
+msgstr "No fit to the current measured values possible."
 
 msgid "DistributionFitter.PValue"
 msgstr "P-Value of KS test"
@@ -4241,6 +4256,9 @@ msgstr "SciLab script"
 
 msgid "FileType.Text"
 msgstr "Text files"
+
+msgid "FileType.TypstTable"
+msgstr "Typst tables"
 
 msgid "FileType.Word"
 msgstr "Word texts"

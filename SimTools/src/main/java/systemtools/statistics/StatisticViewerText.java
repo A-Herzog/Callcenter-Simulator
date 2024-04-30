@@ -97,7 +97,7 @@ import systemtools.images.SimToolsImages;
  * Diese Klasse stellt Implementierung des {@link StatisticViewer}-Interfaces zur
  * Anzeige von Text dar.
  * @author Alexander Herzog
- * @version 2.4
+ * @version 2.5
  */
 public abstract class StatisticViewerText implements StatisticViewer {
 	/**
@@ -260,7 +260,7 @@ public abstract class StatisticViewerText implements StatisticViewer {
 
 		textPane=new JTextPane();
 		textPane.setEditable(false);
-		if (!isDark) textPane.setBackground(new Color(0xFF,0xFF,0xF8));
+		if (!isDark) textPane.setBackground(Color.WHITE);
 		textPane.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES,Boolean.TRUE);
 
 		/* Styles zusammenstellen */
@@ -321,7 +321,7 @@ public abstract class StatisticViewerText implements StatisticViewer {
 			}
 			if (type==0) {
 				/* Normaler Text */
-				if (hint!=null && !hint.trim().isEmpty()) {
+				if (hint!=null && !hint.isBlank()) {
 					final SimpleAttributeSet attrSet=new SimpleAttributeSet(defaultStyle2);
 					attrSet.addAttribute("Hint",hint);
 					doc.addText(attrSet,line+"\n");
@@ -333,14 +333,14 @@ public abstract class StatisticViewerText implements StatisticViewer {
 			if (type==-3) {
 				/* Link(klein) */
 				final SimpleAttributeSet attrSet=new SimpleAttributeSet(doc.getStyle("linkSmall"));
-				if (hint!=null && !hint.trim().isEmpty()) attrSet.addAttribute("URL",hint);
+				if (hint!=null && !hint.isBlank()) attrSet.addAttribute("URL",hint);
 				doc.addText(attrSet,line+"\n");
 				continue;
 			}
 			if (type==-4) {
 				/* Link */
 				final SimpleAttributeSet attrSet=new SimpleAttributeSet(doc.getStyle("linkBig"));
-				if (hint!=null && !hint.trim().isEmpty()) attrSet.addAttribute("URL",hint);
+				if (hint!=null && !hint.isBlank()) attrSet.addAttribute("URL",hint);
 				doc.addText(attrSet,line+"\n");
 				continue;
 			}
@@ -512,7 +512,7 @@ public abstract class StatisticViewerText implements StatisticViewer {
 			if (link.toLowerCase().startsWith("help:") && descriptionHelpCallback!=null) {
 				descriptionHelpCallback.accept(link.substring("help:".length()));
 			}
-		});
+		},getDescriptionCustomStyles());
 	}
 
 	/**
@@ -555,7 +555,6 @@ public abstract class StatisticViewerText implements StatisticViewer {
 		tree.addTreeSelectionListener(e->gotoStartOfLine(getSelectedNavLine()+1));
 		((DefaultTreeCellRenderer)tree.getCellRenderer()).setLeafIcon(SimToolsImages.STATISTICS_TEXT.getIcon());
 		for (int i=0;i<tree.getRowCount();i++) tree.expandRow(i);
-		if (!isDark) tree.setBackground(new Color(0xFF,0xFF,0xF8));
 		split.addPropertyChangeListener("ancestor",e->updateTreeSize());
 		treeScroller.setVisible(false);
 
@@ -1773,6 +1772,14 @@ public abstract class StatisticViewerText implements StatisticViewer {
 	protected final void addDescription(final URL descriptionURL, final Consumer<String> descriptionHelpCallback) {
 		this.descriptionURL=descriptionURL;
 		this.descriptionHelpCallback=descriptionHelpCallback;
+	}
+
+	/**
+	 * Ermöglicht das Laden zusätzlicher Styles für die Erklärungstexte.
+	 * @return	Zusätzliche Stylesheets für Erklärungstexte (kann <code>null</code> oder leer sein)
+	 */
+	protected String getDescriptionCustomStyles() {
+		return null;
 	}
 
 	/**

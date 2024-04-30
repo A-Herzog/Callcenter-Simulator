@@ -83,7 +83,7 @@ import xml.XMLData;
 /**
  * Diese Klasse stellt Basisfunktionen zur Anzeige von Statistikdaten bereit
  * @author Alexander Herzog
- * @version 1.9
+ * @version 2.0
  */
 public abstract class StatisticsBasePanel extends JPanel implements AbstractReportCommandConnect {
 	/**
@@ -733,7 +733,6 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 			@Override
 			protected void nodeSelected(StatisticNode node, DefaultMutableTreeNode treeNode) {updateDataPanel(node,treeNode);}
 		});
-		if (!isDark) tree.setBackground(new Color(0xFF,0xFF,0xF8));
 		sp.setBorder(BorderFactory.createLineBorder(Color.GRAY,1));
 		treePanel.add(sp,BorderLayout.CENTER);
 
@@ -1366,7 +1365,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 		d.width=Math.max(d.width,250);
 		tree.setMinimumSize(d);
 
-		if (d.width!=splitPane.getDividerLocation()) splitPane.setDividerLocation(d.width);
+		if (d.width>splitPane.getDividerLocation()) splitPane.setDividerLocation(d.width);
 	}
 
 	/**
@@ -1790,7 +1789,7 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 		dataLabel[index].setText(title);
 
 		int delta=0;
-		if (supTitle!=null && !supTitle.trim().isEmpty()) {
+		if (supTitle!=null && !supTitle.isBlank()) {
 			titlePanel[index].setVisible(true);
 			titleLabel[index].setText(supTitle);
 			delta=titlePanel[index].getY();

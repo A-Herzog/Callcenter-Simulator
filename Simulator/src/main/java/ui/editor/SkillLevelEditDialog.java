@@ -291,10 +291,8 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 			 */
 			private static final long serialVersionUID = 6683308072127986212L;
 			@Override
-			protected boolean editButtonClicked() {
-				boolean b=super.editButtonClicked();
-				if (b && workingTimeCheckBox.isVisible() && workingTimeCheckBox.isSelected()) workingTimeCheckBox.setSelected(false);
-				return b;
+			protected void changedByUser() {
+				if (workingTimeCheckBox.isVisible() && workingTimeCheckBox.isSelected()) workingTimeCheckBox.setSelected(false);
 			}
 		};
 		p2.add(workingTime,BorderLayout.CENTER);
@@ -333,10 +331,8 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 			 */
 			private static final long serialVersionUID = 9170868502143676468L;
 			@Override
-			protected boolean editButtonClicked() {
-				boolean b=super.editButtonClicked();
-				if (b && workingTimeCheckBox.isVisible() && workingTimeCheckBox.isSelected()) workingTimeCheckBox.setSelected(false);
-				return b;
+			protected void changedByUser() {
+				if (workingTimeCheckBox.isVisible() && workingTimeCheckBox.isSelected()) workingTimeCheckBox.setSelected(false);
 			}
 		};
 		p2.add(postprocessingTime,BorderLayout.CENTER);

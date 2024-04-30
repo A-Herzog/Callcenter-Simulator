@@ -134,6 +134,8 @@ public class LanguageStaticLoader {
 		DistributionTools.DistJohnsonWikipedia=Language.tr("Distribution.DistJohnsonSUWikipedia");
 		DistributionTools.DistTriangular=Language.trAll("Distribution.Triangular");
 		DistributionTools.DistTriangularWikipedia=Language.tr("Distribution.TriangularWikipedia");
+		DistributionTools.DistTrapezoid=Language.trAll("Distribution.Trapezoid");
+		DistributionTools.DistTrapezoidWikipedia=Language.tr("Distribution.TrapezoidWikipedia");
 		DistributionTools.DistPert=Language.trAll("Distribution.Pert");
 		DistributionTools.DistPertWikipedia=Language.tr("Distribution.PertWikipedia");
 		DistributionTools.DistLaplace=Language.trAll("Distribution.Laplace");
@@ -180,6 +182,8 @@ public class LanguageStaticLoader {
 		DistributionTools.DistZetaWikipedia=Language.tr("Distribution.ZetaWikipedia");
 		DistributionTools.DistDiscreteUniform=Language.trAll("Distribution.DiscreteUniform");
 		DistributionTools.DistDiscreteUniformWikipedia=Language.tr("Distribution.DiscreteUniformWikipedia");
+		DistributionTools.DistHalfNormal=Language.trAll("Distribution.HalfNormal");
+		DistributionTools.DistHalfNormalWikipedia=Language.tr("Distribution.HalfNormalWikipedia");
 		DistributionTools.DistUnknown=Language.tr("Distribution.Unknown");
 		DistributionTools.DistDataPoint=Language.tr("Distribution.DataPoint");
 		DistributionTools.DistDataPoints=Language.tr("Distribution.DataPoints");
@@ -209,6 +213,7 @@ public class LanguageStaticLoader {
 		DistributionFitter.PValueAndersonDarling=Language.tr("DistributionFitter.PValueAndersonDarling");
 		DistributionFitter.BestFitFor=Language.tr("DistributionFitter.BestFitFor");
 		DistributionFitter.FitError=Language.tr("DistributionFitter.FitError");
+		DistributionFitter.NotFit=Language.tr("DistributionFitter.NotFit");
 
 		/* Table */
 		Table.BoolTrue=Language.tr("Table.BoolTrue");
@@ -228,6 +233,7 @@ public class LanguageStaticLoader {
 		Table.FileTypeWord=Language.tr("FileType.WordTable");
 		Table.FileTypeHTML=Language.tr("FileType.HTMLTable");
 		Table.FileTypeTex=Language.tr("FileType.LaTeXTable");
+		Table.FileTypeTypst=Language.tr("FileType.TypstTable");
 		Table.LoadErrorFirstCellInvalid=Language.tr("Table.LoadErrorFirstCellInvalid");
 		Table.LoadErrorLastCellInvalid=Language.tr("Table.LoadErrorLastCellInvalid");
 		Table.LoadErrorCellRangeInvalid=Language.tr("Table.LoadErrorCellRangeInvalid");

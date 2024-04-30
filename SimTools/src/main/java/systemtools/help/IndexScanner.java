@@ -72,7 +72,7 @@ class IndexScanner {
 	 * @return	Liefert <code>true</code>, wenn die Datei erfasst werden soll
 	 */
 	private static boolean isScanFile(final String name) {
-		if (name==null || name.trim().isEmpty()) return false;
+		if (name==null || name.isBlank()) return false;
 		final String nameLower=name.toLowerCase();
 		if (nameLower.endsWith(".html")) return true;
 		if (nameLower.endsWith(".htm")) return true;
@@ -96,10 +96,12 @@ class IndexScanner {
 				if (fileName==null) continue;
 				final String name=fileName.toString();
 				if (!isScanFile(name)) continue;
-				final String text=String.join("\n",Files.lines(file,charset).toArray(String[]::new));
-				if (text!=null) {
-					index.scan(name,text);
-					scannedFiles++;
+				try (Stream<String> linesStream=Files.lines(file,charset)) {
+					final String text=String.join("\n",linesStream.toArray(String[]::new));
+					if (text!=null) {
+						index.scan(name,text);
+						scannedFiles++;
+					}
 				}
 			}
 		} catch (IOException e) {
@@ -116,7 +118,7 @@ class IndexScanner {
 	 * @param cls	Ausgangspunkt für die relativen Namen der Ressourcen
 	 */
 	public void scan(final String language, final String folder, final Class<?> cls) {
-		if (folder==null || folder.trim().isEmpty() || language==null || language.trim().isEmpty()) return;
+		if (folder==null || folder.isBlank() || language==null || language.isBlank()) return;
 
 		final Index index=new Index(folder+"/");
 
@@ -286,7 +288,7 @@ class IndexScanner {
 		 */
 		public Map<String,Set<String>> getIndexHits(final String searchString) {
 			final Map<String,Set<String>> results=new HashMap<>();
-			if (searchString!=null && !searchString.trim().isEmpty()) {
+			if (searchString!=null && !searchString.isBlank()) {
 				final String searchStringLower=searchString.trim().toLowerCase();
 				for (Map.Entry<String,Set<String>> entry: tokens.entrySet()) {
 					if (entry.getKey().toLowerCase().contains(searchStringLower)) {
@@ -304,7 +306,7 @@ class IndexScanner {
 		 */
 		public Map<String,String> getTitleHits(final String searchString) {
 			final Map<String,String> results=new HashMap<>();
-			if (searchString!=null && !searchString.trim().isEmpty()) {
+			if (searchString!=null && !searchString.isBlank()) {
 				final String searchStringLower=searchString.trim().toLowerCase();
 				for (Map.Entry<String,String> entry: titles.entrySet()) {
 					if (entry.getKey().toLowerCase().contains(searchStringLower)) {

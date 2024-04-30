@@ -427,7 +427,7 @@ public class StatisticViewerTable implements StatisticViewer {
 			if (link.toLowerCase().startsWith("help:") && descriptionHelpCallback!=null) {
 				descriptionHelpCallback.accept(link.substring("help:".length()));
 			}
-		});
+		},getDescriptionCustomStyles());
 	}
 
 	/**
@@ -536,15 +536,17 @@ public class StatisticViewerTable implements StatisticViewer {
 		if (sortByColumn>=0) showColumnNames.set(sortByColumn,showColumnNames.get(sortByColumn)+" "+new String(Character.toChars(sortDescending?9660:9650)));
 		for (int i=0;i<showColumnNames.size();i++) if (filter.get(i).size()>0) showColumnNames.set(i,showColumnNames.get(i)+" "+new String(Character.toChars(9745)));
 
-		/* Datenmodell aufstellen und eintragen */
-		viewerTableModel=new StatisticViewerTableModel(showTable,showColumnNames);
-		viewerTable.setModel(viewerTableModel);
+		if (viewerTable!=null) {
+			/* Datenmodell aufstellen und eintragen */
+			viewerTableModel=new StatisticViewerTableModel(showTable,showColumnNames);
+			viewerTable.setModel(viewerTableModel);
 
-		/* Spaltenbreiten neu einstellen */
-		SwingUtilities.invokeLater(()->{
-			final int colCount=viewerTable.getColumnCount();
-			for (int i=0;i<colCount;i++) autoSizeColumn(viewerTable,i,true);
-		});
+			/* Spaltenbreiten neu einstellen */
+			SwingUtilities.invokeLater(()->{
+				final int colCount=viewerTable.getColumnCount();
+				for (int i=0;i<colCount;i++) autoSizeColumn(viewerTable,i,true);
+			});
+		}
 	}
 
 	@Override
@@ -745,6 +747,7 @@ public class StatisticViewerTable implements StatisticViewer {
 	@Override
 	public Transferable getTransferable() {
 		if (columnNames.isEmpty()) buildTable();
+		buildTableModel();
 
 		final StringBuilder s=new StringBuilder();
 		addListToStringBuilder(s,showColumnNames);
@@ -801,6 +804,7 @@ public class StatisticViewerTable implements StatisticViewer {
 	 */
 	public Table toTable() {
 		if (columnNames.isEmpty()) buildTable();
+		buildTableModel();
 
 		final Table t=new Table();
 		t.addLine(showColumnNames);
@@ -841,6 +845,7 @@ public class StatisticViewerTable implements StatisticViewer {
 	 * @see #saveHtml(BufferedWriter, File, int, boolean)
 	 */
 	private void saveLineToTable(BufferedWriter bw, List<String> line) throws IOException {
+		if (line==null) return;
 		bw.write("  <tr>");
 		for (int i=0;i<line.size();i++) bw.write("<td>"+line.get(i)+"</td>");
 		bw.write("</tr>");
@@ -850,6 +855,7 @@ public class StatisticViewerTable implements StatisticViewer {
 	@Override
 	public int saveHtml(BufferedWriter bw, File mainFile, int nextImageNr, boolean imagesInline) throws IOException {
 		if (columnNames.isEmpty()) buildTable();
+		buildTableModel();
 
 		bw.write("<table>");
 		bw.newLine();
@@ -863,6 +869,7 @@ public class StatisticViewerTable implements StatisticViewer {
 	@Override
 	public int saveLaTeX(BufferedWriter bw, File mainFile, int nextImageNr) throws IOException {
 		if (columnNames.isEmpty()) buildTable();
+		buildTableModel();
 
 		try (final ByteArrayOutputStream stream=new ByteArrayOutputStream()) {
 			toTable().save(stream,Table.SaveMode.SAVEMODE_TEX);
@@ -973,6 +980,7 @@ public class StatisticViewerTable implements StatisticViewer {
 	@Override
 	public boolean savePDF(PDFWriter pdf) {
 		if (columnNames.isEmpty()) buildTable();
+		buildTableModel();
 
 		if (!pdf.writeStyledTableHeader(showColumnNames)) return false;
 		final int size=showTable.getSize(0);
@@ -1002,6 +1010,14 @@ public class StatisticViewerTable implements StatisticViewer {
 	protected final void addDescription(final URL descriptionURL, final Consumer<String> descriptionHelpCallback) {
 		this.descriptionURL=descriptionURL;
 		this.descriptionHelpCallback=descriptionHelpCallback;
+	}
+
+	/**
+	 * Ermöglicht das Laden zusätzlicher Styles für die Erklärungstexte.
+	 * @return	Zusätzliche Stylesheets für Erklärungstexte (kann <code>null</code> oder leer sein)
+	 */
+	protected String getDescriptionCustomStyles() {
+		return null;
 	}
 
 	/**

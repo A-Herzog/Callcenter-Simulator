@@ -230,7 +230,7 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 	 * @return	html-Code der Hauptdatei
 	 */
 	private String viewerRoot(final Locale language, final String serverHost) {
-		try (InputStream stream=language.equals(Locale.GERMAN)?HandlerViewerSystem.class.getResourceAsStream("res/viewer_nonlocal/index_de.php"):HandlerViewerSystem.class.getResourceAsStream("res/viewer_nonlocal/index_en.php")) {
+		try (InputStream stream=HandlerViewerSystem.class.getResourceAsStream(language.equals(Locale.GERMAN)?"res/viewer_nonlocal/index_de.php":"res/viewer_nonlocal/index_en.php")) {
 			String html=WebServerTools.getTextFile(stream);
 			if (html!=null) html=html.replace(UpdateSystem.shortHomeURL,serverHost);
 			return html;

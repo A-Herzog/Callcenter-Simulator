@@ -145,6 +145,15 @@ public class SimData {
 	}
 
 	/**
+	 * Bricht die Simulation sofort ab.
+	 * @param message	Logging Meldung
+	 */
+	public void doEmergencyShutDown(final String message) {
+		logEventExecution("Stopped",-1,message);
+		finalTerminateCleanUp(0);
+	}
+
+	/**
 	 * Vorbereitung eines Simulationstages (nur notwendig, wenn mehrere Tage simuliert werden sollen)
 	 * @param day	Nummer des simulierten Tages (beginnend ab 0)
 	 * @param dayGlobal	Nummer der (bezogen auf alle Threads) zu simulierenden Tages (beginnend ab 0)
@@ -199,7 +208,7 @@ public class SimData {
 	 * @see SimLogging
 	 */
 	protected SimLogging getLogger(final File logFile) {
-		return new PlainTextLogger(logFile,false,false,false,logFile.toString().toUpperCase().endsWith(".CSV"));
+		return new PlainTextLogger(logFile,false,false,false,false,logFile.toString().toUpperCase().endsWith(".CSV"));
 	}
 
 	/**

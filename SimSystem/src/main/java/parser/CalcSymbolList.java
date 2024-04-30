@@ -77,6 +77,7 @@ import parser.symbols.CalcSymbolPreOperatorLd;
 import parser.symbols.CalcSymbolPreOperatorLg;
 import parser.symbols.CalcSymbolPreOperatorLog;
 import parser.symbols.CalcSymbolPreOperatorLogicAnd;
+import parser.symbols.CalcSymbolPreOperatorLogicEquals;
 import parser.symbols.CalcSymbolPreOperatorLogicNAnd;
 import parser.symbols.CalcSymbolPreOperatorLogicNOr;
 import parser.symbols.CalcSymbolPreOperatorLogicNXor;
@@ -133,6 +134,7 @@ import parser.symbols.distributions.CalcSymbolDistributionFrechet;
 import parser.symbols.distributions.CalcSymbolDistributionGamma;
 import parser.symbols.distributions.CalcSymbolDistributionGammaDirect;
 import parser.symbols.distributions.CalcSymbolDistributionGumbel;
+import parser.symbols.distributions.CalcSymbolDistributionHalfNormal;
 import parser.symbols.distributions.CalcSymbolDistributionHyperbolicSecant;
 import parser.symbols.distributions.CalcSymbolDistributionInverseGaussian;
 import parser.symbols.distributions.CalcSymbolDistributionJohnsonSU;
@@ -152,6 +154,7 @@ import parser.symbols.distributions.CalcSymbolDistributionSawtoothLeftDirect;
 import parser.symbols.distributions.CalcSymbolDistributionSawtoothRight;
 import parser.symbols.distributions.CalcSymbolDistributionSawtoothRightDirect;
 import parser.symbols.distributions.CalcSymbolDistributionStudentT;
+import parser.symbols.distributions.CalcSymbolDistributionTrapezoid;
 import parser.symbols.distributions.CalcSymbolDistributionTriangular;
 import parser.symbols.distributions.CalcSymbolDistributionUniform;
 import parser.symbols.distributions.CalcSymbolDistributionWeibull;
@@ -309,6 +312,7 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolDistributionF());
 			addSymbol(new CalcSymbolDistributionJohnsonSU());
 			addSymbol(new CalcSymbolDistributionTriangular());
+			addSymbol(new CalcSymbolDistributionTrapezoid());
 			addSymbol(new CalcSymbolDistributionPert());
 			addSymbol(new CalcSymbolDistributionLaplace());
 			addSymbol(new CalcSymbolDistributionPareto());
@@ -328,6 +332,7 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolDistributionLevy());
 			addSymbol(new CalcSymbolDistributionMaxwellBoltzmann());
 			addSymbol(new CalcSymbolDistributionStudentT());
+			addSymbol(new CalcSymbolDistributionHalfNormal());
 
 			addSymbol(new CalcSymbolEmpiricalDistributionPDF());
 			addSymbol(new CalcSymbolEmpiricalDistributionCDF());
@@ -429,6 +434,7 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolPreOperatorLogicNAnd());
 			addSymbol(new CalcSymbolPreOperatorLogicNOr());
 			addSymbol(new CalcSymbolPreOperatorLogicNXor());
+			addSymbol(new CalcSymbolPreOperatorLogicEquals());
 			addSymbol(new CalcSymbolPreOperatorGcd());
 			addSymbol(new CalcSymbolPreOperatorLcm());
 
@@ -594,7 +600,7 @@ public class CalcSymbolList {
 	 * @return	Symbol mit dem angegebenen Namen oder <code>null</code> wenn kein Symbol mit diesem Namen gefunden wurde
 	 */
 	public CalcSymbol findSymbol(final String name) {
-		if (name==null || name.trim().isEmpty()) return null;
+		if (name==null || name.isBlank()) return null;
 
 		CalcSymbol select=null;
 		int len=0;

@@ -1662,6 +1662,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4015] = "Fehler";
     t[4024] = "SimStatistic.SystemData.SimulatedEvents";
     t[4025] = "Simulierte Ereignisse";
+    t[4028] = "Distribution.Trapezoid";
+    t[4029] = "Trapezverteilung";
     t[4030] = "Editor.AgentsGroup.Costs.PerConversationMinute";
     t[4031] = "Kosten pro Gespr\u00e4chsminute";
     t[4036] = "SimStatistic.Call.CarriedOver";
@@ -2008,14 +2010,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4725] = "Programminfo";
     t[4728] = "Help.StartPage.Info";
     t[4729] = "Zeigt die Startseite der Hilfe an.";
-    t[4736] = "XML.OptimizerSetup.ModificationGroups.Selection";
-    t[4737] = "Auswahl";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4736] = "XML.OptimizerSetup.ModificationGroups.Selection";
+    t[4737] = "Auswahl";
     t[4740] = "Importer.PostProcessingTimeDistribution";
     t[4741] = "Nachbearbeitungszeitverteilung";
     t[4748] = "JDistributionEditor.Density.Label";
@@ -3606,6 +3608,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[8319] = "Erkl\u00e4rung ausblenden";
     t[8324] = "Importer.Error.TableDoesNotExist.Title";
     t[8325] = "Tabellendatei existiert nicht";
+    t[8326] = "FileType.TypstTable";
+    t[8327] = "Typst-Tabellen";
     t[8328] = "CommandLine.Import.Done.Multiple";
     t[8329] = "Die Verarbeitung der %d Importregeln wurde erfolgreich abgeschlossen.";
     t[8334] = "MainMenu.File.SaveStatistics.Tooltip";
@@ -4012,16 +4016,16 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9345] = "Die angegebene maximale Warteschlangenl\u00e4nge %s ist ung\u00fcltig.";
     t[9348] = "Connected.Button.Up.Info";
     t[9349] = "Verschiebt den Tag um einen Platz nach vorne";
-    t[9350] = "JDistributionEditor.Wikipedia.Info";
-    t[9351] = "\u00d6ffnet ein Browserfenster mit weiteren Informationen zu dem gew\u00e4hlten Verteilungstyp";
-    t[9352] = "CommandLine.Connected.SimulationDone";
-    t[9353] = "Die Simulation wurde abgeschlossen.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9350] = "JDistributionEditor.Wikipedia.Info";
+    t[9351] = "\u00d6ffnet ein Browserfenster mit weiteren Informationen zu dem gew\u00e4hlten Verteilungstyp";
+    t[9352] = "CommandLine.Connected.SimulationDone";
+    t[9353] = "Die Simulation wurde abgeschlossen.";
     t[9356] = "Model.Check.ClientType.RetryCheck.UnknownClientType";
     t[9357] = "Kunden des Typs \"%s\" k\u00f6nnen bei einem Warteabbruch zu Kunden des Typs \"$name\" werden, den es jedoch nicht gibt.";
     t[9358] = "Connected.Error.NewerVersion";
@@ -4222,6 +4226,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9775] = "Agenten (normal)";
     t[9780] = "Editor.Caller.Error.ContinueCallerType.Info";
     t[9781] = "Die Weiterleitungsrate zu Kundentyp \"%s\" (%s) ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Zahl (optional ein Prozentwert) sein.";
+    t[9784] = "Distribution.HalfNormalWikipedia";
+    t[9785] = "https://de.wikipedia.org/wiki/Normalverteilung";
     t[9786] = "Model.GenerateDescription.FreshCalls.All";
     t[9787] = "insgesamt %d Erstanrufer pro Tag";
     t[9790] = "MainMenu.Help.ShowModel.Short";
@@ -5423,7 +5429,7 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12778] = "CommandLine.Report.Name";
     t[12779] = "Zusammenfassung";
     t[12780] = "DistributionFitter.ComparedDistributions";
-    t[12781] = "Gepr\u00fcfte Verteilungen";
+    t[12781] = "Gepr\u00fcfte Verteilungen (%d St\u00fcck)";
     t[12786] = "Server.TerminateByUserCommand";
     t[12787] = "Abbruch mit Enter-Taste oder per SIGTERM.";
     t[12790] = "Dialog.Button.View";
@@ -6016,18 +6022,18 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14189] = "Die angegebene Logdatei %s ist ein Verzeichnisname.";
     t[14192] = "MainMenu.Tools.RunServer.Mnemonic";
     t[14193] = "R";
-    t[14196] = "Importer.Error.Need24or48or96Intervals";
-    t[14197] = "Die Anzahl der Intervallen muss 24, 48 or 96 betragen. Angegeben wurden jedoch %d Werte.";
-    t[14198] = "XML.Statistic.Clients.WaitingTime.Clients.ErrorSquaresSum";
-    t[14199] = "Die Summe der quadrierten Wartezeiten der Kunden %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
-    t[14204] = "XML.Model.ClientType.FreshCalls";
-    t[14205] = "KundenErstanrufer;Erstanrufer";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14196] = "Importer.Error.Need24or48or96Intervals";
+    t[14197] = "Die Anzahl der Intervallen muss 24, 48 or 96 betragen. Angegeben wurden jedoch %d Werte.";
+    t[14198] = "XML.Statistic.Clients.WaitingTime.Clients.ErrorSquaresSum";
+    t[14199] = "Die Summe der quadrierten Wartezeiten der Kunden %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
+    t[14204] = "XML.Model.ClientType.FreshCalls";
+    t[14205] = "KundenErstanrufer;Erstanrufer";
     t[14208] = "Editor.Caller.WaitingTimeTolerance.Estimation.CorrectionValue";
     t[14209] = "Korrekturwert (positive oder negative Zeitangabe)";
     t[14210] = "XML.Model.ClientType.FreshCalls.Count.Error";
@@ -6260,6 +6266,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14715] = "Die Ziel-Erreichbarkeit f\u00fcr Kundentyp %s ist ung\u00fcltig.";
     t[14728] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMin";
     t[14729] = "Konstanten Minimalwert vorgeben";
+    t[14730] = "Distribution.HalfNormal";
+    t[14731] = "Halbe Normalverteilung";
     t[14740] = "MainMenu.View.Welcome";
     t[14741] = "Willkommensseite";
     t[14744] = "XML.Statistic.Clients.Summary.CallsCombinedWaitingCancelTime";
@@ -7376,6 +7384,10 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17501] = "StatistikAnrufeServiceLevel;AnrufeServiceLevel";
     t[17502] = "Distribution.FatigueLife";
     t[17503] = "Fatigue-Life-Verteilung";
+    t[17508] = "Distribution.TrapezoidWikipedia";
+    t[17509] = "https://de.wikipedia.org/wiki/Trapezverteilung";
+    t[17510] = "DistributionFitter.NotFit";
+    t[17511] = "Keine Anpassung an die aktuellen Messwerte m\u00f6glich.";
     t[17512] = "Window.ConnectedResults.Error.Title";
     t[17513] = "Fehler beim Laden des verbundenen Modells";
     t[17514] = "CommandLine.Filter.Name";

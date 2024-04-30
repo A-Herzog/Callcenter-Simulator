@@ -1662,6 +1662,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4015] = "Error";
     t[4024] = "SimStatistic.SystemData.SimulatedEvents";
     t[4025] = "Simulated events";
+    t[4028] = "Distribution.Trapezoid";
+    t[4029] = "Trapezoid distribution";
     t[4030] = "Editor.AgentsGroup.Costs.PerConversationMinute";
     t[4031] = "Costs per conversation minute";
     t[4036] = "SimStatistic.Call.CarriedOver";
@@ -2008,14 +2010,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4725] = "Program information";
     t[4728] = "Help.StartPage.Info";
     t[4729] = "Shows the start page of the help information.";
-    t[4736] = "XML.OptimizerSetup.ModificationGroups.Selection";
-    t[4737] = "Selection";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4736] = "XML.OptimizerSetup.ModificationGroups.Selection";
+    t[4737] = "Selection";
     t[4740] = "Importer.PostProcessingTimeDistribution";
     t[4741] = "Post processing time distribution";
     t[4748] = "JDistributionEditor.Density.Label";
@@ -3606,6 +3608,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[8319] = "Hide description";
     t[8324] = "Importer.Error.TableDoesNotExist.Title";
     t[8325] = "Table file does not exist";
+    t[8326] = "FileType.TypstTable";
+    t[8327] = "Typst tables";
     t[8328] = "CommandLine.Import.Done.Multiple";
     t[8329] = "Processing the %d input rules was successfully finished.";
     t[8334] = "MainMenu.File.SaveStatistics.Tooltip";
@@ -4012,16 +4016,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9345] = "The specified maximum queue lengtg %s is invalid.";
     t[9348] = "Connected.Button.Up.Info";
     t[9349] = "Moves the day on place upo";
-    t[9350] = "JDistributionEditor.Wikipedia.Info";
-    t[9351] = "Opens a browser window with additional information about the selected distribution type";
-    t[9352] = "CommandLine.Connected.SimulationDone";
-    t[9353] = "The simulation is done.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9350] = "JDistributionEditor.Wikipedia.Info";
+    t[9351] = "Opens a browser window with additional information about the selected distribution type";
+    t[9352] = "CommandLine.Connected.SimulationDone";
+    t[9353] = "The simulation is done.";
     t[9356] = "Model.Check.ClientType.RetryCheck.UnknownClientType";
     t[9357] = "Clients of type \"%s\" can change their type to \"$name\" on a retry, but this client type does not exist.";
     t[9358] = "Connected.Error.NewerVersion";
@@ -4222,6 +4226,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9775] = "Agents (default)";
     t[9780] = "Editor.Caller.Error.ContinueCallerType.Info";
     t[9781] = "The specified forwarding rate to client type \"%s\" (%s) is invalid.\nThe value has to be a non-negative number (a percentage value optional).";
+    t[9784] = "Distribution.HalfNormalWikipedia";
+    t[9785] = "https://en.wikipedia.org/wiki/Normal_distribution";
     t[9786] = "Model.GenerateDescription.FreshCalls.All";
     t[9787] = "%d fresh calls per day";
     t[9790] = "MainMenu.Help.ShowModel.Short";
@@ -5423,7 +5429,7 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12778] = "CommandLine.Report.Name";
     t[12779] = "Report";
     t[12780] = "DistributionFitter.ComparedDistributions";
-    t[12781] = "Compared distributions";
+    t[12781] = "Compared distributions (%d distributions)";
     t[12786] = "Server.TerminateByUserCommand";
     t[12787] = "Terminated by return key or SIGTERM.";
     t[12790] = "Dialog.Button.View";
@@ -6016,18 +6022,18 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14189] = "The specified log file %s already exists as a directory name.";
     t[14192] = "MainMenu.Tools.RunServer.Mnemonic";
     t[14193] = "N";
-    t[14196] = "Importer.Error.Need24or48or96Intervals";
-    t[14197] = "24, 48 or 96 interval values are needed, but %s values have been specified.";
-    t[14198] = "XML.Statistic.Clients.WaitingTime.Clients.ErrorSquaresSum";
-    t[14199] = "The sum of the squared waiting times of the clients %s is invalid. The value has to be a non-negative integer number.";
-    t[14204] = "XML.Model.ClientType.FreshCalls";
-    t[14205] = "ClientsFreshCalls";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[14196] = "Importer.Error.Need24or48or96Intervals";
+    t[14197] = "24, 48 or 96 interval values are needed, but %s values have been specified.";
+    t[14198] = "XML.Statistic.Clients.WaitingTime.Clients.ErrorSquaresSum";
+    t[14199] = "The sum of the squared waiting times of the clients %s is invalid. The value has to be a non-negative integer number.";
+    t[14204] = "XML.Model.ClientType.FreshCalls";
+    t[14205] = "ClientsFreshCalls";
     t[14208] = "Editor.Caller.WaitingTimeTolerance.Estimation.CorrectionValue";
     t[14209] = "Correction value (positive or negative time value)";
     t[14210] = "XML.Model.ClientType.FreshCalls.Count.Error";
@@ -6260,6 +6266,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14715] = "The selected target accessibility for client type %s is invalid.";
     t[14728] = "Optimizer.ControlVariable.Restrictions.Dialog.SetMin";
     t[14729] = "Set up constant minimal value";
+    t[14730] = "Distribution.HalfNormal";
+    t[14731] = "Half normal distribution";
     t[14740] = "MainMenu.View.Welcome";
     t[14741] = "Welcome";
     t[14744] = "XML.Statistic.Clients.Summary.CallsCombinedWaitingCancelTime";
@@ -7376,6 +7384,10 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17501] = "StatisticCallsServiceLevel";
     t[17502] = "Distribution.FatigueLife";
     t[17503] = "Fatigue life distribution";
+    t[17508] = "Distribution.TrapezoidWikipedia";
+    t[17509] = "https://en.wikipedia.org/wiki/Trapezoidal_distribution";
+    t[17510] = "DistributionFitter.NotFit";
+    t[17511] = "No fit to the current measured values possible.";
     t[17512] = "Window.ConnectedResults.Error.Title";
     t[17513] = "Error loading the connected model";
     t[17514] = "CommandLine.Filter.Name";

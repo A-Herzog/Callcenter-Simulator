@@ -15,10 +15,13 @@
  */
 package mathtools.distribution.tools;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.math3.distribution.AbstractRealDistribution;
 import org.apache.commons.math3.distribution.ChiSquaredDistribution;
@@ -44,7 +47,7 @@ public class DistributionFitter extends DistributionFitterBase {
 	/**
 	 * Bezeichner für "Geprüfte Verteilungen"
 	 */
-	public static String ComparedDistributions="Geprüfte Verteilungen";
+	public static String ComparedDistributions="Geprüfte Verteilungen (%d Stück)";
 
 	/**
 	 * Bezeichner für "Mittlere quadratische Abweichung"
@@ -75,6 +78,11 @@ public class DistributionFitter extends DistributionFitterBase {
 	 * Bezeichner für "Abweichung"
 	 */
 	public static String FitError="Abweichung";
+
+	/**
+	 * Infotext zu nicht geprüften Verteilungen
+	 */
+	public static String NotFit="Keine Anpassung an die aktuellen Messwerte möglich.";
 
 	/**
 	 * Angabe der quadratischen Abweichungen der Verteilungen
@@ -132,14 +140,34 @@ public class DistributionFitter extends DistributionFitterBase {
 	protected boolean process(final DataDistributionImpl dist) {
 		final double mean=samples.getMean();
 		final double sd=samples.getStandardDeviation();
-		final double min=dist.getMin();
-		final double max=dist.getMax(); /* dist enthält die Messwerte; samples.getMax() würde hingegen den maximalen Dichte-Werte für ein Intervall angeben, nicht das höchste Intervall mit einem Dichtewert größer als 0 */
+		/* Sowohl samples.getMax() als auch dist.getMax() liefern nicht das, was wir brauchen */
+		double min=dist.densityData.length-1;
+		double max=0;
+		for (int i=0;i<dist.densityData.length;i++) if (dist.densityData[i]>0) {
+			if (i<min) min=i;
+			if (i>max) max=i;
+		}
+		outputPlain.append(String.format(ComparedDistributions,getFitDistributionCount())+"\n");
+		outputHTML.append("<h3>"+String.format(ComparedDistributions,getFitDistributionCount())+"</h3>\n");
 
-		outputPlain.append(ComparedDistributions+"\n");
-		outputHTML.append("<h3>"+ComparedDistributions+"</h3>\n");
-
+		final Set<Class<? extends AbstractDistributionWrapper>> candidates=new HashSet<>(getFitDistributions());
 		for (String name: DistributionTools.getDistributionNames()) {
-			calcMatch(DistributionTools.getWrapper(name),mean,sd,min,max);
+			final AbstractDistributionWrapper wrapper=DistributionTools.getWrapper(name);
+			if (calcMatch(wrapper,mean,sd,min,max)) {
+				candidates.remove(wrapper.getClass());
+			}
+		}
+		for (Class<? extends AbstractDistributionWrapper> wrapperCls: candidates) {
+			try {
+				final AbstractDistributionWrapper wrapper=wrapperCls.getDeclaredConstructor().newInstance();
+				final String name=wrapper.getName();
+				outputPlain.append(name);
+				outputPlain.append("\n");
+				outputPlain.append(NotFit);
+				outputPlain.append("\n");
+				outputHTML.append("<u>"+name+"</u><br>\n");
+				outputHTML.append(NotFit+"<br>");
+			} catch (InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException|NoSuchMethodException|SecurityException e) {}
 		}
 
 		outputPlain.append("\n");
@@ -261,7 +289,7 @@ public class DistributionFitter extends DistributionFitterBase {
 			sumRelDif+=count*(samplesDelta-delta)*(samplesDelta-delta)/delta;
 		}
 
-		ChiSquaredDistribution chiSqr=new ChiSquaredDistribution(steps-1);
+		ChiSquaredDistribution chiSqr=new ChiSquaredDistribution(Math.max(steps-1,1));
 		return 1-chiSqr.cumulativeProbability(sumRelDif);
 	}
 
@@ -361,7 +389,9 @@ public class DistributionFitter extends DistributionFitterBase {
 		}
 
 		/* Qualität des Fits speichern */
-		fit.put(DistributionTools.cloneDistribution(dist),diff);
+		if (!Double.isNaN(diff)) {
+			fit.put(DistributionTools.cloneDistribution(dist),diff);
+		}
 
 		/* Ergebnis in Liste aufnehmen */
 		addResultToOutputList(dist,diff);
@@ -375,11 +405,17 @@ public class DistributionFitter extends DistributionFitterBase {
 	 * @param max	Maximal aufgetretener Messwert
 	 * @param mean	Einzustellender Erwartungswert
 	 * @param sd	Einzustellende Standardabweichung
+	 * @return	Gibt an, ob für die gegebene Verteilung eine Anpassung vorgenommen werden konnte.
 	 */
-	private void calcMatch(final AbstractDistributionWrapper wrapper, final double mean, final double sd, final double min, final double max) {
-		if (wrapper==null) return;
+	private boolean calcMatch(final AbstractDistributionWrapper wrapper, final double mean, final double sd, final double min, final double max) {
+		if (wrapper==null) return false;
 		final AbstractRealDistribution fit=wrapper.getDistributionForFit(mean,sd,min,max);
-		if (fit!=null) calcMatch(fit);
+		if (fit!=null) {
+			calcMatch(fit);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**

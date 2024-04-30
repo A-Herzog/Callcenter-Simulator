@@ -149,6 +149,12 @@ public final class DistributionTools {
 	/** Wikipedia-Seite Dreiecksverteilung */
 	public static String DistTriangularWikipedia="https://de.wikipedia.org/wiki/Dreiecksverteilung";
 
+	/** Trapezverteilung */
+	public static String[] DistTrapezoid=new String[]{"Trapezverteilung"};
+
+	/** Wikipedia-Seite Dreiecksverteilung */
+	public static String DistTrapezoidWikipedia="https://de.wikipedia.org/wiki/Trapezverteilung";
+
 	/** Pert-Verteilung */
 	public static String[] DistPert=new String[]{"Pert-Verteilung"};
 
@@ -287,6 +293,12 @@ public final class DistributionTools {
 	/** Wikipedia-Seite Diskrete Gleichverteilung */
 	public static String DistDiscreteUniformWikipedia="https://de.wikipedia.org/wiki/Diskrete_Gleichverteilung";
 
+	/** Halbe Normalverteilung */
+	public static String[] DistHalfNormal=new String[]{"Halbe Normalverteilung"};
+
+	/** Wikipedia-Seite halbe Normalverteilung */
+	public static String DistHalfNormalWikipedia="https://de.wikipedia.org/wiki/Normalverteilung";
+
 	/** Warnung "unbekannte Verteilung" */
 	public static String DistUnknown="unbekannte Verteilung";
 
@@ -360,6 +372,7 @@ public final class DistributionTools {
 				new WrapperFDistribution(),
 				new WrapperJohnsonDistribution(),
 				new WrapperTriangularDistribution(),
+				new WrapperTrapezoidDistribution(),
 				new WrapperPertDistribution(),
 				new WrapperLaplaceDistribution(),
 				new WrapperParetoDistribution(),
@@ -382,7 +395,8 @@ public final class DistributionTools {
 				new WrapperPoissonDistribution(),
 				new WrapperNegativeBinomialDistribution(),
 				new WrapperZetaDistribution(),
-				new WrapperDiscreteUniformDistribution()
+				new WrapperDiscreteUniformDistribution(),
+				new WrapperHalfNormalDistribution()
 		};
 	}
 
@@ -493,7 +507,7 @@ public final class DistributionTools {
 		final AbstractDistributionWrapper wrapper=getWrapper(distribution);
 		if (wrapper==null) return null;
 		String url=wrapper.getWikipediaURL();
-		if (url==null || url.trim().isEmpty()) return null;
+		if (url==null || url.isBlank()) return null;
 		try {
 			return new URI(url);
 		} catch (URISyntaxException e) {
