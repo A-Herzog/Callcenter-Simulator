@@ -507,7 +507,7 @@ public final class OptimizeSetup {
 				List<String> list;
 				if (optimizeGroupNames==null || optimizeGroupNames.length==0) list=new ArrayList<>(); else list=new ArrayList<>(Arrays.asList(optimizeGroupNames));
 				list.add(e.getTextContent());
-				optimizeGroupNames=list.toArray(new String[0]);
+				optimizeGroupNames=list.toArray(String[]::new);
 				continue;
 			}
 
@@ -531,7 +531,7 @@ public final class OptimizeSetup {
 				List<String> list;
 				if (changeGroups==null || changeGroups.length==0) list=new ArrayList<>(); else list=new ArrayList<>(Arrays.asList(changeGroups));
 				list.add(e.getTextContent());
-				changeGroups=list.toArray(new String[0]);
+				changeGroups=list.toArray(String[]::new);
 				continue;
 			}
 

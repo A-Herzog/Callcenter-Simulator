@@ -252,7 +252,7 @@ public final class ConnectedUebertragEditDialog extends BaseEditDialog {
 		if (uebertrag.size()==0) {
 			radioNo.setSelected(true);
 		} else {
-			if (uebertrag.size()==1 && uebertrag.keySet().toArray(new String[0])[0].isEmpty()) {
+			if (uebertrag.size()==1 && uebertrag.keySet().toArray(String[]::new)[0].isEmpty()) {
 				radioGlobal.setSelected(true);
 				retryGlobal.setText(NumberTools.formatNumberMax(uebertrag.get("").probability*100)+"%");
 			} else {

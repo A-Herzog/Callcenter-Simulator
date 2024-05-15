@@ -277,7 +277,7 @@ public final class Statistics extends StatisticsBase {
 			if (!ok) list.add(kundenGlobal);
 		}
 
-		return list.toArray(new KundenDaten[0]);
+		return list.toArray(KundenDaten[]::new);
 	}
 
 	/**
@@ -303,7 +303,7 @@ public final class Statistics extends StatisticsBase {
 			if (!ok) list.add(agentenGlobal);
 		}
 
-		return list.toArray(new AgentenDaten[0]);
+		return list.toArray(AgentenDaten[]::new);
 	}
 
 	/**
@@ -609,7 +609,7 @@ public final class Statistics extends StatisticsBase {
 				final List<AgentModelData> agentenModellProGruppeList=(agentenModellProGruppe==null)?new ArrayList<>():new ArrayList<>(Arrays.asList(agentenModellProGruppe));
 				if (agentenModellProGruppeList.size()==1 && agentenModellProGruppeList.get(0).name.isEmpty()) agentenModellProGruppeList.remove(0);
 				agentenModellProGruppeList.add(agenten);
-				agentenModellProGruppe=agentenModellProGruppeList.toArray(new AgentModelData[0]);
+				agentenModellProGruppe=agentenModellProGruppeList.toArray(AgentModelData[]::new);
 			}
 		}
 
@@ -2002,14 +2002,14 @@ public final class Statistics extends StatisticsBase {
 			parent.appendChild(node=doc.createElement(Language.trPrimary("XML.Statistic.Clients.CarryOver")));
 
 			node.appendChild(node2=doc.createElement(Language.trPrimary("XML.Statistic.Clients.CarryOver.Canceled")));
-			DataDistributionImpl AbbruchProTag=new DataDistributionImpl(1000,kundenAbbruchProSimDay.toArray(new Integer[0]));
+			DataDistributionImpl AbbruchProTag=new DataDistributionImpl(1000,kundenAbbruchProSimDay.toArray(Integer[]::new));
 			node2.setTextContent(AbbruchProTag.storeToString());
 
 			node.appendChild(node2=doc.createElement(Language.trPrimary("XML.Statistic.Clients.CarryOver.RetryTimes")));
 			StringBuilder s=new StringBuilder();
 			for (int i=0;i<kundenNextDayRetryProSimDay.size();i++) {
 				if (i>0) s.append('|');
-				Long[] list=kundenNextDayRetryProSimDay.get(i).toArray(new Long[0]);
+				Long[] list=kundenNextDayRetryProSimDay.get(i).toArray(Long[]::new);
 				StringBuilder t=new StringBuilder(); for (int j=0;j<list.length;j++) {if (t.length()>0) t.append(';'); t.append(list[j].toString());}
 				s.append(t);
 			}
@@ -2019,8 +2019,8 @@ public final class Statistics extends StatisticsBase {
 			s=new StringBuilder();
 			for (int i=0;i<kundenNextDayUebertragWaitingTimeProSimDay.size();i++) {
 				if (i>0) s.append('|');
-				Long[] list1=kundenNextDayUebertragWaitingTimeProSimDay.get(i).toArray(new Long[0]);
-				Long[] list2=kundenNextDayUebertragRestWaitingToleranceProSimDay.get(i).toArray(new Long[0]);
+				Long[] list1=kundenNextDayUebertragWaitingTimeProSimDay.get(i).toArray(Long[]::new);
+				Long[] list2=kundenNextDayUebertragRestWaitingToleranceProSimDay.get(i).toArray(Long[]::new);
 				StringBuilder t=new StringBuilder(); for (int j=0;j<list1.length;j++) {if (t.length()>0) t.append(';'); t.append(list1[j].toString()+"/"+list2[j].toString());}
 				s.append(t);
 			}
@@ -2608,12 +2608,12 @@ public final class Statistics extends StatisticsBase {
 				if (agent.count>0) {
 					list.add(new AgentModelData(callcenter.name,new CallcenterModelAgent[]{agent},j,callcenter,model));
 				} else {
-					list.add(new AgentModelData(callcenter.name,agent.calcAgentShifts(agent.lastShiftIsOpenEnd,callcenter,model,false).toArray(new CallcenterModelAgent[0]),j,callcenter,model));
+					list.add(new AgentModelData(callcenter.name,agent.calcAgentShifts(agent.lastShiftIsOpenEnd,callcenter,model,false).toArray(CallcenterModelAgent[]::new),j,callcenter,model));
 				}
 			}
 		}
 
-		return list.toArray(new AgentModelData[0]);
+		return list.toArray(AgentModelData[]::new);
 	}
 
 	/**

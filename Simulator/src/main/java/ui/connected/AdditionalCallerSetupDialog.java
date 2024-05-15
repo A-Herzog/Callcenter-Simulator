@@ -79,7 +79,7 @@ public class AdditionalCallerSetupDialog extends BaseEditDialog {
 	private static String[] getCallerNames(CallcenterModel model) {
 		List<String> names=new ArrayList<>();
 		for (int i=0;i<model.caller.size();i++) names.add(model.caller.get(i).name);
-		return names.toArray(new String[0]);
+		return names.toArray(String[]::new);
 	}
 
 	@Override

@@ -196,7 +196,7 @@ public class CopyDialog extends BaseEditDialog {
 	 */
 	@Override
 	protected boolean checkData() {
-		if (name!=null && name.getText().trim().isEmpty()) {
+		if (name!=null && name.getText().isBlank()) {
 			MsgBox.error(this,Language.tr("Editor.CopyDialog.ErrorNoNameTitle"),Language.tr("Editor.CopyDialog.ErrorNoNameInfo"));
 			return false;
 		}

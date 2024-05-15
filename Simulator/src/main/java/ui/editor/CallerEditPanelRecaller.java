@@ -156,7 +156,7 @@ public class CallerEditPanelRecaller extends CallerEditPanel {
 		if (NumberTools.getProbability(recallProbability,true)==null) {
 			if (result==null) result=new String[]{Language.tr("Editor.Caller.Error.RecallProbability.Title"),String.format(Language.tr("Editor.Caller.Error.RecallProbability.Info"),recallProbability.getText())};
 		}
-		for (int i=0;i<recallToType.length;i++) if ((!recallToType[i].getText().trim().isEmpty()) && (NumberTools.getNotNegativeDouble(recallToType[i],true)==null)) {
+		for (int i=0;i<recallToType.length;i++) if ((!recallToType[i].getText().isBlank()) && (NumberTools.getNotNegativeDouble(recallToType[i],true)==null)) {
 			if (result==null) result=new String[]{Language.tr("Editor.Caller.Error.RecallCallerType.Title"),String.format(Language.tr("Editor.Caller.Error.RecallCallerType.Info"),callerTypeNames[i],recallToType[i].getText())};
 		}
 
@@ -169,7 +169,7 @@ public class CallerEditPanelRecaller extends CallerEditPanel {
 		newCaller.recallTypeName.clear();
 		newCaller.recallTypeRate.clear();
 		for (int i=0;i<recallToType.length;i++) {
-			if (recallToType[i].getText().trim().isEmpty()) continue;
+			if (recallToType[i].getText().isBlank()) continue;
 			Double d=NumberTools.getNotNegativeDouble(recallToType[i],false);
 			newCaller.recallTypeName.add(callerTypeNames[i]);
 			newCaller.recallTypeRate.add(d);

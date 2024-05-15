@@ -136,7 +136,7 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 		}
 
 		if (showOutputSelect) {
-			if (fileOutput.getText().trim().isEmpty()) {
+			if (fileOutput.getText().isBlank()) {
 				MsgBox.error(owner,Language.tr("Loader.Error.NoOutputFileSelected.Title"),Language.tr("Loader.Error.NoOutputFileSelected.Info"));
 				return false;
 			}
@@ -244,14 +244,14 @@ public abstract class AbstractTechnionProcessing extends AbstractSpecialProcessi
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==fileInputButton) {
 				File folder=null;
-				if (!fileInput.getText().trim().isEmpty()) {folder=new File(fileInput.getText()); folder=folder.getParentFile();}
+				if (!fileInput.getText().isBlank()) {folder=new File(fileInput.getText()); folder=folder.getParentFile();}
 				File file=TableLoader.getTextFileToLoad(owner,folder); if (file==null) return;
 				fileInput.setText(file.toString());
 				inputFileChanged();
 			}
 			if (e.getSource()==fileOutputButton) {
 				File folder=null;
-				if (!fileOutput.getText().trim().isEmpty()) {folder=new File(fileOutput.getText()); folder=folder.getParentFile();}
+				if (!fileOutput.getText().isBlank()) {folder=new File(fileOutput.getText()); folder=folder.getParentFile();}
 				File file=Table.showSaveDialog(owner,Language.tr("FileType.Save.Table"),folder,null,null); if (file==null) return;
 				fileOutput.setText(file.toString());
 			}

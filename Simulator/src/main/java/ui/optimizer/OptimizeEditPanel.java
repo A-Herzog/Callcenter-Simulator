@@ -916,7 +916,7 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		 */
 		private void editDay0Statistics() {
 			File statisticFile=null;
-			if (!day0statisticsField.getText().trim().isEmpty()) {
+			if (!day0statisticsField.getText().isBlank()) {
 				statisticFile=new File(day0statisticsField.getText());
 				if (!statisticFile.exists()) statisticFile=null;
 			}

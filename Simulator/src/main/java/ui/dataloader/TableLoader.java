@@ -102,7 +102,7 @@ public abstract class TableLoader {
 			if (nr<0) {lastError=String.format(Language.tr("Loader.ProcessError.NoColummnWithCaption"),name); return null;}
 			List<String> col=new ArrayList<>(colTable.getLine(nr));
 			col.remove(0);
-			cols[i]=col.toArray(new String[0]);
+			cols[i]=col.toArray(String[]::new);
 		}
 		return cols;
 	}

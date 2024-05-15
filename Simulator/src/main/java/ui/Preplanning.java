@@ -173,7 +173,7 @@ public final class Preplanning {
 			list.add(s);
 		}
 
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	/**

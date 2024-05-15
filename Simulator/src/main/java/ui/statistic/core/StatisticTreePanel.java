@@ -378,7 +378,7 @@ public class StatisticTreePanel extends JPanel {
 		if (statisticData==null) return new String[0];
 		Set<String> ids=new LinkedHashSet<>();
 		statisticData.getIDs(ids);
-		return ids.toArray(new String[0]);
+		return ids.toArray(String[]::new);
 	}
 
 	/**
@@ -386,7 +386,7 @@ public class StatisticTreePanel extends JPanel {
 	 * @return	Array aus den IDs der ausgeblendeten Elemente. (Ist kein Element ausgeblendet, so wird ein leeres Array zurückgegeben; nicht <code>null</code>.)
 	 */
 	protected final String[] getHiddenIDs() {
-		return hiddenIDs.toArray(new String[0]);
+		return hiddenIDs.toArray(String[]::new);
 	}
 
 	/**

@@ -84,7 +84,7 @@ public class StatisticViewerSpecialHTMLText extends	StatisticViewerSimpleHTMLTex
 		List<Runnable> runner=new ArrayList<>();
 		if (startSimulation!=null) runner.add(startSimulation);
 		if (loadStatistics!=null) runner.add(loadStatistics);
-		return runner.toArray(new Runnable[0]);
+		return runner.toArray(Runnable[]::new);
 	}
 
 	/**

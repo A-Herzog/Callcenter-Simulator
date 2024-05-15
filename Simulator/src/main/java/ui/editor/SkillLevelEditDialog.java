@@ -281,7 +281,7 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 
 		tabs.addTab(Language.tr("Editor.SkillLevel.Distribution.HoldingTime"),p2=new JPanel(new BorderLayout()));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.NORTH);
-		p3.add(workingTimeComboBox=new JComboBox<>(intervalNames.toArray(new String[0])));
+		p3.add(workingTimeComboBox=new JComboBox<>(intervalNames.toArray(String[]::new)));
 		workingTimeComboBox.addActionListener(e->listSelectionChanged());
 		p3.add(workingTimeCheckBox=new JCheckBox(Language.tr("Editor.SkillLevel.Distribution.UseGlobal")));
 		workingTime=new JDistributionPanel(new ExponentialDistribution(600),CallcenterModelSkillLevel.callerTypeWorkingTimeMaxX,true) {
@@ -301,7 +301,7 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 
 		tabs.addTab(Language.tr("Editor.SkillLevel.Distribution.HoldingTimeAddOn"),p2=new JPanel(new BorderLayout()));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.NORTH);
-		p3.add(workingTimeAddOnComboBox=new JComboBox<>(intervalNames2.toArray(new String[0])));
+		p3.add(workingTimeAddOnComboBox=new JComboBox<>(intervalNames2.toArray(String[]::new)));
 		workingTimeAddOnComboBox.addActionListener(e->listSelectionChanged());
 		p3.add(workingTimeAddOnCheckBox=new JCheckBox(Language.tr("Editor.SkillLevel.Value.UseGlobal")));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.CENTER);
@@ -321,7 +321,7 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 
 		tabs.addTab(Language.tr("Editor.SkillLevel.Distribution.PostProcessingTime"),p2=new JPanel(new BorderLayout()));
 		p2.add(p3=new JPanel(new FlowLayout(FlowLayout.LEFT)),BorderLayout.NORTH);
-		p3.add(postprocessingTimeComboBox=new JComboBox<>(intervalNames.toArray(new String[0])));
+		p3.add(postprocessingTimeComboBox=new JComboBox<>(intervalNames.toArray(String[]::new)));
 		postprocessingTimeComboBox.addActionListener(e->listSelectionChanged());
 		p3.add(postprocessingTimeCheckBox=new JCheckBox(Language.tr("Editor.SkillLevel.Distribution.UseGlobal")));
 		postprocessingTime=new JDistributionPanel(new ExponentialDistribution(300),CallcenterModelSkillLevel.callerTypePostProcessingTimeMaxX,true) {
@@ -381,7 +381,7 @@ public class SkillLevelEditDialog extends BaseEditDialog {
 	@Override
 	protected boolean checkData() {
 		/* Name */
-		if (name.getText().trim().isEmpty()) {
+		if (name.getText().isBlank()) {
 			MsgBox.error(this,Language.tr("Editor.SkillLevel.Error.NoName.Title"),Language.tr("Editor.SkillLevel.Error.NoName.Info"));
 			return false;
 		}

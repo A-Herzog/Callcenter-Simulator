@@ -211,7 +211,7 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		StringBuilder title=new StringBuilder();
 
 		Map<String,ConnectedModelUebertrag> m=model.uebertrag.get(rowIndex);
-		String[] keys=m.keySet().toArray(new String[0]);
+		String[] keys=m.keySet().toArray(String[]::new);
 		if (keys.length>0) {
 			if (keys.length==1 && keys[0].isEmpty()) {
 				/* einheitlich für alle Kundentypen */

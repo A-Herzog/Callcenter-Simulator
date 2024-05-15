@@ -52,7 +52,7 @@ public class HandlerMainMenu implements WebServerDataHandler {
 	 */
 	public HandlerMainMenu(final boolean showApplet, final List<StatisticFolder> showServerViewer) {
 		this.showApplet=showApplet;
-		if (showServerViewer==null) this.showServerViewer=null; else this.showServerViewer=showServerViewer.toArray(new StatisticFolder[0]);
+		if (showServerViewer==null) this.showServerViewer=null; else this.showServerViewer=showServerViewer.toArray(StatisticFolder[]::new);
 	}
 
 	/**

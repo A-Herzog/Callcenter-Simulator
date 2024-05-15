@@ -167,21 +167,21 @@ public class SimpleModelProcessing extends AbstractSpecialProcessing {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==fileCallerInputButton) {
 				File folder=null;
-				if (!fileCallerInput.getText().trim().isEmpty()) {folder=new File(fileCallerInput.getText()); folder=folder.getParentFile();}
+				if (!fileCallerInput.getText().isBlank()) {folder=new File(fileCallerInput.getText()); folder=folder.getParentFile();}
 				File file=Table.showLoadDialog(owner,Language.tr("Loader.LoadData"),folder);
 				if (file!=null)	fileCallerInput.setText(file.toString());
 				return;
 			}
 			if (e.getSource()==fileAgentsInputButton) {
 				File folder=null;
-				if (!fileAgentsInput.getText().trim().isEmpty()) {folder=new File(fileAgentsInput.getText()); folder=folder.getParentFile();}
+				if (!fileAgentsInput.getText().isBlank()) {folder=new File(fileAgentsInput.getText()); folder=folder.getParentFile();}
 				File file=Table.showLoadDialog(owner,Language.tr("Loader.LoadData"),folder);
 				if (file!=null)	fileAgentsInput.setText(file.toString());
 				return;
 			}
 			if (e.getSource()==fileOutputButton) {
 				File folder=null;
-				if (!fileOutput.getText().trim().isEmpty()) {folder=new File(fileOutput.getText()); folder=folder.getParentFile();}
+				if (!fileOutput.getText().isBlank()) {folder=new File(fileOutput.getText()); folder=folder.getParentFile();}
 				File file=TableLoader.getModelFileToCreate(owner,folder);
 				if (file!=null)	fileOutput.setText(file.toString());
 				return;

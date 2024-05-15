@@ -345,7 +345,7 @@ public class StatisticViewerOptimizerTable extends StatisticViewerTable {
 			dataType=Mode.DATA_TYPE_AGENTS_SKILL_LEVEL; tempCol.addAll(getColParts(Language.tr("SimStatistic.Agents.PerSkillLevel")));
 			dataType=Mode.DATA_TYPE_WORKLOAD_CALLCENTER; tempCol.addAll(getColParts(Language.tr("SimStatistic.WorkLoad.PerCallcenter")));
 			dataType=Mode.DATA_TYPE_WORKLOAD_SKILL_LEVEL; tempCol.addAll(getColParts(Language.tr("SimStatistic.WorkLoad.PerSkillLevel")));
-			cols=tempCol.toArray(new String[0]);
+			cols=tempCol.toArray(String[]::new);
 			dataType=Mode.DATA_TYPE_SUMMARY;
 			break;
 		case DATA_TYPE_ERLANGC_SUCCESS:

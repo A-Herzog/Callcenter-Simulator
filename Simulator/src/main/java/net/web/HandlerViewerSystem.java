@@ -54,7 +54,7 @@ public class HandlerViewerSystem implements WebServerDataHandler {
 	 * @param filterFolder	Verzeichnis mit Filterskripten
 	 */
 	public HandlerViewerSystem(final List<StatisticFolder> serverFolder, final String filterFolder) {
-		this.serverFolder=serverFolder.toArray(new StatisticFolder[0]);
+		this.serverFolder=serverFolder.toArray(StatisticFolder[]::new);
 		this.filterFolder=filterFolder;
 	}
 

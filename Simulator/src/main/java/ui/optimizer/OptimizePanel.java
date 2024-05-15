@@ -283,7 +283,7 @@ public final class OptimizePanel extends JWorkPanel {
 			MsgBox.error(this,Language.tr("Optimizer.Results.NoData.Title"),Language.tr("Optimizer.Results.NoData.Info"));
 			return;
 		}
-		final Statistics[] results=data.data.toArray(new Statistics[0]);
+		final Statistics[] results=data.data.toArray(Statistics[]::new);
 
 		OptimizeSelectResult dialog=new OptimizeSelectResult(owner,results,helpLink.pageOptimizeModal);
 		dialog.setVisible(true);

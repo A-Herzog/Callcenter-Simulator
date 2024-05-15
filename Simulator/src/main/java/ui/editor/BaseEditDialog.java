@@ -414,11 +414,11 @@ public class BaseEditDialog extends JDialog {
 	private void addHeader(Container content, String nameLabel, String nameValue, String activeLabel, boolean activeValue) {
 		JPanel p;
 
-		if ((nameLabel!=null && !nameLabel.trim().isEmpty()) || (activeLabel!=null && !activeLabel.trim().isEmpty())) {
+		if ((nameLabel!=null && !nameLabel.isBlank()) || (activeLabel!=null && !activeLabel.isBlank())) {
 			content.add(p=new JPanel(new BorderLayout(5,0)),BorderLayout.NORTH);
 			p.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
-			if (nameLabel!=null && !nameLabel.trim().isEmpty()) {
+			if (nameLabel!=null && !nameLabel.isBlank()) {
 				if (nameValue==null) nameLabel="<html><body><b>"+nameLabel+"</b></body></html>";
 				p.add(new JLabel(nameLabel),BorderLayout.WEST);
 				if (nameValue!=null) {
@@ -428,7 +428,7 @@ public class BaseEditDialog extends JDialog {
 				}
 			}
 
-			if (activeLabel!=null && !activeLabel.trim().isEmpty()) {
+			if (activeLabel!=null && !activeLabel.isBlank()) {
 				p.add(active=new JCheckBox(activeLabel,activeValue),BorderLayout.EAST);
 				active.setEnabled(!readOnly);
 			}

@@ -284,7 +284,7 @@ public class StatisticDataPanel extends JPanel {
 		infoPanel.doLayout();
 
 		int delta=0;
-		if (superTitle!=null && !superTitle.trim().isEmpty()) {
+		if (superTitle!=null && !superTitle.isBlank()) {
 			titlePanel.setVisible(true);
 			titleLabel.setText(superTitle);
 			delta=titlePanel.getY();

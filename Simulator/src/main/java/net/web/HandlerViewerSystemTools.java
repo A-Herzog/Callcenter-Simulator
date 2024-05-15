@@ -64,7 +64,7 @@ public class HandlerViewerSystemTools {
 
 		String s1,s2,s3,s4;
 		String title=statistic.editModel.name;
-		String date=""; if (statistic.editModel.date!=null && !statistic.editModel.date.trim().isEmpty()) date=CallcenterModel.dateToLocalString(CallcenterModel.stringToDate(statistic.editModel.date));
+		String date=""; if (statistic.editModel.date!=null && !statistic.editModel.date.isBlank()) date=CallcenterModel.dateToLocalString(CallcenterModel.stringToDate(statistic.editModel.date));
 		s1=NumberTools.formatPercent((double)statistic.kundenGlobal.anrufeErfolg/Math.max(1,statistic.kundenGlobal.anrufe-statistic.kundenGlobal.anrufeUebertrag));
 		s2=NumberTools.formatPercent((double)statistic.kundenGlobal.kundenErfolg/Math.max(1,statistic.kundenGlobal.kunden+statistic.kundenGlobal.kundenWiederanruf-statistic.kundenGlobal.kundenUebertrag));
 		String success=s1+" <small>("+Language.tr("SimStatistic.OnCallBasis")+")</small><br>"+s2+" <small>("+Language.tr("SimStatistic.OnClientBasis")+")</small>";
@@ -284,7 +284,7 @@ public class HandlerViewerSystemTools {
 			List<File> filesWithoutDate=new ArrayList<>();
 			for (int i=0;i<fileDates.length;i++) if (fileDates[i]==null) filesWithoutDate.add(fileNames[i]);
 			if (filesWithoutDate.size()>0) {
-				String innercontent=getServerFileList(filesWithoutDate.toArray(new File[0]),index,true);
+				String innercontent=getServerFileList(filesWithoutDate.toArray(File[]::new),index,true);
 				if (innercontent!=null) {
 					content.append("<h1 style=\"clear: both;\">"+Language.tr("Server.WebMenu.ViewerList.FilesWithoutDateInformation")+"</h1>\n");
 					content.append(innercontent);
@@ -345,7 +345,7 @@ public class HandlerViewerSystemTools {
 		/* Modellname & Beschreibung */
 		content.append("<h1>"+Language.tr("Editor.GeneralData.Model")+" \""+statistic.editModel.name+"\"</h1>\n");
 		content.append("<p>"+statistic.editModel.description.replace("\n","<br>")+"</p>\n");
-		if (statistic.editModel.date!=null && !statistic.editModel.date.trim().isEmpty()) {
+		if (statistic.editModel.date!=null && !statistic.editModel.date.isBlank()) {
 			content.append("<p>"+Language.tr("SimStatistic.ModelInformation.Date")+": "+CallcenterModel.dateToLocalString(CallcenterModel.stringToDate(statistic.editModel.date))+"</p>\n");
 		}
 

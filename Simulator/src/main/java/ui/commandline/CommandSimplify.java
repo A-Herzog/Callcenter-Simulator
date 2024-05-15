@@ -54,7 +54,7 @@ public class CommandSimplify extends AbstractSimulationCommand {
 		List<String> list=new ArrayList<>();
 		list.add(Language.tr("CommandLine.Simplify.Name"));
 		for (String s: Language.trOther("CommandLine.Simplify.Name")) if (!list.contains(s)) list.add(s);
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	@Override

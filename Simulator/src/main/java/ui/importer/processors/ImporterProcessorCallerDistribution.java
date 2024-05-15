@@ -107,7 +107,7 @@ public final class ImporterProcessorCallerDistribution extends ImporterProcessor
 			for (String s: Language.trOther("Importer.FreshCallsDistribution")) if (!list.contains(s)) list.add(s);
 			break;
 		}
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	@Override

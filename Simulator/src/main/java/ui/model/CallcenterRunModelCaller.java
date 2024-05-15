@@ -482,7 +482,7 @@ public final class CallcenterRunModelCaller {
 	public String checkAndInit(final CallcenterRunModelCaller[] caller, final CallcenterRunModelSkillLevel[] skills, final boolean strict) {
 		String s,t;
 
-		if (name==null || name.trim().isEmpty()) return Language.tr("Model.Check.ClientType.NoName");
+		if (name==null || name.isBlank()) return Language.tr("Model.Check.ClientType.NoName");
 
 		/* Wiederholer */
 
@@ -515,7 +515,7 @@ public final class CallcenterRunModelCaller {
 				);
 		if (s!=null) return s;
 		retryCallerTypeRateAfterBlockedFirstRetry=doubleArrayFromDoubleList(tempRetryCallerTypeAfterBlockedFirstRetryProbability);
-		retryCallerTypeAfterBlockedFirstRetry=retryCallerTypeAfterBlockedFirstRetryList.toArray(new CallcenterRunModelCaller[0]);
+		retryCallerTypeAfterBlockedFirstRetry=retryCallerTypeAfterBlockedFirstRetryList.toArray(CallcenterRunModelCaller[]::new);
 
 
 		final List<CallcenterRunModelCaller> retryCallerTypeAfterBlockedList=new ArrayList<>();
@@ -530,7 +530,7 @@ public final class CallcenterRunModelCaller {
 				);
 		if (s!=null) return s;
 		retryCallerTypeRateAfterBlocked=doubleArrayFromDoubleList(tempRetryCallerTypeAfterBlockedProbability);
-		retryCallerTypeAfterBlocked=retryCallerTypeAfterBlockedList.toArray(new CallcenterRunModelCaller[0]);
+		retryCallerTypeAfterBlocked=retryCallerTypeAfterBlockedList.toArray(CallcenterRunModelCaller[]::new);
 
 		final List<CallcenterRunModelCaller> retryCallerTypeAfterGiveUpFirstRetryList=new ArrayList<>();
 		t=Language.tr("Model.Check.ClientType.RetryCheck.CanceledFirst");
@@ -544,7 +544,7 @@ public final class CallcenterRunModelCaller {
 				);
 		if (s!=null) return s;
 		retryCallerTypeRateAfterGiveUpFirstRetry=doubleArrayFromDoubleList(tempRetryCallerTypeAfterGiveUpFirstRetryProbability);
-		retryCallerTypeAfterGiveUpFirstRetry=retryCallerTypeAfterGiveUpFirstRetryList.toArray(new CallcenterRunModelCaller[0]);
+		retryCallerTypeAfterGiveUpFirstRetry=retryCallerTypeAfterGiveUpFirstRetryList.toArray(CallcenterRunModelCaller[]::new);
 
 		final List<CallcenterRunModelCaller> retryCallerTypeAfterGiveUpList=new ArrayList<>();
 		t=Language.tr("Model.Check.ClientType.RetryCheck.Canceled");
@@ -558,7 +558,7 @@ public final class CallcenterRunModelCaller {
 				);
 		if (s!=null) return s;
 		retryCallerTypeRateAfterGiveUp=doubleArrayFromDoubleList(tempRetryCallerTypeAfterGiveUpProbability);
-		retryCallerTypeAfterGiveUp=retryCallerTypeAfterGiveUpList.toArray(new CallcenterRunModelCaller[0]);
+		retryCallerTypeAfterGiveUp=retryCallerTypeAfterGiveUpList.toArray(CallcenterRunModelCaller[]::new);
 
 		/* Weiterleitungen */
 
@@ -578,7 +578,7 @@ public final class CallcenterRunModelCaller {
 				);
 		if (s!=null) return s;
 		continueTypeProbability=doubleArrayFromDoubleList(tempContinueTypeProbability);
-		continueType=continueTypeList.toArray(new CallcenterRunModelCaller[0]);
+		continueType=continueTypeList.toArray(CallcenterRunModelCaller[]::new);
 
 		continueSkillLevel.clear();
 		continueSkillLevelType.clear();
@@ -637,7 +637,7 @@ public final class CallcenterRunModelCaller {
 				);
 		if (s!=null) return s;
 		recallTypeProbability=doubleArrayFromDoubleList(tempRecallTypeProbability);
-		recallType=recallTypeList.toArray(new CallcenterRunModelCaller[0]);
+		recallType=recallTypeList.toArray(CallcenterRunModelCaller[]::new);
 
 		recallSkillLevel.clear();
 		recallSkillLevelType.clear();

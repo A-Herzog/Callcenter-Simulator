@@ -92,6 +92,6 @@ public final class CommandLineSystem extends BaseCommandLineSystem {
 	 */
 	public static AbstractCommand[] list() {
 		final CommandLineSystem system=new CommandLineSystem(null,null);
-		return system.getCommands().toArray(new AbstractCommand[0]);
+		return system.getCommands().toArray(AbstractCommand[]::new);
 	}
 }

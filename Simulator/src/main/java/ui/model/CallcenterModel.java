@@ -223,7 +223,7 @@ public final class CallcenterModel implements Cloneable {
 	 * @return	Datumsangabe als <code>Date</code>-Objekt oder <code>null</code> im Falle eines Fehlers.
 	 */
 	public static java.util.Date stringToDate(String textDate) {
-		if (textDate==null || textDate.trim().isEmpty()) return null;
+		if (textDate==null || textDate.isBlank()) return null;
 
 		java.util.Date parsed;
 
@@ -474,7 +474,7 @@ public final class CallcenterModel implements Cloneable {
 		if (!isStatisticFilePart) version=VersionConst.version;
 		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Model.Version"))); e.setTextContent(version);
 		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Model.Description"))); e.setTextContent(description);
-		if (date!=null && !date.trim().isEmpty()) {
+		if (date!=null && !date.isBlank()) {
 			node.appendChild(e=doc.createElement(Language.trPrimary("XML.Model.Date"))); e.setTextContent(date);
 		}
 		node.appendChild(e=doc.createElement(Language.trPrimary("XML.Model.MaxQueueLength"))); e.setTextContent(""+maxQueueLength);

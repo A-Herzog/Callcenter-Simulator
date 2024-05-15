@@ -63,7 +63,7 @@ public class StatisticViewerModelInformation extends StatisticViewerText {
 		addLine(model.name);
 		endParagraph();
 
-		if (model.date!=null && !model.date.trim().isEmpty()) {
+		if (model.date!=null && !model.date.isBlank()) {
 			addHeading(2,Language.tr("SimStatistic.ModelInformation.Date"));
 			beginParagraph();
 			addLine(CallcenterModel.dateToLocalString(CallcenterModel.stringToDate(model.date)));
@@ -348,7 +348,7 @@ public class StatisticViewerModelInformation extends StatisticViewerText {
 		addLines(model.description);
 		endParagraph();
 
-		if (model.date!=null && !model.date.trim().isEmpty()) {
+		if (model.date!=null && !model.date.isBlank()) {
 			addHeading(2,Language.tr("SimStatistic.ModelInformation.Date"));
 			beginParagraph();
 			addLine(CallcenterModel.dateToLocalString(CallcenterModel.stringToDate(model.date)));

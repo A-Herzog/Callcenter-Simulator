@@ -109,8 +109,8 @@ public class AgentSpecialEditDialog extends BaseEditDialog {
 			callerTempTime.add(d+DistributionTools.getMean(skillLevel.callerTypeWorkingTime.get(i))+DistributionTools.getMean(skillLevel.callerTypePostProcessingTime.get(i)));
 			break;
 		}
-		this.caller=callerTempRecords.toArray(new CallcenterModelCaller[0]);
-		callerTime=callerTempTime.toArray(new Double[0]);
+		this.caller=callerTempRecords.toArray(CallcenterModelCaller[]::new);
+		callerTime=callerTempTime.toArray(Double[]::new);
 
 		createSimpleGUI(500,400,null,null);
 	}

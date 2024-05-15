@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -60,7 +62,7 @@ public class CommandUpdate extends AbstractCommand {
 		List<String> list=new ArrayList<>();
 		list.add(Language.tr("CommandLine.Update.Name"));
 		for (String s: Language.trOther("CommandLine.Update.Name")) if (!list.contains(s)) list.add(s);
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	@Override
@@ -104,8 +106,8 @@ public class CommandUpdate extends AbstractCommand {
 	 */
 	private boolean downloadJarFiles(PrintStream out) {
 		try {
-			URL home1=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.updateFullURL1);
-			URL home2=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.updateFullURL2);
+			URL home1=new URI(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.updateFullURL1).toURL();
+			URL home2=new URI(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.updateFullURL2).toURL();
 			byte[] data=new byte[32768];
 
 			/* Datei herunterladen */
@@ -151,7 +153,7 @@ public class CommandUpdate extends AbstractCommand {
 					return false;
 				}
 			}
-		} catch (IOException e) {return false;}
+		} catch (IOException | URISyntaxException e) {return false;}
 
 		return true;
 	}

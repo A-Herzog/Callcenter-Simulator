@@ -267,9 +267,9 @@ public class BatchPanel extends JWorkPanel {
 		xmlFolderField.setText(setup.batchXMLFolder);
 		if (testXMLFieldForModel(setup.batchXMLElement)) xmlField.setText(setup.batchXMLElement);
 		xmlType.setSelectedIndex(Math.max(0,Math.min(xmlType.getItemCount()-1,setup.batchXMLElementType)));
-		if (!setup.batchXMLElementFrom.trim().isEmpty()) xmlFrom.setText(setup.batchXMLElementFrom);
-		if (!setup.batchXMLElementTo.trim().isEmpty()) xmlTo.setText(setup.batchXMLElementTo);
-		if (!setup.batchXMLElementStepSize.trim().isEmpty()) xmlStepSize.setText(setup.batchXMLElementStepSize);
+		if (!setup.batchXMLElementFrom.isBlank()) xmlFrom.setText(setup.batchXMLElementFrom);
+		if (!setup.batchXMLElementTo.isBlank()) xmlTo.setText(setup.batchXMLElementTo);
+		if (!setup.batchXMLElementStepSize.isBlank()) xmlStepSize.setText(setup.batchXMLElementStepSize);
 
 		/* Bottom line */
 		addFooter(Language.tr("Batch.Simulation.Start"),Images.SIMULATION_BATCH.getIcon(),Language.tr("Batch.Simulation.Abort"));

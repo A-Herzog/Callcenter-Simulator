@@ -84,7 +84,7 @@ public final class StartAnySimulator {
 		if (ports.length<networkServers.length) {
 			List<String> portsList=new ArrayList<>(Arrays.asList(ports));
 			while (portsList.size()<networkServers.length) portsList.add("6783");
-			ports=portsList.toArray(new String[0]);
+			ports=portsList.toArray(String[]::new);
 		}
 		networkPorts=new int[ports.length];
 		for (int i=0;i<ports.length;i++) {
@@ -97,14 +97,14 @@ public final class StartAnySimulator {
 		if (networkPasswords.length<networkServers.length) {
 			List<String> passwordsList=new ArrayList<>(Arrays.asList(networkPasswords));
 			while (passwordsList.size()<networkServers.length) passwordsList.add("");
-			networkPasswords=passwordsList.toArray(new String[0]);
+			networkPasswords=passwordsList.toArray(String[]::new);
 		}
 
 		String[] parts=setup.networkPart.split(";");
 		if (parts.length<networkServers.length) {
 			List<String> partsList=new ArrayList<>(Arrays.asList(parts));
 			while (partsList.size()<networkServers.length) partsList.add("1");
-			parts=partsList.toArray(new String[0]);
+			parts=partsList.toArray(String[]::new);
 		}
 		networkParts=new double[parts.length];
 		for (int i=0;i<parts.length;i++) {

@@ -66,7 +66,7 @@ public final class CallcenterRunModelCallcenter {
 		if (editModelCallcenter.name==null || editModelCallcenter.name.isEmpty()) name=Language.tr("Model.Check.Callcenter.NoName.Default"); else name=editModelCallcenter.name;
 
 		final List<CallcenterRunModelAgent> agentsList=CallcenterRunModelAgent.buildAgentsList(editModelCallcenter.agents,editModelCallcenter,editModel);
-		agents=agentsList.toArray(new CallcenterRunModelAgent[0]);
+		agents=agentsList.toArray(CallcenterRunModelAgent[]::new);
 
 		technicalFreeTime=editModelCallcenter.technicalFreeTime;
 		technicalFreeTimeIsWaitingTime=editModelCallcenter.technicalFreeTimeIsWaitingTime;
@@ -89,7 +89,7 @@ public final class CallcenterRunModelCallcenter {
 	 * @return Gibt <code>null</code> zurück, wenn die Initialisierung erfolgreich war, andernfalls wird eine Fehlermeldung als String zurückgegeben,
 	 */
 	public String checkAndInit(final CallcenterRunModelCaller[] caller, final CallcenterRunModelSkillLevel[] skills, final boolean strict) {
-		if (name.trim().isEmpty()) {
+		if (name.isBlank()) {
 			if (strict) return Language.tr("Model.Check.Callcenter.NoName");
 		}
 		if (technicalFreeTime<0) {

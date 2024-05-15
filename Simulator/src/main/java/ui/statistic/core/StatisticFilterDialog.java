@@ -106,6 +106,6 @@ public final class StatisticFilterDialog extends BaseEditDialog {
 	 * @return	Liste der auszublendenden IDs
 	 */
 	public String[] getHiddenIDs() {
-		return hiddenIDs.toArray(new String[0]);
+		return hiddenIDs.toArray(String[]::new);
 	}
 }

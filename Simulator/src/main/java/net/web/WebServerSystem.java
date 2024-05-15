@@ -154,7 +154,7 @@ public abstract class WebServerSystem {
 	 */
 	private byte[] downloadApplet() {
 		URL home;
-		try {home=new URL(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.wwwHomeURL+"Java/CallcenterSimulatorApplet.jar");} catch (MalformedURLException e) {return null;}
+		try {home=new URI(UpdateSystem.defaultProtocollConnect+"://"+UpdateSystem.wwwHomeURL+"Java/CallcenterSimulatorApplet.jar").toURL();} catch (MalformedURLException | URISyntaxException e) {return null;}
 
 		URLConnection connection;
 		try {connection=home.openConnection();} catch (IOException e) {return null;}
@@ -308,7 +308,7 @@ public abstract class WebServerSystem {
 			}
 			handlers.add(new HandlerViewerSystem(webServerStatisticFolder,webServerFilterFolder));
 			handlers.add(new HandlerMainMenu(useSimServer,webServerStatisticFolder));
-			setupWebServer(webServerPort,handlers.toArray(new WebServerDataHandler[0]));
+			setupWebServer(webServerPort,handlers.toArray(WebServerDataHandler[]::new));
 		}
 
 		return null;
@@ -338,7 +338,7 @@ public abstract class WebServerSystem {
 		webServerStatisticFolder.add(new StatisticFolder(System.getProperty("user.home")+File.separator+"Desktop",null));
 		handlers.add(new HandlerViewerSystem(webServerStatisticFolder,null));
 		handlers.add(new HandlerMainMenu(true,webServerStatisticFolder));
-		setupWebServer(80,handlers.toArray(new WebServerDataHandler[0]));
+		setupWebServer(80,handlers.toArray(WebServerDataHandler[]::new));
 
 		return null;
 	}
@@ -420,7 +420,7 @@ public abstract class WebServerSystem {
 			@Override protected void finished() {setQuit();}
 			@Override protected void started() {
 				for (StatisticFolder folder : webServerStatisticFolder) log(Language.tr("Server.WebServerSystem"),Language.tr("Server.StatisticFolder")+": "+folder.folder.toString(),true);
-				if (webServerFilterFolder!=null && !webServerFilterFolder.trim().isEmpty()) log(Language.tr("Server.WebServerSystem"),Language.tr("Server.FilterFolder")+": "+webServerFilterFolder,true);
+				if (webServerFilterFolder!=null && !webServerFilterFolder.isBlank()) log(Language.tr("Server.WebServerSystem"),Language.tr("Server.FilterFolder")+": "+webServerFilterFolder,true);
 			}
 		};
 		for (WebServerDataHandler handler: handlers) webServer.registerHandler(handler);
@@ -467,7 +467,7 @@ public abstract class WebServerSystem {
 		}
 
 		handlers.add(new HandlerMainMenu(useApplet,(serverViewer!=null)?webServerStatisticFolder:null));
-		setupWebServer(portWeb,handlers.toArray(new WebServerDataHandler[0]));
+		setupWebServer(portWeb,handlers.toArray(WebServerDataHandler[]::new));
 
 		return true;
 	}

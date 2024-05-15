@@ -77,7 +77,7 @@ public final class CallcenterRunModelSkillLevel {
 
 		callerTypeWorkingTimeAddOnList=new ArrayList<>();
 		for (int i=0;i<editModel.callerTypeWorkingTimeAddOn.size();i++) {
-			String s=editModel.callerTypeWorkingTimeAddOn.get(i); if (s.trim().isEmpty()) s=null;
+			String s=editModel.callerTypeWorkingTimeAddOn.get(i); if (s.isBlank()) s=null;
 			String[] sArray=new String[48];
 			String[] sOrig=editModel.callerTypeIntervalWorkingTimeAddOn.get(i);
 			for (int j=0;j<sArray.length;j++) sArray[j]=(sOrig[j]==null)?s:sOrig[j];
@@ -113,7 +113,7 @@ public final class CallcenterRunModelSkillLevel {
 	 * @return Gibt <code>null</code> zurück, wenn die Initialisierung erfolgreich war, andernfalls wird eine Fehlermeldung als String zurückgegeben,
 	 */
 	public String checkAndInit(final CallcenterRunModelCaller[] caller, final List<CallcenterModelCaller> editCaller, final boolean strict) {
-		if (name.trim().isEmpty()) return Language.tr("Model.Check.SkillLevel.NoName");
+		if (name.isBlank()) return Language.tr("Model.Check.SkillLevel.NoName");
 
 		int maxIndex=0;
 		for (CallcenterRunModelCaller c : caller) maxIndex=Math.max(maxIndex,c.index);
@@ -143,7 +143,7 @@ public final class CallcenterRunModelSkillLevel {
 			}
 		}
 
-		callerType=callerTypeList.toArray(new CallcenterRunModelCaller[0]);
+		callerType=callerTypeList.toArray(CallcenterRunModelCaller[]::new);
 		callerTypeWorkingTimeAddOn=new MathParser[callerTypeWorkingTimeAddOnList.size()][];
 		for (int j=0;j<callerTypeWorkingTimeAddOnList.size();j++) {
 			String[] orig=callerTypeWorkingTimeAddOnList.get(j);
@@ -151,7 +151,7 @@ public final class CallcenterRunModelSkillLevel {
 			MathParser[] data=callerTypeWorkingTimeAddOn[j];
 			for (int k=0;k<orig.length;k++) {
 				data[k]=null;
-				if (orig[k]!=null && !orig[k].trim().isEmpty() && !orig[k].trim().equals("0")) {
+				if (orig[k]!=null && !orig[k].isBlank() && !orig[k].trim().equals("0")) {
 					MathParser calc=new CalcSystem(orig[k],new String[]{"w"});
 					int pos=calc.parse();
 					if (pos!=-1) {
@@ -167,8 +167,8 @@ public final class CallcenterRunModelSkillLevel {
 				}
 			}
 		}
-		callerTypeWorkingTime=callerTypeWorkingTimeList.toArray(new AbstractRealDistribution[0][0]);
-		callerTypePostProcessingTime=callerTypePostProcessingTimeList.toArray(new AbstractRealDistribution[0][0]);
+		callerTypeWorkingTime=callerTypeWorkingTimeList.toArray(AbstractRealDistribution[][]::new);
+		callerTypePostProcessingTime=callerTypePostProcessingTimeList.toArray(AbstractRealDistribution[][]::new);
 		callerTypeScore=new int[callerTypeScoreList.size()]; for (int j=0;j<callerTypeScoreList.size();j++) callerTypeScore[j]=callerTypeScoreList.get(j);
 
 		int size=callerTypeWorkingTimeAddOn.length;

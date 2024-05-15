@@ -45,7 +45,7 @@ public class ImporterProcessorAgentAddition extends ImporterProcessor {
 		List<String> list=new ArrayList<>();
 		list.add(Language.tr("Importer.DiseaseSurcharge.Title"));
 		for (String s: Language.trOther("Importer.DiseaseSurcharge.Title")) if (!list.contains(s)) list.add(s);
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	@Override

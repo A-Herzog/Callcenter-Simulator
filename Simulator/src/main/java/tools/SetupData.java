@@ -716,11 +716,11 @@ public class SetupData extends SetupBase {
 				networkUse=loadBoolean(e.getAttribute("verwenden"),false) || loadBoolean(e.getAttribute("use"),false);
 				networkServer=e.getAttribute("Server");
 				String t=e.getAttribute("Port");
-				if (t!=null && !t.trim().isEmpty()) networkPort=t;
+				if (t!=null && !t.isBlank()) networkPort=t;
 				t=e.getAttribute("ServerPort");
-				if (t!=null && !t.trim().isEmpty()) networkServerPort=t;
+				if (t!=null && !t.isBlank()) networkServerPort=t;
 				t=e.getAttribute("WebServerPort");
-				if (t!=null && !t.trim().isEmpty()) networkServerPortWeb=t;
+				if (t!=null && !t.isBlank()) networkServerPortWeb=t;
 				networkPassword=e.getAttribute("Passwort");
 				if (networkPassword.isEmpty()) networkPassword=e.getAttribute("Password");
 				networkServerPassword=e.getAttribute("ServerPasswort");
@@ -728,8 +728,8 @@ public class SetupData extends SetupBase {
 				Integer I=NumberTools.getNotNegativeInteger(e.getAttribute("MaxThreads"));
 				if (I!=null) networkMaxThreads=I;
 				t=e.getAttribute("ServerAnteil");
-				if (t==null || t.trim().isEmpty()) t=e.getAttribute("ServerPart");
-				if (t!=null && !t.trim().isEmpty()) networkPart=t;
+				if (t==null || t.isBlank()) t=e.getAttribute("ServerPart");
+				if (t!=null && !t.isBlank()) networkPart=t;
 				continue;
 			}
 
@@ -985,7 +985,7 @@ public class SetupData extends SetupBase {
 			node.setAttribute(englishKeys?"Height":"Hoehe",""+lastSize.height);
 		}
 
-		if ((lookAndFeel!=null && !lookAndFeel.trim().isEmpty()) || !lookAndFeelCombinedMenu) {
+		if ((lookAndFeel!=null && !lookAndFeel.isBlank()) || !lookAndFeelCombinedMenu) {
 			root.appendChild(node=doc.createElement("LookAndFeel"));
 			if (lookAndFeel!=null) node.setTextContent(lookAndFeel);
 			if (!lookAndFeelCombinedMenu) node.setAttribute("combinedMenu","0");
@@ -1195,7 +1195,7 @@ public class SetupData extends SetupBase {
 			node.setAttribute("pdf",openPDF?"1":"0");
 		}
 
-		if (distributionListFilter!=null && !distributionListFilter.trim().isEmpty()) {
+		if (distributionListFilter!=null && !distributionListFilter.isBlank()) {
 			root.appendChild(node=doc.createElement("DistributionListFilter"));
 			node.setTextContent(distributionListFilter.trim());
 		}

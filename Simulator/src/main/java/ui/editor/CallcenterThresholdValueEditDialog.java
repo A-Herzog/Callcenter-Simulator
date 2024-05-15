@@ -121,11 +121,11 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		/* Daten vorbereiten */
 		groups=new ArrayList<>();
 		for (CallcenterModelCaller caller : model.caller) if (caller.active) groups.add(caller.name);
-		groupsClients=groups.toArray(new String[0]);
+		groupsClients=groups.toArray(String[]::new);
 
 		groups=new ArrayList<>();
 		for (CallcenterModelCallcenter callcenter : model.callcenter) if (callcenter.active) groups.add(callcenter.name);
-		groupsCallcenters=groups.toArray(new String[0]);
+		groupsCallcenters=groups.toArray(String[]::new);
 
 		this.record=record;
 		if (record.intervals!=null) intervals=record.intervals; else intervals=new DataDistributionImpl(CallcenterModelCaller.freshCallsDistMaxX,48);
@@ -287,7 +287,7 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		types.add(Language.tr("Editor.GeneralData.ThresholdValues.Type.ServiceLevelOnAllCalls"));
 		types.add(Language.tr("Editor.GeneralData.ThresholdValues.Type.ServiceLevelOnAllClients"));
 		types.add(Language.tr("Editor.GeneralData.ThresholdValues.Type.Workload"));
-		addElement(p,selectType=new JComboBox<>(types.toArray(new String[0])));
+		addElement(p,selectType=new JComboBox<>(types.toArray(String[]::new)));
 		selectType.addActionListener(new DialogListener());
 
 		p.add(Box.createVerticalStrut(20));
@@ -297,7 +297,7 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		types.add(Language.tr("Editor.GeneralData.ThresholdValues.ModeTime.Average"));
 		types.add(Language.tr("Editor.GeneralData.ThresholdValues.ModeTime.Each"));
 		types.add(Language.tr("Editor.GeneralData.ThresholdValues.ModeTime.Intervals"));
-		addElement(p,selectTime=new JComboBox<>(types.toArray(new String[0])));
+		addElement(p,selectTime=new JComboBox<>(types.toArray(String[]::new)));
 		selectTime.addActionListener(new DialogListener());
 
 		p.add(Box.createVerticalStrut(5));
@@ -315,7 +315,7 @@ public class CallcenterThresholdValueEditDialog extends BaseEditDialog {
 		types.add(Language.tr("Editor.GeneralData.ThresholdValues.ModeGroups.Average"));
 		types.add(Language.tr("Editor.GeneralData.ThresholdValues.ModeGroups.Each"));
 		types.add(Language.tr("Editor.GeneralData.ThresholdValues.ModeGroups.Group"));
-		addElement(p,selectGroups=new JComboBox<>(types.toArray(new String[0])));
+		addElement(p,selectGroups=new JComboBox<>(types.toArray(String[]::new)));
 		selectGroups.addActionListener(new DialogListener());
 
 		p.add(Box.createVerticalStrut(5));

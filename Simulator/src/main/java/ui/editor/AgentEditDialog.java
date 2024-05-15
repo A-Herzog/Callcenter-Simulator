@@ -229,7 +229,7 @@ public class AgentEditDialog extends BaseEditDialog {
 				}
 			}
 		}
-		agentGroupNames=temp.toArray(new String[0]);
+		agentGroupNames=temp.toArray(String[]::new);
 
 		popupMenu=new JPopupMenu();
 		applyThisPage=new JMenuItem[agentGroupNames.length+1];

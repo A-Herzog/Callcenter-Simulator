@@ -195,7 +195,7 @@ public class CheckBoxTree {
 			}
 		}
 
-		return l.toArray(new String[0]);
+		return l.toArray(String[]::new);
 	}
 
 	/**

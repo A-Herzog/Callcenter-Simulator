@@ -212,7 +212,7 @@ public class CallerEditDialog extends BaseEditDialog {
 	@Override
 	protected boolean checkData() {
 		/* Name */
-		if (name.getText().trim().isEmpty()) {
+		if (name.getText().isBlank()) {
 			MsgBox.error(this,Language.tr("Editor.Caller.Error.NoName.Title"),Language.tr("Editor.Caller.Error.NoName.Info"));
 			return false;
 		}

@@ -251,7 +251,7 @@ public final class SimulationData extends SimData {
 			}
 		}
 
-		if (firstDay && firstDayList!=null) dynamicSimData.agentRecord=firstDayList.toArray(new AgentRecord[0]);
+		if (firstDay && firstDayList!=null) dynamicSimData.agentRecord=firstDayList.toArray(AgentRecord[]::new);
 
 		/* Sortieren, verketten, erstes Ereignis einfügen */
 		eventManager.addInitialEvents(agents);

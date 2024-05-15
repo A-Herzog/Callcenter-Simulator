@@ -559,7 +559,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		case 2:
 			/* Mindestwartezeiten */
 			for (int i=0;i<waitingTimeByType.length;i++) {
-				if (waitingTimeByType[i].getText().trim().isEmpty()) continue;
+				if (waitingTimeByType[i].getText().isBlank()) continue;
 				if (NumberTools.getNotNegativeInteger(waitingTimeByType[i],true)==null) {
 					if (error==null) error=new String[]{Language.tr("Editor.Callcenter.Error.MinimumWaitingTime.Title"),String.format(Language.tr("Editor.Callcenter.Error.MinimumWaitingTime.Info"),callerTypeNames[i],waitingTimeByType[i].getText())};
 				}
@@ -573,7 +573,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 	@Override
 	protected boolean checkData() {
 		/* Name */
-		if (name.getText().trim().isEmpty()) {
+		if (name.getText().isBlank()) {
 			MsgBox.error(this,Language.tr("Editor.Callcenter.Error.NoName.Title"),Language.tr("Editor.Callcenter.Error.NoName.Info"));
 			return false;
 		}
@@ -622,7 +622,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 			callcenter.callerMinWaitingTimeName.clear();
 			callcenter.callerMinWaitingTime.clear();
 			for (int i=0;i<waitingTimeByType.length;i++) {
-				if (waitingTimeByType[i].getText().trim().isEmpty()) continue;
+				if (waitingTimeByType[i].getText().isBlank()) continue;
 				Integer w=NumberTools.getNotNegativeInteger(waitingTimeByType[i],false);
 				callcenter.callerMinWaitingTimeName.add(callerTypeNames[i]);
 				callcenter.callerMinWaitingTime.add(w);
@@ -837,7 +837,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 		for (String[] row: data) {
 			int c=-1,t1=-1,t2=-1;
 			for (String cell: row) {
-				if (cell.trim().isEmpty()) continue;
+				if (cell.isBlank()) continue;
 				Integer I=NumberTools.getNotNegativeInteger(cell);
 				String[] parts=cell.split(" ");
 				Long T=TimeTools.getTime(parts[parts.length-1]);
@@ -1352,7 +1352,7 @@ public class CallcenterEditDialog extends BaseEditDialog {
 			NumberTools.getNotNegativeInteger(score,true);
 			NumberTools.getNotNegativeDouble(agentScoreFreeTimeSinceLastCall,true);
 			NumberTools.getNotNegativeDouble(agentScoreFreeTimePart,true);
-			for (int i=0;i<waitingTimeByType.length;i++) if (waitingTimeByType[i].getText().trim().isEmpty()) waitingTimeByType[i].setBackground(NumberTools.getTextFieldDefaultBackground()); else NumberTools.getNotNegativeInteger(waitingTimeByType[i],true);
+			for (int i=0;i<waitingTimeByType.length;i++) if (waitingTimeByType[i].getText().isBlank()) waitingTimeByType[i].setBackground(NumberTools.getTextFieldDefaultBackground()); else NumberTools.getNotNegativeInteger(waitingTimeByType[i],true);
 		}
 
 		@Override

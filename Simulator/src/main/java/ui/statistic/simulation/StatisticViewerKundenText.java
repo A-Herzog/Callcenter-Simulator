@@ -375,7 +375,7 @@ public class StatisticViewerKundenText extends StatisticViewerText {
 
 		final List<String> hiddenIDs=new ArrayList<>();
 		for (int i=0;i<ids.length;i++) if (setup.charAt(i)=='-') hiddenIDs.add(ids[i]);
-		return hiddenIDs.toArray(new String[0]);
+		return hiddenIDs.toArray(String[]::new);
 	}
 
 	/**

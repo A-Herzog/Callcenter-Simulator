@@ -89,7 +89,7 @@ public final class Main {
 		SetupData.userConfigFile=cfgFile;
 		List<String> argsList=new ArrayList<>(Arrays.asList(args));
 		argsList.remove(0);
-		args=argsList.toArray(new String[0]);
+		args=argsList.toArray(String[]::new);
 		return args;
 	}
 

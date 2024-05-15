@@ -236,7 +236,7 @@ public class StatisticViewerOptimizerBarChart extends StatisticViewerBarChart {
 		addCallcenterLinesToList(list,model,Language.tr("SimStatistic.WorkLoad"));
 		addSkillLevelLinesToList(list,model,Language.tr("SimStatistic.WorkLoad"));
 
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	/**

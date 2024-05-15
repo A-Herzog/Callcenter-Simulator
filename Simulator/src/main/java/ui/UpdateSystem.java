@@ -23,6 +23,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
@@ -215,8 +217,8 @@ public class UpdateSystem {
 	private static String downloadTextFile(final String urlString) {
 		URL url;
 		try {
-			url=new URL("https://"+urlString);
-		} catch (MalformedURLException e1) {return null;}
+			url=new URI("https://"+urlString).toURL();
+		} catch (MalformedURLException | URISyntaxException e1) {return null;}
 
 		return NetHelper.loadText(url,false,true);
 	}
@@ -243,8 +245,8 @@ public class UpdateSystem {
 		/* URL zusammenbauen */
 		URL url;
 		try {
-			url=new URL("https://"+urlString);
-		} catch (MalformedURLException e1) {return null;}
+			url=new URI("https://"+urlString).toURL();
+		} catch (MalformedURLException | URISyntaxException e1) {return null;}
 
 		try {
 			/* Verbindung öffnen */

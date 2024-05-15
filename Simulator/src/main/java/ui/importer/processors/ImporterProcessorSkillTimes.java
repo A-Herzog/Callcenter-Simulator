@@ -89,7 +89,7 @@ public class ImporterProcessorSkillTimes extends ImporterProcessor {
 			for (String l: Language.trOther("Importer.HoldingTimeDistribution")) if (!list.contains(l+s)) list.add(l+s);
 			break;
 		}
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	@Override

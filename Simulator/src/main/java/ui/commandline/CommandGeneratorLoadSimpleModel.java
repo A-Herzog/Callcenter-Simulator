@@ -58,7 +58,7 @@ public class CommandGeneratorLoadSimpleModel extends AbstractCommand {
 		List<String> list=new ArrayList<>();
 		list.add(Language.tr("CommandLine.GeneratorLoadSimpleModel.Name"));
 		for (String s: Language.trOther("CommandLine.GeneratorLoadSimpleModel.Name")) if (!list.contains(s)) list.add(s);
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class CommandGeneratorLoadSimpleModel extends AbstractCommand {
 
 		File table=new File(parts.get(0));
 		if (!table.isFile()) return String.format(Language.tr("CommandLine.Error.File.TableDoesNotExist"),table.toString());
-		if (parts.get(2).trim().isEmpty()) parts.set(2,"A");
+		if (parts.get(2).isBlank()) parts.set(2,"A");
 
 		tableFile.add(table);
 		tableName.add(parts.get(1));

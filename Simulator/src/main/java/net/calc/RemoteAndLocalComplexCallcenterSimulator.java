@@ -105,6 +105,6 @@ public class RemoteAndLocalComplexCallcenterSimulator extends MultiComplexCallce
 			}
 		}
 
-		return simulators.toArray(new CallcenterSimulatorInterface[0]);
+		return simulators.toArray(CallcenterSimulatorInterface[]::new);
 	}
 }

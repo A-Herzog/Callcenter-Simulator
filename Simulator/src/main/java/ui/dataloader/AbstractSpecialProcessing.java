@@ -170,7 +170,7 @@ public abstract class AbstractSpecialProcessing {
 	protected final JTextField addInputLine(JPanel parent, String name, String initialValue, JButton button) {
 		JTextField text=new JTextField(50);
 		addControlWithButton(parent,name,text,button);
-		if (initialValue!=null && !initialValue.trim().isEmpty()) text.setText(initialValue.trim());
+		if (initialValue!=null && !initialValue.isBlank()) text.setText(initialValue.trim());
 		return text;
 	}
 
@@ -186,7 +186,7 @@ public abstract class AbstractSpecialProcessing {
 	protected final JTextField addFileInputLine(JPanel parent, String name, String initialValue, JButton button) {
 		JTextField text=new JTextField(50);
 		JPanel sub=addControlWithButton(parent,name,text,button);
-		if (initialValue!=null && !initialValue.trim().isEmpty()) text.setText(initialValue.trim());
+		if (initialValue!=null && !initialValue.isBlank()) text.setText(initialValue.trim());
 
 		drop.add(new FileDropper(new Component[]{sub,text},new FileDropActionListener()));
 

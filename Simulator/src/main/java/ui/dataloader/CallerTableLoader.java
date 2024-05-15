@@ -97,7 +97,7 @@ public abstract class CallerTableLoader extends TableLoader {
 	 */
 	private final boolean getResultsFull(final Table results) {
 		if (data.size()==0) return false;
-		String[] keys=data.keySet().toArray(new String[0]);
+		String[] keys=data.keySet().toArray(String[]::new);
 		String[] line=new String[2+keys.length*5];
 
 		/* Zeile 1 */
@@ -149,7 +149,7 @@ public abstract class CallerTableLoader extends TableLoader {
 	 */
 	private final boolean getResultsFreshCallsOnly(final Table results) {
 		if (data.size()==0) return false;
-		String[] keys=data.keySet().toArray(new String[0]);
+		String[] keys=data.keySet().toArray(String[]::new);
 		String[] line=new String[2+keys.length];
 
 		/* Zeile 1 */

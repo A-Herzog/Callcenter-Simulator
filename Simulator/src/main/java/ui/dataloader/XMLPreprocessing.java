@@ -151,21 +151,21 @@ public class XMLPreprocessing extends AbstractSpecialProcessing {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==xmlFileInputButton) {
 				File folder=null;
-				if (!xmlFileInput.getText().trim().isEmpty()) {folder=new File(xmlFileInput.getText()); folder=folder.getParentFile();}
+				if (!xmlFileInput.getText().isBlank()) {folder=new File(xmlFileInput.getText()); folder=folder.getParentFile();}
 				File file=TableLoader.getModelFileToLoad(owner,folder);
 				if (file!=null)	xmlFileInput.setText(file.toString());
 				return;
 			}
 			if (e.getSource()==tableFileInputButton) {
 				File folder=null;
-				if (!tableFileInput.getText().trim().isEmpty()) {folder=new File(tableFileInput.getText()); folder=folder.getParentFile();}
+				if (!tableFileInput.getText().isBlank()) {folder=new File(tableFileInput.getText()); folder=folder.getParentFile();}
 				File file=Table.showLoadDialog(owner,Language.tr("Loader.LoadData"),folder);
 				if (file!=null)	tableFileInput.setText(file.toString());
 				return;
 			}
 			if (e.getSource()==xmlFileOutputButton) {
 				File folder=null;
-				if (!xmlFileOutput.getText().trim().isEmpty()) {folder=new File(xmlFileOutput.getText()); folder=folder.getParentFile();}
+				if (!xmlFileOutput.getText().isBlank()) {folder=new File(xmlFileOutput.getText()); folder=folder.getParentFile();}
 				File file=TableLoader.getModelFileToCreate(owner,folder);
 				if (file!=null)	xmlFileOutput.setText(file.toString());
 				return;

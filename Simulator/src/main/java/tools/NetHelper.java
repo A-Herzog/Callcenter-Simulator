@@ -52,13 +52,13 @@ public class NetHelper {
 	public static Proxy getProxy() {
 		final SetupData setup=SetupData.getSetup();
 
-		if (!setup.useProxy || setup.proxyHost.trim().isEmpty()) {
+		if (!setup.useProxy || setup.proxyHost.isBlank()) {
 			return Proxy.NO_PROXY;
 		}
 
 		/* Authentifikator */
 		Authenticator authenticator;
-		if (setup.proxyUser.trim().isEmpty() && setup.proxyPassword.trim().isEmpty()) {
+		if (setup.proxyUser.isBlank() && setup.proxyPassword.isBlank()) {
 			/* Keine Authentifikation */
 			authenticator=null;
 		} else {
@@ -167,7 +167,7 @@ public class NetHelper {
 					if (inputLine.length()>65535) inputLine=inputLine.substring(0,65535);
 					lines.add(inputLine);
 				}
-				return lines.toArray(new String[0]);
+				return lines.toArray(String[]::new);
 			}
 		} catch (IOException e) {return null;}
 	}

@@ -93,7 +93,7 @@ public class XMLPreprocessor {
 
 		/* Tabelle selektieren */
 		if (tableName.length()>2 && tableName.charAt(0)=='\'' && tableName.charAt(tableName.length()-1)=='\'') tableName=tableName.substring(1,tableName.length()-1);
-		if (tableName.trim().isEmpty()) tableName="";
+		if (tableName.isBlank()) tableName="";
 		Table table=multiTable.get(tableName);
 		if (table==null) return new String[]{null,String.format(Language.tr("Loader.ProcessError.XMLProcessing.InvalidTableName"),tableName)};
 

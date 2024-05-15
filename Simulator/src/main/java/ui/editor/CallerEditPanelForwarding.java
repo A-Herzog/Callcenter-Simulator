@@ -155,7 +155,7 @@ public class CallerEditPanelForwarding extends CallerEditPanel {
 		if (NumberTools.getProbability(continueProbability,true)==null) {
 			if (result==null) result=new String[]{Language.tr("Editor.Caller.Error.ContinueProbability.Title"),String.format(Language.tr("Editor.Caller.Error.ContinueProbability.Info"),continueProbability.getText())};
 		}
-		for (int i=0;i<continueToType.length;i++) if ((!continueToType[i].getText().trim().isEmpty()) && (NumberTools.getNotNegativeDouble(continueToType[i],true)==null)) {
+		for (int i=0;i<continueToType.length;i++) if ((!continueToType[i].getText().isBlank()) && (NumberTools.getNotNegativeDouble(continueToType[i],true)==null)) {
 			if (result==null) result=new String[]{Language.tr("Editor.Caller.Error.ContinueCallerType.Title"),String.format(Language.tr("Editor.Caller.Error.ContinueCallerType.Info"),callerTypeNames[i],continueToType[i].getText())};
 		}
 
@@ -168,7 +168,7 @@ public class CallerEditPanelForwarding extends CallerEditPanel {
 		newCaller.continueTypeName.clear();
 		newCaller.continueTypeRate.clear();
 		for (int i=0;i<continueToType.length;i++) {
-			if (continueToType[i].getText().trim().isEmpty()) continue;
+			if (continueToType[i].getText().isBlank()) continue;
 			Double d=NumberTools.getNotNegativeDouble(continueToType[i],false);
 			newCaller.continueTypeName.add(callerTypeNames[i]);
 			newCaller.continueTypeRate.add(d);

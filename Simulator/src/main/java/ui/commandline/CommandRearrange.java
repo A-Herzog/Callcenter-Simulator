@@ -62,7 +62,7 @@ public class CommandRearrange extends AbstractCommand {
 		List<String> list=new ArrayList<>();
 		list.add(Language.tr("CommandLine.Rearrange.Name"));
 		for (String s: Language.trOther("CommandLine.Rearrange.Name")) if (!list.contains(s)) list.add(s);
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	@Override

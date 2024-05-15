@@ -240,7 +240,7 @@ public class SetupDialog extends BaseEditDialog {
 		final List<String> lookAndFeels=new ArrayList<>();
 		lookAndFeels.add(Language.tr("SettingsDialog.Theme.System"));
 		lookAndFeels.addAll(Arrays.asList(GUITools.listLookAndFeels()));
-		p.add(lookAndFeel=new JComboBox<>(lookAndFeels.toArray(new String[0])));
+		p.add(lookAndFeel=new JComboBox<>(lookAndFeels.toArray(String[]::new)));
 		label.setLabelFor(lookAndFeel);
 		p.add(lookAndFeelCombinedMenu=new JCheckBox(Language.tr("SettingsDialog.LookAndFeel.MenuInWindowTitle")));
 		lookAndFeelCombinedMenu.setToolTipText(Language.tr("SettingsDialog.LookAndFeel.MenuInWindowTitle.Tooltip"));
@@ -630,7 +630,7 @@ public class SetupDialog extends BaseEditDialog {
 		setup.networkServerPassword=networkServerPasswort.getText().trim();
 		list=networkServerIPs.getText().split("\n");
 		k=new ArrayList<>();	for (int i=0;i<list.length;i++) if (!list[i].isEmpty()) k.add(list[i]);
-		setup.networkPermittedIPs=k.toArray(new String[0]);
+		setup.networkPermittedIPs=k.toArray(String[]::new);
 
 		I=NumberTools.getInteger(imageSize,false);
 		if (I!=null) setup.imageSize=I;
@@ -700,7 +700,7 @@ public class SetupDialog extends BaseEditDialog {
 	 */
 	private void openDownloadWebPage() {
 		try {
-			final URL url=new URL(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL);
+			final URL url=new URI(UpdateSystem.defaultProtocollHomepage+"://"+UpdateSystem.wwwHomeURL).toURL();
 			if (!MsgBox.confirmOpenURL(SetupDialog.this,url)) return;
 			Desktop.getDesktop().browse(url.toURI());
 		} catch (IOException | URISyntaxException e1) {

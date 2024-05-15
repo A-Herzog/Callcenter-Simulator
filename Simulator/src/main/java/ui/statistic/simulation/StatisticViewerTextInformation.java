@@ -460,7 +460,7 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 		addHeading(1,Language.tr("SimStatistic.ModelInformation.Description"));
 		addLines(statistic.editModel.description);
 
-		if (statistic.editModel.date!=null && !statistic.editModel.date.trim().isEmpty()) {
+		if (statistic.editModel.date!=null && !statistic.editModel.date.isBlank()) {
 			addHeading(2,Language.tr("SimStatistic.ModelInformation.Date"));
 			beginParagraph();
 			addLine(CallcenterModel.dateToLocalString(CallcenterModel.stringToDate(statistic.editModel.date)));
@@ -865,7 +865,7 @@ public class StatisticViewerTextInformation extends StatisticViewerText {
 
 		final List<String> hiddenIDs=new ArrayList<>();
 		for (int i=0;i<ids.length;i++) if (setup.charAt(i)=='-') hiddenIDs.add(ids[i]);
-		return hiddenIDs.toArray(new String[0]);
+		return hiddenIDs.toArray(String[]::new);
 	}
 
 	/**

@@ -559,7 +559,7 @@ public class StatisticViewerFastAccessDialog extends BaseEditDialog {
 				if (needID) list.add("["+attribute+"]"); else list.set(list.size()-1,list.get(list.size()-1)+"["+attribute+"]");
 			}
 
-			return list.toArray(new String[0]);
+			return list.toArray(String[]::new);
 		}
 
 		/**

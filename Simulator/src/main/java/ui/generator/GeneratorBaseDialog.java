@@ -352,7 +352,7 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 			indexEnd.add(lastEnd);
 		}
 
-		return new Integer[][]{indexStart.toArray(new Integer[0]),indexEnd.toArray(new Integer[0])};
+		return new Integer[][]{indexStart.toArray(Integer[]::new),indexEnd.toArray(Integer[]::new)};
 	}
 
 	/**
@@ -384,7 +384,7 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 			indexEnd.add((numberArea[0][i]>=0)?minEnd:-1);
 		}
 
-		return new Integer[][]{indexStart.toArray(new Integer[0]),indexEnd.toArray(new Integer[0])};
+		return new Integer[][]{indexStart.toArray(Integer[]::new),indexEnd.toArray(Integer[]::new)};
 	}
 
 	/**
@@ -411,7 +411,7 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 			indexEnd.add((numberArea[0][i]>=0)?minEnd:-1);
 		}
 
-		return new Integer[][]{indexStart.toArray(new Integer[0]),indexEnd.toArray(new Integer[0])};
+		return new Integer[][]{indexStart.toArray(Integer[]::new),indexEnd.toArray(Integer[]::new)};
 	}
 
 	/**
@@ -455,7 +455,7 @@ public class GeneratorBaseDialog extends BaseEditDialog {
 			headings.add(s);
 		}
 
-		return headings.toArray(new String[0]);
+		return headings.toArray(String[]::new);
 	}
 
 	/**

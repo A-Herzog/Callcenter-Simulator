@@ -236,7 +236,7 @@ public final class Optimizer {
 		/* Einschränkungen in Bezug auf die Agentengruppen korrekt? */
 		String[] callcenterNames;
 		int[] groupNumbers;
-		Object[] obj=OptimizeSetup.splitCallcenterAgentGroupData(setup.groupRestrictionName.toArray(new String[0]));
+		Object[] obj=OptimizeSetup.splitCallcenterAgentGroupData(setup.groupRestrictionName.toArray(String[]::new));
 		callcenterNames=(String[])obj[0];
 		groupNumbers=(int[])obj[1];
 		for (int i=0;i<callcenterNames.length;i++) {

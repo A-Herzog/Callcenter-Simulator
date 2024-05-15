@@ -164,7 +164,7 @@ public class StatisticViewerConnectedLineChart extends StatisticViewerLineChart 
 		};
 		axis.setNumberFormatOverride(format);
 		boolean vertical=false;
-		for (Statistics statistic : results) {String date=statistic.editModel.date; if (date!=null && !date.trim().isEmpty()) {vertical=true; break;}}
+		for (Statistics statistic : results) {String date=statistic.editModel.date; if (date!=null && !date.isBlank()) {vertical=true; break;}}
 		axis.setVerticalTickLabels(vertical);
 		axis.setTickUnit(new NumberTickUnit(1));
 
@@ -194,7 +194,7 @@ public class StatisticViewerConnectedLineChart extends StatisticViewerLineChart 
 	private String getDayName(int index) {
 		if (index>=0 && index<results.length) {
 			String date=results[index].editModel.date;
-			if (date!=null && !date.trim().isEmpty()) return CallcenterModel.dateToLocalString(CallcenterModel.stringToDate(date));
+			if (date!=null && !date.isBlank()) return CallcenterModel.dateToLocalString(CallcenterModel.stringToDate(date));
 		}
 
 		return ""+(index+1);

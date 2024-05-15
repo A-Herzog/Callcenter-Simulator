@@ -371,7 +371,7 @@ public class CallcenterModelWarnings implements Cloneable {
 			if (Language.trAll("XML.Model.Warnings.Record.Groups.Average",groupsString)) modeGroup=WarningMode.WARNING_MODE_AVERAGE;
 			if (Language.trAll("XML.Model.Warnings.Record.Groups.Each",groupsString)) modeGroup=WarningMode.WARNING_MODE_EACH;
 			if (modeGroup==null) {
-				if ((groupsString.trim().isEmpty())) Language.tr("XML.Model.Warnings.Record.Groups.Error.NoGroup");
+				if ((groupsString.isBlank())) Language.tr("XML.Model.Warnings.Record.Groups.Error.NoGroup");
 				modeGroup=WarningMode.WARNING_MODE_SELECTED;
 				group=groupsString;
 			}
@@ -379,8 +379,8 @@ public class CallcenterModelWarnings implements Cloneable {
 			/* Wertebereich */
 			String warningYellowString=Language.trAllAttribute("XML.Model.Warnings.Record.WarningYellow",node);
 			String warningRedString=Language.trAllAttribute("XML.Model.Warnings.Record.WarningRed",node);
-			if (warningYellowString.trim().isEmpty()) return Language.tr("XML.Model.Warnings.Record.WarningYellow.Error.NoValue");
-			if (warningRedString.trim().isEmpty()) return Language.tr("XML.Model.Warnings.Record.WarningRed.Error.NoValue");
+			if (warningYellowString.isBlank()) return Language.tr("XML.Model.Warnings.Record.WarningYellow.Error.NoValue");
+			if (warningRedString.isBlank()) return Language.tr("XML.Model.Warnings.Record.WarningRed.Error.NoValue");
 
 			Double D;
 			switch (type) {
@@ -414,7 +414,7 @@ public class CallcenterModelWarnings implements Cloneable {
 			/* Wert */
 			if (withStatistics) {
 				String valueString=Language.trAllAttribute("XML.Model.Warnings.Record.Value",node);
-				if (valueString.trim().isEmpty()) return Language.tr("XML.Model.Warnings.Record.Value.Error.NoValue");
+				if (valueString.isBlank()) return Language.tr("XML.Model.Warnings.Record.Value.Error.NoValue");
 
 
 				switch (type) {

@@ -85,7 +85,7 @@ public class SetupDialogNetworkBalance extends JDialog {
 		if (s.length<this.server.length) {
 			List<String> list=new ArrayList<>(Arrays.asList(s));
 			while (list.size()<this.server.length) list.add("6783");
-			s=list.toArray(new String[0]);
+			s=list.toArray(String[]::new);
 		}
 		this.port=new int[s.length];
 		for (int i=0;i<s.length;i++) {
@@ -97,7 +97,7 @@ public class SetupDialogNetworkBalance extends JDialog {
 		if (s.length<this.server.length) {
 			List<String> list=new ArrayList<>(Arrays.asList(s));
 			while (list.size()<this.server.length) list.add("");
-			s=list.toArray(new String[0]);
+			s=list.toArray(String[]::new);
 		}
 		this.password=s;
 

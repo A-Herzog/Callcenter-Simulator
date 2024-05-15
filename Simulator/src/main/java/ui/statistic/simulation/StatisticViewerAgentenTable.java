@@ -88,7 +88,7 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 			break;
 		}
 
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class StatisticViewerAgentenTable extends StatisticViewerTable {
 			list.add(String.format(Language.tr("SimStatistic.PostProcessingTimeFor"),s));
 		}
 
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	/**

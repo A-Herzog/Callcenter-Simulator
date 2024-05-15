@@ -109,7 +109,7 @@ public final class ImporterProcessorCallerSingleValue extends ImporterProcessorS
 			for (String s: Language.trOther("Importer.ForwardingProbability")) if (!list.contains(s)) list.add(s);
 			break;
 		}
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	@Override

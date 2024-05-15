@@ -55,7 +55,7 @@ public abstract class SimpleModelBaseLoader {
 		if (!multi.load(file) || multi.size()==0) return String.format(Language.tr("Loader.ProcessError.Load"),file.toString());
 
 		/* Kein Name angegeben -> erste Tabelle der Mappe */
-		if (table==null || table.trim().isEmpty()) return multi.get(0);
+		if (table==null || table.isBlank()) return multi.get(0);
 
 		/* Gibt's eine Tabelle mit dem angegebenen Namen?*/
 		Table t=multi.get(table);
@@ -71,7 +71,7 @@ public abstract class SimpleModelBaseLoader {
 	 * @return	Tabelle bei der die Spalten vor der Startspalte entfernt wurde (oder im Fehlerfall eine Fehlermeldung)
 	 */
 	private final Object removeColumns(final Table table, final String startCol) {
-		if (startCol==null || startCol.trim().isEmpty()) return table;
+		if (startCol==null || startCol.isBlank()) return table;
 
 		int col=Table.numberFromColumnName(startCol);
 		if (col<0) {

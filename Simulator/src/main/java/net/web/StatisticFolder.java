@@ -60,7 +60,7 @@ public class StatisticFolder {
 	 */
 	public StatisticFolder(final String folderName, final String name) {
 		folder=new File(folderName);
-		if (name==null || name.trim().isEmpty()) this.name=folder.getName(); else this.name=name;
+		if (name==null || name.isBlank()) this.name=folder.getName(); else this.name=name;
 		lastUpdate=-1;
 	}
 
@@ -72,7 +72,7 @@ public class StatisticFolder {
 
 	public StatisticFolder(final File folder, final String name) {
 		this.folder=folder;
-		if (name==null || name.trim().isEmpty()) this.name=folder.getName(); else this.name=name;
+		if (name==null || name.isBlank()) this.name=folder.getName(); else this.name=name;
 		lastUpdate=-1;
 	}
 
@@ -125,7 +125,7 @@ public class StatisticFolder {
 			if (parts.length>1 && parts[parts.length-1].equalsIgnoreCase("xml")) result.add(file);
 		}
 
-		return result.toArray(new File[0]);
+		return result.toArray(File[]::new);
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class StatisticFolder {
 		Statistics statistic=new Statistics(null,null,0,0);
 		if (statistic.loadFromFile(modelFile)!=null) return null;
 		String s=statistic.editModel.date;
-		if (s==null || s.trim().isEmpty()) return null;
+		if (s==null || s.isBlank()) return null;
 		return CallcenterModel.stringToDate(s);
 	}
 
@@ -179,7 +179,7 @@ public class StatisticFolder {
 	 */
 	public File getFileByName(String fileName) {
 		if (!isDirectory()) return null;
-		if (fileName==null || fileName.trim().isEmpty()) return null;
+		if (fileName==null || fileName.isBlank()) return null;
 		if (fileName.contains("/") || fileName.contains("\\") || fileName.contains("..")) return null;
 		File file=new File(folder,fileName);
 		if (!file.isFile()) return null;

@@ -276,14 +276,14 @@ public class CallerSpecialEditDialog extends BaseEditDialog {
 				active[lastSelectedIndex]=ruleActive.isSelected();
 				probability[lastSelectedIndex]=0;
 				String s=ruleProbability.getText();
-				if (!s.trim().isEmpty())  {
+				if (!s.isBlank())  {
 					Double d=NumberTools.getProbability(s);
 					if (d!=null && d>=0 && d<=1) probability[lastSelectedIndex]=d;
 				}
 				for (int i=0;i<ruleRate.length;i++) {
 					rate[lastSelectedIndex][i]=0;
 					s=ruleRate[i].getText();
-					if (!s.trim().isEmpty())  {
+					if (!s.isBlank())  {
 						Double d=NumberTools.getNotNegativeDouble(s);
 						if (d!=null) rate[lastSelectedIndex][i]=d;
 					}

@@ -41,7 +41,7 @@ public class FastAccessFolder {
 	 * @param folder	Reales Verzeichnis
 	 */
 	public FastAccessFolder(final String folder) {
-		this.folder=(folder!=null && !folder.trim().isEmpty())?new File(folder):null;
+		this.folder=(folder!=null && !folder.isBlank())?new File(folder):null;
 	}
 
 	/**
@@ -76,13 +76,13 @@ public class FastAccessFolder {
 				String content=readFile(file);
 				if (content==null) continue;
 				String name=DataFilter.getTitleFromCommand(content);
-				if (name==null || name.trim().isEmpty()) name=file.getName();
+				if (name==null || name.isBlank()) name=file.getName();
 				scriptFiles.add(file.getName());
 				scriptTitles.add(name);
 			}
 		}
 
-		return new String[][]{scriptFiles.toArray(new String[0]),scriptTitles.toArray(new String[0])};
+		return new String[][]{scriptFiles.toArray(String[]::new),scriptTitles.toArray(String[]::new)};
 	}
 
 	/**

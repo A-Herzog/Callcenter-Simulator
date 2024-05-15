@@ -46,7 +46,7 @@ public final class CommandGeneratorCaller extends AbstractGeneratorCommand {
 		List<String> list=new ArrayList<>();
 		list.add(Language.tr("CommandLine.GeneratorClients.Name"));
 		for (String s: Language.trOther("CommandLine.GeneratorClients.Name")) if (!list.contains(s)) list.add(s);
-		return list.toArray(new String[0]);
+		return list.toArray(String[]::new);
 	}
 
 	@Override

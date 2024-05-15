@@ -801,7 +801,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		caller.name=callerName;
 
 		/* Dialog anzeigen */
-		CallerEditDialog dialog=new CallerEditDialog(owner,model.serviceLevelSeconds,caller,model.caller.toArray(new CallcenterModelCaller[0]),callerNames(caller.name),skillNames(),false,false,false,helpLink.dialogCaller);
+		CallerEditDialog dialog=new CallerEditDialog(owner,model.serviceLevelSeconds,caller,model.caller.toArray(CallcenterModelCaller[]::new),callerNames(caller.name),skillNames(),false,false,false,helpLink.dialogCaller);
 		dialog.setVisible(true);
 		if (dialog.getClosedBy()!=BaseEditDialog.CLOSED_BY_OK) return;
 		model.caller.add(caller);
@@ -831,7 +831,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 		CallerEditDialog dialog=null;
 		while (lastClose==BaseEditDialog.CLOSED_BY_PREVIOUS || lastClose==BaseEditDialog.CLOSED_BY_NEXT) {
 			caller=model.caller.get(index);
-			dialog=new CallerEditDialog(owner,model.serviceLevelSeconds,caller,model.caller.toArray(new CallcenterModelCaller[0]),callerNames(null),skillNames(),readOnly,index>0,index<callerListData.size()-1,helpLink.dialogCaller);
+			dialog=new CallerEditDialog(owner,model.serviceLevelSeconds,caller,model.caller.toArray(CallcenterModelCaller[]::new),callerNames(null),skillNames(),readOnly,index>0,index<callerListData.size()-1,helpLink.dialogCaller);
 			dialog.addCallerTypeRenameListener(new CallerTypeRenameListener());
 			dialog.setTabIndex(lastTab);
 			if (lastLocation!=null) dialog.setLocation(lastLocation);
@@ -1837,7 +1837,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 			if (e.getSource()==generateDescription) {
 				String s=model.generateDescription().trim();
 				if (s.equalsIgnoreCase(description.getText().trim())) return;
-				if (!description.getText().trim().isEmpty()) {
+				if (!description.getText().isBlank()) {
 					if (!MsgBox.confirm(owner,
 							Language.tr("Editor.GeneralData.CreateDescription.Message"),
 							Language.tr("Editor.GeneralData.CreateDescription.Info"),
