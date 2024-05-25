@@ -153,17 +153,18 @@ public final class MainPanel extends MainPanelBase {
 	private static final Map<Integer,Integer> SECURE_JAVA_VERSIONS=new HashMap<>();
 
 	static {
-		SECURE_JAVA_VERSIONS.put(11,21);
+		SECURE_JAVA_VERSIONS.put(11,22);
 		SECURE_JAVA_VERSIONS.put(12,2);
 		SECURE_JAVA_VERSIONS.put(13,2);
 		SECURE_JAVA_VERSIONS.put(14,2);
 		SECURE_JAVA_VERSIONS.put(15,2);
 		SECURE_JAVA_VERSIONS.put(16,2);
-		SECURE_JAVA_VERSIONS.put(17,9);
+		SECURE_JAVA_VERSIONS.put(17,10);
 		SECURE_JAVA_VERSIONS.put(18,2);
 		SECURE_JAVA_VERSIONS.put(19,2);
 		SECURE_JAVA_VERSIONS.put(20,2);
-		SECURE_JAVA_VERSIONS.put(21,1);
+		SECURE_JAVA_VERSIONS.put(21,2);
+		SECURE_JAVA_VERSIONS.put(22,0);
 	}
 
 	/**
@@ -1321,7 +1322,7 @@ public final class MainPanel extends MainPanelBase {
 		files.add(0,fileName); /* Element ganz vorne einfügen */
 		while (files.size()>5) files.remove(files.size()-1); /* Maximal die letzten 5 Dateien merken */
 
-		setup.lastFiles=files.toArray(new String[0]);
+		setup.lastFiles=files.toArray(String[]::new);
 		setup.saveSetup(); /* saveSetupWithWarning(this) - nein, hierfür keine Warnung */
 
 		updateLastFilesList();
