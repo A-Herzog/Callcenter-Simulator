@@ -80,7 +80,6 @@ public class FlatLaFHelper {
 	 */
 	public static void init() {
 		lafs.forEach(laf->{try {UIManager.installLookAndFeel(new UIManager.LookAndFeelInfo(getName(laf),laf.getName()));} catch (SecurityException | IllegalArgumentException e) {}});
-		UIManager.getDefaults().clear(); /* Genau an dieser Stelle für *racle/OpenJDKWin-Builds nötig, damit FlatLaF funktioniert */
 	}
 
 	/**
