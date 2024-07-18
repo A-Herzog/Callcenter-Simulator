@@ -2,7 +2,7 @@
 
 #### Required tools for building the project
 
-* Java Development Kit, version 8 or higher (adoptopenjdk.net or www.graalvm.org)
+* Java Development Kit, version 11 or higher (adoptopenjdk.net or www.graalvm.org)
 * NSIS (nsis.sourceforge.io)
 * Maven (no need for manual installation if using Eclipse)
 
@@ -18,7 +18,7 @@ All other tools and dependencies will be downloaded during build process by Mave
 #### Steps to build using Eclipse
 
 1. Import the projects "SimSystem", "SimTools", "Simulator" and "Simulator-build" into a new workspace.
-2. Set for better compatibility in workspace Preferences>Java>Compiler>JDK Compliance>Compiler compliance level to "1.8" (all higher versions are also supported).
+2. Set for better compatibility in workspace Preferences>Java>Compiler>JDK Compliance>Compiler compliance level to "11" (all higher versions are also supported).
 3. To avoid "Info" level problem messages, set in Preferences>Java>Compiler>Javadoc all dropdowns from "Ignore" to "Info" and in Preferences>Java>Compiler>Error/Warnings in the section "Potential programming problems" the entry "Potential resource leak" from "Ignore" to "Info".
 4. Run target "downloadLanguageTools" in Ant file Simulator/language/ant-language.xml to get tools for updating languages and installers.
 5. Run Maven goals "clean" and "install" on Simulator-build/pom.xml.
