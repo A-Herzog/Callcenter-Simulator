@@ -3,6 +3,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/a-herzog/callcenter-simulator)
 ![GitHub](https://img.shields.io/github/license/a-herzog/callcenter-simulator)
 ![GitHub All Releases](https://img.shields.io/github/downloads/a-herzog/callcenter-simulator/total)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12792568.svg)](https://doi.org/10.5281/zenodo.12792568)
 
 ([English version of this readme.](README_en.md))
 
