@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-27 13:25+0200\n"
+"POT-Creation-Date: 2024-09-30 10:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1852,6 +1852,9 @@ msgstr "View"
 msgid "Dialog.Button.Yes"
 msgstr "Yes"
 
+msgid "Dialog.ConvertDistributionToExpression"
+msgstr "Convert to calculation expression"
+
 msgid "Dialog.OpenURL.CopyURL"
 msgstr "Copy address"
 
@@ -1945,6 +1948,9 @@ msgstr "deactivated"
 
 msgid "Dialog.inactive.lower"
 msgstr "inactive"
+
+msgid "Distribution.Arcsine"
+msgstr "Arcsine distribution"
 
 msgid "Distribution.Beta"
 msgstr "Beta distribution"
@@ -2084,6 +2090,18 @@ msgstr "Inverse gaussian distribution"
 msgid "Distribution.InverseGaussianWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution"
 
+msgid "Distribution.IrwinHall"
+msgstr "Irwin-Hall distribution"
+
+msgid "Distribution.IrwinHallWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution"
+
+msgid "Distribution.Kumaraswamy"
+msgstr "Kumaraswamy distribution"
+
+msgid "Distribution.KumaraswamyWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Kumaraswamy_distribution"
+
 msgid "Distribution.Laplace"
 msgstr "Laplace distribution"
 
@@ -2138,6 +2156,12 @@ msgstr "Negative binomial distribution"
 msgid "Distribution.NegativeBinomialWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Negative_binomial_distribution"
 
+msgid "Distribution.NegativeHyperGeom"
+msgstr "Negative hypergeometric distribution"
+
+msgid "Distribution.NegativeHyperGeomWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Negative_hypergeometric_distribution"
+
 msgid "Distribution.Never"
 msgstr "Never"
 
@@ -2189,6 +2213,12 @@ msgstr "Rayleigh distribution"
 msgid "Distribution.RayleighWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Rayleigh_distribution"
 
+msgid "Distribution.Reciprocal"
+msgstr "Reciprocal distribution"
+
+msgid "Distribution.ReciprocalWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Reciprocal_distribution"
+
 msgid "Distribution.SawtoothLeft"
 msgstr "Left sawtooth distribution"
 
@@ -2219,6 +2249,9 @@ msgstr "%d of %d distributions is highlighted."
 msgid "Distribution.SetupList.Title"
 msgstr "Edit list of highlighted distributions"
 
+msgid "Distribution.Sine"
+msgstr "Sine distribution"
+
 msgid "Distribution.Skewness"
 msgstr "Skewness"
 
@@ -2245,6 +2278,12 @@ msgstr "Triangular distribution"
 
 msgid "Distribution.TriangularWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Triangular_distribution"
+
+msgid "Distribution.UQuadratic"
+msgstr "U-quadraric distribution"
+
+msgid "Distribution.UQuadraticWikipedia"
+msgstr "https://en.wikipedia.org/wiki/U-quadratic_distribution"
 
 msgid "Distribution.Uniform"
 msgstr "Uniform distribution"
@@ -4532,6 +4571,9 @@ msgstr "EN"
 msgid "Help.Search"
 msgstr "Search"
 
+msgid "Help.Search.AllPages"
+msgstr "All pages"
+
 msgid "Help.Search.Info"
 msgstr "Allows you to search the complete help"
 
@@ -4549,6 +4591,9 @@ msgstr "found on page \"%s\""
 
 msgid "Help.Search.ResultSelect"
 msgstr "Matching pages for the search hit:"
+
+msgid "Help.Search.Search"
+msgstr "Search"
 
 msgid "Help.Search.SearchString"
 msgstr "Search keyword"
@@ -9589,6 +9634,15 @@ msgstr "Part"
 msgid "Statistic.Viewer.Chart.Time"
 msgstr "Time"
 
+msgid "Statistic.Viewer.Context.Copy"
+msgstr "Copy"
+
+msgid "Statistic.Viewer.Context.Copy.Column"
+msgstr "Copy this column"
+
+msgid "Statistic.Viewer.Context.Copy.Table"
+msgstr "Copy table"
+
 msgid "Statistic.Viewer.Context.Filter"
 msgstr "Filter"
 
@@ -9606,6 +9660,9 @@ msgstr "None"
 
 msgid "Statistic.Viewer.Context.Filter.SelectTitle"
 msgstr "Select values for lines to be displayed"
+
+msgid "Statistic.Viewer.Context.SelectColumn"
+msgstr "Select column"
 
 msgid "Statistic.Viewer.Context.Sort"
 msgstr "Sort"

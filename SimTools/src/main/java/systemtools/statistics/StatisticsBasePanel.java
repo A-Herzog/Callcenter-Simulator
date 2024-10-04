@@ -441,6 +441,12 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	public static String viewersToolbarSaveTables="Tabellen speichern";
 	/** Bezeichner für den Tooltip für das Report-Toolbar-Button "Tabellen speichern" */
 	public static String viewersToolbarSaveTablesHint="Speichert nur die ausgewählten Tabellen in einer gemeinsamen Arbeitsmappe.";
+	/** Bezeichner für den Kontextmenü-Eintrag "Kopieren" */
+	public static String contextCopy="Kopieren";
+	/** Bezeichner für den Kontextmenü-Eintrag "Kopieren - Tabelle kopieren" */
+	public static String contextCopyTable="Tabelle kopieren";
+	/** Bezeichner für den Kontextmenü-Eintrag "Kopieren - Diese Spalte kopieren" */
+	public static String contextCopyColumn="Diese Spalte kopieren";
 	/** Bezeichner für den Kontextmenü-Eintrag "Sortieren" */
 	public static String contextSort="Sortieren";
 	/** Bezeichner für den Kontextmenü-Eintrag "Sortieren - aufsteigend" */
@@ -449,6 +455,8 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	public static String contextSortDescending="Absteigend nach dieser Spalte";
 	/** Bezeichner für den Kontextmenü-Eintrag "Sortieren - zurücksetzen" */
 	public static String contextSortOriginal="Ursprüngliche Reihenfolge";
+	/** Titel für Dialog zur Auswahl einer Tabellenspalte */
+	public static String contextSelectColumn="Spalte auswählen";
 	/** Bezeichner für den Kontextmenü-Eintrag "Filtern" */
 	public static String contextFilter="Filtern";
 	/** Bezeichner für den Kontextmenü-Eintrag "Filtern - zurücksetzen" */

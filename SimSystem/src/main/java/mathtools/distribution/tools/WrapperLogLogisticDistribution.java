@@ -19,6 +19,8 @@ import org.apache.commons.math3.distribution.AbstractRealDistribution;
 
 import mathtools.NumberTools;
 import mathtools.distribution.LogLogisticDistributionImpl;
+import parser.coresymbols.CalcSymbolPreOperator;
+import parser.symbols.distributions.CalcSymbolDistributionLogLogistic;
 
 /**
  * Zusätzliche Daten für ein Objekt vom Typ {@link LogLogisticDistributionImpl}
@@ -79,6 +81,27 @@ public class WrapperLogLogisticDistribution extends AbstractDistributionWrapper 
 	}
 
 	@Override
+	public AbstractRealDistribution getDistributionForFit(final double mean, final double sd, final double min, final double max) {
+		if (mean<=0 || sd<=0  || min<0) return null;
+
+		/*
+		factor=mean/(std**2+mean**2)
+		beta=pi/acos(alpha*factor)
+		 */
+		final double factor=mean/(sd*sd+mean*mean);
+		double alpha;
+		if (factor<1) {
+			alpha=Math.floor(1/factor);
+			if (alpha>1) alpha--;
+		} else {
+			alpha=1/factor;
+		}
+		final double beta=Math.PI/Math.acos(Math.min(1,alpha*factor));
+
+		return new LogLogisticDistributionImpl(alpha,beta);
+	}
+
+	@Override
 	protected double getParameterInt(AbstractRealDistribution distribution, int nr) {
 		if (nr==1) return ((LogLogisticDistributionImpl)distribution).alpha;
 		if (nr==2) return ((LogLogisticDistributionImpl)distribution).beta;
@@ -114,5 +137,10 @@ public class WrapperLogLogisticDistribution extends AbstractDistributionWrapper 
 		if (Math.abs(((LogLogisticDistributionImpl)distribution1).alpha-((LogLogisticDistributionImpl)distribution2).alpha)>DistributionTools.MAX_ERROR) return false;
 		if (Math.abs(((LogLogisticDistributionImpl)distribution1).beta-((LogLogisticDistributionImpl)distribution2).beta)>DistributionTools.MAX_ERROR) return false;
 		return true;
+	}
+
+	@Override
+	protected Class<? extends CalcSymbolPreOperator> getCalcSymbolClass() {
+		return CalcSymbolDistributionLogLogistic.class;
 	}
 }

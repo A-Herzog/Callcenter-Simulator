@@ -32,10 +32,12 @@ import org.apache.commons.math3.util.FastMath;
 import org.junit.jupiter.api.Test;
 
 import mathtools.distribution.AbstractDiscreteRealDistribution;
+import mathtools.distribution.ArcsineDistribution;
 import mathtools.distribution.ChiDistributionImpl;
 import mathtools.distribution.DiscreteBinomialDistributionImpl;
 import mathtools.distribution.DiscreteHyperGeomDistributionImpl;
 import mathtools.distribution.DiscreteNegativeBinomialDistributionImpl;
+import mathtools.distribution.DiscreteNegativeHyperGeomDistributionImpl;
 import mathtools.distribution.DiscretePoissonDistributionImpl;
 import mathtools.distribution.DiscreteUniformDistributionImpl;
 import mathtools.distribution.DiscreteZetaDistributionImpl;
@@ -46,22 +48,29 @@ import mathtools.distribution.FrechetDistributionImpl;
 import mathtools.distribution.HalfNormalDistribution;
 import mathtools.distribution.HyperbolicSecantDistributionImpl;
 import mathtools.distribution.InverseGaussianDistributionImpl;
+import mathtools.distribution.IrwinHallDistribution;
 import mathtools.distribution.JohnsonDistributionImpl;
+import mathtools.distribution.KumaraswamyDistribution;
 import mathtools.distribution.LaplaceDistributionImpl;
+import mathtools.distribution.LevyDistribution;
 import mathtools.distribution.LogLogisticDistributionImpl;
 import mathtools.distribution.LogNormalDistributionImpl;
 import mathtools.distribution.LogisticDistributionImpl;
+import mathtools.distribution.MaxwellBoltzmannDistribution;
 import mathtools.distribution.NeverDistributionImpl;
 import mathtools.distribution.OnePointDistributionImpl;
 import mathtools.distribution.ParetoDistributionImpl;
 import mathtools.distribution.PertDistributionImpl;
 import mathtools.distribution.PowerDistributionImpl;
 import mathtools.distribution.RayleighDistributionImpl;
+import mathtools.distribution.ReciprocalDistribution;
 import mathtools.distribution.SawtoothLeftDistribution;
 import mathtools.distribution.SawtoothRightDistribution;
+import mathtools.distribution.SineDistribution;
 import mathtools.distribution.StudentTDistributionImpl;
 import mathtools.distribution.TrapezoidDistributionImpl;
 import mathtools.distribution.TriangularDistributionImpl;
+import mathtools.distribution.UQuadraticDistribution;
 import mathtools.distribution.tools.DistributionRandomNumber;
 import mathtools.distribution.tools.DistributionTools;
 
@@ -639,7 +648,24 @@ class DistributionTests {
 		assertTrue(pareto.isSupportConnected());
 		assertEquals(2.0/FastMath.pow(0.5,1.0/3.0),pareto.random(new DummyRandomGenerator(0.5)));
 
+		pareto=new ParetoDistributionImpl(pareto);
+
 		pareto=(ParetoDistributionImpl)DistributionTools.cloneDistribution(pareto);
+
+		assertEquals(2,pareto.xmin);
+		assertEquals(3,pareto.alpha);
+		assertEquals(0,pareto.density(1));
+		assertEquals(3*FastMath.pow(2,3)/FastMath.pow(5,3+1),pareto.density(5));
+		assertEquals(0,pareto.cumulativeProbability(1));
+		assertEquals(1-Math.pow(2.0/5.0,3),pareto.cumulativeProbability(5));
+		assertEquals(3*2/(3-1),pareto.getNumericalMean());
+		assertEquals(2*2*3.0/(3-1)/(3-1)/(3-2),pareto.getNumericalVariance());
+		assertEquals(2,pareto.getSupportLowerBound());
+		assertEquals(Double.MAX_VALUE,pareto.getSupportUpperBound());
+		assertTrue(pareto.isSupportLowerBoundInclusive());
+		assertTrue(!pareto.isSupportUpperBoundInclusive());
+		assertTrue(pareto.isSupportConnected());
+		assertEquals(2.0/FastMath.pow(0.5,1.0/3.0),pareto.random(new DummyRandomGenerator(0.5)));
 
 		assertEquals(2,pareto.xmin);
 		assertEquals(3,pareto.alpha);
@@ -1272,6 +1298,368 @@ class DistributionTests {
 	}
 
 	/**
+	 * Test: Maxwell-Bolzmann-Verteilung
+	 * @see MaxwellBoltzmannDistribution
+	 */
+	@Test
+	void testMaxwellBoltzmannDist() {
+		MaxwellBoltzmannDistribution dist;
+
+		dist=new MaxwellBoltzmannDistribution(-2);
+		assertTrue(dist.a>0);
+
+		dist=new MaxwellBoltzmannDistribution(3);
+		assertEquals(3,dist.a);
+
+		dist=new MaxwellBoltzmannDistribution(5);
+		assertEquals(5,dist.a);
+
+		assertEquals(5*2*Math.sqrt(2/Math.PI),dist.getNumericalMean(),0.0001);
+		assertEquals(5*5*(3*Math.PI-8)/Math.PI,dist.getNumericalVariance(),0.0001);
+		assertEquals(0,dist.getSupportLowerBound());
+		assertEquals(Double.MAX_VALUE,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertFalse(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		assertEquals(0,dist.density(-1));
+		assertEquals(0,dist.density(0));
+		assertTrue(dist.density(1)>0);
+		assertTrue(dist.density(10)>0);
+
+		assertEquals(0,dist.cumulativeProbability(-1));
+		assertEquals(0,dist.cumulativeProbability(0));
+		assertTrue(dist.cumulativeProbability(1)>0);
+		assertTrue(dist.cumulativeProbability(10)>0);
+
+		dist=(MaxwellBoltzmannDistribution)DistributionTools.cloneDistribution(dist);
+		assertEquals(5,dist.a);
+		assertEquals(5*2*Math.sqrt(2/Math.PI),dist.getNumericalMean(),0.0001);
+		assertEquals(5*5*(3*Math.PI-8)/Math.PI,dist.getNumericalVariance(),0.0001);
+		assertEquals(0,dist.getSupportLowerBound());
+		assertEquals(Double.MAX_VALUE,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertFalse(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=new MaxwellBoltzmannDistribution(dist);
+		assertEquals(5,dist.a);
+		assertEquals(5*2*Math.sqrt(2/Math.PI),dist.getNumericalMean(),0.0001);
+		assertEquals(5*5*(3*Math.PI-8)/Math.PI,dist.getNumericalVariance(),0.0001);
+		assertEquals(0,dist.getSupportLowerBound());
+		assertEquals(Double.MAX_VALUE,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertFalse(dist.isSupportUpperBoundInclusive());
+
+		dist=dist.clone();
+		assertEquals(5,dist.a);
+		assertEquals(5*2*Math.sqrt(2/Math.PI),dist.getNumericalMean(),0.0001);
+		assertEquals(5*5*(3*Math.PI-8)/Math.PI,dist.getNumericalVariance(),0.0001);
+		assertEquals(0,dist.getSupportLowerBound());
+		assertEquals(Double.MAX_VALUE,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertFalse(dist.isSupportUpperBoundInclusive());
+
+		testDistributionTools(dist);
+		testDistributionParameters(dist,new double[]{5});
+	}
+
+	/**
+	 * Test: Levy-Verteilung
+	 * @see LevyDistribution
+	 */
+	@Test
+	void testLevyDist() {
+		LevyDistribution dist;
+
+		dist=new LevyDistribution(-2,-3);
+		assertEquals(-2,dist.mu);
+		assertTrue(dist.c>0);
+
+		dist=new LevyDistribution(2,3);
+		assertEquals(2,dist.mu);
+		assertEquals(3,dist.c);
+
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(Double.MAX_VALUE,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertFalse(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		assertEquals(0,dist.density(-1));
+		assertEquals(0,dist.density(1));
+		assertEquals(0,dist.density(2));
+		assertTrue(dist.density(3)>0);
+		assertTrue(dist.density(10)>0);
+
+		assertEquals(0,dist.cumulativeProbability(-1));
+		assertEquals(0,dist.cumulativeProbability(1));
+		assertEquals(0,dist.cumulativeProbability(2));
+		assertTrue(dist.cumulativeProbability(3)>0);
+		assertTrue(dist.cumulativeProbability(10)>0);
+
+		dist=(LevyDistribution)DistributionTools.cloneDistribution(dist);
+		assertEquals(2,dist.mu);
+		assertEquals(3,dist.c);
+		assertEquals(Double.MAX_VALUE,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertFalse(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=new LevyDistribution(dist);
+		assertEquals(2,dist.mu);
+		assertEquals(3,dist.c);
+		assertEquals(Double.MAX_VALUE,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertFalse(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=dist.clone();
+		assertEquals(2,dist.mu);
+		assertEquals(3,dist.c);
+		assertEquals(Double.MAX_VALUE,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertFalse(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		testDistributionTools(dist);
+		testDistributionParameters(dist,new double[]{2,3});
+	}
+
+	/**
+	 * Test: U-quadratische Verteilung
+	 * @see UQuadraticDistribution
+	 */
+	@Test
+	void testUQuadraticDist() {
+		UQuadraticDistribution dist;
+
+		dist=new UQuadraticDistribution(-2,-5);
+		assertEquals(-2,dist.a);
+		assertTrue(dist.b>-2);
+
+		dist=new UQuadraticDistribution(2,5);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals(3.0/20.0*(5.0-2.0)*(5.0-2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		assertEquals(0,dist.density(-1));
+		assertEquals(0,dist.density(1));
+		assertTrue(dist.density(3)>0);
+		assertEquals(0,dist.density(6));
+
+		assertEquals(0,dist.cumulativeProbability(-1));
+		assertEquals(0,dist.cumulativeProbability(1));
+		assertEquals(0,dist.cumulativeProbability(2));
+		assertTrue(dist.cumulativeProbability(3)>0);
+		assertEquals(1,dist.cumulativeProbability(5));
+		assertEquals(1,dist.cumulativeProbability(6));
+
+		dist=(UQuadraticDistribution)DistributionTools.cloneDistribution(dist);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals(3.0/20.0*(5.0-2.0)*(5.0-2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=new UQuadraticDistribution(dist);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals(3.0/20.0*(5.0-2.0)*(5.0-2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=dist.clone();
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals(3.0/20.0*(5.0-2.0)*(5.0-2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		testDistributionTools(dist);
+		testDistributionParameters(dist,new double[]{2,5});
+	}
+
+	/**
+	 * Test: Reziproke Verteilung
+	 * @see ReciprocalDistribution
+	 */
+	@Test
+	void testReciprocalDist() {
+		ReciprocalDistribution dist;
+
+		dist=new ReciprocalDistribution(-2,-5);
+		assertTrue(dist.a>0);
+		assertTrue(dist.b>0);
+		assertTrue(dist.b>dist.a);
+
+		dist=new ReciprocalDistribution(2,5);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+
+		assertEquals((5.0-2.0)/Math.log(5.0/2.0),dist.getNumericalMean());
+		assertEquals((5.0*5.0-2.0*2.0)/2.0/Math.log(5.0/2.0)-((5.0-2.0)/Math.log(5.0/2.0))*((5.0-2.0)/Math.log(5.0/2.0)),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		assertEquals(0,dist.density(-1));
+		assertEquals(0,dist.density(1));
+		assertTrue(dist.density(3)>0);
+		assertEquals(0,dist.density(6));
+
+		assertEquals(0,dist.cumulativeProbability(-1));
+		assertEquals(0,dist.cumulativeProbability(1));
+		assertEquals(0,dist.cumulativeProbability(2));
+		assertTrue(dist.cumulativeProbability(3)>0);
+		assertEquals(1,dist.cumulativeProbability(5));
+		assertEquals(1,dist.cumulativeProbability(6));
+
+		dist=(ReciprocalDistribution)DistributionTools.cloneDistribution(dist);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+		assertEquals((5.0-2.0)/Math.log(5.0/2.0),dist.getNumericalMean());
+		assertEquals((5.0*5.0-2.0*2.0)/2.0/Math.log(5.0/2.0)-((5.0-2.0)/Math.log(5.0/2.0))*((5.0-2.0)/Math.log(5.0/2.0)),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=new ReciprocalDistribution(dist);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+		assertEquals((5.0-2.0)/Math.log(5.0/2.0),dist.getNumericalMean());
+		assertEquals((5.0*5.0-2.0*2.0)/2.0/Math.log(5.0/2.0)-((5.0-2.0)/Math.log(5.0/2.0))*((5.0-2.0)/Math.log(5.0/2.0)),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=dist.clone();
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+		assertEquals((5.0-2.0)/Math.log(5.0/2.0),dist.getNumericalMean());
+		assertEquals((5.0*5.0-2.0*2.0)/2.0/Math.log(5.0/2.0)-((5.0-2.0)/Math.log(5.0/2.0))*((5.0-2.0)/Math.log(5.0/2.0)),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		testDistributionTools(dist);
+		testDistributionParameters(dist,new double[]{2,5});
+	}
+
+	/**
+	 * Test: Kumaraswamy-Verteilung
+	 * @see KumaraswamyDistribution
+	 */
+	@Test
+	void testKumaraswamyDist() {
+		KumaraswamyDistribution dist;
+
+		dist=new KumaraswamyDistribution(-2,-5,3,2);
+		assertTrue(dist.a>0);
+		assertTrue(dist.b>0);
+		assertEquals(3,dist.c);
+		assertTrue(dist.d>dist.c);
+
+		dist=new KumaraswamyDistribution(2,5,1,3);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+		assertEquals(1,dist.c);
+		assertEquals(3,dist.d);
+		assertTrue(dist.getNumericalMean()>1);
+		assertTrue(dist.getNumericalMean()<3);
+		assertTrue(dist.getNumericalVariance()>0);
+		assertEquals(1,dist.getSupportLowerBound());
+		assertEquals(3,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		assertEquals(0,dist.density(0));
+		assertEquals(0,dist.density(1));
+		assertTrue(dist.density(2)>0);
+		assertEquals(0,dist.density(4));
+
+		assertEquals(0,dist.cumulativeProbability(-1));
+		assertEquals(0,dist.cumulativeProbability(0));
+		assertEquals(0,dist.cumulativeProbability(1));
+		assertTrue(dist.cumulativeProbability(2)>0);
+		assertEquals(1,dist.cumulativeProbability(3));
+		assertEquals(1,dist.cumulativeProbability(4));
+
+		dist=(KumaraswamyDistribution)DistributionTools.cloneDistribution(dist);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+		assertEquals(1,dist.c);
+		assertEquals(3,dist.d);
+		assertTrue(dist.getNumericalMean()>1);
+		assertTrue(dist.getNumericalMean()<3);
+		assertTrue(dist.getNumericalVariance()>0);
+		assertEquals(1,dist.getSupportLowerBound());
+		assertEquals(3,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=new KumaraswamyDistribution(dist);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+		assertEquals(1,dist.c);
+		assertEquals(3,dist.d);
+		assertTrue(dist.getNumericalMean()>1);
+		assertTrue(dist.getNumericalMean()<3);
+		assertTrue(dist.getNumericalVariance()>0);
+		assertEquals(1,dist.getSupportLowerBound());
+		assertEquals(3,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=dist.clone();
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+		assertEquals(1,dist.c);
+		assertEquals(3,dist.d);
+		assertTrue(dist.getNumericalMean()>1);
+		assertTrue(dist.getNumericalMean()<3);
+		assertTrue(dist.getNumericalVariance()>0);
+		assertEquals(1,dist.getSupportLowerBound());
+		assertEquals(3,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		testDistributionTools(dist);
+		testDistributionParameters(dist,new double[]{2,5,1,3});
+	}
+
+	/**
 	 * Test: Log-Logistische Verteilung
 	 * @see LogLogisticDistributionImpl
 	 */
@@ -1725,6 +2113,140 @@ class DistributionTests {
 	}
 
 	/**
+	 * Test: Sinus-Verteilung
+	 * @see SineDistribution
+	 */
+	@Test
+	void testSineDist() {
+		SineDistribution dist;
+
+		dist=new SineDistribution(-2,-5);
+		assertEquals(-2,dist.a);
+		assertTrue(dist.b>-2);
+
+		dist=new SineDistribution(2,5);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals((0.25-2.0/Math.PI/Math.PI)*Math.pow(5.0-2.0,2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		assertEquals(0,dist.density(-1));
+		assertEquals(0,dist.density(1));
+		assertTrue(dist.density(3)>0);
+		assertEquals(0,dist.density(6));
+
+		assertEquals(0,dist.cumulativeProbability(-1));
+		assertEquals(0,dist.cumulativeProbability(1));
+		assertEquals(0,dist.cumulativeProbability(2));
+		assertTrue(dist.cumulativeProbability(3)>0);
+		assertEquals(1,dist.cumulativeProbability(5));
+		assertEquals(1,dist.cumulativeProbability(6));
+
+		dist=(SineDistribution)DistributionTools.cloneDistribution(dist);
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals((0.25-2.0/Math.PI/Math.PI)*Math.pow(5.0-2.0,2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=new SineDistribution(dist);
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals((0.25-2.0/Math.PI/Math.PI)*Math.pow(5.0-2.0,2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=dist.clone();
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals((0.25-2.0/Math.PI/Math.PI)*Math.pow(5.0-2.0,2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		testDistributionTools(dist);
+		testDistributionParameters(dist,new double[]{2,5});
+	}
+
+	/**
+	 * Test: Arcus Sinus-Verteilung
+	 * @see ArcsineDistribution
+	 */
+	@Test
+	void testArcsineDist() {
+		ArcsineDistribution dist;
+
+		dist=new ArcsineDistribution(-2,-5);
+		assertEquals(-2,dist.a);
+		assertTrue(dist.b>-2);
+
+		dist=new ArcsineDistribution(2,5);
+		assertEquals(2,dist.a);
+		assertEquals(5,dist.b);
+
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals(1.0/8.0*Math.pow(5.0-2.0,2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		assertEquals(0,dist.density(-1));
+		assertEquals(0,dist.density(1));
+		assertTrue(dist.density(3)>0);
+		assertEquals(0,dist.density(6));
+
+		assertEquals(0,dist.cumulativeProbability(-1));
+		assertEquals(0,dist.cumulativeProbability(1));
+		assertEquals(0,dist.cumulativeProbability(2));
+		assertTrue(dist.cumulativeProbability(3)>0);
+		assertEquals(1,dist.cumulativeProbability(5));
+		assertEquals(1,dist.cumulativeProbability(6));
+
+		dist=(ArcsineDistribution)DistributionTools.cloneDistribution(dist);
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals(1.0/8.0*Math.pow(5.0-2.0,2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=new ArcsineDistribution(dist);
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals(1.0/8.0*Math.pow(5.0-2.0,2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=dist.clone();
+		assertEquals((2.0+5.0)/2,dist.getNumericalMean());
+		assertEquals(1.0/8.0*Math.pow(5.0-2.0,2.0),dist.getNumericalVariance());
+		assertEquals(2,dist.getSupportLowerBound());
+		assertEquals(5,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		testDistributionTools(dist);
+		testDistributionParameters(dist,new double[]{2,5});
+	}
+
+	/**
 	 * Test: Student t-Verteilung
 	 * @see StudentTDistributionImpl
 	 */
@@ -1910,6 +2432,39 @@ class DistributionTests {
 	}
 
 	/**
+	 * Test: Negativen hypergeometrischen Verteilung
+	 * @see DiscreteNegativeHyperGeomDistributionImpl
+	 */
+	@Test
+	void testDiscreteNegativeHyperGeomDistribution() {
+		DiscreteNegativeHyperGeomDistributionImpl dist;
+
+		dist=new DiscreteNegativeHyperGeomDistributionImpl(50,20,5);
+		assertEquals(50,dist.N);
+		assertEquals(20,dist.K);
+		assertEquals(5,dist.n);
+		assertEquals(0,dist.cumulativeProbability(-1));
+		assertEquals(1,dist.cumulativeProbability(35),0.000001);
+		assertEquals(1,dist.cumulativeProbability(36),0.000001);
+		assertEquals(-Double.MAX_VALUE,dist.inverseCumulativeProbability(-1));
+		assertEquals(Double.MAX_VALUE,dist.inverseCumulativeProbability(2));
+		assertEquals(15.0,dist.inverseCumulativeProbability(dist.cumulativeProbability(15)),0.000001);
+		assertEquals(25.0,dist.inverseCumulativeProbability(dist.cumulativeProbability(25)),0.000001);
+		assertEquals(0,dist.getSupportLowerBound());
+		assertEquals(50,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		testDistributionTools(dist);
+		testDistributionParameters(dist,new double[] {50,20,5});
+
+		double rnd=dist.random(new DummyRandomGenerator(0.5));
+		assertTrue(rnd>=0);
+		assertTrue(rnd<=35);
+	}
+
+	/**
 	 * Test: Zeta-Verteilung
 	 * @see DiscreteZetaDistributionImpl
 	 */
@@ -2002,6 +2557,72 @@ class DistributionTests {
 
 		testDistributionTools(dist);
 		testDistributionParameters(dist,new double[] {200});
+	}
+
+	/**
+	 * Test: Irwin-Hall-Verteilung
+	 * @see IrwinHallDistribution
+	 */
+	@Test
+	void testIrwinHallDistribution() {
+		IrwinHallDistribution dist;
+
+		dist=new IrwinHallDistribution(-2);
+		assertTrue(dist.n>0);
+
+		dist=new IrwinHallDistribution(8);
+		assertEquals(8,dist.n);
+		assertEquals(0,dist.density(-1));
+		assertTrue(dist.density(4)>0);
+		assertEquals(0,dist.cumulativeProbability(0));
+		assertTrue(dist.cumulativeProbability(4)>0);
+		assertEquals(0,dist.getSupportLowerBound());
+		assertEquals(8,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=dist.clone();
+
+		assertEquals(8,dist.n);
+		assertEquals(0,dist.density(-1));
+		assertTrue(dist.density(4)>0);
+		assertEquals(0,dist.cumulativeProbability(0));
+		assertTrue(dist.cumulativeProbability(4)>0);
+		assertEquals(0,dist.getSupportLowerBound());
+		assertEquals(8,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=new IrwinHallDistribution(dist);
+
+		assertEquals(8,dist.n);
+		assertEquals(0,dist.density(-1));
+		assertTrue(dist.density(4)>0);
+		assertEquals(0,dist.cumulativeProbability(0));
+		assertTrue(dist.cumulativeProbability(4)>0);
+		assertEquals(0,dist.getSupportLowerBound());
+		assertEquals(8,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		dist=(IrwinHallDistribution)DistributionTools.cloneDistribution(dist);
+
+		assertEquals(8,dist.n);
+		assertEquals(0,dist.density(-1));
+		assertTrue(dist.density(4)>0);
+		assertEquals(0,dist.cumulativeProbability(0));
+		assertTrue(dist.cumulativeProbability(4)>0);
+		assertEquals(0,dist.getSupportLowerBound());
+		assertEquals(8,dist.getSupportUpperBound());
+		assertTrue(dist.isSupportLowerBoundInclusive());
+		assertTrue(dist.isSupportUpperBoundInclusive());
+		assertTrue(dist.isSupportConnected());
+
+		testDistributionTools(dist);
+		testDistributionParameters(dist,new double[]{8});
 	}
 
 	/**

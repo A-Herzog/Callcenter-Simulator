@@ -402,6 +402,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[961] = "Statistics";
     t[962] = "Editor.SkillLevelOfTheAgents.Down.Info";
     t[963] = "Moves the selected skill level down in the list of all skill level";
+    t[964] = "Help.Search.AllPages";
+    t[965] = "All pages";
     t[972] = "CommandLine.Error.UnableToSaveStatistic";
     t[973] = "The statistic data could not be saved.";
     t[974] = "JDistributionEditor.Save.Title";
@@ -472,8 +474,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[1131] = "This function simplifies the model by joining all client types to a single client\n type and all skill levels to a single skill level, too.";
     t[1136] = "Statistic.Viewer.Toolbar.OpenODT.Hint";
     t[1137] = "Show text in OpenOffice/LibreOffice";
-    t[1138] = "Statistic.Viewer.Tools.ShowAll";
-    t[1139] = "Open all categories";
+    t[1138] = "SimStatistic.Category.AccessibilityPerCallerType";
+    t[1139] = "Accessibility per caller type";
     t[1140] = "Optimizer.Message.Finished";
     t[1141] = "Optimization was finished after %d simulation runs.";
     t[1146] = "SettingsDialog.LookAndFeel.MenuInWindowTitle.Tooltip";
@@ -500,6 +502,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[1195] = "The lines marked with (*) show the real needed calculation\ntime on one CPU core.";
     t[1198] = "SimStatistic.Clients";
     t[1199] = "Clients";
+    t[1200] = "Statistic.FastAccess.SelectXMLTag.empty";
+    t[1201] = "leer";
     t[1206] = "Calibrate.ErrorTitle";
     t[1207] = "Error while calibrating";
     t[1210] = "RevenueOptimizer.Warning.Heuristic.Info";
@@ -1234,16 +1238,20 @@ public class Messages_en extends java.util.ResourceBundle {
     t[2955] = "The e-mail link\n%s\ncould not be opened.";
     t[2956] = "AutoSave.Setup.SelectFolder.Tooltip";
     t[2957] = "Selects the output folder for the statistic files";
-    t[2966] = "SimStatistic.Category.AccessibilityPerCallerType";
-    t[2967] = "Accessibility per caller type";
+    t[2966] = "Distribution.Kumaraswamy";
+    t[2967] = "Kumaraswamy distribution";
     t[2968] = "Editor.GeneralData.CreateDescription.Info";
     t[2969] = "Do you really want to discard the current model description and replace it with an automatically generated text?";
     t[2970] = "XML.Statistic.Clients.ClientsCallsCount.Count";
     t[2971] = "Count";
     t[2974] = "ViewerWebApp.Language";
     t[2975] = "en";
+    t[2978] = "Distribution.ReciprocalWikipedia";
+    t[2979] = "https://en.wikipedia.org/wiki/Reciprocal_distribution";
     t[2980] = "Dialog.Overwrite.Title";
     t[2981] = "Overwrite existing file?";
+    t[2982] = "Distribution.Reciprocal";
+    t[2983] = "Reciprocal distribution";
     t[2988] = "Window.ConnectedResults.Title";
     t[2989] = "Load results of a connected simulation";
     t[2990] = "FitDalog.HoldingTimeDistribution";
@@ -1948,8 +1956,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4587] = "Copy using window size (%dx%d pixels)";
     t[4590] = "SimStatistic.CostStructure.CostPerCanceledCall";
     t[4591] = "Virtual cost per canceled call";
-    t[4598] = "SimStatistic.WaitingResidenceTimeDistribution";
-    t[4599] = "Waiting and residence time distribution";
+    t[4598] = "Distribution.Arcsine";
+    t[4599] = "Arcsine distribution";
     t[4600] = "Optimizer.Error.StatisticFileDoesNotExist.Info";
     t[4601] = "The specified file\n%s\ndoes not exist.";
     t[4602] = "Update.Updater.Title";
@@ -2002,6 +2010,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4713] = "no";
     t[4714] = "XML.Model.ClientType.Error";
     t[4715] = "While loading client type %d.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4718] = "Dialog.Button.Up";
     t[4719] = "Up";
     t[4720] = "Editor.AgentsGroup.RatesForUsingTheClientArrivals";
@@ -2010,12 +2024,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4725] = "Program information";
     t[4728] = "Help.StartPage.Info";
     t[4729] = "Shows the start page of the help information.";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4736] = "XML.OptimizerSetup.ModificationGroups.Selection";
     t[4737] = "Selection";
     t[4740] = "Importer.PostProcessingTimeDistribution";
@@ -2914,6 +2922,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[6695] = "Average";
     t[6696] = "XML.Statistic.Clients.Recall.Clients";
     t[6697] = "StatisticClientsRecall";
+    t[6700] = "Statistic.Viewer.Context.Copy.Column";
+    t[6701] = "Copy this column";
     t[6704] = "Editor.Callcenter.Error.MinimumWaitingTime.Title";
     t[6705] = "Minimum waiting time is invalid";
     t[6708] = "FileType.Excel";
@@ -3250,6 +3260,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7471] = "Number of agents by distribution";
     t[7472] = "MainMenu.Simulation.MoreOptimization";
     t[7473] = "More";
+    t[7478] = "Distribution.IrwinHallWikipedia";
+    t[7479] = "https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution";
     t[7484] = "RevenueOptimizer.RevenueForInitialModel.Calculating";
     t[7485] = "Calculating revenue for initial model";
     t[7492] = "Optimizer.OptimizeProperty.TargetForLabel.ServiceLevel";
@@ -3280,6 +3292,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7555] = "While searching the intervals are inspected in order. Because the individual intervals are links by forwarded clients and retryers, changed in one interval will influence other intervals, too. Therefore a solution found in the optimization proces can be changed again by starting the function again.";
     t[7558] = "Simulation.Log.General.Agent";
     t[7559] = "Agent";
+    t[7562] = "Statistic.Viewer.Context.Copy";
+    t[7563] = "Copy";
     t[7566] = "Editor.Caller.Error.ServiceLevel.Info";
     t[7567] = "The specified service level value %s is invalid.\nThe value has to be a non-negative integer number.";
     t[7568] = "XML.Statistic.Agents.Summary.GrossTime";
@@ -3422,6 +3436,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7877] = "Graphics";
     t[7880] = "XML.Statistic.Confidence.ServiceLevel.CallsAll.ErrorSquaresSum";
     t[7881] = "The sum of the squared service level values of all calls for the confidence interval calculation %s is invalid. The value has to be a non-negative number.";
+    t[7894] = "XML.Model.ClientType.Recall.NewClientType.Error";
+    t[7895] = "The specified rate %s for client type \"%s\" is invalid.";
     t[7900] = "CommandLine.ResetConfig.Description.Short";
     t[7901] = "Resets the program configuration.";
     t[7908] = "Editor.Callcenter.SkillLevel";
@@ -3448,6 +3464,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7945] = "The specified costs per agent and working hour %s are invalid.\nThe value has to be a non-negative number.";
     t[7948] = "SimStatistic.TechnicalFreeTime.IsNotWaitingTime";
     t[7949] = "The switching time is recognized by customers as such, i.e. client will not cancel their waiting during this time any more.";
+    t[7950] = "Distribution.UQuadratic";
+    t[7951] = "U-quadraric distribution";
     t[7956] = "AutoSave.Error.FilterLoad";
     t[7957] = "The filter script\n%s\ncould not be loaded.";
     t[7960] = "XML.Statistic.Clients.HoldingTimeDistribution.Calls";
@@ -3508,6 +3526,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[8107] = "The agents groups have fixed working times.";
     t[8110] = "Editor.Caller.Error.RetryProbabiltyAfterGiveUpFirstRetry.Info";
     t[8111] = "The specified probability for a retry after canceling waiting for the first time %s is invalid.\nThe value has to be a non-negative number (a percentage value optional).";
+    t[8120] = "Distribution.NegativeHyperGeomWikipedia";
+    t[8121] = "https://en.wikipedia.org/wiki/Negative_hypergeometric_distribution";
     t[8122] = "SettingsDialog.NetworkSimulation.Password";
     t[8123] = "Password for the server";
     t[8124] = "SimStatistic.ScoreValues.CallcenterAgentFreeTimeSinceLastCall";
@@ -3996,6 +4016,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9317] = "Coefficient of variation of the downtimes";
     t[9318] = "Editor.SkillLevel.Delete.Yes.Info";
     t[9319] = "The skill level will be deleted permanently.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9320] = "Connected.ClientTypeChangeTitle";
     t[9321] = "Client type change on try of clients of type %s";
     t[9322] = "Editor.SkillLevel.Error.NameInUse.Title";
@@ -4016,12 +4042,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9345] = "The specified maximum queue lengtg %s is invalid.";
     t[9348] = "Connected.Button.Up.Info";
     t[9349] = "Moves the day on place upo";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9350] = "JDistributionEditor.Wikipedia.Info";
     t[9351] = "Opens a browser window with additional information about the selected distribution type";
     t[9352] = "CommandLine.Connected.SimulationDone";
@@ -4048,8 +4068,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9401] = "Compressed xml files";
     t[9408] = "XML.Model.CallCenter.Score.Error";
     t[9409] = "The specified call center score %s is invalid. The value has to be a non-negative integer number.";
-    t[9420] = "Statistic.FastAccess.SelectXMLTag.empty";
-    t[9421] = "leer";
+    t[9420] = "Help.Search.Search";
+    t[9421] = "Search";
     t[9424] = "MainMenu.Simulation.SimulationAndSave";
     t[9425] = "Run & save";
     t[9426] = "Editor.AgentsGroup.Tabs.Costs";
@@ -4126,6 +4146,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9555] = "Statistic file does not exist";
     t[9556] = "Connected.Error.Day1ModelFileError.Title";
     t[9557] = "Error on loading the model file for day 1";
+    t[9558] = "Dialog.ConvertDistributionToExpression";
+    t[9559] = "Convert to calculation expression";
     t[9566] = "Editor.AgentsGroup.Shift.MinimumShiftLength.Global";
     t[9567] = "Use global default";
     t[9568] = "Statistics.XML.Warning";
@@ -5042,10 +5064,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11787] = "Yield per successful served customer";
     t[11788] = "XML.SaaS.LogFile";
     t[11789] = "LogFile";
+    t[11794] = "Statistic.Viewer.Tools.ShowAll";
+    t[11795] = "Open all categories";
     t[11806] = "Distribution.ZetaWikipedia";
     t[11807] = "https://en.wikipedia.org/wiki/Zeta_distribution";
     t[11808] = "XML.Model.Warnings.Record.Value.Error.NoValue";
     t[11809] = "No value was specified.";
+    t[11810] = "MainMenu.Simulation.Rearrange";
+    t[11811] = "Rearrange clients or agents";
     t[11812] = "CommandLine.Error.File.OutputAlreadyExist";
     t[11813] = "The output file %s already exists.";
     t[11818] = "XML.Statistic.Clients.WaitingTimeDistributionLong.Calls.Error";
@@ -5516,6 +5542,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12971] = "Erlang C model without retry";
     t[12972] = "Statistic.FastAccess.SelectXMLTag.InsertMethod.AtTheEndWithPrint";
     t[12973] = "At the end with print command";
+    t[12976] = "Statistic.Viewer.Context.SelectColumn";
+    t[12977] = "Select column";
     t[12982] = "Editor.Caller.Error.RecallProbability.Info";
     t[12983] = "The specified recall probability %s is invalid.\nThe value has to be a non-negative number (a percentage value optional).";
     t[12986] = "MainMenu.Tools.CompareKeptModel.Tooltip";
@@ -5524,8 +5552,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12993] = "The client type change rate for client type \"%s\" to \"$name\" on forwarding is negative.";
     t[13000] = "FitDialog.Tab.Fit";
     t[13001] = "Fit";
-    t[13004] = "XML.Model.PreferredShiftLength.Error";
-    t[13005] = "The preferred shift length has to be a non-negative integer number.";
+    t[13004] = "SimStatistic.WaitingResidenceTimeDistribution";
+    t[13005] = "Waiting and residence time distribution";
     t[13006] = "RevenueOptimizer.Warning.LongRunTime.Title";
     t[13007] = "Long run time needed";
     t[13008] = "SimStatistic.OptimizeSetup.RunTime.Time";
@@ -5662,6 +5690,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13331] = "The client type specific holding time per interval is invalid.";
     t[13332] = "XML.ErrorDecryptingFile";
     t[13333] = "An error occurred while decrypting file %s.";
+    t[13348] = "Distribution.NegativeHyperGeom";
+    t[13349] = "Negative hypergeometric distribution";
     t[13350] = "Editor.ToolsPopup.Caller48";
     t[13351] = "Load arrival distribution (on half-hour basis) for multiple caller groups";
     t[13354] = "Statistic.Viewer.Context.Filter.SelectAll";
@@ -5992,6 +6022,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14115] = "Simulation runs in total";
     t[14118] = "MainMenu.View.Statistics.Mnemonic";
     t[14119] = "S";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14120] = "JDistributionEditor.ValueDown";
     t[14121] = "Reduces the value of the parameter by %s";
     t[14122] = "Editor.GeneralData.GlobalParameters.NumberOfDaysToBeSimulated.InvalidTitle";
@@ -6022,12 +6058,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14189] = "The specified log file %s already exists as a directory name.";
     t[14192] = "MainMenu.Tools.RunServer.Mnemonic";
     t[14193] = "N";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14196] = "Importer.Error.Need24or48or96Intervals";
     t[14197] = "24, 48 or 96 interval values are needed, but %s values have been specified.";
     t[14198] = "XML.Statistic.Clients.WaitingTime.Clients.ErrorSquaresSum";
@@ -6546,6 +6576,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15457] = "Agents starts his shift and is ready for work now";
     t[15460] = "SettingsDialog.ShowWelcomePage";
     t[15461] = "Show welcome page on program start";
+    t[15462] = "Distribution.KumaraswamyWikipedia";
+    t[15463] = "https://en.wikipedia.org/wiki/Kumaraswamy_distribution";
     t[15470] = "Editor.GeneralData";
     t[15471] = "General data";
     t[15472] = "Dialog.Overwrite.No";
@@ -6560,6 +6592,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15491] = "Load model from caller and agents tables";
     t[15500] = "JDistributionEditor.Copy.Table";
     t[15501] = "Table";
+    t[15502] = "XML.Model.PreferredShiftLength.Error";
+    t[15503] = "The preferred shift length has to be a non-negative integer number.";
     t[15506] = "Connected.Error.SaveStatistic.Info";
     t[15507] = "The statistic data could not be saved in the file %s.";
     t[15508] = "XML.Statistic.Agents.Model.Model";
@@ -6714,8 +6748,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15911] = "Pastes values from the clipboard";
     t[15918] = "Connected.Rate";
     t[15919] = "Rate";
-    t[15920] = "XML.Model.ClientType.Recall.NewClientType.Error";
-    t[15921] = "The specified rate %s for client type \"%s\" is invalid.";
+    t[15920] = "Distribution.IrwinHall";
+    t[15921] = "Irwin-Hall distribution";
     t[15926] = "Distribution.Never";
     t[15927] = "Never";
     t[15932] = "XML.EnterPassword";
@@ -6752,6 +6786,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16031] = "PostProcessingTimePart";
     t[16036] = "CommandLine.MaxThreads.Name";
     t[16037] = "MaxThreads";
+    t[16042] = "Distribution.UQuadraticWikipedia";
+    t[16043] = "https://en.wikipedia.org/wiki/U-quadratic_distribution";
     t[16044] = "XML.Connected.LoadStatistic.ErrorLoadingStatisticFile";
     t[16045] = "While loading statistic file %s for simulation day %d the following error occured:";
     t[16048] = "Compare.ReplaceKeptModel.Info";
@@ -6922,6 +6958,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16465] = "ConnectedInitialInventoryClientType";
     t[16476] = "XML.Model.ClientType.Retry.Probability.Canceled.Error";
     t[16477] = "The specified retry probability for the second, third etc. retry after canceling %s is invalid.";
+    t[16484] = "Statistic.Viewer.Context.Copy.Table";
+    t[16485] = "Copy table";
     t[16488] = "Optimizer.Error.Internal";
     t[16489] = "Internal error";
     t[16492] = "CommandLine.Preplanning.Mode.Success.Complex.PreSimplify";
@@ -7654,8 +7692,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[18149] = "Local simulation";
     t[18152] = "ViewerWebApp.Loading";
     t[18153] = "Loading system from %s.";
-    t[18154] = "MainMenu.Simulation.Rearrange";
-    t[18155] = "Rearrange clients or agents";
+    t[18154] = "Distribution.Sine";
+    t[18155] = "Sine distribution";
     t[18156] = "FileType.HTML";
     t[18157] = "html files";
     t[18158] = "Editor.AgentsGroup.Apply.ForAllGroups";

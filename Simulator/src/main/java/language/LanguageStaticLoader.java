@@ -178,12 +178,24 @@ public class LanguageStaticLoader {
 		DistributionTools.DistPoissonWikipedia=Language.tr("Distribution.PoissonWikipedia");
 		DistributionTools.DistNegativeBinomial=Language.trAll("Distribution.NegativeBinomial");
 		DistributionTools.DistNegativeBinomialWikipedia=Language.tr("Distribution.NegativeBinomialWikipedia");
+		DistributionTools.DistNegativeHyperGeom=Language.trAll("Distribution.NegativeHyperGeom");
+		DistributionTools.DistNegativeHyperGeomWikipedia=Language.tr("Distribution.NegativeHyperGeomWikipedia");
 		DistributionTools.DistZeta=Language.trAll("Distribution.Zeta");
 		DistributionTools.DistZetaWikipedia=Language.tr("Distribution.ZetaWikipedia");
 		DistributionTools.DistDiscreteUniform=Language.trAll("Distribution.DiscreteUniform");
 		DistributionTools.DistDiscreteUniformWikipedia=Language.tr("Distribution.DiscreteUniformWikipedia");
 		DistributionTools.DistHalfNormal=Language.trAll("Distribution.HalfNormal");
 		DistributionTools.DistHalfNormalWikipedia=Language.tr("Distribution.HalfNormalWikipedia");
+		DistributionTools.DistUQuadratic=Language.trAll("Distribution.UQuadratic");
+		DistributionTools.DistUQuadraticWikipedia=Language.tr("Distribution.UQuadraticWikipedia");
+		DistributionTools.DistReciprocal=Language.trAll("Distribution.Reciprocal");
+		DistributionTools.DistReciprocalWikipedia=Language.tr("Distribution.ReciprocalWikipedia");
+		DistributionTools.DistKumaraswamy=Language.trAll("Distribution.Kumaraswamy");
+		DistributionTools.DistKumaraswamyWikipedia=Language.tr("Distribution.KumaraswamyWikipedia");
+		DistributionTools.DistIrwinHall=Language.trAll("Distribution.IrwinHall");
+		DistributionTools.DistIrwinHallWikipedia=Language.tr("Distribution.IrwinHallWikipedia");
+		DistributionTools.DistSine=Language.trAll("Distribution.Sine");
+		DistributionTools.DistArcsine=Language.trAll("Distribution.Arcsine");
 		DistributionTools.DistUnknown=Language.tr("Distribution.Unknown");
 		DistributionTools.DistDataPoint=Language.tr("Distribution.DataPoint");
 		DistributionTools.DistDataPoints=Language.tr("Distribution.DataPoints");
@@ -337,6 +349,7 @@ public class LanguageStaticLoader {
 		JDistributionPanel.GraphicsOpenURLWarningTitle=Language.tr("Dialog.Title.Warning");
 		JDistributionPanel.RandomNumbersCount=Language.tr("Dialog.RandomNumbers.Count");
 		JDistributionPanel.RandomNumbersError=Language.tr("Dialog.RandomNumbers.Error");
+		JDistributionPanel.ToCalculationExpression=Language.tr("Dialog.ConvertDistributionToExpression");
 
 		/* GUITools */
 		GUITools.errorNoGraphicsOutputAvailable=Language.tr("Window.ErrorNoGraphics");
@@ -370,6 +383,8 @@ public class LanguageStaticLoader {
 		HelpBase.buttonSearchResultCountSingular=Language.tr("Help.Search.ResultCountSingular");
 		HelpBase.buttonSearchResultCountPlural=Language.tr("Help.Search.ResultCountPlural");
 		HelpBase.buttonSearchResultSelect=Language.tr("Help.Search.ResultSelect");
+		HelpBase.buttonSearchTabSearch=Language.tr("Help.Search.Search");
+		HelpBase.buttonSearchTabAllPages=Language.tr("Help.Search.AllPages");
 		HelpBase.errorNoEMailTitle=Language.tr("Window.Info.NoEMailProgram.Title");
 		HelpBase.errorNoEMailInfo=Language.tr("Window.Info.NoHTMLPrint.Info");
 		HelpBase.errorNoInternetTitle=Language.tr("Window.Info.NoInternetConnection");
@@ -521,10 +536,14 @@ public class LanguageStaticLoader {
 		StatisticsBasePanel.viewersToolbarSelectNoneHint=Language.tr("Statistic.Viewer.Toolbar.SelectNone.Hint");
 		StatisticsBasePanel.viewersToolbarSaveTables=Language.tr("Statistic.Viewer.Toolbar.SaveTables");
 		StatisticsBasePanel.viewersToolbarSaveTablesHint=Language.tr("Statistic.Viewer.Toolbar.SaveTables.Hint");
+		StatisticsBasePanel.contextCopy=Language.tr("Statistic.Viewer.Context.Copy");
+		StatisticsBasePanel.contextCopyTable=Language.tr("Statistic.Viewer.Context.Copy.Table");
+		StatisticsBasePanel.contextCopyColumn=Language.tr("Statistic.Viewer.Context.Copy.Column");
 		StatisticsBasePanel.contextSort=Language.tr("Statistic.Viewer.Context.Sort");
 		StatisticsBasePanel.contextSortAscending=Language.tr("Statistic.Viewer.Context.Sort.Ascending");
 		StatisticsBasePanel.contextSortDescending=Language.tr("Statistic.Viewer.Context.Sort.Descending");
 		StatisticsBasePanel.contextSortOriginal=Language.tr("Statistic.Viewer.Context.Sort.Reset");
+		StatisticsBasePanel.contextSelectColumn=Language.tr("Statistic.Viewer.Context.SelectColumn");
 		StatisticsBasePanel.contextFilter=Language.tr("Statistic.Viewer.Context.Filter");
 		StatisticsBasePanel.contextFilterReset=Language.tr("Statistic.Viewer.Context.Filter.All");
 		StatisticsBasePanel.contextFilterSelect=Language.tr("Statistic.Viewer.Context.Filter.Select");

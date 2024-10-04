@@ -19,6 +19,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.FontMetrics;
+import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -549,6 +550,36 @@ public class StatisticViewerTable implements StatisticViewer {
 		}
 	}
 
+	/**
+	 * Zeigt einen Dialog zur Auswahl einer Tabellenspalte an.
+	 * @return	0-basierter Index der ausgewählten Spalte oder -1, wenn der Dialog abgebrochen wurde
+	 */
+	protected int showColSelectDialog() {
+		final StatisticViewerTableColumnSelectDialog dialog=new StatisticViewerTableColumnSelectDialog(viewerTable,columnNames);
+		return dialog.getSelectedColumnIndex();
+	}
+
+	/**
+	 * Zeigt einen Dialog zur Filterung der Werte in einer Spalte an.
+	 * @param col	0-basierter Spaltenindex
+	 * @return	Liefert <code>true</code>, wenn der Dialog mit "Ok" geschossen wurde
+	 */
+	protected boolean showColValueSelectFilterDialog(final int col) {
+		final Set<String> values=new HashSet<>();
+		final int size=table.getSize(0);
+		for (int i=0;i<size;i++) {
+			final List<String> line=table.getLine(i);
+			if (line.size()<=col) continue;
+			final String cell=line.get(col);
+			if (!cell.isEmpty()) values.add(cell);
+		}
+		final StatisticViewerTableFilterDialog dialog=new StatisticViewerTableFilterDialog(viewerTable,values,filter.get(col));
+		if (dialog.getClosedBy()!=BaseDialog.CLOSED_BY_OK) return false;
+		filter.set(col,dialog.getActiveValues());
+		buildTableModel();
+		return true;
+	}
+
 	@Override
 	public Container getViewer(final boolean needReInit) {
 		if (viewer!=null && !needReInit) return viewer;
@@ -583,17 +614,45 @@ public class StatisticViewerTable implements StatisticViewer {
 
 					if (hasItems) popup.addSeparator();
 
+					popup.add(item=new JMenuItem("<html><body><b>"+StatisticsBasePanel.contextCopy+"</b></body></html>"));
+					item.setEnabled(false);
+
+					popup.add(item=new JMenuItem(StatisticsBasePanel.contextCopyTable,SimToolsImages.COPY.getIcon()));
+					item.addActionListener(e2->{
+						final Transferable transferable=getTransferable();
+						if (transferable!=null) Toolkit.getDefaultToolkit().getSystemClipboard().setContents(transferable,null);
+					});
+
+					if (col>=0) {
+						popup.add(item=new JMenuItem(StatisticsBasePanel.contextCopyColumn,null));
+						item.addActionListener(e2->{
+							if (columnNames.isEmpty()) buildTable();
+
+							final StringBuilder text=new StringBuilder();
+							final int size=showTable.getSize(0);
+							for (int i=0;i<size;i++) {
+								final List<String> line=new ArrayList<>(showTable.getLine(i));
+								text.append(line.get(col));
+								text.append("\n");
+							}
+							final Transferable transferable=new StringSelection(text.toString());
+							Toolkit.getDefaultToolkit().getSystemClipboard().setContents(transferable,null);
+						});
+					}
+
+					popup.addSeparator();
+
 					popup.add(item=new JMenuItem("<html><body><b>"+StatisticsBasePanel.contextSort+"</b></body></html>"));
 					item.setEnabled(false);
 
-					popup.add(item=new JMenuItem(StatisticsBasePanel.contextSortAscending));
+					popup.add(item=new JMenuItem(StatisticsBasePanel.contextSortAscending,SimToolsImages.ARROW_UP.getIcon()));
 					item.addActionListener(e2->{
 						sortByColumn=col;
 						sortDescending=false;
 						buildTableModel();
 					});
 
-					popup.add(item=new JMenuItem(StatisticsBasePanel.contextSortDescending));
+					popup.add(item=new JMenuItem(StatisticsBasePanel.contextSortDescending,SimToolsImages.ARROW_DOWN.getIcon()));
 					item.addActionListener(e2->{
 						sortByColumn=col;
 						sortDescending=true;
@@ -612,26 +671,15 @@ public class StatisticViewerTable implements StatisticViewer {
 					popup.add(item=new JMenuItem("<html><body><b>"+StatisticsBasePanel.contextFilter+"</b></body></html>"));
 					item.setEnabled(false);
 
-					popup.add(item=new JMenuItem(StatisticsBasePanel.contextFilterReset));
+					popup.add(item=new JMenuItem(StatisticsBasePanel.contextFilterReset,SimToolsImages.ADD.getIcon()));
 					item.addActionListener(e2->{
 						filter.get(col).clear();
 						buildTableModel();
 					});
 
-					popup.add(item=new JMenuItem(StatisticsBasePanel.contextFilterSelect));
+					popup.add(item=new JMenuItem(StatisticsBasePanel.contextFilterSelect,SimToolsImages.STATISTICS_TABLE_FILTER.getIcon()));
 					item.addActionListener(e2->{
-						final Set<String> values=new HashSet<>();
-						final int size=table.getSize(0);
-						for (int i=0;i<size;i++) {
-							final List<String> line=table.getLine(i);
-							if (line.size()<=col) continue;
-							final String cell=line.get(col);
-							if (!cell.isEmpty()) values.add(cell);
-						}
-						StatisticViewerTableFilterDialog dialog=new StatisticViewerTableFilterDialog(viewerTable,values,filter.get(col));
-						if (dialog.getClosedBy()!=BaseDialog.CLOSED_BY_OK) return;
-						filter.set(col,dialog.getActiveValues());
-						buildTableModel();
+						showColValueSelectFilterDialog(col);
 					});
 
 					popup.addSeparator();
@@ -639,7 +687,7 @@ public class StatisticViewerTable implements StatisticViewer {
 					popup.add(item=new JMenuItem("<html><body><b>"+StatisticsBasePanel.contextColWidthThis+"</b></body></html>"));
 					item.setEnabled(false);
 
-					popup.add(item=new JMenuItem(StatisticsBasePanel.contextColWidthDefault));
+					popup.add(item=new JMenuItem(StatisticsBasePanel.contextColWidthDefault,SimToolsImages.STATISTICS_TABLE_COL_WIDTH.getIcon()));
 					item.addActionListener(e2->setColWidth(viewerTable,col,50));
 
 					popup.add(item=new JMenuItem(StatisticsBasePanel.contextColWidthByContent));
@@ -653,7 +701,7 @@ public class StatisticViewerTable implements StatisticViewer {
 					popup.add(item=new JMenuItem("<html><body><b>"+StatisticsBasePanel.contextColWidthAll+"</b></body></html>"));
 					item.setEnabled(false);
 
-					popup.add(item=new JMenuItem(StatisticsBasePanel.contextColWidthDefault));
+					popup.add(item=new JMenuItem(StatisticsBasePanel.contextColWidthDefault,SimToolsImages.STATISTICS_TABLE_COL_WIDTH.getIcon()));
 					item.addActionListener(e2->{
 						autoSizeColumn(viewerTable,0,false);
 						for (int i=1;i<viewerTable.getColumnCount();i++) setColWidth(viewerTable,i,50);

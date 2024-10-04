@@ -281,6 +281,12 @@ public final class DistributionTools {
 	/** Wikipedia-Seite Negative Binomialverteilung */
 	public static String DistNegativeBinomialWikipedia="https://de.wikipedia.org/wiki/Negative_Binomialverteilung";
 
+	/** Negative Hypergeometrische Verteilung */
+	public static String[] DistNegativeHyperGeom=new String[]{"Negative hypergeometrische Verteilung"};
+
+	/** Wikipedia-Seite Negative Hypergeometrische Verteilung */
+	public static String DistNegativeHyperGeomWikipedia="https://de.wikipedia.org/wiki/Negative_hypergeometrische_Verteilung";
+
 	/** Zeta-Verteilung */
 	public static String[] DistZeta=new String[]{"Zeta-Verteilung"};
 
@@ -298,6 +304,42 @@ public final class DistributionTools {
 
 	/** Wikipedia-Seite halbe Normalverteilung */
 	public static String DistHalfNormalWikipedia="https://de.wikipedia.org/wiki/Normalverteilung";
+
+	/** U-quadratische Verteilung */
+	public static String[] DistUQuadratic=new String[]{"U-quadratische Verteilung"};
+
+	/** Wikipedia-Seite U-quadratische Verteilung */
+	public static String DistUQuadraticWikipedia="https://en.wikipedia.org/wiki/U-quadratic_distribution";
+
+	/** Reziproke Verteilung */
+	public static String[] DistReciprocal=new String[]{"Reziproke Verteilung"};
+
+	/** Wikipedia-Seite Reziproke Verteilung */
+	public static String DistReciprocalWikipedia="https://en.wikipedia.org/wiki/Reciprocal_distribution";
+
+	/** Kumaraswamy-Verteilung */
+	public static String[] DistKumaraswamy=new String[]{"Kumaraswamy-Verteilung"};
+
+	/** Wikipedia-Seite Kumaraswamy-Verteilung */
+	public static String DistKumaraswamyWikipedia="https://en.wikipedia.org/wiki/Kumaraswamy_distribution";
+
+	/** Irwin-Hall Verteilung */
+	public static String[] DistIrwinHall=new String[]{"Irwin-Hall-Verteilung"};
+
+	/** Wikipedia-Seite IrwinHall-Verteilung */
+	public static String DistIrwinHallWikipedia="https://de.wikipedia.org/wiki/Irwin-Hall-Verteilung";
+
+	/** Sinus-Verteilung */
+	public static String[] DistSine=new String[]{"Sinus-Verteilung"};
+
+	/** Wikipedia-Seite Sine-Verteilung */
+	public static String DistSineWikipedia=""; /* leide keine Wikipedia-Seite vorhanden */
+
+	/** Arcus Sinus-Verteilung */
+	public static String[] DistArcsine=new String[]{"Arcus Sinus-Verteilung"};
+
+	/** Wikipedia-Seite Arcus Sine-Verteilung */
+	public static String DistArcsineWikipedia=""; /* leide keine Wikipedia-Seite vorhanden */
 
 	/** Warnung "unbekannte Verteilung" */
 	public static String DistUnknown="unbekannte Verteilung";
@@ -394,9 +436,16 @@ public final class DistributionTools {
 				new WrapperBinomialDistribution(),
 				new WrapperPoissonDistribution(),
 				new WrapperNegativeBinomialDistribution(),
+				new WrapperNegativeHyperGeomDistribution(),
 				new WrapperZetaDistribution(),
 				new WrapperDiscreteUniformDistribution(),
-				new WrapperHalfNormalDistribution()
+				new WrapperHalfNormalDistribution(),
+				new WrapperUQuadraticDistribution(),
+				new WrapperReciprocalDistribution(),
+				new WrapperKumaraswamyDistribution(),
+				new WrapperIrwinHallDistribution(),
+				new WrapperSineDistribution(),
+				new WrapperArcsineDistribution()
 		};
 	}
 
@@ -776,6 +825,17 @@ public final class DistributionTools {
 		final AbstractRealDistribution cloned=cloneDistribution(distribution);
 		if (cloned instanceof DataDistributionImpl) ((DataDistributionImpl)cloned).normalizeDensity();
 		return cloned;
+	}
+
+	/**
+	 * Liefert den zu der Verteilung passenden Rechenausdruck.
+	 * @param distribution	Verteilung
+	 * @return	Rechenausdruck oder <code>null</code>, wenn zu der Verteilung kein Rechenausdruck ermittelt werden konnte
+	 */
+	public static String getCalculationExpression(final AbstractRealDistribution distribution) {
+		final AbstractDistributionWrapper wrapper=getWrapper(distribution);
+		if (wrapper!=null) return wrapper.getCalcExpression(distribution);
+		return null;
 	}
 
 	/**
