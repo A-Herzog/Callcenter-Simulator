@@ -153,6 +153,16 @@ public final class StartAnySimulator {
 	 * @see CallcenterSimulatorInterface
 	 */
 	public CallcenterSimulatorInterface run() {
+		return run(true);
+	}
+
+	/**
+	 * Startet die Simulation
+	 * @param allowIncreaseDays	Darf die Anzahl an simulierten Tagen erhöht werden? (Wenn dies in der Konfiguration eingestellt ist.)
+	 * @return	Interface über das auf den lokalen Simulator oder den Wrapper für die Netzwerksimulation zugegriffen werden kann
+	 * @see CallcenterSimulatorInterface
+	 */
+	public CallcenterSimulatorInterface run(final boolean allowIncreaseDays) {
 		final SetupData setup=SetupData.getSetup();
 
 		CallcenterSimulatorInterface simulator;
@@ -166,7 +176,7 @@ public final class StartAnySimulator {
 			simulator=new RemoteAndLocalComplexCallcenterSimulator(editModel,setup.getRealMaxThreadNumber(),networkParts,networkServers,networkPorts,networkPasswords);
 		} else {
 			int threadCount=Math.min(setup.getRealMaxThreadNumber(),Runtime.getRuntime().availableProcessors());
-			if (setup.increaseNumberOfDays) {
+			if (setup.increaseNumberOfDays && allowIncreaseDays) {
 				int days=runModel.editModel.days;
 				while (days%threadCount!=0) days++;
 				runModel.editModel.days=days;

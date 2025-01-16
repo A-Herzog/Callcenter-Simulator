@@ -424,7 +424,7 @@ public final class ConnectedSimulation {
 		/* Simulation starten */
 		StartAnySimulator startAnySimulator=new StartAnySimulator(editModel);
 		s=startAnySimulator.check(); if (s!=null) return s;
-		simulator=startAnySimulator.run();
+		simulator=startAnySimulator.run(false);
 		simulator.start(false);
 
 		return null;
