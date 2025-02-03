@@ -266,7 +266,7 @@ public class EfficiencyEditDialog extends BaseEditDialog {
 		efficiencyMode2.setEnabled(enabled);
 		constantEfficiency.setEnabled(enabled);
 		efficiencyMode3.setEnabled(enabled);
-		intervalEfficiency.setEditable(enabled);
+		intervalEfficiency.setEnabled(enabled);
 	}
 
 	/**

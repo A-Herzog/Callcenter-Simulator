@@ -117,7 +117,10 @@ import parser.symbols.CalcSymbolPreOperatorVariance;
 import parser.symbols.CalcSymbolPreOperatorZeta;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionBinomial;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionBinomialDirect;
+import parser.symbols.distributions.CalcSymbolDiscreteDistributionBorel;
+import parser.symbols.distributions.CalcSymbolDiscreteDistributionGeometric;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionHyperGeom;
+import parser.symbols.distributions.CalcSymbolDiscreteDistributionLogarithmic;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionNegativeBinomial;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionNegativeBinomialDirect;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionNegativeHyperGeom;
@@ -147,6 +150,7 @@ import parser.symbols.distributions.CalcSymbolDistributionJohnsonSU;
 import parser.symbols.distributions.CalcSymbolDistributionKumaraswamy;
 import parser.symbols.distributions.CalcSymbolDistributionLaplace;
 import parser.symbols.distributions.CalcSymbolDistributionLevy;
+import parser.symbols.distributions.CalcSymbolDistributionLogCauchy;
 import parser.symbols.distributions.CalcSymbolDistributionLogLogistic;
 import parser.symbols.distributions.CalcSymbolDistributionLogNormal;
 import parser.symbols.distributions.CalcSymbolDistributionLogistic;
@@ -168,6 +172,7 @@ import parser.symbols.distributions.CalcSymbolDistributionTriangular;
 import parser.symbols.distributions.CalcSymbolDistributionUQuadratic;
 import parser.symbols.distributions.CalcSymbolDistributionUniform;
 import parser.symbols.distributions.CalcSymbolDistributionWeibull;
+import parser.symbols.distributions.CalcSymbolDistributionWignerHalfCircle;
 import parser.symbols.distributions.CalcSymbolEmpiricalDistributionCDF;
 import parser.symbols.distributions.CalcSymbolEmpiricalDistributionCV;
 import parser.symbols.distributions.CalcSymbolEmpiricalDistributionMean;
@@ -307,6 +312,9 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolDiscreteDistributionNegativeBinomialDirect());
 			addSymbol(new CalcSymbolDiscreteDistributionNegativeHyperGeom());
 			addSymbol(new CalcSymbolDiscreteDistributionUniform());
+			addSymbol(new CalcSymbolDiscreteDistributionGeometric());
+			addSymbol(new CalcSymbolDiscreteDistributionLogarithmic());
+			addSymbol(new CalcSymbolDiscreteDistributionBorel());
 
 			addSymbol(new CalcSymbolDistributionExp());
 			addSymbol(new CalcSymbolDistributionUniform());
@@ -352,6 +360,8 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolDistributionIrwinHallDirect());
 			addSymbol(new CalcSymbolDistributionSine());
 			addSymbol(new CalcSymbolDistributionArcsine());
+			addSymbol(new CalcSymbolDistributionWignerHalfCircle());
+			addSymbol(new CalcSymbolDistributionLogCauchy());
 
 			addSymbol(new CalcSymbolEmpiricalDistributionPDF());
 			addSymbol(new CalcSymbolEmpiricalDistributionCDF());

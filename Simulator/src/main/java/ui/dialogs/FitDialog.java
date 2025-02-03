@@ -401,7 +401,7 @@ public class FitDialog extends BaseEditDialog {
 			ouputSelectInsert.setEnabled(true);
 			List<String> list=fitter.getResultList();
 			for (int i=0;i<list.size();i++) ouputSelectInsert.addItem(list.get(i));
-			outputSelectDist=fitter.getResultListDist();
+			outputSelectDist=fitter.getFitDistribution();
 			ouputSelectButton.setEnabled(true);
 		}
 

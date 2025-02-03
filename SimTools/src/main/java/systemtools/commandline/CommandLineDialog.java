@@ -160,6 +160,8 @@ public class CommandLineDialog extends BaseDialog {
 		tab.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 		viewer=new JTextPane();
 		viewer.setEditable(false);
+		viewer.setHighlighter(null);
+		viewer.setCaretColor(viewer.getBackground());
 		viewer.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		viewer.setContentType("text/html");
 		JScrollPane sp=new JScrollPane(viewer);

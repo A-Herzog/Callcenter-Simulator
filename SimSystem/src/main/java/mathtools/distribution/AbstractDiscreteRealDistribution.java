@@ -54,7 +54,10 @@ public abstract class AbstractDiscreteRealDistribution extends AbstractRealDistr
 		if (x<0) return 0;
 		int k=(int)Math.floor(x);
 		double sum=0;
-		for (int i=0;i<=k;i++) sum+=getCountDensity(i);
+		for (int i=0;i<=k;i++) {
+			sum+=getCountDensity(i);
+			if (sum>=1) break;
+		}
 		return sum;
 	}
 
@@ -82,7 +85,9 @@ public abstract class AbstractDiscreteRealDistribution extends AbstractRealDistr
 		double pSum=0;
 		while (pSum<p && k<MAX_K) {
 			k++;
-			pSum+=getCountDensity(k);
+			final double density=getCountDensity(k);
+			if (k>100 && density==0) return k;
+			pSum+=density;
 		}
 
 		return k;

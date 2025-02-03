@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-30 10:04+0200\n"
+"POT-Creation-Date: 2025-01-20 14:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1974,6 +1974,12 @@ msgstr "Binomialverteilung"
 msgid "Distribution.BinomialWikipedia"
 msgstr "https://de.wikipedia.org/wiki/Binomialverteilung"
 
+msgid "Distribution.Borel"
+msgstr "Borel-Verteilung"
+
+msgid "Distribution.BorelWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Borel_distribution"
+
 msgid "Distribution.CV"
 msgstr "Variationskoeffizient"
 
@@ -2067,6 +2073,12 @@ msgstr "Gamma-Verteilung"
 msgid "Distribution.GammaWikipedia"
 msgstr "https://de.wikipedia.org/wiki/Gammaverteilung"
 
+msgid "Distribution.Geometric"
+msgstr "Geometrische Verteilung"
+
+msgid "Distribution.GeometricWikipedia"
+msgstr "https://de.wikipedia.org/wiki/Geometrische_Verteilung"
+
 msgid "Distribution.Gumbel"
 msgstr "Gumbel-Verteilung"
 
@@ -2127,6 +2139,12 @@ msgstr "https://de.wikipedia.org/wiki/Levy-Verteilung"
 msgid "Distribution.Location"
 msgstr "Lage"
 
+msgid "Distribution.LogCauchy"
+msgstr "Log-Cauchy-Verteilung"
+
+msgid "Distribution.LogCauchyWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Log-Cauchy_distribution"
+
 msgid "Distribution.LogLogistic"
 msgstr "Log-Logistische Verteilung"
 
@@ -2138,6 +2156,12 @@ msgstr "Lognormalverteilung"
 
 msgid "Distribution.LogNormalWikipedia"
 msgstr "https://de.wikipedia.org/wiki/Logarithmische_Normalverteilung"
+
+msgid "Distribution.Logarithmic"
+msgstr "Logarithmische Verteilung"
+
+msgid "Distribution.LogarithmicWikipedia"
+msgstr "https://de.wikipedia.org/wiki/Logarithmische_Verteilung"
 
 msgid "Distribution.Logistic"
 msgstr "Logistische Verteilung"
@@ -2213,6 +2237,9 @@ msgstr "Potenzverteilung"
 
 msgid "Distribution.PowerWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Pareto_distribution#Inverse-Pareto_Distribution_/_Power_Distribution"
+
+msgid "Distribution.Radius"
+msgstr "Radius"
 
 msgid "Distribution.Range"
 msgstr "Bereich"
@@ -2315,6 +2342,12 @@ msgstr "Weibull-Verteilung"
 
 msgid "Distribution.WeibullWikipedia"
 msgstr "https://de.wikipedia.org/wiki/Weibull-Verteilung"
+
+msgid "Distribution.WignerHalfCircle"
+msgstr "Wigner Halbkreis-Verteilung"
+
+msgid "Distribution.WignerHalfCircleWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Wigner_semicircle_distribution"
 
 msgid "Distribution.Zeta"
 msgstr "Zeta-Verteilung"
@@ -4307,6 +4340,9 @@ msgstr "SciLab-Skript"
 
 msgid "FileType.Text"
 msgstr "Textdateien"
+
+msgid "FileType.Typst"
+msgstr "Typst-Datei"
 
 msgid "FileType.TypstTable"
 msgstr "Typst-Tabellen"
@@ -9777,6 +9813,9 @@ msgstr "Diagrammeinstellungen"
 msgid "Statistic.Viewer.Information"
 msgstr "Information"
 
+msgid "Statistic.Viewer.LoadImage"
+msgstr "Bild laden"
+
 msgid "Statistic.Viewer.MailError.Info"
 msgstr ""
 "Der angegeben E-Mail-Link\n"
@@ -9869,6 +9908,15 @@ msgstr "Exportieren von Grafiken"
 
 msgid "Statistic.Viewer.SaveTable"
 msgstr "Tabelle speichern"
+
+msgid "Statistic.Viewer.SaveTable.Error.Info"
+msgstr ""
+"Die Tabelle konnte nicht in der Datei\n"
+"%s\n"
+"gespeichert werden."
+
+msgid "Statistic.Viewer.SaveTable.Error.Title"
+msgstr "Fehler beim Speichern der Tabelle"
 
 msgid "Statistic.Viewer.SaveText"
 msgstr "Text speichern"

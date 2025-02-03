@@ -240,6 +240,19 @@ public class StatisticViewerSimpleHTMLText implements StatisticViewer {
 	}
 
 	@Override
+	public int saveTypst(BufferedWriter bw, File mainFile, int nextImageNr) throws IOException {
+		if (textPane==null) initTextPane();
+
+		for (String line: infoText.split("\\n")) {
+			bw.write("// ");
+			bw.write(line);
+			bw.newLine();
+		}
+
+		return 0;
+	}
+
+	@Override
 	public boolean saveDOCX(DOCXWriter doc) {
 		doc.beginParagraph();
 		doc.writeText(infoText);

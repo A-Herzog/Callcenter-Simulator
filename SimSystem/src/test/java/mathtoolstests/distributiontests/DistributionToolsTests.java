@@ -33,11 +33,16 @@ import org.apache.commons.math3.distribution.AbstractRealDistribution;
 import org.apache.commons.math3.distribution.ChiSquaredDistribution;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
 import org.apache.commons.math3.distribution.NormalDistribution;
+import org.apache.commons.math3.distribution.WeibullDistribution;
 import org.junit.jupiter.api.Test;
 
 import mathtools.distribution.ArcsineDistribution;
+import mathtools.distribution.ChiDistributionImpl;
 import mathtools.distribution.DataDistributionImpl;
 import mathtools.distribution.DiscreteBinomialDistributionImpl;
+import mathtools.distribution.DiscreteBorelDistributionImpl;
+import mathtools.distribution.DiscreteGeometricDistributionImpl;
+import mathtools.distribution.DiscreteLogarithmicDistributionImpl;
 import mathtools.distribution.DiscreteNegativeBinomialDistributionImpl;
 import mathtools.distribution.DiscretePoissonDistributionImpl;
 import mathtools.distribution.DiscreteUniformDistributionImpl;
@@ -190,6 +195,8 @@ class DistributionToolsTests {
 			boolean exactMeanAvailable=true;
 			if (dist1 instanceof ErlangDistributionImpl) exactMeanAvailable=false;
 			if (dist1 instanceof TrapezoidDistributionImpl) exactMeanAvailable=false;
+			if (dist1 instanceof ChiDistributionImpl) exactMeanAvailable=false;
+			if (dist1 instanceof DiscreteLogarithmicDistributionImpl) exactMeanAvailable=false;
 			if (exactMeanAvailable) {
 				assertEquals(3.0,DistributionTools.getMean(dist1),0.00001,"Verteilung: "+name);
 			}
@@ -202,30 +209,35 @@ class DistributionToolsTests {
 			if (dist1 instanceof MaxwellBoltzmannDistribution) exactStdAvailable=false;
 			if (dist1 instanceof DiscreteBinomialDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscreteUniformDistributionImpl) exactStdAvailable=false;
-			if (dist1 instanceof DiscretePoissonDistributionImpl) exactStdAvailable=false;
+			if (dist1 instanceof DiscreteGeometricDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscreteNegativeBinomialDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof HalfNormalDistribution) exactStdAvailable=false;
+			if (dist1 instanceof DiscretePoissonDistributionImpl) exactStdAvailable=false;
+			if (dist1 instanceof DiscreteLogarithmicDistributionImpl) exactStdAvailable=false;
+			if (dist1 instanceof DiscreteBorelDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof TrapezoidDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof UQuadraticDistribution) exactStdAvailable=false;
 			if (dist1 instanceof IrwinHallDistribution) exactStdAvailable=false;
 			if (dist1 instanceof SineDistribution) exactStdAvailable=false;
 			if (dist1 instanceof ArcsineDistribution) exactStdAvailable=false;
+			if (dist1 instanceof ChiDistributionImpl) exactStdAvailable=false;
+			if (dist1 instanceof WeibullDistribution) exactStdAvailable=false;
 			if (exactStdAvailable) {
 				assertEquals(2,DistributionTools.getStandardDeviation(dist1),10E-10,"Verteilung: "+name);
 				assertEquals(2.0/3.0,DistributionTools.getCV(dist1),10E-10,"Verteilung: "+name);
 			}
 			if (DistributionTools.canSetMean(dist1)) {
-				final double newVar;
+				final double newMean;
 				if (dist1 instanceof DiscreteNegativeBinomialDistributionImpl) {
-					/* So hohe Varianz geht nicht */
-					newVar=1.5;
+					/* So hoher Erwartungswert geht nicht */
+					newMean=1.5;
 				} else {
-					newVar=5;
+					newMean=5;
 				}
-				final AbstractRealDistribution dist2=DistributionTools.setMean(dist1,newVar);
+				final AbstractRealDistribution dist2=DistributionTools.setMean(dist1,newMean);
 				assertNotNull(dist2,"Verteilung: "+name);
 				if (DistributionTools.canSetMeanExact(dist2)) {
-					assertEquals(newVar,DistributionTools.getMean(dist2),0.00001,"Verteilung: "+name);
+					assertEquals(newMean,DistributionTools.getMean(dist2),0.00001,"Verteilung: "+name);
 				}
 			} else {
 				final AbstractRealDistribution dist2=DistributionTools.setMean(dist1,5);
@@ -258,13 +270,18 @@ class DistributionToolsTests {
 			if (dist1 instanceof DiscreteBinomialDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscreteUniformDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscretePoissonDistributionImpl) exactStdAvailable=false;
+			if (dist1 instanceof DiscreteLogarithmicDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof DiscreteNegativeBinomialDistributionImpl) exactStdAvailable=false;
+			if (dist1 instanceof DiscreteGeometricDistributionImpl) exactStdAvailable=false;
+			if (dist1 instanceof DiscreteBorelDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof HalfNormalDistribution) exactStdAvailable=false;
 			if (dist1 instanceof TrapezoidDistributionImpl) exactStdAvailable=false;
 			if (dist1 instanceof UQuadraticDistribution) exactStdAvailable=false;
 			if (dist1 instanceof IrwinHallDistribution) exactStdAvailable=false;
 			if (dist1 instanceof SineDistribution) exactStdAvailable=false;
 			if (dist1 instanceof ArcsineDistribution) exactStdAvailable=false;
+			if (dist1 instanceof ChiDistributionImpl) exactStdAvailable=false;
+			if (dist1 instanceof WeibullDistribution) exactStdAvailable=false;
 			if (exactStdAvailable) {
 				assertEquals(2,DistributionTools.getStandardDeviation(dist1),10E-10,"Verteilung: "+name);
 				assertEquals(2.0/3.0,DistributionTools.getCV(dist1),10E-10,"Verteilung: "+name);

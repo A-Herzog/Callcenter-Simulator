@@ -122,6 +122,8 @@ public class LanguageStaticLoader {
 		DistributionTools.DistBetaWikipedia=Language.tr("Distribution.BetaWikipedia");
 		DistributionTools.DistCauchy=Language.trAll("Distribution.Cauchy");
 		DistributionTools.DistCauchyWikipedia=Language.tr("Distribution.CauchyWikipedia");
+		DistributionTools.DistLogCauchy=Language.trAll("Distribution.LogCauchy");
+		DistributionTools.DistLogCauchyWikipedia=Language.tr("Distribution.LogCauchyWikipedia");
 		DistributionTools.DistWeibull=Language.trAll("Distribution.Weibull");
 		DistributionTools.DistWeibullWikipedia=Language.tr("Distribution.WeibullWikipedia");
 		DistributionTools.DistChi=Language.trAll("Distribution.Chi");
@@ -184,6 +186,12 @@ public class LanguageStaticLoader {
 		DistributionTools.DistZetaWikipedia=Language.tr("Distribution.ZetaWikipedia");
 		DistributionTools.DistDiscreteUniform=Language.trAll("Distribution.DiscreteUniform");
 		DistributionTools.DistDiscreteUniformWikipedia=Language.tr("Distribution.DiscreteUniformWikipedia");
+		DistributionTools.DistGeometric=Language.trAll("Distribution.Geometric");
+		DistributionTools.DistGeometricWikipedia=Language.tr("Distribution.GeometricWikipedia");
+		DistributionTools.DistLogarithmic=Language.trAll("Distribution.Logarithmic");
+		DistributionTools.DistLogarithmicWikipedia=Language.tr("Distribution.LogarithmicWikipedia");
+		DistributionTools.DistBorel=Language.trAll("Distribution.Borel");
+		DistributionTools.DistBorelWikipedia=Language.tr("Distribution.BorelWikipedia");
 		DistributionTools.DistHalfNormal=Language.trAll("Distribution.HalfNormal");
 		DistributionTools.DistHalfNormalWikipedia=Language.tr("Distribution.HalfNormalWikipedia");
 		DistributionTools.DistUQuadratic=Language.trAll("Distribution.UQuadratic");
@@ -196,6 +204,8 @@ public class LanguageStaticLoader {
 		DistributionTools.DistIrwinHallWikipedia=Language.tr("Distribution.IrwinHallWikipedia");
 		DistributionTools.DistSine=Language.trAll("Distribution.Sine");
 		DistributionTools.DistArcsine=Language.trAll("Distribution.Arcsine");
+		DistributionTools.DistWignerHalfCircle=Language.trAll("Distribution.WignerHalfCircle");
+		DistributionTools.DistWignerHalfCircleWikipedia=Language.tr("Distribution.WignerHalfCircleWikipedia");
 		DistributionTools.DistUnknown=Language.tr("Distribution.Unknown");
 		DistributionTools.DistDataPoint=Language.tr("Distribution.DataPoint");
 		DistributionTools.DistDataPoints=Language.tr("Distribution.DataPoints");
@@ -287,6 +297,7 @@ public class LanguageStaticLoader {
 		JDistributionEditorPanel.DistDegreesOfFreedom=Language.tr("Distribution.DegreesOfFreedom");
 		JDistributionEditorPanel.DistDegreesOfFreedomNumerator=Language.tr("Distribution.DegreesOfFreedom.Numerator");
 		JDistributionEditorPanel.DistDegreesOfFreedomDenominator=Language.tr("Distribution.DegreesOfFreedom.Denominator");
+		JDistributionEditorPanel.DistRadius=Language.tr("Distribution.Radius");
 		JDistributionEditorPanel.ChangeValueDown=Language.tr("JDistributionEditor.ValueDown");
 		JDistributionEditorPanel.ChangeValueUp=Language.tr("JDistributionEditor.ValueUp");
 		JDistributionEditorPanel.DistMostLikely=Language.tr("Distribution.MostLikely");
@@ -448,6 +459,9 @@ public class LanguageStaticLoader {
 		StatisticsBasePanel.viewersSaveImageSizeErrorInfo=Language.tr("Statistic.Viewer.SaveImage.Size.Error.Info");
 		StatisticsBasePanel.viewersSaveImageErrorTitle=Language.tr("Statistic.Viewer.SaveImage.Error.Title");
 		StatisticsBasePanel.viewersSaveImageErrorInfo=Language.tr("Statistic.Viewer.SaveImage.Error.Info");
+		StatisticsBasePanel.viewersLoadImage=Language.tr("Statistic.Viewer.LoadImage");
+		StatisticsBasePanel.viewersSaveTableErrorTitle=Language.tr("Statistic.Viewer.SaveTable.Error.Title");
+		StatisticsBasePanel.viewersSaveTableErrorInfo=Language.tr("Statistic.Viewer.SaveTable.Error.Info");
 		StatisticsBasePanel.viewersChartSetupTitle=Language.tr("Statistic.Viewer.DiagramSettings.Title");
 		StatisticsBasePanel.viewersChartSetupDefaults=Language.tr("Statistic.Viewer.DiagramSettings.Defaults");
 		StatisticsBasePanel.viewersChartSetupDefaultsHint=Language.tr("Statistic.Viewer.DiagramSettings.Defaults.Hint");
@@ -595,6 +609,7 @@ public class LanguageStaticLoader {
 		StatisticsBasePanel.fileTypeWordWithImage=Language.tr("FileType.WordImage");
 		StatisticsBasePanel.fileTypeSCE=Language.tr("FileType.SciLabScript");
 		StatisticsBasePanel.fileTypeTEX=Language.tr("FileType.LaTeX");
+		StatisticsBasePanel.fileTypeTYP=Language.tr("FileType.Typst");
 
 		/* Kommandozeilen-System */
 		BaseCommandLineSystem.errorBig=Language.tr("Dialog.Title.Error").toUpperCase();

@@ -27,7 +27,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +39,7 @@ import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 import java.util.function.IntSupplier;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -503,10 +503,11 @@ public class StatisticViewerTable implements StatisticViewer {
 	}
 
 	/**
-	 * Aktualisiert das Datenmodell für die Tabelle.
-	 * @see #getViewer(boolean)
+	 * Wendet die eingestellten Filter und Sortierungen auf eine Tabelle an.
+	 * @param table	Zu verarbeitende Tabelle (wird nicht verändert)
+	 * @return	Neue Tabelle, die durch Filterung und Sortierung aus der Originaltabelle hervorgeht
 	 */
-	private void buildTableModel() {
+	protected Table filterAndSortTable(final Table table) {
 		/* Filtern */
 		final Table filterTable;
 		if (filter.stream().mapToInt(set->set.size()).max().orElse(0)==0) {
@@ -530,7 +531,15 @@ public class StatisticViewerTable implements StatisticViewer {
 		}
 
 		/* Sortieren */
-		showTable=filterTable.getSorted(sortByColumn,sortDescending);
+		return filterTable.getSorted(sortByColumn,sortDescending);
+	}
+
+	/**
+	 * Aktualisiert das Datenmodell für die Tabelle.
+	 * @see #getViewer(boolean)
+	 */
+	private void buildTableModel() {
+		showTable=filterAndSortTable(table);
 
 		/* Spaltenüberschriftung mit Icons versehen */
 		showColumnNames=new ArrayList<>(columnNames);
@@ -785,7 +794,7 @@ public class StatisticViewerTable implements StatisticViewer {
 	 * @param line	Auszugebende Zeile (die Spalten werden durch Tabulatoren getrennt)
 	 * @see #copyToClipboard(Clipboard)
 	 */
-	private void addListToStringBuilder(final StringBuilder output, final List<String> line) {
+	protected static void addListToStringBuilder(final StringBuilder output, final List<String> line) {
 		final int size=line.size();
 		if (size>0) output.append(line.get(0));
 		for (int i=1;i<size;i++) {output.append('\t'); output.append(line.get(i));}
@@ -796,12 +805,7 @@ public class StatisticViewerTable implements StatisticViewer {
 	public Transferable getTransferable() {
 		if (columnNames.isEmpty()) buildTable();
 		buildTableModel();
-
-		final StringBuilder s=new StringBuilder();
-		addListToStringBuilder(s,showColumnNames);
-		final int size=showTable.getSize(0);
-		for (int i=0;i<size;i++) addListToStringBuilder(s,showTable.getLine(i));
-		return new StringSelection(s.toString());
+		return getTransferableFromTable(false,showColumnNames);
 	}
 
 	/**
@@ -809,17 +813,39 @@ public class StatisticViewerTable implements StatisticViewer {
 	 * Dieser ist dann verfügbar, wenn auch ein Kopieren möglich ist.
 	 * @return	{@link Transferable}-Objekt für den Viewer
 	 */
-	private Transferable getTransferablePlain() {
+	protected Transferable getTransferablePlain() {
 		if (columnNames.isEmpty()) buildTable();
+		buildTableModel();
+		return getTransferableFromTable(true,showColumnNames);
+	}
 
-		final StringBuilder s=new StringBuilder();
-		final int size=showTable.getSize(0);
+	/**
+	 * Liefert ein {@link Transferable}-Objekt für den Viewer zum Kopieren der Tabelle
+	 * @param plain	Rahmenzeile und -spalte weglassen?
+	 * @param columnNames	Namen der Spaltenüberschriften (wird nur verwendet, wenn <code>plain</code> nicht auf <code>true</code> steht)
+	 * @return	{@link Transferable}-Objekt zum Kopieren in die Zwischenablage
+	 */
+	protected Transferable getTransferableFromTable(final boolean plain, final List<String> columnNames) {
+		return getTransferableFromTable(showTable,plain,columnNames);
+	}
+
+	/**
+	 * Liefert ein {@link Transferable}-Objekt für eine Tabelle
+	 * @param table	Umzuwandelnde Tabelle
+	 * @param plain	Rahmenzeile und -spalte weglassen?
+	 * @param columnNames	Namen der Spaltenüberschriften (wird nur verwendet, wenn <code>plain</code> nicht auf <code>true</code> steht)
+	 * @return	{@link Transferable}-Objekt zum Kopieren in die Zwischenablage
+	 */
+	protected static Transferable getTransferableFromTable(final Table table, final boolean plain, final List<String> columnNames) {
+		final StringBuilder result=new StringBuilder();
+		if (!plain) addListToStringBuilder(result,columnNames);
+		final int size=table.getSize(0);
 		for (int i=0;i<size;i++) {
-			final List<String> line=new ArrayList<>(showTable.getLine(i));
-			line.remove(0);
-			addListToStringBuilder(s,line);
+			final List<String> line=new ArrayList<>(table.getLine(i));
+			if (plain) line.remove(0);
+			addListToStringBuilder(result,line);
 		}
-		return new StringSelection(s.toString());
+		return new StringSelection(result.toString());
 	}
 
 	@Override
@@ -851,6 +877,14 @@ public class StatisticViewerTable implements StatisticViewer {
 	 * @return	{@link Table}-Objekt, welches die in dem Viewer vorliegenden Tabellendaten enthält
 	 */
 	public Table toTable() {
+		return toTableInt();
+	}
+
+	/**
+	 * Wandelt die intern vorliegenden Tabellendaten in ein {@link Table}-Objekt um und liefert dieses zurück.
+	 * @return	{@link Table}-Objekt, welches die in dem Viewer vorliegenden Tabellendaten enthält
+	 */
+	private Table toTableInt() {
 		if (columnNames.isEmpty()) buildTable();
 		buildTableModel();
 
@@ -862,13 +896,15 @@ public class StatisticViewerTable implements StatisticViewer {
 
 	@Override
 	public void save(Component owner) {
-		File file=Table.showSaveDialog(owner,StatisticsBasePanel.viewersSaveTable,null,StatisticsBasePanel.fileTypePDF+" (*.pdf)","pdf"); if (file==null) return;
+		final File file=Table.showSaveDialog(owner,StatisticsBasePanel.viewersSaveTable,null,StatisticsBasePanel.fileTypePDF+" (*.pdf)","pdf"); if (file==null) return;
 
 		if (file.exists()) {
 			if (!MsgBox.confirmOverwrite(owner,file)) return;
 		}
 
-		save(owner,file);
+		if (!save(owner,file)) {
+			MsgBox.error(owner,StatisticsBasePanel.viewersSaveTableErrorTitle,String.format(StatisticsBasePanel.viewersSaveTableErrorInfo,file.toString()));
+		}
 	}
 
 	@Override
@@ -885,32 +921,14 @@ public class StatisticViewerTable implements StatisticViewer {
 		return toTable().save(file);
 	}
 
-	/**
-	 * Fügt eine einzelne Zeile zu einer {@link BufferedWriter}-Ausgabe hinzu.
-	 * @param bw	Ausgabestream, der später zur html-Datei wird
-	 * @param line	Auszugebende Datenzeile
-	 * @throws IOException	Die Exception wird ausgelöst, wenn die Dateiausgabe nicht durchgeführt werden konnte.
-	 * @see #saveHtml(BufferedWriter, File, int, boolean)
-	 */
-	private void saveLineToTable(BufferedWriter bw, List<String> line) throws IOException {
-		if (line==null) return;
-		bw.write("  <tr>");
-		for (int i=0;i<line.size();i++) bw.write("<td>"+line.get(i)+"</td>");
-		bw.write("</tr>");
-		bw.newLine();
-	}
-
 	@Override
 	public int saveHtml(BufferedWriter bw, File mainFile, int nextImageNr, boolean imagesInline) throws IOException {
 		if (columnNames.isEmpty()) buildTable();
 		buildTableModel();
 
-		bw.write("<table>");
+		bw.write(showTable.saveToHTML(showColumnNames,true));
 		bw.newLine();
-		saveLineToTable(bw,showColumnNames);
-		for (int i=0;i<showTable.getSize(0);i++) saveLineToTable(bw,showTable.getLine(i));
-		bw.write("</table>");
-		bw.newLine();
+
 		return nextImageNr;
 	}
 
@@ -919,13 +937,19 @@ public class StatisticViewerTable implements StatisticViewer {
 		if (columnNames.isEmpty()) buildTable();
 		buildTableModel();
 
-		try (final ByteArrayOutputStream stream=new ByteArrayOutputStream()) {
-			toTable().save(stream,Table.SaveMode.SAVEMODE_TEX);
-			final byte[] b=stream.toByteArray();
-			char[] c=new char[b.length];
-			for (int i=0;i<b.length;i++) c[i]=(char)b[i];
-			bw.write(c);
-		}
+		bw.write(showTable.saveToLaTeX(showColumnNames,true));
+		bw.newLine();
+
+		return nextImageNr;
+	}
+
+	@Override
+	public int saveTypst(BufferedWriter bw, File mainFile, int nextImageNr) throws IOException {
+		if (columnNames.isEmpty()) buildTable();
+		buildTableModel();
+
+		bw.write(showTable.saveToTypst(showColumnNames,true));
+		bw.newLine();
 
 		return nextImageNr;
 	}
@@ -1020,8 +1044,10 @@ public class StatisticViewerTable implements StatisticViewer {
 	}
 
 	@Override
-	public boolean saveDOCX(DOCXWriter doc) {
-		doc.writeTable(toTable());
+	public boolean saveDOCX(final DOCXWriter doc) {
+		final Table t=toTableInt();
+		final int lines=Math.min(t.getSize(0),t.findLastNonNullRow(true)+2);
+		doc.writeTable(t,lines);
 		return true;
 	}
 
@@ -1030,8 +1056,14 @@ public class StatisticViewerTable implements StatisticViewer {
 		if (columnNames.isEmpty()) buildTable();
 		buildTableModel();
 
-		if (!pdf.writeStyledTableHeader(showColumnNames)) return false;
-		final int size=showTable.getSize(0);
+		final var filteredShowColumnNames=showColumnNames.stream().map(name->{
+			name=name.replace(" "+new String(Character.toChars(9660)),"");
+			name=name.replace(" "+new String(Character.toChars(9650)),"");
+			name=name.replace(" "+new String(Character.toChars(9745)),"");
+			return name;
+		}).collect(Collectors.toList());
+		if (!pdf.writeStyledTableHeader(filteredShowColumnNames)) return false;
+		final int size=Math.min(showTable.getSize(0),showTable.findLastNonNullRow(true)+2);
 		for (int i=0;i<size;i++) if (!pdf.writeStyledTableLine(showTable.getLine(i),i==size-1)) return false;
 
 		return true;

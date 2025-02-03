@@ -113,6 +113,12 @@ public final class DistributionTools {
 	/** Wikipedia-Seite Cauchy-Verteilung */
 	public static String DistCauchyWikipedia="https://de.wikipedia.org/wiki/Cauchy-Verteilung";
 
+	/** Log-Cauchy-Verteilung */
+	public static String[] DistLogCauchy=new String[]{"Log-Cauchy-Verteilung"};
+
+	/** Wikipedia-Seite Cauchy-Verteilung */
+	public static String DistLogCauchyWikipedia="https://en.wikipedia.org/wiki/Log-Cauchy_distribution"; /* Keine deutsche Wikipedia-Seite vorhanden */
+
 	/** Weibull-Verteilung */
 	public static String[] DistWeibull=new String[]{"Weibull-Verteilung"};
 
@@ -299,6 +305,24 @@ public final class DistributionTools {
 	/** Wikipedia-Seite Diskrete Gleichverteilung */
 	public static String DistDiscreteUniformWikipedia="https://de.wikipedia.org/wiki/Diskrete_Gleichverteilung";
 
+	/** Geometrische Verteilung */
+	public static String[] DistGeometric=new String[]{"Geometrische Verteilung"};
+
+	/** Wikipedia-Seite Geometrische Verteilung */
+	public static String DistGeometricWikipedia="https://de.wikipedia.org/wiki/Geometrische_Verteilung";
+
+	/** Logarithmische Verteilung */
+	public static String[] DistLogarithmic=new String[]{"Logarithmische Verteilung"};
+
+	/** Wikipedia-Seite Logarithmische Verteilung */
+	public static String DistLogarithmicWikipedia="https://de.wikipedia.org/wiki/Logarithmische_Verteilung";
+
+	/** Borel-Verteilung */
+	public static String[] DistBorel=new String[]{"Borel-Verteilung"};
+
+	/** Wikipedia-Seite Borel-Verteilung */
+	public static String DistBorelWikipedia="https://en.wikipedia.org/wiki/Borel_distribution"; /* leide keine Wikipedia-Seite vorhanden */
+
 	/** Halbe Normalverteilung */
 	public static String[] DistHalfNormal=new String[]{"Halbe Normalverteilung"};
 
@@ -341,6 +365,12 @@ public final class DistributionTools {
 	/** Wikipedia-Seite Arcus Sine-Verteilung */
 	public static String DistArcsineWikipedia=""; /* leide keine Wikipedia-Seite vorhanden */
 
+	/** Wigner Halbkreis-Verteilung */
+	public static String[] DistWignerHalfCircle=new String[]{"Wigner Halbkreis-Verteilung"};
+
+	/** Wikipedia-Seite  Wigner Halbkreis-Verteilung */
+	public static String DistWignerHalfCircleWikipedia="https://en.wikipedia.org/wiki/Wigner_semicircle_distribution";
+
 	/** Warnung "unbekannte Verteilung" */
 	public static String DistUnknown="unbekannte Verteilung";
 
@@ -358,6 +388,9 @@ public final class DistributionTools {
 
 	/** Bezeichner "Skalierung" */
 	public static String DistScale="Skalierung";
+
+	/** Bezeichner "Inverse Skalierung" */
+	public static String DistInverseScale="Inverse Skalierung";
 
 	/** Bezeichner "Am wahrscheinlichsten" (für Dreiecksverteilung) */
 	public static String DistMostLikely="Am wahrscheinlichsten";
@@ -439,13 +472,18 @@ public final class DistributionTools {
 				new WrapperNegativeHyperGeomDistribution(),
 				new WrapperZetaDistribution(),
 				new WrapperDiscreteUniformDistribution(),
+				new WrapperLogarithmicDistribution(),
 				new WrapperHalfNormalDistribution(),
+				new WrapperGeometricDistribution(),
 				new WrapperUQuadraticDistribution(),
 				new WrapperReciprocalDistribution(),
 				new WrapperKumaraswamyDistribution(),
 				new WrapperIrwinHallDistribution(),
 				new WrapperSineDistribution(),
-				new WrapperArcsineDistribution()
+				new WrapperArcsineDistribution(),
+				new WrapperWignerHalfCircleDistribution(),
+				new WrapperLogCauchyDistribution(),
+				new WrapperBorelDistribution()
 		};
 	}
 

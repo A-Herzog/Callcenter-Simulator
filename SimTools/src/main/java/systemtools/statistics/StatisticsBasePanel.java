@@ -164,6 +164,11 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	/** Titel des Bild-Laden Dateiauswahldialogs */
 	public static String viewersLoadImage="Bild laden";
 
+	/** Titel der Fehlermeldung "Fehler beim Speichern der Tabelle" */
+	public static String viewersSaveTableErrorTitle="Fehler beim Speichern der Tabelle";
+	/** Inhalt der Fehlermeldung "Fehler beim Speichern der Tabelle" */
+	public static String viewersSaveTableErrorInfo="Die Tabelle konnte nicht in der Datei\n%s\ngespeichert werden.";
+
 	/** Titel des Eingabedialogs zur Definition der Größe der zu speichernden Bilder */
 	public static String viewersSaveImageSizeTitle="Exportieren von Grafiken";
 	/** Eingabeprompt im Eingabedialog zur Definition der Größe der zu speichernden Bilder */
@@ -566,6 +571,8 @@ public abstract class StatisticsBasePanel extends JPanel implements AbstractRepo
 	public static String fileTypeSCE="SciLab-Skript";
 	/** Bezeichner für Dateiformat LaTeX */
 	public static String fileTypeTEX="LaTeX-Datei";
+	/** Bezeichner für Dateiformat Typst */
+	public static String fileTypeTYP="Typst-Datei";
 
 	/** Der hier eingetragene Programmname wird in html-Reports verwendet. */
 	public static String program_name="";
