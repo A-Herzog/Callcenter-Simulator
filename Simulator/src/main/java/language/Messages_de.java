@@ -266,6 +266,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[629] = "Schichtplan-Vorschau";
     t[636] = "XML.Statistic.Clients.Recall.Clients.ErrorSumPerInterval";
     t[637] = "Die Wiederanrufanzahl der Kunden pro Intervall ist ung\u00fcltig.";
+    t[638] = "Window.ErrorNoGraphics";
+    t[639] = "Da keine grafische Oberfl\u00e4che zur Verf\u00fcgung steht, kann der Simulator nur im Konsolen-Modus betrieben werden. Rufen Sie den Simulator mit dem Parameter \"Hilfe\" auf, um eine \u00dcbersicht \u00fcber die verf\u00fcgbaren Konsolen-Befehle zu erhalten.";
     t[640] = "Batch.Simulation.Abort";
     t[641] = "Simulation abbrechen";
     t[646] = "MainMenu.Simulation.RunAndSave.Mnemonic";
@@ -494,6 +496,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1171] = "Der Prozess der Ertragsverbesserung ist sehr zeitintensiv.";
     t[1172] = "Generator.LoadClients";
     t[1173] = "Kundendaten laden";
+    t[1176] = "SimStatistic.Caller";
+    t[1177] = "Anrufer";
     t[1178] = "Statistic.Toolbar.Nothing.Tooltip";
     t[1179] = "Keine Eintr\u00e4ge ausw\u00e4hlen";
     t[1182] = "Statistic.FastAccess.SelectXMLTag.InsertMethod.AtCursorPosition";
@@ -658,6 +662,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1587] = "Kunden";
     t[1590] = "InfoDialog.MemoryAvailable";
     t[1591] = "Verf\u00fcgbarer Speicher (f\u00fcr Anwendung)";
+    t[1594] = "JDistributionEditor.Wikipedia";
+    t[1595] = "Wikipedia";
     t[1600] = "RevenueOptimizer.Working.Add.Single";
     t[1601] = "F\u00fcge 1 Agenten in Gruppe %d hinzu => Ertrag=%s (+%s)";
     t[1602] = "Editor.Caller.Error.RetryProbabiltyAfterBlockedFirstRetry.Title";
@@ -684,6 +690,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1681] = "Die angegebene maximale Warteschlangenl\u00e4nge %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
     t[1696] = "Editor.Caller.Score.Base";
     t[1697] = "Basis-Score der Kundenklasse";
+    t[1698] = "Distribution.CV.Wikipedia";
+    t[1699] = "https://de.wikipedia.org/wiki/Variationskoeffizient";
     t[1700] = "Importer.RetryIntervalsDistribution";
     t[1701] = "Wiederholabst\u00e4ndeverteilung";
     t[1706] = "Editor.Productivity.DiseaseRelatedSurcharge.Info";
@@ -1320,6 +1328,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[3197] = "Anzahl an Erstanrufern";
     t[3198] = "Optimizer.OptimizeProperty.TargetForLabel.WorkLoad.Tooltip";
     t[3199] = "Dieser Wert gibt die maximal gew\u00fcnschte Auslastung an, nicht die wie viele Agenten eingesetzt werden sollen.";
+    t[3202] = "Distribution.LogNormalInfo";
+    t[3203] = "<p>Die Lognormalverteilung eignet sich sehr gut zur Modellierung von Bediendauern und \u00e4hnlichen Zeitdauern. Im Warteschlangensimulator wird die Verteilung \u00fcber <b>Erwartungswert und Standardabweichung</b> parametrisiert.</p>\n<p>K\u00f6nnen diese beiden Werte aus den historischen Daten abgeleitet werden, so eigent sich die Verteilung sehr gut zur Modellierung. Stehen derartige Werte nicht zur Verf\u00fcgung, so kann ggf. auf die Dreiecksverteilung zur\u00fcckgegriffen werden.</p>\n<p>In <b>Tabellenkalkulationen</b> ist \u00fcblicherweise auch die Lognrmalverteilung hinterlegt. Allerdings erfolgt doch die Parametrisierung meist nicht \u00fcber Erwartungswert und Standardabweichung. Manuelle Umrechnungen sind hier n\u00f6tig (siehe Dokumentation des jeweiligen Programms).</p>";
     t[3206] = "Optimizer.OptimizeProperty.TargetMaxForLabel.Accessibility.Info";
     t[3207] = "Die Agentenanzahl wird <b>verringert</b> bis h\u00f6chstens diese Erreichbarkeit vorliegt.";
     t[3216] = "Editor.Caller.Error.NoSkillForwarding.Title";
@@ -2000,6 +2010,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4679] = "Verteilung";
     t[4682] = "Distribution.SetupList.Divider";
     t[4683] = "<html><body>Oben: hervorgehobene Verteilungen (angegebene Reihenfolge)<br>Unten: Normale Verteilungen (werden alphabetisch sortiert)</body></html>";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4686] = "Editor.Caller.Error.RevenuePerSuccessfulClient.Info";
     t[4687] = "Der Gewinn pro erfolgreich bedientem Kunden %s ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Zahl sein.";
     t[4688] = "AutoSave.Error.FilterExecute";
@@ -2010,12 +2026,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4699] = "In Callcenter %s wurden intervallbasierende Minimal- und Maximalwerte f\u00fcr die Anzahl an Agenten in einer Gruppe angegeben, die jedoch nicht existiert.";
     t[4700] = "Model.Check.ClientType.RetryCheck.CanceledFirst";
     t[4701] = "Bei Warteabbruch, erster Wiederholversuch.";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4704] = "XML.FileNotFound";
     t[4705] = "Die angegebene Datei\n%s\nexistiert nicht.";
     t[4706] = "CommandLine.Dialog.StopCommand";
@@ -2542,8 +2552,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[5757] = "Hilfe zu regul\u00e4ren Ausdr\u00fccken";
     t[5762] = "Model.Check.ClientType.RecallCheck.UnknownSkillLevel";
     t[5763] = "F\u00fcr Kunden des Typs \"%s\" sind Wiederanrufregeln f\u00fcr den Fall einer Bedienung durch einen Agenten des Skill-Levels \"%s\" definiert. Diesen Skill-Level gibt es jedoch nicht.";
-    t[5764] = "Window.ErrorNoGraphics";
-    t[5765] = "Da keine grafische Oberfl\u00e4che zur Verf\u00fcgung steht, kann der Simulator nur im Konsolen-Modus betrieben werden. Rufen Sie den Simulator mit dem Parameter \"Hilfe\" auf, um eine \u00dcbersicht \u00fcber die verf\u00fcgbaren Konsolen-Befehle zu erhalten.";
+    t[5764] = "Model.Check.ClientTypes.TooManyCalls";
+    t[5765] = "In dem Modell wurden zu viele Erstanrufer eingeplant. Insgesamt wurden %s Erstanrufer eingeplant.";
     t[5766] = "Editor.GeneralData.GlobalParameters.PreferedShiftLength.Info";
     t[5767] = "wird bei der automatischen Festlegung von Arbeitszeiten verwendet";
     t[5772] = "Distribution.ExpWikipedia";
@@ -2670,6 +2680,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6077] = "Zus\u00e4tzliche Erstanrufer pro Kundentyp";
     t[6078] = "Editor.SkillLevel.Add.Info";
     t[6079] = "W\u00e4hlen Sie die hinzuzuf\u00fcgende Bef\u00e4higung";
+    t[6080] = "XML.SaaS.LogFile";
+    t[6081] = "LogDatei";
     t[6086] = "XML.Model.AgentsGroup.ErrorDistribution";
     t[6087] = "Es muss entweder eine Agentenanzahl oder eine Verteilung \u00fcber den Tag oder eine Liste von Kundentypen als Basis f\u00fcr die Verteilung \u00fcber den Tag angegeben werden.";
     t[6088] = "XML.Model.Warnings.Record.WarningYellow.Error.InvalidValue";
@@ -2992,8 +3004,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[6835] = "Basis";
     t[6842] = "Editor.AgentsGroup.Shift.ShowPlan.CopyDistribution";
     t[6843] = "Verteilung kopieren";
+    t[6844] = "Distribution.UniformInfo";
+    t[6845] = "<p>Die Gleichverteilung wird \u00fcber den minimal m\u00f6glichen Wert und den maximal m\u00f6glichen Wert, den sie annehmen kann, parametrisiert. Der Erwartungswert ist dann genau der Mittelpunkt zwischen diesen beiden Werten.</p>\n<p>Die Gleichverteilung ordnet jedem Wert zwischen dem Minimum und dem Maximum dieselbe Wahrscheinlichkeit zu.</p>\\n\"\n\"<p>Auch wenn dies auf den ersten Blick relativ n\u00fctzlich erscheint, so unterliegen doch <b>fast keine realen Prozesse</b> einer Gleichverteilung.</p>\n<p>Ein weiterer Nachteil besteht darin, dass die ansonsten \u00fcblichen Kenngr\u00f6\u00dfen Erwartungswert und Standardabweichung nur indirekt \u00fcber den Bereich der Verteilung eingestellt werden k\u00f6nnen.</p>";
     t[6846] = "Editor.Caller.Costs.PerWaitingSecond";
     t[6847] = "Virtuelle Kosten pro Wartesekunde";
+    t[6852] = "JDistributionEditor.InfoWindow.Parameters";
+    t[6853] = "Aktuell gew\u00e4hlte Parameter";
     t[6856] = "Model.Check.ClientType.RetryCheck.BlockedFirst";
     t[6857] = "Bei \"besetzt\", erster Wiederholversuch.";
     t[6858] = "CommandLine.Preplanning.Mode.WaitingTime.Complex.PreSimplify";
@@ -3160,6 +3176,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7221] = "Mehrere Spalten f\u00fcr eine Agentengruppe als Quelle gew\u00e4hlt";
     t[7226] = "MainMenu.File.NewModel.CreateWithWizard.Mnemonic";
     t[7227] = "A";
+    t[7230] = "Distribution.Skewness.Wikipedia";
+    t[7231] = "https://de.wikipedia.org/wiki/Schiefe_(Statistik)";
     t[7232] = "Loader.Info.XMLPreprocessing.InputTableFile";
     t[7233] = "Eingabe-Datentabellendatei";
     t[7234] = "CommandLine.Benchmark.SimulaionRun";
@@ -3424,6 +3442,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[7811] = "Die Wartezeit-Summe der Anrufer pro Intervall ist ung\u00fcltig.";
     t[7814] = "Loader.Error.NoOutputFileSelected.Title";
     t[7815] = "Keine Ausgabedatei angegeben";
+    t[7816] = "JDistributionEditor.Info";
+    t[7817] = "Info";
     t[7820] = "MainMenu.Data.LoadCaller96.Mnemonic";
     t[7821] = " ";
     t[7822] = "MainMenu.Tools.Calculations.Tooltip";
@@ -3996,6 +4016,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9195] = "Ausw\u00e4hlen, was in der Baumansicht angezeigt werden soll";
     t[9196] = "Editor.AgentsGroup.NumberOfAgents";
     t[9197] = "Anzahl";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9198] = "Optimization.Error.MinimumLargerThanMaximum";
     t[9199] = "Der Minimalwert f\u00fcr die zu optimierende Eigenschaft ist kleiner als der Maximalwert. Die Eigenschaft wird im Rahmen der Optimierung jedoch kleiner, so dass der Minimalwert der kleinere sein muss.";
     t[9202] = "Server.Error.PortNumberInvalid";
@@ -4016,12 +4042,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9259] = "Abbruchzeiten";
     t[9278] = "SettingsDialog.FontSizes.Info";
     t[9279] = "Ver\u00e4nderungen der Schriftgr\u00f6\u00dfe oder des Themas werden erst nach dem n\u00e4chsten Programmstart wirksam.";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9280] = "Distribution.DegreesOfFreedom";
     t[9281] = "Freiheitsgrade";
     t[9286] = "FileType.AllTables";
@@ -4254,6 +4274,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9739] = "Fenstergr\u00f6\u00dfe";
     t[9746] = "CommandLine.Preplanning.Mode.ServiceLevel.Simple.PreSimplify";
     t[9747] = "ServiceLevelVereinfacht";
+    t[9750] = "JDistributionEditor.InfoWindow.WebApp";
+    t[9751] = "Wahrscheinlichkeitsverteilungsanzeige-WebApp";
     t[9754] = "Editor.AgentsGroup.Mode.Fixed";
     t[9755] = "Agenten mit festen Arbeiszeiten";
     t[9766] = "Editor.Caller.Forwarding.Probability";
@@ -4458,12 +4480,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[10275] = "Simulation in Logdatei aufzeichnen...";
     t[10278] = "NewModelWizard.RetryProbability";
     t[10279] = "Anteil der Warteabbrecher, der sp\u00e4ter einen weiteren Anruf t\u00e4tigt";
+    t[10284] = "Distribution.Mean.Wikipedia";
+    t[10285] = "https://de.wikipedia.org/wiki/Mittelwert";
     t[10288] = "Model.Check.Callcenter.NoName";
     t[10289] = "Ein Callcenter besitzt keinen Namen.";
     t[10292] = "XML.Connected.ErrorDataDoNotMatch";
     t[10293] = "Die Anzahl an angegebenen Modell-Einstellungen, Statistik-Einstellung und \u00dcbertrags-Einstellungen stimmen nicht \u00fcberein.";
-    t[10302] = "Model.Check.ClientTypes.TooManyCalls";
-    t[10303] = "In dem Modell wurden zu viele Erstanrufer eingeplant. Insgesamt wurden %s Erstanrufer eingeplant.";
+    t[10302] = "Distribution.StdDev.Wikipedia";
+    t[10303] = "https://de.wikipedia.org/wiki/Standardabweichung";
     t[10304] = "Model.Check.Callcenter.MinimumWaitingTimeUnknownClientType";
     t[10305] = "In Callcenter \"%s\" wurde eine Mindestwartezeit f\u00fcr den Kundentyp \"%s\" definiert. Es gibt jedoch keinen solchen Kundentyp.";
     t[10308] = "XML.OptimizerSetup.ValueMaximum";
@@ -5082,8 +5106,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11783] = "Mittelwerte pro Halbstundenintervall";
     t[11786] = "Editor.Caller.Costs.RevenuePerSuccessfulClient";
     t[11787] = "Ertrag pro erfolgreich bedientem Kunden";
-    t[11788] = "XML.SaaS.LogFile";
-    t[11789] = "LogDatei";
+    t[11788] = "Distribution.ErlangInfo";
+    t[11789] = "<p>Die Erlang-Verteilung stellt einen Spezialfall der <b>Gamma-Verteilung</b> dar. Bei der Modellierung ist es daher fast immer sinnvoller, direkt die Gamma-Verteilung zu verwenden.</p>\n<p>Von mathematischen Standpunkt her stellt die Erlang-Verteilung die Hintereinanderausf\u00fchrung mehrerer Exponentialverteilungen dar und ist daher in der Theorie von Bedeutung.</p>";
     t[11794] = "Statistic.Viewer.Tools.ShowAll";
     t[11795] = "Alle Kategorien ausklappen";
     t[11806] = "Distribution.ZetaWikipedia";
@@ -5124,8 +5148,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11885] = "Keine Agententyp-abh\u00e4ngige Wiederanrufregeln konfiguriert";
     t[11886] = "SimStatistic.Recommendations.HighPostProcessingTimeCV";
     t[11887] = "Der Variationskoeffizient der Nachbearbeitungszeiten in Skill-Level %s ist sehr hoch. Sie sollten die Agenten besser schulen, so dass die Nachbearbeitungszeiten gleichm\u00e4\u00dfiger ausfallen.";
-    t[11890] = "SimStatistic.Caller";
-    t[11891] = "Anrufer";
+    t[11890] = "Distribution.GammaInfo";
+    t[11891] = "<p>Die Gamma-Verteilung eignet sich sehr gut zur Modellierung von Bediendauern und \u00e4hnlichen Zeitdauern. Im Warteschlangensimulator wird die Verteilung \u00fcber <b>Erwartungswert und Standardabweichung</b> parametrisiert.</p>\n<p>K\u00f6nnen diese beiden Werte aus den historischen Daten abgeleitet werden, so eigent sich die Verteilung sehr gut zur Modellierung. Stehen derartige Werte nicht zur Verf\u00fcgung, so kann ggf. auf die Dreiecksverteilung zur\u00fcckgegriffen werden.</p>\n<p>In <b>Tabellenkalkulationen</b> ist \u00fcblicherweise auch die Gamma-Verteilung hinterlegt. Allerdings erfolgt doch die Parametrisierung meist nicht \u00fcber Erwartungswert und Standardabweichung. Manuelle Umrechnungen sind hier n\u00f6tig (siehe Dokumentation des jeweiligen Programms).</p>";
     t[11898] = "XML.OptimizerSetup.Property.WaitingTimeCalls";
     t[11899] = "Wartezeit(Anrufbasis);Wartezeit";
     t[11902] = "LoadCalculator.PartOfLoadForTheCallcenter";
@@ -5496,6 +5520,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12819] = "Optimierer-Einstellungen laden";
     t[12820] = "Loader.ProcessError.XMLProcessing.ErrorInLine";
     t[12821] = "Bei der Verarbeitung ist in Zeile %d der folgende Fehler aufgetreten:\n%s";
+    t[12822] = "Distribution.NormalInfo";
+    t[12823] = "<p>Die Normalverteilung ergibt sich als <b>theoretische Grenzverteilung</b> bei der Hintereinanderausf\u00fchrung vieler jeweils unabh\u00e4ngiger Verteilungen.</p>\n<p>Die Parameter der Normalverteilung sind zugleich deren Erwartungswert und deren Standardabweichung. Dies hat zur Folge, dass die Kenngr\u00f6\u00dfen der Normalverteilung (in praktisch jeder Software) sehr einfach eingestellt werden k\u00f6nnen.</p>\n<p>Die Normalverteilung kann stets auch negative Werte annehmen. Daher eignet sich diese <b>eher nicht zur Modellierung von Zeitdauern</b>. Lognormalverteilung oder Gamma-Verteilung sind f\u00fcr diesen Zweck meist wesentlich besser geeignet. Auch diese k\u00f6nnen im Warteschlangensimulator direkt \u00fcber Erwartungswert und Standardabweichung parametrisiert werden.</p>";
     t[12828] = "Compare.Kept.Info";
     t[12829] = "Das aktuelle Modell wird f\u00fcr sp\u00e4tere Vergleiche festgehalten.";
     t[12834] = "Editor.AgentsGroup.Costs.ClientType";
@@ -5600,6 +5626,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13051] = "Ausgangsmodell verwenden";
     t[13052] = "SimStatistic.Category.WaitingTimesPerCallerType.SingleGraphics";
     t[13053] = "Wartezeiten pro Kundentyp - Einzelgrafiken";
+    t[13054] = "JDistributionEditor.Info.Tooltip";
+    t[13055] = "Zeigt weitere Informationen zu dem gew\u00e4hlten Verteilungstyp an";
     t[13056] = "Editor.Caller.CopyGroup.Title";
     t[13057] = "Anrufer-Gruppe kopieren";
     t[13060] = "Editor.GeneralData.GlobalParameters.AgentGroupsProductivity";
@@ -5994,6 +6022,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14021] = "Wartezeittoleranzverteilung (Halbstundenbasis)";
     t[14022] = "Dialog.RandomNumbers.Error";
     t[14023] = "Die Anzahl an Zufallszahlen muss eine positive Ganzzahl sein.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14024] = "Importer.Error.WrongNumberOfFreshCallsDistributionValues";
     t[14025] = "Die Erstanruferverteilung muss aus genau 24, 48 oder 96 Zellen bestehen. Angegeben wurden jedoch %d Werte.";
     t[14028] = "Model.Check.Callcenter.AgentsGroupError";
@@ -6022,12 +6056,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14069] = "Die Summe der Wartezeiten der Kunden %s ist ung\u00fcltig. Der Wert muss eine nichtnegative Ganzzahl sein.";
     t[14076] = "Editor.GeneralData.ThresholdValues.ModeGroups.Average";
     t[14077] = "Im Durchschnitt \u00fcber alle Gruppen";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14086] = "XML.Model.SkillLevel.Interval";
     t[14087] = "Intervall";
     t[14088] = "Calibrate.Simulation.Abort";
@@ -6436,6 +6464,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15055] = "Die Anzahl an verf\u00fcgbaren Halbstundenintervallen %s ist ung\u00fcltig.\nDer Wert muss eine nichtnegative Ganzzahl sein.";
     t[15056] = "ViewerWebApp.Dialog.Label";
     t[15057] = "Bitte w\u00e4hlen Sie aus, wie die Statistikdaten exportiert werden sollen:";
+    t[15058] = "Distribution.Mode.Wikipedia";
+    t[15059] = "https://de.wikipedia.org/wiki/Modus_(Statistik)";
     t[15060] = "Statistic.Description.Hide.Hint";
     t[15061] = "Blendet die Erkl\u00e4rungen wieder aus.";
     t[15068] = "XML.Statistic.Agents.Summary.HoldingTime.ErrorPerClientType";
@@ -6496,6 +6526,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15219] = "Es wurde keine Agentengruppe angegeben, die im Optimierungsverlauf angepasst werden soll.";
     t[15228] = "MainToolbar.LoadStatistic.Tooltip";
     t[15229] = "L\u00e4dt Statistikdaten aus einer Datei";
+    t[15232] = "JDistributionEditor.InfoWindow.MoreInfo";
+    t[15233] = "Weitere Informationen";
     t[15236] = "XML.Model.CallCenter.AgentsScore.FactorFreeTimePart.Error";
     t[15237] = "Der angegebene Faktor f\u00fcr die Agentenscore zur Ber\u00fccksichtigung des Leerlaufanteils %s is ung\u00fcltig. Der Wert muss eine nichtnegative Zahl sein.";
     t[15238] = "SimStatistic.WaitingTimeTolerance.ModeEstimationCancelTime";
@@ -7050,6 +7082,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[16601] = "Im Mittel \u00fcber alle Agentengruppen";
     t[16604] = "XML.Statistic.GeneralAttributes.CountPerInterval";
     t[16605] = "AnzahlProIntervall";
+    t[16608] = "Distribution.TriangularInfo";
+    t[16609] = "<p>Die Dreiecksverteilung kommt immer dann zum Einsatz, wenn <b>Erwartungswert und Standardabweichung nicht erhoben werden k\u00f6nnen</b>, d.h. wenn keine auswertbaren historischen Daten vorliegen. Bei der Dreiecksverteilung m\u00fcssen stattdessen der kleinste je aufgetretene Wert (Minimum), der am h\u00e4ufigsten auftretende Wert (Modus) und gr\u00f6\u00dfete je aufgetretene Wert (Maximum) eingestellt werden.</p>\n<p>Diese von der sonst bei vielen Verteilungen \u00fcblichen Parametrisierung stark abweichende Vorgehensweise macht die Dreiecksverteilung f\u00fcr F\u00e4lle, in denen keine historischen Daten vorhanden sind, aus denen Erwartungswert und Standardabweichung erhoben werden k\u00f6nnen, interessant.</p>\n<p>Das Problem bei der Abfrage der Parameter besteht darin, dass der <b>Modus</b>, d.h. der Wert an dem die Wahrscheinlichkeitsdichte am h\u00f6chsten ist, angegeben werden muss. Dieser stimmt \u00fcblicherweise nicht mit dem Mittelwert der Daten \u00fcberein.</p>";
     t[16612] = "Compare.ErrorAtLeastTwoModels";
     t[16613] = "Sie m\u00fcssen mindestens 2 Statistikdateien zum Vergleichen angeben.";
     t[16614] = "XML.Model.AgentsGroup.Count.Error";
@@ -7248,6 +7282,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17041] = "Aufschlag-Wert ist ung\u00fcltig";
     t[17042] = "Dialog.Button.PasteDoNotScale";
     t[17043] = "Einf\u00fcgen (und auff\u00fcllen)";
+    t[17044] = "Distribution.ExpInfo";
+    t[17045] = "<p>Die Exponentialverteilung besitzt <b>nur einen Parameter</b>, der zugleich Erwartungswert und Standardabweichung festlegt. Dies bringt den Vorteil mit sich, dass nur der Erwartungswert aus den historischen Daten erhoben werden muss, um die Exponentialverteilung f\u00fcr die Modellierung verwenden zu k\u00f6nnen; der Nachteil besteht jedoch damit zugleich darin, dass auch nur der Erwartungswert eingestellt werden kann.</p>\n<p>Bei der Exponentialverteilung besitzt die Standardabweichung immer denselben Wert wie der Erwartungswert. Damit ergibt sich <b>stets ein Variationskoeffizient von 1</b>.</p>\n<p>Die Besonderheit der Exponentialverteilung besteht darin, dass die Wahrscheinlichkeit daf\u00fcr, dass das zu betrachtete Ereignis (z.B. eine Kundenankunft) innerhalb der n\u00e4chsten Minute eintritt, unabh\u00e4ngig davon ist, ob das letzte Ereignis dieser Art vor einer Minute oder einer Stunde eingetreten ist. Diese Eigenschaft wird auch <b>Ged\u00e4chtnislosigkeit</b> genannt. F\u00fcr die Abst\u00e4nde der Ank\u00fcnfte von unabh\u00e4ngigen Kunden tritt dies \u00fcblicherweise zu. F\u00fcr z.B. Bediendauern hingegen praktisch nie.</p>\n<p>Folglich ist die Exponentialverteilung f\u00fcr die Modellierung von <b>Zwischenankunftszeiten</b> meist sehr gut geeignet. F\u00fcr die Modellierung von Bediendauern und \u00e4hnlichen Gr\u00f6\u00dfen sollte jedoch auf andere Wahrscheinlichkeitsverteilungen (wie z.B. die Log-Normalverteilung, die Gamma-Verteilung oder die Dreiecksverteilung) zur\u00fcckgegriffen werden.</p>";
     t[17046] = "XML.Model.ClientType.Forwarding.SkillLevel";
     t[17047] = "SkillLevel";
     t[17048] = "Editor.Callcenter.Move.EditPrevious";
@@ -7392,8 +7428,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17353] = "Simulator als SaaS-HTML- und als Rechenserver starten.";
     t[17358] = "Simulation.Log.StopTest.NoMatchingAgentAnymore1";
     t[17359] = "Kunde wird abgewiesen, da an diesem Tag keine Agenten mehr arbeiten oder arbeiten werden, die ihn bedienen k\u00f6nnten.";
-    t[17360] = "Simulation.Log.StopTest.NoMatchingAgentAnymore2";
-    t[17361] = "Demn\u00e4chst anrufender Kunde aus der Liste entfernt, da an diesem Tag keine Agenten mehr arbeiten oder arbeiten werden, die ihn bedienen k\u00f6nnten.";
+    t[17360] = "Distribution.PointInfo";
+    t[17361] = "<p>Bei der Ein-Punkt-Verteilung handelt es sich um <b>keine Wahrscheinlichkeitsverteilung im eigentlichen Sinne</b>. W\u00e4hrend normale Wahrscheinlichkeitsverteilung stets einen (verschiedenen) zuf\u00e4lligen Wert liefern, liefert die Ein-Punkt-Verteilung stets den einen, eingestellten Wert zur\u00fcck.</p>\n<p>Das bedeutet, die Ein-Punkt-Verteilung ist <b>deterministisch.</p>\\n\"\n\"<p>Der Sinn der Ein-Punkt-Verteilung besteht darin, dass mit ihr konstante Bediendauern usw. modelliert werden k\u00f6nnen, ohne dabei von der Notation der Wahrscheinlichkeitsverteilungen abweichen zu m\u00fcssen.</p>";
     t[17364] = "JDataLoader.ImportErrorInvalidData";
     t[17365] = "Die Daten konnten nicht aufbereitet werden.";
     t[17368] = "SimStatistic.NumberOfConversationsWith";
@@ -7618,6 +7654,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[17901] = "Standardabweichungen";
     t[17908] = "MainMenu.Tools.KeepModel.Tooltip";
     t[17909] = "Aktuelles Modell f\u00fcr sp\u00e4teren Vergleich festhalten";
+    t[17916] = "Simulation.Log.StopTest.NoMatchingAgentAnymore2";
+    t[17917] = "Demn\u00e4chst anrufender Kunde aus der Liste entfernt, da an diesem Tag keine Agenten mehr arbeiten oder arbeiten werden, die ihn bedienen k\u00f6nnten.";
     t[17922] = "Loader.Info.SimpleModel.InputFileCallerStartColumn";
     t[17923] = "Erste zu verwendende Spalte in der Datei";
     t[17926] = "Statistic.Viewer.SpecialText.SubCategory";

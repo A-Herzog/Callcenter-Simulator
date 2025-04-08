@@ -266,6 +266,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[629] = "Shift plan preview";
     t[636] = "XML.Statistic.Clients.Recall.Clients.ErrorSumPerInterval";
     t[637] = "The number of recalling clients per interval is invalid.";
+    t[638] = "Window.ErrorNoGraphics";
+    t[639] = "Since no graphical user interface is available, the simulator can only be operate in console mode. Start simulator with  \"Help\" as parameter to get an overview of the available command line commands.";
     t[640] = "Batch.Simulation.Abort";
     t[641] = "Abort simulation";
     t[646] = "MainMenu.Simulation.RunAndSave.Mnemonic";
@@ -494,6 +496,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[1171] = "The revenue improvement process is very time consuming.";
     t[1172] = "Generator.LoadClients";
     t[1173] = "Load client data";
+    t[1176] = "SimStatistic.Caller";
+    t[1177] = "Caller";
     t[1178] = "Statistic.Toolbar.Nothing.Tooltip";
     t[1179] = "Unselect all entries";
     t[1182] = "Statistic.FastAccess.SelectXMLTag.InsertMethod.AtCursorPosition";
@@ -658,6 +662,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[1587] = "Clients";
     t[1590] = "InfoDialog.MemoryAvailable";
     t[1591] = "Available memory (for application)";
+    t[1594] = "JDistributionEditor.Wikipedia";
+    t[1595] = "Wikipedia";
     t[1600] = "RevenueOptimizer.Working.Add.Single";
     t[1601] = "Adding 1 agent in group %d => Revenue=%s (+%s)";
     t[1602] = "Editor.Caller.Error.RetryProbabiltyAfterBlockedFirstRetry.Title";
@@ -684,6 +690,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[1681] = "The specified maximum queue length %s is invalid. The value has to be a non-negative integer number.";
     t[1696] = "Editor.Caller.Score.Base";
     t[1697] = "Base score for this client type";
+    t[1698] = "Distribution.CV.Wikipedia";
+    t[1699] = "https://en.wikipedia.org/wiki/Coefficient_of_variation";
     t[1700] = "Importer.RetryIntervalsDistribution";
     t[1701] = "Retry intervals distribution";
     t[1706] = "Editor.Productivity.DiseaseRelatedSurcharge.Info";
@@ -1320,6 +1328,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[3197] = "Number of fresh calls";
     t[3198] = "Optimizer.OptimizeProperty.TargetForLabel.WorkLoad.Tooltip";
     t[3199] = "This value specifies the maximum desired work load, not how many agents should be used.";
+    t[3202] = "Distribution.LogNormalInfo";
+    t[3203] = "<p>The log-normal distribution is very suitable for modeling service times and similar durations. In Warteschlangensimulator, the distribution is parameterized using the <b>expected value and standard deviation</b>.</p>\n<p>If these two values can be derived from historical data, the distribution is very suitable for modeling. If such values are not available, the triangular distribution can be used if necessary.</p>\n<p>The log-normal distribution is usually also available in <b>spreadsheet programs</b>. However, the parameterization is usually not done via expected value and standard deviation. Manual conversions are necessary here (see documentation of the respective program).</p>";
     t[3206] = "Optimizer.OptimizeProperty.TargetMaxForLabel.Accessibility.Info";
     t[3207] = "The number of agents will be <b>decreased</b> until at most this accessibility is present.";
     t[3216] = "Editor.Caller.Error.NoSkillForwarding.Title";
@@ -2000,6 +2010,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4679] = "Distribution";
     t[4682] = "Distribution.SetupList.Divider";
     t[4683] = "<html><body>Above: Highlighted distributions (given order)<br>Below: Non-highlighted distributions (will be sorted alhpabetically)</body></html>";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_1 (java.lang.String[] t) {
     t[4686] = "Editor.Caller.Error.RevenuePerSuccessfulClient.Info";
     t[4687] = "The specified yield per successful served customer %s is invalid.\nThe value has to be a non-negative number.";
     t[4688] = "AutoSave.Error.FilterExecute";
@@ -2010,12 +2026,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4699] = "In call center %s there are interval-based minimum and maximum values for the number of agents in a group that does not exist.";
     t[4700] = "Model.Check.ClientType.RetryCheck.CanceledFirst";
     t[4701] = "After canceled waitng, first retry.";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_1 (java.lang.String[] t) {
     t[4704] = "XML.FileNotFound";
     t[4705] = "The selected file\n%s\ndoes not exist.";
     t[4706] = "CommandLine.Dialog.StopCommand";
@@ -2542,8 +2552,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[5757] = "Help on regular expressions";
     t[5762] = "Model.Check.ClientType.RecallCheck.UnknownSkillLevel";
     t[5763] = "For clients of type \"%s\" there are recall rules when being served by agents of skill level \"%s\", but there is no such skill level.";
-    t[5764] = "Window.ErrorNoGraphics";
-    t[5765] = "Since no graphical user interface is available, the simulator can only be operate in console mode. Start simulator with  \"Help\" as parameter to get an overview of the available command line commands.";
+    t[5764] = "Model.Check.ClientTypes.TooManyCalls";
+    t[5765] = "In the model there are too many fresh calls. There is a total of %s fresh calls planned.";
     t[5766] = "Editor.GeneralData.GlobalParameters.PreferedShiftLength.Info";
     t[5767] = "will be used for the automatic calulation of the working times";
     t[5772] = "Distribution.ExpWikipedia";
@@ -2670,6 +2680,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[6077] = "Additional fresh calls per client type";
     t[6078] = "Editor.SkillLevel.Add.Info";
     t[6079] = "Please select the skill to add";
+    t[6080] = "XML.SaaS.LogFile";
+    t[6081] = "LogFile";
     t[6086] = "XML.Model.AgentsGroup.ErrorDistribution";
     t[6087] = "You have to specify either a number or a distribution of agents over the day or a list of client types to be used for calculating the distribution over the day.";
     t[6088] = "XML.Model.Warnings.Record.WarningYellow.Error.InvalidValue";
@@ -2992,8 +3004,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[6835] = "Base";
     t[6842] = "Editor.AgentsGroup.Shift.ShowPlan.CopyDistribution";
     t[6843] = "Copy distribution";
+    t[6844] = "Distribution.UniformInfo";
+    t[6845] = "<p>The uniform distribution is parameterized via the minimum possible value and the maximum possible value that it can assume. The expected value is then exactly the midpoint between these two values.</p>\n<p>The uniform distribution assigns the same probability to each value between the minimum and the maximum.</p>\\n\"\n\"<p>Even if this seems relatively useful at first glance, <b>almost no real processes</b> are subject to a uniform distribution.</p>\n<p>A further disadvantage is that the otherwise usual parameters of expected value and standard deviation can only be set indirectly via the range of the distribution.</p>";
     t[6846] = "Editor.Caller.Costs.PerWaitingSecond";
     t[6847] = "Virtual cost per waiting second";
+    t[6852] = "JDistributionEditor.InfoWindow.Parameters";
+    t[6853] = "Current distribution parameters";
     t[6856] = "Model.Check.ClientType.RetryCheck.BlockedFirst";
     t[6857] = "After being blocked, first retry.";
     t[6858] = "CommandLine.Preplanning.Mode.WaitingTime.Complex.PreSimplify";
@@ -3160,6 +3176,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7221] = "Multiple columns selected as source for one agents group";
     t[7226] = "MainMenu.File.NewModel.CreateWithWizard.Mnemonic";
     t[7227] = "W";
+    t[7230] = "Distribution.Skewness.Wikipedia";
+    t[7231] = "https://en.wikipedia.org/wiki/Skewness";
     t[7232] = "Loader.Info.XMLPreprocessing.InputTableFile";
     t[7233] = "Input data table file";
     t[7234] = "CommandLine.Benchmark.SimulaionRun";
@@ -3424,6 +3442,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[7811] = "The sum of the waiting times of the calls per interval %s is invalid.";
     t[7814] = "Loader.Error.NoOutputFileSelected.Title";
     t[7815] = "No output file selected";
+    t[7816] = "JDistributionEditor.Info";
+    t[7817] = "Info";
     t[7820] = "MainMenu.Data.LoadCaller96.Mnemonic";
     t[7821] = " ";
     t[7822] = "MainMenu.Tools.Calculations.Tooltip";
@@ -3996,6 +4016,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9195] = "Select the items to be shown in the tree structure";
     t[9196] = "Editor.AgentsGroup.NumberOfAgents";
     t[9197] = "Count";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9198] = "Optimization.Error.MinimumLargerThanMaximum";
     t[9199] = "The minimum value for the property to be optimized is bigger than the maximum value. The property will get smaller during optimization so the minimum value has to be the smaller one.";
     t[9202] = "Server.Error.PortNumberInvalid";
@@ -4016,12 +4042,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9259] = "Cancel times";
     t[9278] = "SettingsDialog.FontSizes.Info";
     t[9279] = "Changing the font size or the theme will take affect after restarting the program.";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9280] = "Distribution.DegreesOfFreedom";
     t[9281] = "degrees of freedom";
     t[9286] = "FileType.AllTables";
@@ -4254,6 +4274,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9739] = "Window size";
     t[9746] = "CommandLine.Preplanning.Mode.ServiceLevel.Simple.PreSimplify";
     t[9747] = "ServiceLevelSimplified";
+    t[9750] = "JDistributionEditor.InfoWindow.WebApp";
+    t[9751] = "Probability distributions plotter webapp";
     t[9754] = "Editor.AgentsGroup.Mode.Fixed";
     t[9755] = "Agents with fixed working times";
     t[9766] = "Editor.Caller.Forwarding.Probability";
@@ -4458,12 +4480,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[10275] = "Record simulation to log file...";
     t[10278] = "NewModelWizard.RetryProbability";
     t[10279] = "Part of the clients who have canceled waiting due to a too long waiting time who will start a retry later";
+    t[10284] = "Distribution.Mean.Wikipedia";
+    t[10285] = "https://en.wikipedia.org/wiki/Mean";
     t[10288] = "Model.Check.Callcenter.NoName";
     t[10289] = "There is a call center with no name.";
     t[10292] = "XML.Connected.ErrorDataDoNotMatch";
     t[10293] = "The number of specified model settings, statistic settings and carrying over settings do not match.";
-    t[10302] = "Model.Check.ClientTypes.TooManyCalls";
-    t[10303] = "In the model there are too many fresh calls. There is a total of %s fresh calls planned.";
+    t[10302] = "Distribution.StdDev.Wikipedia";
+    t[10303] = "https://en.wikipedia.org/wiki/Standard_deviation";
     t[10304] = "Model.Check.Callcenter.MinimumWaitingTimeUnknownClientType";
     t[10305] = "In call center \"%s\" minimum waiting time for client type \"%s\" was defined, but there is no such client type.";
     t[10308] = "XML.OptimizerSetup.ValueMaximum";
@@ -5082,8 +5106,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11783] = "Average per half-hour interval";
     t[11786] = "Editor.Caller.Costs.RevenuePerSuccessfulClient";
     t[11787] = "Yield per successful served customer";
-    t[11788] = "XML.SaaS.LogFile";
-    t[11789] = "LogFile";
+    t[11788] = "Distribution.ErlangInfo";
+    t[11789] = "<p>The Erlang distribution is a special case of the <b>Gamma distribution</b>. When modeling, it therefore almost always makes more sense to use the gamma distribution directly.</p>\n<p>From a mathematical point of view, the Erlang distribution represents the successive execution of several exponential distributions and is therefore important in theory.</p>";
     t[11794] = "Statistic.Viewer.Tools.ShowAll";
     t[11795] = "Open all categories";
     t[11806] = "Distribution.ZetaWikipedia";
@@ -5124,8 +5148,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11885] = "No agent type specifiy recall rules configurated";
     t[11886] = "SimStatistic.Recommendations.HighPostProcessingTimeCV";
     t[11887] = "The coefficient of variation of post processing times in skill level %s is very high. You should train your agents better, so that the post processing times turn out more evenly.";
-    t[11890] = "SimStatistic.Caller";
-    t[11891] = "Caller";
+    t[11890] = "Distribution.GammaInfo";
+    t[11891] = "<p>The gamma distribution is very suitable for modeling service times and similar durations. In Warteschlangensimulator, the distribution is parameterized using the <b>expected value and standard deviation</b>.</p>\n<p>If these two values can be derived from historical data, the distribution is very suitable for modeling. If such values are not available, the triangular distribution can be used if necessary.</p>\n<p>The gamma distribution is usually also available in <b>spreadsheet programs</b>. However, the parameterization is usually not done via expected value and standard deviation. Manual conversions are necessary here (see documentation of the respective program).</p>";
     t[11898] = "XML.OptimizerSetup.Property.WaitingTimeCalls";
     t[11899] = "WaitingTime(CallBasis)";
     t[11902] = "LoadCalculator.PartOfLoadForTheCallcenter";
@@ -5496,6 +5520,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12819] = "Load optimizer setup";
     t[12820] = "Loader.ProcessError.XMLProcessing.ErrorInLine";
     t[12821] = "While processing line %d the following error occured:\n%s";
+    t[12822] = "Distribution.NormalInfo";
+    t[12823] = "<p>The normal distribution results as a <b>theoretical limit distribution</b> when many independent distributions are executed one after the other.</p>\n<p>The parameters of the normal distribution are both its expected value and its standard deviation. This means that the parameters of the normal distribution can be set very easily (in practically any software).</p>\n<p>The normal distribution can always take on negative values. It is therefore <b>not suitable for modeling durations</b>. Log-normal distribution or gamma distribution are usually much better suited for this purpose. These can also be parameterized directly in Warteschlangensimulator via expected value and standard deviation.</p>";
     t[12828] = "Compare.Kept.Info";
     t[12829] = "The current model will be kept for comparison with further models.";
     t[12834] = "Editor.AgentsGroup.Costs.ClientType";
@@ -5600,6 +5626,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13051] = "Use original model";
     t[13052] = "SimStatistic.Category.WaitingTimesPerCallerType.SingleGraphics";
     t[13053] = "Waiting times per caller type - single graphics";
+    t[13054] = "JDistributionEditor.Info.Tooltip";
+    t[13055] = "Displays further information on the selected distribution type";
     t[13056] = "Editor.Caller.CopyGroup.Title";
     t[13057] = "Copy caller group";
     t[13060] = "Editor.GeneralData.GlobalParameters.AgentGroupsProductivity";
@@ -5994,6 +6022,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14021] = "Waiting time tolerance (on half-hour basis)";
     t[14022] = "Dialog.RandomNumbers.Error";
     t[14023] = "The number of random numbers must be a positive integer number.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[14024] = "Importer.Error.WrongNumberOfFreshCallsDistributionValues";
     t[14025] = "The fresh calls distribution has to consist of exactly 24, 48 or 96 cells, But %d values were specified.";
     t[14028] = "Model.Check.Callcenter.AgentsGroupError";
@@ -6022,12 +6056,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14069] = "The sum of the waiting times of the clients %s is invalid. The value has to be a non-negative integer number.";
     t[14076] = "Editor.GeneralData.ThresholdValues.ModeGroups.Average";
     t[14077] = "All in average";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[14086] = "XML.Model.SkillLevel.Interval";
     t[14087] = "Interval";
     t[14088] = "Calibrate.Simulation.Abort";
@@ -6436,6 +6464,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15055] = "The specified number of available agents half-hour intervals %s is invalid.\nThe value has to be a non-negative integer number.";
     t[15056] = "ViewerWebApp.Dialog.Label";
     t[15057] = "Please select the format for exporting the statistic data:";
+    t[15058] = "Distribution.Mode.Wikipedia";
+    t[15059] = "https://en.wikipedia.org/wiki/Mode_(statistics)";
     t[15060] = "Statistic.Description.Hide.Hint";
     t[15061] = "Hides the description.";
     t[15068] = "XML.Statistic.Agents.Summary.HoldingTime.ErrorPerClientType";
@@ -6496,6 +6526,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15219] = "No agents group was selected which should be changed during the optimization process.";
     t[15228] = "MainToolbar.LoadStatistic.Tooltip";
     t[15229] = "Loads statistic data from a file";
+    t[15232] = "JDistributionEditor.InfoWindow.MoreInfo";
+    t[15233] = "More information";
     t[15236] = "XML.Model.CallCenter.AgentsScore.FactorFreeTimePart.Error";
     t[15237] = "The specified factor for respecting the free time part an agent for calculating the agents score %s is invalid. The value has to be a non-negative number.";
     t[15238] = "SimStatistic.WaitingTimeTolerance.ModeEstimationCancelTime";
@@ -7050,6 +7082,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[16601] = "Average over all agents groups";
     t[16604] = "XML.Statistic.GeneralAttributes.CountPerInterval";
     t[16605] = "CountPerInterval";
+    t[16608] = "Distribution.TriangularInfo";
+    t[16609] = "<p>The triangular distribution is always used when <b>expected value and standard deviation cannot be collected</b>, i.e. when no evaluable historical data is available. With the triangular distribution, the smallest value that has ever occurred (minimum), the most frequently occurring value (mode) and the largest value that has ever occurred (maximum) has to be set instead.</p>\n<p>This procedure, which differs greatly from the usual parameterization of many distributions, makes the triangular distribution interesting for cases in which no historical data is available from which the expected value and standard deviation can be determined.</p>\n<p>The problem with querying the parameters is that the <b>mode</b>, i.e. the value at which the probability density is highest, has to be specified. This usually does not match the mean value of the data.</p>";
     t[16612] = "Compare.ErrorAtLeastTwoModels";
     t[16613] = "You need to select at least two models to be compared.";
     t[16614] = "XML.Model.AgentsGroup.Count.Error";
@@ -7248,6 +7282,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17041] = "Surcharge value is invalid";
     t[17042] = "Dialog.Button.PasteDoNotScale";
     t[17043] = "Paste (and fill with zeros)";
+    t[17044] = "Distribution.ExpInfo";
+    t[17045] = "<p>The exponential distribution has <b>only one parameter</b>, which defines both the expected value and the standard deviation. This has the advantage that only the expected value needs to be collected from the historical data in order to use the exponential distribution for modeling; the disadvantage, however, is that only the expected value can be set.</p>\n<p>With the exponential distribution, the standard deviation always has the same value as the expected value. This always results in a <b>coefficient of variation of 1</b>.</p>\n<p>The special property of the exponential distribution is that the probability that the event under consideration (e.g. a client arrival) will occur within the next minute is independent of whether the last event of this type occurred a minute or an hour ago. This property is also known as <b>memorylessness</b>. This usually applies to the intervals between the arrivals of independent clients. However, it practically never applies to e.g. service times.</p>\\n\"\n\"<p>Consequently, the exponential distribution is usually very suitable for modeling <b>inter-arrival times</b>. However, other probability distributions (such as the log-normal distribution, the gamma distribution or the triangular distribution) should be used for modeling service times and similar variables.</p>";
     t[17046] = "XML.Model.ClientType.Forwarding.SkillLevel";
     t[17047] = "SkillLevel";
     t[17048] = "Editor.Callcenter.Move.EditPrevious";
@@ -7392,8 +7428,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17353] = "Starts the program as SaaS HTML and simulator server.";
     t[17358] = "Simulation.Log.StopTest.NoMatchingAgentAnymore1";
     t[17359] = "Client gets rejected because there is no more agents to work that day that could serve him.";
-    t[17360] = "Simulation.Log.StopTest.NoMatchingAgentAnymore2";
-    t[17361] = "Soon calling client removed from list because there are no more agents to work that day that could serve him.";
+    t[17360] = "Distribution.PointInfo";
+    t[17361] = "<p>The one-point distribution is <b>not a probability distribution in the true sense of the word</b>. While normal probability distributions always return a (different) random value, the one-point distribution always returns the one set value.</p>\n<p>This means that the one-point distribution is <b>deterministic</b>.</p>\\n\"\n\"<p>The purpose of the one-point distribution is that it can be used to model constant service times etc. without having to deviate from the notation of the probability distributions.</p>";
     t[17364] = "JDataLoader.ImportErrorInvalidData";
     t[17365] = "The data could not be processed.";
     t[17368] = "SimStatistic.NumberOfConversationsWith";
@@ -7618,6 +7654,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[17901] = "Standard deviations";
     t[17908] = "MainMenu.Tools.KeepModel.Tooltip";
     t[17909] = "Keep current model for comparison";
+    t[17916] = "Simulation.Log.StopTest.NoMatchingAgentAnymore2";
+    t[17917] = "Soon calling client removed from list because there are no more agents to work that day that could serve him.";
     t[17922] = "Loader.Info.SimpleModel.InputFileCallerStartColumn";
     t[17923] = "First column in file to be processed";
     t[17926] = "Statistic.Viewer.SpecialText.SubCategory";

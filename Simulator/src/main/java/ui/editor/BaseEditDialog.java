@@ -193,7 +193,7 @@ public class BaseEditDialog extends JDialog {
 	 * @param helpCallback	Wird hier ein Wert ungleich <code>null</code> übergeben, so wird eine "Hilfe"-Schaltfläche angezeigt und die <code>Run</code>-Methode dieses Objekts beim Klicken auf diese Schaltfläche aufgerufen
 	 */
 	protected BaseEditDialog(Component owner, String title, String[] callerTypeNames, boolean readOnly, Runnable helpCallback) {
-		super(getOwnerWindow(owner),title,Dialog.ModalityType.APPLICATION_MODAL);
+		super(getOwnerWindow(owner),title,Dialog.ModalityType.DOCUMENT_MODAL);
 		this.owner=getOwnerWindow(owner);
 		this.callerTypeNames=callerTypeNames;
 		this.readOnly=readOnly;
