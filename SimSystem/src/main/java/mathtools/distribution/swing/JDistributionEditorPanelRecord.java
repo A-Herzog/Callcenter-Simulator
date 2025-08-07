@@ -30,14 +30,18 @@ import org.apache.commons.math3.distribution.UniformRealDistribution;
 import mathtools.NumberTools;
 import mathtools.distribution.ArcsineDistribution;
 import mathtools.distribution.ChiDistributionImpl;
+import mathtools.distribution.ContinuousBernoulliDistribution;
+import mathtools.distribution.CosineDistributionImpl;
 import mathtools.distribution.DataDistributionImpl;
 import mathtools.distribution.DiscreteBinomialDistributionImpl;
+import mathtools.distribution.DiscreteBoltzmannDistributionImpl;
 import mathtools.distribution.DiscreteBorelDistributionImpl;
 import mathtools.distribution.DiscreteGeometricDistributionImpl;
 import mathtools.distribution.DiscreteHyperGeomDistributionImpl;
 import mathtools.distribution.DiscreteLogarithmicDistributionImpl;
 import mathtools.distribution.DiscreteNegativeBinomialDistributionImpl;
 import mathtools.distribution.DiscreteNegativeHyperGeomDistributionImpl;
+import mathtools.distribution.DiscretePlanckDistributionImpl;
 import mathtools.distribution.DiscretePoissonDistributionImpl;
 import mathtools.distribution.DiscreteUniformDistributionImpl;
 import mathtools.distribution.DiscreteZetaDistributionImpl;
@@ -45,8 +49,11 @@ import mathtools.distribution.ErlangDistributionImpl;
 import mathtools.distribution.ExtBetaDistributionImpl;
 import mathtools.distribution.FatigueLifeDistributionImpl;
 import mathtools.distribution.FrechetDistributionImpl;
+import mathtools.distribution.GeneralizedRademacherDistribution;
+import mathtools.distribution.HalfCauchyDistribution;
 import mathtools.distribution.HalfNormalDistribution;
 import mathtools.distribution.HyperbolicSecantDistributionImpl;
+import mathtools.distribution.InverseGammaDistributionImpl;
 import mathtools.distribution.InverseGaussianDistributionImpl;
 import mathtools.distribution.IrwinHallDistribution;
 import mathtools.distribution.JohnsonDistributionImpl;
@@ -54,6 +61,8 @@ import mathtools.distribution.KumaraswamyDistribution;
 import mathtools.distribution.LaplaceDistributionImpl;
 import mathtools.distribution.LevyDistribution;
 import mathtools.distribution.LogCauchyDistributionImpl;
+import mathtools.distribution.LogGammaDistributionImpl;
+import mathtools.distribution.LogLaplaceDistributionImpl;
 import mathtools.distribution.LogLogisticDistributionImpl;
 import mathtools.distribution.LogNormalDistributionImpl;
 import mathtools.distribution.LogisticDistributionImpl;
@@ -77,10 +86,13 @@ import mathtools.distribution.tools.DistributionTools;
 import mathtools.distribution.tools.WrapperArcsineDistribution;
 import mathtools.distribution.tools.WrapperBetaDistribution;
 import mathtools.distribution.tools.WrapperBinomialDistribution;
+import mathtools.distribution.tools.WrapperBoltzmannDistribution;
 import mathtools.distribution.tools.WrapperBorelDistribution;
 import mathtools.distribution.tools.WrapperCauchyDistribution;
 import mathtools.distribution.tools.WrapperChiDistribution;
 import mathtools.distribution.tools.WrapperChiSquaredDistribution;
+import mathtools.distribution.tools.WrapperContinuousBernoulliDistribution;
+import mathtools.distribution.tools.WrapperCosineDistribution;
 import mathtools.distribution.tools.WrapperDataDistribution;
 import mathtools.distribution.tools.WrapperDiscreteUniformDistribution;
 import mathtools.distribution.tools.WrapperErlangDistribution;
@@ -89,11 +101,14 @@ import mathtools.distribution.tools.WrapperFDistribution;
 import mathtools.distribution.tools.WrapperFatigueLifeDistribution;
 import mathtools.distribution.tools.WrapperFrechetDistribution;
 import mathtools.distribution.tools.WrapperGammaDistribution;
+import mathtools.distribution.tools.WrapperGeneralizedRademacherDistribution;
 import mathtools.distribution.tools.WrapperGeometricDistribution;
 import mathtools.distribution.tools.WrapperGumbelDistribution;
+import mathtools.distribution.tools.WrapperHalfCauchyDistribution;
 import mathtools.distribution.tools.WrapperHalfNormalDistribution;
 import mathtools.distribution.tools.WrapperHyperGeomDistribution;
 import mathtools.distribution.tools.WrapperHyperbolicSecantDistribution;
+import mathtools.distribution.tools.WrapperInverseGammaDistribution;
 import mathtools.distribution.tools.WrapperInverseGaussianDistribution;
 import mathtools.distribution.tools.WrapperIrwinHallDistribution;
 import mathtools.distribution.tools.WrapperJohnsonDistribution;
@@ -101,6 +116,8 @@ import mathtools.distribution.tools.WrapperKumaraswamyDistribution;
 import mathtools.distribution.tools.WrapperLaplaceDistribution;
 import mathtools.distribution.tools.WrapperLevyDistribution;
 import mathtools.distribution.tools.WrapperLogCauchyDistribution;
+import mathtools.distribution.tools.WrapperLogGammaDistribution;
+import mathtools.distribution.tools.WrapperLogLaplaceDistribution;
 import mathtools.distribution.tools.WrapperLogLogisticDistribution;
 import mathtools.distribution.tools.WrapperLogNormalDistribution;
 import mathtools.distribution.tools.WrapperLogarithmicDistribution;
@@ -112,6 +129,7 @@ import mathtools.distribution.tools.WrapperNormalDistribution;
 import mathtools.distribution.tools.WrapperOnePointDistribution;
 import mathtools.distribution.tools.WrapperParetoDistribution;
 import mathtools.distribution.tools.WrapperPertDistribution;
+import mathtools.distribution.tools.WrapperPlanckDistribution;
 import mathtools.distribution.tools.WrapperPoissonDistribution;
 import mathtools.distribution.tools.WrapperPowerDistribution;
 import mathtools.distribution.tools.WrapperRayleighDistribution;
@@ -317,9 +335,13 @@ public abstract class JDistributionEditorPanelRecord {
 		allRecords.add(new MaxwellBoltzmannDistributionPanel());
 		allRecords.add(new StudentTDistributionPanel());
 		allRecords.add(new LogCauchyDistributionPanel());
+		allRecords.add(new InverseGammaDistributionPanel());
+		allRecords.add(new ContinuousBernoulliDistributionPanel());
+		allRecords.add(new HalfCauchyDistributionPanel());
 		allRecords.add(new HyperGeomDistributionPanel());
 		allRecords.add(new BinomialDistributionPanel());
 		allRecords.add(new PoissonDistributionPanel());
+		allRecords.add(new PlanckDistributionPanel());
 		allRecords.add(new NegativeBinomialDistributionPanel());
 		allRecords.add(new NegativeHyperGeomDistributionPanel());
 		allRecords.add(new ZetaDistributionPanel());
@@ -332,9 +354,14 @@ public abstract class JDistributionEditorPanelRecord {
 		allRecords.add(new KumaraswamyDistributionPanel());
 		allRecords.add(new IrwinHallDistributionPanel());
 		allRecords.add(new SineDistributionPanel());
+		allRecords.add(new CosineDistributionPanel());
 		allRecords.add(new ArcsineDistributionPanel());
 		allRecords.add(new WignerHalfCircleDistributionPanel());
 		allRecords.add(new BorelDistributionPanel());
+		allRecords.add(new LogGammaDistributionPanel());
+		allRecords.add(new LogLaplaceDistributionPanel());
+		allRecords.add(new GeneralizedRademacherDistributionPanel());
+		allRecords.add(new BoltzmannDistributionPanel());
 	}
 
 	/**
@@ -1599,6 +1626,45 @@ public abstract class JDistributionEditorPanelRecord {
 		}
 	}
 
+	/** Cosinus-Verteilung */
+	private static class CosineDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public CosineDistributionPanel() {
+			super(new WrapperCosineDistribution(),new String[]{JDistributionEditorPanel.DistUniformStart,JDistributionEditorPanel.DistUniformEnd});
+		}
+
+		@Override
+		public String[] getEditValues(final double meanD, final String mean, final double stdD, final String std, final String lower, final String upper, final double maxXValue) {
+			return new String[]{lower,upper};
+		}
+
+		@Override
+		public String[] getValues(final AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((CosineDistributionImpl)distribution).getSupportLowerBound()),
+					NumberTools.formatNumberMax(((CosineDistributionImpl)distribution).getSupportUpperBound())
+			};
+		}
+
+		@Override
+		public void setValues(final JTextField[] fields, final double mean, final double sd) {
+			CosineDistributionImpl distribution=(CosineDistributionImpl)wrapper.getDistribution(mean,sd);
+			if (distribution!=null) {
+				if (distribution.getSupportLowerBound()<0) distribution=new CosineDistributionImpl(0,mean*2);
+				final String[] text=getValues(distribution);
+				if (text!=null && text.length==fields.length) for (int i=0;i<text.length;i++) fields[i].setText(text[i]);
+			}
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(final JTextField[] fields, final double maxXValue) {
+			final Double d1=NumberTools.getDouble(fields[0],true); if (d1==null) return null;
+			final Double d2=NumberTools.getDouble(fields[1],true); if (d2==null) return null;
+			if (d1>=d2) return null;
+			return new CosineDistributionImpl(d1,d2);
+		}
+	}
+
 	/** Arcus Sinus-Verteilung */
 	private static class ArcsineDistributionPanel extends JDistributionEditorPanelRecord {
 		/** Konstruktor der Klasse */
@@ -1741,6 +1807,106 @@ public abstract class JDistributionEditorPanelRecord {
 		}
 	}
 
+	/** Inverse Gamma-Verteilung */
+	private static class InverseGammaDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public InverseGammaDistributionPanel() {
+			super(new WrapperInverseGammaDistribution(),new String[]{"alpha","beta"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			final InverseGammaDistributionImpl dist=(InverseGammaDistributionImpl)new WrapperInverseGammaDistribution().getDistribution(meanD,stdD);
+			return new String[]{
+					NumberTools.formatNumber(dist.alpha),
+					NumberTools.formatNumber(dist.beta),
+			};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((InverseGammaDistributionImpl)distribution).alpha),
+					NumberTools.formatNumberMax(((InverseGammaDistributionImpl)distribution).beta),
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double alpha=NumberTools.getPositiveDouble(fields[0],true); if (alpha==null) return null;
+			final Double beta=NumberTools.getPositiveDouble(fields[1],true); if (beta==null) return null;
+			return new InverseGammaDistributionImpl(alpha,beta);
+		}
+	}
+
+	/** Kontinuierliche Bernoulli-Verteilung */
+	private static class ContinuousBernoulliDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public ContinuousBernoulliDistributionPanel() {
+			super (new WrapperContinuousBernoulliDistribution(),new String[] {"a","b","lambda"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			return new String[]{
+					NumberTools.formatNumber(Math.max(0,meanD-3*stdD)),
+					NumberTools.formatNumber(meanD+3*stdD),
+					NumberTools.formatNumber(0.25),
+			};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((ContinuousBernoulliDistribution)distribution).a),
+					NumberTools.formatNumberMax(((ContinuousBernoulliDistribution)distribution).b),
+					NumberTools.formatNumberMax(((ContinuousBernoulliDistribution)distribution).lambda)
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double a=NumberTools.getDouble(fields[0],true); if (a==null) return null;
+			final Double b=NumberTools.getDouble(fields[1],true); if (b==null || a>b) return null;
+			final Double lambda=NumberTools.getDouble(fields[2],true); if (lambda==null || lambda<=0 || lambda>=1) return null;
+			return new ContinuousBernoulliDistribution(a,b,lambda);
+		}
+	}
+
+	/** Halbe Cauchy-Verteilung */
+	private static class HalfCauchyDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public HalfCauchyDistributionPanel() {
+			super(new WrapperHalfCauchyDistribution(),new String[]{"mu","sigma"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			return new String[]{mean,NumberTools.formatNumberMax(maxXValue/10)};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((HalfCauchyDistribution)distribution).mu),
+					NumberTools.formatNumberMax(((HalfCauchyDistribution)distribution).sigma)
+			};
+		}
+
+		@Override
+		public void setValues(final JTextField[] fields, final double mean, final double sd) {
+			fields[0].setText(NumberTools.formatNumberMax(mean));
+			fields[1].setText(NumberTools.formatNumberMax(sd));
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double d1=NumberTools.getDouble(fields[0],true); if (d1==null) return null;
+			final Double d2=NumberTools.getPositiveDouble(fields[1],true); if (d2==null) return null;
+			return new HalfCauchyDistribution(d1,d2);
+		}
+	}
+
 	/** Hypergeometrische Verteilung */
 	private static class HyperGeomDistributionPanel extends JDistributionEditorPanelRecord {
 		/** Konstruktor der Klasse */
@@ -1827,6 +1993,32 @@ public abstract class JDistributionEditorPanelRecord {
 		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
 			final Double lambda=NumberTools.getPositiveDouble(fields[0],true); if (lambda==null) return null;
 			return new DiscretePoissonDistributionImpl(lambda);
+		}
+	}
+
+	/** Planck-Verteilung */
+	private static class PlanckDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public PlanckDistributionPanel() {
+			super(new WrapperPlanckDistribution(),new String[]{"lambda"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			return new String[]{NumberTools.formatNumber(WrapperPlanckDistribution.lambdaFromMean(meanD))};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((DiscretePlanckDistributionImpl)distribution).lambda)
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double lambda=NumberTools.getPositiveDouble(fields[0],true); if (lambda==null) return null;
+			return new DiscretePlanckDistributionImpl(lambda);
 		}
 	}
 
@@ -2038,6 +2230,139 @@ public abstract class JDistributionEditorPanelRecord {
 		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
 			final Double mu=NumberTools.getDouble(fields[0],true); if (mu==null || mu<0 || mu>1) return null;
 			return new DiscreteBorelDistributionImpl(mu);
+		}
+	}
+
+	/** Boltzmannverteilung */
+	private static class BoltzmannDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public BoltzmannDistributionPanel() {
+			super(new WrapperBoltzmannDistribution(),new String[]{"lambda","N"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			if (meanD<=0 || stdD<=0) return new String[]{NumberTools.formatNumber(0.5),"20"};
+			final double lambda=0.25;
+			final int N=(int)Math.round(3*meanD);
+			return new String[]{NumberTools.formatNumber(lambda,3),""+N};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((DiscreteBoltzmannDistributionImpl)distribution).lambda),
+					""+((DiscreteBoltzmannDistributionImpl)distribution).N
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double lambda=NumberTools.getPositiveDouble(fields[0],true); if (lambda==null) return null;
+			final Long N=NumberTools.getPositiveLong(fields[1],true); if (N==null) return null;
+			return new DiscreteBoltzmannDistributionImpl(lambda,N.intValue());
+		}
+	}
+
+	/** Log-Gamma-Verteilung */
+	private static class LogGammaDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public LogGammaDistributionPanel() {
+			super(new WrapperLogGammaDistribution(),new String[]{"a","b"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			double a=-Math.log(Math.max(meanD,0.0001))/Math.log(9.0/10.0);
+			double b=10;
+			if (a<=0) {a=1; b=1;}
+
+			return new String[]{
+					NumberTools.formatNumber(a),
+					NumberTools.formatNumber(b),
+			};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((LogGammaDistributionImpl)distribution).a),
+					NumberTools.formatNumberMax(((LogGammaDistributionImpl)distribution).b),
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double a=NumberTools.getPositiveDouble(fields[0],true); if (a==null) return null;
+			final Double b=NumberTools.getPositiveDouble(fields[1],true); if (b==null) return null;
+			return new LogGammaDistributionImpl(a,b);
+		}
+	}
+
+	/** Log-Laplace-Verteilung */
+	private static class LogLaplaceDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public LogLaplaceDistributionPanel() {
+			super(new WrapperLogLaplaceDistribution(),new String[]{"c","s"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			final var wrapper=new WrapperLogLaplaceDistribution();
+			final LogLaplaceDistributionImpl dist=(LogLaplaceDistributionImpl)wrapper.getDistribution(meanD,stdD);
+			if (dist==null) return new String[] {"2","5"};
+			return new String[] {NumberTools.formatNumber(dist.c),NumberTools.formatNumber(dist.s)};
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((LogLaplaceDistributionImpl)distribution).c),
+					NumberTools.formatNumberMax(((LogLaplaceDistributionImpl)distribution).s),
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double c=NumberTools.getPositiveDouble(fields[0],true); if (c==null) return null;
+			final Double s=NumberTools.getDouble(fields[1],true); if (s==null) return null;
+			return new LogLaplaceDistributionImpl(c,s);
+		}
+	}
+
+	/** Verallgemeinerte Rademacher-Verteilung */
+	private static class GeneralizedRademacherDistributionPanel extends JDistributionEditorPanelRecord {
+		/** Konstruktor der Klasse */
+		public GeneralizedRademacherDistributionPanel() {
+			super(new WrapperGeneralizedRademacherDistribution(),new String[]{"a","b","P(a)"});
+		}
+
+		@Override
+		public String[] getEditValues(double meanD, String mean, double stdD, String std, String lower, String upper, double maxXValue) {
+			final var wrapper=new WrapperGeneralizedRademacherDistribution();
+			final var dist=(GeneralizedRademacherDistribution)wrapper.getDistribution(meanD,stdD);
+			if (dist==null) {
+				return new String[] {NumberTools.formatNumber(50),NumberTools.formatNumber(100),NumberTools.formatNumber(0.5)};
+			} else {
+				return new String[] {NumberTools.formatNumber(dist.a),NumberTools.formatNumber(dist.b),NumberTools.formatNumber(dist.pA)};
+			}
+		}
+
+		@Override
+		public String[] getValues(AbstractRealDistribution distribution) {
+			return new String[] {
+					NumberTools.formatNumberMax(((GeneralizedRademacherDistribution)distribution).a),
+					NumberTools.formatNumberMax(((GeneralizedRademacherDistribution)distribution).b),
+					NumberTools.formatNumberMax(((GeneralizedRademacherDistribution)distribution).pA),
+			};
+		}
+
+		@Override
+		public AbstractRealDistribution getDistribution(JTextField[] fields, double maxXValue) {
+			final Double a=NumberTools.getNotNegativeDouble(fields[0],true); if (a==null) return null;
+			final Double b=NumberTools.getNotNegativeDouble(fields[1],true); if (b==null || b<a) return null;
+			final Double pA=NumberTools.getNotNegativeDouble(fields[2],true); if (pA==null || pA>1) return null;
+			return new GeneralizedRademacherDistribution(a,b,pA);
 		}
 	}
 }

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-04 19:51+0200\n"
+"POT-Creation-Date: 2025-08-01 11:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1901,6 +1901,9 @@ msgstr "Number of random numbers to be generated"
 msgid "Dialog.RandomNumbers.Error"
 msgstr "The number of random numbers must be a positive integer number."
 
+msgid "Dialog.RandomNumbers.Generator"
+msgstr "Generator"
+
 msgid "Dialog.SaveNow.Cancel.Info"
 msgstr "Do not execute the current command. All data will remain unchanged."
 
@@ -1964,6 +1967,9 @@ msgstr "Binomial distribution"
 msgid "Distribution.BinomialWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Binomial_distribution"
 
+msgid "Distribution.Boltzmann"
+msgstr "Boltzmann distribution"
+
 msgid "Distribution.Borel"
 msgstr "Borel distribution"
 
@@ -1993,6 +1999,18 @@ msgstr "https://en.wikipedia.org/wiki/Chi-squared_distribution"
 
 msgid "Distribution.ChiWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Chi_distribution"
+
+msgid "Distribution.ContinuousBernoulli"
+msgstr "Continuous Bernoulli distribution"
+
+msgid "Distribution.ContinuousBernoulliWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Continuous_Bernoulli_distribution"
+
+msgid "Distribution.Cosine"
+msgstr "Cosine distribution"
+
+msgid "Distribution.CosineWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Raised_cosine_distribution"
 
 msgid "Distribution.Data"
 msgstr "Empirical data"
@@ -2084,6 +2102,12 @@ msgstr ""
 msgid "Distribution.GammaWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Gamma_distribution"
 
+msgid "Distribution.GeneralizedRademacher"
+msgstr "Generalized Rademacher distribution"
+
+msgid "Distribution.GeneralizedRademacherWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Rademacher_distribution"
+
 msgid "Distribution.Geometric"
 msgstr "Geometric distribution"
 
@@ -2095,6 +2119,9 @@ msgstr "Gumbel distribution"
 
 msgid "Distribution.GumbelWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Gumbel_distribution"
+
+msgid "Distribution.HalfCauchy"
+msgstr "Half Cauchy distribution"
 
 msgid "Distribution.HalfNormal"
 msgstr "Half normal distribution"
@@ -2116,6 +2143,12 @@ msgstr "https://en.wikipedia.org/wiki/Hyperbolic_secant_distribution"
 
 msgid "Distribution.Infinite"
 msgstr "infinite"
+
+msgid "Distribution.InverseGamma"
+msgstr "Inverse gamma distribution"
+
+msgid "Distribution.InverseGammaWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Inverse-gamma_distribution"
 
 msgid "Distribution.InverseGaussian"
 msgstr "Inverse gaussian distribution"
@@ -2155,6 +2188,18 @@ msgstr "Log-Cauchy distribution"
 
 msgid "Distribution.LogCauchyWikipedia"
 msgstr "https://en.wikipedia.org/wiki/Log-Cauchy_distribution"
+
+msgid "Distribution.LogGamma"
+msgstr "Log-Gamma distribution"
+
+msgid "Distribution.LogGammaWikipedia"
+msgstr "https://de.wikipedia.org/wiki/Logarithmische_Gammaverteilung"
+
+msgid "Distribution.LogLaplace"
+msgstr "Log-Laplace distribution"
+
+msgid "Distribution.LogLaplaceWikipedia"
+msgstr "https://en.wikipedia.org/wiki/Log-Laplace_distribution"
 
 msgid "Distribution.LogLogistic"
 msgstr "Log-logistic distribution"
@@ -2251,6 +2296,9 @@ msgstr "Pert distribution"
 
 msgid "Distribution.PertWikipedia"
 msgstr "https://en.wikipedia.org/wiki/PERT_distribution"
+
+msgid "Distribution.Planck"
+msgstr "Planck distribution"
 
 msgid "Distribution.Point"
 msgstr "One point distribution"

@@ -117,6 +117,7 @@ import parser.symbols.CalcSymbolPreOperatorVariance;
 import parser.symbols.CalcSymbolPreOperatorZeta;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionBinomial;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionBinomialDirect;
+import parser.symbols.distributions.CalcSymbolDiscreteDistributionBoltzmann;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionBorel;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionGeometric;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionHyperGeom;
@@ -124,6 +125,7 @@ import parser.symbols.distributions.CalcSymbolDiscreteDistributionLogarithmic;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionNegativeBinomial;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionNegativeBinomialDirect;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionNegativeHyperGeom;
+import parser.symbols.distributions.CalcSymbolDiscreteDistributionPlanck;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionPoisson;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionUniform;
 import parser.symbols.distributions.CalcSymbolDiscreteDistributionZeta;
@@ -133,6 +135,8 @@ import parser.symbols.distributions.CalcSymbolDistributionBetaDirect;
 import parser.symbols.distributions.CalcSymbolDistributionCauchy;
 import parser.symbols.distributions.CalcSymbolDistributionChi;
 import parser.symbols.distributions.CalcSymbolDistributionChiSquare;
+import parser.symbols.distributions.CalcSymbolDistributionContinuousBernoulli;
+import parser.symbols.distributions.CalcSymbolDistributionCosine;
 import parser.symbols.distributions.CalcSymbolDistributionExp;
 import parser.symbols.distributions.CalcSymbolDistributionF;
 import parser.symbols.distributions.CalcSymbolDistributionFatigueLife;
@@ -141,8 +145,10 @@ import parser.symbols.distributions.CalcSymbolDistributionGamma;
 import parser.symbols.distributions.CalcSymbolDistributionGammaDirect;
 import parser.symbols.distributions.CalcSymbolDistributionGumbel;
 import parser.symbols.distributions.CalcSymbolDistributionGumbelDirect;
+import parser.symbols.distributions.CalcSymbolDistributionHalfCauchy;
 import parser.symbols.distributions.CalcSymbolDistributionHalfNormal;
 import parser.symbols.distributions.CalcSymbolDistributionHyperbolicSecant;
+import parser.symbols.distributions.CalcSymbolDistributionInverseGamma;
 import parser.symbols.distributions.CalcSymbolDistributionInverseGaussian;
 import parser.symbols.distributions.CalcSymbolDistributionIrwinHall;
 import parser.symbols.distributions.CalcSymbolDistributionIrwinHallDirect;
@@ -151,6 +157,8 @@ import parser.symbols.distributions.CalcSymbolDistributionKumaraswamy;
 import parser.symbols.distributions.CalcSymbolDistributionLaplace;
 import parser.symbols.distributions.CalcSymbolDistributionLevy;
 import parser.symbols.distributions.CalcSymbolDistributionLogCauchy;
+import parser.symbols.distributions.CalcSymbolDistributionLogGamma;
+import parser.symbols.distributions.CalcSymbolDistributionLogLaplace;
 import parser.symbols.distributions.CalcSymbolDistributionLogLogistic;
 import parser.symbols.distributions.CalcSymbolDistributionLogNormal;
 import parser.symbols.distributions.CalcSymbolDistributionLogistic;
@@ -182,6 +190,7 @@ import parser.symbols.distributions.CalcSymbolEmpiricalDistributionQuantil;
 import parser.symbols.distributions.CalcSymbolEmpiricalDistributionRandom;
 import parser.symbols.distributions.CalcSymbolEmpiricalDistributionSD;
 import parser.symbols.distributions.CalcSymbolEmpiricalDistributionVar;
+import parser.symbols.distributions.CalcSymbolGeneralizedRademacherDistribution;
 import parser.symbols.distributions.CalcSymbolTruncatedDistribution;
 
 /**
@@ -307,6 +316,7 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolDiscreteDistributionBinomial());
 			addSymbol(new CalcSymbolDiscreteDistributionBinomialDirect());
 			addSymbol(new CalcSymbolDiscreteDistributionPoisson());
+			addSymbol(new CalcSymbolDiscreteDistributionPlanck());
 			addSymbol(new CalcSymbolDiscreteDistributionZeta());
 			addSymbol(new CalcSymbolDiscreteDistributionNegativeBinomial());
 			addSymbol(new CalcSymbolDiscreteDistributionNegativeBinomialDirect());
@@ -315,6 +325,7 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolDiscreteDistributionGeometric());
 			addSymbol(new CalcSymbolDiscreteDistributionLogarithmic());
 			addSymbol(new CalcSymbolDiscreteDistributionBorel());
+			addSymbol(new CalcSymbolDiscreteDistributionBoltzmann());
 
 			addSymbol(new CalcSymbolDistributionExp());
 			addSymbol(new CalcSymbolDistributionUniform());
@@ -359,9 +370,16 @@ public class CalcSymbolList {
 			addSymbol(new CalcSymbolDistributionIrwinHall());
 			addSymbol(new CalcSymbolDistributionIrwinHallDirect());
 			addSymbol(new CalcSymbolDistributionSine());
+			addSymbol(new CalcSymbolDistributionCosine());
 			addSymbol(new CalcSymbolDistributionArcsine());
 			addSymbol(new CalcSymbolDistributionWignerHalfCircle());
 			addSymbol(new CalcSymbolDistributionLogCauchy());
+			addSymbol(new CalcSymbolDistributionLogGamma());
+			addSymbol(new CalcSymbolDistributionLogLaplace());
+			addSymbol(new CalcSymbolDistributionInverseGamma());
+			addSymbol(new CalcSymbolDistributionContinuousBernoulli());
+			addSymbol(new CalcSymbolGeneralizedRademacherDistribution());
+			addSymbol(new CalcSymbolDistributionHalfCauchy());
 
 			addSymbol(new CalcSymbolEmpiricalDistributionPDF());
 			addSymbol(new CalcSymbolEmpiricalDistributionCDF());
@@ -637,10 +655,6 @@ public class CalcSymbolList {
 		if (listPreOperatorUser==null) listPreOperatorUser=getUserFunctions();
 
 		if (listPreOperatorUser!=null) for (CalcSymbol sym: listPreOperatorUser) for (String s: sym.getNames()) if (!s.isEmpty() && s.equalsIgnoreCase(name) && s.length()>len) {select=sym; len=s.length();}
-		for (CalcSymbol sym: listPreOperator) for (String s: sym.getNames()) if (!s.isEmpty() && s.equalsIgnoreCase(name) && s.length()>len) {select=sym; len=s.length();}
-		for (CalcSymbol sym: listMiddleOperator) for (String s: sym.getNames()) if (!s.isEmpty() && s.equalsIgnoreCase(name) && s.length()>len) {select=sym; len=s.length();}
-		for (CalcSymbol sym: listPostOperator) for (String s: sym.getNames()) if (!s.isEmpty() && s.equalsIgnoreCase(name) && s.length()>len) {select=sym; len=s.length();}
-		for (CalcSymbol sym: listConst) for (String s: sym.getNames()) if (!s.isEmpty() && s.equalsIgnoreCase(name) && s.length()>len) {select=sym; len=s.length();}
 
 		for (int i=0;i<variables.length;i++) if (variables[i]!=null && variables[i].equalsIgnoreCase(name) && variables[i].length()>len) {
 			CalcSymbolVariable variable=new CalcSymbolVariable();
@@ -648,6 +662,11 @@ public class CalcSymbolList {
 			select=variable;
 			len=variables[i].length();
 		}
+
+		for (CalcSymbol sym: listPreOperator) for (String s: sym.getNames()) if (!s.isEmpty() && s.equalsIgnoreCase(name) && s.length()>len) {select=sym; len=s.length();}
+		for (CalcSymbol sym: listMiddleOperator) for (String s: sym.getNames()) if (!s.isEmpty() && s.equalsIgnoreCase(name) && s.length()>len) {select=sym; len=s.length();}
+		for (CalcSymbol sym: listPostOperator) for (String s: sym.getNames()) if (!s.isEmpty() && s.equalsIgnoreCase(name) && s.length()>len) {select=sym; len=s.length();}
+		for (CalcSymbol sym: listConst) for (String s: sym.getNames()) if (!s.isEmpty() && s.equalsIgnoreCase(name) && s.length()>len) {select=sym; len=s.length();}
 
 		if (select!=null) select=select.cloneSymbol();
 		return select;

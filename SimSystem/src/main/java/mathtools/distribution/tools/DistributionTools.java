@@ -141,6 +141,12 @@ public final class DistributionTools {
 			"<p>Können diese beiden Werte aus den historischen Daten abgeleitet werden, so eigent sich die Verteilung sehr gut zur Modellierung. Stehen derartige Werte nicht zur Verfügung, so kann ggf. auf die Dreiecksverteilung zurückgegriffen werden.</p>"+
 			"<p>In <b>Tabellenkalkulationen</b> ist üblicherweise auch die Gamma-Verteilung hinterlegt. Allerdings erfolgt doch die Parametrisierung meist nicht über Erwartungswert und Standardabweichung. Manuelle Umrechnungen sind hier nötig (siehe Dokumentation des jeweiligen Programms).</p>";
 
+	/** Inverse Gamma-Verteilung */
+	public static String[] DistInverseGamma=new String[]{"Inverse Gamma-Verteilung"};
+
+	/** Wikipedia-Seite Inverse Gamma-Verteilung */
+	public static String DistInverseGammaWikipedia="https://en.wikipedia.org/wiki/Inverse-gamma_distribution";
+
 	/** Beta-Verteilung */
 	public static String[] DistBeta=new String[]{"Beta-Verteilung"};
 
@@ -152,6 +158,12 @@ public final class DistributionTools {
 
 	/** Wikipedia-Seite Cauchy-Verteilung */
 	public static String DistCauchyWikipedia="https://de.wikipedia.org/wiki/Cauchy-Verteilung";
+
+	/** Halbe Cauchy-Verteilung */
+	public static String[] DistHalfCauchy=new String[]{"Halbe Cauchy-Verteilung"};
+
+	/** Wikipedia-Seite Halbe Cauchy-Verteilung */
+	public static String DistHalfCauchyWikipedia=""; /* leider keine Wikipedia-Seite vorhanden */
 
 	/** Log-Cauchy-Verteilung */
 	public static String[] DistLogCauchy=new String[]{"Log-Cauchy-Verteilung"};
@@ -326,6 +338,12 @@ public final class DistributionTools {
 	/** Wikipedia-Seite Poisson-Verteilung */
 	public static String DistPoissonWikipedia="https://de.wikipedia.org/wiki/Poisson-Verteilung";
 
+	/** Planck-Verteilung */
+	public static String[] DistPlanck=new String[]{"Planck-Verteilung"};
+
+	/** Wikipedia-Seite Planck-Verteilung */
+	public static String DistPlanckWikipedia=""; /* leider keine Wikipedia-Seite vorhanden */
+
 	/** Negative Binomialverteilung */
 	public static String[] DistNegativeBinomial=new String[]{"Negative Binomialverteilung"};
 
@@ -366,7 +384,13 @@ public final class DistributionTools {
 	public static String[] DistBorel=new String[]{"Borel-Verteilung"};
 
 	/** Wikipedia-Seite Borel-Verteilung */
-	public static String DistBorelWikipedia="https://en.wikipedia.org/wiki/Borel_distribution"; /* leide keine Wikipedia-Seite vorhanden */
+	public static String DistBorelWikipedia="https://en.wikipedia.org/wiki/Borel_distribution"; /* leider keine deutsche Wikipedia-Seite vorhanden */
+
+	/** Borel-Verteilung */
+	public static String[] DistBoltzmann=new String[]{"Boltzmann-Verteilung"};
+
+	/** Wikipedia-Seite Borel-Verteilung */
+	public static String DistBoltzmannWikipedia=""; /* leider keine Wikipedia-Seite vorhanden */
 
 	/** Halbe Normalverteilung */
 	public static String[] DistHalfNormal=new String[]{"Halbe Normalverteilung"};
@@ -401,20 +425,50 @@ public final class DistributionTools {
 	/** Sinus-Verteilung */
 	public static String[] DistSine=new String[]{"Sinus-Verteilung"};
 
-	/** Wikipedia-Seite Sine-Verteilung */
-	public static String DistSineWikipedia=""; /* leide keine Wikipedia-Seite vorhanden */
+	/** Wikipedia-Seite Sinus-Verteilung */
+	public static String DistSineWikipedia=""; /* leider keine Wikipedia-Seite vorhanden */
+
+	/** Cosinus-Verteilung */
+	public static String[] DistCosine=new String[]{"Cosinus-Verteilung"};
+
+	/** Wikipedia-Seite Cosinus-Verteilung */
+	public static String DistCosineWikipedia="https://en.wikipedia.org/wiki/Raised_cosine_distribution";
 
 	/** Arcus Sinus-Verteilung */
 	public static String[] DistArcsine=new String[]{"Arcus Sinus-Verteilung"};
 
 	/** Wikipedia-Seite Arcus Sine-Verteilung */
-	public static String DistArcsineWikipedia=""; /* leide keine Wikipedia-Seite vorhanden */
+	public static String DistArcsineWikipedia=""; /* leider keine Wikipedia-Seite vorhanden */
 
 	/** Wigner Halbkreis-Verteilung */
 	public static String[] DistWignerHalfCircle=new String[]{"Wigner Halbkreis-Verteilung"};
 
 	/** Wikipedia-Seite  Wigner Halbkreis-Verteilung */
 	public static String DistWignerHalfCircleWikipedia="https://en.wikipedia.org/wiki/Wigner_semicircle_distribution";
+
+	/** Log-Gamma-Verteilung */
+	public static String[] DistLogGamma=new String[]{"Log-Gamma-Verteilung"};
+
+	/** Wikipedia-Seite  Log-Gamma-Verteilung */
+	public static String DistLogGammaWikipedia="https://de.wikipedia.org/wiki/Logarithmische_Gammaverteilung";
+
+	/** Log-Laplace-Verteilung */
+	public static String[] DistLogLaplace=new String[]{"Log-Laplace-Verteilung"};
+
+	/** Wikipedia-Seite  Log-Laplace-Verteilung */
+	public static String DistLogLaplaceWikipedia="https://en.wikipedia.org/wiki/Log-Laplace_distribution";
+
+	/** Kontinuierliche Bernoulli-Verteilung */
+	public static String[] DistContinuousBernoulli=new String[]{"Kontinuierliche Bernoulli-Verteilung"};
+
+	/** Wikipedia-Seite kontinuierliche Bernoulli-Verteilung */
+	public static String DistContinuousBernoulliWikipedia="https://en.wikipedia.org/wiki/Continuous_Bernoulli_distribution";
+
+	/** Verallgemeinerte Rademacher-Verteilung */
+	public static String[] DistGeneralizedRademacher=new String[]{"Verallgemeinerte Rademacher-Verteilung"};
+
+	/** Wikipedia-Seite Verallgemeinerte Rademacher-Verteilung */
+	public static String DistGeneralizedRademacherWikipedia="https://de.wikipedia.org/wiki/Rademacherverteilung";
 
 	/** Warnung "unbekannte Verteilung" */
 	public static String DistUnknown="unbekannte Verteilung";
@@ -499,8 +553,10 @@ public final class DistributionTools {
 				new WrapperLogNormalDistribution(),
 				new WrapperErlangDistribution(),
 				new WrapperGammaDistribution(),
+				new WrapperInverseGammaDistribution(),
 				new WrapperBetaDistribution(),
 				new WrapperCauchyDistribution(),
+				new WrapperHalfCauchyDistribution(),
 				new WrapperWeibullDistribution(),
 				new WrapperChiSquaredDistribution(),
 				new WrapperChiDistribution(),
@@ -528,6 +584,7 @@ public final class DistributionTools {
 				new WrapperHyperGeomDistribution(),
 				new WrapperBinomialDistribution(),
 				new WrapperPoissonDistribution(),
+				new WrapperPlanckDistribution(),
 				new WrapperNegativeBinomialDistribution(),
 				new WrapperNegativeHyperGeomDistribution(),
 				new WrapperZetaDistribution(),
@@ -540,10 +597,16 @@ public final class DistributionTools {
 				new WrapperKumaraswamyDistribution(),
 				new WrapperIrwinHallDistribution(),
 				new WrapperSineDistribution(),
+				new WrapperCosineDistribution(),
 				new WrapperArcsineDistribution(),
 				new WrapperWignerHalfCircleDistribution(),
 				new WrapperLogCauchyDistribution(),
-				new WrapperBorelDistribution()
+				new WrapperBorelDistribution(),
+				new WrapperLogGammaDistribution(),
+				new WrapperLogLaplaceDistribution(),
+				new WrapperContinuousBernoulliDistribution(),
+				new WrapperGeneralizedRademacherDistribution(),
+				new WrapperBoltzmannDistribution()
 		};
 	}
 

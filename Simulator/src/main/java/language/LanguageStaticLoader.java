@@ -125,10 +125,13 @@ public class LanguageStaticLoader {
 		DistributionTools.DistGamma=Language.trAll("Distribution.Gamma");
 		DistributionTools.DistGammaWikipedia=Language.tr("Distribution.GammaWikipedia");
 		DistributionTools.DistGammaInfo=Language.tr("Distribution.GammaInfo");
+		DistributionTools.DistInverseGamma=Language.trAll("Distribution.InverseGamma");
+		DistributionTools.DistInverseGammaWikipedia=Language.tr("Distribution.InverseGammaWikipedia");
 		DistributionTools.DistBeta=Language.trAll("Distribution.Beta");
 		DistributionTools.DistBetaWikipedia=Language.tr("Distribution.BetaWikipedia");
 		DistributionTools.DistCauchy=Language.trAll("Distribution.Cauchy");
 		DistributionTools.DistCauchyWikipedia=Language.tr("Distribution.CauchyWikipedia");
+		DistributionTools.DistHalfCauchy=Language.trAll("Distribution.HalfCauchy");
 		DistributionTools.DistLogCauchy=Language.trAll("Distribution.LogCauchy");
 		DistributionTools.DistLogCauchyWikipedia=Language.tr("Distribution.LogCauchyWikipedia");
 		DistributionTools.DistWeibull=Language.trAll("Distribution.Weibull");
@@ -186,6 +189,7 @@ public class LanguageStaticLoader {
 		DistributionTools.DistBinomialWikipedia=Language.tr("Distribution.BinomialWikipedia");
 		DistributionTools.DistPoisson=Language.trAll("Distribution.Poisson");
 		DistributionTools.DistPoissonWikipedia=Language.tr("Distribution.PoissonWikipedia");
+		DistributionTools.DistPlanck=Language.trAll("Distribution.Planck");
 		DistributionTools.DistNegativeBinomial=Language.trAll("Distribution.NegativeBinomial");
 		DistributionTools.DistNegativeBinomialWikipedia=Language.tr("Distribution.NegativeBinomialWikipedia");
 		DistributionTools.DistNegativeHyperGeom=Language.trAll("Distribution.NegativeHyperGeom");
@@ -200,6 +204,7 @@ public class LanguageStaticLoader {
 		DistributionTools.DistLogarithmicWikipedia=Language.tr("Distribution.LogarithmicWikipedia");
 		DistributionTools.DistBorel=Language.trAll("Distribution.Borel");
 		DistributionTools.DistBorelWikipedia=Language.tr("Distribution.BorelWikipedia");
+		DistributionTools.DistBoltzmann=Language.trAll("Distribution.Boltzmann");
 		DistributionTools.DistHalfNormal=Language.trAll("Distribution.HalfNormal");
 		DistributionTools.DistHalfNormalWikipedia=Language.tr("Distribution.HalfNormalWikipedia");
 		DistributionTools.DistUQuadratic=Language.trAll("Distribution.UQuadratic");
@@ -211,9 +216,19 @@ public class LanguageStaticLoader {
 		DistributionTools.DistIrwinHall=Language.trAll("Distribution.IrwinHall");
 		DistributionTools.DistIrwinHallWikipedia=Language.tr("Distribution.IrwinHallWikipedia");
 		DistributionTools.DistSine=Language.trAll("Distribution.Sine");
+		DistributionTools.DistCosine=Language.trAll("Distribution.Cosine");
+		DistributionTools.DistCosineWikipedia=Language.tr("Distribution.CosineWikipedia");
 		DistributionTools.DistArcsine=Language.trAll("Distribution.Arcsine");
 		DistributionTools.DistWignerHalfCircle=Language.trAll("Distribution.WignerHalfCircle");
 		DistributionTools.DistWignerHalfCircleWikipedia=Language.tr("Distribution.WignerHalfCircleWikipedia");
+		DistributionTools.DistLogGamma=Language.trAll("Distribution.LogGamma");
+		DistributionTools.DistLogGammaWikipedia=Language.tr("Distribution.LogGammaWikipedia");
+		DistributionTools.DistLogLaplace=Language.trAll("Distribution.LogLaplace");
+		DistributionTools.DistLogLaplaceWikipedia=Language.tr("Distribution.LogLaplaceWikipedia");
+		DistributionTools.DistContinuousBernoulli=Language.trAll("Distribution.ContinuousBernoulli");
+		DistributionTools.DistContinuousBernoulliWikipedia=Language.tr("Distribution.ContinuousBernoulliWikipedia");
+		DistributionTools.DistGeneralizedRademacher=Language.trAll("Distribution.GeneralizedRademacher");
+		DistributionTools.DistGeneralizedRademacherWikipedia=Language.tr("Distribution.GeneralizedRademacherWikipedia");
 		DistributionTools.DistUnknown=Language.tr("Distribution.Unknown");
 		DistributionTools.DistDataPoint=Language.tr("Distribution.DataPoint");
 		DistributionTools.DistDataPoints=Language.tr("Distribution.DataPoints");
@@ -379,6 +394,7 @@ public class LanguageStaticLoader {
 		JDistributionPanel.RandomNumbersCount=Language.tr("Dialog.RandomNumbers.Count");
 		JDistributionPanel.RandomNumbersError=Language.tr("Dialog.RandomNumbers.Error");
 		JDistributionPanel.ToCalculationExpression=Language.tr("Dialog.ConvertDistributionToExpression");
+		JDistributionPanel.Generator=Language.tr("Dialog.RandomNumbers.Generator");
 
 		/* GUITools */
 		GUITools.errorNoGraphicsOutputAvailable=Language.tr("Window.ErrorNoGraphics");

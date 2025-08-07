@@ -3135,6 +3135,105 @@ class SymbolsTests {
 				assertTrue(false);
 			}
 		}
+
+		/* Planck-Verteilung - Dichte */
+
+		calc=new CalcSystem("PlanckDist(x;l)",new String[]{"x","l"});
+		assertTrue(calc.parse()<0);
+
+		try {
+			d=calc.calc(new double[]{-1,0.2});
+			assertEquals(0,d);
+		} catch (MathCalcError e) {
+			assertTrue(false);
+		}
+
+		for (int k=0;k<10;k++) {
+			try {
+				d=calc.calc(new double[]{k,0.2});
+				assertTrue(d>0);
+			} catch (MathCalcError e) {
+				assertTrue(false);
+			}
+		}
+
+		final CalcSystem calcFinal6=calc;
+		assertThrowsExactly(MathCalcError.class,()->{
+			calcFinal6.calc(new double[]{3,-0.2});
+		});
+
+		calc=new CalcSystem("PlanckDist(x;y;z;a;b)",new String[]{"x","y","z","a","b"});
+		assertTrue(calc.parse()<0);
+		d=calc.calcOrDefault(new double[]{1,2,3,4,5},-17);
+		assertEquals(-17.0,d);
+
+		/* Planck-Verteilung - Zufallszahlen */
+
+		calc=new CalcSystem("PlanckDist(l)",new String[]{"l"});
+		assertTrue(calc.parse()<0);
+
+		for (int i=0;i<100;i++) {
+			try {
+				d=calc.calc(new double[]{0.2});
+				assertTrue(d>=0.0);
+			} catch (MathCalcError e) {
+				assertTrue(false);
+			}
+		}
+
+		/* Boltzmann-Verteilung - Dichte */
+
+		calc=new CalcSystem("BoltzmannDist(x;l;N)",new String[]{"x","l","N"});
+		assertTrue(calc.parse()<0);
+
+		try {
+			d=calc.calc(new double[]{-1,0.25,20});
+			assertEquals(0,d);
+		} catch (MathCalcError e) {
+			assertTrue(false);
+		}
+
+		for (int k=0;k<=19;k++) {
+			try {
+				d=calc.calc(new double[]{k,0.25,20});
+				assertTrue(d>0);
+			} catch (MathCalcError e) {
+				assertTrue(false);
+			}
+		}
+
+		try {
+			d=calc.calc(new double[]{20,0.25,20});
+			assertEquals(0,d);
+		} catch (MathCalcError e) {
+			assertTrue(false);
+		}
+
+		final CalcSystem calcFinal7=calc;
+		assertThrowsExactly(MathCalcError.class,()->{
+			calcFinal7.calc(new double[]{3,-0.25,20});
+		});
+
+		calc=new CalcSystem("BoltzmannDist(x;y;z;a;b)",new String[]{"x","y","z","a","b"});
+		assertTrue(calc.parse()<0);
+		d=calc.calcOrDefault(new double[]{1,2,3,4,5},-17);
+		assertEquals(-17.0,d);
+
+		/* Boltzmann-Verteilung - Zufallszahlen */
+
+		calc=new CalcSystem("BoltzmannDist(l;N)",new String[]{"l","N"});
+		assertTrue(calc.parse()<0);
+
+		for (int i=0;i<100;i++) {
+			try {
+				d=calc.calc(new double[]{0.25,20});
+				assertTrue(d>=0);
+				assertTrue(d<=19);
+				assertTrue(d%1.0==0.0);
+			} catch (MathCalcError e) {
+				assertTrue(false);
+			}
+		}
 	}
 
 	/**
@@ -3150,7 +3249,7 @@ class SymbolsTests {
 		try {
 			return calc.calc(values);
 		} catch (MathCalcError e) {
-			assertTrue(false);
+			assertTrue(false,e.getMessage());
 			return -1;
 		}
 	}
@@ -3445,6 +3544,25 @@ class SymbolsTests {
 		variables=new String[]{"a","b"};
 		testDistribution(cmd,variables,new double[]{1,2});
 
+		/* Halbe Cauchy-Verteilung */
+
+		cmd="HalfCauchyDist(x;mu;sigma;0)";
+		variables=new String[]{"x","mu","sigma"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{99,100,50}));
+		assertTrue(testDistribution(cmd,variables,new double[]{100,100,50})>0);
+		assertTrue(testDistribution(cmd,variables,new double[]{120,100,50})>0);
+
+		cmd="HalfCauchyDist(x;mu;sigma;1)";
+		variables=new String[]{"x","mu","sigma"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{99,100,50}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{100,100,50}));
+		assertTrue(testDistribution(cmd,variables,new double[]{120,100,50})>0);
+		testDistributionThrows("HalfCauchyDist(x;mu;sigma;2)",variables,new double[]{110,100,50});
+
+		cmd="HalfCauchyDist(mu;sigma)";
+		variables=new String[]{"mu","sigma"};
+		testDistribution(cmd,variables,new double[]{100,50});
+
 		/* Halbe Normalverteilung */
 
 		cmd="HalfNormalDist(x;a;b;0)";
@@ -3477,6 +3595,21 @@ class SymbolsTests {
 		cmd="HyperbolicSecantDistribution(a;b)";
 		variables=new String[]{"a","b"};
 		testDistribution(cmd,variables,new double[]{1,2});
+
+		/* Inverse Gamma-Verteilung */
+
+		cmd="InverseGammaDistribution(x;alpha;beta;0)";
+		variables=new String[]{"x","alpha","beta"};
+		assertTrue(testDistribution(cmd,variables,new double[]{20,5,100})>0);
+
+		cmd="InverseGammaDistribution(x;alpha;beta;1)";
+		variables=new String[]{"x","alpha","beta"};
+		assertTrue(testDistribution(cmd,variables,new double[]{20,5,100})>0);
+		testDistributionThrows("HyperbolicSecantDistribution(x;alpha;beta;2)",variables,new double[]{20,5,100});
+
+		cmd="InverseGammaDistribution(alpha;beta)";
+		variables=new String[]{"alpha","beta"};
+		testDistribution(cmd,variables,new double[]{5,100});
 
 		/* Inverse Gaußverteilung */
 
@@ -3909,6 +4042,29 @@ class SymbolsTests {
 		variables=new String[]{"a","b"};
 		testDistribution(cmd,variables,new double[]{50,150});
 
+		/* Cosinus-Verteilung */
+
+		cmd="CosineDist(x;a;b;0)";
+		variables=new String[]{"x","a","b"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{49,50,150}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,50,150}));
+		assertTrue(testDistribution(cmd,variables,new double[]{100,50,150})>0);
+		assertEquals(0,testDistribution(cmd,variables,new double[]{150,50,150}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{151,50,150}));
+
+		cmd="CosineDist(x;a;b;1)";
+		variables=new String[]{"x","a","b"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{49,50,150}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,50,150}));
+		assertTrue(testDistribution(cmd,variables,new double[]{100,50,150})>0);
+		assertEquals(1,testDistribution(cmd,variables,new double[]{150,50,150}));
+		assertEquals(1,testDistribution(cmd,variables,new double[]{151,50,150}));
+		testDistributionThrows("CosineDist(x;a;b;2)",variables,new double[]{100,50,150});
+
+		cmd="CosineDist(a;b)";
+		variables=new String[]{"a","b"};
+		testDistribution(cmd,variables,new double[]{50,150});
+
 		/* Student-t Verteilung */
 
 		cmd="StudentTDist(x;mu;nu;0)";
@@ -3990,6 +4146,109 @@ class SymbolsTests {
 		cmd="WignerHalfCircleDist(a;b)";
 		variables=new String[]{"a","b"};
 		testDistribution(cmd,variables,new double[]{5,2});
+
+		/* Log-Gamma-Verteilung */
+
+		cmd="LogGammaDist(x;a;b;0)";
+		variables=new String[]{"x","a","b"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{0,4.5,3.5}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{1,4.5,3.5}));
+		assertTrue(testDistribution(cmd,variables,new double[]{2,4.5,3.5})>0);
+
+		cmd="LogGammaDist(x;a;b;1)";
+		variables=new String[]{"x","a","b"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{0,4.5,3.5}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{1,4.5,3.5}));
+		assertTrue(testDistribution(cmd,variables,new double[]{2,4.5,3.5})>0);
+		testDistributionThrows("LogGammaDist(x;a;b;2)",variables,new double[]{2,4.5,3.5});
+
+		cmd="LogGammaDist(a;b)";
+		variables=new String[]{"a","b"};
+		testDistribution(cmd,variables,new double[]{4.5,3.5});
+
+		/* Kontinuierliche Bernoulli-Verteilung */
+
+		cmd="ContinuousBernoulliDist(x;a;b;l;0)";
+		variables=new String[]{"x","a","b","l"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.3}));
+		assertTrue(testDistribution(cmd,variables,new double[]{200,100,400,0.3})>0);
+		assertEquals(0,testDistribution(cmd,variables,new double[]{500,100,400,0.3}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.5}));
+		assertTrue(testDistribution(cmd,variables,new double[]{200,100,400,0.5})>0);
+		assertEquals(0,testDistribution(cmd,variables,new double[]{500,100,400,0.5}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.7}));
+		assertTrue(testDistribution(cmd,variables,new double[]{200,100,400,0.7})>0);
+		assertEquals(0,testDistribution(cmd,variables,new double[]{500,100,400,0.7}));
+
+		cmd="ContinuousBernoulliDist(x;a;b;l;1)";
+		variables=new String[]{"x","a","b","l"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.3}));
+		assertTrue(testDistribution(cmd,variables,new double[]{200,100,400,0.3})>0);
+		assertEquals(1,testDistribution(cmd,variables,new double[]{500,100,400,0.3}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.5}));
+		assertTrue(testDistribution(cmd,variables,new double[]{200,100,400,0.5})>0);
+		assertEquals(1,testDistribution(cmd,variables,new double[]{500,100,400,0.5}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.7}));
+		assertTrue(testDistribution(cmd,variables,new double[]{200,100,400,0.7})>0);
+		assertEquals(1,testDistribution(cmd,variables,new double[]{500,100,400,0.7}));
+
+		testDistributionThrows("ContinuousBernoulliDist(x;a;b;l;2)",variables,new double[]{1000,900,2700});
+
+		cmd="ContinuousBernoulliDist(a;b;l)";
+		variables=new String[]{"a","b","l"};
+		testDistribution(cmd,variables,new double[]{100,400,0.3});
+		testDistribution(cmd,variables,new double[]{100,400,0.5});
+		testDistribution(cmd,variables,new double[]{100,400,0.7});
+
+		/* Verallgemeinerte Rademacher-Verteilung */
+
+		cmd="GeneralizedRademacherDist(x;a;b;pA;0)";
+		variables=new String[]{"x","a","b","pA"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.3}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{500,100,400,0.3}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.5}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{500,100,400,0.5}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.7}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{500,100,400,0.7}));
+
+		cmd="GeneralizedRademacherDist(x;a;b;pA;1)";
+		variables=new String[]{"x","a","b","pA"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.3}));
+		assertEquals(0.3,testDistribution(cmd,variables,new double[]{200,100,400,0.3}));
+		assertEquals(1,testDistribution(cmd,variables,new double[]{500,100,400,0.3}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.5}));
+		assertEquals(0.5,testDistribution(cmd,variables,new double[]{200,100,400,0.5}));
+		assertEquals(1,testDistribution(cmd,variables,new double[]{500,100,400,0.5}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{50,100,400,0.7}));
+		assertEquals(0.7,testDistribution(cmd,variables,new double[]{200,100,400,0.7}));
+		assertEquals(1,testDistribution(cmd,variables,new double[]{500,100,400,0.7}));
+
+		testDistributionThrows("GeneralizedRademacherDist(x;a;b;pA;2)",variables,new double[]{100,50,150,0.5});
+
+		cmd="GeneralizedRademacherDist(a;b;pA)";
+		variables=new String[]{"a","b","pA"};
+		testDistribution(cmd,variables,new double[]{100,400,0.3});
+		testDistribution(cmd,variables,new double[]{100,400,0.5});
+		testDistribution(cmd,variables,new double[]{100,400,0.7});
+
+		/* Log-Laplace-Verteilung */
+
+		cmd="LogLaplaceDist(x;c;s;0)";
+		variables=new String[]{"x","c","s"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{0,2.5,5}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{5,2.5,5}));
+		assertTrue(testDistribution(cmd,variables,new double[]{7,2.5,5})>0);
+
+		cmd="LogLaplaceDist(x;c;s;1)";
+		variables=new String[]{"x","c","s"};
+		assertEquals(0,testDistribution(cmd,variables,new double[]{0,2.5,5}));
+		assertEquals(0,testDistribution(cmd,variables,new double[]{5,2.5,5}));
+		assertTrue(testDistribution(cmd,variables,new double[]{7,2.5,5})>0);
+		testDistributionThrows("LogLaplaceDist(x;c;s;2)",variables,new double[]{10,2.5,5});
+
+		cmd="LogLaplaceDist(c;s)";
+		variables=new String[]{"c","s"};
+		testDistribution(cmd,variables,new double[]{2.5,5});
 	}
 
 	/**
@@ -4062,7 +4321,7 @@ class SymbolsTests {
 		assertTrue(calc.parse()<0);
 		try {
 			result=calc.calc();
-			assertEquals(64.5/23.0,result,0.0001);
+			assertEquals(((double)(7*0+2*1+1*2+3*3+10*4))/(7+2+1+3+10),result,0.0001);
 		} catch (MathCalcError e) {
 			assertTrue(false);
 		}
@@ -4144,7 +4403,7 @@ class SymbolsTests {
 		assertTrue(calc.parse()<0);
 		try {
 			result=calc.calc();
-			assertEquals(Math.sqrt(3.0812854442344038)/(64.5/23.0),result,0.0001);
+			assertEquals(Math.sqrt(3.0812854442344038)/(((double)(7*0+2*1+1*2+3*3+10*4))/(7+2+1+3+10)),result,0.0001);
 		} catch (MathCalcError e) {
 			assertTrue(false);
 		}
