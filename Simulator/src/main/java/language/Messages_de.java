@@ -398,6 +398,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[939] = "Ung\u00fcltiger Bereich";
     t[950] = "Statistic.FastAccess.Save.Tooltip";
     t[951] = "Speichert die Filterkonfiguration in einer Datei";
+    t[954] = "Distribution.SawtoothRightInfo";
+    t[955] = "<p>Die S\u00e4gezahnverteilung stellt einen vereinfachten Spezialfall der Dreiecksverteilung dar. Die S\u00e4gezahnverteilung wird lediglich \u00fcber ihren Tr\u00e4gerbereich definiert.</p>";
     t[956] = "VarianceAnalysis.NumberOfRepetitions";
     t[957] = "Anzahl an Wiederholungen";
     t[958] = "AutoSave.Setup.SaveFiltered.Output.Select";
@@ -706,8 +708,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[1709] = "Die Weiterleitungs-Anzahl der Kunden pro Intervall ist ung\u00fcltig.";
     t[1716] = "Model.Check.MinimalShiftLengthLongerThanPreferredShiftLength.AgentsGroup";
     t[1717] = "Die f\u00fcr Agentengrupp %d in Callcenter %s gew\u00e4hlte minimale Schichtl\u00e4nge ist l\u00e4nger als die gew\u00e4hlte maximale Schichtl\u00e4nge.";
-    t[1718] = "FileType.AllSupportedFiles";
-    t[1719] = "Alle unterst\u00fctzten Dateiformate";
+    t[1718] = "Distribution.HyperGeomInfo";
+    t[1719] = "<p>Die hypergeometrische Verteilung ist eine diskrete Wahrscheinlichkeitsverteilung. Sie ist folglich nicht daf\u00fcr geeignet, Zeitdauern zu beschreiben, sondern zuf\u00e4llige Prozesse, die jeweils diskrete Werte annehmen k\u00f6nnen.</p>\n<p>Die hypergeometrische Verteilung beschreibt die Wahrscheinlichkeiten beim <b>Ziehen ohne Zur\u00fccklegen</b> aus einer Urne in der Kugeln mit zwei verschiedenen Farben enthalten sind.</p>";
     t[1728] = "Editor.Caller.Error.WaitingTimeCalcAdd.Info";
     t[1729] = "Der angegeben Wert f\u00fcr den Korrekturwert zur Sch\u00e4tzung der Wartezeittoleranz %s ist ung\u00fcltig.";
     t[1730] = "Statistic.Viewer.Toolbar.Save";
@@ -1194,6 +1196,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[2823] = "Kunden geben das Warten nie auf";
     t[2824] = "Statistic.Viewer.Toolbar.NewWindow.Fullscreen.Hint";
     t[2825] = "Vergr\u00f6\u00dfert den Dialog, so dass er den Bildschirm ausf\u00fcllt.";
+    t[2828] = "Distribution.FInfo";
+    t[2829] = "<p>Die F-Verteilung ist der Quotient zweier Chi^2-verteilter Zufallsvariablen. Die F-Verteilung wird vor allem in der Testtheorie, zur Ermillung der Signifikanz der Unterschiede zwischen verschiedenen Stichproben in Bezug auf deren Varianzen verwendet.</p>";
     t[2830] = "MainMenu.File.Quit";
     t[2831] = "Beenden";
     t[2834] = "Editor.Caller.WaitingTimeTolerance.Estimation.AverageWaitingTime";
@@ -1824,6 +1828,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4283] = "Nein";
     t[4288] = "Statistics.XML.RunThreads";
     t[4289] = "StatistikThreads";
+    t[4290] = "Distribution.ChiSquareInfo";
+    t[4291] = "<p>Bei der Chi^2-Verteilung handelt es sich, \u00e4hnlich wie bei der Normalverteilung, um die additiven \u00dcberlagerung mehrerer unabh\u00e4ngiger Einzelverteilungen. W\u00e4hrend die Normalverteilung die Grenzverteilung bei der \u00dcberlagerung unendlich vieler Verteilung ist, gibt bei der Chi^2-Verteilung die Anzahl an Freiheitsgraden die Anzahl an Summanden an.</p>\n<p>Die Chi^2-Verteilung ergibt sich als Summe der quadrierten Werte von so vielen standardnormalverteilten Zufallsvariablen wie der Werte der Freiheitsgrade angibt.</p>";
     t[4298] = "Model.GenerateDescription.Agents.DistributionOverTheDay";
     t[4299] = "Die Agenten werden gem\u00e4\u00df einer vorgegebenen Anzahlverteilung \u00fcber den Tag verteilt.";
     t[4300] = "Generator.Column";
@@ -2004,18 +2010,18 @@ public class Messages_de extends java.util.ResourceBundle {
     t[4649] = "Es wurden keine Agentengruppen f\u00fcr die Anpassung der Verteilung ausgew\u00e4hlt.";
     t[4650] = "Loader.Technion.Model.ModelDescriptionAddOn";
     t[4651] = "Mittlere Wartezeit f\u00fcr \"%s\" laut Daten: %s Sekunden";
-    t[4658] = "JDataLoader.Sheet";
-    t[4659] = "Tabellenblatt";
-    t[4660] = "XML.Statistic.Clients.Summary.ClientsCancelTime";
-    t[4661] = "KundenMittlereAbbruchzeit";
-    t[4664] = "RevenueOptimizer.Result.AgentsRemoved";
-    t[4665] = "Entfernte Agenten-intervalle";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4658] = "JDataLoader.Sheet";
+    t[4659] = "Tabellenblatt";
+    t[4660] = "XML.Statistic.Clients.Summary.ClientsCancelTime";
+    t[4661] = "KundenMittlereAbbruchzeit";
+    t[4664] = "RevenueOptimizer.Result.AgentsRemoved";
+    t[4665] = "Entfernte Agenten-intervalle";
     t[4670] = "XML.Statistic.Confidence.ServiceLevel.CallsSuccess.ErrorSum";
     t[4671] = "Die Summe der Service-Level-Werte \u00fcber die erfolgreichen Anrufe f\u00fcr die Konfidenzintervall-Berechnung ist ung\u00fcltig.";
     t[4674] = "Model.Check.InvalidRateForClientTypeForAgentsDistribution";
@@ -2560,8 +2566,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[5753] = "Sie haben ausgew\u00e4hlt, dass der Zielwert im Mittel \u00fcber den Tag erreicht werden soll, und\ngleichzeitig, dass nur einige bestimmte Intervalle bei der Optimierung ber\u00fccksichtigt\nwerden sollen. Dies kann zu verzerrten Ergebnissen f\u00fchren. Es wird empfohlen, eine\nOptimierung auf Intervallbasis durchzuf\u00fchren, wenn nur bestimmte Intervalle\nber\u00fccksichtigt werden sollen.";
     t[5754] = "SimStatistic.FreshCalls.Per";
     t[5755] = "Erstanrufer pro %s";
-    t[5756] = "RegExWikipdiaLink.Title";
-    t[5757] = "Hilfe zu regul\u00e4ren Ausdr\u00fccken";
+    t[5756] = "Distribution.BetaInfo";
+    t[5757] = "<p>Die Beta-Verteilung besitzt als besondere Eigenschaft einen abgeschlossenen Tr\u00e4ger, d.h. sie nimmt nur positiv Werte in einem begrenzten Bereich an. Sie eignet sich damit besonders zur Modellierung von Prozessen, bei denen bekannt ist, dass diese eine endliche H\u00f6chstdauer aufweisen.</p>\n<p>Die Beta-Verteilung besitzt neben der Vorgabe des Tr\u00e4gerbereichs zwei Parameter \u00fcber die sie sehr flexibel konfiguriert werden kann. Diese Flexibilit\u00e4t macht die Umrechnung vorgebener Kenngr\u00f6\u00dfen (Erwartungswert und Standardabweichung) auf die Parameter der Beta-Verteilung allerdings auch schwierig.</p>";
     t[5762] = "Model.Check.ClientType.RecallCheck.UnknownSkillLevel";
     t[5763] = "F\u00fcr Kunden des Typs \"%s\" sind Wiederanrufregeln f\u00fcr den Fall einer Bedienung durch einen Agenten des Skill-Levels \"%s\" definiert. Diesen Skill-Level gibt es jedoch nicht.";
     t[5764] = "Model.Check.ClientTypes.TooManyCalls";
@@ -3840,6 +3846,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[8713] = "Lizenzinformationen";
     t[8714] = "SimStatistic.Category.General";
     t[8715] = "Basisdaten";
+    t[8718] = "MainMenu.Help.ProgramInformation.Short";
+    t[8719] = "Info";
     t[8720] = "Editor.CallcenterAndAgents.Show.Info";
     t[8721] = "\u00d6ffnet einen Dialog, in dem die Eigenschaften des gew\u00e4hlten Callcenters angezeigt werden";
     t[8724] = "SettingsDialog.FontSizes.Small";
@@ -4008,6 +4016,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9149] = "Konfiguration konnte nicht gespeichert werden";
     t[9150] = "XML.Model.ClientType.Retry.ClientType.NewClientType";
     t[9151] = "WiederholungenNeuerKundentyp";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9152] = "MainMenu.Tools.Calculator";
     t[9153] = "Rechner...";
     t[9156] = "Importer.RetryProbability.Canceled";
@@ -4016,12 +4030,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9159] = "Format verarbeiten";
     t[9162] = "Numbers.Language";
     t[9163] = "de";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9168] = "Help.Search.ResultOnPage";
     t[9169] = "auf Seite \"%s\" gefunden";
     t[9170] = "LoadCalculator.ProbabilityOfBlocking";
@@ -4818,8 +4826,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11059] = "Hilfe";
     t[11060] = "Compare.Error.ModelError.CannotKeep";
     t[11061] = "Das aktuelle Modell ist fehlerhaft und kann nicht simuliert werden. Daher kann es nicht f\u00fcr Vergleiche mit sp\u00e4teren Modellen festgehalten werden.";
-    t[11062] = "MainMenu.Help.ProgramInformation.Short";
-    t[11063] = "Info";
+    t[11062] = "Distribution.SawtoothLeftInfo";
+    t[11063] = "<p>Die S\u00e4gezahnverteilung stellt einen vereinfachten Spezialfall der Dreiecksverteilung dar. Die S\u00e4gezahnverteilung wird lediglich \u00fcber ihren Tr\u00e4gerbereich definiert.</p>";
     t[11064] = "FitDalog.Loaded.List";
     t[11065] = "Auflistung der Messwerte";
     t[11070] = "SimStatistic.WaitingTimeTolerance.ModeEstimationWaitingTime";
@@ -4966,6 +4974,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[11391] = "Elementinhalt";
     t[11392] = "XML.Statistic.Confidence.WaitingTime";
     t[11393] = "KonfidenzWartezeit";
+    t[11396] = "Distribution.BinomialInfo";
+    t[11397] = "<p>Die Binomialverteilung ist eine diskrete Wahrscheinlichkeitsverteilung. Sie ist folglich nicht daf\u00fcr geeignet, Zeitdauern zu beschreiben, sondern zuf\u00e4llige Prozesse, die jeweils diskrete Werte annehmen k\u00f6nnen.</p>\n<p>Die Binomialverteilung beschreibt die Wahrscheinlichkeiten beim <b>Ziehen mit Zur\u00fccklegen</b> aus einer Urne in der Kugeln mit zwei verschiedenen Farben enthalten sind.</p>";
     t[11400] = "Simulation.Log.General.PreviousTrys";
     t[11401] = "Vorherige Versuche";
     t[11402] = "Optimizer.OptimizeProperty.TargetForLabel.Accessibility.Tooltip";
@@ -5236,6 +5246,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[12067] = "Der durch %s und %s eingegrenzte Bereich muss entweder eine Zeile oder eine Spalte sein.";
     t[12070] = "SettingsDialog.ImageResolution.Invalid.Info";
     t[12071] = "Die Bildgr\u00f6\u00dfe beim Speichern muss eine Ganzzahl zwischen 50 und 5000 sein.";
+    t[12076] = "FileType.AllSupportedFiles";
+    t[12077] = "Alle unterst\u00fctzten Dateiformate";
     t[12082] = "Statistics.XML.RunUser";
     t[12083] = "StatistikNutzer";
     t[12084] = "Calibrate.TargetNotReachable1";
@@ -5672,6 +5684,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13123] = "Arbeitszeitverteilung wurde geladen f\u00fcr Agentengruppe %s in Callcenter \"%s\".";
     t[13124] = "MainToolbar.ShowWebViewer.Tooltip";
     t[13125] = "Zeigt die Statistik-Ergebnisse im WebViewer an.";
+    t[13126] = "RegExWikipdiaLink.Title";
+    t[13127] = "Hilfe zu regul\u00e4ren Ausdr\u00fccken";
     t[13128] = "Distribution.NormalWikipedia";
     t[13129] = "https://de.wikipedia.org/wiki/Normalverteilung";
     t[13130] = "Editor.Callcenter.Active";
@@ -6008,6 +6022,12 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13925] = "ProMinute";
     t[13930] = "Editor.Caller.RecallProbability.Info";
     t[13931] = "Bei den Wiederanrufern handelt es sich <b>nicht</b> um Kunden, die das Warten abgebrochen haben oder aber abgewiesen wurden,<br>sondern um eigentlich erfolgreich bediente Kunden, die dennoch sp\u00e4ter einen neuen Anruf t\u00e4tigen.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[13936] = "Help.Back.Info";
     t[13937] = "Zur\u00fcck zur zuletzt angezeigten Hilfeseite.";
     t[13938] = "SimStatistic.ResultOverview";
@@ -6022,12 +6042,6 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13953] = "Interaktive HTML-WebApp";
     t[13966] = "Editor.Callcenter.List.AgentGroup";
     t[13967] = "Agentengruppe";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[13972] = "Optimizer.Error.CannotOptimizeDownOnFixedWorkingTimes";
     t[13973] = "Wenn bei der Optimierung auch vorgesehen sein soll, dass die Anzahl an Agenten reduziert werden kann, d\u00fcrften keine Agentengruppen mit festen Arbeitszeiten eingesetzt werden. Bei Agentengruppe %d in Callcenter \"%s\" handelt es sich jedoch um genau solch eine Agentengruppe.";
     t[13982] = "XML.Model.Warnings.Record.Intervals.Each";
@@ -6232,6 +6246,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[14397] = "Fehler w\u00e4hrend der Optimierung";
     t[14402] = "XML.OptimizerSetup.InitialInventory.ClientType";
     t[14403] = "Optimierung-InitialerBestandKundentyp";
+    t[14404] = "Distribution.TrapezoidInfo";
+    t[14405] = "<p>Die Trapezverteilung stellt eine Kombination aus einer Dreiecksverteilung und einer Gleichverteilung dar. W\u00e4hrend die Trapezverteilung genauso wie die Gleichverteilung in der Mitte \u00fcber einen Bereich konstanter Dichte verf\u00fcgt, besitzt sie an den R\u00e4ndern des Tr\u00e4gerbereichs einen Anstieg und einen Abfall der Dichte mit einstellbarer Steigung.</p>";
     t[14410] = "XML.Statistic.Clients.Summary";
     t[14411] = "StatistikKundenZusammenfassung";
     t[14424] = "XML.Statistic.Clients.CancelTime.Clients.ErrorSumPerInterval";
@@ -6576,6 +6592,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[15263] = "Grafik speichern";
     t[15270] = "Window.LanguageAutomatic";
     t[15271] = "Die Programmsprache wurde passend zur Betriebssystemsprache auf <b>Deutsch</b> eingestellt. Sie k\u00f6nnen dies \u00fcber <b>Datei|Einstellungen</b> ver\u00e4ndern.";
+    t[15274] = "Distribution.WeibullInfo";
+    t[15275] = "<p>Die Weibull-Verteilung wird h\u00e4ufig zur Modellierung von Lebensdauern verwendet, da bei ihr explizit eingestellt werden kann, ob die Ausfallrate mit fortschreitender Zeit ansteigt, f\u00e4llt oder konstant bleibt.</p>\n<p>Wird der Formparameter auf einen Wert kleiner als eins eingestellt, so f\u00e4llt die Ausfallrate mit der Zeit (Kinderkrankheiten). Wird ein Wert gr\u00f6\u00dfer als eins verwendet, so steigt die Ausfallrate (Verschlei\u00dfausf\u00e4lle).</p>";
     t[15280] = "Optimizer.OptimizeProperty.TargetValueFor.Day";
     t[15281] = "Im Durchschnitt \u00fcber den Tag";
     t[15282] = "Dialog.Button.Show";

@@ -398,6 +398,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[939] = "Invalid range";
     t[950] = "Statistic.FastAccess.Save.Tooltip";
     t[951] = "Saves the filter configuration to a file";
+    t[954] = "Distribution.SawtoothRightInfo";
+    t[955] = "<p>The sawtooth distribution is a simplified special case of the triangular distribution. The sawtooth distribution is defined solely by its carrier range.</p>";
     t[956] = "VarianceAnalysis.NumberOfRepetitions";
     t[957] = "Number of repetitions";
     t[958] = "AutoSave.Setup.SaveFiltered.Output.Select";
@@ -706,8 +708,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[1709] = "The number of forwarded clients per interval is invalid.";
     t[1716] = "Model.Check.MinimalShiftLengthLongerThanPreferredShiftLength.AgentsGroup";
     t[1717] = "The minimal shift length selected for agents group %d in call center %s is longer than the selected maximum shift length.";
-    t[1718] = "FileType.AllSupportedFiles";
-    t[1719] = "All supported file formats";
+    t[1718] = "Distribution.HyperGeomInfo";
+    t[1719] = "<p>The hypergeometric distribution is a discrete probability distribution. It is therefore not suitable for describing durations of time, but rather random processes that can each take on discrete values.</p>\n<p>The hypergeometric distribution describes the probabilities when <b>drawing without replacement</b> from an urn containing balls of two different colors.</p>";
     t[1728] = "Editor.Caller.Error.WaitingTimeCalcAdd.Info";
     t[1729] = "The specified correction value for for the waiting time tolerance estimation %s is invalid.\nThe value has to be a non-negative number (a percentage value optional).";
     t[1730] = "Statistic.Viewer.Toolbar.Save";
@@ -1194,6 +1196,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[2823] = "Clients will never give up waiting";
     t[2824] = "Statistic.Viewer.Toolbar.NewWindow.Fullscreen.Hint";
     t[2825] = "Increases the size of the dialog so that it fills the screen.";
+    t[2828] = "Distribution.FInfo";
+    t[2829] = "<p>The F distribution is the quotient of two Chi^2-distributed random variables. The F distribution is mainly used in test theory to determine the significance of differences between different samples in terms of their variances.</p>";
     t[2830] = "MainMenu.File.Quit";
     t[2831] = "Quit";
     t[2834] = "Editor.Caller.WaitingTimeTolerance.Estimation.AverageWaitingTime";
@@ -1824,6 +1828,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4283] = "No";
     t[4288] = "Statistics.XML.RunThreads";
     t[4289] = "StatisticsThreads";
+    t[4290] = "Distribution.ChiSquareInfo";
+    t[4291] = "<p>Similar to the normal distribution, the chi-squared distribution is the additive superposition of several independent individual distributions. While the normal distribution is the limit distribution when superimposing an infinite number of distributions, in the chi-squared distribution, the number of degrees of freedom indicates the number of summands.</p>\n<p>The Chi^2 distribution is calculated as the sum of the squared values of as many standard normally distributed random variables as specified by the degrees of freedom.</p>";
     t[4298] = "Model.GenerateDescription.Agents.DistributionOverTheDay";
     t[4299] = "The agents are distributed via a working time distribution over the day.";
     t[4300] = "Generator.Column";
@@ -2004,18 +2010,18 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4649] = "No agents groups to be changed have been selected.";
     t[4650] = "Loader.Technion.Model.ModelDescriptionAddOn";
     t[4651] = "Average waiting time for \"%s\" according to data: %s seconds";
-    t[4658] = "JDataLoader.Sheet";
-    t[4659] = "Sheet";
-    t[4660] = "XML.Statistic.Clients.Summary.ClientsCancelTime";
-    t[4661] = "ClientsAverageCancelTime";
-    t[4664] = "RevenueOptimizer.Result.AgentsRemoved";
-    t[4665] = "Agent intervals removed";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4658] = "JDataLoader.Sheet";
+    t[4659] = "Sheet";
+    t[4660] = "XML.Statistic.Clients.Summary.ClientsCancelTime";
+    t[4661] = "ClientsAverageCancelTime";
+    t[4664] = "RevenueOptimizer.Result.AgentsRemoved";
+    t[4665] = "Agent intervals removed";
     t[4670] = "XML.Statistic.Confidence.ServiceLevel.CallsSuccess.ErrorSum";
     t[4671] = "The sum of the service level values of the successful calls for the confidence interval calculation %s is invalid. The value has to be a non-negative number.";
     t[4674] = "Model.Check.InvalidRateForClientTypeForAgentsDistribution";
@@ -2560,8 +2566,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[5753] = "You have chosen to optimize the target value in average over the whole day but also selected\nonly to respect some intervals in optimization. This can lead to biased results. If you want\nto respect only some intervals an interval based optimization should be chosen.";
     t[5754] = "SimStatistic.FreshCalls.Per";
     t[5755] = "Fresh calls per %s";
-    t[5756] = "RegExWikipdiaLink.Title";
-    t[5757] = "Help on regular expressions";
+    t[5756] = "Distribution.BetaInfo";
+    t[5757] = "<p>The beta distribution has a special property in that it has a finite support, i.e., it only takes positive values within a limited range. This makes it particularly suitable for modeling processes that are known to have a finite maximum duration.</p>\n<p>In addition to specifying the support range, the beta distribution has two parameters that allow it to be configured very flexibly. However, this flexibility also makes it difficult to convert specified parameters (expected value and standard deviation) to the parameters of the beta distribution.</p>";
     t[5762] = "Model.Check.ClientType.RecallCheck.UnknownSkillLevel";
     t[5763] = "For clients of type \"%s\" there are recall rules when being served by agents of skill level \"%s\", but there is no such skill level.";
     t[5764] = "Model.Check.ClientTypes.TooManyCalls";
@@ -3840,6 +3846,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[8713] = "Lizenzinformationen";
     t[8714] = "SimStatistic.Category.General";
     t[8715] = "General";
+    t[8718] = "MainMenu.Help.ProgramInformation.Short";
+    t[8719] = "Info";
     t[8720] = "Editor.CallcenterAndAgents.Show.Info";
     t[8721] = "Opens a dialog to show the properties of the selected call center";
     t[8724] = "SettingsDialog.FontSizes.Small";
@@ -4008,6 +4016,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9149] = "Configuration could not be saved";
     t[9150] = "XML.Model.ClientType.Retry.ClientType.NewClientType";
     t[9151] = "RetryNewClientType";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_2 (java.lang.String[] t) {
     t[9152] = "MainMenu.Tools.Calculator";
     t[9153] = "Calculator...";
     t[9156] = "Importer.RetryProbability.Canceled";
@@ -4016,12 +4030,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9159] = "Process data";
     t[9162] = "Numbers.Language";
     t[9163] = "en";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_2 (java.lang.String[] t) {
     t[9168] = "Help.Search.ResultOnPage";
     t[9169] = "found on page \"%s\"";
     t[9170] = "LoadCalculator.ProbabilityOfBlocking";
@@ -4818,8 +4826,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11059] = "Help";
     t[11060] = "Compare.Error.ModelError.CannotKeep";
     t[11061] = "The current model cannot be simulated and therefore cannot be kept for comparison with further models.";
-    t[11062] = "MainMenu.Help.ProgramInformation.Short";
-    t[11063] = "Info";
+    t[11062] = "Distribution.SawtoothLeftInfo";
+    t[11063] = "<p>The sawtooth distribution is a simplified special case of the triangular distribution. The sawtooth distribution is defined solely by its carrier range.</p>";
     t[11064] = "FitDalog.Loaded.List";
     t[11065] = "List of the loaded values";
     t[11070] = "SimStatistic.WaitingTimeTolerance.ModeEstimationWaitingTime";
@@ -4966,6 +4974,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[11391] = "Element content";
     t[11392] = "XML.Statistic.Confidence.WaitingTime";
     t[11393] = "ConfidenceWaitingTime";
+    t[11396] = "Distribution.BinomialInfo";
+    t[11397] = "<p>The beta distribution has a special property in that it has a finite support, i.e., it only takes positive values within a limited range. This makes it particularly suitable for modeling processes that are known to have a finite maximum duration.</p>\n<p>In addition to specifying the support range, the beta distribution has two parameters that allow it to be configured very flexibly. However, this flexibility also makes it difficult to convert specified parameters (expected value and standard deviation) to the parameters of the beta distribution.</p>";
     t[11400] = "Simulation.Log.General.PreviousTrys";
     t[11401] = "Previous trys";
     t[11402] = "Optimizer.OptimizeProperty.TargetForLabel.Accessibility.Tooltip";
@@ -5236,6 +5246,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[12067] = "The range selected by %s and %s has to be either a row or a column.";
     t[12070] = "SettingsDialog.ImageResolution.Invalid.Info";
     t[12071] = "The size for saving images has to be an interger number between 50 and 5000.";
+    t[12076] = "FileType.AllSupportedFiles";
+    t[12077] = "All supported file formats";
     t[12082] = "Statistics.XML.RunUser";
     t[12083] = "StatisticsUser";
     t[12084] = "Calibrate.TargetNotReachable1";
@@ -5672,6 +5684,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13123] = "Agents working times loaded for agents group %s in call center \"%s\".";
     t[13124] = "MainToolbar.ShowWebViewer.Tooltip";
     t[13125] = "Shows the statistic results in the web viewer";
+    t[13126] = "RegExWikipdiaLink.Title";
+    t[13127] = "Help on regular expressions";
     t[13128] = "Distribution.NormalWikipedia";
     t[13129] = "https://en.wikipedia.org/wiki/Normal_distribution";
     t[13130] = "Editor.Callcenter.Active";
@@ -6008,6 +6022,12 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13925] = "PerMinute";
     t[13930] = "Editor.Caller.RecallProbability.Info";
     t[13931] = "The recalling clients are <b>not</b> callers who have left because they were blocked or had to wait too long,<br>but are actually successfully served clients who later start a new call.";
+  }
+  /**
+   * Part of the language array creation
+   * @param t	Language data array
+   */
+  static void clinit_part_3 (java.lang.String[] t) {
     t[13936] = "Help.Back.Info";
     t[13937] = "Goes back to the last shown help page.";
     t[13938] = "SimStatistic.ResultOverview";
@@ -6022,12 +6042,6 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13953] = "Interactive HTML WebApp";
     t[13966] = "Editor.Callcenter.List.AgentGroup";
     t[13967] = "agents group";
-  }
-  /**
-   * Part of the language array creation
-   * @param t	Language data array
-   */
-  static void clinit_part_3 (java.lang.String[] t) {
     t[13972] = "Optimizer.Error.CannotOptimizeDownOnFixedWorkingTimes";
     t[13973] = "If the number of agents should also be optionally reduced during the optimization process no agents groups with fixed working times can be used. But agents group %d of call center \"%s\" is of this type.";
     t[13982] = "XML.Model.Warnings.Record.Intervals.Each";
@@ -6232,6 +6246,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[14397] = "Error during the optimization process";
     t[14402] = "XML.OptimizerSetup.InitialInventory.ClientType";
     t[14403] = "Optimization-InitialInventoryClientType";
+    t[14404] = "Distribution.TrapezoidInfo";
+    t[14405] = "<p>The trapezoidal distribution is a combination of a triangular distribution and an uniform distribution. While the trapezoidal distribution, like the uniform distribution, has a constant density in the middle over a range, it has an increase and decrease in density at the edges of the carrier range with an adjustable gradient.</p>";
     t[14410] = "XML.Statistic.Clients.Summary";
     t[14411] = "StatisticClientsSummary";
     t[14424] = "XML.Statistic.Clients.CancelTime.Clients.ErrorSumPerInterval";
@@ -6576,6 +6592,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[15263] = "Save graphics";
     t[15270] = "Window.LanguageAutomatic";
     t[15271] = "The program language was set to <b>English</b>. You can change this via <b>File|Preferences</b>.";
+    t[15274] = "Distribution.WeibullInfo";
+    t[15275] = "<p>The Weibull distribution is often used to model lifetimes, as it allows you to explicitly set whether the failure rate increases, decreases, or remains constant over time.</p>\n<p>If the form parameter is set to a value less than one, the failure rate decreases over time (teething problems). If a value greater than one is used, the failure rate increases (wear and tear failures).</p>";
     t[15280] = "Optimizer.OptimizeProperty.TargetValueFor.Day";
     t[15281] = "As an average over the day";
     t[15282] = "Dialog.Button.Show";
