@@ -221,8 +221,12 @@ public class InfoDialog extends JDialog {
 		label.setText(htmlInfoText);
 		label.setEditable(false);
 		label.setOpaque(false);
+		label.setBackground(new Color(0,0,0,0));
 		p3.add(label);
 		label.addHyperlinkListener(new LinkListener());
+		label.getCaret().setVisible(false);
+		label.setCaretColor(label.getBackground());
+		label.setHighlighter(null);
 
 		mainarea.add(Box.createVerticalGlue());
 
