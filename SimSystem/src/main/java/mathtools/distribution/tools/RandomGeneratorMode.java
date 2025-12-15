@@ -15,6 +15,7 @@
  */
 package mathtools.distribution.tools;
 
+import java.security.SecureRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
@@ -41,6 +42,8 @@ public enum RandomGeneratorMode {
 	THREAD_LOCAL_RANDOM("ThreadLocalRandom",useSeed->useSeed?new JDKRandomGenerator():new LightweightThreadLocalRandomWrapper(ThreadLocalRandom.current())),
 	/** Pro Thread gekapselte Version von {@link Random} verwenden */
 	RANDOM("Random",useSeed->new JDKRandomGenerator()),
+	/** Pro Thread gekapselte Version von {@link SecureRandom} verwenden */
+	SECURE_RANDOM("SecureRandom",useSeed->new SecureRandomWrapper()),
 	/** Pro Thread gekapselte Version von {@link Well512a} verwenden */
 	WELL512A("Well512a",useSeed->new Well512a()),
 	/** Pro Thread gekapselte Version von {@link Well1024a} verwenden */
@@ -64,7 +67,9 @@ public enum RandomGeneratorMode {
 	/** Pro Thread gekapselte Version von {@link XoRoShiRo64StarStar} verwenden */
 	XOROSHIRO64STARSTAR("XoRoShiRo64**",useSeed->new XoRoShiRo64StarStar()),
 	/** Pro Thread gekapselte Version von {@link L32X64Mix} verwenden */
-	L32X64MIX("L32X64Mix",useSeed->new L32X64Mix());
+	L32X64MIX("L32X64Mix",useSeed->new L32X64Mix()),
+	/** Pro Thread gekapselte Version von {@link Drand48BitsStreamGenerator} verwenden */
+	DRAND48("Drand48",useSeed->new Drand48BitsStreamGenerator(),false);
 
 	/**
 	 * Standardmäßig zu verwendender Modus
@@ -77,6 +82,11 @@ public enum RandomGeneratorMode {
 	public final String name;
 
 	/**
+	 * Ist der Generator für Simulationen geeignet?
+	 */
+	public final boolean isGoodForSimulation;
+
+	/**
 	 * Callback zur Erzeugung eines Generator gemäß des Typs
 	 */
 	private final Function<Boolean,RandomGenerator> getterCallback;
@@ -85,10 +95,21 @@ public enum RandomGeneratorMode {
 	 * Konstruktor des Enum
 	 * @param name	Name des Zufallszahlengenerators (zum Speichern der Auswahl als Zeichenkette)
 	 * @param getterCallback	Callback zur Erzeugung eines Generator gemäß des Typs
+	 * @param isGoodForSimulation	Ist der Generator für Simulationen geeignet?
 	 */
-	RandomGeneratorMode(final String name, final Function<Boolean,RandomGenerator> getterCallback) {
+	RandomGeneratorMode(final String name, final Function<Boolean,RandomGenerator> getterCallback, final boolean isGoodForSimulation) {
 		this.name=name;
 		this.getterCallback=getterCallback;
+		this.isGoodForSimulation=isGoodForSimulation;
+	}
+
+	/**
+	 * Konstruktor des Enum
+	 * @param name	Name des Zufallszahlengenerators (zum Speichern der Auswahl als Zeichenkette)
+	 * @param getterCallback	Callback zur Erzeugung eines Generator gemäß des Typs
+	 */
+	RandomGeneratorMode(final String name, final Function<Boolean,RandomGenerator> getterCallback) {
+		this(name,getterCallback,true);
 	}
 
 	/**
@@ -112,11 +133,19 @@ public enum RandomGeneratorMode {
 	}
 
 	/**
-	 * Liefert eine Liste aller Zufallszahlengenerator-Modi.
-	 * @return	Liste aller Zufallszahlengenerator-Modi
+	 * Liefert eine Liste der Namen aller Zufallszahlengenerator-Modi.
+	 * @return	Liste der Namen aller Zufallszahlengenerator-Modi
 	 */
 	public static String[] getAllNames() {
 		return Stream.of(values()).map(randomMode->randomMode.name).toArray(String[]::new);
+	}
+
+	/**
+	 * Liefert eine Liste der Qualität aller Zufallszahlengenerator-Modi.
+	 * @return	Liste der Qualität aller Zufallszahlengenerator-Modi
+	 */
+	public static Boolean[] getAllIsGoodForSimulation() {
+		return Stream.of(values()).map(randomMode->randomMode.isGoodForSimulation).toArray(Boolean[]::new);
 	}
 
 	/**
@@ -216,5 +245,80 @@ public enum RandomGeneratorMode {
 		public double nextGaussian() {
 			return random.nextGaussian();
 		}
+	}
+
+	/**
+	 * Sorgt dafür, dass {@link SecureRandom} über ein {@link RandomGenerator}-Interface angesprochen werden kann.
+	 */
+	private static class SecureRandomWrapper implements RandomGenerator {
+		/**
+		 * Internes {@link SecureRandom}-Objekt
+		 */
+		private final SecureRandom secureRandom=new SecureRandom();
+
+		@Override
+		public void setSeed(int seed) {
+			secureRandom.setSeed(seed);
+		}
+
+		@Override
+		public void setSeed(int[] seed) {
+			if (seed==null || seed.length==0) return;
+			final byte[] seedBytes=new byte[seed.length*4];
+			for (int i=0;i<seed.length;i++) {
+				final int value=seed[i];
+				seedBytes[4*i+0]=(byte)(value >>> 24);
+				seedBytes[4*i+1]=(byte)(value >>> 16);
+				seedBytes[4*i+2]=(byte)(value >>> 8);
+				seedBytes[4*i+3]=(byte)value;
+			}
+			secureRandom.setSeed(seedBytes);
+		}
+
+		@Override
+		public void setSeed(long seed) {
+			secureRandom.setSeed(seed);
+		}
+
+		@Override
+		public void nextBytes(byte[] bytes) {
+			secureRandom.nextBytes(bytes);
+		}
+
+		@Override
+		public int nextInt() {
+			return secureRandom.nextInt();
+		}
+
+		@Override
+		public int nextInt(int n) {
+			return secureRandom.nextInt(n);
+		}
+
+		@Override
+		public long nextLong() {
+			return secureRandom.nextLong();
+		}
+
+		@Override
+		public boolean nextBoolean() {
+			return secureRandom.nextBoolean();
+		}
+
+		@Override
+		public float nextFloat() {
+			return secureRandom.nextFloat();
+		}
+
+		@Override
+		public double nextDouble() {
+			return secureRandom.nextDouble();
+		}
+
+		@Override
+		public double nextGaussian() {
+			return secureRandom.nextGaussian();
+		}
+
 	}
 }
