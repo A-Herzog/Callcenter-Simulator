@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-15 18:37+0200\n"
+"POT-Creation-Date: 2026-01-22 23:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5108,6 +5108,9 @@ msgstr "Zähldichtenvektor"
 msgid "JDistributionEditor.Density.Label"
 msgstr "Dichte"
 
+msgid "JDistributionEditor.Down"
+msgstr "Nach unten"
+
 msgid "JDistributionEditor.Edit.Disabled"
 msgstr "Daten anzeigen"
 
@@ -5167,6 +5170,9 @@ msgstr "Verteilung speichern"
 
 msgid "JDistributionEditor.Title"
 msgstr "Verteilungseditor"
+
+msgid "JDistributionEditor.Up"
+msgstr "Nach oben"
 
 msgid "JDistributionEditor.ValueDown"
 msgstr "Verringert den Wert des Parameters um %s"

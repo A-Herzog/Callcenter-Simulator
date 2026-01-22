@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-15 18:37+0200\n"
+"POT-Creation-Date: 2026-01-22 23:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5095,6 +5095,9 @@ msgstr "Probability density vector"
 msgid "JDistributionEditor.Density.Label"
 msgstr "Density"
 
+msgid "JDistributionEditor.Down"
+msgstr "Down"
+
 msgid "JDistributionEditor.Edit.Disabled"
 msgstr "Show data"
 
@@ -5154,6 +5157,9 @@ msgstr "Save distribution"
 
 msgid "JDistributionEditor.Title"
 msgstr "Distribution editor"
+
+msgid "JDistributionEditor.Up"
+msgstr "Up"
 
 msgid "JDistributionEditor.ValueDown"
 msgstr "Reduces the value of the parameter by %s"

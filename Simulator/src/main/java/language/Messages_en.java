@@ -88,8 +88,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[175] = "An error occurd while trying to load the filter configuration.";
     t[182] = "Distribution.Poisson";
     t[183] = "Poisson distribution";
-    t[198] = "MainMenu.Tools.ExecuteCommand";
-    t[199] = "Execute command-line command...";
+    t[198] = "JDistributionEditor.Up";
+    t[199] = "Up";
     t[206] = "XML.Statistic.Clients.ClientsCallsCount.BlockedPerInterval";
     t[207] = "BlockedPerInterval";
     t[208] = "Loader.Range.From";
@@ -298,6 +298,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[709] = "StatisticClientsWaitingTimeTolerancePerDay";
     t[710] = "Importer.Error.ClientTypeForDistributionDoesNotExist";
     t[711] = "The client type \"%s\" for which the distribution is to be loaded does not exist in the model.";
+    t[712] = "SettingsDialog.BackgroundSimulation";
+    t[713] = "Use background simulation";
     t[716] = "Simulation.Log.CallCancel.TechnicalFreeTime";
     t[717] = "Client cancels waiting during technical free time";
     t[720] = "ViewerWebApp.Dialog.Title";
@@ -2008,14 +2010,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4643] = "Initialization of the SaaS server was successfully completed.";
     t[4648] = "Rearranger.MoveAgents.NoGroups.Info";
     t[4649] = "No agents groups to be changed have been selected.";
-    t[4650] = "Loader.Technion.Model.ModelDescriptionAddOn";
-    t[4651] = "Average waiting time for \"%s\" according to data: %s seconds";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_1 (java.lang.String[] t) {
+    t[4650] = "Loader.Technion.Model.ModelDescriptionAddOn";
+    t[4651] = "Average waiting time for \"%s\" according to data: %s seconds";
     t[4658] = "JDataLoader.Sheet";
     t[4659] = "Sheet";
     t[4660] = "XML.Statistic.Clients.Summary.ClientsCancelTime";
@@ -2162,8 +2164,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[4941] = "Actual working hours";
     t[4942] = "XML.Statistic.Clients.HoldingTime.Clients.ErrorSquaresSum";
     t[4943] = "The sum of the squared holding times of the clients %s is invalid. The value has to be a non-negative integer number.";
-    t[4944] = "SettingsDialog.BackgroundSimulation";
-    t[4945] = "Use background simulation";
+    t[4944] = "JDistributionEditor.Down";
+    t[4945] = "Down";
     t[4946] = "Statistic.Viewer.Toolbar.Save.Hint";
     t[4947] = "Save the results from this page as a file.";
     t[4958] = "Help.Search.NoHitSelected";
@@ -3580,6 +3582,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[8107] = "The agents groups have fixed working times.";
     t[8110] = "Editor.Caller.Error.RetryProbabiltyAfterGiveUpFirstRetry.Info";
     t[8111] = "The specified probability for a retry after canceling waiting for the first time %s is invalid.\nThe value has to be a non-negative number (a percentage value optional).";
+    t[8112] = "MainMenu.Tools.ExecuteCommand";
+    t[8113] = "Execute command-line command...";
     t[8120] = "Distribution.NegativeHyperGeomWikipedia";
     t[8121] = "https://en.wikipedia.org/wiki/Negative_hypergeometric_distribution";
     t[8122] = "SettingsDialog.NetworkSimulation.Password";
@@ -4012,16 +4016,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9133] = "Date of the model day";
     t[9140] = "RegExWikipdiaLink.URL";
     t[9141] = "https://en.wikipedia.org/wiki/Regular_expression";
-    t[9148] = "Setup.SaveError.Title";
-    t[9149] = "Configuration could not be saved";
-    t[9150] = "XML.Model.ClientType.Retry.ClientType.NewClientType";
-    t[9151] = "RetryNewClientType";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9148] = "Setup.SaveError.Title";
+    t[9149] = "Configuration could not be saved";
+    t[9150] = "XML.Model.ClientType.Retry.ClientType.NewClientType";
+    t[9151] = "RetryNewClientType";
     t[9152] = "MainMenu.Tools.Calculator";
     t[9153] = "Calculator...";
     t[9156] = "Importer.RetryProbability.Canceled";
@@ -6018,16 +6022,16 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13919] = "Name %s is already in use as a name for a client type";
     t[13920] = "Editor.ToolsPopup.CallerChangeAllIntervals";
     t[13921] = "Change number of fresh calls in all groups";
-    t[13924] = "XML.Model.AgentsGroup.CostsPerClientType.PerMinute";
-    t[13925] = "PerMinute";
-    t[13930] = "Editor.Caller.RecallProbability.Info";
-    t[13931] = "The recalling clients are <b>not</b> callers who have left because they were blocked or had to wait too long,<br>but are actually successfully served clients who later start a new call.";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[13924] = "XML.Model.AgentsGroup.CostsPerClientType.PerMinute";
+    t[13925] = "PerMinute";
+    t[13930] = "Editor.Caller.RecallProbability.Info";
+    t[13931] = "The recalling clients are <b>not</b> callers who have left because they were blocked or had to wait too long,<br>but are actually successfully served clients who later start a new call.";
     t[13936] = "Help.Back.Info";
     t[13937] = "Goes back to the last shown help page.";
     t[13938] = "SimStatistic.ResultOverview";
