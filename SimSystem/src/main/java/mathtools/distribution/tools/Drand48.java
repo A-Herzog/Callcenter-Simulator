@@ -29,7 +29,7 @@ package mathtools.distribution.tools;
  * Notes about Java types: C uses unsigned short for xsubi; Java shorts are signed,
  * so we mask with 0xFFFF when converting to/from the short[].
  */
-public final class Drand48 {
+public final class Drand48 implements Drand48Interface {
 	/** LCG parameter (48-bit) MULTIPLIER */
 	private static final long MULTIPLIER = 0x5DEECE66DL;
 	/** LCG parameter (48-bit) ADDEND */
@@ -44,8 +44,15 @@ public final class Drand48 {
 	 * Create and seed the generator with given seedval (like srand48).
 	 * @param seedval seed value (any long; only low bits used similarly to C)
 	 */
-	public Drand48(long seedval) {
+	public Drand48(final long seedval) {
 		srand48(seedval);
+	}
+
+	/**
+	 * Create and seed the generator with given seedval (like srand48).
+	 */
+	public Drand48() {
+		srand48(0);
 	}
 
 	/**
@@ -53,7 +60,8 @@ public final class Drand48 {
 	 * state := ((seedval &lt;&lt; 16) + 0x330E) &amp; ((1&lt;&lt;48)-1)
 	 * @param seedval seed value
 	 */
-	public void srand48(long seedval) {
+	@Override
+	public void srand48(final long seedval) {
 		state = ((seedval << 16) + 0x330EL) & MASK48;
 	}
 
@@ -62,6 +70,7 @@ public final class Drand48 {
 	 * Equivalent to C's drand48().
 	 * @return uniformly distributed double in [0,1)
 	 */
+	@Override
 	public double drand48() {
 		state = (state * MULTIPLIER + ADDEND) & MASK48;
 		return (state / (double) (1L << 48));
@@ -71,6 +80,7 @@ public final class Drand48 {
 	 * Return a 31-bit non-negative integer like C's lrand48 (optional helper).
 	 * @return int in [0, 2^31)
 	 */
+	@Override
 	public int lrand48() {
 		// advance state and return high-order 31 bits
 		state = (state * MULTIPLIER + ADDEND) & MASK48;
@@ -93,7 +103,7 @@ public final class Drand48 {
 	 * @return double in [0,1)
 	 * @throws IllegalArgumentException if xsubi.length &lt; 3
 	 */
-	public static double erand48(short[] xsubi) {
+	public static double erand48(final short[] xsubi) {
 		if (xsubi == null || xsubi.length < 3) {
 			throw new IllegalArgumentException("xsubi must be a short[3] (or longer)");
 		}
@@ -118,7 +128,7 @@ public final class Drand48 {
 	 * @return double in [0,1)
 	 * @throws IllegalArgumentException if xsubi.length &lt; 3
 	 */
-	public static double erand48FromInts(int[] xsubi) {
+	public static double erand48FromInts(final int[] xsubi) {
 		if (xsubi == null || xsubi.length < 3) {
 			throw new IllegalArgumentException("xsubi must be an int[3] (or longer)");
 		}
