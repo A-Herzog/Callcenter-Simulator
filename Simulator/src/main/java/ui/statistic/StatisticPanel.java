@@ -24,6 +24,7 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import language.Language;
+import mathtools.distribution.swing.PlugableFileChooser;
 import simulator.Statistics;
 import systemtools.MsgBox;
 import systemtools.statistics.StatisticNode;
@@ -673,7 +674,7 @@ public final class StatisticPanel extends StatisticBasePanel {
 			if (file==null) return null;
 		}
 
-		if (file.exists()) {
+		if (file.exists() && !new PlugableFileChooser().hasOwnOverwritePrompt()) {
 			if (!MsgBox.confirmOverwrite(this,file)) return null;
 		}
 

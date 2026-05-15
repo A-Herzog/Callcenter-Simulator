@@ -48,6 +48,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import language.Language;
 import mathtools.distribution.swing.CommonVariables;
+import mathtools.distribution.swing.PlugableFileChooser;
 import simulator.Statistics;
 import systemtools.MsgBox;
 import systemtools.statistics.StatisticViewerSpecialBase;
@@ -272,8 +273,7 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 	 * @return	Liefert <code>true</code>, wenn der Text gespeichert werden konnte
 	 */
 	private boolean saveTextToFile(final Component parentFrame, final String text) {
-		JFileChooser fc=new JFileChooser();
-		CommonVariables.initialDirectoryToJFileChooser(fc);
+		final var fc=new PlugableFileChooser(true);
 		fc.setDialogTitle(Language.tr("FileType.Save.Text"));
 		FileFilter txt=new FileNameExtensionFilter(Language.tr("FileType.Text")+" (*.txt)","txt");
 		fc.addChoosableFileFilter(txt);
@@ -281,14 +281,13 @@ public class StatisticViewerFastAccess extends StatisticViewerSpecialBase {
 		fc.setAcceptAllFileFilterUsed(false);
 
 		if (fc.showSaveDialog(parentFrame)!=JFileChooser.APPROVE_OPTION) return false;
-		CommonVariables.initialDirectoryFromJFileChooser(fc);
 		File file=fc.getSelectedFile();
 
 		if (file.getName().indexOf('.')<0) {
 			if (fc.getFileFilter()==txt) file=new File(file.getAbsoluteFile()+".txt");
 		}
 
-		if (file.exists()) {
+		if (file.exists() && !fc.hasOwnOverwritePrompt()) {
 			if (!MsgBox.confirmOverwrite(parentFrame,file)) return false;
 		}
 

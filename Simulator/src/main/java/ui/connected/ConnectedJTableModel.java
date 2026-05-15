@@ -32,6 +32,7 @@ import javax.swing.JPopupMenu;
 
 import language.Language;
 import mathtools.NumberTools;
+import mathtools.distribution.swing.PlugableFileChooser;
 import systemtools.MsgBox;
 import tools.JTableExtAbstractTableModel;
 import ui.editor.BaseEditDialog;
@@ -326,7 +327,7 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		File file=XMLTools.showSaveDialog(owner,Language.tr("Connected.SaveStatistic"),new File(s));
 		if (file==null) return;
 
-		if (file.exists()) {
+		if (file.exists() && !new PlugableFileChooser().hasOwnOverwritePrompt()) {
 			if (!MsgBox.confirmOverwrite(owner,file)) return;
 		}
 
@@ -475,7 +476,7 @@ public final class ConnectedJTableModel extends JTableExtAbstractTableModel {
 		File file=XMLTools.showSaveDialog(owner,Language.tr("Connected.SaveConnectedModel"),new File(model.defaultFolder));
 		if (file==null) return false;
 
-		if (file.exists()) {
+		if (file.exists() && !new PlugableFileChooser().hasOwnOverwritePrompt()) {
 			if (!MsgBox.confirmOverwrite(owner,file)) return false;
 		}
 

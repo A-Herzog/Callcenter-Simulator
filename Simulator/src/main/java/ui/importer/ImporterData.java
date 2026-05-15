@@ -25,6 +25,7 @@ import org.w3c.dom.NodeList;
 
 import language.Language;
 import mathtools.MultiTable;
+import mathtools.distribution.swing.PlugableFileChooser;
 import systemtools.MsgBox;
 import ui.model.CallcenterModel;
 import xml.XMLTools;
@@ -188,7 +189,7 @@ public final class ImporterData implements Cloneable {
 		File file=XMLTools.showSaveDialog(parent,Language.tr("Importer.SaveTemplate"));
 		if (file==null) return false;
 
-		if (file.exists()) {
+		if (file.exists() && !new PlugableFileChooser().hasOwnOverwritePrompt()) {
 			if (!MsgBox.confirmOverwrite(parent,file)) return false;
 		}
 

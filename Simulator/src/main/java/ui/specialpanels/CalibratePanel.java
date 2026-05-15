@@ -38,6 +38,7 @@ import javax.swing.JTextField;
 import language.Language;
 import mathtools.NumberTools;
 import mathtools.distribution.LogNormalDistributionImpl;
+import mathtools.distribution.swing.PlugableFileChooser;
 import mathtools.distribution.tools.DistributionTools;
 import net.calc.StartAnySimulator;
 import simulator.CallcenterSimulatorInterface;
@@ -297,7 +298,7 @@ public class CalibratePanel extends JWorkPanel {
 			while (true) {
 				file=XMLTools.showSaveDialog(getParent(),Language.tr("Calibrate.SaveModel"));
 				if (file==null) break;
-				if (file.exists()) {
+				if (file.exists() && !new PlugableFileChooser().hasOwnOverwritePrompt()) {
 					if (!MsgBox.confirmOverwrite(this,file)) continue;
 				}
 				if (editModel.saveToFile(file)) break;

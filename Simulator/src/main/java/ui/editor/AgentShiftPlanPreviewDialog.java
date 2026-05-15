@@ -48,6 +48,7 @@ import mathtools.TimeTools;
 import mathtools.distribution.DataDistributionImpl;
 import mathtools.distribution.swing.CommonVariables;
 import mathtools.distribution.swing.JDataDistributionEditPanel;
+import mathtools.distribution.swing.PlugableFileChooser;
 import systemtools.MsgBox;
 import tools.SetupData;
 import ui.images.Images;
@@ -352,7 +353,7 @@ public class AgentShiftPlanPreviewDialog extends JDialog {
 				break;
 			case SAVE_DIST_TABLE:
 				file=Table.showSaveDialog(AgentShiftPlanPreviewDialog.this,Language.tr("Editor.AgentsGroup.Shift.ShowPlan.SaveDistribution")); if (file==null) break;
-				if (file.exists()) {
+				if (file.exists() && !new PlugableFileChooser().hasOwnOverwritePrompt()) {
 					if (!MsgBox.confirmOverwrite(AgentShiftPlanPreviewDialog.this,file)) break;
 				}
 				getTable(0).save(file);
@@ -362,7 +363,7 @@ public class AgentShiftPlanPreviewDialog extends JDialog {
 				break;
 			case SAVE_PLAN_TABLE:
 				file=Table.showSaveDialog(AgentShiftPlanPreviewDialog.this,Language.tr("Editor.AgentsGroup.Shift.ShowPlan.SavePlan")); if (file==null) break;
-				if (file.exists()) {
+				if (file.exists() && !new PlugableFileChooser().hasOwnOverwritePrompt()) {
 					if (!MsgBox.confirmOverwrite(AgentShiftPlanPreviewDialog.this,file)) break;
 				}
 				getTable(1).save(file);

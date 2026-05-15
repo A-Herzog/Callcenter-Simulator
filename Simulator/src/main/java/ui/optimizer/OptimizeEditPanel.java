@@ -47,6 +47,7 @@ import language.Language;
 import mathtools.NumberTools;
 import mathtools.TimeTools;
 import mathtools.distribution.DataDistributionImpl;
+import mathtools.distribution.swing.PlugableFileChooser;
 import systemtools.MsgBox;
 import systemtools.statistics.JCheckboxTable;
 import ui.HelpLink;
@@ -740,7 +741,7 @@ public final class OptimizeEditPanel extends JTabbedPane {
 		final File file=XMLTools.showSaveDialog(getParent(),Language.tr("Optimizer.SaveSetup.Title"));
 		if (file==null) return false;
 
-		if (file.exists()) {
+		if (file.exists() && !new PlugableFileChooser().hasOwnOverwritePrompt()) {
 			if (!MsgBox.confirmOverwrite(this,file)) return false;
 		}
 

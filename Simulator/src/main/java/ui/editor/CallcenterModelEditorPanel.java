@@ -70,6 +70,7 @@ import language.Language;
 import mathtools.NumberTools;
 import mathtools.TimeTools;
 import mathtools.distribution.DataDistributionImpl;
+import mathtools.distribution.swing.PlugableFileChooser;
 import mathtools.distribution.tools.DistributionTools;
 import systemtools.MsgBox;
 import systemtools.statistics.StatisticNode;
@@ -588,7 +589,7 @@ public class CallcenterModelEditorPanel extends JPanel implements AbstractReport
 			if (file==null) return null;
 		}
 
-		if (file.exists() && (lastFileName==null || !lastFileName.equalsIgnoreCase(file.toString()))) {
+		if (file.exists() && !new PlugableFileChooser().hasOwnOverwritePrompt() && (lastFileName==null || !lastFileName.equalsIgnoreCase(file.toString()))) {
 			if (!MsgBox.confirmOverwrite(this,file)) return null;
 		}
 
