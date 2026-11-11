@@ -3756,6 +3756,8 @@ public class Messages_en extends java.util.ResourceBundle {
     t[8491] = "Display the average waiting time";
     t[8492] = "Connected.Error.NoDay1StatisticSelected.Title";
     t[8493] = "No model for day 1 selected";
+    t[8496] = "FileType.MarkdownTable";
+    t[8497] = "Markdown files";
     t[8502] = "Editor.AgentsGroup.Shift.ShowPlan.WorkingEndIsSimulationEnd";
     t[8503] = "until end of simulation";
     t[8508] = "Editor.Caller.DeleteGroup.Info";
@@ -4014,14 +4016,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[9131] = "Q";
     t[9132] = "SimStatistic.ModelInformation.Date";
     t[9133] = "Date of the model day";
-    t[9140] = "RegExWikipdiaLink.URL";
-    t[9141] = "https://en.wikipedia.org/wiki/Regular_expression";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9140] = "RegExWikipdiaLink.URL";
+    t[9141] = "https://en.wikipedia.org/wiki/Regular_expression";
     t[9148] = "Setup.SaveError.Title";
     t[9149] = "Configuration could not be saved";
     t[9150] = "XML.Model.ClientType.Retry.ClientType.NewClientType";
@@ -6020,14 +6022,14 @@ public class Messages_en extends java.util.ResourceBundle {
     t[13915] = "Meaiting time mean";
     t[13918] = "Editor.Caller.Error.NameInUse.Title";
     t[13919] = "Name %s is already in use as a name for a client type";
-    t[13920] = "Editor.ToolsPopup.CallerChangeAllIntervals";
-    t[13921] = "Change number of fresh calls in all groups";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[13920] = "Editor.ToolsPopup.CallerChangeAllIntervals";
+    t[13921] = "Change number of fresh calls in all groups";
     t[13924] = "XML.Model.AgentsGroup.CostsPerClientType.PerMinute";
     t[13925] = "PerMinute";
     t[13930] = "Editor.Caller.RecallProbability.Info";

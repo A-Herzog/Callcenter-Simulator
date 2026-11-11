@@ -3756,6 +3756,8 @@ public class Messages_de extends java.util.ResourceBundle {
     t[8491] = "Ausgabe der mittleren Wartezeit";
     t[8492] = "Connected.Error.NoDay1StatisticSelected.Title";
     t[8493] = "Modell f\u00fcr Tag 1 muss erst gew\u00e4hlt werden";
+    t[8496] = "FileType.MarkdownTable";
+    t[8497] = "Markdown-Dateien";
     t[8502] = "Editor.AgentsGroup.Shift.ShowPlan.WorkingEndIsSimulationEnd";
     t[8503] = "bis Simulationsende";
     t[8508] = "Editor.Caller.DeleteGroup.Info";
@@ -4014,14 +4016,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[9131] = "B";
     t[9132] = "SimStatistic.ModelInformation.Date";
     t[9133] = "Datum des Modelltages";
-    t[9140] = "RegExWikipdiaLink.URL";
-    t[9141] = "https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_2 (java.lang.String[] t) {
+    t[9140] = "RegExWikipdiaLink.URL";
+    t[9141] = "https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck";
     t[9148] = "Setup.SaveError.Title";
     t[9149] = "Konfiguration konnte nicht gespeichert werden";
     t[9150] = "XML.Model.ClientType.Retry.ClientType.NewClientType";
@@ -6020,14 +6022,14 @@ public class Messages_de extends java.util.ResourceBundle {
     t[13915] = "Mittelwert der Wartezeit";
     t[13918] = "Editor.Caller.Error.NameInUse.Title";
     t[13919] = "Name %s ist als Kundentyp-Name bereits vergeben";
-    t[13920] = "Editor.ToolsPopup.CallerChangeAllIntervals";
-    t[13921] = "Erstanruferanzahl in allen Gruppen ver\u00e4ndern";
   }
   /**
    * Part of the language array creation
    * @param t	Language data array
    */
   static void clinit_part_3 (java.lang.String[] t) {
+    t[13920] = "Editor.ToolsPopup.CallerChangeAllIntervals";
+    t[13921] = "Erstanruferanzahl in allen Gruppen ver\u00e4ndern";
     t[13924] = "XML.Model.AgentsGroup.CostsPerClientType.PerMinute";
     t[13925] = "ProMinute";
     t[13930] = "Editor.Caller.RecallProbability.Info";

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-22 23:40+0100\n"
+"POT-Creation-Date: 2026-10-30 08:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4450,6 +4450,9 @@ msgstr "LaTeX tables"
 
 msgid "FileType.Load.Text"
 msgstr "Load text"
+
+msgid "FileType.MarkdownTable"
+msgstr "Markdown files"
 
 msgid "FileType.PDF"
 msgstr "Portable document files"
